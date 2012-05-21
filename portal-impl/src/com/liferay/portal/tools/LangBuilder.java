@@ -571,11 +571,7 @@ public class LangBuilder {
 			translationId.equals("en_et") ||
 			translationId.equals("en_fi") ||
 			translationId.equals("en_gl") ||
-
-			// LPS-26741
-
 			translationId.equals("en_de") ||
-
 			translationId.equals("en_iw") ||
 			translationId.equals("en_hi") ||
 			translationId.equals("en_hu") ||
@@ -593,13 +589,14 @@ public class LangBuilder {
 			translationId.equals("en_sv") ||
 			translationId.equals("en_tr") ||
 			translationId.equals("en_uk") ||
-			translationId.equals("en_vi")) {
+			translationId.equals("en_vi") || 
+			translationId.equals("en_nl") || 
+			translationId.equals("en_ja") || 
+			translationId.equals("en_pt")) {
 
-			// Automatic translator does not support Arabic, Basque, Bulgarian,
-			// Catalan, Croatian, Czech, Danish, Estonian, Finnish, Galician,
-			// German, Hebrew, Hindi, Hungarian, Indonesian, Lao,
-			// Norwegian Bokmål, Persian, Polish, Romanian, Russian, Serbian,
-			// Slovak, Slovene, Swedish, Turkish, Ukrainian, or Vietnamese
+			// Automatic translator does not support these languages,
+			// some for technical reasons, some because the translators
+			// prefer to work without the automatic translation.
 
 			return null;
 		}
