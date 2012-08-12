@@ -47,10 +47,10 @@ import java.util.TreeSet;
 /**
  * @author Brian Wing Shun Chan
  */
-public class LangBuilder {
+public class LangBuilderOrig {
 
 	public static final String AUTOMATIC_COPY = " (Automatic Copy)";
-	public static final String NOT_TRANSLATED = " (Not translated)";
+
 	public static final String AUTOMATIC_TRANSLATION =
 		" (Automatic Translation)";
 
@@ -69,14 +69,14 @@ public class LangBuilder {
 			arguments.get("lang.translate"), true);
 
 		try {
-			new LangBuilder(langDir, langFile, langPlugin, langTranslate);
+			new LangBuilderOrig(langDir, langFile, langPlugin, langTranslate);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public LangBuilder(
+	public LangBuilderOrig(
 			String langDir, String langFile, boolean langPlugin,
 			boolean langTranslate)
 		throws Exception {
@@ -107,7 +107,55 @@ public class LangBuilder {
 		String content = _orderProperties(
 			new File(_langDir + "/" + _langFile + ".properties"));
 
+		// Locales that are not invoked by _createProperties should still be
+		// rewritten to use the rignt line separator
+
+		_orderProperties(
+			new File(_langDir + "/" + _langFile + "_en_GB.properties"));
+		_orderProperties(
+			new File(_langDir + "/" + _langFile + "_fr_CA.properties"));
+
+		_createProperties(content, "ar"); // Arabic
+		_createProperties(content, "eu"); // Basque
+		_createProperties(content, "bg"); // Bulgarian
+		_createProperties(content, "ca"); // Catalan
+		_createProperties(content, "zh_CN"); // Chinese (China)
+		_createProperties(content, "zh_TW"); // Chinese (Taiwan)
+		_createProperties(content, "hr"); // Croatian
+		_createProperties(content, "cs"); // Czech
+		_createProperties(content, "da"); // Danish
+		_createProperties(content, "nl"); // Dutch (Netherlands)
+		_createProperties(content, "nl_BE", "nl"); // Dutch (Belgium)
+		_createProperties(content, "et"); // Estonian
+		_createProperties(content, "fi"); // Finnish
+		_createProperties(content, "fr"); // French
+		_createProperties(content, "gl"); // Galician
 		_createProperties(content, "de"); // German
+		_createProperties(content, "el"); // Greek
+		_createProperties(content, "iw"); // Hebrew
+		_createProperties(content, "hi_IN"); // Hindi (India)
+		_createProperties(content, "hu"); // Hungarian
+		_createProperties(content, "in"); // Indonesian
+		_createProperties(content, "it"); // Italian
+		_createProperties(content, "ja"); // Japanese
+		_createProperties(content, "ko"); // Korean
+		_createProperties(content, "lo"); // Lao
+		_createProperties(content, "nb"); // Norwegian Bokmål
+		_createProperties(content, "fa"); // Persian
+		_createProperties(content, "pl"); // Polish
+		_createProperties(content, "pt_BR"); // Portuguese (Brazil)
+		_createProperties(content, "pt_PT", "pt_BR"); // Portuguese (Portugal)
+		_createProperties(content, "ro"); // Romanian
+		_createProperties(content, "ru"); // Russian
+		_createProperties(content, "sr_RS"); // Serbian (Cyrillic)
+		_createProperties(content, "sr_RS_latin"); // Serbian (Latin)
+		_createProperties(content, "sk"); // Slovak
+		_createProperties(content, "sl"); // Slovene
+		_createProperties(content, "es"); // Spanish
+		_createProperties(content, "sv"); // Swedish
+		_createProperties(content, "tr"); // Turkish
+		_createProperties(content, "uk"); // Ukrainian
+		_createProperties(content, "vi"); // Vietnamese
 	}
 
 	private void _createProperties(String content, String languageId)
@@ -121,8 +169,7 @@ public class LangBuilder {
 		throws IOException {
 
 		File propertiesFile = new File(
-				_langDir + "/" + _langFile + "_" + languageId + ".properties");
-
+			_langDir + "/" + _langFile + "_" + languageId + ".properties");
 
 		Properties properties = new Properties();
 
@@ -149,27 +196,15 @@ public class LangBuilder {
 		UnsyncBufferedReader unsyncBufferedReader = new UnsyncBufferedReader(
 			new UnsyncStringReader(content));
 		UnsyncBufferedWriter unsyncBufferedWriter = new UnsyncBufferedWriter(
-				new OutputStreamWriter(
-					new FileOutputStream(propertiesFile), StringPool.UTF8));
-		UnsyncBufferedWriter reverseWriter = new UnsyncBufferedWriter(
-				new OutputStreamWriter(
-					new FileOutputStream(new File(
-							_langDir + "/" + _langFile + "_reverse.properties")), StringPool.UTF8));
+			new OutputStreamWriter(
+				new FileOutputStream(propertiesFile), StringPool.UTF8));
 
-		
-		
 		boolean firstLine = true;
 		int state = 0;
 
 		String line = null;
 
-		int tempLimit = 200;
-		
 		while ((line = unsyncBufferedReader.readLine()) != null) {
-			if(tempLimit < 0) {
-				System.out.println("*** Temporarily limiting the number of translated records***");
-				break;
-			}
 			line = line.trim();
 
 			int pos = line.indexOf("=");
@@ -194,7 +229,6 @@ public class LangBuilder {
 				}
 
 				String translatedText = properties.getProperty(key);
-				String reverseText = NOT_TRANSLATED;
 
 				if ((translatedText == null) && (parentProperties != null)) {
 					translatedText = parentProperties.getProperty(key);
@@ -237,6 +271,27 @@ public class LangBuilder {
 						translatedText =
 							properties.getProperty(baseKey) + AUTOMATIC_COPY;
 					}
+					else if (key.equals("lang.dir")) {
+						translatedText = "ltr";
+					}
+					else if (key.equals("lang.line.begin")) {
+						translatedText = "left";
+					}
+					else if (key.equals("lang.line.end")) {
+						translatedText = "right";
+					}
+					else if (languageId.equals("el") &&
+							 (key.equals("enabled") || key.equals("on") ||
+							  key.equals("on-date"))) {
+
+						translatedText = "";
+					}
+					else if (languageId.equals("es") && key.equals("am")) {
+						translatedText = "";
+					}
+					else if (languageId.equals("it") && key.equals("am")) {
+						translatedText = "";
+					}
 					else if (languageId.equals("ja") &&
 							 (key.equals("any") || key.equals("anytime") ||
 							  key.equals("down") || key.equals("on") ||
@@ -244,19 +299,21 @@ public class LangBuilder {
 
 						translatedText = "";
 					}
+					else if (languageId.equals("ko") && key.equals("the")) {
+						translatedText = "";
+					}
 					else {
 						translatedText = _translate(
-							"en", languageId, key, value, 2);
+							"en", languageId, key, value, 0);
 
 						if (Validator.isNull(translatedText)) {
 							translatedText = value + AUTOMATIC_COPY;
 						}
 						else if (!key.startsWith("country.") &&
 								 !key.startsWith("language.")) {
-							reverseText = _translate("de", "en", key, translatedText, 2);
+
 							translatedText =
 								translatedText + AUTOMATIC_TRANSLATION;
-							tempLimit--;
 						}
 					}
 				}
@@ -280,12 +337,8 @@ public class LangBuilder {
 					}
 
 					unsyncBufferedWriter.write(key + "=" + translatedText);
+
 					unsyncBufferedWriter.flush();
-					if(!NOT_TRANSLATED.equals(reverseText)) {
-						reverseWriter.write(key + "=" + reverseText);
-						reverseWriter.newLine();
-						reverseWriter.flush();
-					}
 				}
 			}
 			else {
@@ -363,6 +416,7 @@ public class LangBuilder {
 				}
 
 				unsyncBufferedWriter.write(line);
+
 				unsyncBufferedWriter.flush();
 			}
 		}

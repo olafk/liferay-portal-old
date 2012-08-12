@@ -36,6 +36,7 @@ public class MicrosoftTranslatorImpl implements MicrosoftTranslator {
 	public MicrosoftTranslatorImpl(String clientId, String clientSecret) {
 		_microsoftTranslatorAuthenticator =
 			new MicrosoftTranslatorAuthenticator(clientId, clientSecret);
+		System.out.println("Initializing Translator with " + clientId + " " + clientSecret);
 	}
 
 	public MicrosoftTranslatorAuthenticator
@@ -49,6 +50,7 @@ public class MicrosoftTranslatorImpl implements MicrosoftTranslator {
 		throws MicrosoftTranslatorException {
 
 		try {
+//			System.out.println("translating " + fromLanguageId + "->" + toLanguageId + ": " + fromText);
 			return doTranslate(fromLanguageId, toLanguageId, fromText);
 		}
 		catch (MicrosoftTranslatorException mte) {
@@ -81,6 +83,8 @@ public class MicrosoftTranslatorImpl implements MicrosoftTranslator {
 		options.setLocation(sb.toString());
 
 		String accessToken = _microsoftTranslatorAuthenticator.getAccessToken();
+
+	System.out.println("AccessToken is " + accessToken);
 
 		if (Validator.isNull(accessToken)) {
 			throw new MicrosoftTranslatorException(

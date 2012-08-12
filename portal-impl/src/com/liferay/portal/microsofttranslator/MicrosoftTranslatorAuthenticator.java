@@ -67,6 +67,10 @@ public class MicrosoftTranslatorAuthenticator {
 			_clientSecret = PropsValues.MICROSOFT_TRANSLATOR_CLIENT_SECRET;
 		}
 
+		System.out.println("****************************************");
+		System.out.println(_clientId);
+		System.out.println(_clientSecret);
+		
 		try {
 			Http.Options options = new Http.Options();
 
