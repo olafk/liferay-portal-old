@@ -49,6 +49,7 @@ public class CustomAttributeListTag extends IncludeTag {
 		_classPK = 0;
 		_editable = false;
 		_label = false;
+		_ignore = null;
 	}
 
 	@Override
