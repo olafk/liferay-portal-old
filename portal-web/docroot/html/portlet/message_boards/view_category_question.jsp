@@ -143,7 +143,7 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 				</span>
 
 				<span class="views">
-					<span class="count"><%= thread.getViewCount() %></span> <span><%= LanguageUtil.get(pageContext, "views") %></span>
+					<span class="count"><%= thread.getViewCount() %></span> <span><%= LanguageUtil.get(pageContext, (thread.getViewCount()) != 1 ? "views[noun]" : "view[noun]") %></span>
 				</span>
 			</span>
 		</liferay-ui:search-container-column-text>

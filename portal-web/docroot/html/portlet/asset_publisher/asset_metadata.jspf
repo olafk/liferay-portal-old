@@ -53,7 +53,7 @@ for (int j = 0; j < metadataFields.length; j++) {
 	else if (metadataFields[j].equals("view-count")) {
 		int viewCount = assetEntry.getViewCount();
 
-		value = viewCount + StringPool.SPACE + LanguageUtil.get(pageContext, (viewCount == 1) ? "view" : "views");
+		value = viewCount + StringPool.SPACE + LanguageUtil.format(pageContext, (viewCount == 1) ? "1-view" : "x-views", ""+viewCount );
 	}
 	else if (metadataFields[j].equals("categories")) {
 		value = "categories";

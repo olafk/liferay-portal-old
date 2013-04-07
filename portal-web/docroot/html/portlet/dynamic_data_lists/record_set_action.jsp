@@ -41,6 +41,7 @@ String chooseCallback = (String)request.getAttribute("record_set_action.jsp-choo
 
 		<liferay-ui:icon
 			image="view"
+			message="view[action]"
 			url="<%= viewRecordSetURL %>"
 		/>
 	</c:if>

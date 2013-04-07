@@ -211,10 +211,10 @@ AssetEntry assetEntry = (AssetEntry)request.getAttribute("view_entry_content.jsp
 						<span class="view-count">
 							<c:choose>
 								<c:when test="<%= assetEntry.getViewCount() == 1 %>">
-									<%= assetEntry.getViewCount() %> <liferay-ui:message key="view" />,
+									 <liferay-ui:message key="1-view" arguments="<%= assetEntry.getViewCount() %>" />,
 								</c:when>
 								<c:when test="<%= assetEntry.getViewCount() > 1 %>">
-									<%= assetEntry.getViewCount() %> <liferay-ui:message key="views" />,
+									 <liferay-ui:message key="x-views" arguments="<%= assetEntry.getViewCount() %>" />,
 								</c:when>
 							</c:choose>
 						</span>

@@ -33,7 +33,7 @@ String defaultLanguageId = LocalizationUtil.getDefaultLocale(script);
 <div class="aui-helper-hidden lfr-message-response portlet-msg-error" id="<portlet:namespace />messageContainer"></div>
 
 <liferay-ui:tabs
-	names='<%= LanguageUtil.get(pageContext, "view") + "," + LanguageUtil.get(pageContext, "source") %>'
+	names='<%= LanguageUtil.get(pageContext, "view[action]") + "," + LanguageUtil.get(pageContext, "source") %>'
 	refresh="<%= false %>"
 >
 	<liferay-ui:section>

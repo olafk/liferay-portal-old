@@ -43,6 +43,7 @@ JournalArticle article = (JournalArticle)row.getObject();
 
 		<liferay-ui:icon
 			image="view"
+			message="view[action]"
 			target="_blank"
 			url="<%= sb.toString() %>"
 		/>

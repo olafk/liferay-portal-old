@@ -42,6 +42,7 @@ boolean editable = GetterUtil.getBoolean((String)row.getParameter("editable"));
 
 		<liferay-ui:icon
 			image="view"
+			message="view[action]"
 			url="<%= viewRecordURL %>"
 		/>
 	</c:if>
