@@ -75,8 +75,9 @@ public class HtmlImplTest {
 	}
 
 	@Test
-	public void testStripBetweenNull() {
-		Assert.assertNull(_htmlImpl.stripBetween(null, "test"));
+	public void testStripBetween() {
+		Assert.assertEquals(
+			"test-test-test", _htmlImpl.stripBetween("test-test-test", "test"));
 	}
 
 	@Test
@@ -85,6 +86,14 @@ public class HtmlImplTest {
 			"test--test",
 			_htmlImpl.stripBetween(
 				"test-<honk>thiswillbestripped</honk>-test", "honk"));
+	}
+
+	@Test
+	public void testStripBetweenHtmlElementAcrossLines() {
+		Assert.assertEquals(
+			"works across  lines",
+			_htmlImpl.stripBetween(
+				"works across <honk>\r\n a number of </honk> lines", "honk"));
 	}
 
 	@Test
@@ -97,26 +106,17 @@ public class HtmlImplTest {
 	}
 
 	@Test
-	public void testStripBetween() {
-		Assert.assertEquals(
-			"test-test-test", _htmlImpl.stripBetween("test-test-test", "test"));
-	}
-
-	@Test
-	public void testStripBetweenHtmlElementAcrossLines() {
-		Assert.assertEquals(
-			"works across  lines",
-			_htmlImpl.stripBetween(
-				"works across <honk>\r\n a number of </honk> lines", "honk"));
-	}
-
-	@Test
 	public void testStripBetweenMultipleOcurrencesOfHtmlElement() {
 		Assert.assertEquals(
 			"multiple occurrences, multiple indeed",
 			_htmlImpl.stripBetween(
 				"multiple <a>many</a>occurrences, multiple <a>HONK</a>indeed",
 				"a"));
+	}
+
+	@Test
+	public void testStripBetweenNull() {
+		Assert.assertNull(_htmlImpl.stripBetween(null, "test"));
 	}
 
 	@Test
@@ -136,13 +136,25 @@ public class HtmlImplTest {
 	}
 
 	@Test
-	public void testStripNullComments() {
-		Assert.assertNull(_htmlImpl.stripComments(null));
+	public void testStripComments() {
+		Assert.assertEquals("", _htmlImpl.stripComments("<!-- bla -->"));
 	}
 
 	@Test
-	public void testStripComments() {
-		Assert.assertEquals("", _htmlImpl.stripComments("<!-- bla -->"));
+	public void testStripCommentsAccrossLines() {
+		Assert.assertEquals("test", _htmlImpl.stripComments("te<!-- \n -->st"));
+	}
+
+	@Test
+	public void testStripCommentsAfter() {
+		Assert.assertEquals(
+			"test", _htmlImpl.stripComments("test<!--  bla -->"));
+	}
+
+	@Test
+	public void testStripCommentsBefore() {
+		Assert.assertEquals(
+			"test", _htmlImpl.stripComments("<!--  bla -->test"));
 	}
 
 	@Test
@@ -158,26 +170,14 @@ public class HtmlImplTest {
 	}
 
 	@Test
-	public void testStripCommentsAccrossLines() {
-		Assert.assertEquals("test", _htmlImpl.stripComments("te<!-- \n -->st"));
-	}
-
-	@Test
-	public void testStripCommentsBefore() {
-		Assert.assertEquals(
-			"test", _htmlImpl.stripComments("<!--  bla -->test"));
-	}
-
-	@Test
-	public void testStripCommentsAfter() {
-		Assert.assertEquals(
-			"test", _htmlImpl.stripComments("test<!--  bla -->"));
-	}
-
-	@Test
 	public void testStripMultipleEmptyComments() {
 		Assert.assertEquals(
 			"test", _htmlImpl.stripComments("te<!-- --><!-- -->st"));
+	}
+
+	@Test
+	public void testStripNullComments() {
+		Assert.assertNull(_htmlImpl.stripComments(null));
 	}
 
 	private void _assertUnchangedEscape(String input) {
