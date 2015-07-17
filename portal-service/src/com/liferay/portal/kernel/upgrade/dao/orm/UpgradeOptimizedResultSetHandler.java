@@ -291,7 +291,7 @@ public class UpgradeOptimizedResultSetHandler implements InvocationHandler {
 		}
 		else {
 			throw new UpgradeException(
-				"Upgrade code using unsupported class type " + type);
+				"Upgrade code using unsupported class type " + type + " on column " + name);
 		}
 
 		return value;

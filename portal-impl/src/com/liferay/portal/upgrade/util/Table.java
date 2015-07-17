@@ -442,7 +442,7 @@ public class Table {
 		}
 		else {
 			throw new UpgradeException(
-				"Upgrade code using unsupported class type " + type);
+				"Upgrade code using unsupported class type " + type + " on column " + name);
 		}
 
 		return value;
@@ -611,7 +611,7 @@ public class Table {
 		}
 		else {
 			throw new UpgradeException(
-				"Upgrade code using unsupported class type " + type);
+				"Upgrade code using unsupported class type " + type + " on column " + paramIndex);
 		}
 	}
 
