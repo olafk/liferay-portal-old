@@ -30,6 +30,7 @@ import org.osgi.service.component.annotations.Component;
 		"javax.portlet.display-name=Dialect Theme Style Guide Sample",
 		"javax.portlet.init-param.template-path=/META-INF/resources/",
 		"javax.portlet.init-param.view-template=/view.jsp",
+		"javax.portlet.name=com_liferay_frontend_theme_dialect_style_guide_sample_web_internal_portlet_FrontendThemeDialectStyleGuideSamplePortlet",
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user"
 	},
