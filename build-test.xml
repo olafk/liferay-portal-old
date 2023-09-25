@@ -9998,7 +9998,7 @@ org.apache.catalina.tribes.level = FINE]]>
 
 		<copy
 			flatten="true"
-			todir="${liferay.home}/deploy/"
+			todir="${liferay.home}/deploy"
 		>
 			<fileset
 				dir="${module.base.dir}"
