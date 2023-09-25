@@ -377,16 +377,7 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 					"fieldName", String.valueOf(fdsFieldProperties.get("name"))
 				).put(
 					"label",
-					() -> {
-						String label = String.valueOf(
-							fdsFieldProperties.get("label"));
-
-						if (Validator.isNotNull(label)) {
-							return label;
-						}
-
-						return String.valueOf(fdsFieldProperties.get("name"));
-					}
+					_getLabelFromProperties(fdsFieldProperties, "label", "name")
 				).put(
 					"sortable", (boolean)fdsFieldProperties.get("sortable")
 				);
@@ -456,16 +447,8 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 						"id", properties.get("fieldName")
 					).put(
 						"label",
-						() -> {
-							String label = String.valueOf(
-								properties.get("label"));
-
-							if (Validator.isNotNull(label)) {
-								return label;
-							}
-
-							return String.valueOf(properties.get("fieldName"));
-						}
+						_getLabelFromProperties(
+							properties, "label", "fieldName")
 					).put(
 						"max", _getDateJSONObject(properties.get("to"))
 					).put(
@@ -513,16 +496,8 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 							))
 					).put(
 						"label",
-						() -> {
-							String label = String.valueOf(
-								properties.get("label"));
-
-							if (Validator.isNotNull(label)) {
-								return label;
-							}
-
-							return String.valueOf(properties.get("fieldName"));
-						}
+						_getLabelFromProperties(
+							properties, "label", "fieldName")
 					).put(
 						"multiple", properties.get("multiple")
 					).put(
@@ -629,6 +604,19 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 					"target", properties.get("type")
 				);
 			});
+	}
+
+	private String _getLabelFromProperties(
+		Map<String, Object> fdsFieldProperties, String defaultLabel,
+		String fallbackLabel) {
+
+		String label = String.valueOf(fdsFieldProperties.get(defaultLabel));
+
+		if (Validator.isNotNull(label)) {
+			return label;
+		}
+
+		return String.valueOf(fdsFieldProperties.get(fallbackLabel));
 	}
 
 	private ObjectEntry _getObjectEntry(
