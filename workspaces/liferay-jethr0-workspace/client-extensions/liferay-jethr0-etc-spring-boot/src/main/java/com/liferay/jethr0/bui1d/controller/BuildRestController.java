@@ -33,9 +33,9 @@ public class BuildRestController {
 		@AuthenticationPrincipal Jwt jwt,
 		@PathVariable("id") int buildEntityId) {
 
-		BuildEntity buildEntity = _buildEntityRepository.getById(buildEntityId);
-
 		JSONArray buildRunsJSONArray = new JSONArray();
+
+		BuildEntity buildEntity = _buildEntityRepository.getById(buildEntityId);
 
 		for (BuildRunEntity buildRunEntity :
 				buildEntity.getBuildRunEntities()) {
