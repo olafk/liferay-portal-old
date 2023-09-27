@@ -229,7 +229,10 @@ public class BatchEngineUnitProcessorImpl implements BatchEngineUnitProcessor {
 			return null;
 		}
 
-		return ((BundleBatchEngineUnit)batchEngineUnit).getBundle();
+		BundleBatchEngineUnit bundleBatchEngineUnit =
+			(BundleBatchEngineUnit)batchEngineUnit;
+
+		return bundleBatchEngineUnit.getBundle();
 	}
 
 	private String _getObjectEntryClassName(
