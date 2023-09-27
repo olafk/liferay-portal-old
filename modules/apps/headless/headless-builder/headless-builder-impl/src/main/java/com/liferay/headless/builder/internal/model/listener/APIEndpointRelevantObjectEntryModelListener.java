@@ -94,9 +94,9 @@ public class APIEndpointRelevantObjectEntryModelListener
 		throws Exception {
 
 		if (Objects.equals(
-				pathParameter, HeadlessBuilderConstants.PATH_PARAMETER_ID) ||
+				pathParameter, HeadlessBuilderConstants.PATH_PARAMETER_ERC) ||
 			Objects.equals(
-				pathParameter, HeadlessBuilderConstants.PATH_PARAMETER_ERC)) {
+				pathParameter, HeadlessBuilderConstants.PATH_PARAMETER_ID)) {
 
 			return true;
 		}
