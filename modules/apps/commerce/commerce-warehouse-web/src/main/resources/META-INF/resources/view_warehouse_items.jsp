@@ -39,8 +39,8 @@ if (Validator.isNotNull(backURL)) {
 				<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 				<aui:input name="commerceInventoryWarehouseId" type="hidden" />
 				<aui:input name="commerceInventoryWarehouseItemId" type="hidden" />
-				<aui:input name="sku" type="hidden" value="<%= cpInstance.getSku() %>" />
 				<aui:input name="quantity" type="hidden" />
+				<aui:input name="sku" type="hidden" value="<%= cpInstance.getSku() %>" />
 				<aui:input name="unitOfMeasureKey" type="hidden" />
 				<aui:input name="mvccVersion" type="hidden" />
 
