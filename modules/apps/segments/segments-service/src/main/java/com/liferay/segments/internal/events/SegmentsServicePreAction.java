@@ -86,7 +86,7 @@ public class SegmentsServicePreAction extends Action {
 				}
 				else if (_log.isDebugEnabled()) {
 					_log.debug(
-						"Unable to find segments experience " +
+						"Unable to get segments experience " +
 							segmentsExperienceId);
 				}
 			}
