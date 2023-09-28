@@ -145,7 +145,6 @@ import javax.crypto.spec.SecretKeySpec;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -169,14 +168,6 @@ public class ObjectEntryLocalServiceTest {
 		new AggregateTestRule(
 			new LiferayIntegrationTestRule(),
 			SynchronousDestinationTestRule.INSTANCE);
-
-	@BeforeClass
-	public static void setUpClass() throws PortalException {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
-		_originalWorkflowAction = serviceContext.getWorkflowAction();
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -374,10 +365,6 @@ public class ObjectEntryLocalServiceTest {
 
 	@After
 	public void tearDown() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
-		serviceContext.setWorkflowAction(_originalWorkflowAction);
 
 		// Do not rely on @DeleteAfterTestRun because object entries that
 		// reference a required list type entry cannot be deleted before it is
@@ -639,6 +626,20 @@ public class ObjectEntryLocalServiceTest {
 
 	@Test
 	public void testAddObjectEntryAsDraft() throws Exception {
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext();
+
+		int originalWorkflowAction = serviceContext.getWorkflowAction();
+
+		try {
+			_testAddObjectEntryAsDraft();
+		}
+		finally {
+			serviceContext.setWorkflowAction(originalWorkflowAction);
+		}
+	}
+
+	private void _testAddObjectEntryAsDraft() throws Exception {
 		_objectDefinition.setEnableObjectEntryDraft(true);
 
 		_objectDefinition =
@@ -2954,8 +2955,6 @@ public class ObjectEntryLocalServiceTest {
 		_objectEntryLocalService.deleteObjectEntry(
 			objectEntry.getObjectEntryId());
 	}
-
-	private static int _originalWorkflowAction;
 
 	@Inject
 	private AssetEntryLocalService _assetEntryLocalService;
