@@ -788,8 +788,8 @@ public class CTCollectionLocalServiceImpl
 
 		List<CTEntry> ctEntries = new ArrayList<>();
 
-		for (List<CTEntry> entries : relatedCTEntriesMap.values()) {
-			ctEntries.addAll(entries);
+		for (List<CTEntry> curCTEntries : relatedCTEntriesMap.values()) {
+			ctEntries.addAll(curCTEntries);
 		}
 
 		Map<Long, List<ConflictInfo>> conflictInfoMap = checkConflicts(
@@ -814,8 +814,8 @@ public class CTCollectionLocalServiceImpl
 
 		ctEntries = new ArrayList<>();
 
-		for (List<CTEntry> entries : relatedCTEntriesMap.values()) {
-			ctEntries.addAll(entries);
+		for (List<CTEntry> curCTEntries : relatedCTEntriesMap.values()) {
+			ctEntries.addAll(curCTEntries);
 		}
 
 		conflictInfoMap = checkConflicts(
