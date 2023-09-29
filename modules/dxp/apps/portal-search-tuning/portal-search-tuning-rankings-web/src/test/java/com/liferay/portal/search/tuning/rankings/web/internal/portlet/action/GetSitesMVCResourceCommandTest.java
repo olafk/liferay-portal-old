@@ -60,7 +60,7 @@ public class GetSitesMVCResourceCommandTest
 		_setUpThemeDisplay(resourceRequest);
 
 		Group childrenGroup = _createGroup(
-			"children group", true, new ArrayList<>());
+			RandomTestUtil.randomString(), true, new ArrayList<>());
 
 		Mockito.doReturn(
 			childrenGroup
@@ -107,7 +107,7 @@ public class GetSitesMVCResourceCommandTest
 		_setUpThemeDisplay(resourceRequest);
 
 		Group childrenGroup = _createGroup(
-			"children group", true, new ArrayList<>());
+			RandomTestUtil.randomString(), true, new ArrayList<>());
 
 		_setUpGroups(
 			true, 1,
