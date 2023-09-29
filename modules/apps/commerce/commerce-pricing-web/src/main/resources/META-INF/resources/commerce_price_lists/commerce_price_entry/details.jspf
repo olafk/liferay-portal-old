@@ -29,13 +29,14 @@
 	</div>
 </commerce-ui:panel>
 
-<%
-boolean priceOnApplication = BeanParamUtil.getBoolean(commercePriceEntry, request, "priceOnApplication", false);
-%>
-
 <commerce-ui:panel
 	title='<%= LanguageUtil.get(request, "price") %>'
 >
+
+	<%
+	boolean priceOnApplication = BeanParamUtil.getBoolean(commercePriceEntry, request, "priceOnApplication", false);
+	%>
+
 	<c:if test='<%= FeatureFlagManagerUtil.isEnabled("COMMERCE-11028") %>'>
 		<div class="row">
 			<div class="col-12">
@@ -124,17 +125,13 @@ boolean priceOnApplication = BeanParamUtil.getBoolean(commercePriceEntry, reques
 				</aui:input>
 			</div>
 		</div>
-	</aui:fieldset>
-</commerce-ui:panel>
 
-<commerce-ui:panel
-	title='<%= LanguageUtil.get(request, "tier-price") %>'
->
-	<div class="row">
-		<div class="col-12">
-			<%@ include file="/commerce_price_lists/commerce_price_entry/tier_price_entries.jspf" %>
+		<div class="row">
+			<div class="col-12">
+				<%@ include file="/commerce_price_lists/commerce_price_entry/tier_price_entries.jspf" %>
+			</div>
 		</div>
-	</div>
+	</aui:fieldset>
 </commerce-ui:panel>
 
 <liferay-frontend:component
