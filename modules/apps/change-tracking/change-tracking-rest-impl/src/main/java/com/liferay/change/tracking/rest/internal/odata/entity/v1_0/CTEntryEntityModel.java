@@ -24,11 +24,7 @@ public class CTEntryEntityModel implements EntityModel {
 
 	public CTEntryEntityModel() {
 		_entityFieldsMap = EntityModel.toEntityFieldsMap(
-			new StringEntityField(
-				"changeType",
-				locale -> Field.getSortableFieldName(
-					"changeTypeLabel_".concat(
-						LocaleUtil.toLanguageId(locale)))),
+			new BooleanEntityField("hideable", locale -> "hideable"),
 			new DateTimeEntityField(
 				"dateCreated",
 				locale -> Field.getSortableFieldName(Field.CREATE_DATE),
@@ -37,20 +33,24 @@ public class CTEntryEntityModel implements EntityModel {
 				"dateModified",
 				locale -> Field.getSortableFieldName(Field.MODIFIED_DATE),
 				locale -> Field.MODIFIED_DATE),
-			new BooleanEntityField("hideable", locale -> "hideable"),
 			new IdEntityField(
 				"modelClassNameId", locale -> "modelClassNameId",
 				String::valueOf),
 			new IdEntityField(
 				"ownerId", locale -> Field.USER_ID, String::valueOf),
-			new StringEntityField("ownerName", locale -> Field.USER_NAME),
 			new IdEntityField(
 				"siteId", locale -> Field.GROUP_ID, String::valueOf),
+			new IntegerEntityField("status", locale -> Field.STATUS),
+			new StringEntityField(
+				"changeType",
+				locale -> Field.getSortableFieldName(
+					"changeTypeLabel_".concat(
+						LocaleUtil.toLanguageId(locale)))),
+			new StringEntityField("ownerName", locale -> Field.USER_NAME),
 			new StringEntityField(
 				"siteName",
 				locale -> Field.getSortableFieldName(
 					"groupName_".concat(LocaleUtil.toLanguageId(locale)))),
-			new IntegerEntityField("status", locale -> Field.STATUS),
 			new StringEntityField(
 				"title",
 				locale -> Field.getSortableFieldName(
