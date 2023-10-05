@@ -53,7 +53,7 @@ public class TemplatesAspect {
 			sb.append(fragmentEntryLinkShim.getCompanyId());
 			sb.append(", fragmentEntryLinkId: ");
 			sb.append(fragmentEntryLinkShim.getFragmentEntryLinkId());
-			sb.append(", siteGroupId: ");
+			sb.append(", groupId: ");
 			sb.append(fragmentEntryLinkShim.getGroupId());
 			sb.append("]");
 
