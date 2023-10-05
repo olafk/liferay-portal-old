@@ -34,7 +34,7 @@ public class TemplatesAspect {
 			"com.liferay.fragment.model.FragmentEntryLink", "java.lang.String",
 			"com.liferay.fragment.processor.FragmentEntryProcessorContext"
 		},
-		timerName = "Fragment Entry Link Template Parser Transform"
+		timerName = "Fragment Entry Link FreeMarker Template"
 	)
 	public static class FreeMarkerFragmentEntryProcessorAdvice {
 
@@ -50,8 +50,7 @@ public class TemplatesAspect {
 
 			StringBuilder sb = new StringBuilder();
 
-			sb.append("Fragment Entry Link Template Parser ");
-			sb.append("Transform [companyId: ");
+			sb.append("Fragment Entry Link FreeMarker Template [companyId: ");
 			sb.append(fragmentEntryLinkShim.getCompanyId());
 			sb.append(", fragmentEntryLinkId: ");
 			sb.append(fragmentEntryLinkShim.getFragmentEntryLinkId());
@@ -63,18 +62,18 @@ public class TemplatesAspect {
 					TemplatesPluginProperties.instrumentationLevel())) {
 
 				traceEntry = optionalThreadContext.startTransaction(
-					"Templates", sb.toString(),
+					"FreeMarker Templates", sb.toString(),
 					MessageSupplier.create(sb.toString()), _timerName);
 
 				optionalThreadContext.setTransactionOuter();
-				optionalThreadContext.addTransactionAttribute(
-					"Fragment Entry Link html", html);
+
+				optionalThreadContext.addTransactionAttribute("HTML", html);
 			}
 			else if (_INSTRUMENTATION_LEVEL_DEBUG.equals(
 						TemplatesPluginProperties.instrumentationLevel())) {
 
 				traceEntry = optionalThreadContext.startTransaction(
-					"Templates", sb.toString(),
+					"FreeMarker Templates", sb.toString(),
 					MessageSupplier.create(sb.toString()), _timerName);
 
 				optionalThreadContext.setTransactionOuter();
@@ -118,7 +117,7 @@ public class TemplatesAspect {
 			"java.lang.String", "com.liferay.portal.kernel.theme.ThemeDisplay",
 			"java.lang.String"
 		},
-		timerName = "Journal Template Parser Transform"
+		timerName = "Journal Article FreeMarker Template"
 	)
 	public static class JournalTransformerAdvice {
 
@@ -131,7 +130,7 @@ public class TemplatesAspect {
 
 			StringBuilder sb = new StringBuilder();
 
-			sb.append("Journal Template Parser Transform [companyId: ");
+			sb.append("Journal Article FreeMarker Template [companyId: ");
 
 			ThemeDisplayShim themeDisplayShim = (ThemeDisplayShim)parameters[9];
 
@@ -151,18 +150,19 @@ public class TemplatesAspect {
 					TemplatesPluginProperties.instrumentationLevel())) {
 
 				traceEntry = optionalThreadContext.startTransaction(
-					"Templates", sb.toString(),
+					"FreeMarker Templates", sb.toString(),
 					MessageSupplier.create(sb.toString()), _timerName);
 
 				optionalThreadContext.setTransactionOuter();
+
 				optionalThreadContext.addTransactionAttribute(
-					"Template script", dDMTemplateShim.getScript());
+					"Script", dDMTemplateShim.getScript());
 			}
 			else if (_INSTRUMENTATION_LEVEL_DEBUG.equals(
 						TemplatesPluginProperties.instrumentationLevel())) {
 
 				traceEntry = optionalThreadContext.startTransaction(
-					"Templates", sb.toString(),
+					"FreeMarker Templates", sb.toString(),
 					MessageSupplier.create(sb.toString()), _timerName);
 
 				optionalThreadContext.setTransactionOuter();
@@ -203,7 +203,7 @@ public class TemplatesAspect {
 			"javax.servlet.http.HttpServletRequest",
 			"javax.servlet.http.HttpServletResponse"
 		},
-		timerName = "Template Parser Transform"
+		timerName = "Transformer FreeMarker Template"
 	)
 	public static class TransformerAdvice {
 
@@ -218,7 +218,7 @@ public class TemplatesAspect {
 
 			StringBuilder sb = new StringBuilder();
 
-			sb.append("Template Parser Transform [companyId: ");
+			sb.append("Transformer FreeMarker Template [companyId: ");
 			sb.append(themeDisplayShim.getCompanyId());
 			sb.append(", siteGroupId: ");
 			sb.append(themeDisplayShim.getSiteGroupId());
@@ -230,20 +230,19 @@ public class TemplatesAspect {
 					TemplatesPluginProperties.instrumentationLevel())) {
 
 				traceEntry = optionalThreadContext.startTransaction(
-					"Templates", sb.toString(),
+					"FreeMarker Templates", sb.toString(),
 					MessageSupplier.create(sb.toString()), _timerName);
 
 				optionalThreadContext.setTransactionOuter();
-				optionalThreadContext.addTransactionAttribute(
-					"Template type", type);
-				optionalThreadContext.addTransactionAttribute(
-					"Template script", script);
+
+				optionalThreadContext.addTransactionAttribute("Script", script);
+				optionalThreadContext.addTransactionAttribute("Type", type);
 			}
 			else if (_INSTRUMENTATION_LEVEL_DEBUG.equals(
 						TemplatesPluginProperties.instrumentationLevel())) {
 
 				traceEntry = optionalThreadContext.startTransaction(
-					"Templates", sb.toString(),
+					"FreeMarker Templates", sb.toString(),
 					MessageSupplier.create(sb.toString()), _timerName);
 
 				optionalThreadContext.setTransactionOuter();
