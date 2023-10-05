@@ -84,7 +84,7 @@ public class FeatureFlagTestHelper {
 
 		PropsUtil.setProps(propsImpl);
 
-		_clearFeatureFlagsBagCache();
+		_clearCache();
 	}
 
 	public boolean getFeatureFlagValue(long companyId, String featureFlagKey) {
@@ -103,10 +103,10 @@ public class FeatureFlagTestHelper {
 	public void tearDown() {
 		PropsUtil.setProps(_oldProps);
 
-		_clearFeatureFlagsBagCache();
+		_clearCache();
 	}
 
-	private void _clearFeatureFlagsBagCache() {
+	private void _clearCache() {
 		ReflectionTestUtil.invoke(
 			_featureFlagsBagProviderObject, "clearCache", new Class<?>[0]);
 	}
