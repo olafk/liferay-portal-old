@@ -7134,11 +7134,10 @@ public class JournalArticleLocalServiceImpl
 				_classNameLocalService.getClassNameId(JournalArticle.class),
 				article.getResourcePrimKey());
 
-		FriendlyURLEntry newFriendlyURLEntry =
-			friendlyURLEntryLocalService.addFriendlyURLEntry(
-				article.getGroupId(),
-				_classNameLocalService.getClassNameId(JournalArticle.class),
-				article.getResourcePrimKey(), urlTitleMap, serviceContext);
+		friendlyURLEntryLocalService.addFriendlyURLEntry(
+			article.getGroupId(),
+			_classNameLocalService.getClassNameId(JournalArticle.class),
+			article.getResourcePrimKey(), urlTitleMap, serviceContext);
 
 		for (Map.Entry<String, String> entry : urlTitleMap.entrySet()) {
 			if (Validator.isNull(entry.getValue())) {
@@ -7159,17 +7158,6 @@ public class JournalArticleLocalServiceImpl
 					}
 				}
 			}
-		}
-
-		for (FriendlyURLEntry friendlyURLEntry : friendlyURLEntries) {
-			if (newFriendlyURLEntry.getFriendlyURLEntryId() ==
-					friendlyURLEntry.getFriendlyURLEntryId()) {
-
-				continue;
-			}
-
-			friendlyURLEntryLocalService.deleteFriendlyURLEntry(
-				friendlyURLEntry);
 		}
 	}
 
