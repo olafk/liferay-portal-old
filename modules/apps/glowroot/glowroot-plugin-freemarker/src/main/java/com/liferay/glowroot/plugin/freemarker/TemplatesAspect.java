@@ -46,6 +46,8 @@ public class TemplatesAspect {
 			@BindParameter FragmentEntryProcessorContextShim
 				fragmentEntryProcessorContextShim) {
 
+			TraceEntry traceEntry = null;
+
 			StringBuilder sb = new StringBuilder();
 
 			sb.append("Fragment Entry Link Template Parser ");
@@ -56,8 +58,6 @@ public class TemplatesAspect {
 			sb.append(", groupId: ");
 			sb.append(fragmentEntryLinkShim.getGroupId());
 			sb.append("]");
-
-			TraceEntry traceEntry;
 
 			if (_INSTRUMENTATION_LEVEL_TRACE.equals(
 					TemplatesPluginProperties.instrumentationLevel())) {
@@ -127,20 +127,25 @@ public class TemplatesAspect {
 			OptionalThreadContext optionalThreadContext,
 			@BindParameterArray Object[] parameters) {
 
-			ThemeDisplayShim themeDisplayShim = (ThemeDisplayShim)parameters[9];
-			DDMTemplateShim dDMTemplateShim = (DDMTemplateShim)parameters[1];
+			TraceEntry traceEntry = null;
 
 			StringBuilder sb = new StringBuilder();
 
 			sb.append("Journal Template Parser Transform [companyId: ");
+
+			ThemeDisplayShim themeDisplayShim = (ThemeDisplayShim)parameters[9];
+
 			sb.append(themeDisplayShim.getCompanyId());
+
 			sb.append(", siteGroupId: ");
 			sb.append(themeDisplayShim.getSiteGroupId());
 			sb.append(", templateId: ");
-			sb.append(dDMTemplateShim.getTemplateId());
-			sb.append("]");
 
-			TraceEntry traceEntry;
+			DDMTemplateShim dDMTemplateShim = (DDMTemplateShim)parameters[1];
+
+			sb.append(dDMTemplateShim.getTemplateId());
+
+			sb.append("]");
 
 			if (_INSTRUMENTATION_LEVEL_TRACE.equals(
 					TemplatesPluginProperties.instrumentationLevel())) {
@@ -209,8 +214,7 @@ public class TemplatesAspect {
 			@BindParameter Map<String, Object> contextObjects,
 			@BindParameter String script, @BindParameter String type) {
 
-			String templateId = String.valueOf(
-				contextObjects.get("template_id"));
+			TraceEntry traceEntry = null;
 
 			StringBuilder sb = new StringBuilder();
 
@@ -219,10 +223,8 @@ public class TemplatesAspect {
 			sb.append(", siteGroupId: ");
 			sb.append(themeDisplayShim.getSiteGroupId());
 			sb.append(", templateId: ");
-			sb.append(templateId);
+			sb.append(contextObjects.get("template_id"));
 			sb.append("]");
-
-			TraceEntry traceEntry;
 
 			if (_INSTRUMENTATION_LEVEL_TRACE.equals(
 					TemplatesPluginProperties.instrumentationLevel())) {
