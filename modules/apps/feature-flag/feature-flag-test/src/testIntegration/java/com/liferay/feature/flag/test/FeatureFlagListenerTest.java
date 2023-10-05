@@ -118,10 +118,8 @@ public class FeatureFlagListenerTest {
 
 			_featureFlagTestHelper.setFeatureFlagValue(
 				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1, !_value1);
-
 			_featureFlagTestHelper.setFeatureFlagValue(
 				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_2, !_value2);
-
 			_featureFlagTestHelper.setFeatureFlagValue(
 				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1, _value1);
 
@@ -172,7 +170,6 @@ public class FeatureFlagListenerTest {
 
 			_featureFlagTestHelper.setFeatureFlagValue(
 				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1, !_value1);
-
 			_featureFlagTestHelper.setFeatureFlagValue(
 				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_2,
 				RandomTestUtil.randomBoolean());
@@ -203,13 +200,10 @@ public class FeatureFlagListenerTest {
 
 			_featureFlagTestHelper.setFeatureFlagValue(
 				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1, !_value1);
-
 			_featureFlagTestHelper.setFeatureFlagValue(
 				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_2, !_value2);
-
 			_featureFlagTestHelper.setFeatureFlagValue(
 				_companyId, FeatureFlagTestHelper.FEATURE_FLAG_KEY_1, _value1);
-
 			_featureFlagTestHelper.setFeatureFlagValue(
 				CompanyConstants.SYSTEM,
 				FeatureFlagTestHelper.FEATURE_FLAG_KEY_SYSTEM, !_valueSystem);
