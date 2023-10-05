@@ -272,7 +272,7 @@ else {
 					bodyHTML: text,
 					onOpen: function (event) {
 						var webdavPasswordInput = document.getElementById(
-							'<portlet:namespace />webDavPassword'
+							'<portlet:namespace />webDAVPassword'
 						);
 
 						if (webdavPasswordInput) {
