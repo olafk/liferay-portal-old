@@ -50,13 +50,13 @@ public class TemplatesAspect {
 
 			StringBuilder sb = new StringBuilder();
 
-			sb.append("Fragment Entry Link FreeMarker Template [companyId: ");
+			sb.append("Fragment Entry Link FreeMarker Template (Company ID ");
 			sb.append(fragmentEntryLinkShim.getCompanyId());
-			sb.append(", fragmentEntryLinkId: ");
+			sb.append(", Fragment Entry Link ID ");
 			sb.append(fragmentEntryLinkShim.getFragmentEntryLinkId());
-			sb.append(", groupId: ");
+			sb.append(", and Group ID ");
 			sb.append(fragmentEntryLinkShim.getGroupId());
-			sb.append("]");
+			sb.append(")");
 
 			if (_INSTRUMENTATION_LEVEL_TRACE.equals(
 					TemplatesPluginProperties.instrumentationLevel())) {
@@ -130,21 +130,21 @@ public class TemplatesAspect {
 
 			StringBuilder sb = new StringBuilder();
 
-			sb.append("Journal Article FreeMarker Template [companyId: ");
+			sb.append("Journal Article FreeMarker Template (Company ID ");
 
 			ThemeDisplayShim themeDisplayShim = (ThemeDisplayShim)parameters[9];
 
 			sb.append(themeDisplayShim.getCompanyId());
 
-			sb.append(", siteGroupId: ");
+			sb.append(", Site Group ID ");
 			sb.append(themeDisplayShim.getSiteGroupId());
-			sb.append(", templateId: ");
+			sb.append(", and Template ID ");
 
 			DDMTemplateShim dDMTemplateShim = (DDMTemplateShim)parameters[1];
 
 			sb.append(dDMTemplateShim.getTemplateId());
 
-			sb.append("]");
+			sb.append(")");
 
 			if (_INSTRUMENTATION_LEVEL_TRACE.equals(
 					TemplatesPluginProperties.instrumentationLevel())) {
@@ -218,13 +218,13 @@ public class TemplatesAspect {
 
 			StringBuilder sb = new StringBuilder();
 
-			sb.append("Transformer FreeMarker Template [companyId: ");
+			sb.append("Transformer FreeMarker Template (Company ID ");
 			sb.append(themeDisplayShim.getCompanyId());
-			sb.append(", siteGroupId: ");
+			sb.append(", Site Group ID ");
 			sb.append(themeDisplayShim.getSiteGroupId());
-			sb.append(", templateId: ");
+			sb.append(", and Template ID ");
 			sb.append(contextObjects.get("template_id"));
-			sb.append("]");
+			sb.append(")");
 
 			if (_INSTRUMENTATION_LEVEL_TRACE.equals(
 					TemplatesPluginProperties.instrumentationLevel())) {
