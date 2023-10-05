@@ -167,15 +167,11 @@ function prepare_import {
 }
 
 function replace_tokens {
-
-local current_path="$PWD"
-
-	cd ~/liferay-learn/docs
+	pushd  ~/liferay-learn/docs
 
 	./replace_tokens.sh
 
-	cd $current_path
-
+	popd
 }
 
 function send_slack_message {
@@ -208,13 +204,11 @@ function update_examples {
 
 	java -version
 
-	local current_path="$PWD"
-
-cd ~/liferay-learn/docs
+	pushd ~/liferay-learn/docs
 
 	./update_examples.sh prod 2> ~/update_examples.err
 
-cd $current_path
+	popd
 
 	local exit_code=$?
 
