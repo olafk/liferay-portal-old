@@ -147,9 +147,8 @@ public class FeatureFlagsBagProviderImpl
 
 					if (keys == null) {
 						_log.error(
-							StringBundler.concat(
-								"No featureFlagKey property found for ",
-								serviceReference, ". Skipping registration."));
+							"No feature flag keys specified for " +
+								serviceReference);
 
 						return;
 					}

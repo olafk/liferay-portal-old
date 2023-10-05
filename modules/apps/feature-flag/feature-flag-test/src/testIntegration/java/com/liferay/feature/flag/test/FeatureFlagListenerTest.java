@@ -155,7 +155,7 @@ public class FeatureFlagListenerTest {
 			String message = logEntry.getMessage();
 
 			Assert.assertTrue(
-				message.contains("No featureFlagKey property found for "));
+				message.contains("No feature flag keys specified for "));
 		}
 	}
 
