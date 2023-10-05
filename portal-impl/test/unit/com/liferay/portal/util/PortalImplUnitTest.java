@@ -892,12 +892,12 @@ public class PortalImplUnitTest {
 
 	private void _restorePropsValuesValue() {
 		setPropsValuesValue(
+			"VIRTUAL_HOSTS_VALID_HOSTS", _virtualHostsValidHosts);
+		setPropsValuesValue(
 			"WEB_SERVER_FORWARDED_HOST_ENABLED",
 			_webServerForwardedHostEnabled);
 		setPropsValuesValue(
 			"WEB_SERVER_FORWARDED_HOST_HEADER", _webServerForwardedHostHeader);
-		setPropsValuesValue(
-			"VIRTUAL_HOSTS_VALID_HOSTS", _virtualHostsValidHosts);
 	}
 
 	private void _storeAndResetPropsValuesValue(
@@ -911,14 +911,14 @@ public class PortalImplUnitTest {
 
 		_virtualHostsValidHosts = PropsValues.VIRTUAL_HOSTS_VALID_HOSTS;
 
-		setPropsValuesValue("WEB_SERVER_FORWARDED_HOST_ENABLED", true);
-		setPropsValuesValue(
-			"WEB_SERVER_FORWARDED_HOST_HEADER", forwaredHostHeader);
-
 		if (forwaredHostHeader != null) {
 			setPropsValuesValue(
 				"VIRTUAL_HOSTS_VALID_HOSTS", new String[] {forwaredServer});
 		}
+
+		setPropsValuesValue("WEB_SERVER_FORWARDED_HOST_ENABLED", true);
+		setPropsValuesValue(
+			"WEB_SERVER_FORWARDED_HOST_HEADER", forwaredHostHeader);
 	}
 
 	private final PortalImpl _portalImpl = new PortalImpl();
