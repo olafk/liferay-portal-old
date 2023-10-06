@@ -297,20 +297,20 @@ public class NotificationRecipientSettingLocalServiceWrapper
 	 */
 	@Override
 	public com.liferay.notification.model.NotificationRecipientSetting
-			getNotificationRecipientSetting(long notificationRecipientSettingId)
+			fetchNotificationRecipientSetting(long notificationRecipientSettingId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _notificationRecipientSettingLocalService.
-			getNotificationRecipientSetting(notificationRecipientSettingId);
+			fetchNotificationRecipientSetting(notificationRecipientSettingId);
 	}
 
 	@Override
 	public com.liferay.notification.model.NotificationRecipientSetting
-		getNotificationRecipientSetting(
+		fetchNotificationRecipientSetting(
 			long notificationRecipientId, String name) {
 
 		return _notificationRecipientSettingLocalService.
-			getNotificationRecipientSetting(notificationRecipientId, name);
+			fetchNotificationRecipientSetting(notificationRecipientId, name);
 	}
 
 	/**

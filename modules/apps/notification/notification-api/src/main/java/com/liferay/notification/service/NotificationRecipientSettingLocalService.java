@@ -228,12 +228,12 @@ public interface NotificationRecipientSettingLocalService
 	 * @throws PortalException if a notification recipient setting with the primary key could not be found
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public NotificationRecipientSetting getNotificationRecipientSetting(
+	public NotificationRecipientSetting fetchNotificationRecipientSetting(
 			long notificationRecipientSettingId)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public NotificationRecipientSetting getNotificationRecipientSetting(
+	public NotificationRecipientSetting fetchNotificationRecipientSetting(
 		long notificationRecipientId, String name);
 
 	/**

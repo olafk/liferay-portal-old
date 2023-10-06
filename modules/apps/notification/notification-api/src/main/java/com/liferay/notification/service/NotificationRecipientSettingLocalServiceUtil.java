@@ -260,18 +260,18 @@ public class NotificationRecipientSettingLocalServiceUtil {
 	 * @return the notification recipient setting
 	 * @throws PortalException if a notification recipient setting with the primary key could not be found
 	 */
-	public static NotificationRecipientSetting getNotificationRecipientSetting(
+	public static NotificationRecipientSetting fetchNotificationRecipientSetting(
 			long notificationRecipientSettingId)
 		throws PortalException {
 
-		return getService().getNotificationRecipientSetting(
+		return getService().fetchNotificationRecipientSetting(
 			notificationRecipientSettingId);
 	}
 
-	public static NotificationRecipientSetting getNotificationRecipientSetting(
+	public static NotificationRecipientSetting fetchNotificationRecipientSetting(
 		long notificationRecipientId, String name) {
 
-		return getService().getNotificationRecipientSetting(
+		return getService().fetchNotificationRecipientSetting(
 			notificationRecipientId, name);
 	}
 

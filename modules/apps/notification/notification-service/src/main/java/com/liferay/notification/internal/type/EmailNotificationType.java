@@ -203,7 +203,7 @@ public class EmailNotificationType extends BaseNotificationType {
 				() -> {
 					NotificationRecipientSetting notificationRecipientSetting =
 						notificationRecipientSettingLocalService.
-							getNotificationRecipientSetting(
+							fetchNotificationRecipientSetting(
 								notificationRecipient.
 									getNotificationRecipientId(),
 								"fromName");
@@ -217,7 +217,7 @@ public class EmailNotificationType extends BaseNotificationType {
 				() -> {
 					NotificationRecipientSetting notificationRecipientSetting =
 						notificationRecipientSettingLocalService.
-							getNotificationRecipientSetting(
+							fetchNotificationRecipientSetting(
 								notificationRecipient.
 									getNotificationRecipientId(),
 								"singleRecipient");
@@ -233,7 +233,7 @@ public class EmailNotificationType extends BaseNotificationType {
 				() -> {
 					NotificationRecipientSetting notificationRecipientSetting =
 						notificationRecipientSettingLocalService.
-							getNotificationRecipientSetting(
+							fetchNotificationRecipientSetting(
 								notificationRecipient.
 									getNotificationRecipientId(),
 								"to");

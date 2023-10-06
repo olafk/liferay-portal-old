@@ -282,7 +282,7 @@ public abstract class NotificationRecipientSettingLocalServiceBaseImpl
 	 * @throws PortalException if a notification recipient setting with the primary key could not be found
 	 */
 	@Override
-	public NotificationRecipientSetting getNotificationRecipientSetting(
+	public NotificationRecipientSetting fetchNotificationRecipientSetting(
 			long notificationRecipientSettingId)
 		throws PortalException {
 
