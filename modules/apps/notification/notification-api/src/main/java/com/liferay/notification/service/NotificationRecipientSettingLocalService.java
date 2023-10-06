@@ -198,6 +198,10 @@ public interface NotificationRecipientSettingLocalService
 	public NotificationRecipientSetting fetchNotificationRecipientSetting(
 		long notificationRecipientSettingId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public NotificationRecipientSetting fetchNotificationRecipientSetting(
+		long notificationRecipientId, String name);
+
 	/**
 	 * Returns the notification recipient setting with the matching UUID and company.
 	 *
@@ -228,13 +232,9 @@ public interface NotificationRecipientSettingLocalService
 	 * @throws PortalException if a notification recipient setting with the primary key could not be found
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public NotificationRecipientSetting fetchNotificationRecipientSetting(
+	public NotificationRecipientSetting getNotificationRecipientSetting(
 			long notificationRecipientSettingId)
 		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public NotificationRecipientSetting fetchNotificationRecipientSetting(
-		long notificationRecipientId, String name);
 
 	/**
 	 * Returns the notification recipient setting with the matching UUID and company.

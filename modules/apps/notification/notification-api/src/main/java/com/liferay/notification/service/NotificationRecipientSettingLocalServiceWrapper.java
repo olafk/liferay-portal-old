@@ -245,6 +245,15 @@ public class NotificationRecipientSettingLocalServiceWrapper
 			fetchNotificationRecipientSetting(notificationRecipientSettingId);
 	}
 
+	@Override
+	public com.liferay.notification.model.NotificationRecipientSetting
+		fetchNotificationRecipientSetting(
+			long notificationRecipientId, String name) {
+
+		return _notificationRecipientSettingLocalService.
+			fetchNotificationRecipientSetting(notificationRecipientId, name);
+	}
+
 	/**
 	 * Returns the notification recipient setting with the matching UUID and company.
 	 *
@@ -297,20 +306,11 @@ public class NotificationRecipientSettingLocalServiceWrapper
 	 */
 	@Override
 	public com.liferay.notification.model.NotificationRecipientSetting
-			fetchNotificationRecipientSetting(long notificationRecipientSettingId)
+			getNotificationRecipientSetting(long notificationRecipientSettingId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _notificationRecipientSettingLocalService.
-			fetchNotificationRecipientSetting(notificationRecipientSettingId);
-	}
-
-	@Override
-	public com.liferay.notification.model.NotificationRecipientSetting
-		fetchNotificationRecipientSetting(
-			long notificationRecipientId, String name) {
-
-		return _notificationRecipientSettingLocalService.
-			fetchNotificationRecipientSetting(notificationRecipientId, name);
+			getNotificationRecipientSetting(notificationRecipientSettingId);
 	}
 
 	/**

@@ -217,6 +217,14 @@ public class NotificationRecipientSettingLocalServiceUtil {
 			notificationRecipientSettingId);
 	}
 
+	public static NotificationRecipientSetting
+		fetchNotificationRecipientSetting(
+			long notificationRecipientId, String name) {
+
+		return getService().fetchNotificationRecipientSetting(
+			notificationRecipientId, name);
+	}
+
 	/**
 	 * Returns the notification recipient setting with the matching UUID and company.
 	 *
@@ -260,19 +268,12 @@ public class NotificationRecipientSettingLocalServiceUtil {
 	 * @return the notification recipient setting
 	 * @throws PortalException if a notification recipient setting with the primary key could not be found
 	 */
-	public static NotificationRecipientSetting fetchNotificationRecipientSetting(
+	public static NotificationRecipientSetting getNotificationRecipientSetting(
 			long notificationRecipientSettingId)
 		throws PortalException {
 
-		return getService().fetchNotificationRecipientSetting(
+		return getService().getNotificationRecipientSetting(
 			notificationRecipientSettingId);
-	}
-
-	public static NotificationRecipientSetting fetchNotificationRecipientSetting(
-		long notificationRecipientId, String name) {
-
-		return getService().fetchNotificationRecipientSetting(
-			notificationRecipientId, name);
 	}
 
 	/**
