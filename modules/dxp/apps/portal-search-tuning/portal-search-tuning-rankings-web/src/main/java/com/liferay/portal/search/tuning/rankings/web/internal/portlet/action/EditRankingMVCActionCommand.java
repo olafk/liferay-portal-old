@@ -514,10 +514,10 @@ public class EditRankingMVCActionCommand extends BaseMVCActionCommand {
 		Ranking.RankingBuilder rankingBuilder = new Ranking.RankingBuilder(
 			ranking);
 
-		String[] hiddenIdsAdded = ParamUtil.getStringValues(
-			actionRequest, "hiddenIdsAdded");
-		String[] hiddenIdsRemoved = ParamUtil.getStringValues(
-			actionRequest, "hiddenIdsRemoved");
+		String[] addedHiddenIds = ParamUtil.getStringValues(
+			actionRequest, "addedHiddenIds");
+		String[] removedHiddenIds = ParamUtil.getStringValues(
+			actionRequest, "removedHiddenIds");
 
 		rankingBuilder.aliases(
 			_getAliases(editRankingMVCActionRequest)
@@ -525,8 +525,8 @@ public class EditRankingMVCActionCommand extends BaseMVCActionCommand {
 			editRankingMVCActionRequest.getGroupExternalReferenceCode()
 		).hiddenDocumentIds(
 			_updateHiddenIds(
-				ranking.getHiddenDocumentIds(), hiddenIdsAdded,
-				hiddenIdsRemoved)
+				addedHiddenIds, ranking.getHiddenDocumentIds(),
+				removedHiddenIds)
 		).inactive(
 			_isInactive(editRankingMVCActionRequest)
 		).indexName(
@@ -558,22 +558,22 @@ public class EditRankingMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private List<String> _updateHiddenIds(
-		List<String> hiddenIdsCurrent, String[] hiddenIdsAdded,
-		String[] hiddenIdsRemoved) {
+		String[] addedHiddenIds, List<String> currentHiddenIds,
+		String[] removedHiddenIds) {
 
-		List<String> hiddenIdsUpdated;
+		List<String> hiddenIdsUpdated = null;
 
-		if (ListUtil.isEmpty(hiddenIdsCurrent)) {
-			hiddenIdsUpdated = Arrays.asList(hiddenIdsAdded);
+		if (ListUtil.isEmpty(currentHiddenIds)) {
+			hiddenIdsUpdated = Arrays.asList(addedHiddenIds);
 		}
 		else {
 			hiddenIdsUpdated = RankingUtil.translateDocumentIds(
-				hiddenIdsCurrent);
+				currentHiddenIds);
 
-			Collections.addAll(hiddenIdsUpdated, hiddenIdsAdded);
+			Collections.addAll(hiddenIdsUpdated, addedHiddenIds);
 		}
 
-		hiddenIdsUpdated.removeAll(Arrays.asList(hiddenIdsRemoved));
+		hiddenIdsUpdated.removeAll(Arrays.asList(removedHiddenIds));
 
 		return hiddenIdsUpdated;
 	}
