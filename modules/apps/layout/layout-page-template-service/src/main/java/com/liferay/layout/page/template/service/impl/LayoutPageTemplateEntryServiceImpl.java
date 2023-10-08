@@ -237,17 +237,17 @@ public class LayoutPageTemplateEntryServiceImpl
 		long groupId, long layoutPageTemplateCollectionId, int type, int start,
 		int end, OrderByComparator<Object> orderByComparator) {
 
-		Table<?> tempLayoutPageTemplateCollectionAndLayoutPageTemplateEntry =
-			_getTempLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable(
+		Table<?> layoutPageTemplateCollectionAndLayoutPageTemplateEntryTable =
+			_getLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable(
 				groupId, layoutPageTemplateCollectionId, type);
 
 		return _getLayoutPageTemplateCollectionAndLayoutPageTemplateEntries(
 			DSLQueryFactoryUtil.select(
-				tempLayoutPageTemplateCollectionAndLayoutPageTemplateEntry
+				layoutPageTemplateCollectionAndLayoutPageTemplateEntryTable
 			).from(
-				tempLayoutPageTemplateCollectionAndLayoutPageTemplateEntry
+				layoutPageTemplateCollectionAndLayoutPageTemplateEntryTable
 			).orderBy(
-				tempLayoutPageTemplateCollectionAndLayoutPageTemplateEntry,
+				layoutPageTemplateCollectionAndLayoutPageTemplateEntryTable,
 				orderByComparator
 			).limit(
 				start, end
@@ -258,16 +258,16 @@ public class LayoutPageTemplateEntryServiceImpl
 	public int getLayoutPageCollectionsAndLayoutPageTemplateEntriesCount(
 		long groupId, long layoutPageTemplateCollectionId, int type) {
 
-		Table<?> tempLayoutPageTemplateCollectionAndLayoutPageTemplateEntry =
-			_getTempLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable(
+		Table<?> layoutPageTemplateCollectionAndLayoutPageTemplateEntryTable =
+			_getLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable(
 				groupId, layoutPageTemplateCollectionId, type);
 
 		return layoutPageTemplateEntryPersistence.dslQueryCount(
 			DSLQueryFactoryUtil.countDistinct(
-				tempLayoutPageTemplateCollectionAndLayoutPageTemplateEntry.
+				layoutPageTemplateCollectionAndLayoutPageTemplateEntryTable.
 					getColumn("layoutPageTemplateEntryId")
 			).from(
-				tempLayoutPageTemplateCollectionAndLayoutPageTemplateEntry
+				layoutPageTemplateCollectionAndLayoutPageTemplateEntryTable
 			));
 	}
 
@@ -864,7 +864,7 @@ public class LayoutPageTemplateEntryServiceImpl
 	}
 
 	private Table<?>
-		_getTempLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable(
+		_getLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable(
 			long groupId, long layoutPageTemplateCollectionId, int type) {
 
 		return DSLQueryFactoryUtil.select(
@@ -927,9 +927,8 @@ public class LayoutPageTemplateEntryServiceImpl
 				)
 			)
 		).as(
-			"tempLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable",
-			TempLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable.
-				INSTANCE
+			"layoutPageTemplateCollectionAndLayoutPageTemplateEntryTableTable",
+			LayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable.INSTANCE
 		);
 	}
 
@@ -962,34 +961,34 @@ public class LayoutPageTemplateEntryServiceImpl
 	private PortletResourcePermission _portletResourcePermission;
 
 	private static class
-		TempLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable
+		LayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable
 			extends BaseTable
-				<TempLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable> {
+				<LayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable> {
 
 		public static final
-			TempLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable
+			LayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable
 				INSTANCE =
-					new TempLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable();
+					new LayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable();
 
 		public final Column
-			<TempLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable,
-			 Date> createDateColumn = createColumn(
-				"createDate", Date.class, Types.TIMESTAMP, Column.FLAG_DEFAULT);
+			<LayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable, Date>
+				createDateColumn = createColumn(
+					"createDate", Date.class, Types.TIMESTAMP,
+					Column.FLAG_DEFAULT);
 		public final Column
-			<TempLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable,
-			 Date> modifiedDateColumn = createColumn(
-				"modifiedDate", Date.class, Types.TIMESTAMP,
-				Column.FLAG_DEFAULT);
+			<LayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable, Date>
+				modifiedDateColumn = createColumn(
+					"modifiedDate", Date.class, Types.TIMESTAMP,
+					Column.FLAG_DEFAULT);
 		public final Column
-			<TempLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable,
+			<LayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable,
 			 String> nameColumn = createColumn(
 				"name", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 
-		private TempLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable() {
+		private LayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable() {
 			super(
-				"TempLayoutPageTemplateCollection" +
-					"AndLayoutPageTemplateEntryTable",
-				TempLayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable::
+				"LayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable",
+				LayoutPageTemplateCollectionAndLayoutPageTemplateEntryTable::
 					new);
 		}
 
