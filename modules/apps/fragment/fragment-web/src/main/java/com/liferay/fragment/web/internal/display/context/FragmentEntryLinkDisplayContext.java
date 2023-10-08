@@ -164,14 +164,12 @@ public class FragmentEntryLinkDisplayContext {
 				return "page-template";
 			}
 			else if (layoutPageTemplateEntry.getType() ==
-						LayoutPageTemplateEntryTypeConstants.
-							TYPE_DISPLAY_PAGE) {
+						LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE) {
 
 				return "display-page-template";
 			}
 			else if (layoutPageTemplateEntry.getType() ==
-						LayoutPageTemplateEntryTypeConstants.
-							TYPE_MASTER_LAYOUT) {
+						LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT) {
 
 				return "master-page";
 			}
@@ -342,8 +340,7 @@ public class FragmentEntryLinkDisplayContext {
 					FragmentEntryLinkLocalServiceUtil.
 						getLayoutPageTemplateFragmentEntryLinksByFragmentEntryId(
 							fragmentEntry.getGroupId(), getFragmentEntryId(),
-							LayoutPageTemplateEntryTypeConstants.
-								TYPE_DISPLAY_PAGE,
+							LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE,
 							fragmentEntryLinksSearchContainer.getStart(),
 							fragmentEntryLinksSearchContainer.getEnd(),
 							fragmentEntryLinksSearchContainer.
@@ -351,8 +348,7 @@ public class FragmentEntryLinkDisplayContext {
 				FragmentEntryLinkLocalServiceUtil.
 					getLayoutPageTemplateFragmentEntryLinksCountByFragmentEntryId(
 						fragmentEntry.getGroupId(), getFragmentEntryId(),
-						LayoutPageTemplateEntryTypeConstants.
-							TYPE_DISPLAY_PAGE));
+						LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE));
 		}
 		else if (Objects.equals(getNavigation(), "master-pages")) {
 			fragmentEntryLinksSearchContainer.setResultsAndTotal(
@@ -360,8 +356,7 @@ public class FragmentEntryLinkDisplayContext {
 					FragmentEntryLinkLocalServiceUtil.
 						getLayoutPageTemplateFragmentEntryLinksByFragmentEntryId(
 							fragmentEntry.getGroupId(), getFragmentEntryId(),
-							LayoutPageTemplateEntryTypeConstants.
-								TYPE_MASTER_LAYOUT,
+							LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT,
 							fragmentEntryLinksSearchContainer.getStart(),
 							fragmentEntryLinksSearchContainer.getEnd(),
 							fragmentEntryLinksSearchContainer.
@@ -369,8 +364,7 @@ public class FragmentEntryLinkDisplayContext {
 				FragmentEntryLinkLocalServiceUtil.
 					getLayoutPageTemplateFragmentEntryLinksCountByFragmentEntryId(
 						fragmentEntry.getGroupId(), getFragmentEntryId(),
-						LayoutPageTemplateEntryTypeConstants.
-							TYPE_MASTER_LAYOUT));
+						LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT));
 		}
 		else {
 			fragmentEntryLinksSearchContainer.setResultsAndTotal(

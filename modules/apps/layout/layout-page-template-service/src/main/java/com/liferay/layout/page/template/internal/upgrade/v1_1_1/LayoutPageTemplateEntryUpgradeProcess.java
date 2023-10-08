@@ -44,8 +44,7 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 							"select layoutPageTemplateEntryId, companyId, ",
 							"name, layoutPrototypeId from ",
 							"LayoutPageTemplateEntry where type_ = ",
-							LayoutPageTemplateEntryTypeConstants.
-								TYPE_WIDGET_PAGE,
+							LayoutPageTemplateEntryTypeConstants.WIDGET_PAGE,
 							" and groupId in (select groupId from Group_ ",
 							"where site = [$FALSE$])")));
 			PreparedStatement updatePreparedStatement =

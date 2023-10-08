@@ -1953,8 +1953,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				_layoutPageTemplateEntryLocalService.
 					fetchLayoutPageTemplateEntry(
 						groupId, masterPage.getName(),
-						LayoutPageTemplateEntryTypeConstants.
-							TYPE_MASTER_LAYOUT);
+						LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT);
 
 			if (layoutPageTemplateEntry != null) {
 				return false;

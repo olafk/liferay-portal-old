@@ -164,8 +164,7 @@ public class SelectLayoutPageTemplateEntryDisplayContext {
 			() -> {
 				if (Objects.equals(
 						layoutPageTemplateEntry.getType(),
-						LayoutPageTemplateEntryTypeConstants.
-							TYPE_WIDGET_PAGE)) {
+						LayoutPageTemplateEntryTypeConstants.WIDGET_PAGE)) {
 
 					return LanguageUtil.get(
 						_httpServletRequest, "widget-page-template");

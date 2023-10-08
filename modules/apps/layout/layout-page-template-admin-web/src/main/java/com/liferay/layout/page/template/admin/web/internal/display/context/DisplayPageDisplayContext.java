@@ -111,7 +111,7 @@ public class DisplayPageDisplayContext {
 							getLayoutPageTemplateEntries(
 								_themeDisplay.getScopeGroupId(), getKeywords(),
 								LayoutPageTemplateEntryTypeConstants.
-									TYPE_DISPLAY_PAGE,
+									DISPLAY_PAGE,
 								displayPagesSearchContainer.getStart(),
 								displayPagesSearchContainer.getEnd(),
 								displayPagesSearchContainer.
@@ -119,8 +119,7 @@ public class DisplayPageDisplayContext {
 					LayoutPageTemplateEntryServiceUtil.
 						getLayoutPageTemplateEntriesCount(
 							_themeDisplay.getScopeGroupId(), getKeywords(),
-							LayoutPageTemplateEntryTypeConstants.
-								TYPE_DISPLAY_PAGE));
+							LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE));
 			}
 			else {
 				displayPagesSearchContainer.setResultsAndTotal(
@@ -129,7 +128,7 @@ public class DisplayPageDisplayContext {
 							getLayoutPageTemplateEntries(
 								_themeDisplay.getScopeGroupId(),
 								LayoutPageTemplateEntryTypeConstants.
-									TYPE_DISPLAY_PAGE,
+									DISPLAY_PAGE,
 								displayPagesSearchContainer.getStart(),
 								displayPagesSearchContainer.getEnd(),
 								displayPagesSearchContainer.
@@ -137,8 +136,7 @@ public class DisplayPageDisplayContext {
 					LayoutPageTemplateEntryServiceUtil.
 						getLayoutPageTemplateEntriesCount(
 							_themeDisplay.getScopeGroupId(),
-							LayoutPageTemplateEntryTypeConstants.
-								TYPE_DISPLAY_PAGE));
+							LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE));
 			}
 
 			displayPagesSearchContainer.setRowChecker(
@@ -167,16 +165,14 @@ public class DisplayPageDisplayContext {
 					LayoutPageTemplateEntryServiceUtil.
 						getLayoutPageTemplateEntries(
 							_themeDisplay.getScopeGroupId(), getKeywords(),
-							LayoutPageTemplateEntryTypeConstants.
-								TYPE_DISPLAY_PAGE,
+							LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE,
 							displayPagesSearchContainer.getStart(),
 							displayPagesSearchContainer.getEnd(),
 							displayPagesSearchContainer.getOrderByComparator()),
 				LayoutPageTemplateEntryServiceUtil.
 					getLayoutPageTemplateEntriesCount(
 						_themeDisplay.getScopeGroupId(), getKeywords(),
-						LayoutPageTemplateEntryTypeConstants.
-							TYPE_DISPLAY_PAGE));
+						LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE));
 
 			displayPagesSearchContainer.setRowChecker(
 				new EmptyOnClickRowChecker(_renderResponse));

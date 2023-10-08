@@ -212,8 +212,7 @@ public class GroupPagesPortletDataHandler extends BasePortletDataHandler {
 				if ((layoutPageTemplateEntry.getType() ==
 						LayoutPageTemplateEntryTypeConstants.BASIC) ||
 					(layoutPageTemplateEntry.getType() ==
-						LayoutPageTemplateEntryTypeConstants.
-							TYPE_MASTER_LAYOUT)) {
+						LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT)) {
 
 					portletDataContext.setPrivateLayout(true);
 				}

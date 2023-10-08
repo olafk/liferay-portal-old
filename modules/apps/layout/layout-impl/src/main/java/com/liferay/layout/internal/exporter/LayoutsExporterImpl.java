@@ -89,16 +89,14 @@ public class LayoutsExporterImpl implements LayoutsExporter {
 					zipWriter);
 			}
 			else if (layoutPageTemplateEntry.getType() ==
-						LayoutPageTemplateEntryTypeConstants.
-							TYPE_DISPLAY_PAGE) {
+						LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE) {
 
 				_populateDisplayPagesZipWriter(
 					layoutPageTemplateEntry, pageDefinitionDTOConverter,
 					zipWriter);
 			}
 			else if (layoutPageTemplateEntry.getType() ==
-						LayoutPageTemplateEntryTypeConstants.
-							TYPE_MASTER_LAYOUT) {
+						LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT) {
 
 				_populateMasterLayoutsZipWriter(
 					layoutPageTemplateEntry, pageDefinitionDTOConverter,

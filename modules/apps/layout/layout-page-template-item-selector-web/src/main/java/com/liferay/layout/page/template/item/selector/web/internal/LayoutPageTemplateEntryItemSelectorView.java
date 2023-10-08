@@ -180,8 +180,7 @@ public class LayoutPageTemplateEntryItemSelectorView
 				"previewURL",
 				() -> {
 					if (_layoutPageTemplateEntry.getType() ==
-							LayoutPageTemplateEntryTypeConstants.
-								TYPE_DISPLAY_PAGE) {
+							LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE) {
 
 						String previewURL = HttpComponentsUtil.addParameters(
 							_themeDisplay.getPortalURL() +
@@ -261,8 +260,7 @@ public class LayoutPageTemplateEntryItemSelectorView
 			}
 			else if (Objects.equals(
 						_layoutPageTemplateEntry.getType(),
-						LayoutPageTemplateEntryTypeConstants.
-							TYPE_MASTER_LAYOUT)) {
+						LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT)) {
 
 				return _language.format(
 					_httpServletRequest, "x-usages",

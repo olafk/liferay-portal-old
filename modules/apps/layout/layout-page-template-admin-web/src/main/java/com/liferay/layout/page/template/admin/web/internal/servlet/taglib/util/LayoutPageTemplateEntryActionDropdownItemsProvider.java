@@ -107,7 +107,7 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 							!Objects.equals(
 								_layoutPageTemplateEntry.getType(),
 								LayoutPageTemplateEntryTypeConstants.
-									TYPE_WIDGET_PAGE),
+									WIDGET_PAGE),
 						_getViewLayoutPageTemplateEntryActionUnsafeConsumer()
 					).build());
 				dropdownGroupItem.setSeparator(true);
