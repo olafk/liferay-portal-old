@@ -536,7 +536,7 @@ public class StructuredContentResourceTest
 				testGroup.getCreatorUserId(), testGroup.getGroupId(), 0,
 				_portal.getClassNameId(JournalArticle.class.getName()),
 				_ddmStructure.getStructureId(), RandomTestUtil.randomString(),
-				LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0,
+				LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE, 0,
 				false, 0, 0, 0, WorkflowConstants.STATUS_APPROVED,
 				ServiceContextTestUtil.getServiceContext(
 					testGroup.getGroupId()));
@@ -735,7 +735,7 @@ public class StructuredContentResourceTest
 			_portal.getClassNameId(JournalArticle.class.getName()),
 			_localizedDDMStructure.getStructureId(),
 			RandomTestUtil.randomString(),
-			LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0, true, 0,
+			LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE, 0, true, 0,
 			0, 0, WorkflowConstants.STATUS_APPROVED,
 			ServiceContextTestUtil.getServiceContext(testGroup.getGroupId()));
 

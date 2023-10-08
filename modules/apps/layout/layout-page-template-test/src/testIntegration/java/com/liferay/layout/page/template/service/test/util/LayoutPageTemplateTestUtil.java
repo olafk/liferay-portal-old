@@ -49,7 +49,7 @@ public class LayoutPageTemplateTestUtil {
 
 		return addLayoutPageTemplateEntry(
 			layoutPageTemplateCollectionId, RandomTestUtil.randomString(),
-			LayoutPageTemplateEntryTypeConstants.TYPE_BASIC,
+			LayoutPageTemplateEntryTypeConstants.BASIC,
 			WorkflowConstants.STATUS_DRAFT);
 	}
 
@@ -59,7 +59,7 @@ public class LayoutPageTemplateTestUtil {
 
 		return addLayoutPageTemplateEntry(
 			layoutPageTemplateCollectionId, name,
-			LayoutPageTemplateEntryTypeConstants.TYPE_BASIC,
+			LayoutPageTemplateEntryTypeConstants.BASIC,
 			WorkflowConstants.STATUS_DRAFT);
 	}
 

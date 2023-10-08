@@ -72,7 +72,7 @@ public class LayoutModelListenerTest {
 			_layoutPageTemplateEntryLocalService.addLayoutPageTemplateEntry(
 				TestPropsValues.getUserId(), _group.getGroupId(), 0, 0, 0,
 				RandomTestUtil.randomString(),
-				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, 0, true, 0, 0,
+				LayoutPageTemplateEntryTypeConstants.BASIC, 0, true, 0, 0,
 				0, WorkflowConstants.STATUS_APPROVED, new ServiceContext());
 
 		_layoutPageTemplateEntryLocalService.deleteLayoutPageTemplateEntry(

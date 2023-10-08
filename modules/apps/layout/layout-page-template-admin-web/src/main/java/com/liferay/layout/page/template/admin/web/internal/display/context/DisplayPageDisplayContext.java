@@ -202,7 +202,7 @@ public class DisplayPageDisplayContext {
 					getLayoutPageCollectionsAndLayoutPageTemplateEntries(
 						_themeDisplay.getScopeGroupId(),
 						_getLayoutPageTemplateCollectionId(),
-						LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE,
+						LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE,
 						displayPagesSearchContainer.getStart(),
 						displayPagesSearchContainer.getEnd(),
 						displayPagesSearchContainer.getOrderByComparator()),
@@ -210,7 +210,7 @@ public class DisplayPageDisplayContext {
 				getLayoutPageCollectionsAndLayoutPageTemplateEntriesCount(
 					_themeDisplay.getScopeGroupId(),
 					_getLayoutPageTemplateCollectionId(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE));
+					LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE));
 
 		displayPagesSearchContainer.setRowChecker(
 			new EmptyOnClickRowChecker(_renderResponse));

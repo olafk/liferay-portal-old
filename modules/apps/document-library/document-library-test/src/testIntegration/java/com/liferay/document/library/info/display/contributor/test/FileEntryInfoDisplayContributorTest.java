@@ -302,7 +302,7 @@ public class FileEntryInfoDisplayContributorTest {
 				layoutPageTemplateCollection.
 					getLayoutPageTemplateCollectionId(),
 				RandomTestUtil.randomString(),
-				LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0,
+				LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE, 0,
 				WorkflowConstants.STATUS_DRAFT, serviceContext);
 
 		_assetDisplayPageEntryLocalService.addAssetDisplayPageEntry(

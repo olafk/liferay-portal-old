@@ -410,7 +410,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				_layoutsImporterResultEntries.add(
 					new LayoutsImporterResultEntry(
 						zipEntry.getName(),
-						LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE,
+						LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE,
 						LayoutsImporterResultEntry.Status.INVALID,
 						_getErrorMessage(
 							groupId,
@@ -450,7 +450,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				_layoutsImporterResultEntries.add(
 					new LayoutsImporterResultEntry(
 						displayPageTemplate.getName(),
-						LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE,
+						LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE,
 						LayoutsImporterResultEntry.Status.INVALID,
 						_getErrorMessage(
 							groupId,
@@ -550,14 +550,14 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 			_layoutPageTemplateCollectionLocalService.
 				fetchLayoutPageTemplateCollection(
 					groupId, layoutPageTemplateCollectionKey,
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
+					LayoutPageTemplateEntryTypeConstants.BASIC);
 
 		if (layoutPageTemplateCollection == null) {
 			layoutPageTemplateCollection =
 				_layoutPageTemplateCollectionLocalService.
 					fetchLayoutPageTemplateCollectionByName(
 						groupId, pageTemplateCollection.getName(),
-						LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
+						LayoutPageTemplateEntryTypeConstants.BASIC);
 
 			if (layoutPageTemplateCollection == null) {
 				return _layoutPageTemplateCollectionService.
@@ -583,7 +583,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 					_layoutPageTemplateCollectionLocalService.
 						getUniqueLayoutPageTemplateCollectionName(
 							groupId, pageTemplateCollection.getName(),
-							LayoutPageTemplateEntryTypeConstants.TYPE_BASIC),
+							LayoutPageTemplateEntryTypeConstants.BASIC),
 					pageTemplateCollection.getDescription(),
 					LayoutPageTemplateCollectionTypeConstants.BASIC,
 					ServiceContextThreadLocal.getServiceContext());
@@ -733,7 +733,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				_layoutsImporterResultEntries.add(
 					new LayoutsImporterResultEntry(
 						zipEntry.getName(),
-						LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT,
+						LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT,
 						LayoutsImporterResultEntry.Status.INVALID,
 						_getErrorMessage(
 							groupId,
@@ -772,7 +772,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				_layoutsImporterResultEntries.add(
 					new LayoutsImporterResultEntry(
 						masterPage.getName(),
-						LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT,
+						LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT,
 						LayoutsImporterResultEntry.Status.INVALID,
 						_getErrorMessage(
 							groupId,
@@ -881,7 +881,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				_layoutsImporterResultEntries.add(
 					new LayoutsImporterResultEntry(
 						zipEntry.getName(),
-						LayoutPageTemplateEntryTypeConstants.TYPE_BASIC,
+						LayoutPageTemplateEntryTypeConstants.BASIC,
 						LayoutsImporterResultEntry.Status.INVALID,
 						_getErrorMessage(
 							groupId,
@@ -926,7 +926,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				_layoutsImporterResultEntries.add(
 					new LayoutsImporterResultEntry(
 						pageTemplate.getName(),
-						LayoutPageTemplateEntryTypeConstants.TYPE_BASIC,
+						LayoutPageTemplateEntryTypeConstants.BASIC,
 						LayoutsImporterResultEntry.Status.INVALID,
 						_getErrorMessage(
 							groupId,
@@ -1188,7 +1188,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				_layoutsImporterResultEntries.add(
 					new LayoutsImporterResultEntry(
 						displayPageTemplate.getName(),
-						LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE,
+						LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE,
 						LayoutsImporterResultEntry.Status.INVALID,
 						_getErrorMessage(
 							groupId,
@@ -1496,7 +1496,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				_layoutsImporterResultEntries.add(
 					new LayoutsImporterResultEntry(
 						masterPage.getName(),
-						LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT,
+						LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT,
 						LayoutsImporterResultEntry.Status.INVALID,
 						_getErrorMessage(
 							groupId,
@@ -1653,7 +1653,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				_layoutsImporterResultEntries.add(
 					new LayoutsImporterResultEntry(
 						pageTemplate.getName(),
-						LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT,
+						LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT,
 						LayoutsImporterResultEntry.Status.INVALID,
 						_getErrorMessage(
 							groupId,
@@ -1666,19 +1666,19 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 
 	private String _toTypeName(int layoutPageTemplateEntryType) {
 		if (layoutPageTemplateEntryType ==
-				LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE) {
+				LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE) {
 
 			return "display page template";
 		}
 
 		if (layoutPageTemplateEntryType ==
-				LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT) {
+				LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT) {
 
 			return "master page";
 		}
 
 		if (layoutPageTemplateEntryType ==
-				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC) {
+				LayoutPageTemplateEntryTypeConstants.BASIC) {
 
 			return "page template";
 		}
@@ -1883,7 +1883,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 					_layoutPageTemplateCollectionLocalService.
 						fetchLayoutPageTemplateCollection(
 							groupId, pageTemplateCollectionEntry.getKey(),
-							LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
+							LayoutPageTemplateEntryTypeConstants.BASIC);
 
 				if (layoutPageTemplateCollection != null) {
 					return false;
@@ -1901,7 +1901,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 					_layoutPageTemplateEntryLocalService.
 						fetchLayoutPageTemplateEntry(
 							groupId, pageTemplate.getName(),
-							LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
+							LayoutPageTemplateEntryTypeConstants.BASIC);
 
 				if (layoutPageTemplateEntry != null) {
 					return false;
@@ -1929,7 +1929,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				_layoutPageTemplateEntryLocalService.
 					fetchLayoutPageTemplateEntry(
 						groupId, displayPageTemplate.getName(),
-						LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE);
+						LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE);
 
 			if (layoutPageTemplateEntry != null) {
 				return false;
@@ -2215,7 +2215,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 				0, 0, _groupId, _layoutPageTemplateCollectionId,
 				_layoutsImportStrategy, pageTemplate.getName(),
 				_pageTemplateEntry.getPageDefinition(),
-				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, _userId,
+				LayoutPageTemplateEntryTypeConstants.BASIC, _userId,
 				_pageTemplateEntry.getThumbnailZipEntry(),
 				_pageTemplateEntry.getZipPath(), _zipFile);
 
@@ -2264,7 +2264,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 					classNameId, classTypeId, _groupId, 0,
 					_layoutsImportStrategy, displayPageTemplate.getName(),
 					_displayPageTemplateEntry.getPageDefinition(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE,
+					LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE,
 					_userId, _displayPageTemplateEntry.getThumbnailZipEntry(),
 					_displayPageTemplateEntry.getZipPath(), _zipFile);
 
@@ -2353,7 +2353,7 @@ public class LayoutsImporterImpl implements LayoutsImporter {
 			_processLayoutPageTemplateEntry(
 				0, 0, _groupId, 0, _layoutsImportStrategy, masterPage.getName(),
 				_masterPageEntry.getPageDefinition(),
-				LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT,
+				LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT,
 				_userId, _masterPageEntry.getThumbnailZipEntry(),
 				_masterPageEntry.getZipPath(), _zipFile);
 

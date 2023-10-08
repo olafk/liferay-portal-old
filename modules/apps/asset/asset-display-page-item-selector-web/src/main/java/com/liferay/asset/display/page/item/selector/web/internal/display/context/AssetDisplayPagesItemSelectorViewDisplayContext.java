@@ -93,7 +93,7 @@ public class AssetDisplayPagesItemSelectorViewDisplayContext {
 						_assetDisplayPageSelectorCriterion.getClassNameId(),
 						_assetDisplayPageSelectorCriterion.getClassTypeId(),
 						_getKeywords(),
-						LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE,
+						LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE,
 						WorkflowConstants.STATUS_APPROVED));
 		}
 		else {
@@ -116,7 +116,7 @@ public class AssetDisplayPagesItemSelectorViewDisplayContext {
 						_getGroupId(),
 						_assetDisplayPageSelectorCriterion.getClassNameId(),
 						_assetDisplayPageSelectorCriterion.getClassTypeId(),
-						LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE,
+						LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE,
 						WorkflowConstants.STATUS_APPROVED));
 		}
 

@@ -65,7 +65,7 @@ public class LayoutPageTemplateEntryTableReferenceDefinitionTest
 			TestPropsValues.getUserId(), group.getGroupId(),
 			_layoutPageTemplateCollection.getLayoutPageTemplateCollectionId(),
 			RandomTestUtil.randomString(),
-			LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, 0,
+			LayoutPageTemplateEntryTypeConstants.BASIC, 0,
 			WorkflowConstants.STATUS_APPROVED,
 			ServiceContextTestUtil.getServiceContext());
 	}

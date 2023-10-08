@@ -124,7 +124,7 @@ public class MasterLayoutDisplayContext {
 			layoutPageTemplateEntries.addAll(
 				LayoutPageTemplateEntryServiceUtil.getLayoutPageTemplateEntries(
 					_themeDisplay.getScopeGroupId(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT,
+					LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT,
 					start, end,
 					masterLayoutsSearchContainer.getOrderByComparator()));
 

@@ -223,7 +223,7 @@ public class DisplayPageTemplateResourceTest
 			TestPropsValues.getUserId(), siteId, 0,
 			_portal.getClassNameId(BlogsEntry.class.getName()), 0,
 			RandomTestUtil.randomString(),
-			LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0, true, 0,
+			LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE, 0, true, 0,
 			0, 0, WorkflowConstants.STATUS_APPROVED,
 			ServiceContextTestUtil.getServiceContext(testGroup.getGroupId()));
 	}

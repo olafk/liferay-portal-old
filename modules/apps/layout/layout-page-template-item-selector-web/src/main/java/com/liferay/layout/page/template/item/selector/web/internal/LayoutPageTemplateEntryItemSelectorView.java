@@ -234,7 +234,7 @@ public class LayoutPageTemplateEntryItemSelectorView
 		public String getSubtitle(Locale locale) {
 			if (Objects.equals(
 					_layoutPageTemplateEntry.getType(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE)) {
+					LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE)) {
 
 				String typeLabel = _getTypeLabel();
 

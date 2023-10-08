@@ -140,7 +140,7 @@ public class LayoutPageTemplateCollectionServiceTest {
 			_layoutPageTemplateCollectionService.
 				getLayoutPageTemplateCollectionsCount(
 					_group.getGroupId(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
+					LayoutPageTemplateEntryTypeConstants.BASIC);
 
 		_layoutPageTemplateCollectionService.addLayoutPageTemplateCollection(
 			_group.getGroupId(),
@@ -162,7 +162,7 @@ public class LayoutPageTemplateCollectionServiceTest {
 			_layoutPageTemplateCollectionService.
 				getLayoutPageTemplateCollectionsCount(
 					_group.getGroupId(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
+					LayoutPageTemplateEntryTypeConstants.BASIC);
 
 		Assert.assertEquals(
 			originalLayoutPageTemplateCollectionsCount + 2,
@@ -270,7 +270,7 @@ public class LayoutPageTemplateCollectionServiceTest {
 			_layoutPageTemplateCollectionService.
 				getLayoutPageTemplateCollections(
 					_group.getGroupId(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
+					LayoutPageTemplateEntryTypeConstants.BASIC);
 
 		Assert.assertTrue(
 			actualLayoutPageTemplateCollections.contains(
@@ -337,7 +337,7 @@ public class LayoutPageTemplateCollectionServiceTest {
 			_layoutPageTemplateCollectionService.
 				getLayoutPageTemplateCollections(
 					_group.getGroupId(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC,
+					LayoutPageTemplateEntryTypeConstants.BASIC,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator);
 
 		LayoutPageTemplateCollection lastLayoutPageTemplateCollection =
@@ -360,14 +360,14 @@ public class LayoutPageTemplateCollectionServiceTest {
 			_layoutPageTemplateCollectionService.
 				getLayoutPageTemplateCollectionsCount(
 					_group.getGroupId(), "Theme",
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
+					LayoutPageTemplateEntryTypeConstants.BASIC);
 
 		_layoutPageTemplateCollectionService.addLayoutPageTemplateCollection(
 			_group.getGroupId(),
 			LayoutPageTemplateConstants.
 				PARENT_LAYOUT_PAGE_TEMPLATE_COLLECTION_ID_DEFAULT,
 			"Fjord Theme collection", null,
-			LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, serviceContext);
+			LayoutPageTemplateEntryTypeConstants.BASIC, serviceContext);
 
 		_layoutPageTemplateCollectionService.addLayoutPageTemplateCollection(
 			_group.getGroupId(),
@@ -381,7 +381,7 @@ public class LayoutPageTemplateCollectionServiceTest {
 			_layoutPageTemplateCollectionService.
 				getLayoutPageTemplateCollectionsCount(
 					_group.getGroupId(), "Theme",
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
+					LayoutPageTemplateEntryTypeConstants.BASIC);
 
 		Assert.assertEquals(
 			originalLayoutPageTemplateCollectionsCount + 2,
@@ -429,7 +429,7 @@ public class LayoutPageTemplateCollectionServiceTest {
 			_layoutPageTemplateCollectionService.
 				getLayoutPageTemplateCollections(
 					_group.getGroupId(), "Theme",
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC,
+					LayoutPageTemplateEntryTypeConstants.BASIC,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator);
 
 		LayoutPageTemplateCollection firstLayoutPageTemplateCollection =
@@ -445,7 +445,7 @@ public class LayoutPageTemplateCollectionServiceTest {
 			_layoutPageTemplateCollectionService.
 				getLayoutPageTemplateCollections(
 					_group.getGroupId(), "Theme",
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC,
+					LayoutPageTemplateEntryTypeConstants.BASIC,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator);
 
 		LayoutPageTemplateCollection lastLayoutPageTemplateCollection =
@@ -486,7 +486,7 @@ public class LayoutPageTemplateCollectionServiceTest {
 			_layoutPageTemplateCollectionService.
 				getLayoutPageTemplateCollections(
 					_group.getGroupId(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, 0, 2);
+					LayoutPageTemplateEntryTypeConstants.BASIC, 0, 2);
 
 		Assert.assertTrue(
 			actualLayoutPageTemplateCollections.contains(
@@ -518,7 +518,7 @@ public class LayoutPageTemplateCollectionServiceTest {
 			_group.getGroupId(),
 			layoutPageTemplateCollection.getLayoutPageTemplateCollectionId(),
 			"Layout Page Template Entry",
-			LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0,
+			LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE, 0,
 			WorkflowConstants.STATUS_DRAFT, serviceContext);
 
 		_layoutPageTemplateCollectionService.deleteLayoutPageTemplateCollection(

@@ -102,7 +102,7 @@ public class ExportImportLocalServiceTest {
 				layoutPageTemplateCollection.
 					getLayoutPageTemplateCollectionId(),
 				RandomTestUtil.randomString(),
-				LayoutPageTemplateEntryTypeConstants.TYPE_WIDGET_PAGE, 0,
+				LayoutPageTemplateEntryTypeConstants.WIDGET_PAGE, 0,
 				WorkflowConstants.STATUS_APPROVED, serviceContext);
 
 		Layout templateLayout = LayoutLocalServiceUtil.getLayout(

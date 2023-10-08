@@ -54,7 +54,7 @@ public class DisplayPageTemplateResourceImpl
 				siteId, displayPageTemplateKey);
 
 		if (layoutPageTemplateEntry.getType() !=
-				LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE) {
+				LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE) {
 
 			throw new NoSuchPageTemplateEntryException(
 				"No display page template exists with key: " +
@@ -115,7 +115,7 @@ public class DisplayPageTemplateResourceImpl
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.eq(
 				"type",
-				LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE));
+				LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE));
 		dynamicQuery.add(
 			RestrictionsFactoryUtil.eq(
 				"status", WorkflowConstants.STATUS_APPROVED));

@@ -128,7 +128,7 @@ public class BlogsEntryAnalyticsReportsInfoItemTest {
 				_group.getCreatorUserId(), _group.getGroupId(), 0,
 				_portal.getClassNameId(BlogsEntry.class.getName()), 0,
 				RandomTestUtil.randomString(),
-				LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0, true,
+				LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE, 0, true,
 				0, 0, 0, 0,
 				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
@@ -227,7 +227,7 @@ public class BlogsEntryAnalyticsReportsInfoItemTest {
 				_group.getCreatorUserId(), _group.getGroupId(), 0,
 				_portal.getClassNameId(BlogsEntry.class.getName()), 0,
 				RandomTestUtil.randomString(),
-				LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0, true,
+				LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE, 0, true,
 				0, 0, 0, 0,
 				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 

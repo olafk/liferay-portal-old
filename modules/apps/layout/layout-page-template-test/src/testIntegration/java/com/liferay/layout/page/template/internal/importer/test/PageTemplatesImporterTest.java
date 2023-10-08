@@ -178,7 +178,7 @@ public class PageTemplatesImporterTest {
 				layoutPageTemplateCollection.
 					getLayoutPageTemplateCollectionId(),
 				layoutPageTemplateEntryName,
-				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, 0,
+				LayoutPageTemplateEntryTypeConstants.BASIC, 0,
 				WorkflowConstants.STATUS_APPROVED, serviceContext);
 
 			File file = _layoutsExporter.exportLayoutPageTemplateEntries(
@@ -554,7 +554,7 @@ public class PageTemplatesImporterTest {
 					layoutPageTemplateCollection.
 						getLayoutPageTemplateCollectionId(),
 					RandomTestUtil.randomString(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, 0,
+					LayoutPageTemplateEntryTypeConstants.BASIC, 0,
 					WorkflowConstants.STATUS_APPROVED, serviceContext);
 
 			FragmentCollection fragmentCollection =
@@ -591,7 +591,7 @@ public class PageTemplatesImporterTest {
 				new long[] {
 					layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 				},
-				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
+				LayoutPageTemplateEntryTypeConstants.BASIC);
 
 			_layoutPageTemplateEntryLocalService.deleteLayoutPageTemplateEntry(
 				layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
@@ -637,7 +637,7 @@ public class PageTemplatesImporterTest {
 					layoutPageTemplateCollection.
 						getLayoutPageTemplateCollectionId(),
 					RandomTestUtil.randomString(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, 0,
+					LayoutPageTemplateEntryTypeConstants.BASIC, 0,
 					WorkflowConstants.STATUS_APPROVED, serviceContext);
 
 			FragmentCollection fragmentCollection =
@@ -678,7 +678,7 @@ public class PageTemplatesImporterTest {
 				new long[] {
 					layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 				},
-				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
+				LayoutPageTemplateEntryTypeConstants.BASIC);
 
 			_layoutPageTemplateEntryLocalService.deleteLayoutPageTemplateEntry(
 				layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
@@ -723,7 +723,7 @@ public class PageTemplatesImporterTest {
 					layoutPageTemplateCollection.
 						getLayoutPageTemplateCollectionId(),
 					RandomTestUtil.randomString(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, 0,
+					LayoutPageTemplateEntryTypeConstants.BASIC, 0,
 					WorkflowConstants.STATUS_APPROVED, serviceContext);
 
 			FragmentCollection fragmentCollection =
@@ -764,7 +764,7 @@ public class PageTemplatesImporterTest {
 				new long[] {
 					layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 				},
-				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
+				LayoutPageTemplateEntryTypeConstants.BASIC);
 
 			_layoutPageTemplateEntryLocalService.deleteLayoutPageTemplateEntry(
 				layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
@@ -825,7 +825,7 @@ public class PageTemplatesImporterTest {
 					layoutPageTemplateCollection.
 						getLayoutPageTemplateCollectionId(),
 					RandomTestUtil.randomString(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, 0,
+					LayoutPageTemplateEntryTypeConstants.BASIC, 0,
 					WorkflowConstants.STATUS_APPROVED, serviceContext);
 
 			FragmentCollection fragmentCollection =
@@ -862,7 +862,7 @@ public class PageTemplatesImporterTest {
 				new long[] {
 					layoutPageTemplateEntry.getLayoutPageTemplateEntryId()
 				},
-				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
+				LayoutPageTemplateEntryTypeConstants.BASIC);
 
 			_layoutPageTemplateEntryLocalService.deleteLayoutPageTemplateEntry(
 				layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
@@ -1057,7 +1057,7 @@ public class PageTemplatesImporterTest {
 			_layoutPageTemplateEntryLocalService.addLayoutPageTemplateEntry(
 				TestPropsValues.getUserId(), _group.getGroupId(), 0,
 				"Test Master Page",
-				LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT, 0,
+				LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT, 0,
 				WorkflowConstants.STATUS_DRAFT,
 				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 

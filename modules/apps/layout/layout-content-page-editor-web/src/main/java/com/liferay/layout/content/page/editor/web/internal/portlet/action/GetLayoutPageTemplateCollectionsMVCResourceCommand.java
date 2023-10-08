@@ -57,7 +57,7 @@ public class GetLayoutPageTemplateCollectionsMVCResourceCommand
 			_layoutPageTemplateCollectionLocalService.
 				getLayoutPageTemplateCollections(
 					themeDisplay.getScopeGroupId(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC,
+					LayoutPageTemplateEntryTypeConstants.BASIC,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					new LayoutPageTemplateCollectionNameComparator(true));
 

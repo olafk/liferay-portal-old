@@ -104,7 +104,7 @@ public class ImportMVCResourceCommandTest {
 			_layoutPageTemplateCollectionLocalService.
 				fetchLayoutPageTemplateCollection(
 					_group.getGroupId(), "imported-(1)",
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC));
+					LayoutPageTemplateEntryTypeConstants.BASIC));
 	}
 
 	@Test
@@ -155,7 +155,7 @@ public class ImportMVCResourceCommandTest {
 			_layoutPageTemplateCollectionLocalService.
 				fetchLayoutPageTemplateCollection(
 					_group.getGroupId(), "imported-(1)",
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC));
+					LayoutPageTemplateEntryTypeConstants.BASIC));
 	}
 
 	@Test
@@ -261,7 +261,7 @@ public class ImportMVCResourceCommandTest {
 		return _layoutPageTemplateEntryLocalService.addLayoutPageTemplateEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(), 0,
 			"Existing Master Page",
-			LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT, 0,
+			LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT, 0,
 			WorkflowConstants.STATUS_APPROVED,
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}

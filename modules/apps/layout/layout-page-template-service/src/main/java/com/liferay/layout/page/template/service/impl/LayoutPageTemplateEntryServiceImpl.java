@@ -73,7 +73,7 @@ public class LayoutPageTemplateEntryServiceImpl
 		return layoutPageTemplateEntryLocalService.addLayoutPageTemplateEntry(
 			getUserId(), groupId, layoutPageTemplateCollectionId, classNameId,
 			classTypeId, name,
-			LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE,
+			LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE,
 			masterLayoutPlid, status, serviceContext);
 	}
 
@@ -133,7 +133,7 @@ public class LayoutPageTemplateEntryServiceImpl
 				getUserId(), sourceLayout.getGroupId(),
 				targetLayoutPageTemplateCollection.
 					getLayoutPageTemplateCollectionId(),
-				0, 0, name, LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, 0,
+				0, 0, name, LayoutPageTemplateEntryTypeConstants.BASIC, 0,
 				false, 0, 0, sourceLayout.getMasterLayoutPlid(),
 				WorkflowConstants.STATUS_DRAFT, serviceContext);
 

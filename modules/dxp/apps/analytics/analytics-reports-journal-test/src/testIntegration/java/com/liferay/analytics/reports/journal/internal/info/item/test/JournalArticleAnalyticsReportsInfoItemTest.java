@@ -158,7 +158,7 @@ public class JournalArticleAnalyticsReportsInfoItemTest {
 				_group.getCreatorUserId(), _group.getGroupId(), 0,
 				_portal.getClassNameId(JournalArticle.class.getName()),
 				ddmStructure.getStructureId(), RandomTestUtil.randomString(),
-				LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0, true,
+				LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE, 0, true,
 				0, 0, 0, 0,
 				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
@@ -260,7 +260,7 @@ public class JournalArticleAnalyticsReportsInfoItemTest {
 				_group.getCreatorUserId(), _group.getGroupId(), 0,
 				_portal.getClassNameId(JournalArticle.class.getName()),
 				ddmStructure.getStructureId(), RandomTestUtil.randomString(),
-				LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0, true,
+				LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE, 0, true,
 				0, 0, 0, 0, serviceContext);
 
 		AssetDisplayPageEntry assetDisplayPageEntry =

@@ -206,7 +206,7 @@ public class CreateLayoutPageTemplateEntryMVCActionCommand
 				_layoutPageTemplateEntryLocalService.
 					fetchLayoutPageTemplateEntry(
 						layout.getGroupId(), name,
-						LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
+						LayoutPageTemplateEntryTypeConstants.BASIC);
 
 			if (targetLayoutPageTemplateEntry == null) {
 				break;

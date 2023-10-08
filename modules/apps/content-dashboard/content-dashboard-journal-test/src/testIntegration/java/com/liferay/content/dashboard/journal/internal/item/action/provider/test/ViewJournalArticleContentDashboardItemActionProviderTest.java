@@ -84,7 +84,7 @@ public class ViewJournalArticleContentDashboardItemActionProviderTest {
 					_portal.getClassNameId(JournalArticle.class.getName()),
 					ddmStructure.getStructureId(),
 					RandomTestUtil.randomString(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0,
+					LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE, 0,
 					true, 0, 0, 0, 0, serviceContext);
 
 			_assetDisplayPageEntryLocalService.addAssetDisplayPageEntry(
@@ -187,7 +187,7 @@ public class ViewJournalArticleContentDashboardItemActionProviderTest {
 					_portal.getClassNameId(JournalArticle.class.getName()),
 					ddmStructure.getStructureId(),
 					RandomTestUtil.randomString(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0,
+					LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE, 0,
 					true, 0, 0, 0, 0, serviceContext);
 
 			_assetDisplayPageEntryLocalService.addAssetDisplayPageEntry(
@@ -278,7 +278,7 @@ public class ViewJournalArticleContentDashboardItemActionProviderTest {
 					_portal.getClassNameId(JournalArticle.class.getName()),
 					ddmStructure.getStructureId(),
 					RandomTestUtil.randomString(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0,
+					LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE, 0,
 					true, 0, 0, 0, 0, serviceContext);
 
 			_assetDisplayPageEntryLocalService.addAssetDisplayPageEntry(

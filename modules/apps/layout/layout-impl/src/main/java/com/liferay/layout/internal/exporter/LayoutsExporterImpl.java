@@ -82,7 +82,7 @@ public class LayoutsExporterImpl implements LayoutsExporter {
 			}
 
 			if (layoutPageTemplateEntry.getType() ==
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC) {
+					LayoutPageTemplateEntryTypeConstants.BASIC) {
 
 				_populatePageTemplatesZipWriter(
 					layoutPageTemplateEntry, pageDefinitionDTOConverter,
@@ -114,19 +114,19 @@ public class LayoutsExporterImpl implements LayoutsExporter {
 			long[] layoutPageTemplateEntryIds, int type)
 		throws Exception {
 
-		if (LayoutPageTemplateEntryTypeConstants.TYPE_BASIC == type) {
+		if (LayoutPageTemplateEntryTypeConstants.BASIC == type) {
 			return _exportLayoutPageTemplateEntries(
 				layoutPageTemplateEntryIds, type,
 				this::_populatePageTemplatesZipWriter);
 		}
 
-		if (LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE == type) {
+		if (LayoutPageTemplateEntryTypeConstants.DISPLAY_PAGE == type) {
 			return _exportLayoutPageTemplateEntries(
 				layoutPageTemplateEntryIds, type,
 				this::_populateDisplayPagesZipWriter);
 		}
 
-		if (LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT == type) {
+		if (LayoutPageTemplateEntryTypeConstants.MASTER_LAYOUT == type) {
 			return _exportLayoutPageTemplateEntries(
 				layoutPageTemplateEntryIds, type,
 				this::_populateMasterLayoutsZipWriter);

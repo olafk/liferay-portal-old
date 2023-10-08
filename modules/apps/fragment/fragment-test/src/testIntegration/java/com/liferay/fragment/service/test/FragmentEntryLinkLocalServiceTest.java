@@ -507,7 +507,7 @@ public class FragmentEntryLinkLocalServiceTest {
 			_fragmentEntryLinkLocalService.
 				getLayoutPageTemplateFragmentEntryLinksByFragmentEntryId(
 					_group.getGroupId(), _fragmentEntry.getFragmentEntryId(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC,
+					LayoutPageTemplateEntryTypeConstants.BASIC,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Assert.assertFalse(fragmentEntryLinks.contains(fragmentEntryLink1));
@@ -526,7 +526,7 @@ public class FragmentEntryLinkLocalServiceTest {
 			_fragmentEntryLinkLocalService.
 				getLayoutPageTemplateFragmentEntryLinksCountByFragmentEntryId(
 					_group.getGroupId(), _fragmentEntry.getFragmentEntryId(),
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC));
+					LayoutPageTemplateEntryTypeConstants.BASIC));
 	}
 
 	@Test
@@ -862,7 +862,7 @@ public class FragmentEntryLinkLocalServiceTest {
 				layoutPageTemplateCollection.
 					getLayoutPageTemplateCollectionId(),
 				"Page Template One",
-				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, 0,
+				LayoutPageTemplateEntryTypeConstants.BASIC, 0,
 				WorkflowConstants.STATUS_APPROVED, _serviceContext);
 
 		return _fragmentEntryLinkLocalService.addFragmentEntryLink(

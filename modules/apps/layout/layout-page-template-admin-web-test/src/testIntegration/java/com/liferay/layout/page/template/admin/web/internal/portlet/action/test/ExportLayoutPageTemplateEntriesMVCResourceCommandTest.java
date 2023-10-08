@@ -167,7 +167,7 @@ public class ExportLayoutPageTemplateEntriesMVCResourceCommandTest {
 				layoutPageTemplateCollection.
 					getLayoutPageTemplateCollectionId(),
 				"Page Template One",
-				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, 0,
+				LayoutPageTemplateEntryTypeConstants.BASIC, 0,
 				WorkflowConstants.STATUS_DRAFT, _serviceContext);
 
 		String fileName = ReflectionTestUtil.invoke(
@@ -293,7 +293,7 @@ public class ExportLayoutPageTemplateEntriesMVCResourceCommandTest {
 			_layoutPageTemplateEntryLocalService.addLayoutPageTemplateEntry(
 				_serviceContext.getUserId(), _serviceContext.getScopeGroupId(),
 				layoutPageTemplateCollectionId, name,
-				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, 0, status,
+				LayoutPageTemplateEntryTypeConstants.BASIC, 0, status,
 				_serviceContext);
 
 		_layoutPageTemplateStructureLocalService.

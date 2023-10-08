@@ -2714,7 +2714,7 @@ public class LayoutStagedModelDataHandler
 
 			if (layoutPageTemplateEntry != null) {
 				if (layoutPageTemplateEntry.getType() ==
-						LayoutPageTemplateEntryTypeConstants.TYPE_BASIC) {
+						LayoutPageTemplateEntryTypeConstants.BASIC) {
 
 					layoutElement.addAttribute(
 						"layout-content-page-template",

@@ -98,7 +98,7 @@ public class WidgetTemplatesTemplateViewUsagesDisplayContext {
 
 		if (layoutPageTemplateEntry != null) {
 			if (layoutPageTemplateEntry.getType() ==
-					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC) {
+					LayoutPageTemplateEntryTypeConstants.BASIC) {
 
 				return "page-template";
 			}
