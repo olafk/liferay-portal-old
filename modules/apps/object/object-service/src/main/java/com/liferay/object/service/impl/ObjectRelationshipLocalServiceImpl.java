@@ -337,12 +337,12 @@ public class ObjectRelationshipLocalServiceImpl
 			_objectFieldLocalService.deleteRelationshipTypeObjectField(
 				objectRelationship.getObjectFieldId2());
 
-			for (ObjectRelationship objectRelationshipByParameterObjectFieldId :
+			for (ObjectRelationship parameterObjectFieldIdObjectRelationship :
 					objectRelationshipPersistence.findByParameterObjectFieldId(
 						objectRelationship.getObjectFieldId2())) {
 
 				objectRelationshipLocalService.deleteObjectRelationship(
-					objectRelationshipByParameterObjectFieldId);
+					parameterObjectFieldIdObjectRelationship);
 			}
 		}
 		else if (Objects.equals(
