@@ -463,7 +463,7 @@ public class UpgradeReport {
 
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Failed to generate the upgrade report at " +
+						"Unable to generate the upgrade report at " +
 							PropsValues.UPGRADE_REPORT_DIR);
 				}
 			}
