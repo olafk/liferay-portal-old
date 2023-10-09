@@ -255,13 +255,12 @@ public class GetObjectRelationshipEdgeCandidatesMVCResourceCommandTest {
 		_objectRelationshipLocalService.deleteObjectRelationship(
 			objectRelationship1.getObjectRelationshipId());
 
-		// Many to Many object relationship
+		// Many to many object relationship
 
 		ObjectDefinition objectDefinition1 =
 			ObjectDefinitionTestUtil.addCustomObjectDefinition(
 				"A" + RandomTestUtil.randomString(),
 				_objectDefinitionLocalService);
-
 		ObjectDefinition objectDefinition2 =
 			ObjectDefinitionTestUtil.addCustomObjectDefinition(
 				"B" + RandomTestUtil.randomString(),

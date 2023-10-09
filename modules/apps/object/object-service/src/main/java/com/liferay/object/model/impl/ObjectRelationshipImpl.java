@@ -44,7 +44,6 @@ public class ObjectRelationshipImpl extends ObjectRelationshipBaseImpl {
 		ObjectDefinition objectDefinition1 =
 			ObjectDefinitionLocalServiceUtil.getObjectDefinition(
 				getObjectDefinitionId1());
-
 		ObjectDefinition objectDefinition2 =
 			ObjectDefinitionLocalServiceUtil.getObjectDefinition(
 				getObjectDefinitionId2());
