@@ -6836,7 +6836,7 @@ go</echo>
 				</else>
 			</if>
 
-			<is-quarterly-release/>
+			<is-quarterly-release />
 
 			<if>
 				<isset property="quarterly.release" />
