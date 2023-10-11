@@ -97,7 +97,7 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 				new Callable<Void>() {
 
 					@Override
-					public Void call() throws UpgradeCatchAllException {
+					public Void call() throws Exception {
 						_performTask(fileName);
 
 						return null;
@@ -695,7 +695,7 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		return pattern;
 	}
 
-	private void _performTask(String fileName) throws UpgradeCatchAllException {
+	private void _performTask(String fileName) throws Exception {
 		try {
 			if (!_sourceFormatterArgs.isShowDebugInformation()) {
 				_format(fileName);
