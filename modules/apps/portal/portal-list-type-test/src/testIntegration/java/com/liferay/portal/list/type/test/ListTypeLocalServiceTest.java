@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.service.ListTypeLocalService;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.CompanyTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -162,7 +163,7 @@ public class ListTypeLocalServiceTest {
 		}
 	}
 
-	private static final String _LIST_TYPE_NAME = "test";
+	private static final String _LIST_TYPE_NAME = RandomTestUtil.randomString();
 
 	private static final String _LIST_TYPE_TYPE =
 		ListTypeLocalServiceTest.class.getName();
