@@ -76,10 +76,6 @@ public class ListTypeLocalServiceUtil {
 		return getService().createPersistedModel(primaryKeyObj);
 	}
 
-	public static void deleteListTypes(long companyId) {
-		getService().deleteListTypes(companyId);
-	}
-
 	/**
 	 * Deletes the list type from the database. Also notifies the appropriate model listeners.
 	 *
@@ -109,6 +105,10 @@ public class ListTypeLocalServiceUtil {
 		throws PortalException {
 
 		return getService().deleteListType(listTypeId);
+	}
+
+	public static void deleteListTypes(long companyId) {
+		getService().deleteListTypes(companyId);
 	}
 
 	/**

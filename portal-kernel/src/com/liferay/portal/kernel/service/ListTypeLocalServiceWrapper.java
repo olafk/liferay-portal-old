@@ -75,11 +75,6 @@ public class ListTypeLocalServiceWrapper
 		return _listTypeLocalService.createPersistedModel(primaryKeyObj);
 	}
 
-	@Override
-	public void deleteListTypes(long companyId) {
-		_listTypeLocalService.deleteListTypes(companyId);
-	}
-
 	/**
 	 * Deletes the list type from the database. Also notifies the appropriate model listeners.
 	 *
@@ -114,6 +109,11 @@ public class ListTypeLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _listTypeLocalService.deleteListType(listTypeId);
+	}
+
+	@Override
+	public void deleteListTypes(long companyId) {
+		_listTypeLocalService.deleteListTypes(companyId);
 	}
 
 	/**
