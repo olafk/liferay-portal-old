@@ -138,8 +138,7 @@ public class ListTypeLocalServiceTest {
 			List<ListType> listTypes = _listTypeLocalService.getListTypes(
 				_company.getCompanyId(), _LIST_TYPE_TYPE);
 
-			Assert.assertEquals(
-				"listTypes should only have 1 element", 1, listTypes.size());
+			Assert.assertEquals(listTypes.toString(), 1, listTypes.size());
 
 			try (SafeCloseable safeCloseable2 =
 					CompanyThreadLocal.setWithSafeCloseable(
@@ -148,8 +147,7 @@ public class ListTypeLocalServiceTest {
 				listTypes = _listTypeLocalService.getListTypes(
 					PortalUtil.getDefaultCompanyId(), _LIST_TYPE_TYPE);
 
-				Assert.assertEquals(
-					"listTypes should be empty", 0, listTypes.size());
+				Assert.assertEquals(listTypes.toString(), 0, listTypes.size());
 			}
 		}
 		finally {
