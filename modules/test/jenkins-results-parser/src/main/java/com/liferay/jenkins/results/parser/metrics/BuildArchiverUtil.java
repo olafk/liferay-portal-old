@@ -79,12 +79,9 @@ public class BuildArchiverUtil {
 	}
 
 	public static void archiveOneDay(String startDate, String outputDirPath) {
-		String startDateTimeString = startDate + " 00:00:00";
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(
-			"yyyyMMdd HH:mm:ss");
-
 		LocalDateTime localDateTime = LocalDateTime.parse(
-			startDateTimeString, dateTimeFormatter);
+			startDate + " 00:00:00",
+			DateTimeFormatter.ofPattern("yyyyMMdd HH:mm:ss"));
 
 		localDateTime = localDateTime.plusDays(1);
 
