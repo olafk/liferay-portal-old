@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Luis Ortiz
  */
 @Component(service = PortalInstanceLifecycleListener.class)
-public class AddDefaultListTypesPortalInstanceLifecycleListenerImpl
+public class PortalInstanceLifecycleListenerImpl
 	extends BasePortalInstanceLifecycleListener {
 
 	@Override
@@ -41,7 +41,7 @@ public class AddDefaultListTypesPortalInstanceLifecycleListenerImpl
 				StringUtil.read(
 					getClassLoader(),
 					"com/liferay/portal/list/type/impl/dependencies" +
-						"/portal-list-type.json",
+						"/portal-list-types.json",
 					false));
 
 			for (int i = 0; i < listTypesJSONArray.length(); i++) {
@@ -65,7 +65,7 @@ public class AddDefaultListTypesPortalInstanceLifecycleListenerImpl
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		AddDefaultListTypesPortalInstanceLifecycleListenerImpl.class);
+		PortalInstanceLifecycleListenerImpl.class);
 
 	@Reference
 	private JSONFactory _jsonFactory;

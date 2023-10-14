@@ -61,11 +61,13 @@ public class ListTypeLocalServiceTest {
 
 	@Test
 	public void testDefaultListTypes() throws Exception {
+		Class<?> clazz = getClass();
+
 		JSONArray listTypesJSONArray = _jsonFactory.createJSONArray(
 			StringUtil.read(
-				getClass().getClassLoader(),
+				clazz.getClassLoader(),
 				"com/liferay/portal/list/type/impl/dependencies" +
-					"/portal-list-type.json",
+					"/portal-list-types.json",
 				false));
 
 		try (SafeCloseable safeCloseable =
