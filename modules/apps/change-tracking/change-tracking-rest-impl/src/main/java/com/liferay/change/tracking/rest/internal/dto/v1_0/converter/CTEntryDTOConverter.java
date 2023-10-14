@@ -80,7 +80,7 @@ public class CTEntryDTOConverter
 	}
 
 	private String _getSiteName(
-		Locale locale, long ctCollectionId, BaseModel<?> model) {
+		long ctCollectionId, Locale locale, BaseModel<?> model) {
 
 		if (model instanceof GroupedModel) {
 			GroupedModel groupedModel = (GroupedModel)model;
@@ -130,8 +130,8 @@ public class CTEntryDTOConverter
 				ownerName = ctEntry.getUserName();
 				siteId = _getSiteId(ctEntry.getCtCollectionId(), model);
 				siteName = _getSiteName(
-					dtoConverterContext.getLocale(),
-					ctEntry.getCtCollectionId(), model);
+					ctEntry.getCtCollectionId(),
+					dtoConverterContext.getLocale(), model);
 				status = _toStatus(dtoConverterContext.getLocale(), model);
 				title = _ctDisplayRendererRegistry.getTitle(
 					ctEntry.getCtCollectionId(), ctEntry,
