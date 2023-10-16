@@ -64,7 +64,22 @@ public class CopyDLObjectsMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		List<String> errorMessages = _copyDLObjects(actionRequest);
+		List<String> errorMessages = new ArrayList<>();
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		try {
+			_copyDLObjects(actionRequest, errorMessages, themeDisplay);
+		}
+		catch (PortalException portalException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(portalException);
+			}
+
+			errorMessages.add(
+				themeDisplay.translate(portalException.getMessage()));
+		}
 
 		if (!errorMessages.isEmpty()) {
 			JSONPortletResponseUtil.writeJSON(
@@ -113,13 +128,10 @@ public class CopyDLObjectsMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	private List<String> _copyDLObjects(ActionRequest actionRequest)
+	private void _copyDLObjects(
+			ActionRequest actionRequest, List<String> errorMessages,
+			ThemeDisplay themeDisplay)
 		throws Exception {
-
-		List<String> errorMessages = new ArrayList<>();
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
 
 		long destinationFolderId = ParamUtil.getLong(
 			actionRequest, "destinationParentFolderId");
@@ -128,88 +140,74 @@ public class CopyDLObjectsMVCActionCommand extends BaseMVCActionCommand {
 		long sourceRepositoryId = ParamUtil.getLong(
 			actionRequest, "sourceRepositoryId");
 
-		try {
-			Group group = _groupLocalService.getGroup(destinationRepositoryId);
+		Group group = _groupLocalService.getGroup(destinationRepositoryId);
 
-			long[] groupIds =
-				_siteConnectedGroupGroupProvider.
-					getCurrentAndAncestorSiteAndDepotGroupIds(
-						group.getGroupId());
+		long[] groupIds =
+			_siteConnectedGroupGroupProvider.
+				getCurrentAndAncestorSiteAndDepotGroupIds(group.getGroupId());
 
-			Group sourceGroup = _groupLocalService.getGroup(sourceRepositoryId);
+		Group sourceGroup = _groupLocalService.getGroup(sourceRepositoryId);
 
-			_checkDestinationGroup(group, groupIds, sourceGroup.getGroupId());
+		_checkDestinationGroup(group, groupIds, sourceGroup.getGroupId());
 
-			long[] dlObjectIds = ParamUtil.getLongValues(
-				actionRequest, "dlObjectIds");
+		long[] dlObjectIds = ParamUtil.getLongValues(
+			actionRequest, "dlObjectIds");
 
-			for (long dlObjectId : dlObjectIds) {
-				try {
-					DLFileEntry dlFileEntry =
-						_dlFileEntryLocalService.fetchDLFileEntry(dlObjectId);
+		for (long dlObjectId : dlObjectIds) {
+			try {
+				DLFileEntry dlFileEntry =
+					_dlFileEntryLocalService.fetchDLFileEntry(dlObjectId);
 
-					if (dlFileEntry != null) {
-						_dlAppService.copyFileEntry(
-							dlFileEntry.getFileEntryId(), destinationFolderId,
+				if (dlFileEntry != null) {
+					_dlAppService.copyFileEntry(
+						dlFileEntry.getFileEntryId(), destinationFolderId,
+						destinationRepositoryId,
+						_getFileEntryTypeId(
 							destinationRepositoryId,
-							_getFileEntryTypeId(
-								destinationRepositoryId,
-								dlFileEntry.getFileEntryId()),
-							groupIds,
-							ServiceContextFactory.getInstance(
-								DLFileEntry.class.getName(), actionRequest));
+							dlFileEntry.getFileEntryId()),
+						groupIds,
+						ServiceContextFactory.getInstance(
+							DLFileEntry.class.getName(), actionRequest));
 
-						continue;
-					}
-
-					DLFileShortcut dlFileShortcut =
-						_dlFileShortcutLocalService.fetchDLFileShortcut(
-							dlObjectId);
-
-					if (dlFileShortcut != null) {
-						_dlAppService.copyFileShortcut(
-							dlFileShortcut.getFileShortcutId(),
-							destinationFolderId, destinationRepositoryId,
-							ServiceContextFactory.getInstance(
-								DLFileShortcut.class.getName(), actionRequest));
-
-						continue;
-					}
-
-					DLFolder dlFolder = _dlFolderLocalService.fetchDLFolder(
-						dlObjectId);
-
-					if (dlFolder != null) {
-						_dlAppService.copyFolder(
-							dlFolder.getRepositoryId(), dlFolder.getFolderId(),
-							destinationRepositoryId, destinationFolderId,
-							_getFileEntryTypeIds(
-								group.getGroupId(), dlFolder.getFolderId()),
-							groupIds,
-							ServiceContextFactory.getInstance(
-								DLFolder.class.getName(), actionRequest));
-					}
+					continue;
 				}
-				catch (PortalException portalException) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(portalException);
-					}
 
-					errorMessages.add(
-						themeDisplay.translate(portalException.getMessage()));
+				DLFileShortcut dlFileShortcut =
+					_dlFileShortcutLocalService.fetchDLFileShortcut(dlObjectId);
+
+				if (dlFileShortcut != null) {
+					_dlAppService.copyFileShortcut(
+						dlFileShortcut.getFileShortcutId(), destinationFolderId,
+						destinationRepositoryId,
+						ServiceContextFactory.getInstance(
+							DLFileShortcut.class.getName(), actionRequest));
+
+					continue;
+				}
+
+				DLFolder dlFolder = _dlFolderLocalService.fetchDLFolder(
+					dlObjectId);
+
+				if (dlFolder != null) {
+					_dlAppService.copyFolder(
+						dlFolder.getRepositoryId(), dlFolder.getFolderId(),
+						destinationRepositoryId, destinationFolderId,
+						_getFileEntryTypeIds(
+							group.getGroupId(), dlFolder.getFolderId()),
+						groupIds,
+						ServiceContextFactory.getInstance(
+							DLFolder.class.getName(), actionRequest));
 				}
 			}
-		}
-		catch (PortalException portalException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(portalException);
+			catch (PortalException portalException) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(portalException);
+				}
+
+				errorMessages.add(
+					themeDisplay.translate(portalException.getMessage()));
 			}
-
-			errorMessages.add(
-				themeDisplay.translate(portalException.getMessage()));
 		}
-
-		return errorMessages;
 	}
 
 	private long _getFileEntryTypeId(long groupId, long fileEntryId)
