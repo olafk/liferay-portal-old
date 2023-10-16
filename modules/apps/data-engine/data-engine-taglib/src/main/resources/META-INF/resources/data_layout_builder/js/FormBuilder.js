@@ -62,7 +62,7 @@ export function FormBuilder() {
 
 			if (groupId) {
 				globalFieldSetsPromise = getItem(
-					`/o/data-engine/v2.0/sites/${groupId}/data-definitions/by-content-type/${contentType}?page=-1&pageSize=-1`
+					`/o/data-engine/v2.0/sites/${groupId}/data-definitions/by-content-type/${contentType}?page=1&pageSize=250`
 				);
 			}
 
@@ -70,7 +70,7 @@ export function FormBuilder() {
 				groupId === themeDisplay.getCompanyGroupId()
 					? Promise.resolve({})
 					: getItem(
-							`/o/data-engine/v2.0/data-definitions/by-content-type/${contentType}?page=-1&pageSize=-1`
+							`/o/data-engine/v2.0/data-definitions/by-content-type/${contentType}?page=1&pageSize=250`
 					  );
 
 			const fetchFieldSets = async () => {
