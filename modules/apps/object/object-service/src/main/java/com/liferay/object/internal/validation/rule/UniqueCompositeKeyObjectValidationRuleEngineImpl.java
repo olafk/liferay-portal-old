@@ -82,8 +82,7 @@ public class UniqueCompositeKeyObjectValidationRuleEngineImpl
 					objectValidationRule.getObjectDefinitionId()),
 				_getPredicate(
 					(Map<String, Object>)entryDTO.get("properties"),
-					objectValidationRule.getObjectDefinitionId(),
-					objectFields));
+					objectValidationRule, objectFields));
 		}
 		catch (PortalException portalException) {
 			_log.error(portalException);
@@ -109,7 +108,7 @@ public class UniqueCompositeKeyObjectValidationRuleEngineImpl
 	}
 
 	private Predicate _getPredicate(
-		Map<String, Object> entryValues, long objectDefinitionId,
+		Map<String, Object> entryValues, ObjectValidationRule objectValidationRule,
 		List<ObjectField> objectFields) {
 
 		Predicate predicate = null;
@@ -119,7 +118,8 @@ public class UniqueCompositeKeyObjectValidationRuleEngineImpl
 
 			try {
 				table = _objectFieldLocalService.getTable(
-					objectDefinitionId, objectField.getName());
+					objectValidationRule.getObjectDefinitionId(),
+					objectField.getName());
 			}
 			catch (PortalException portalException) {
 				throw new RuntimeException(portalException);
