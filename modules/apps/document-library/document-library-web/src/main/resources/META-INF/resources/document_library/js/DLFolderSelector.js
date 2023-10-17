@@ -25,6 +25,7 @@ const DLFolderSelector = ({
 	portletNamespace,
 	redirect,
 	selectionModalURL,
+	size,
 	sourceRepositoryId,
 }) => {
 	const [copyButtonDisabled, setCopyButtonDisabled] = useState(true);
@@ -111,6 +112,7 @@ const DLFolderSelector = ({
 
 		const bodyContentObject = objectToFormData({
 			[`${portletNamespace}dlObjectIds`]: dlObjectIds,
+			[`${portletNamespace}size`]: size,
 			[`${portletNamespace}sourceRepositoryId`]: sourceRepositoryId,
 			[`${portletNamespace}destinationParentFolderId`]: destinationParentFolderId,
 			[`${portletNamespace}destinationRepositoryId`]: destinationRepositoryId,
