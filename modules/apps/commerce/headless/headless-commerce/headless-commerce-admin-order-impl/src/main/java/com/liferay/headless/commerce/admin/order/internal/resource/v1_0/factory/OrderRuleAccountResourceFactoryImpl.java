@@ -236,15 +236,6 @@ public class OrderRuleAccountResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function
-			<InvocationHandler, OrderRuleAccountResource>
-				_orderRuleAccountResourceProxyProviderFunction =
-					_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -280,6 +271,15 @@ public class OrderRuleAccountResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, OrderRuleAccountResource>
+				_orderRuleAccountResourceProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

@@ -232,14 +232,6 @@ public class OrderNoteResourceFactoryImpl implements OrderNoteResource.Factory {
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function<InvocationHandler, OrderNoteResource>
-			_orderNoteResourceProxyProviderFunction =
-				_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -274,6 +266,14 @@ public class OrderNoteResourceFactoryImpl implements OrderNoteResource.Factory {
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, OrderNoteResource>
+			_orderNoteResourceProxyProviderFunction =
+				_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

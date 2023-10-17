@@ -236,15 +236,6 @@ public class WorkflowInstanceResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function
-			<InvocationHandler, WorkflowInstanceResource>
-				_workflowInstanceResourceProxyProviderFunction =
-					_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -280,6 +271,15 @@ public class WorkflowInstanceResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, WorkflowInstanceResource>
+				_workflowInstanceResourceProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

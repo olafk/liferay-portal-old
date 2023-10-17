@@ -236,15 +236,6 @@ public class PunchOutSessionResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function
-			<InvocationHandler, PunchOutSessionResource>
-				_punchOutSessionResourceProxyProviderFunction =
-					_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -280,6 +271,15 @@ public class PunchOutSessionResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, PunchOutSessionResource>
+				_punchOutSessionResourceProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

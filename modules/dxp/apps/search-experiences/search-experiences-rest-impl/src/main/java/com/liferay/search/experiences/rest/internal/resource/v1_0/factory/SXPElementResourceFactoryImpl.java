@@ -234,14 +234,6 @@ public class SXPElementResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function<InvocationHandler, SXPElementResource>
-			_sxpElementResourceProxyProviderFunction =
-				_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -277,6 +269,14 @@ public class SXPElementResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, SXPElementResource>
+			_sxpElementResourceProxyProviderFunction =
+				_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

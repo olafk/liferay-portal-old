@@ -237,15 +237,6 @@ public class PriceListDiscountResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function
-			<InvocationHandler, PriceListDiscountResource>
-				_priceListDiscountResourceProxyProviderFunction =
-					_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -281,6 +272,15 @@ public class PriceListDiscountResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, PriceListDiscountResource>
+				_priceListDiscountResourceProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

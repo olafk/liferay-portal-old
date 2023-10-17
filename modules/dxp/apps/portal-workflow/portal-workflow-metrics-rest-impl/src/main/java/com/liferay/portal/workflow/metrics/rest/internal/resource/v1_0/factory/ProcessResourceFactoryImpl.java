@@ -231,13 +231,6 @@ public class ProcessResourceFactoryImpl implements ProcessResource.Factory {
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function<InvocationHandler, ProcessResource>
-			_processResourceProxyProviderFunction = _getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -272,6 +265,13 @@ public class ProcessResourceFactoryImpl implements ProcessResource.Factory {
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, ProcessResource>
+			_processResourceProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

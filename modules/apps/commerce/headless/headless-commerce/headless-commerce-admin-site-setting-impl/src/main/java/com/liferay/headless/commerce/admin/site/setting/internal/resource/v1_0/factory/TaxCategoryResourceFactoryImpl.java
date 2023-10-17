@@ -234,14 +234,6 @@ public class TaxCategoryResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function<InvocationHandler, TaxCategoryResource>
-			_taxCategoryResourceProxyProviderFunction =
-				_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -277,6 +269,14 @@ public class TaxCategoryResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, TaxCategoryResource>
+			_taxCategoryResourceProxyProviderFunction =
+				_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

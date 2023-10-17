@@ -237,15 +237,6 @@ public class DiscountOrderTypeResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function
-			<InvocationHandler, DiscountOrderTypeResource>
-				_discountOrderTypeResourceProxyProviderFunction =
-					_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -281,6 +272,15 @@ public class DiscountOrderTypeResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, DiscountOrderTypeResource>
+				_discountOrderTypeResourceProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

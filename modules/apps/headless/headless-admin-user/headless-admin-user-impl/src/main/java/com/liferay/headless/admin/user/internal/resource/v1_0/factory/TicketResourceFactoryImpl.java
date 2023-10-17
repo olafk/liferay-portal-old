@@ -231,13 +231,6 @@ public class TicketResourceFactoryImpl implements TicketResource.Factory {
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function<InvocationHandler, TicketResource>
-			_ticketResourceProxyProviderFunction = _getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -272,6 +265,13 @@ public class TicketResourceFactoryImpl implements TicketResource.Factory {
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, TicketResource>
+			_ticketResourceProxyProviderFunction = _getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

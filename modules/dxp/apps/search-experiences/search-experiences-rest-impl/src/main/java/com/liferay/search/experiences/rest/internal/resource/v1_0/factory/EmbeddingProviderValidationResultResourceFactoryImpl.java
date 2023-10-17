@@ -252,15 +252,6 @@ public class EmbeddingProviderValidationResultResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function
-			<InvocationHandler, EmbeddingProviderValidationResultResource>
-				_embeddingProviderValidationResultResourceProxyProviderFunction =
-					_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -296,6 +287,15 @@ public class EmbeddingProviderValidationResultResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, EmbeddingProviderValidationResultResource>
+				_embeddingProviderValidationResultResourceProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

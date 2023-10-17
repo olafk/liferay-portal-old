@@ -232,14 +232,6 @@ public class WikiPageResourceFactoryImpl implements WikiPageResource.Factory {
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function<InvocationHandler, WikiPageResource>
-			_wikiPageResourceProxyProviderFunction =
-				_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -274,6 +266,14 @@ public class WikiPageResourceFactoryImpl implements WikiPageResource.Factory {
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function<InvocationHandler, WikiPageResource>
+			_wikiPageResourceProxyProviderFunction =
+				_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

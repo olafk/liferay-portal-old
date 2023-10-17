@@ -244,15 +244,6 @@ public class KnowledgeBaseAttachmentResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function
-			<InvocationHandler, KnowledgeBaseAttachmentResource>
-				_knowledgeBaseAttachmentResourceProxyProviderFunction =
-					_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -288,6 +279,15 @@ public class KnowledgeBaseAttachmentResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, KnowledgeBaseAttachmentResource>
+				_knowledgeBaseAttachmentResourceProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

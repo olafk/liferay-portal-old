@@ -246,15 +246,6 @@ public class SearchableAssetNameDisplayResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function
-			<InvocationHandler, SearchableAssetNameDisplayResource>
-				_searchableAssetNameDisplayResourceProxyProviderFunction =
-					_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -290,6 +281,15 @@ public class SearchableAssetNameDisplayResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, SearchableAssetNameDisplayResource>
+				_searchableAssetNameDisplayResourceProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

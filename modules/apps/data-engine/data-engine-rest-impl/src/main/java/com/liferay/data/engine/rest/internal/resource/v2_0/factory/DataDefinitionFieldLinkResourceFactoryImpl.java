@@ -244,15 +244,6 @@ public class DataDefinitionFieldLinkResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function
-			<InvocationHandler, DataDefinitionFieldLinkResource>
-				_dataDefinitionFieldLinkResourceProxyProviderFunction =
-					_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -288,6 +279,15 @@ public class DataDefinitionFieldLinkResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, DataDefinitionFieldLinkResource>
+				_dataDefinitionFieldLinkResourceProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

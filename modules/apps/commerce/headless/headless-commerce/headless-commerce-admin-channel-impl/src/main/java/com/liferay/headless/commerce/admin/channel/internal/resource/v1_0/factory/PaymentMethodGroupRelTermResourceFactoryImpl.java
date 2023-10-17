@@ -246,15 +246,6 @@ public class PaymentMethodGroupRelTermResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function
-			<InvocationHandler, PaymentMethodGroupRelTermResource>
-				_paymentMethodGroupRelTermResourceProxyProviderFunction =
-					_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -290,6 +281,15 @@ public class PaymentMethodGroupRelTermResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, PaymentMethodGroupRelTermResource>
+				_paymentMethodGroupRelTermResourceProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

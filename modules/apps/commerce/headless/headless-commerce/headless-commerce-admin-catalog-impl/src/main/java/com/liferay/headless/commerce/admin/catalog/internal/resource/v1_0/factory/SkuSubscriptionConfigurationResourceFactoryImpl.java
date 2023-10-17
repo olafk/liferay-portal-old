@@ -251,15 +251,6 @@ public class SkuSubscriptionConfigurationResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function
-			<InvocationHandler, SkuSubscriptionConfigurationResource>
-				_skuSubscriptionConfigurationResourceProxyProviderFunction =
-					_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -295,6 +286,15 @@ public class SkuSubscriptionConfigurationResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, SkuSubscriptionConfigurationResource>
+				_skuSubscriptionConfigurationResourceProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

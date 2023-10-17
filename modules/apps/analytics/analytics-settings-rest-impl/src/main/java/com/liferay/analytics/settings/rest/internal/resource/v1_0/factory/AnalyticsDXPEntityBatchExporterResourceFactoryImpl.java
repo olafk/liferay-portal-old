@@ -251,15 +251,6 @@ public class AnalyticsDXPEntityBatchExporterResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function
-			<InvocationHandler, AnalyticsDXPEntityBatchExporterResource>
-				_analyticsDXPEntityBatchExporterResourceProxyProviderFunction =
-					_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -295,6 +286,15 @@ public class AnalyticsDXPEntityBatchExporterResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, AnalyticsDXPEntityBatchExporterResource>
+				_analyticsDXPEntityBatchExporterResourceProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 

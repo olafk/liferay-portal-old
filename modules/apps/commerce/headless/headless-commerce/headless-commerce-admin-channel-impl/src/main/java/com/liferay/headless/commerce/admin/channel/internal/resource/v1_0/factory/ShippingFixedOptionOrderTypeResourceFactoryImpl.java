@@ -251,15 +251,6 @@ public class ShippingFixedOptionOrderTypeResourceFactoryImpl
 		}
 	}
 
-	private static class ResourceProxyProviderFunctionHolder {
-
-		private static final Function
-			<InvocationHandler, ShippingFixedOptionOrderTypeResource>
-				_shippingFixedOptionOrderTypeResourceProxyProviderFunction =
-					_getProxyProviderFunction();
-
-	}
-
 	@Reference
 	private CompanyLocalService _companyLocalService;
 
@@ -295,6 +286,15 @@ public class ShippingFixedOptionOrderTypeResourceFactoryImpl
 
 	@Reference
 	private UserLocalService _userLocalService;
+
+	private static class ResourceProxyProviderFunctionHolder {
+
+		private static final Function
+			<InvocationHandler, ShippingFixedOptionOrderTypeResource>
+				_shippingFixedOptionOrderTypeResourceProxyProviderFunction =
+					_getProxyProviderFunction();
+
+	}
 
 	private class AcceptLanguageImpl implements AcceptLanguage {
 
