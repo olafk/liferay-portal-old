@@ -624,7 +624,8 @@ public class DDMFieldUpgradeProcess extends UpgradeProcess {
 			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Error while upgrading DDM content " + contentId,
+						"Unable to get dynamic data mapping form field value " +
+							"type for content ID " + contentId,
 						exception);
 				}
 			}
