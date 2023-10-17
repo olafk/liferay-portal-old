@@ -84,15 +84,17 @@ public class FieldSetDDMFormFieldTypeSettingsTest
 
 		List<String> actions = ddmFormRule.getActions();
 
-		Assert.assertEquals(actions.toString(), 5, actions.size());
+		Assert.assertEquals(actions.toString(), 6, actions.size());
 		Assert.assertEquals(
 			"setVisible('ddmStructureId', FALSE)", actions.get(0));
 		Assert.assertEquals(
 			"setVisible('ddmStructureLayoutId', FALSE)", actions.get(1));
 		Assert.assertEquals("setVisible('name', FALSE)", actions.get(2));
-		Assert.assertEquals("setVisible('rows', FALSE)", actions.get(3));
 		Assert.assertEquals(
-			"setVisible('upgradedStructure', FALSE)", actions.get(4));
+			"setVisible('normalizedStructure', FALSE)", actions.get(3));
+		Assert.assertEquals("setVisible('rows', FALSE)", actions.get(4));
+		Assert.assertEquals(
+			"setVisible('upgradedStructure', FALSE)", actions.get(5));
 	}
 
 }

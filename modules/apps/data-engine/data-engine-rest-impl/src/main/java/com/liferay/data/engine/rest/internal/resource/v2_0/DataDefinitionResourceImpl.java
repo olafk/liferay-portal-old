@@ -74,6 +74,7 @@ import com.liferay.dynamic.data.mapping.util.comparator.StructureNameComparator;
 import com.liferay.dynamic.data.mapping.validator.DDMFormValidationException;
 import com.liferay.dynamic.data.mapping.validator.DDMFormValidator;
 import com.liferay.frontend.js.loader.modules.extender.npm.NPMResolver;
+import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.change.tracking.CTAware;
@@ -464,8 +465,13 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			_ddmStructureLocalService.getDDMStructure(dataDefinitionId),
 			ActionKeys.UPDATE);
 
+		DDMStructure ddmStructure = _ddmStructureLocalService.getDDMStructure(
+			dataDefinitionId);
+
 		_normalizeDataDefinitionFields(
-			dataDefinition.getDataDefinitionFields());
+			dataDefinition.getDataDefinitionFields(),
+			_journalArticleLocalService.getStructureArticlesCount(
+				ddmStructure.getGroupId(), ddmStructure.getStructureId()));
 
 		DataLayout dataLayout = dataDefinition.getDefaultDataLayout();
 
@@ -478,9 +484,6 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 					_getDefaultDataLayoutId(dataDefinitionId, dataLayout),
 					dataLayout));
 		}
-
-		DDMStructure ddmStructure = _ddmStructureLocalService.getDDMStructure(
-			dataDefinitionId);
 
 		JSONObject definitionJSONObject = _jsonFactory.createJSONObject(
 			ddmStructure.getDefinition());
@@ -898,7 +901,8 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 	}
 
 	private void _normalizeDataDefinitionFields(
-			DataDefinitionField[] dataDefinitionFields)
+			DataDefinitionField[] dataDefinitionFields,
+			long structureArticlesCount)
 		throws Exception {
 
 		Map<Long, DataDefinitionField[]> dataDefinitionFieldsMap =
@@ -925,6 +929,10 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 					dataDefinitionFieldsMap.computeIfAbsent(
 						ddmStructureId, key -> new DataDefinitionField[0]),
 					dataDefinitionField));
+		}
+
+		if (MapUtil.isEmpty(dataDefinitionFieldsMap)) {
+			return;
 		}
 
 		for (Map.Entry<Long, DataDefinitionField[]> entry :
@@ -976,6 +984,15 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 				dataDefinitionField.setNestedDataDefinitionFields(
 					nestedDataDefinitionFields);
+
+				if ((structureArticlesCount > 0) &&
+					!GetterUtil.getBoolean(
+						customProperties.get("normalizedStructure"))) {
+
+					break;
+				}
+
+				customProperties.put("normalizedStructure", true);
 
 				dataDefinitionFieldsCount += 1;
 			}
@@ -1074,7 +1091,7 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 			DataActionKeys.ADD_DATA_DEFINITION);
 
 		_normalizeDataDefinitionFields(
-			dataDefinition.getDataDefinitionFields());
+			dataDefinition.getDataDefinitionFields(), 0);
 
 		DDMForm ddmForm = DataDefinitionDDMFormUtil.toDDMForm(
 			dataDefinition, _ddmFormFieldTypeServicesRegistry);
@@ -1872,6 +1889,9 @@ public class DataDefinitionResourceImpl extends BaseDataDefinitionResourceImpl {
 
 	@Reference
 	private DEDataListViewLocalService _deDataListViewLocalService;
+
+	@Reference
+	private JournalArticleLocalService _journalArticleLocalService;
 
 	@Reference
 	private JSONFactory _jsonFactory;
