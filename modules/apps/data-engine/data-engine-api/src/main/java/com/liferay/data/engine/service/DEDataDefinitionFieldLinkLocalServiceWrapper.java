@@ -334,6 +334,14 @@ public class DEDataDefinitionFieldLinkLocalServiceWrapper
 			getActionableDynamicQuery();
 	}
 
+	@Override
+	public java.util.List<Long> getClassPKS(
+		long classNameId, long ddmStructureId) {
+
+		return _deDataDefinitionFieldLinkLocalService.getClassPKS(
+			classNameId, ddmStructureId);
+	}
+
 	/**
 	 * Returns the de data definition field link with the primary key.
 	 *

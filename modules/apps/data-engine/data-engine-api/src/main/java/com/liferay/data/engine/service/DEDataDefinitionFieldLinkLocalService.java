@@ -251,6 +251,9 @@ public interface DEDataDefinitionFieldLinkLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Long> getClassPKS(long classNameId, long ddmStructureId);
+
 	/**
 	 * Returns the de data definition field link with the primary key.
 	 *

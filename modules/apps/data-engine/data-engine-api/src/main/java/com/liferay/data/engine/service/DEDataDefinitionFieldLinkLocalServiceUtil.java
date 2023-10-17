@@ -292,6 +292,12 @@ public class DEDataDefinitionFieldLinkLocalServiceUtil {
 		return getService().getActionableDynamicQuery();
 	}
 
+	public static List<Long> getClassPKS(
+		long classNameId, long ddmStructureId) {
+
+		return getService().getClassPKS(classNameId, ddmStructureId);
+	}
+
 	/**
 	 * Returns the de data definition field link with the primary key.
 	 *
