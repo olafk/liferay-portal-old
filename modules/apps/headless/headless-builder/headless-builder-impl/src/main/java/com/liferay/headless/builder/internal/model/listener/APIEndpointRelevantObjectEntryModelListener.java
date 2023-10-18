@@ -173,6 +173,8 @@ public class APIEndpointRelevantObjectEntryModelListener
 						messageKey = "x-must-start-with-the-x-character";
 					}
 
+					// Order matters in checking pathString
+
 					if (!StringUtil.isLowerCase(pathString)) {
 						message = "%s must contain only lower case characters";
 						messageKey =
