@@ -69,11 +69,11 @@ public class PortalImplEscapeRedirectTest {
 
 	@After
 	public void tearDown() {
+		_prefsPropsUtilMockedStatic.close();
+
 		if (_serviceRegistration != null) {
 			_serviceRegistration.unregister();
 		}
-
-		_prefsPropsUtilMockedStatic.close();
 	}
 
 	@Test
