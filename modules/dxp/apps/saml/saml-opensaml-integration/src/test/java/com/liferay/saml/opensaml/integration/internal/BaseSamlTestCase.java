@@ -632,15 +632,12 @@ public abstract class BaseSamlTestCase {
 		ReflectionTestUtil.setFieldValue(
 			keyStoreLocalEntityManager, "_credentialResolver",
 			credentialResolver);
-
 		ReflectionTestUtil.setFieldValue(
 			keyStoreLocalEntityManager, "_keyStoreManager",
 			fileSystemKeyStoreManagerImpl);
-
 		ReflectionTestUtil.setFieldValue(
 			keyStoreLocalEntityManager, "_samlProviderConfigurationHelper",
 			samlProviderConfigurationHelper);
-
 		ReflectionTestUtil.setFieldValue(
 			keyStoreLocalEntityManager, "_samlSpIdpConnectionLocalService",
 			getMockPortletService(
