@@ -55,7 +55,6 @@ public class SharingEntryInterpreterProviderImpl
 				_assetEntryLocalService,
 				new AssetRendererSharingEntryEditRenderer(),
 				new AssetRendererSharingEntryViewRenderer(_servletContext));
-
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
 			bundleContext, SharingEntryInterpreter.class,
 			"(model.class.name=*)",
