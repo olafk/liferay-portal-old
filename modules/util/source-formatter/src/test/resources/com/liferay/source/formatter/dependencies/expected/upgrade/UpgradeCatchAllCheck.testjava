@@ -30,7 +30,7 @@ public class UpgradeCatchAllCheck {
 		DestinationNames.COMMERCE_STOCK_QUANTITY;
 		DestinationNames.COMMERCE_SUBSCRIPTION_STATUS;
 
-		FDSTableSchemaBuilder fDSTableSchemaBuilder =_fDSTableSchemaBuilderFactory.create();
+		FDSTableSchemaBuilder fDSTableSchemaBuilder = _fDSTableSchemaBuilderFactory.create();
 
 		fDSTableSchemaBuilder.add("purchaseOrderNumber", "purchase-order-number");
 
