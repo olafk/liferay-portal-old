@@ -285,7 +285,7 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 	}
 
 	<#if jsonMapPropertyNames?has_content>
-		public Object getValue(String propertyName) {
+		public Object getPropertyValue(String propertyName) {
 			<#list properties?keys as propertyName>
 				<#if jsonMapPropertyNames?seq_contains(propertyName)>
 					<#continue>
