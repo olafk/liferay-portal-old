@@ -850,8 +850,9 @@ public class ObjectRelationshipLocalServiceTest {
 			objectRelationship.getDBTableName(),
 			reverseObjectRelationship.getDBTableName());
 
-		Matcher matcher = _manyToManyObjectRelationshipTableNamePattern.matcher(
-			objectRelationship.getDBTableName());
+		Pattern pattern = Pattern.compile("R_[A-Z][0-9][A-Z][0-9]$");
+
+		Matcher matcher = pattern.matcher(objectRelationship.getDBTableName());
 
 		Assert.assertTrue(matcher.matches());
 
@@ -958,9 +959,6 @@ public class ObjectRelationshipLocalServiceTest {
 
 		_addObjectRelationshipSystemObjectDefinition();
 	}
-
-	private static final Pattern _manyToManyObjectRelationshipTableNamePattern =
-		Pattern.compile("R_[A-Z][0-9][A-Z][0-9]$");
 
 	@Inject
 	private static ObjectDefinitionLocalService _objectDefinitionLocalService;
