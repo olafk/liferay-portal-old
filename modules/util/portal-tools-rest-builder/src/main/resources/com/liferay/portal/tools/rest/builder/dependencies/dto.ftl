@@ -150,6 +150,7 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 
 		<#if propertySchema.jsonMap>
 			@JsonAnyGetter
+
 			<#assign jsonMapPropertyNames = jsonMapPropertyNames + [propertyName] />
 		</#if>
 
@@ -285,27 +286,26 @@ public class ${schemaName} <#if dtoParentClassName?has_content>extends ${dtoPare
 
 	<#if jsonMapPropertyNames?has_content>
 		public Object getValue(String propertyName) {
+			<#list properties?keys as propertyName>
+				<#if jsonMapPropertyNames?seq_contains(propertyName)>
+					<#continue>
+				</#if>
 
-		<#list properties?keys as propertyName>
-			<#if jsonMapPropertyNames?seq_contains(propertyName)>
-				<#continue>
-			</#if>
-
-			if (Objects.equals(propertyName, "${propertyName}")) {
+				if (Objects.equals(propertyName, "${propertyName}")) {
 					return ${propertyName};
-			}
-			else
-		</#list>
-
-		<#list jsonMapPropertyNames as propertyName>
-			if (${propertyName}.containsKey(propertyName)) {
-				return ${propertyName}.get(propertyName);
-			}
-
-			<#sep>
+				}
 				else
-			</#sep>
-		</#list>
+			</#list>
+
+			<#list jsonMapPropertyNames as propertyName>
+				if (${propertyName}.containsKey(propertyName)) {
+					return ${propertyName}.get(propertyName);
+				}
+
+				<#sep>
+					else
+				</#sep>
+			</#list>
 
 			return null;
 		}
