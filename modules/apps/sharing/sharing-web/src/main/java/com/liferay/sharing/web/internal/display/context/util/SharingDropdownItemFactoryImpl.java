@@ -66,13 +66,8 @@ public class SharingDropdownItemFactoryImpl
 				DropdownItemListBuilder.add(
 					shareDropdownItem
 				).add(
-					dropdownItem -> {
-						dropdownItem.putData("action", "copyLink");
-						dropdownItem.setIcon("link");
-						dropdownItem.setLabel(
-							SharingItemFactoryUtil.getCopyLinkLabel(
-								httpServletRequest));
-					}
+					_createCopyLinkDropdownItem(
+						className, classPK, httpServletRequest)
 				).build());
 			dropdownContextItem.setIcon("share");
 			dropdownContextItem.setLabel(
@@ -98,6 +93,24 @@ public class SharingDropdownItemFactoryImpl
 			"share"
 		).setLabel(
 			SharingItemFactoryUtil.getSharingLabel(httpServletRequest)
+		).build();
+	}
+
+	private DropdownItem _createCopyLinkDropdownItem(
+		String className, long classPK, HttpServletRequest httpServletRequest) {
+
+		return DropdownItemBuilder.setHref(
+			() -> {
+				String copyLinkOnClickMethod =
+					_sharingJavaScriptFactory.createCopyLinkClickMethod(
+						className, classPK);
+
+				return "javascript:" + copyLinkOnClickMethod;
+			}
+		).setIcon(
+			"link"
+		).setLabel(
+			SharingItemFactoryUtil.getCopyLinkLabel(httpServletRequest)
 		).build();
 	}
 
