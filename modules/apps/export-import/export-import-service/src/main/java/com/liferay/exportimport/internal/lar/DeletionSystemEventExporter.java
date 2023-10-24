@@ -93,18 +93,20 @@ public class DeletionSystemEventExporter {
 				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 					systemEvent.getExtraData());
 
-				if ((jsonObject.get(_ASSET_TITLE) != null) &&
-					FeatureFlagManagerUtil.isEnabled("LPS-165481")) {
+				if ((jsonObject.get(_ASSET_TITLE) == null) ||
+					!FeatureFlagManagerUtil.isEnabled("LPS-165481")) {
 
-					String assetTitle = jsonObject.get(
-						_ASSET_TITLE
-					).toString();
-
-					portletDataContext.getManifestSummary(
-					).addAssetTitle(
-						systemEvent.getClassName(), assetTitle
-					);
+					continue;
 				}
+
+				String assetTitle = jsonObject.get(
+					_ASSET_TITLE
+				).toString();
+
+				portletDataContext.getManifestSummary(
+				).addAssetTitle(
+					systemEvent.getClassName(), assetTitle
+				);
 			}
 		}
 
