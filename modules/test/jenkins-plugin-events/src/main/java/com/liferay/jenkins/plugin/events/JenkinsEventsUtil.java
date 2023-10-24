@@ -44,7 +44,7 @@ public class JenkinsEventsUtil {
 			return null;
 		}
 
-		Matcher matcher = _rootUrlPattern.matcher(rootUrl);
+		Matcher matcher = _pattern.matcher(rootUrl);
 
 		if (!matcher.find()) {
 			return null;
@@ -312,7 +312,7 @@ public class JenkinsEventsUtil {
 	}
 
 	private static JenkinsEventsDescriptor _jenkinsEventsDescriptor;
-	private static final Pattern _rootUrlPattern = Pattern.compile(
+	private static final Pattern _pattern = Pattern.compile(
 		"https://(?<masterHostname>test-\\d+-\\d+).liferay.com/");
 
 }

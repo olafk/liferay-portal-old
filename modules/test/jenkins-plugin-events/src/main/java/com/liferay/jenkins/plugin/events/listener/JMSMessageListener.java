@@ -158,13 +158,15 @@ public class JMSMessageListener implements MessageListener {
 				continue;
 			}
 
-			if (parameterDefinition instanceof StringParameterDefinition) {
-				parameterValues.add(
-					new StringParameterValue(parameterName, parameterValue));
-			}
-			else if (parameterDefinition instanceof LabelParameterDefinition) {
+			if (parameterDefinition instanceof LabelParameterDefinition) {
 				parameterValues.add(
 					new LabelParameterValue(parameterName, parameterValue));
+			}
+			else if (parameterDefinition instanceof
+						StringParameterDefinition) {
+
+				parameterValues.add(
+					new StringParameterValue(parameterName, parameterValue));
 			}
 		}
 

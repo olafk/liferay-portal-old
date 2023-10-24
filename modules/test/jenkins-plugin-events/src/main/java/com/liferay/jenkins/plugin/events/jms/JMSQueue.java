@@ -97,14 +97,14 @@ public class JMSQueue {
 
 			TextMessage textMessage = _session.createTextMessage();
 
-			textMessage.setText(message);
-
 			String masterHostname = JenkinsEventsUtil.getMasterHostname();
 
 			if (masterHostname != null) {
 				textMessage.setStringProperty(
 					"jenkins-master-name", masterHostname);
 			}
+
+			textMessage.setText(message);
 
 			messageProducer.send(textMessage);
 		}
