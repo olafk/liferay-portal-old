@@ -1054,19 +1054,19 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 					"addition-count", String.valueOf(modelAdditionCount));
 			}
 
+			String stagedModelAssetTitle =
+				manifestSummary.getStagedModelAssetTitle(manifestSummaryKey);
+
+			if (Validator.isNotNull(stagedModelAssetTitle)) {
+				element.addAttribute("asset-title", stagedModelAssetTitle);
+			}
+
 			long modelDeletionCount = manifestSummary.getModelDeletionCount(
 				manifestSummaryKey);
 
 			if (modelDeletionCount > 0) {
 				element.addAttribute(
 					"deletion-count", String.valueOf(modelDeletionCount));
-			}
-
-			String stagedModelAssetTitle =
-				manifestSummary.getStagedModelAssetTitle(manifestSummaryKey);
-
-			if (Validator.isNotNull(stagedModelAssetTitle)) {
-				element.addAttribute("asset-title", stagedModelAssetTitle);
 			}
 		}
 	}
