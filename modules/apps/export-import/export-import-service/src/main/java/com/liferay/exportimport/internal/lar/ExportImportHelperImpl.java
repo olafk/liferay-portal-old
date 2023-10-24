@@ -74,7 +74,6 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -836,36 +835,21 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 			Map<String, Serializable> taskContextMap =
 				backgroundTask.getTaskContextMap();
 
-			HashMap<String, LongWrapper> modelAdditionCounters = new HashMap<>(
-				manifestSummary.getModelAdditionCounters());
-
 			taskContextMap.put(
 				ExportImportBackgroundTaskContextMapConstants.
 					MODEL_ADDITION_COUNTERS,
-				modelAdditionCounters);
-
-			HashMap<String, LongWrapper> modelDeletionCounters = new HashMap<>(
-				manifestSummary.getModelDeletionCounters());
-
+				new HashMap<>(manifestSummary.getModelAdditionCounters()));
 			taskContextMap.put(
 				ExportImportBackgroundTaskContextMapConstants.
 					MODEL_DELETION_COUNTERS,
-				modelDeletionCounters);
-
-			HashMap<String, String> stagedModelAssetTitles = new HashMap<>(
-				manifestSummary.getStagedModelAssetTitles());
-
+				new HashMap<>(manifestSummary.getModelDeletionCounters()));
 			taskContextMap.put(
 				ExportImportBackgroundTaskContextMapConstants.ASSET_TITLES,
-				stagedModelAssetTitles);
-
-			HashSet<String> manifestSummaryKeys = new HashSet<>(
-				manifestSummary.getManifestSummaryKeys());
-
+				new HashMap<>(manifestSummary.getStagedModelAssetTitles()));
 			taskContextMap.put(
 				ExportImportBackgroundTaskContextMapConstants.
 					MANIFEST_SUMMARY_KEYS,
-				manifestSummaryKeys);
+				new HashSet<>(manifestSummary.getManifestSummaryKeys()));
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
