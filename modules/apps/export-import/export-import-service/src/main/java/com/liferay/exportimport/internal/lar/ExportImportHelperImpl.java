@@ -836,6 +836,9 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 				backgroundTask.getTaskContextMap();
 
 			taskContextMap.put(
+				ExportImportBackgroundTaskContextMapConstants.ASSET_TITLES,
+				new HashMap<>(manifestSummary.getStagedModelAssetTitles()));
+			taskContextMap.put(
 				ExportImportBackgroundTaskContextMapConstants.
 					MODEL_ADDITION_COUNTERS,
 				new HashMap<>(manifestSummary.getModelAdditionCounters()));
@@ -843,9 +846,6 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 				ExportImportBackgroundTaskContextMapConstants.
 					MODEL_DELETION_COUNTERS,
 				new HashMap<>(manifestSummary.getModelDeletionCounters()));
-			taskContextMap.put(
-				ExportImportBackgroundTaskContextMapConstants.ASSET_TITLES,
-				new HashMap<>(manifestSummary.getStagedModelAssetTitles()));
 			taskContextMap.put(
 				ExportImportBackgroundTaskContextMapConstants.
 					MANIFEST_SUMMARY_KEYS,
