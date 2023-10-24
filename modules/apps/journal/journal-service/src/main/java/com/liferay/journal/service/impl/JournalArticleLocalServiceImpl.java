@@ -1454,6 +1454,7 @@ public class JournalArticleLocalServiceImpl
 
 			for (JournalArticle article : articles) {
 				assetTitle = article.getTitle(article.getDefaultLanguageId());
+
 				journalArticleLocalService.deleteArticle(
 					article, null, serviceContext);
 			}
