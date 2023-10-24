@@ -27,6 +27,7 @@ import com.liferay.exportimport.kernel.exception.ExportImportRuntimeException;
 import com.liferay.exportimport.kernel.lar.ExportImportClassedModelUtil;
 import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
 import com.liferay.exportimport.kernel.lar.ExportImportThreadLocal;
+import com.liferay.exportimport.kernel.lar.ManifestSummary;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.PortletDataException;
 import com.liferay.exportimport.kernel.lar.PortletDataHandlerControl;
@@ -523,11 +524,12 @@ public class JournalArticleStagedModelDataHandler
 		}
 
 		if (FeatureFlagManagerUtil.isEnabled("LPS-165481")) {
-			portletDataContext.getManifestSummary(
-			).addAssetTitle(
+			ManifestSummary manifestSummary =
+				portletDataContext.getManifestSummary();
+
+			manifestSummary.addAssetTitle(
 				JournalArticle.class.getName(),
-				article.getTitle(article.getDefaultLanguageId())
-			);
+				article.getTitle(article.getDefaultLanguageId()));
 		}
 
 		_exportAssetDisplayPage(portletDataContext, article);
