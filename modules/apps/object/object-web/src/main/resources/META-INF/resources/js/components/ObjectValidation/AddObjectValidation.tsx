@@ -87,7 +87,7 @@ function ModalAddObjectValidation({
 							[defaultLanguageId]:
 								typeSelection.name === 'compositeKey'
 									? Liferay.Language.get(
-											'the-fields-values-are-already-in-use'
+											'the-field-values-are-already-in-use'
 									  )
 									: '',
 						},
