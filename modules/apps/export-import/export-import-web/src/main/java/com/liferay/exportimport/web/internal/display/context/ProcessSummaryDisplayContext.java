@@ -52,48 +52,47 @@ public class ProcessSummaryDisplayContext {
 	public String getAssetTitle(
 		Map<String, ?> taskContextMap, Portlet portlet) {
 
-		if (Objects.equals(
-				portlet.getPortletId(), _PORTLET_ID_JOURNAL_PORTLET) &&
-			FeatureFlagManagerUtil.isEnabled("LPS-165481")) {
+		if (!Objects.equals(
+				portlet.getPortletId(), _PORTLET_ID_JOURNAL_PORTLET) ||
+			!FeatureFlagManagerUtil.isEnabled("LPS-165481")) {
 
-			Map<String, LongWrapper> modelAdditionCounters =
-				(Map<String, LongWrapper>)taskContextMap.get(
-					ExportImportBackgroundTaskContextMapConstants.
-						MODEL_ADDITION_COUNTERS);
+			return null;
+		}
 
-			LongWrapper modelAdditionCounter = modelAdditionCounters.get(
-				_CLASS_NAME_JOURNAL_ARTICLE);
+		Map<String, LongWrapper> modelAdditionCounters =
+			(Map<String, LongWrapper>)taskContextMap.get(
+				ExportImportBackgroundTaskContextMapConstants.
+					MODEL_ADDITION_COUNTERS);
 
-			Map<String, LongWrapper> modelDeletionCounters =
-				(Map<String, LongWrapper>)taskContextMap.get(
-					ExportImportBackgroundTaskContextMapConstants.
-						MODEL_DELETION_COUNTERS);
+		LongWrapper modelAdditionCounter = modelAdditionCounters.get(
+			_CLASS_NAME_JOURNAL_ARTICLE);
 
-			LongWrapper modelDeletionCounter = modelDeletionCounters.get(
-				_CLASS_NAME_JOURNAL_ARTICLE);
+		Map<String, LongWrapper> modelDeletionCounters =
+			(Map<String, LongWrapper>)taskContextMap.get(
+				ExportImportBackgroundTaskContextMapConstants.
+					MODEL_DELETION_COUNTERS);
 
-			if ((modelAdditionCounter != null) &&
-				(modelDeletionCounter != null)) {
+		LongWrapper modelDeletionCounter = modelDeletionCounters.get(
+			_CLASS_NAME_JOURNAL_ARTICLE);
 
-				long sumCounters =
-					modelAdditionCounter.getValue() +
-						modelDeletionCounter.getValue();
+		if ((modelAdditionCounter != null) && (modelDeletionCounter != null)) {
+			long sumCounters =
+				modelAdditionCounter.getValue() +
+					modelDeletionCounter.getValue();
 
-				if (sumCounters > 1) {
-					return null;
-				}
+			if (sumCounters > 1) {
+				return null;
 			}
+		}
 
-			Map<String, String> assetTitles =
-				(Map<String, String>)taskContextMap.get(
-					ExportImportBackgroundTaskContextMapConstants.ASSET_TITLES);
+		Map<String, String> assetTitles =
+			(Map<String, String>)taskContextMap.get(
+				ExportImportBackgroundTaskContextMapConstants.ASSET_TITLES);
 
-			if ((assetTitles != null) &&
-				Validator.isNotNull(
-					assetTitles.get(_CLASS_NAME_JOURNAL_ARTICLE))) {
+		if ((assetTitles != null) &&
+			Validator.isNotNull(assetTitles.get(_CLASS_NAME_JOURNAL_ARTICLE))) {
 
-				return assetTitles.get(_CLASS_NAME_JOURNAL_ARTICLE);
-			}
+			return assetTitles.get(_CLASS_NAME_JOURNAL_ARTICLE);
 		}
 
 		return null;
