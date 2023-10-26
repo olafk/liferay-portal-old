@@ -123,7 +123,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
 import javax.ws.rs.core.MultivaluedMap;
@@ -852,9 +851,6 @@ public class SitePageResourceImpl extends BaseSitePageResourceImpl {
 		contextHttpServletRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, _getThemeDisplay(layout));
 
-		ServletContext servletContext = ServletContextPool.get(
-			StringPool.BLANK);
-
 		layout.includeLayoutContent(
 			contextHttpServletRequest, contextHttpServletResponse);
 
@@ -866,9 +862,9 @@ public class SitePageResourceImpl extends BaseSitePageResourceImpl {
 
 		Document document = Jsoup.parse(
 			ThemeUtil.include(
-				servletContext, contextHttpServletRequest,
-				contextHttpServletResponse, "portal_normal.ftl",
-				layoutSet.getTheme(), false));
+				ServletContextPool.get(StringPool.BLANK),
+				contextHttpServletRequest, contextHttpServletResponse,
+				"portal_normal.ftl", layoutSet.getTheme(), false));
 
 		Element bodyElement = document.body();
 

@@ -1154,8 +1154,7 @@ public abstract class Base${schemaName}ResourceImpl
 
 	public void setContextHttpServletRequest(HttpServletRequest contextHttpServletRequest) {
 		if ((contextHttpServletRequest != null) && (contextHttpServletRequest.getAttribute(WebKeys.CTX) == null)) {
-			contextHttpServletRequest.setAttribute(
-				WebKeys.CTX, ServletContextPool.get(StringPool.BLANK));
+			contextHttpServletRequest.setAttribute(WebKeys.CTX, ServletContextPool.get(StringPool.BLANK));
 		}
 
 		this.contextHttpServletRequest = contextHttpServletRequest;
