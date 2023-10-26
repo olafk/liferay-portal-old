@@ -26,12 +26,9 @@ public class PaginationProviderImpl implements PaginationProvider {
 	public Pagination getPagination(
 		long companyId, Integer page, Integer pageSize) {
 
-		int requestPage = GetterUtil.getInteger(page, 1);
-
-		int requestPageSize = GetterUtil.getInteger(pageSize, 20);
-
 		return _getPagination(
-			_getPageSizeLimit(companyId), requestPage, requestPageSize);
+			_getPageSizeLimit(companyId), GetterUtil.getInteger(page, 1),
+			GetterUtil.getInteger(pageSize, 20));
 	}
 
 	private int _getPageSizeLimit(long companyId) {
