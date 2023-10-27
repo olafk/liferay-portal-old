@@ -57,6 +57,7 @@ import com.liferay.object.rest.manager.v1_0.DefaultObjectEntryManager;
 import com.liferay.object.rest.manager.v1_0.ObjectEntryManager;
 import com.liferay.object.rest.test.util.BaseObjectEntryManagerImplTestCase;
 import com.liferay.object.rest.test.util.ObjectRelationshipTestUtil;
+import com.liferay.object.service.ObjectEntryLocalService;
 import com.liferay.object.service.ObjectFieldService;
 import com.liferay.object.service.ObjectFieldSettingLocalService;
 import com.liferay.object.service.ObjectFilterLocalService;
@@ -120,6 +121,7 @@ import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.io.Serializable;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -423,13 +425,24 @@ public class DefaultObjectEntryManagerImplTest
 				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
 				true, ObjectDefinitionConstants.SCOPE_COMPANY,
 				ObjectDefinitionConstants.STORAGE_TYPE_DEFAULT,
-				Collections.singletonList(
+				ListUtil.fromArray(
 					new TextObjectFieldBuilder(
+					).indexed(
+						true
 					).labelMap(
 						LocalizedMapUtil.getLocalizedMap(
 							RandomTestUtil.randomString())
 					).name(
-						"textObjectFieldName"
+						"textObjectFieldName1"
+					).build(),
+					new TextObjectFieldBuilder(
+					).indexed(
+						true
+					).labelMap(
+						LocalizedMapUtil.getLocalizedMap(
+							RandomTestUtil.randomString())
+					).name(
+						"textObjectFieldName2"
 					).build()));
 
 		ObjectDefinition accountEntryObjectDefinition =
@@ -1833,6 +1846,70 @@ public class DefaultObjectEntryManagerImplTest
 		_userLocalService.deleteRoleUser(role.getRoleId(), _user);
 
 		_assertObjectEntriesSize(0);
+
+		// Search
+
+		AccountEntry accountEntry3 = _addAccountEntry();
+		AccountEntry accountEntry4 = _addAccountEntry();
+
+		_objectEntryLocalService.addObjectEntry(
+			adminUser.getUserId(), 0,
+			_objectDefinition3.getObjectDefinitionId(),
+			HashMapBuilder.<String, Serializable>put(
+				"r_oneToManyRelationshipName_accountEntryId",
+				accountEntry3.getAccountEntryId()
+			).put(
+				"textObjectFieldName1", "Able"
+			).put(
+				"textObjectFieldName2", "Baker"
+			).build(),
+			ServiceContextTestUtil.getServiceContext());
+
+		_objectEntryLocalService.addObjectEntry(
+			adminUser.getUserId(), 0,
+			_objectDefinition3.getObjectDefinitionId(),
+			HashMapBuilder.<String, Serializable>put(
+				"r_oneToManyRelationshipName_accountEntryId",
+				accountEntry4.getAccountEntryId()
+			).put(
+				"textObjectFieldName1", "Charlie"
+			).put(
+				"textObjectFieldName2", "Delta"
+			).build(),
+			ServiceContextTestUtil.getServiceContext());
+
+		_assignAccountEntryRole(accountEntry3, _buyerRole, _addUser());
+
+		_assignAccountEntryRole(accountEntry4, _buyerRole, _addUser());
+
+		for (String value : ListUtil.fromArray("Able", "Baker")) {
+			Page<ObjectEntry> page =
+				_defaultObjectEntryManager.getObjectEntries(
+					companyId, _objectDefinition3, null, null,
+					dtoConverterContext, StringPool.BLANK, null, value, null);
+
+			Collection<ObjectEntry> objectEntries = page.getItems();
+
+			Assert.assertEquals(
+				objectEntries.toString(), 0, objectEntries.size());
+		}
+
+		for (String value : ListUtil.fromArray("Charlie", "Delta")) {
+			Page<ObjectEntry> page =
+				_defaultObjectEntryManager.getObjectEntries(
+					companyId, _objectDefinition3, null, null,
+					dtoConverterContext, StringPool.BLANK, null, value, null);
+
+			Collection<ObjectEntry> objectEntries = page.getItems();
+
+			Assert.assertEquals(
+				objectEntries.toString(), 1, objectEntries.size());
+		}
+
+		PermissionThreadLocal.setPermissionChecker(
+			PermissionCheckerFactoryUtil.create(_user));
+
+		PrincipalThreadLocal.setName(_user.getUserId());
 
 		// User should be able to view object entries for account entry 1
 		// because he is a member of account entry 1
@@ -3300,6 +3377,9 @@ public class DefaultObjectEntryManagerImplTest
 
 	@DeleteAfterTestRun
 	private ObjectDefinition _objectDefinition3;
+
+	@Inject
+	private ObjectEntryLocalService _objectEntryLocalService;
 
 	@Inject
 	private ObjectFieldService _objectFieldService;
