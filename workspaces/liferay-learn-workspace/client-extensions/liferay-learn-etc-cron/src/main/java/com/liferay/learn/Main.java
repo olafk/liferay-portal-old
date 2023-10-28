@@ -724,14 +724,14 @@ public class Main {
 			return permissions.toArray(new Permission[0]);
 		}
 
-		Object roleNames = data.get("visibility");
+		Object visibilityObject = data.get("visibility");
 
-		if (!(roleNames instanceof ArrayList)) {
+		if (!(visibilityObject instanceof ArrayList)) {
 			return null;
 		}
 
-		for (Object roleNamesObject : (ArrayList)roleNames) {
-			if (!(roleNamesObject instanceof String)) {
+		for (Object object : (ArrayList)visibilityObject) {
+			if (!(object instanceof String)) {
 				continue;
 			}
 
@@ -739,7 +739,7 @@ public class Main {
 				new Permission() {
 					{
 						actionIds = new String[] {"ADD_DISCUSSION", "VIEW"};
-						roleName = (String)roleNamesObject;
+						roleName = (String)object;
 					}
 				});
 		}
