@@ -315,31 +315,31 @@ public class CommerceCurrencyLocalServiceImpl
 
 		SearchHits searchHits = searchResponse.getSearchHits();
 
-		List<CommerceCurrency> commerceCurrencies = TransformUtil.transform(
-			searchHits.getSearchHits(),
-			searchHit -> {
-				Document document = searchHit.getDocument();
-
-				long commerceCurrencyId = document.getLong(
-					Field.ENTRY_CLASS_PK);
-
-				CommerceCurrency commerceCurrency = fetchCommerceCurrency(
-					commerceCurrencyId);
-
-				if (commerceCurrency == null) {
-					Indexer<CommerceCurrency> indexer =
-						IndexerRegistryUtil.getIndexer(CommerceCurrency.class);
-
-					indexer.delete(
-						document.getLong(Field.COMPANY_ID),
-						document.getString(Field.UID));
-				}
-
-				return commerceCurrency;
-			});
-
 		return new BaseModelSearchResult<>(
-			commerceCurrencies, searchResponse.getTotalHits());
+			TransformUtil.transform(
+				searchHits.getSearchHits(),
+				searchHit -> {
+					Document document = searchHit.getDocument();
+
+					long commerceCurrencyId = document.getLong(
+						Field.ENTRY_CLASS_PK);
+
+					CommerceCurrency commerceCurrency = fetchCommerceCurrency(
+						commerceCurrencyId);
+
+					if (commerceCurrency == null) {
+						Indexer<CommerceCurrency> indexer =
+							IndexerRegistryUtil.getIndexer(
+								CommerceCurrency.class);
+
+						indexer.delete(
+							document.getLong(Field.COMPANY_ID),
+							document.getString(Field.UID));
+					}
+
+					return commerceCurrency;
+				}),
+				searchResponse.getTotalHits());
 	}
 
 	@Indexable(type = IndexableType.REINDEX)

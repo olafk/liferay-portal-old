@@ -40,7 +40,6 @@ public class CPTaxCategoryModelDocumentContributor
 			String description = cpTaxCategory.getDescription(languageId);
 
 			document.addText(Field.CONTENT, description);
-
 			document.addText(
 				_localization.getLocalizedName(Field.DESCRIPTION, languageId),
 				description);

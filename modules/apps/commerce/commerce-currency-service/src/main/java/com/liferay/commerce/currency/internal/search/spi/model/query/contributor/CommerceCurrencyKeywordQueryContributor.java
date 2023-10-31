@@ -36,9 +36,9 @@ public class CommerceCurrencyKeywordQueryContributor
 
 		_queryHelper.addSearchTerm(
 			booleanQuery, searchContext, CPField.CODE, false);
-		_queryHelper.addSearchTerm(
-			booleanQuery, searchContext, Field.NAME, false);
 		_queryHelper.addSearchLocalizedTerm(
+			booleanQuery, searchContext, Field.NAME, false);
+		_queryHelper.addSearchTerm(
 			booleanQuery, searchContext, Field.NAME, false);
 	}
 

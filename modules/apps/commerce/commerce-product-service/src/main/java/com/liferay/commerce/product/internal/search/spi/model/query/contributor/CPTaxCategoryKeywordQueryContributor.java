@@ -37,9 +37,9 @@ public class CPTaxCategoryKeywordQueryContributor
 			booleanQuery, searchContext, Field.DESCRIPTION, false);
 		_queryHelper.addSearchTerm(
 			booleanQuery, searchContext, Field.ENTRY_CLASS_PK, false);
-		_queryHelper.addSearchTerm(
-			booleanQuery, searchContext, Field.NAME, false);
 		_queryHelper.addSearchLocalizedTerm(
+			booleanQuery, searchContext, Field.NAME, false);
+		_queryHelper.addSearchTerm(
 			booleanQuery, searchContext, Field.NAME, false);
 	}
 
