@@ -38,18 +38,17 @@ public class ProductConfigurationDTOConverter
 	public ProductConfiguration toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 
+		CPDAvailabilityEstimate cpdAvailabilityEstimate =
+			_cpdAvailabilityEstimateService.
+				fetchCPDAvailabilityEstimateByCPDefinitionId(
+					(Long)dtoConverterContext.getId());
 		CPDefinitionInventory cpDefinitionInventory =
 			_cpDefinitionInventoryService.
 				fetchCPDefinitionInventoryByCPDefinitionId(
 					(Long)dtoConverterContext.getId());
 
-		CPDAvailabilityEstimate cpdAvailabilityEstimate =
-			_cpdAvailabilityEstimateService.
-				fetchCPDAvailabilityEstimateByCPDefinitionId(
-					(Long)dtoConverterContext.getId());
-
-		if ((cpDefinitionInventory == null) &&
-			(cpdAvailabilityEstimate == null)) {
+		if ((cpdAvailabilityEstimate == null) &&
+			(cpDefinitionInventory == null)) {
 
 			return new ProductConfiguration();
 		}

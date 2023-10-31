@@ -52,8 +52,8 @@ public class ProductConfigurationDTOConverter
 				fetchCPDAvailabilityEstimateByCProductId(
 					cpDefinition.getCProductId());
 
-		if ((cpDefinitionInventory == null) &&
-			(cpdAvailabilityEstimate == null)) {
+		if ((cpdAvailabilityEstimate == null) &&
+			(cpDefinitionInventory == null)) {
 
 			return new ProductConfiguration();
 		}
