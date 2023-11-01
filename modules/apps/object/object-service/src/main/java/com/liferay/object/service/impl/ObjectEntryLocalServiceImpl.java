@@ -2806,6 +2806,9 @@ public class ObjectEntryLocalServiceImpl
 		DynamicObjectDefinitionTable dynamicObjectDefinitionTable =
 			_getDynamicObjectDefinitionTable(
 				objectRelationship.getObjectDefinitionId2());
+		DynamicObjectDefinitionTable dynamicRootObjectDefinitionTable =
+			_getDynamicRootObjectDefinitionTable(
+				objectRelationship.getObjectDefinitionId2());
 		DynamicObjectDefinitionTable extensionDynamicObjectDefinitionTable =
 			_getExtensionDynamicObjectDefinitionTable(
 				objectRelationship.getObjectDefinitionId2());
@@ -2820,6 +2823,10 @@ public class ObjectEntryLocalServiceImpl
 		).innerJoinON(
 			ObjectEntryTable.INSTANCE,
 			ObjectEntryTable.INSTANCE.objectEntryId.eq(primaryKeyColumn)
+		).innerJoinON(
+			dynamicRootObjectDefinitionTable,
+			_getInnerJoinRootObjectDefinitionTablePredicate(
+				dynamicRootObjectDefinitionTable)
 		).innerJoinON(
 			extensionDynamicObjectDefinitionTable,
 			extensionDynamicObjectDefinitionTable.getPrimaryKeyColumn(
