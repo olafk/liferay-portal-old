@@ -116,7 +116,7 @@ public class ${entity.name}Wrapper
 			</#if>
 
 			<#if stringUtil.equals(method.name, "populateVersionModel")>
-				<#assign hasPopulateVersionModel = true />
+				<#assign hasPopulateVersionModelMethod = true />
 			</#if>
 
 			${serviceBuilder.getJavadocComment(method)}
@@ -253,7 +253,7 @@ public class ${entity.name}Wrapper
 			return ${entityFieldName}.isHead();
 		}
 
-		<#if !hasPopulateVersionModel!false>
+		<#if !hasPopulateVersionModelMethod!false>
 			@Override
 			public void populateVersionModel(${versionEntity.name} ${versionEntity.variableName}) {
 				${entityFieldName}.populateVersionModel(${versionEntity.variableName});
