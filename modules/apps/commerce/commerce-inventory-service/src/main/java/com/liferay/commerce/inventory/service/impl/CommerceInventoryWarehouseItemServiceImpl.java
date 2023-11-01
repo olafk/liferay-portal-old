@@ -279,13 +279,12 @@ public class CommerceInventoryWarehouseItemServiceImpl
 			_commerceInventoryWarehouseModelResourcePermission.
 				getPortletResourcePermission();
 
-		boolean replacePermissionCheck = !portletResourcePermission.contains(
-			getPermissionChecker(), null,
-			CommerceInventoryActionKeys.MANAGE_INVENTORY);
-
 		return commerceInventoryWarehouseItemLocalService.
 			getCommerceInventoryWarehouseItemsCount(
-				companyId, sku, unitOfMeasureKey, replacePermissionCheck);
+				companyId, sku, unitOfMeasureKey,
+				!portletResourcePermission.contains(
+					getPermissionChecker(), null,
+					CommerceInventoryActionKeys.MANAGE_INVENTORY));
 	}
 
 	@Override
