@@ -4737,10 +4737,10 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 	}
 
 	private Dimension _getDimension(String size) {
-		String[] sizeCoordinates = StringUtil.split(size, "[\\D]+");
+		String[] sizeParts = StringUtil.split(size, "[\\D]+");
 
-		int x = GetterUtil.getInteger(sizeCoordinates[0]);
-		int y = GetterUtil.getInteger(sizeCoordinates[1]);
+		int x = GetterUtil.getInteger(sizeParts[0]);
+		int y = GetterUtil.getInteger(sizeParts[1]);
 
 		return new Dimension(x, y);
 	}
