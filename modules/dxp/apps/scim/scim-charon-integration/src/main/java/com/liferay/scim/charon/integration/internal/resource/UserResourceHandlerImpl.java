@@ -15,7 +15,9 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.scim.charon.integration.internal.ScimUserManager;
 import com.liferay.scim.charon.integration.internal.constants.ScimConstants;
 import com.liferay.scim.charon.integration.internal.user.manager.UserManagerImpl;
-import com.liferay.scim.resource.UserResource;
+import com.liferay.scim.rest.dto.v1_0.QueryAttributes;
+import com.liferay.scim.rest.dto.v1_0.User;
+import com.liferay.scim.rest.resource.handler.UserResourceHandler;
 
 import java.io.File;
 
@@ -38,29 +40,16 @@ import org.wso2.charon3.core.protocol.endpoints.UserResourceManager;
 /**
  * @author Rafael Praxedes
  */
-@Component(service = UserResource.class)
-public class UserResourceImpl implements UserResource {
+@Component(service = UserResourceHandler.class)
+public class UserResourceHandlerImpl implements UserResourceHandler {
 
 	@Override
-	public Response createUser(String resourceString) {
-		return _buildResponse(
-			_userResourceManager.create(
-				resourceString, _userManager, null, null));
-	}
-
-	@Override
-	public Response deleteUser(String id) {
+	public Response deleteV2User(String id) {
 		return _buildResponse(_userResourceManager.delete(id, _userManager));
 	}
 
 	@Override
-	public Response getUser(String id) {
-		return _buildResponse(
-			_userResourceManager.get(id, _userManager, null, null));
-	}
-
-	@Override
-	public Response listUsers(int count, int startIndex) {
+	public Response getV2User(Integer count, Integer startIndex) {
 		return _buildResponse(
 			_userResourceManager.listWithGET(
 				_userManager, null, startIndex, count, null, null, null, null,
@@ -68,16 +57,32 @@ public class UserResourceImpl implements UserResource {
 	}
 
 	@Override
-	public Response searchUser(String resourceString) {
+	public Response getV2UserById(String id) {
 		return _buildResponse(
-			_userResourceManager.listWithPOST(resourceString, _userManager));
+			_userResourceManager.get(id, _userManager, null, null));
 	}
 
 	@Override
-	public Response updateUser(String id, String resourceString) {
+	public Response postV2User(User user) {
+		return _buildResponse(
+			_userResourceManager.create(
+				user.toString(), _userManager, null, null));
+	}
+
+	@Override
+	public Response postV2UserSearch(QueryAttributes queryAttributes)
+		throws Exception {
+
+		return _buildResponse(
+			_userResourceManager.listWithPOST(
+				queryAttributes.toString(), _userManager));
+	}
+
+	@Override
+	public Response putV2User(String id, User user) {
 		return _buildResponse(
 			_userResourceManager.updateWithPUT(
-				id, resourceString, _userManager, null, null));
+				id, user.toString(), _userManager, null, null));
 	}
 
 	@Activate
@@ -118,7 +123,7 @@ public class UserResourceImpl implements UserResource {
 
 	private void _registerLiferayUserSchemaExtension() throws Exception {
 		File file = _file.createTempFile(
-			UserResourceImpl.class.getResourceAsStream(
+			UserResourceHandlerImpl.class.getResourceAsStream(
 				"dependencies/liferay-user-schema-extension.json"));
 
 		SCIMUserSchemaExtensionBuilder scimUserSchemaExtensionBuilder =
