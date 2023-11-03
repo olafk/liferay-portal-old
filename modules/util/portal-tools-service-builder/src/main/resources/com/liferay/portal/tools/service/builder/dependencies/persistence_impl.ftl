@@ -73,6 +73,13 @@ import ${apiPackagePath}.service.persistence.${entity.name}Util;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.change.tracking.CTColumnResolutionType;
 import com.liferay.portal.kernel.configuration.Configuration;
+
+<#if !serviceBuilder.isVersionGTE_7_1_0()>
+	import com.liferay.portal.kernel.configuration.Filter;
+	import com.liferay.portal.kernel.dao.db.DBManagerUtil;
+	import com.liferay.portal.kernel.dao.db.DBType;
+</#if>
+
 import com.liferay.portal.kernel.dao.orm.ArgumentsResolver;
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
@@ -127,15 +134,8 @@ import com.liferay.portal.spring.extender.service.ServiceReference;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 
-<#if !serviceBuilder.isVersionGTE_7_1_0()>
-	import com.liferay.portal.kernel.configuration.Filter;
-	import com.liferay.portal.kernel.dao.db.DBManagerUtil;
-	import com.liferay.portal.kernel.dao.db.DBType;
-</#if>
-
 <#if osgiModule>
 	import org.osgi.framework.ServiceRegistration;
-
 <#else>
 	import com.liferay.registry.ServiceRegistration;
 </#if>
@@ -2965,10 +2965,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 			DBType dbType = DBManagerUtil.getDBType(sessionFactory.getDialect());
 
-			_databaseInMaxParameters = GetterUtil.getInteger(
-				PropsUtil.get(
-					"database.in.max.parameters",
-					new Filter(dbType.getName())));
+			_databaseInMaxParameters = GetterUtil.getInteger(PropsUtil.get("database.in.max.parameters", new Filter(dbType.getName())));
 		}
 	</#if>
 
