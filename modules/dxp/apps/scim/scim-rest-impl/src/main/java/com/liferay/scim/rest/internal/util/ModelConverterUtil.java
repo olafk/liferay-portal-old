@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.scim.rest.internal.ScimUser;
-import com.liferay.scim.rest.internal.constants.ScimConstants;
 
 import java.util.Calendar;
 import java.util.Collections;
@@ -39,6 +38,7 @@ import org.wso2.charon3.core.objects.plainobjects.MultiValuedComplexType;
 import org.wso2.charon3.core.objects.plainobjects.ScimName;
 import org.wso2.charon3.core.protocol.endpoints.AbstractResourceManager;
 import org.wso2.charon3.core.schema.AttributeSchema;
+import org.wso2.charon3.core.schema.SCIMConstants;
 import org.wso2.charon3.core.schema.SCIMResourceSchemaManager;
 import org.wso2.charon3.core.utils.AttributeUtil;
 
@@ -120,14 +120,14 @@ public class ModelConverterUtil {
 		user.setLocation(
 			StringBundler.concat(
 				AbstractResourceManager.getResourceEndpointURL(
-					ScimConstants.USER_ENDPOINT),
+					SCIMConstants.USER_ENDPOINT),
 				CharPool.FORWARD_SLASH, scimUser.getId()));
 
 		Date modifiedDate = scimUser.getModifiedDate();
 
 		user.setLastModifiedInstant(modifiedDate.toInstant());
 
-		user.setResourceType(ScimConstants.USER);
+		user.setResourceType(SCIMConstants.USER);
 		user.setSchemas();
 
 		user.setUserName(scimUser.getScreenName());
@@ -190,7 +190,7 @@ public class ModelConverterUtil {
 		try {
 			ComplexAttribute liferayUserComplexAttribute =
 				(ComplexAttribute)user.getAttribute(
-					ScimConstants.LIFERAY_USER_SCHEMA_EXTENSION_URI);
+					_LIFERAY_USER_SCHEMA_EXTENSION_URI);
 
 			if (liferayUserComplexAttribute == null) {
 				return defaultBirthdayDateSupplier.get();
@@ -249,7 +249,7 @@ public class ModelConverterUtil {
 		try {
 			ComplexAttribute liferayUserComplexAttribute =
 				(ComplexAttribute)user.getAttribute(
-					ScimConstants.LIFERAY_USER_SCHEMA_EXTENSION_URI);
+					_LIFERAY_USER_SCHEMA_EXTENSION_URI);
 
 			if (liferayUserComplexAttribute == null) {
 				return true;
@@ -295,6 +295,9 @@ public class ModelConverterUtil {
 					scimUser.getLastName()));
 		}
 	}
+
+	private static final String _LIFERAY_USER_SCHEMA_EXTENSION_URI =
+		"urn:ietf:params:scim:schemas:extension:liferay:2.0:User";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		ModelConverterUtil.class);

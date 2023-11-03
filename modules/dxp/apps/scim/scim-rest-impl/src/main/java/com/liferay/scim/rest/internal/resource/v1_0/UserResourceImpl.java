@@ -13,7 +13,6 @@ import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.scim.rest.dto.v1_0.User;
-import com.liferay.scim.rest.internal.constants.ScimConstants;
 import com.liferay.scim.rest.internal.manager.UserManagerImpl;
 import com.liferay.scim.rest.resource.v1_0.UserResource;
 
@@ -35,6 +34,7 @@ import org.wso2.charon3.core.extensions.UserManager;
 import org.wso2.charon3.core.protocol.SCIMResponse;
 import org.wso2.charon3.core.protocol.endpoints.AbstractResourceManager;
 import org.wso2.charon3.core.protocol.endpoints.UserResourceManager;
+import org.wso2.charon3.core.schema.SCIMConstants;
 
 /**
  * @author Olivér Kecskeméty
@@ -79,7 +79,7 @@ public class UserResourceImpl extends BaseUserResourceImpl {
 	protected void activate() throws Exception {
 		AbstractResourceManager.setEndpointURLMap(
 			Collections.singletonMap(
-				ScimConstants.USER_ENDPOINT, "/o/scim/Users"));
+				SCIMConstants.USER_ENDPOINT, "/o/scim/Users"));
 
 		_registerLiferayUserSchemaExtension();
 
