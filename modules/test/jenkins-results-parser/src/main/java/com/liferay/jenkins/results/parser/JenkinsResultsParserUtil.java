@@ -3236,7 +3236,7 @@ public class JenkinsResultsParserUtil {
 	public static String getResponseHeaders(URLConnection urlConnection) {
 		StringBuilder sb = new StringBuilder();
 
-		Map<String, List<String>> map = connection.getHeaderFields();
+		Map<String, List<String>> map = urlConnection.getHeaderFields();
 
 		for (Map.Entry<String, List<String>> entry : map.entrySet()) {
 			sb.append(entry.getKey());
