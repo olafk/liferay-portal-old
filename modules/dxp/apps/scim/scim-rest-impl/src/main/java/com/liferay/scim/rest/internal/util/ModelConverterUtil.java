@@ -209,32 +209,24 @@ public class ModelConverterUtil {
 	}
 
 	private static String _getEmailAddress(User user) {
-		List<MultiValuedComplexType> emailMultiValuedComplexTypes =
-			user.getEmails();
+		List<MultiValuedComplexType> multiValuedComplexTypes = user.getEmails();
 
-		if (ListUtil.isEmpty(emailMultiValuedComplexTypes)) {
+		if (ListUtil.isEmpty(multiValuedComplexTypes)) {
 			return null;
 		}
 
-		MultiValuedComplexType primaryEmailMultiValuedComplexType = null;
+		for (MultiValuedComplexType multiValuedComplexType :
+				multiValuedComplexTypes) {
 
-		for (MultiValuedComplexType emailMultiValuedComplexType :
-				emailMultiValuedComplexTypes) {
-
-			if (emailMultiValuedComplexType.isPrimary()) {
-				primaryEmailMultiValuedComplexType =
-					emailMultiValuedComplexType;
-
-				break;
+			if (multiValuedComplexType.isPrimary()) {
+				return multiValuedComplexType.getValue();
 			}
 		}
 
-		if (primaryEmailMultiValuedComplexType == null) {
-			primaryEmailMultiValuedComplexType =
-				emailMultiValuedComplexTypes.get(0);
-		}
+		MultiValuedComplexType multiValuedComplexType =
+			multiValuedComplexTypes.get(0);
 
-		return primaryEmailMultiValuedComplexType.getValue();
+		return multiValuedComplexType.getValue();
 	}
 
 	private static boolean _isMale(User user) {
