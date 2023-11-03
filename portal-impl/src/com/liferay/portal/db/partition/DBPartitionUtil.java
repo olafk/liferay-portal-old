@@ -147,7 +147,7 @@ public class DBPartitionUtil {
 			unsafeConsumer.accept(null);
 		}
 		else {
-			for (long companyId : _getCompanyIds()) {
+			for (long companyId : companyIds) {
 				try (SafeCloseable safeCloseable = CompanyThreadLocal.lock(
 						companyId)) {
 
