@@ -41,7 +41,6 @@ import com.liferay.scim.rest.internal.util.ScimClientUtil;
 import com.liferay.scim.rest.internal.util.ScimUserUtil;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -399,7 +398,7 @@ public class UserManagerImpl implements UserManager {
 			}
 
 			for (Configuration configuration : configurations) {
-				HashMap<String, Object> properties =
+				Map<String, Object> properties =
 					HashMapBuilder.<String, Object>putAll(
 						configuration.getProperties()
 					).build();
