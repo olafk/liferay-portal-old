@@ -287,18 +287,6 @@ public class UserManagerImpl implements UserManager {
 		return portalUser;
 	}
 
-	private void _checkScimClientId(
-			String userScimClientId, String scimClientId)
-		throws PortalException {
-
-		if (Validator.isNotNull(userScimClientId) &&
-			!Objects.equals(userScimClientId, scimClientId)) {
-
-			throw new PortalException(
-				"User was provisioned by another SCIM client");
-		}
-	}
-
 	private com.liferay.portal.kernel.model.User _fetchPortalUser(
 		ScimClientOAuth2ApplicationConfiguration
 			scimClientOAuth2ApplicationConfiguration,
@@ -505,10 +493,14 @@ public class UserManagerImpl implements UserManager {
 
 		String scimClientId = ScimClientUtil.generateScimClientId(
 			scimClientOAuth2ApplicationConfiguration.applicationName());
+		String portalUserScimClientId = _getScimClientId(portalUser);
 
-		String userScimClientId = _getScimClientId(portalUser);
+		if (Validator.isNotNull(portalUserScimClientId) &&
+			!Objects.equals(scimClientId, portalUserScimClientId)) {
 
-		_checkScimClientId(userScimClientId, scimClientId);
+			throw new PortalException(
+				"User was provisioned by another SCIM client");
+		}
 
 		Contact contact = portalUser.getContact();
 
@@ -546,7 +538,7 @@ public class UserManagerImpl implements UserManager {
 				portalUser.getUserId(), status, new ServiceContext());
 		}
 
-		if (Validator.isNull(userScimClientId)) {
+		if (Validator.isNull(portalUserScimClientId)) {
 			_saveScimClientId(scimClientId, portalUser);
 		}
 
