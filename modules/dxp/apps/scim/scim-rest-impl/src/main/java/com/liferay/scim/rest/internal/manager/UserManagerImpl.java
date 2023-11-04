@@ -206,7 +206,7 @@ public class UserManagerImpl implements UserManager {
 				_getScimClientOAuth2ApplicationConfiguration(
 					company.getCompanyId());
 
-		com.liferay.portal.kernel.model.User user = _fetchUser(
+		com.liferay.portal.kernel.model.User portalUser = _fetchPortalUser(
 			scimClientOAuth2ApplicationConfiguration, scimUser);
 
 		Calendar birthdayCal = CalendarFactoryUtil.getCalendar();
@@ -217,18 +217,18 @@ public class UserManagerImpl implements UserManager {
 		int birthdayDay = birthdayCal.get(Calendar.DAY_OF_MONTH);
 		int birthdayYear = birthdayCal.get(Calendar.YEAR);
 
-		if (user == null) {
-			user = _addUser(
+		if (portalUser == null) {
+			portalUser = _addPortalUser(
 				birthdayMonth, birthdayDay, birthdayYear,
 				scimClientOAuth2ApplicationConfiguration, scimUser);
 		}
 		else {
-			user = _updateUser(
-				birthdayMonth, birthdayDay, birthdayYear, user, scimUser,
+			portalUser = _updatePortalUser(
+				birthdayMonth, birthdayDay, birthdayYear, portalUser, scimUser,
 				scimClientOAuth2ApplicationConfiguration);
 		}
 
-		return _toScimUser(user);
+		return _toScimUser(portalUser);
 	}
 
 	private User _addOrUpdateUser(User user) throws CharonException {
@@ -244,45 +244,47 @@ public class UserManagerImpl implements UserManager {
 		}
 		catch (Exception exception) {
 			throw new CharonException(
-				"Unable to provisioning an portal user for " +
+				"Unable to provisioning a portal user for " +
 					user.getDisplayName(),
 				exception);
 		}
 	}
 
-	private com.liferay.portal.kernel.model.User _addUser(
+	private com.liferay.portal.kernel.model.User _addPortalUser(
 			int birthdayMonth, int birthdayDay, int birthdayYear,
 			ScimClientOAuth2ApplicationConfiguration
 				scimClientOAuth2ApplicationConfiguration,
 			ScimUser scimUser)
 		throws PortalException {
 
-		com.liferay.portal.kernel.model.User user = _userLocalService.addUser(
-			0, scimUser.getCompanyId(), scimUser.isAutoPassword(),
-			scimUser.getPassword(), scimUser.getPassword(),
-			scimUser.isAutoScreenName(), scimUser.getScreenName(),
-			scimUser.getEmailAddress(), scimUser.getLocale(),
-			scimUser.getFirstName(), scimUser.getMiddleName(),
-			scimUser.getLastName(), 0, 0, scimUser.isMale(), birthdayMonth,
-			birthdayDay, birthdayYear, StringPool.BLANK,
-			UserConstants.TYPE_REGULAR, scimUser.getGroupIds(),
-			scimUser.getOrganizationIds(), scimUser.getRoleIds(),
-			scimUser.getUserGroupIds(), scimUser.isSendEmail(),
-			new ServiceContext());
+		com.liferay.portal.kernel.model.User portalUser =
+			_userLocalService.addUser(
+				0, scimUser.getCompanyId(), scimUser.isAutoPassword(),
+				scimUser.getPassword(), scimUser.getPassword(),
+				scimUser.isAutoScreenName(), scimUser.getScreenName(),
+				scimUser.getEmailAddress(), scimUser.getLocale(),
+				scimUser.getFirstName(), scimUser.getMiddleName(),
+				scimUser.getLastName(), 0, 0, scimUser.isMale(), birthdayMonth,
+				birthdayDay, birthdayYear, StringPool.BLANK,
+				UserConstants.TYPE_REGULAR, scimUser.getGroupIds(),
+				scimUser.getOrganizationIds(), scimUser.getRoleIds(),
+				scimUser.getUserGroupIds(), scimUser.isSendEmail(),
+				new ServiceContext());
 
-		user.setExternalReferenceCode(scimUser.getExternalReferenceCode());
+		portalUser.setExternalReferenceCode(
+			scimUser.getExternalReferenceCode());
 
-		user = _userLocalService.updateUser(user);
+		portalUser = _userLocalService.updateUser(portalUser);
 
-		user = _userLocalService.updateEmailAddressVerified(
-			user.getUserId(), true);
+		portalUser = _userLocalService.updateEmailAddressVerified(
+			portalUser.getUserId(), true);
 
 		_saveScimClientId(
 			ScimClientUtil.generateScimClientId(
 				scimClientOAuth2ApplicationConfiguration.applicationName()),
-			user);
+			portalUser);
 
-		return user;
+		return portalUser;
 	}
 
 	private void _checkScimClientId(
@@ -297,29 +299,7 @@ public class UserManagerImpl implements UserManager {
 		}
 	}
 
-	private ScimUser _fetchScimUser(long companyId, long userId) {
-		com.liferay.portal.kernel.model.User user =
-			_userLocalService.fetchUserById(userId);
-
-		if (user == null) {
-			return null;
-		}
-
-		ScimClientOAuth2ApplicationConfiguration
-			scimClientOAuth2ApplicationConfiguration =
-				_getScimClientOAuth2ApplicationConfiguration(companyId);
-
-		String scimClientId = ScimClientUtil.generateScimClientId(
-			scimClientOAuth2ApplicationConfiguration.applicationName());
-
-		if (!Objects.equals(_getScimClientId(user), scimClientId)) {
-			return null;
-		}
-
-		return _toScimUser(user);
-	}
-
-	private com.liferay.portal.kernel.model.User _fetchUser(
+	private com.liferay.portal.kernel.model.User _fetchPortalUser(
 		ScimClientOAuth2ApplicationConfiguration
 			scimClientOAuth2ApplicationConfiguration,
 		ScimUser scimUser) {
@@ -350,9 +330,33 @@ public class UserManagerImpl implements UserManager {
 		return null;
 	}
 
-	private String _getScimClientId(com.liferay.portal.kernel.model.User user) {
+	private ScimUser _fetchScimUser(long companyId, long userId) {
+		com.liferay.portal.kernel.model.User portalUser =
+			_userLocalService.fetchUserById(userId);
+
+		if (portalUser == null) {
+			return null;
+		}
+
+		ScimClientOAuth2ApplicationConfiguration
+			scimClientOAuth2ApplicationConfiguration =
+				_getScimClientOAuth2ApplicationConfiguration(companyId);
+
+		String scimClientId = ScimClientUtil.generateScimClientId(
+			scimClientOAuth2ApplicationConfiguration.applicationName());
+
+		if (!Objects.equals(_getScimClientId(portalUser), scimClientId)) {
+			return null;
+		}
+
+		return _toScimUser(portalUser);
+	}
+
+	private String _getScimClientId(
+		com.liferay.portal.kernel.model.User portalUser) {
+
 		ExpandoTable expandoTable = _expandoTableLocalService.fetchTable(
-			user.getCompanyId(),
+			portalUser.getCompanyId(),
 			_classNameLocalService.getClassNameId(User.class.getName()),
 			ExpandoTableConstants.DEFAULT_TABLE_NAME);
 
@@ -369,7 +373,7 @@ public class UserManagerImpl implements UserManager {
 
 		ExpandoValue expandoValue = _expandoValueLocalService.getValue(
 			expandoTable.getTableId(), expandoColumn.getColumnId(),
-			user.getUserId());
+			portalUser.getUserId());
 
 		if (expandoValue == null) {
 			return StringPool.BLANK;
@@ -427,17 +431,18 @@ public class UserManagerImpl implements UserManager {
 	}
 
 	private void _saveScimClientId(
-			String scimClientId, com.liferay.portal.kernel.model.User user)
+			String scimClientId,
+			com.liferay.portal.kernel.model.User portalUser)
 		throws PortalException {
 
 		ExpandoTable expandoTable = _expandoTableLocalService.fetchTable(
-			user.getCompanyId(),
+			portalUser.getCompanyId(),
 			_classNameLocalService.getClassNameId(User.class.getName()),
 			ExpandoTableConstants.DEFAULT_TABLE_NAME);
 
 		if (expandoTable == null) {
 			expandoTable = _expandoTableLocalService.addTable(
-				user.getCompanyId(), User.class.getName(),
+				portalUser.getCompanyId(), User.class.getName(),
 				ExpandoTableConstants.DEFAULT_TABLE_NAME);
 		}
 
@@ -451,30 +456,33 @@ public class UserManagerImpl implements UserManager {
 		}
 
 		_expandoValueLocalService.addValue(
-			user.getCompanyId(), User.class.getName(),
+			portalUser.getCompanyId(), User.class.getName(),
 			ExpandoTableConstants.DEFAULT_TABLE_NAME, expandoColumn.getName(),
-			user.getUserId(), scimClientId);
+			portalUser.getUserId(), scimClientId);
 	}
 
-	private ScimUser _toScimUser(com.liferay.portal.kernel.model.User user) {
+	private ScimUser _toScimUser(
+		com.liferay.portal.kernel.model.User portalUser) {
+
 		ScimUser scimUser = new ScimUser();
 
 		try {
-			scimUser.setActive(user.isActive());
-			scimUser.setBirthday(user.getBirthday());
-			scimUser.setCompanyId(user.getCompanyId());
-			scimUser.setCreateDate(user.getCreateDate());
-			scimUser.setFirstName(user.getFirstName());
-			scimUser.setEmailAddress(user.getEmailAddress());
-			scimUser.setExternalReferenceCode(user.getExternalReferenceCode());
-			scimUser.setId(String.valueOf(user.getUserId()));
-			scimUser.setJobTitle(user.getJobTitle());
-			scimUser.setLastName(user.getLastName());
-			scimUser.setLocale(user.getLocale());
-			scimUser.setMale(user.isMale());
-			scimUser.setMiddleName(user.getMiddleName());
-			scimUser.setModifiedDate(user.getModifiedDate());
-			scimUser.setScreenName(user.getScreenName());
+			scimUser.setActive(portalUser.isActive());
+			scimUser.setBirthday(portalUser.getBirthday());
+			scimUser.setCompanyId(portalUser.getCompanyId());
+			scimUser.setCreateDate(portalUser.getCreateDate());
+			scimUser.setFirstName(portalUser.getFirstName());
+			scimUser.setEmailAddress(portalUser.getEmailAddress());
+			scimUser.setExternalReferenceCode(
+				portalUser.getExternalReferenceCode());
+			scimUser.setId(String.valueOf(portalUser.getUserId()));
+			scimUser.setJobTitle(portalUser.getJobTitle());
+			scimUser.setLastName(portalUser.getLastName());
+			scimUser.setLocale(portalUser.getLocale());
+			scimUser.setMale(portalUser.isMale());
+			scimUser.setMiddleName(portalUser.getMiddleName());
+			scimUser.setModifiedDate(portalUser.getModifiedDate());
+			scimUser.setScreenName(portalUser.getScreenName());
 		}
 		catch (PortalException portalException) {
 			if (_log.isDebugEnabled()) {
@@ -489,9 +497,9 @@ public class UserManagerImpl implements UserManager {
 		return scimUser;
 	}
 
-	private com.liferay.portal.kernel.model.User _updateUser(
+	private com.liferay.portal.kernel.model.User _updatePortalUser(
 			int birthdayMonth, int birthdayDay, int birthdayYear,
-			com.liferay.portal.kernel.model.User oldUser, ScimUser scimUser,
+			com.liferay.portal.kernel.model.User portalUser, ScimUser scimUser,
 			ScimClientOAuth2ApplicationConfiguration
 				scimClientOAuth2ApplicationConfiguration)
 		throws PortalException {
@@ -499,52 +507,51 @@ public class UserManagerImpl implements UserManager {
 		String scimClientId = ScimClientUtil.generateScimClientId(
 			scimClientOAuth2ApplicationConfiguration.applicationName());
 
-		String userScimClientId = _getScimClientId(oldUser);
+		String userScimClientId = _getScimClientId(portalUser);
 
 		_checkScimClientId(userScimClientId, scimClientId);
 
-		Contact contact = oldUser.getContact();
+		Contact contact = portalUser.getContact();
 
-		com.liferay.portal.kernel.model.User user =
-			_userLocalService.updateUser(
-				oldUser.getUserId(), scimUser.getPassword(), StringPool.BLANK,
-				StringPool.BLANK, false, oldUser.getReminderQueryQuestion(),
-				oldUser.getReminderQueryAnswer(), oldUser.getScreenName(),
-				scimUser.getEmailAddress(), false, null,
-				oldUser.getLanguageId(), oldUser.getTimeZoneId(),
-				oldUser.getGreeting(), oldUser.getComments(),
-				scimUser.getFirstName(), scimUser.getMiddleName(),
-				scimUser.getLastName(), 0, 0, scimUser.isMale(), birthdayMonth,
-				birthdayDay, birthdayYear, contact.getSmsSn(),
-				contact.getFacebookSn(), contact.getJabberSn(),
-				contact.getSkypeSn(), contact.getTwitterSn(),
-				scimUser.getJobTitle(), oldUser.getGroupIds(),
-				oldUser.getOrganizationIds(), oldUser.getRoleIds(), null,
-				oldUser.getUserGroupIds(), new ServiceContext());
+		portalUser = _userLocalService.updateUser(
+			portalUser.getUserId(), scimUser.getPassword(), StringPool.BLANK,
+			StringPool.BLANK, false, portalUser.getReminderQueryQuestion(),
+			portalUser.getReminderQueryAnswer(), portalUser.getScreenName(),
+			scimUser.getEmailAddress(), false, null, portalUser.getLanguageId(),
+			portalUser.getTimeZoneId(), portalUser.getGreeting(),
+			portalUser.getComments(), scimUser.getFirstName(),
+			scimUser.getMiddleName(), scimUser.getLastName(), 0, 0,
+			scimUser.isMale(), birthdayMonth, birthdayDay, birthdayYear,
+			contact.getSmsSn(), contact.getFacebookSn(), contact.getJabberSn(),
+			contact.getSkypeSn(), contact.getTwitterSn(),
+			scimUser.getJobTitle(), portalUser.getGroupIds(),
+			portalUser.getOrganizationIds(), portalUser.getRoleIds(), null,
+			portalUser.getUserGroupIds(), new ServiceContext());
 
 		if (!Objects.equals(
-				user.getExternalReferenceCode(),
+				portalUser.getExternalReferenceCode(),
 				scimUser.getExternalReferenceCode())) {
 
-			user.setExternalReferenceCode(scimUser.getExternalReferenceCode());
+			portalUser.setExternalReferenceCode(
+				scimUser.getExternalReferenceCode());
 
-			user = _userLocalService.updateUser(user);
+			portalUser = _userLocalService.updateUser(portalUser);
 		}
 
-		if (user.isActive() != scimUser.isActive()) {
+		if (portalUser.isActive() != scimUser.isActive()) {
 			int status =
 				scimUser.isActive() ? WorkflowConstants.STATUS_APPROVED :
 					WorkflowConstants.STATUS_INACTIVE;
 
-			user = _userLocalService.updateStatus(
-				user.getUserId(), status, new ServiceContext());
+			portalUser = _userLocalService.updateStatus(
+				portalUser.getUserId(), status, new ServiceContext());
 		}
 
 		if (Validator.isNull(userScimClientId)) {
-			_saveScimClientId(scimClientId, user);
+			_saveScimClientId(scimClientId, portalUser);
 		}
 
-		return user;
+		return portalUser;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
