@@ -8,12 +8,15 @@ package com.liferay.scim.rest.internal.resource.v1_0;
 import com.liferay.expando.kernel.service.ExpandoColumnLocalService;
 import com.liferay.expando.kernel.service.ExpandoTableLocalService;
 import com.liferay.expando.kernel.service.ExpandoValueLocalService;
+import com.liferay.portal.kernel.json.JSONFactory;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.scim.rest.dto.v1_0.User;
 import com.liferay.scim.rest.internal.manager.UserManagerImpl;
+import com.liferay.scim.rest.internal.util.ScimUserUtil;
 import com.liferay.scim.rest.resource.v1_0.UserResource;
 
 import java.io.File;
@@ -109,12 +112,96 @@ public class UserResourceImpl extends BaseUserResourceImpl {
 	}
 
 	private void _registerLiferayUserSchemaExtension() throws Exception {
-		File file = _file.createTempFile(
-			UserResourceImpl.class.getResourceAsStream(
-				"dependencies/liferay-user-schema-extension.json"));
-
 		SCIMUserSchemaExtensionBuilder scimUserSchemaExtensionBuilder =
 			SCIMUserSchemaExtensionBuilder.getInstance();
+
+		String json = JSONUtil.putAll(
+			JSONUtil.put(
+				"attributeName", "birthday"
+			).put(
+				"attributeURI",
+				ScimUserUtil.LIFERAY_USER_SCHEMA_EXTENSION_URI + ":birthday"
+			).put(
+				"canonicalValues", _jsonFactory.createJSONArray()
+			).put(
+				"caseExact", "false"
+			).put(
+				"dataType", "string"
+			).put(
+				"description", "User's birthday"
+			).put(
+				"multiValued", "false"
+			).put(
+				"mutability", "readWrite"
+			).put(
+				"referenceTypes", _jsonFactory.createJSONArray()
+			).put(
+				"required", "false"
+			).put(
+				"returned", "default"
+			).put(
+				"subAttributes", "null"
+			).put(
+				"uniqueness", "none"
+			),
+			JSONUtil.put(
+				"attributeName", "male"
+			).put(
+				"attributeURI",
+				ScimUserUtil.LIFERAY_USER_SCHEMA_EXTENSION_URI + ":male"
+			).put(
+				"canonicalValues", _jsonFactory.createJSONArray()
+			).put(
+				"caseExact", "false"
+			).put(
+				"dataType", "boolean"
+			).put(
+				"description", "User's gender"
+			).put(
+				"multiValued", "false"
+			).put(
+				"mutability", "readWrite"
+			).put(
+				"referenceTypes", _jsonFactory.createJSONArray()
+			).put(
+				"required", "false"
+			).put(
+				"returned", "default"
+			).put(
+				"subAttributes", "null"
+			).put(
+				"uniqueness", "none"
+			),
+			JSONUtil.put(
+				"attributeName", ScimUserUtil.LIFERAY_USER_SCHEMA_EXTENSION_URI
+			).put(
+				"attributeURI", ScimUserUtil.LIFERAY_USER_SCHEMA_EXTENSION_URI
+			).put(
+				"canonicalValues", _jsonFactory.createJSONArray()
+			).put(
+				"caseExact", "false"
+			).put(
+				"dataType", "complex"
+			).put(
+				"description", "Liferay's User Schema Extension"
+			).put(
+				"multiValued", "false"
+			).put(
+				"mutability", "readWrite"
+			).put(
+				"referenceTypes", JSONUtil.put("external")
+			).put(
+				"required", "false"
+			).put(
+				"returned", "default"
+			).put(
+				"subAttributes", "birthday male"
+			).put(
+				"uniqueness", "none"
+			)
+		).toString();
+
+		File file = _file.createTempFile(json.getBytes());
 
 		scimUserSchemaExtensionBuilder.buildUserSchemaExtension(file.getPath());
 	}
@@ -139,6 +226,9 @@ public class UserResourceImpl extends BaseUserResourceImpl {
 
 	@Reference
 	private com.liferay.portal.kernel.util.File _file;
+
+	@Reference
+	private JSONFactory _jsonFactory;
 
 	@Reference
 	private UserLocalService _userLocalService;

@@ -46,6 +46,9 @@ import org.wso2.charon3.core.utils.AttributeUtil;
  */
 public class ScimUserUtil {
 
+	public static final String LIFERAY_USER_SCHEMA_EXTENSION_URI =
+		"urn:ietf:params:scim:schemas:extension:liferay:2.0:User";
+
 	public static ScimUser toScimUser(long companyId, Locale locale, User user)
 		throws Exception {
 
@@ -182,7 +185,7 @@ public class ScimUserUtil {
 		try {
 			ComplexAttribute complexAttribute =
 				(ComplexAttribute)user.getAttribute(
-					_LIFERAY_USER_SCHEMA_EXTENSION_URI);
+					LIFERAY_USER_SCHEMA_EXTENSION_URI);
 
 			if (complexAttribute == null) {
 				return _getBirthday();
@@ -232,7 +235,7 @@ public class ScimUserUtil {
 		try {
 			ComplexAttribute complexAttribute =
 				(ComplexAttribute)user.getAttribute(
-					_LIFERAY_USER_SCHEMA_EXTENSION_URI);
+					LIFERAY_USER_SCHEMA_EXTENSION_URI);
 
 			if (complexAttribute == null) {
 				return true;
@@ -277,9 +280,6 @@ public class ScimUserUtil {
 					scimUser.getLastName()));
 		}
 	}
-
-	private static final String _LIFERAY_USER_SCHEMA_EXTENSION_URI =
-		"urn:ietf:params:scim:schemas:extension:liferay:2.0:User";
 
 	private static final Log _log = LogFactoryUtil.getLog(ScimUserUtil.class);
 
