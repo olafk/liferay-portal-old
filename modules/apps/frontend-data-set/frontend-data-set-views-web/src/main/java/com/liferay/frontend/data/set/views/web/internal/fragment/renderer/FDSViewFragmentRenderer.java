@@ -58,7 +58,6 @@ import java.io.Writer;
 
 import java.sql.Timestamp;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Comparator;
@@ -785,17 +784,10 @@ public class FDSViewFragmentRenderer implements FragmentRenderer {
 			ObjectEntry fdsViewObjectEntry)
 		throws Exception {
 
-		List<ObjectEntry> objectEntries = new ArrayList<>(
+		return JSONUtil.toJSONArray(
 			_getRelatedObjectEntries(
 				fdsViewObjectDefinition, fdsViewObjectEntry,
-				"fdsViewFDSSortRelationship"));
-
-		if (ListUtil.isEmpty(objectEntries)) {
-			return _jsonFactory.createJSONArray();
-		}
-
-		return JSONUtil.toJSONArray(
-			objectEntries,
+				"fdsViewFDSSortRelationship"),
 			(ObjectEntry objectEntry) -> _getSortsJSONObject(objectEntry));
 	}
 
