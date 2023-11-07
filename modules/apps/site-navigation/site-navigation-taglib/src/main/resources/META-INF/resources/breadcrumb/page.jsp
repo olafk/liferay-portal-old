@@ -11,7 +11,7 @@
 List<BreadcrumbEntry> breadcrumbEntries = (List<BreadcrumbEntry>)request.getAttribute("liferay-site-navigation:breadcrumb:breadcrumbEntries");
 %>
 
-<ol class="breadcrumb <%= (String)request.getAttribute("liferay-site-navigation:breadcrumb:cssClass") %>">
+<ol class="breadcrumb <%= request.getAttribute("liferay-site-navigation:breadcrumb:cssClass") %>">
 
 	<%
 	for (BreadcrumbEntry breadcrumbEntry : breadcrumbEntries) {
