@@ -503,14 +503,13 @@ public class OpenAPIResourceTest {
 	}
 
 	private JSONObject _toJSONObject(String yamlString) throws Exception {
-		ObjectMapper yamlObjectMapper = new ObjectMapper(new YAMLFactory());
-
-		Object object = yamlObjectMapper.readValue(yamlString, Object.class);
-
 		ObjectMapper objectMapper = new ObjectMapper();
 
+		ObjectMapper yamlObjectMapper = new ObjectMapper(new YAMLFactory());
+
 		return JSONFactoryUtil.createJSONObject(
-			objectMapper.writeValueAsString(object));
+			objectMapper.writeValueAsString(
+				yamlObjectMapper.readValue(yamlString, Object.class)));
 	}
 
 	private static final String _OBJECT_FIELD_NAME =
