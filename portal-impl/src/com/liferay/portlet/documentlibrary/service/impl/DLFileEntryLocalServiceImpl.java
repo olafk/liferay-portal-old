@@ -3424,9 +3424,11 @@ public class DLFileEntryLocalServiceImpl
 		ActionableDynamicQuery actionableDynamicQuery =
 			getActionableDynamicQuery();
 
-		actionableDynamicQuery.setAddCriteriaMethod(addCriteriaMethodConsumer::accept);
+		actionableDynamicQuery.setAddCriteriaMethod(
+			addCriteriaMethodConsumer::accept);
 		actionableDynamicQuery.setPerformActionMethod(
-			(DLFileEntry dlFileEntry) -> performActionMethodConsumer.accept(dlFileEntry));
+			(DLFileEntry dlFileEntry) -> performActionMethodConsumer.accept(
+				dlFileEntry));
 
 		actionableDynamicQuery.performActions();
 	}

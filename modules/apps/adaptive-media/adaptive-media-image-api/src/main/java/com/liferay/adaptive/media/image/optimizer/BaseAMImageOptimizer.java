@@ -215,7 +215,6 @@ public abstract class BaseAMImageOptimizer implements AMImageOptimizer {
 		message.put(AMOptimizeImagesBackgroundTaskConstants.COUNT, count);
 		message.put(AMOptimizeImagesBackgroundTaskConstants.ERRORS, errors);
 		message.put(AMOptimizeImagesBackgroundTaskConstants.TOTAL, total);
-
 		message.put("status", BackgroundTaskConstants.STATUS_IN_PROGRESS);
 
 		backgroundTaskStatusMessageSender.sendBackgroundTaskStatusMessage(
