@@ -98,11 +98,11 @@ public class ValidationHelper {
 				throw new ObjectEntryValuesException.InvalidObjectField(
 					Collections.singletonList(objectDefinitionName),
 					String.format(
-						"The %s can only be associated to API endpoints " +
-							"with a \"collection\" retrieve type",
+						"The %s can only be associated to API endpoints with " +
+							"a retrieve type of \"collection\"",
 						objectDefinitionName),
 					"the-x-can-only-be-associated-to-api-endpoints-with-a-" +
-						"\"collection\"-retrieve-type");
+						"retrieve-type-of-collection");
 			}
 
 			ObjectDefinition objectDefinition =
