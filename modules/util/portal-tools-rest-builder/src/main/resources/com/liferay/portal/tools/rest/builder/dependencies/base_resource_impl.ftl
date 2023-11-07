@@ -471,64 +471,66 @@ public abstract class Base${schemaName}ResourceImpl
 					</#if>
 
 					<#if postParentBatchJavaMethodSignatures?has_content>
-						<#list postParentBatchJavaMethodSignatures as parentBatchJavaMethodSignature>
-							<#assign parentParameterNames = parentParameterNames + [parentBatchJavaMethodSignature.parentSchemaName!?uncap_first + "Id"] />
+						<#list postParentBatchJavaMethodSignatures as postParentBatchJavaMethodSignature>
+							<#assign parentParameterNames = parentParameterNames + [postParentBatchJavaMethodSignature.parentSchemaName!?uncap_first + "Id"] />
 
-							if (parameters.containsKey("${parentBatchJavaMethodSignature.parentSchemaName?uncap_first}Id")) {
-								<#if stringUtil.equals(javaDataType, parentBatchJavaMethodSignature.returnType)>
-									${schemaVarName}UnsafeFunction = ${schemaVarName} -> ${parentBatchJavaMethodSignature.methodName}(
+							if (parameters.containsKey("${postParentBatchJavaMethodSignature.parentSchemaName?uncap_first}Id")) {
+								<#if stringUtil.equals(javaDataType, postParentBatchJavaMethodSignature.returnType)>
+									${schemaVarName}UnsafeFunction = ${schemaVarName} -> ${postParentBatchJavaMethodSignature.methodName}(
 								<#else>
-									${schemaVarName}UnsafeFunction = ${schemaVarName} -> { ${parentBatchJavaMethodSignature.methodName}(
+									${schemaVarName}UnsafeFunction = ${schemaVarName} -> {
+										${postParentBatchJavaMethodSignature.methodName}(
 								</#if>
 
 								<@getPOSTBatchJavaMethodParameters
-									javaMethodParameters=parentBatchJavaMethodSignature.javaMethodParameters
+									javaMethodParameters=postParentBatchJavaMethodSignature.javaMethodParameters
 									schemaVarName=schemaVarName
 								/>
 
 								);
 
-								<#if !stringUtil.equals(javaDataType, parentBatchJavaMethodSignature.returnType)>
+								<#if !stringUtil.equals(javaDataType, postParentBatchJavaMethodSignature.returnType)>
 										return null;
 									};
 								</#if>
 							}
 
-							<#if parentBatchJavaMethodSignature?has_next>
+							<#if postParentBatchJavaMethodSignature?has_next>
 								else
 							</#if>
 						</#list>
 					</#if>
 
 					<#if postParentByERCBatchJavaMethodSignatures?has_content>
-						<#list postParentByERCBatchJavaMethodSignatures as parentBatchJavaMethodSignature>
-							<#assign parentParameterNames = parentParameterNames + [parentBatchJavaMethodSignature.javaMethodParameters[0].parameterName] />
+						<#list postParentByERCBatchJavaMethodSignatures as postParentByERCBatchJavaMethodSignature>
+							<#assign parentParameterNames = parentParameterNames + [postParentByERCBatchJavaMethodSignature.javaMethodParameters[0].parameterName] />
 
 							<#if postParentBatchJavaMethodSignatures?has_content>
 								else
 							</#if>
 
-							if (parameters.containsKey("${parentBatchJavaMethodSignature.javaMethodParameters[0].parameterName}")) {
-								<#if stringUtil.equals(javaDataType, parentBatchJavaMethodSignature.returnType)>
-									${schemaVarName}UnsafeFunction = ${schemaVarName} -> ${parentBatchJavaMethodSignature.methodName}(
+							if (parameters.containsKey("${postParentByERCBatchJavaMethodSignature.javaMethodParameters[0].parameterName}")) {
+								<#if stringUtil.equals(javaDataType, postParentByERCBatchJavaMethodSignature.returnType)>
+									${schemaVarName}UnsafeFunction = ${schemaVarName} -> ${postParentByERCBatchJavaMethodSignature.methodName}(
 								<#else>
-									${schemaVarName}UnsafeFunction = ${schemaVarName} -> { ${parentBatchJavaMethodSignature.methodName}(
+									${schemaVarName}UnsafeFunction = ${schemaVarName} -> {
+										${postParentByERCBatchJavaMethodSignature.methodName}(
 								</#if>
 
 								<@getPOSTBatchJavaMethodParameters
-									javaMethodParameters=parentBatchJavaMethodSignature.javaMethodParameters
+									javaMethodParameters=postParentByERCBatchJavaMethodSignature.javaMethodParameters
 									schemaVarName=schemaVarName
 								/>
 
 								);
 
-								<#if !stringUtil.equals(javaDataType, parentBatchJavaMethodSignature.returnType)>
+								<#if !stringUtil.equals(javaDataType, postParentByERCBatchJavaMethodSignature.returnType)>
 										return null;
 									};
 								</#if>
 							}
 
-							<#if parentBatchJavaMethodSignature?has_next>
+							<#if postParentByERCBatchJavaMethodSignature?has_next>
 								else
 							</#if>
 						</#list>
@@ -717,42 +719,43 @@ public abstract class Base${schemaName}ResourceImpl
 									</#if>
 
 									<#if postParentBatchJavaMethodSignatures?has_content || postParentByERCBatchJavaMethodSignatures?has_content>
-										<#list postParentBatchJavaMethodSignatures as parentBatchJavaMethodSignature>
-											<#assign parentParameterNames = parentParameterNames + [parentBatchJavaMethodSignature.parentSchemaName!?uncap_first + "Id"] />
+										<#list postParentBatchJavaMethodSignatures as postParentBatchJavaMethodSignature>
+											<#assign parentParameterNames = parentParameterNames + [postParentBatchJavaMethodSignature.parentSchemaName!?uncap_first + "Id"] />
 
-											if (parameters.containsKey("${parentBatchJavaMethodSignature.parentSchemaName?uncap_first}Id")) {
-												persisted${schemaName} = ${parentBatchJavaMethodSignature.methodName}(
+											if (parameters.containsKey("${postParentBatchJavaMethodSignature.parentSchemaName?uncap_first}Id")) {
+												persisted${schemaName} = ${postParentBatchJavaMethodSignature.methodName}(
 
 												<@getPOSTBatchJavaMethodParameters
-													javaMethodParameters=parentBatchJavaMethodSignature.javaMethodParameters
+													javaMethodParameters=postParentBatchJavaMethodSignature.javaMethodParameters
 													schemaVarName=schemaVarName
 												/>
+
 												);
 
 											}
-											<#if parentBatchJavaMethodSignature?has_next>
+											<#if postParentBatchJavaMethodSignature?has_next>
 												else
 											</#if>
 										</#list>
 
-										<#list postParentByERCBatchJavaMethodSignatures as parentBatchJavaMethodSignature>
-											<#assign parentParameterNames = parentParameterNames + [parentBatchJavaMethodSignature.javaMethodParameters[0].parameterName] />
+										<#list postParentByERCBatchJavaMethodSignatures as postParentByERCBatchJavaMethodSignature>
+											<#assign parentParameterNames = parentParameterNames + [postParentByERCBatchJavaMethodSignature.javaMethodParameters[0].parameterName] />
 
 											<#if postParentBatchJavaMethodSignatures?has_content>
 												else
 											</#if>
 
-											if (parameters.containsKey("${parentBatchJavaMethodSignature.javaMethodParameters[0].parameterName}")) {
-												persisted${schemaName} = ${parentBatchJavaMethodSignature.methodName}(
+											if (parameters.containsKey("${postParentByERCBatchJavaMethodSignature.javaMethodParameters[0].parameterName}")) {
+												persisted${schemaName} = ${postParentByERCBatchJavaMethodSignature.methodName}(
 
 												<@getPOSTBatchJavaMethodParameters
-													javaMethodParameters=parentBatchJavaMethodSignature.javaMethodParameters
+													javaMethodParameters=postParentByERCBatchJavaMethodSignature.javaMethodParameters
 													schemaVarName=schemaVarName
 												/>
-												);
 
+												);
 											}
-											<#if parentBatchJavaMethodSignature?has_next>
+											<#if postParentByERCBatchJavaMethodSignature?has_next>
 												else
 											</#if>
 										</#list>
