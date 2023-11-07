@@ -144,13 +144,12 @@ public class LiferayContextController extends ContextController {
 
 		_contextPath = contextPath;
 
-		_servletContextHelperServiceId = (long)serviceReference.getProperty(
-			Constants.SERVICE_ID);
+		_filterServiceTracker = new ServiceTracker<>(
+			bundleContext, Filter.class,
+			new ContextFilterTrackerCustomizer(
+				bundleContext, httpServletEndpointController, this));
 
-		_servletContextInitParams = ServiceProperties.parseInitParams(
-			serviceReference,
-			HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_INIT_PARAM_PREFIX,
-			servletContextHelperDataContext.getServletContext());
+		_filterServiceTracker.open();
 
 		_httpSessionAttributeListenerServiceTracker = new ServiceTracker<>(
 			bundleContext, HttpSessionAttributeListener.class.getName(),
@@ -173,12 +172,26 @@ public class LiferayContextController extends ContextController {
 
 		_httpSessionListenerServiceTracker.open();
 
+		_resourceServiceTracker = new ServiceTracker<>(
+			bundleContext, Object.class,
+			new ContextResourceTrackerCustomizer(
+				bundleContext, httpServletEndpointController, this));
+
+		_resourceServiceTracker.open();
+
 		_servletContextAttributeListenerServiceTracker = new ServiceTracker<>(
 			bundleContext, ServletContextAttributeListener.class.getName(),
 			new ContextListenerTrackerCustomizer(
 				bundleContext, httpServletEndpointController, this));
 
 		_servletContextAttributeListenerServiceTracker.open();
+
+		_servletContextHelperServiceId = (long)serviceReference.getProperty(
+			Constants.SERVICE_ID);
+		_servletContextInitParams = ServiceProperties.parseInitParams(
+			serviceReference,
+			HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_INIT_PARAM_PREFIX,
+			servletContextHelperDataContext.getServletContext());
 
 		_servletContextListenerServiceTracker = new ServiceTracker<>(
 			bundleContext, ServletContextListener.class.getName(),
@@ -200,20 +213,6 @@ public class LiferayContextController extends ContextController {
 				bundleContext, httpServletEndpointController, this));
 
 		_servletRequestListenerServiceTracker.open();
-
-		_filterServiceTracker = new ServiceTracker<>(
-			bundleContext, Filter.class,
-			new ContextFilterTrackerCustomizer(
-				bundleContext, httpServletEndpointController, this));
-
-		_filterServiceTracker.open();
-
-		_resourceServiceTracker = new ServiceTracker<>(
-			bundleContext, Object.class,
-			new ContextResourceTrackerCustomizer(
-				bundleContext, httpServletEndpointController, this));
-
-		_resourceServiceTracker.open();
 
 		_servletServiceTracker = new ServiceTracker<>(
 			bundleContext, Servlet.class,
