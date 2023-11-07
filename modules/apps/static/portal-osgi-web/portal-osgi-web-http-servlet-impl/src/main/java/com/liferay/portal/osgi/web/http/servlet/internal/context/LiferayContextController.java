@@ -312,7 +312,7 @@ public class LiferayContextController extends ContextController {
 			}
 
 			List<Class<? extends EventListener>> eventListenerClasses =
-				_getListenerClasses(serviceReference);
+				_getEventListenerClasses(serviceReference);
 
 			if (eventListenerClasses.isEmpty()) {
 				throw new IllegalArgumentException(
@@ -1026,7 +1026,7 @@ public class LiferayContextController extends ContextController {
 		return null;
 	}
 
-	private List<Class<? extends EventListener>> _getListenerClasses(
+	private List<Class<? extends EventListener>> _getEventListenerClasses(
 		ServiceReference<EventListener> serviceReference) {
 
 		List<Class<? extends EventListener>> listenerClasses =
