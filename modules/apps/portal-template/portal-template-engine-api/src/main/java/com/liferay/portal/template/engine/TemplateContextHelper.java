@@ -203,7 +203,7 @@ public class TemplateContextHelper {
 		Map<String, Object> contextObjects,
 		HttpServletRequest httpServletRequest) {
 
-		// CSP nonce
+		// Content security policy nonce
 
 		contextObjects.put(
 			"nonceAttribute",

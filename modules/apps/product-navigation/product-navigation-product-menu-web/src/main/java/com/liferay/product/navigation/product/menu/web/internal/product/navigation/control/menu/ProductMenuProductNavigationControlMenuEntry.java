@@ -76,16 +76,6 @@ public class ProductMenuProductNavigationControlMenuEntry
 		try {
 			Writer writer = httpServletResponse.getWriter();
 
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)httpServletRequest.getAttribute(
-					WebKeys.THEME_DISPLAY);
-
-			String productMenuState = SessionClicks.get(
-				httpServletRequest,
-				"com.liferay.product.navigation.product.menu." +
-					"web_productMenuState",
-				"closed");
-
 			IconTag closedIconTag = new IconTag();
 
 			closedIconTag.setCssClass(
@@ -96,6 +86,15 @@ public class ProductMenuProductNavigationControlMenuEntry
 
 			openIconTag.setCssClass("icon-monospaced icon-product-menu-open");
 			openIconTag.setImage("product-menu-open");
+
+			String productMenuState = SessionClicks.get(
+				httpServletRequest,
+				"com.liferay.product.navigation.product.menu." +
+					"web_productMenuState",
+				"closed");
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)httpServletRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
 
 			writer.write(
 				StringUtil.replace(

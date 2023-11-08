@@ -123,13 +123,13 @@ public class SegmentsExperimentProductNavigationControlMenuEntry
 		try {
 			Writer writer = httpServletResponse.getWriter();
 
-			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-				_portal.getLocale(httpServletRequest), getClass());
-
 			IconTag iconTag = new IconTag();
 
 			iconTag.setCssClass("icon-monospaced");
 			iconTag.setSymbol("test");
+
+			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+				_portal.getLocale(httpServletRequest), getClass());
 
 			writer.write(
 				StringUtil.replace(
