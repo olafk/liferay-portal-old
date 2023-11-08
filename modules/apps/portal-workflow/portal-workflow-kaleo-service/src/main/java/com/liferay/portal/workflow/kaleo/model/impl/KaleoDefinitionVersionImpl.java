@@ -25,18 +25,18 @@ public class KaleoDefinitionVersionImpl extends KaleoDefinitionVersionBaseImpl {
 
 	@Override
 	public String getContentAsXML() {
-		if (_xmlContent != null) {
-			return _xmlContent;
+		if (_contentAsXML != null) {
+			return _contentAsXML;
 		}
 
 		try {
-			_xmlContent = WorkflowDefinitionContentUtil.toXML(getContent());
+			_contentAsXML = WorkflowDefinitionContentUtil.toXML(getContent());
 		}
 		catch (WorkflowException workflowException) {
 			ReflectionUtil.throwException(workflowException);
 		}
 
-		return _xmlContent;
+		return _contentAsXML;
 	}
 
 	@Override
@@ -61,6 +61,6 @@ public class KaleoDefinitionVersionImpl extends KaleoDefinitionVersionBaseImpl {
 	}
 
 	@CacheField(propagateToInterface = true)
-	private String _xmlContent;
+	private String _contentAsXML;
 
 }

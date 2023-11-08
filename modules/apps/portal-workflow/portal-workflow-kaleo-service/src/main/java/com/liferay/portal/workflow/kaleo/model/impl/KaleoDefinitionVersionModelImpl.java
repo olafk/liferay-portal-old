@@ -1358,7 +1358,7 @@ public class KaleoDefinitionVersionModelImpl
 
 		setXmlContent(null);
 
-		kaleoDefinitionVersionCacheModel._xmlContent = getContentAsXML();
+		kaleoDefinitionVersionCacheModel._contentAsXML = getContentAsXML();
 
 		return kaleoDefinitionVersionCacheModel;
 	}

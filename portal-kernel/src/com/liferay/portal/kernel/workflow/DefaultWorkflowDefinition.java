@@ -34,7 +34,7 @@ public class DefaultWorkflowDefinition
 	}
 
 	public String getContentAsXML() {
-		return _xmlContent;
+		return _contentAsXML;
 	}
 
 	@Override
@@ -187,7 +187,7 @@ public class DefaultWorkflowDefinition
 	}
 
 	public void setXmlContent(String xmlContent) {
-		_xmlContent = xmlContent;
+		_contentAsXML = xmlContent;
 	}
 
 	private boolean _active;
@@ -206,6 +206,6 @@ public class DefaultWorkflowDefinition
 	private long _workflowDefinitionId;
 	private List<WorkflowNode> _workflowNodes;
 	private List<WorkflowTransition> _workflowTransitions;
-	private String _xmlContent;
+	private String _contentAsXML;
 
 }

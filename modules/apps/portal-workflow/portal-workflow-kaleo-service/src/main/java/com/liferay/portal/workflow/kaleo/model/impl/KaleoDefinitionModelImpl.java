@@ -1144,7 +1144,7 @@ public class KaleoDefinitionModelImpl
 
 		setXmlContent(null);
 
-		kaleoDefinitionCacheModel._xmlContent = getContentAsXML();
+		kaleoDefinitionCacheModel._contentAsXML = getContentAsXML();
 
 		return kaleoDefinitionCacheModel;
 	}
