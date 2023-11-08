@@ -335,9 +335,9 @@ public class ClientExtensionEntryLocalServiceImpl
 			clientExtensionEntryPersistence.findByPrimaryKey(
 				clientExtensionEntryId);
 
-		int initialStatus = clientExtensionEntry.getStatus();
+		int oldStatus = clientExtensionEntry.getStatus();
 
-		if (status == initialStatus) {
+		if (status == oldStatus) {
 			return clientExtensionEntry;
 		}
 
@@ -355,7 +355,7 @@ public class ClientExtensionEntryLocalServiceImpl
 			clientExtensionEntryLocalService.deployClientExtensionEntry(
 				clientExtensionEntry);
 		}
-		else if (initialStatus == WorkflowConstants.STATUS_APPROVED) {
+		else if (oldStatus == WorkflowConstants.STATUS_APPROVED) {
 			clientExtensionEntryLocalService.undeployClientExtensionEntry(
 				clientExtensionEntry);
 		}
