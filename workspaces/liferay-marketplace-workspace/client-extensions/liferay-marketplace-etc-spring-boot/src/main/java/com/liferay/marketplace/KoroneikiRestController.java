@@ -248,7 +248,6 @@ public class KoroneikiRestController extends BaseRestController {
 
 			productPurchase.setExternalLinks(new ExternalLink[] {externalLink});
 
-			productPurchase.setStartDate(Date.from(zonedDateTime.toInstant()));
 			productPurchase.setPerpetual(
 				StringUtil.equals(licenseType, "Perpetual"));
 			productPurchase.setProductKey(
@@ -258,6 +257,7 @@ public class KoroneikiRestController extends BaseRestController {
 						product.getProductId(), Pagination.of(1, 10)
 					).getItems()));
 			productPurchase.setQuantity(orderItemJSONObject.getInt("quantity"));
+			productPurchase.setStartDate(Date.from(zonedDateTime.toInstant()));
 			productPurchase.setStatus(ProductPurchase.Status.APPROVED);
 
 			try {
@@ -276,12 +276,15 @@ public class KoroneikiRestController extends BaseRestController {
 
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						"Account Product Purchase created " + productPurchase);
+						"Successfully created account product purchase " +
+							productPurchase);
 				}
 			}
 			catch (Exception exception) {
 				_log.error(
-					"Failed to create Account Product Purchase " + exception);
+					"Unable to create account product purchase " +
+						productPurchase,
+					exception);
 			}
 		}
 
