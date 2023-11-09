@@ -379,8 +379,6 @@ public class KoroneikiRestController extends BaseRestController {
 	}
 
 	private void _initResourceBuilders(Jwt jwt) throws Exception {
-		URL liferayMarketplaceKoroneikiAuthURL = new URL(_koroneikiAuthURL);
-
 		URL liferayDXPURL = new URL(
 			lxcDXPServerProtocol + "://" + lxcDXPMainDomain);
 
@@ -404,6 +402,8 @@ public class KoroneikiRestController extends BaseRestController {
 		).endpoint(
 			liferayDXPURL
 		).build();
+
+		URL liferayMarketplaceKoroneikiAuthURL = new URL(_koroneikiAuthURL);
 
 		_productPurchaseResource = ProductPurchaseResource.builder(
 		).header(
