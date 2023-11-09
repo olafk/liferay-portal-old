@@ -85,6 +85,7 @@ public class ProvisioningRestController extends BaseRestController {
 
 		HttpHeaders httpHeaders = new HttpHeaders();
 
+		httpHeaders.setCacheControl("must-revalidate, post-check=0, pre-check=0");
 		httpHeaders.setContentDispositionFormData(
 			"attachment",
 			StringBundler.concat(
@@ -95,7 +96,6 @@ public class ProvisioningRestController extends BaseRestController {
 				StringPool.SPACE, StringPool.DASH
 			).toLowerCase());
 		httpHeaders.setContentType(MediaType.TEXT_XML);
-		httpHeaders.setCacheControl("must-revalidate, post-check=0, pre-check=0");
 
 		HttpInvoker.HttpResponse licenseKeyHttpResponse =
 			_appLicenseKeyResource.getAppLicenseKeyDownloadHttpResponse(
