@@ -83,9 +83,14 @@ public class ProvisioningRestController extends BaseRestController {
 		AppLicenseKey appLicenseKey = _appLicenseKeyResource.getAppLicenseKey(
 			GetterUtil.getLong(id));
 
+		HttpInvoker.HttpResponse httpResponse =
+			_appLicenseKeyResource.getAppLicenseKeyDownloadHttpResponse(
+				appLicenseKey.getId());
+
 		HttpHeaders httpHeaders = new HttpHeaders();
 
-		httpHeaders.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+		httpHeaders.setCacheControl(
+			"must-revalidate, post-check=0, pre-check=0");
 		httpHeaders.setContentDispositionFormData(
 			"attachment",
 			StringBundler.concat(
@@ -97,12 +102,8 @@ public class ProvisioningRestController extends BaseRestController {
 			).toLowerCase());
 		httpHeaders.setContentType(MediaType.TEXT_XML);
 
-		HttpInvoker.HttpResponse licenseKeyHttpResponse =
-			_appLicenseKeyResource.getAppLicenseKeyDownloadHttpResponse(
-				appLicenseKey.getId());
-
 		return new ResponseEntity(
-			licenseKeyHttpResponse.getBinaryContent(), httpHeaders, HttpStatus.OK);
+			httpResponse.getBinaryContent(), httpHeaders, HttpStatus.OK);
 	}
 
 	@GetMapping("order-license-keys/{orderId}")
