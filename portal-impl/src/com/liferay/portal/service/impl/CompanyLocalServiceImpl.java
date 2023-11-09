@@ -203,7 +203,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 		validateMx(-1, mx);
 
 		if ((companyId == null) || (companyId == 0)) {
-			companyId = _nextCompanyId();
+			companyId = _getNextCompanyId();
 		}
 
 		Company company = companyPersistence.create(companyId);
@@ -2064,15 +2064,16 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 			});
 	}
 
-	private long _nextCompanyId() {
-		ThreadLocalRandom current = ThreadLocalRandom.current();
-
+	private long _getNextCompanyId() {
 		long nextLong = 0;
+
+		ThreadLocalRandom threadLocalRandom = ThreadLocalRandom.current();
 
 		while ((nextLong == 0) ||
 			   ArrayUtil.contains(PortalInstances.getCompanyIds(), nextLong)) {
 
-			nextLong = current.nextLong((long)Math.pow(10, 15), Long.MAX_VALUE);
+			nextLong = threadLocalRandom.nextLong(
+				(long)Math.pow(10, 15), Long.MAX_VALUE);
 		}
 
 		return nextLong;
