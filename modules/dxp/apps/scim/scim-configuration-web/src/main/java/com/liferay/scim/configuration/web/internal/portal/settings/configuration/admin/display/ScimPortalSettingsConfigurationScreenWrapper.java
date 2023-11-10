@@ -12,7 +12,6 @@ import com.liferay.oauth2.provider.model.OAuth2Application;
 import com.liferay.oauth2.provider.model.OAuth2Authorization;
 import com.liferay.oauth2.provider.service.OAuth2ApplicationLocalService;
 import com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService;
-import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.portal.configuration.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.feature.flag.FeatureFlagManagerUtil;
@@ -132,30 +131,24 @@ public class ScimPortalSettingsConfigurationScreenWrapper
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse) {
 
+			Configuration configuration = null;
+
+			try {
 				ThemeDisplay themeDisplay =
 					(ThemeDisplay)httpServletRequest.getAttribute(
 						WebKeys.THEME_DISPLAY);
 
-			Configuration configuration = null;
+				Configuration[] configurations =
+					_configurationAdmin.listConfigurations(
+						String.format(
+							"(&(%s=%s)(%s=%s))",
+							ConfigurationAdmin.SERVICE_FACTORYPID,
+							ScimConstants.CONFIGURATION_PID,
+							ScimConstants.PARAM_COMPANY_ID,
+							themeDisplay.getCompanyId()));
 
-			try {
-				Configuration[] configurations = _configurationAdmin.listConfigurations(
-					String.format(
-						"(&(%s=%s)(%s=%s))",
-						ConfigurationAdmin.SERVICE_FACTORYPID,
-						ScimConstants.CONFIGURATION_PID,
-						ScimConstants.PARAM_COMPANY_ID,
-						themeDisplay.getCompanyId()));
-
-				if (configurations == null) {
-					return;
-				}
-
-				configuration = configurations[0];
-			}
-			catch (Exception exception) {
-				ReflectionUtil.throwException(exception);
-			}
+				if (configurations != null) {
+					configuration = configurations[0];
 
 					Dictionary<String, Object> properties =
 						configuration.getProperties();
@@ -217,6 +210,14 @@ public class ScimPortalSettingsConfigurationScreenWrapper
 							}
 						}
 					}
+				}
+			}
+			catch (IOException ioException) {
+				throw new RuntimeException(ioException);
+			}
+			catch (InvalidSyntaxException invalidSyntaxException) {
+				throw new RuntimeException(invalidSyntaxException);
+			}
 		}
 
 	}
