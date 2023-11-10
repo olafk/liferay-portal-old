@@ -12,6 +12,7 @@ import com.liferay.oauth2.provider.model.OAuth2Authorization;
 import com.liferay.oauth2.provider.service.OAuth2ApplicationLocalService;
 import com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService;
 import com.liferay.oauth2.provider.service.OAuth2AuthorizationService;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -147,14 +148,13 @@ public class SaveScimConfigurationMVCActionCommand
 				oAuth2Application.getOAuth2ApplicationId());
 		}
 		else {
+			String filterString = StringBundler.concat(
+				"(&(service.factoryPid=", ScimConstants.CONFIGURATION_PID, ")(",
+				ScimConstants.PARAM_COMPANY_ID, "=",
+				themeDisplay.getCompanyId(), "))");
+
 			Configuration[] configurations =
-				_configurationAdmin.listConfigurations(
-					String.format(
-						"(&(%s=%s*)(%s=%s))",
-						ConfigurationAdmin.SERVICE_FACTORYPID,
-						ScimConstants.CONFIGURATION_PID,
-						ScimConstants.PARAM_COMPANY_ID,
-						themeDisplay.getCompanyId()));
+				_configurationAdmin.listConfigurations(filterString);
 
 			if (configurations != null) {
 				Configuration configuration = configurations[0];
