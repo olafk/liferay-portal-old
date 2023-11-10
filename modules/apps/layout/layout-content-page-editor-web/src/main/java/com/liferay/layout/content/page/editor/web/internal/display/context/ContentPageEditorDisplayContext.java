@@ -592,7 +592,10 @@ public class ContentPageEditorDisplayContext {
 			).put(
 				"pending",
 				() -> {
-					Layout publishedLayout = _getPublishedLayout();
+					Layout draftLayout = themeDisplay.getLayout();
+
+					Layout publishedLayout = _layoutLocalService.fetchLayout(
+						draftLayout.getClassPK());
 
 					if ((publishedLayout != null) &&
 						(publishedLayout.isDenied() ||
@@ -1738,19 +1741,6 @@ public class ContentPageEditorDisplayContext {
 		return PortletIdCodec.decodePortletName(id.substring(8));
 	}
 
-	private Layout _getPublishedLayout() {
-		if (_publishedLayout != null) {
-			return _publishedLayout;
-		}
-
-		Layout draftLayout = themeDisplay.getLayout();
-
-		_publishedLayout = _layoutLocalService.fetchLayout(
-			draftLayout.getClassPK());
-
-		return _publishedLayout;
-	}
-
 	private String _getRedirect() {
 		if (Validator.isNotNull(_redirect)) {
 			return _redirect;
@@ -1997,7 +1987,6 @@ public class ContentPageEditorDisplayContext {
 	private LayoutStructure _masterLayoutStructure;
 	private final PageEditorConfiguration _pageEditorConfiguration;
 	private final PortletURLFactory _portletURLFactory;
-	private Layout _publishedLayout;
 	private String _redirect;
 	private List<String> _restrictedItemIds;
 	private final SegmentsConfigurationProvider _segmentsConfigurationProvider;
