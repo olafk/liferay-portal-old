@@ -1239,7 +1239,7 @@ public class ObjectRelationshipLocalServiceImpl
 				"There is already a field with this name in the ",
 				objectDefinition.getShortName(),
 				" object definition. Object fields and object relationships ",
-				"can’t have the same name. Please, choose another name."));
+				"cannot have the same name."));
 	}
 
 	private void _validateObjectEntryId(

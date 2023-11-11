@@ -307,7 +307,7 @@ public class ObjectFieldLocalServiceTest {
 				"There is already a relationship with this name in the ",
 				objectDefinition1.getShortName(),
 				" object definition. Object fields and object relationships ",
-				"can’t have the same name. Please, choose another name."),
+				"cannot have the same name."),
 			() -> _addCustomObjectField(
 				new TextObjectFieldBuilder(
 				).labelMap(
@@ -325,7 +325,7 @@ public class ObjectFieldLocalServiceTest {
 				"There is already a relationship with this name in the ",
 				objectDefinition1.getShortName(),
 				" object definition. Object fields and object relationships ",
-				"can’t have the same name. Please, choose another name."),
+				"cannot have the same name."),
 			() -> _addCustomObjectField(
 				new TextObjectFieldBuilder(
 				).labelMap(
@@ -357,7 +357,7 @@ public class ObjectFieldLocalServiceTest {
 				"There is already a relationship with this name in the ",
 				objectDefinition1.getShortName(),
 				" object definition. Object fields and object relationships ",
-				"can’t have the same name. Please, choose another name."),
+				"cannot have the same name."),
 			() -> _addCustomObjectField(
 				new TextObjectFieldBuilder(
 				).labelMap(
@@ -375,7 +375,7 @@ public class ObjectFieldLocalServiceTest {
 				"There is already a relationship with this name in the ",
 				objectDefinition1.getShortName(),
 				" object definition. Object fields and object relationships ",
-				"can’t have the same name. Please, choose another name."),
+				"cannot have the same name."),
 			() -> _addCustomObjectField(
 				new TextObjectFieldBuilder(
 				).labelMap(

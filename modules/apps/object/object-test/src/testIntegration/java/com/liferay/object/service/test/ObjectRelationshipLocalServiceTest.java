@@ -213,7 +213,7 @@ public class ObjectRelationshipLocalServiceTest {
 				"There is already a field with this name in the ",
 				_objectDefinition1.getShortName(),
 				" object definition. Object fields and object relationships ",
-				"can’t have the same name. Please, choose another name."),
+				"cannot have the same name."),
 			() -> _objectRelationshipLocalService.addObjectRelationship(
 				TestPropsValues.getUserId(),
 				_objectDefinition1.getObjectDefinitionId(),
@@ -228,7 +228,7 @@ public class ObjectRelationshipLocalServiceTest {
 				"There is already a field with this name in the ",
 				_objectDefinition1.getShortName(),
 				" object definition. Object fields and object relationships ",
-				"can’t have the same name. Please, choose another name."),
+				"cannot have the same name."),
 			() -> _objectRelationshipLocalService.addObjectRelationship(
 				TestPropsValues.getUserId(),
 				_objectDefinition1.getObjectDefinitionId(),
@@ -243,7 +243,7 @@ public class ObjectRelationshipLocalServiceTest {
 				"There is already a field with this name in the ",
 				_objectDefinition2.getShortName(),
 				" object definition. Object fields and object relationships ",
-				"can’t have the same name. Please, choose another name."),
+				"cannot have the same name."),
 			() -> _objectRelationshipLocalService.addObjectRelationship(
 				TestPropsValues.getUserId(),
 				_objectDefinition1.getObjectDefinitionId(),
@@ -258,7 +258,7 @@ public class ObjectRelationshipLocalServiceTest {
 				"There is already a field with this name in the ",
 				_objectDefinition2.getShortName(),
 				" object definition. Object fields and object relationships ",
-				"can’t have the same name. Please, choose another name."),
+				"cannot have the same name."),
 			() -> _objectRelationshipLocalService.addObjectRelationship(
 				TestPropsValues.getUserId(),
 				_objectDefinition1.getObjectDefinitionId(),

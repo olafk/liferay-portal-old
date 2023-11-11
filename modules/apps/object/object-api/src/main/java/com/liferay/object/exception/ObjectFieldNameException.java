@@ -50,8 +50,7 @@ public class ObjectFieldNameException extends PortalException {
 					"There is already a relationship with this name in the ",
 					objectDefinitionName,
 					" object definition. Object fields and object ",
-					"relationships can’t have the same name. Please, choose ",
-					"another name."));
+					"relationships cannot have the same name."));
 		}
 
 	}
