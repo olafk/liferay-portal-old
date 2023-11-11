@@ -55,7 +55,7 @@ public class GenerateReportsControllerBuildRunner
 			return;
 		}
 
-		Properties buildProperties;
+		Properties buildProperties = null;
 
 		try {
 			buildProperties = JenkinsResultsParserUtil.getBuildProperties();
