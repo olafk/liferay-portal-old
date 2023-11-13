@@ -807,7 +807,6 @@ public class ObjectRelationshipLocalServiceImpl
 			externalReferenceCode, objectRelationshipId,
 			objectRelationship.getCompanyId(),
 			objectRelationship.getObjectDefinitionId1());
-
 		_validateParameterObjectFieldId(
 			_objectDefinitionPersistence.findByPrimaryKey(
 				objectRelationship.getObjectDefinitionId1()),

@@ -993,6 +993,7 @@
 		<exception>DefaultObjectView</exception>
 		<exception>DuplicateObjectFieldExternalReferenceCode</exception>
 		<exception>DuplicateObjectRelationship</exception>
+		<exception>DuplicateObjectRelationshipExternalReferenceCode</exception>
 		<exception>ObjectActionConditionExpression</exception>
 		<exception>ObjectActionErrorMessage</exception>
 		<exception>ObjectActionExecutorKey</exception>
