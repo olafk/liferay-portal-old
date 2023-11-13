@@ -54,10 +54,8 @@ public class UpdateDisplayPageEntryContentTypeMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		LayoutPageTemplateEntry layoutPageTemplateEntry = null;
-
 		Layout draftLayout = null;
-
+		LayoutPageTemplateEntry layoutPageTemplateEntry = null;
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
