@@ -1377,7 +1377,10 @@ public class JournalDisplayContext {
 	}
 
 	public boolean isShowInfoButton() {
-		if (isNavigationMine() || isNavigationRecent() || isSearch()) {
+		if (isNavigationMine() || isNavigationRecent() || isSearch() ||
+			ArrayUtil.isNotEmpty(_getAssetCategoryIds()) ||
+			ArrayUtil.isNotEmpty(_getAssetTagNames())) {
+
 			return false;
 		}
 
