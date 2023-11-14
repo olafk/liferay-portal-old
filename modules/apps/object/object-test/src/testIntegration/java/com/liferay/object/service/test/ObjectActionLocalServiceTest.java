@@ -373,14 +373,14 @@ public class ObjectActionLocalServiceTest {
 
 		_objectDefinition = _publishCustomObjectDefinition();
 
-		String originalName = PrincipalThreadLocal.getName();
 		PermissionChecker originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
+		String originalName = PrincipalThreadLocal.getName();
 
 		try {
-			PrincipalThreadLocal.setName(_user.getUserId());
 			PermissionThreadLocal.setPermissionChecker(
 				PermissionCheckerFactoryUtil.create(_user));
+			PrincipalThreadLocal.setName(_user.getUserId());
 
 			// Add object entry
 
@@ -689,9 +689,9 @@ public class ObjectActionLocalServiceTest {
 				objectDefinitionAAA);
 		}
 		finally {
-			PrincipalThreadLocal.setName(originalName);
 			PermissionThreadLocal.setPermissionChecker(
 				originalPermissionChecker);
+			PrincipalThreadLocal.setName(originalName);
 		}
 
 		// Delete object actions
@@ -1068,9 +1068,9 @@ public class ObjectActionLocalServiceTest {
 			).build(),
 			false);
 
-		String originalName = PrincipalThreadLocal.getName();
 		PermissionChecker originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
+		String originalName = PrincipalThreadLocal.getName();
 
 		try {
 			PrincipalThreadLocal.setName(_user.getUserId());
@@ -1116,9 +1116,9 @@ public class ObjectActionLocalServiceTest {
 				commerceOrder2.getOrderStatus());
 		}
 		finally {
-			PrincipalThreadLocal.setName(originalName);
 			PermissionThreadLocal.setPermissionChecker(
 				originalPermissionChecker);
+			PrincipalThreadLocal.setName(originalName);
 		}
 
 		// Organization system object

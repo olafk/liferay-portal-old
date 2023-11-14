@@ -3916,13 +3916,11 @@ public class ObjectEntryResourceTest {
 			TestPropsValues.getUserId(),
 			objectDefinition.getObjectDefinitionId());
 
-		String originalName = PrincipalThreadLocal.getName();
-
 		NestedFieldsContext originalNestedFieldsContext =
 			NestedFieldsContextThreadLocal.getNestedFieldsContext();
-
 		PermissionChecker originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
+		String originalName = PrincipalThreadLocal.getName();
 
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
 				new ConfigurationTemporarySwapper(
@@ -3982,9 +3980,9 @@ public class ObjectEntryResourceTest {
 
 			User user = UserTestUtil.addUser();
 
-			PrincipalThreadLocal.setName(user.getUserId());
 			PermissionThreadLocal.setPermissionChecker(
 				PermissionCheckerFactoryUtil.create(user));
+			PrincipalThreadLocal.setName(user.getUserId());
 
 			// Add permissions to get object entry with audit events
 
@@ -4139,11 +4137,11 @@ public class ObjectEntryResourceTest {
 			Assert.assertNull(objectEntry.getAuditEvents());
 		}
 		finally {
-			PrincipalThreadLocal.setName(originalName);
 			NestedFieldsContextThreadLocal.setNestedFieldsContext(
 				originalNestedFieldsContext);
 			PermissionThreadLocal.setPermissionChecker(
 				originalPermissionChecker);
+			PrincipalThreadLocal.setName(originalName);
 		}
 
 		_objectDefinitionLocalService.deleteObjectDefinition(objectDefinition);

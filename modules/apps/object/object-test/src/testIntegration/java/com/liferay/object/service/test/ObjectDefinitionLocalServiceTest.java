@@ -1313,9 +1313,9 @@ public class ObjectDefinitionLocalServiceTest {
 
 	@Test
 	public void testDeleteCompanyObjectDefinitions() throws Exception {
-		String originalName = PrincipalThreadLocal.getName();
 		PermissionChecker originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
+		String originalName = PrincipalThreadLocal.getName();
 
 		Company company = CompanyTestUtil.addCompany();
 

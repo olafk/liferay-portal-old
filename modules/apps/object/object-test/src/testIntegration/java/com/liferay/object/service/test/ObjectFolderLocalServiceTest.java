@@ -144,9 +144,9 @@ public class ObjectFolderLocalServiceTest {
 
 	@Test
 	public void testDeleteCompanyObjectFolders() throws Exception {
-		String originalName = PrincipalThreadLocal.getName();
 		PermissionChecker originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
+		String originalName = PrincipalThreadLocal.getName();
 
 		Company company = CompanyTestUtil.addCompany();
 
@@ -164,7 +164,6 @@ public class ObjectFolderLocalServiceTest {
 
 			PermissionThreadLocal.setPermissionChecker(
 				PermissionCheckerFactoryUtil.create(user));
-
 			PrincipalThreadLocal.setName(user.getUserId());
 
 			objectFolder = _addObjectFolder(user);
