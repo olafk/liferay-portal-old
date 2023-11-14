@@ -104,6 +104,8 @@ public class CTClosureFactoryImpl implements CTClosureFactory {
 		long ctCollectionId, Set<Long> classNameIds,
 		Map<Long, TableReferenceInfo<?>> combinedTableReferenceInfos) {
 
+		CTCollection ctCollection = _ctCollectionPersistence.fetchByPrimaryKey(
+			ctCollectionId);
 		Map<Long, List<Long>> map = new LinkedHashMap<>();
 		List<Node> nodes = new ArrayList<>();
 
@@ -136,9 +138,6 @@ public class CTClosureFactoryImpl implements CTClosureFactory {
 
 		Queue<Map.Entry<Long, List<Long>>> queue = new LinkedList<>(
 			map.entrySet());
-
-		CTCollection ctCollection = _ctCollectionPersistence.fetchByPrimaryKey(
-			ctCollectionId);
 
 		while (queue.size() > 0) {
 			Map.Entry<Long, List<Long>> queueEntry = queue.poll();

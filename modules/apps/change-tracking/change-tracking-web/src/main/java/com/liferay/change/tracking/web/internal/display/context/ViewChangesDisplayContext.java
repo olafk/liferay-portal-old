@@ -345,16 +345,14 @@ public class ViewChangesDisplayContext {
 			}
 		}
 		else {
+			Map.Entry<Long, List<Long>> entry = null;
+			boolean foundSelectedEntry = false;
 			int[] modelKeyCounterHolder = {1};
 
 			Map<Long, List<Long>> rootPKsMap = ctClosure.getRootPKsMap();
 
 			Queue<Map.Entry<Long, List<Long>>> queue = new LinkedList<>(
 				rootPKsMap.entrySet());
-
-			Map.Entry<Long, List<Long>> entry = null;
-
-			boolean foundSelectedEntry = false;
 
 			while ((entry = queue.poll()) != null) {
 				long classNameId = entry.getKey();
