@@ -101,7 +101,7 @@ public abstract class BaseJenkinsEventHandler extends BaseEventHandler {
 
 		if (buildRunEntity == null) {
 			throw new InvalidJSONException(
-				"Unable to find build run by id " + buildRunID);
+				"Unable to find build run by ID " + buildRunID);
 		}
 
 		return buildRunEntity;
@@ -206,7 +206,7 @@ public abstract class BaseJenkinsEventHandler extends BaseEventHandler {
 
 		if (jenkinsServerEntity == null) {
 			throw new InvalidJSONException(
-				"Unable to find jenkins server by url " + jenkinsURL);
+				"Unable to find Jenkins server by URL " + jenkinsURL);
 		}
 
 		return jenkinsServerEntity;
@@ -218,7 +218,7 @@ public abstract class BaseJenkinsEventHandler extends BaseEventHandler {
 		String jenkinsURLString = jenkinsJSONObject.optString("url");
 
 		if (StringUtil.isNullOrEmpty(jenkinsURLString)) {
-			throw new InvalidJSONException("Missing \"url\" from jenkins JSON");
+			throw new InvalidJSONException("Missing \"url\" from Jenkins JSON");
 		}
 
 		try {
@@ -226,7 +226,7 @@ public abstract class BaseJenkinsEventHandler extends BaseEventHandler {
 		}
 		catch (Exception exception) {
 			throw new InvalidJSONException(
-				"Invalid \"url\" from jenkins JSON", exception);
+				"Invalid \"url\" from Jenkins JSON", exception);
 		}
 	}
 
