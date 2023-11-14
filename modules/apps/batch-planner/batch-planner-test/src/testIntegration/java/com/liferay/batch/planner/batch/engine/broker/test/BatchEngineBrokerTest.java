@@ -452,7 +452,7 @@ public class BatchEngineBrokerTest {
 		File file = _createImportFile(
 			_addDLFileEntry(
 				TestPropsValues.getGroupId(), TestPropsValues.getUserId()),
-			_OBJECT_ENTRY_ERC_1, _objectDefinition1.getExternalReferenceCode(),
+			_objectDefinition1.getExternalReferenceCode(), _OBJECT_ENTRY_ERC_1,
 			"object_entry_import_template.txt");
 
 		URI uri = file.toURI();
@@ -737,8 +737,8 @@ public class BatchEngineBrokerTest {
 	}
 
 	private File _createImportFile(
-			DLFileEntry dlFileEntry, String objectEntryERC,
-			String objectDefinitionERC, String templateName)
+			DLFileEntry dlFileEntry, String objectDefinitionERC,
+			String objectEntryERC, String templateName)
 		throws Exception {
 
 		Class<?> clazz = getClass();
@@ -1159,7 +1159,7 @@ public class BatchEngineBrokerTest {
 		File file = _createImportFile(
 			_addDLFileEntry(
 				TestPropsValues.getGroupId(), TestPropsValues.getUserId()),
-			objectEntryERC, _objectDefinition1.getExternalReferenceCode(),
+			_objectDefinition1.getExternalReferenceCode(), objectEntryERC,
 			"object_entry_import_template.txt");
 
 		URI uri = file.toURI();
