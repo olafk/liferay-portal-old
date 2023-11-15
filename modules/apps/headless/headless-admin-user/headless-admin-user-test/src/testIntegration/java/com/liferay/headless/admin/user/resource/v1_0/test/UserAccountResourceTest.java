@@ -407,8 +407,10 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 						).put(
 							"name", groupRole.getName()
 						))
-				)),
-			jsonObject.getJSONArray("siteBriefs"), JSONCompareMode.LENIENT);
+				)
+			).toString(),
+			String.valueOf(jsonObject.getJSONArray("siteBriefs")),
+			JSONCompareMode.LENIENT);
 
 		User user = UserTestUtil.addUser();
 
