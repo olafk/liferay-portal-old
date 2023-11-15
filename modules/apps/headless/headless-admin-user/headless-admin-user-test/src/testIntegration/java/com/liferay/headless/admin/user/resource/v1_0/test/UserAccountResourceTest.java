@@ -398,7 +398,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 			"headless-admin-user/v1.0/user-accounts/" + groupUser.getUserId(),
 			Http.Method.GET);
 
-		JSONArray actualSiteBriefs_jsonArray = (JSONArray)jsonObject.get(
+		JSONArray actualSiteBriefs_jsonArray = jsonObject.getJSONArray(
 			"siteBriefs");
 
 		JSONAssert.assertEquals(
