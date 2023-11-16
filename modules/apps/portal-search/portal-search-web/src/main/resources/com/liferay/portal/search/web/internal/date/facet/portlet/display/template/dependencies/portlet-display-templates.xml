@@ -3,7 +3,7 @@
 <root>
 	<template>
 		<template-key>date-facet-checkbox-ftl</template-key>
-		<name>portlet-display-template-name-checkbox-layout-multi-select</name>
+		<name>portlet-display-template-name-checkbox-layout-multiselect</name>
 		<description>portlet-display-template-description-facet-checkbox</description>
 		<language>ftl</language>
 		<script-file>com/liferay/portal/search/web/internal/date/facet/portlet/display/template/dependencies/portlet_display_template_checkbox.ftl</script-file>
