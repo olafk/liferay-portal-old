@@ -85,8 +85,8 @@ public class UserResourceImpl extends BaseUserResourceImpl {
 		_userManager = new UserManagerImpl(
 			_classNameLocalService, _companyLocalService, _configurationAdmin,
 			_expandoColumnLocalService, _expandoTableLocalService,
-			_expandoValueLocalService, _userLocalService, _searcher,
-			_searchRequestBuilderFactory);
+			_expandoValueLocalService, _searcher, _searchRequestBuilderFactory,
+			_userLocalService);
 	}
 
 	private Response _buildResponse(SCIMResponse scimResponse) {

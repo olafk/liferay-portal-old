@@ -85,8 +85,9 @@ public class UserManagerImpl implements UserManager {
 		ExpandoColumnLocalService expandoColumnLocalService,
 		ExpandoTableLocalService expandoTableLocalService,
 		ExpandoValueLocalService expandoValueLocalService,
-		UserLocalService userLocalService, Searcher searcher,
-		SearchRequestBuilderFactory searchRequestBuilderFactory) {
+		Searcher searcher,
+		SearchRequestBuilderFactory searchRequestBuilderFactory,
+		UserLocalService userLocalService) {
 
 		_classNameLocalService = classNameLocalService;
 		_companyLocalService = companyLocalService;
@@ -94,9 +95,9 @@ public class UserManagerImpl implements UserManager {
 		_expandoColumnLocalService = expandoColumnLocalService;
 		_expandoTableLocalService = expandoTableLocalService;
 		_expandoValueLocalService = expandoValueLocalService;
-		_userLocalService = userLocalService;
 		_searcher = searcher;
 		_searchRequestBuilderFactory = searchRequestBuilderFactory;
+		_userLocalService = userLocalService;
 	}
 
 	@Override
