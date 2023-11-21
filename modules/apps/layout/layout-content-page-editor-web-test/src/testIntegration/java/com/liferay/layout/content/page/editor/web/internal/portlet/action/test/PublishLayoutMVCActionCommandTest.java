@@ -210,7 +210,6 @@ public class PublishLayoutMVCActionCommandTest {
 				StringPool.BLANK, serviceContext);
 
 			Assert.assertEquals(user.getUserId(), originalLayout.getUserId());
-
 			Assert.assertTrue(originalLayout.isTypePortlet());
 
 			serviceContext = ServiceContextTestUtil.getServiceContext(
@@ -230,10 +229,8 @@ public class PublishLayoutMVCActionCommandTest {
 			Layout conversionDraftLayout = originalLayout.fetchDraftLayout();
 
 			Assert.assertNotNull(conversionDraftLayout);
-
 			Assert.assertEquals(
 				TestPropsValues.getUserId(), conversionDraftLayout.getUserId());
-
 			Assert.assertTrue(conversionDraftLayout.isTypeContent());
 
 			ContentLayoutTestUtil.publishLayout(
@@ -242,14 +239,12 @@ public class PublishLayoutMVCActionCommandTest {
 			originalLayout = _layoutLocalService.getLayout(
 				originalLayout.getPlid());
 
-			Assert.assertTrue(originalLayout.isTypeContent());
-
 			Assert.assertTrue(originalLayout.isPublished());
+			Assert.assertTrue(originalLayout.isTypeContent());
 
 			Layout draftLayout = originalLayout.fetchDraftLayout();
 
 			Assert.assertNotNull(draftLayout);
-
 			Assert.assertEquals(
 				conversionDraftLayout.getPlid(), draftLayout.getPlid());
 
