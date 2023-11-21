@@ -4,7 +4,6 @@
 			<div class="border-right col">
 				<div class="align-items-center row">
 					<div class="col d-flex justify-content-center">
-
 						[#if (configuration.person) === 'carl']
 							<img src="[resources:carl.svg]" />
 						[/#if]
@@ -16,13 +15,11 @@
 						[#if (configuration.person) === 'adam']
 							<img src="[resources:brian.svg]" />
 						[/#if]
-
 					</div>
 
 					<div class="col flex-grow-2">
 						<h5>
 							<lfr-editable id="txtTitle" type="text">
-
 								[#if (configuration.person) === 'carl']
 									Customer Carl
 								[/#if]
@@ -34,12 +31,11 @@
 								[#if (configuration.person) === 'adam']
 									Admin Adam
 								[/#if]
-
 							</lfr-editable>
 						</h5>
 
-						<p><lfr-editable id="txtSummary" type="text">
-
+						<p>
+							<lfr-editable id="txtSummary" type="text">
 								[#if (configuration.person) === 'carl']
 									Carl is a customer of Clarity. He can create tickets to explain what problems or questions he has
 								[/#if]
@@ -51,8 +47,8 @@
 								[#if (configuration.person) === 'adam']
 									Adam is the Admin User and has access to all the settings and customizations on the platform.
 								[/#if]
-
-							</lfr-editable></p>
+							</lfr-editable>
+						</p>
 					</div>
 				</div>
 			</div>
@@ -68,7 +64,6 @@
 								<div class="d-flex justify-content-between">
 									<div id="txtEmail-${configuration.person}">
 										<lfr-editable id="email" type="text">
-
 											[#if (configuration.person) === 'carl']
 												customer.carl@liferay.com
 											[/#if]
@@ -80,7 +75,6 @@
 											[#if (configuration.person) === 'adam']
 												admin.adam@liferay.com
 											[/#if]
-
 										</lfr-editable>
 									</div>
 
@@ -117,6 +111,7 @@
 <script>
 	function copyToClipboard(element, id) {
 		let value = element.querySelector('#' + id).innerText;
+
 		navigator.clipboard.writeText(value);
 	}
 </script>
