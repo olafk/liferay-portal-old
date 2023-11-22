@@ -838,25 +838,6 @@ public class BatchEngineBrokerTest {
 		return objectViewSortColumn;
 	}
 
-	private JsonNode _getFirstJsonNode(JsonNode arrayJsonNode) {
-		Assert.assertTrue(arrayJsonNode.isArray());
-		Assert.assertEquals(1, arrayJsonNode.size());
-
-		return arrayJsonNode.get(0);
-	}
-
-	private JsonNode _getFirstJsonNode(JsonNode arrayJsonNode, String name) {
-		for (JsonNode jsonNode : arrayJsonNode) {
-			JsonNode nameJsonNode = jsonNode.get("name");
-
-			if (Objects.equals(name, nameJsonNode.textValue())) {
-				return jsonNode;
-			}
-		}
-
-		return null;
-	}
-
 	private List<String> _getContentRow(String line) {
 		return Arrays.asList(line.split(StringPool.COMMA, -1));
 	}
@@ -1007,6 +988,25 @@ public class BatchEngineBrokerTest {
 
 			Thread.sleep(1000);
 		}
+	}
+
+	private JsonNode _getFirstJsonNode(JsonNode arrayJsonNode) {
+		Assert.assertTrue(arrayJsonNode.isArray());
+		Assert.assertEquals(1, arrayJsonNode.size());
+
+		return arrayJsonNode.get(0);
+	}
+
+	private JsonNode _getFirstJsonNode(JsonNode arrayJsonNode, String name) {
+		for (JsonNode jsonNode : arrayJsonNode) {
+			JsonNode nameJsonNode = jsonNode.get("name");
+
+			if (Objects.equals(name, nameJsonNode.textValue())) {
+				return jsonNode;
+			}
+		}
+
+		return null;
 	}
 
 	private long _getGroupId(long groupId, ObjectDefinition objectDefinition) {
