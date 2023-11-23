@@ -53,7 +53,8 @@ public class SXPElementLocalServiceTest {
 	public void testAddSXPElement() throws Exception {
 		String externalReferenceCode = RandomTestUtil.randomString();
 
-		SXPElement sxpElement = _addSXPElement(externalReferenceCode);
+		SXPElement sxpElement = _addSXPElement(
+			externalReferenceCode, TestPropsValues.getUserId());
 
 		Assert.assertEquals(
 			externalReferenceCode, sxpElement.getExternalReferenceCode());
@@ -74,7 +75,9 @@ public class SXPElementLocalServiceTest {
 		// Duplicate external reference code in the same company
 
 		try {
-			_addSXPElement(sxpElement.getExternalReferenceCode());
+			_addSXPElement(
+				sxpElement.getExternalReferenceCode(),
+				TestPropsValues.getUserId());
 
 			Assert.fail();
 		}
@@ -87,7 +90,7 @@ public class SXPElementLocalServiceTest {
 
 		// Null external reference code
 
-		sxpElement = _addSXPElement(null);
+		sxpElement = _addSXPElement(null, TestPropsValues.getUserId());
 
 		Assert.assertNotNull(sxpElement.getExternalReferenceCode());
 		Assert.assertEquals("1.0", sxpElement.getVersion());
@@ -100,9 +103,10 @@ public class SXPElementLocalServiceTest {
 		SXPElement fallbackFieldsSXPElement = _addSXPElement(
 			Collections.singletonMap(
 				LocaleUtil.US, RandomTestUtil.randomString()),
-			fallbackDescription, fallbackTitle,
+			RandomTestUtil.randomString(), fallbackDescription, fallbackTitle,
 			Collections.singletonMap(
-				LocaleUtil.US, RandomTestUtil.randomString()));
+				LocaleUtil.US, RandomTestUtil.randomString()),
+			TestPropsValues.getUserId());
 
 		Assert.assertEquals(
 			fallbackDescription,
@@ -114,8 +118,10 @@ public class SXPElementLocalServiceTest {
 		String title = RandomTestUtil.randomString();
 
 		SXPElement noFallbackFieldsSXPElement = _addSXPElement(
-			Collections.singletonMap(LocaleUtil.US, description), null, null,
-			Collections.singletonMap(LocaleUtil.US, title));
+			Collections.singletonMap(LocaleUtil.US, description),
+			RandomTestUtil.randomString(), null, null,
+			Collections.singletonMap(LocaleUtil.US, title),
+			TestPropsValues.getUserId());
 
 		Assert.assertEquals(
 			description, noFallbackFieldsSXPElement.getFallbackDescription());
@@ -128,7 +134,9 @@ public class SXPElementLocalServiceTest {
 			_addSXPElement(
 				Collections.singletonMap(LocaleUtil.SPAIN, description),
 				RandomTestUtil.randomString(), RandomTestUtil.randomString(),
-				Collections.singletonMap(LocaleUtil.SPAIN, title));
+				RandomTestUtil.randomString(),
+				Collections.singletonMap(LocaleUtil.SPAIN, title),
+				TestPropsValues.getUserId());
 		}
 		catch (SXPElementTitleException sxpElementTitleException) {
 			Assert.assertNotNull(sxpElementTitleException);
@@ -137,7 +145,8 @@ public class SXPElementLocalServiceTest {
 
 	@Test
 	public void testGetSXPElementByExternalReferenceCode() throws Exception {
-		SXPElement sxpElement = _addSXPElement(RandomTestUtil.randomString());
+		SXPElement sxpElement = _addSXPElement(
+			RandomTestUtil.randomString(), TestPropsValues.getUserId());
 
 		Assert.assertEquals(
 			sxpElement,
@@ -158,7 +167,8 @@ public class SXPElementLocalServiceTest {
 
 	@Test
 	public void testUpdateSXPElement() throws Exception {
-		SXPElement sxpElement = _addSXPElement(RandomTestUtil.randomString());
+		SXPElement sxpElement = _addSXPElement(
+			RandomTestUtil.randomString(), TestPropsValues.getUserId());
 
 		String externalReferenceCode = RandomTestUtil.randomString();
 
@@ -185,23 +195,15 @@ public class SXPElementLocalServiceTest {
 	public void testUpdateSXPElementWithSameExternalReferenceCode()
 		throws Exception {
 
-		SXPElement sxpElement1 = _addSXPElement(RandomTestUtil.randomString());
-		SXPElement sxpElement2 = _addSXPElement(RandomTestUtil.randomString());
+		SXPElement sxpElement1 = _addSXPElement(
+			RandomTestUtil.randomString(), TestPropsValues.getUserId());
+		SXPElement sxpElement2 = _addSXPElement(
+			RandomTestUtil.randomString(), TestPropsValues.getUserId());
 
 		sxpElement2.setExternalReferenceCode(
 			sxpElement1.getExternalReferenceCode());
 
 		_sxpElementLocalService.updateSXPElement(sxpElement2);
-	}
-
-	private SXPElement _addSXPElement(
-			Map<Locale, String> descriptionMap, String fallbackDescription,
-			String fallbackTitle, Map<Locale, String> titleMap)
-		throws Exception {
-
-		return _addSXPElement(
-			descriptionMap, RandomTestUtil.randomString(), fallbackDescription,
-			fallbackTitle, titleMap, TestPropsValues.getUserId());
 	}
 
 	private SXPElement _addSXPElement(
@@ -219,13 +221,6 @@ public class SXPElementLocalServiceTest {
 		_sxpElements.add(sxpElement);
 
 		return sxpElement;
-	}
-
-	private SXPElement _addSXPElement(String externalReferenceCode)
-		throws Exception {
-
-		return _addSXPElement(
-			externalReferenceCode, TestPropsValues.getUserId());
 	}
 
 	private SXPElement _addSXPElement(String externalReferenceCode, long userId)
