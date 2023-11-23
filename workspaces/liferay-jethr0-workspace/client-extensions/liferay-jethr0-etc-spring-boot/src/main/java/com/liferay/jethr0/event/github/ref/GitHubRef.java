@@ -23,7 +23,7 @@ public class GitHubRef {
 		Matcher matcher = _gitHubRefURLPattern.matcher(gitHubRefURL.toString());
 
 		if (!matcher.find()) {
-			throw new RuntimeException("Invalid GitHub Ref URL" + gitHubRefURL);
+			throw new RuntimeException("Invalid GitHub ref URL" + gitHubRefURL);
 		}
 
 		return matcher.group("refName");
@@ -33,7 +33,7 @@ public class GitHubRef {
 		Matcher matcher = _gitHubRefURLPattern.matcher(gitHubRefURL.toString());
 
 		if (!matcher.find()) {
-			throw new RuntimeException("Invalid GitHub Ref URL" + gitHubRefURL);
+			throw new RuntimeException("Invalid GitHub ref URL" + gitHubRefURL);
 		}
 
 		return matcher.group("repositoryName");
@@ -43,7 +43,7 @@ public class GitHubRef {
 		Matcher matcher = _gitHubRefURLPattern.matcher(gitHubRefURL.toString());
 
 		if (!matcher.find()) {
-			throw new RuntimeException("Invalid GitHub Ref URL" + gitHubRefURL);
+			throw new RuntimeException("Invalid GitHub ref URL" + gitHubRefURL);
 		}
 
 		return matcher.group("userName");
