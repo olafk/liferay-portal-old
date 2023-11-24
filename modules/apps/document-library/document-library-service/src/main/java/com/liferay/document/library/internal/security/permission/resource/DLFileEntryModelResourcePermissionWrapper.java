@@ -131,7 +131,7 @@ public class DLFileEntryModelResourcePermissionWrapper
 
 				if (PropsValues.PERMISSIONS_VIEW_DYNAMIC_INHERITANCE) {
 					DynamicInheritancePermissionLogic<DLFileEntry, DLFolder>
-						permissionLogic =
+						dynamicInheritancePermissionLogic =
 							new DynamicInheritancePermissionLogic<>(
 								_dlFolderModelResourcePermission,
 								_getFetchParentFunction(), true);
@@ -142,7 +142,7 @@ public class DLFileEntryModelResourcePermissionWrapper
 								actionId = ActionKeys.VIEW;
 							}
 
-							return permissionLogic.contains(
+							return dynamicInheritancePermissionLogic.contains(
 								permissionChecker, name, model, actionId);
 						});
 				}
