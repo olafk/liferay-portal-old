@@ -154,7 +154,7 @@ public class BNDBreakingChangeCommitMessageCheck extends BaseFileCheck {
 							"Incorrect commit message in SHA ", parts[0], ": '",
 							filePath, "' points to nonexistent file. '## ",
 							"What' should be followed by only one path, which ",
-							"is from ", _LIFERAY_PROTAL_MASTER_URL, "."));
+							"is from ",  _LIFERAY_PORTAL_MASTER_URL, "."));
 
 					return;
 				}
@@ -271,7 +271,7 @@ public class BNDBreakingChangeCommitMessageCheck extends BaseFileCheck {
 		"----", "## Alternatives", "# breaking", "## What", "## Why"
 	};
 
-	private static final String _LIFERAY_PROTAL_MASTER_URL =
+	private static final String  _LIFERAY_PORTAL_MASTER_URL =
 		"https://github.com/liferay/liferay-portal/blob/master/";
 
 	private static List<String> _currentBranchFileNames;
