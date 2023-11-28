@@ -22,8 +22,6 @@ public class GitHubPullRequest {
 	public GitHubPullRequest(JSONObject jsonObject) {
 		_jsonObject = jsonObject;
 
-		_senderGitHubUser = new GitHubUser(jsonObject.getJSONObject("user"));
-
 		JSONObject baseJSONObject = jsonObject.getJSONObject("base");
 
 		_baseBranchName = baseJSONObject.getString("ref");
@@ -38,6 +36,8 @@ public class GitHubPullRequest {
 		_headGitHubRepository = new GitHubRepository(
 			headJSONObject.getJSONObject("repo"));
 		_headGitHubUser = new GitHubUser(headJSONObject.getJSONObject("user"));
+
+		_senderGitHubUser = new GitHubUser(jsonObject.getJSONObject("user"));
 	}
 
 	public String getBaseBranchName() {
