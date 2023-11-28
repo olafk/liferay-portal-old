@@ -498,18 +498,18 @@ public abstract class BaseModelHintsImpl implements ModelHints {
 				}
 
 				fieldDataBag._element = fieldElement;
-				fieldDataBag._type = fieldType;
 				fieldDataBag._localized = fieldLocalized;
+				fieldDataBag._type = fieldType;
 
 				if (fieldHints.isEmpty()) {
 					fieldHints = Collections.emptyMap();
 				}
 				else if (fieldHints.size() == 1) {
-					Set<Map.Entry<String, String>> entrySet =
+					Set<Map.Entry<String, String>> set =
 						fieldHints.entrySet();
 
 					Iterator<Map.Entry<String, String>> iterator =
-						entrySet.iterator();
+						set.iterator();
 
 					Map.Entry<String, String> entry = iterator.next();
 
