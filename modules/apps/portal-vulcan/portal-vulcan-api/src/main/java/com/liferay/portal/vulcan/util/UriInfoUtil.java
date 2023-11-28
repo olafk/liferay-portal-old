@@ -47,8 +47,8 @@ public class UriInfoUtil {
 
 		boolean secure = PortalUtil.isSecure(httpServletRequest);
 
-		if ((!secure && (port != Http.HTTP_PORT)) ||
-			(secure && (port != Http.HTTPS_PORT))) {
+		if (((port != Http.HTTP_PORT) && !secure) ||
+			((port != Http.HTTPS_PORT) && secure)) {
 
 			uriBuilder.port(port);
 		}
