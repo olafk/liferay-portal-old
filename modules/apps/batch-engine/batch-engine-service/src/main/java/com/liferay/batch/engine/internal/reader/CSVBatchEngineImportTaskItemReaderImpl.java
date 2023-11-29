@@ -36,10 +36,10 @@ public class CSVBatchEngineImportTaskItemReaderImpl
 			Map<String, Serializable> parameters)
 		throws IOException {
 
+		_delimiter = (String)parameters.getOrDefault("delimiter", delimiter);
+
 		_enclosingCharacter = (String)parameters.getOrDefault(
 			"enclosingCharacter", StringPool.QUOTE);
-
-		_delimiter = (String)parameters.getOrDefault("delimiter", delimiter);
 
 		_csvParser = CSVParser.parse(
 			new UnsyncBufferedReader(new InputStreamReader(inputStream)),
