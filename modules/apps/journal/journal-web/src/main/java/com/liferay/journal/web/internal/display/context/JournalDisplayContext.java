@@ -125,7 +125,6 @@ import com.liferay.trash.TrashHelper;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -1223,7 +1222,7 @@ public class JournalDisplayContext {
 	}
 
 	public String getTitle() throws PortalException {
-		if (isSearch() || isFilterApplied()) {
+		if (isFilterApplied() || isSearch()) {
 			return LanguageUtil.get(_httpServletRequest, "search-results");
 		}
 
@@ -1317,12 +1316,9 @@ public class JournalDisplayContext {
 			return false;
 		}
 
-		List<String> filters = Arrays.asList(
-			"assetCategoryId", "assetTagId", "ddmStructureId", "navigation");
-
-		for (String filter : filters) {
+		for (String parameterName : _PARAMETER_NAMES) {
 			if (Validator.isNotNull(
-					ParamUtil.getString(_httpServletRequest, filter))) {
+					ParamUtil.getString(_httpServletRequest, parameterName))) {
 
 				return true;
 			}
@@ -1982,6 +1978,10 @@ public class JournalDisplayContext {
 
 		searchContext.setStart(start);
 	}
+
+	private static final String[] _PARAMETER_NAMES = {
+		"assetCategoryId", "assetTagId", "ddmStructureId", "navigation"
+	};
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalDisplayContext.class);
