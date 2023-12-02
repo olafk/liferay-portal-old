@@ -90,8 +90,6 @@ public class BundleProductCommerceOrderValidatorImpl
 			return new CommerceOrderValidatorResult(false);
 		}
 
-		String languageId = LocaleUtil.toLanguageId(locale);
-
 		List<CommerceOptionValue> commerceOptionValues =
 			_commerceOptionValueHelper.getCPDefinitionCommerceOptionValues(
 				cpInstance.getCPDefinitionId(), json);
@@ -129,11 +127,12 @@ public class BundleProductCommerceOrderValidatorImpl
 				if (cpDefinitionIds.contains(
 						cProduct.getPublishedCPDefinitionId())) {
 
+					CPDefinition cpDefinition =
+						cpDefinitionLink.getCPDefinition();
+					String languageId = LocaleUtil.toLanguageId(locale);
 					CPDefinition publishedCPDefinition =
 						_cpDefinitionLocalService.getCPDefinition(
 							cProduct.getPublishedCPDefinitionId());
-					CPDefinition cpDefinition =
-						cpDefinitionLink.getCPDefinition();
 
 					return new CommerceOrderValidatorResult(
 						false,
@@ -160,11 +159,11 @@ public class BundleProductCommerceOrderValidatorImpl
 				if (!cpDefinitionIds.contains(
 						cProduct.getPublishedCPDefinitionId())) {
 
+					CPDefinition cpDefinition =
+						cpDefinitionLink.getCPDefinition();
 					CPDefinition publishedCPDefinition =
 						_cpDefinitionLocalService.getCPDefinition(
 							cProduct.getPublishedCPDefinitionId());
-					CPDefinition cpDefinition =
-						cpDefinitionLink.getCPDefinition();
 
 					return new CommerceOrderValidatorResult(
 						false,
