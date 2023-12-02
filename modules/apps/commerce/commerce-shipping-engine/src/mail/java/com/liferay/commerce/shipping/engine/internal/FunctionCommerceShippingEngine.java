@@ -286,6 +286,8 @@ public class FunctionCommerceShippingEngine implements CommerceShippingEngine {
 			CommerceContext commerceContext, CommerceOrder commerceOrder)
 		throws Exception {
 
+		JSONObject typeSettingsJSONObject = _jsonFactory.createJSONObject();
+
 		CommerceChannel commerceChannel =
 			_commerceChannelLocalService.getCommerceChannel(
 				commerceContext.getCommerceChannelId());
@@ -296,8 +298,6 @@ public class FunctionCommerceShippingEngine implements CommerceShippingEngine {
 
 		UnicodeProperties typeSettingsUnicodeProperties =
 			commerceShippingMethod.getTypeSettingsUnicodeProperties();
-
-		JSONObject typeSettingsJSONObject = _jsonFactory.createJSONObject();
 
 		typeSettingsUnicodeProperties.forEach(
 			(key, value) -> typeSettingsJSONObject.put(key, value));
