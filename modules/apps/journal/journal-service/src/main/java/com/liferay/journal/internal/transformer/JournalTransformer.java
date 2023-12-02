@@ -110,11 +110,12 @@ public class JournalTransformer {
 			String script, ThemeDisplay themeDisplay, String viewMode)
 		throws Exception {
 
-		Set<String> renderedArticleIds = _renderedArticleIdsThreadLocal.get();
+		Set<String> transformedArticleIds =
+			_transformedArticleIdsThreadLocal.get();
 
 		String articleId = article.getArticleId();
 
-		if (renderedArticleIds.contains(articleId)) {
+		if (transformedArticleIds.contains(articleId)) {
 			if (_log.isWarnEnabled()) {
 				_log.warn("Article " + articleId + " cannot include itself");
 			}
@@ -122,7 +123,7 @@ public class JournalTransformer {
 			return StringPool.BLANK;
 		}
 
-		renderedArticleIds.add(articleId);
+		transformedArticleIds.add(articleId);
 
 		try {
 			return _transform(
@@ -132,7 +133,7 @@ public class JournalTransformer {
 				viewMode);
 		}
 		finally {
-			renderedArticleIds.remove(articleId);
+			transformedArticleIds.remove(articleId);
 		}
 	}
 
@@ -1045,9 +1046,9 @@ public class JournalTransformer {
 	private static final Log _logXmlBeforeListener = LogFactoryUtil.getLog(
 		JournalTransformer.class.getName() + ".XmlBeforeListener");
 	private static final ThreadLocal<Set<String>>
-		_renderedArticleIdsThreadLocal = new CentralizedThreadLocal<>(
+		_transformedArticleIdsThreadLocal = new CentralizedThreadLocal<>(
 			JournalTransformer.class.getName() +
-				"._renderedArticleIdsThreadLocal",
+				"._transformedArticleIdsThreadLocal",
 			HashSet::new);
 
 }
