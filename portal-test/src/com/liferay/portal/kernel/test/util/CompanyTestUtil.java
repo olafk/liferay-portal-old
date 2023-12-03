@@ -37,20 +37,28 @@ public class CompanyTestUtil {
 		return addCompany(RandomTestUtil.randomString());
 	}
 
-	public static Company addCompany(boolean initialize) throws Throwable {
+	public static Company addCompany(boolean initialize) throws Exception {
 		if (!initialize) {
 			return addCompany(RandomTestUtil.randomString());
 		}
 
-		return TransactionInvokerUtil.invoke(
-			_transactionConfig,
-			() -> {
-				Company company = addCompany(RandomTestUtil.randomString());
+		try {
+			return TransactionInvokerUtil.invoke(
+				_transactionConfig,
+				() -> {
+					Company company = addCompany(RandomTestUtil.randomString());
 
-				PortalInstances.initCompany(company);
+					PortalInstances.initCompany(company);
 
-				return company;
-			});
+					return company;
+				});
+		}
+		catch (Exception exception) {
+			throw exception;
+		}
+		catch (Throwable throwable) {
+			throw new Exception(throwable);
+		}
 	}
 
 	public static Company addCompany(String name) throws Exception {

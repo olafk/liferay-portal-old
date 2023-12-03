@@ -214,7 +214,7 @@ public class BatchEngineBrokerTest {
 	}
 
 	@Test
-	public void testImportExportCompanyScopeObjectEntryCSV() throws Throwable {
+	public void testImportExportCompanyScopeObjectEntryCSV() throws Exception {
 		_objectDefinition1 = _publishObjectDefinition(
 			TestPropsValues.getCompanyId(), "TestObjectCSV",
 			ObjectDefinitionConstants.SCOPE_COMPANY, TestPropsValues.getUser());
@@ -254,7 +254,7 @@ public class BatchEngineBrokerTest {
 	}
 
 	@Test
-	public void testImportExportCompanyScopeObjectEntryJSON() throws Throwable {
+	public void testImportExportCompanyScopeObjectEntryJSON() throws Exception {
 		_objectDefinition1 = _publishObjectDefinition(
 			TestPropsValues.getCompanyId(), "TestObject",
 			ObjectDefinitionConstants.SCOPE_COMPANY, TestPropsValues.getUser());
@@ -510,7 +510,7 @@ public class BatchEngineBrokerTest {
 	}
 
 	private void _addObjectEntryInDifferentCompany(String name)
-		throws Throwable {
+		throws Exception {
 
 		_company2 = CompanyTestUtil.addCompany(true);
 

@@ -61,7 +61,7 @@ public class ObjectDefinitionVulcanBatchEngineTaskItemDelegateTest {
 			PermissionCheckerMethodTestRule.INSTANCE);
 
 	@Before
-	public void setUp() throws Throwable {
+	public void setUp() throws Exception {
 		_company = CompanyTestUtil.addCompany(true);
 
 		User user = UserTestUtil.addCompanyAdminUser(_company);

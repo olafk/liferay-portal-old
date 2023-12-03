@@ -77,7 +77,7 @@ public class BatchEngineBundleTrackerTest {
 	}
 
 	@Test
-	public void testProcessBatchEngineBundle() throws Throwable {
+	public void testProcessBatchEngineBundle() throws Exception {
 		_testProcessBatchEngineBundle("batch1", "/batch1/export.json");
 		_testProcessBatchEngineBundle("batch2");
 		_testProcessBatchEngineBundle(
