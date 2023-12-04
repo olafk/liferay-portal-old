@@ -106,10 +106,10 @@ public class MockAICreatorOpenAIClient implements AICreatorOpenAIClient {
 			new UnsupportedOperationException("Unsupported key: " + key));
 	}
 
-	private String[] _getGenerations(String url, int count) {
-		String[] generations = new String[count];
+	private String[] _getGenerations(String url, int numberOfImages) {
+		String[] generations = new String[numberOfImages];
 
-		for (int i = 0; i < count; i++) {
+		for (int i = 0; i < numberOfImages; i++) {
 			generations[i] = url;
 		}
 
