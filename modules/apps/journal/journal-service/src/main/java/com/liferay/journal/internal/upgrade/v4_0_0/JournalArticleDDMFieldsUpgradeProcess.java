@@ -101,24 +101,12 @@ public class JournalArticleDDMFieldsUpgradeProcess extends UpgradeProcess {
 		};
 	}
 
-	private String _convertDocumentToString(Document document)
-		throws Exception {
-
+	private String _convertFieldNames(String content) throws Exception {
 		TransformerFactory transformerFactory =
 			TransformerFactory.newInstance();
 
 		Transformer transformer = transformerFactory.newTransformer();
 
-		StringWriter writer = new StringWriter();
-
-		transformer.transform(
-			new DOMSource(document), new StreamResult(writer));
-
-		return writer.getBuffer(
-		).toString();
-	}
-
-	private String _convertFieldNames(String content) throws Exception {
 		Document document =
 			SecureXMLFactoryProviderUtil.newDocumentBuilderFactory(
 			).newDocumentBuilder(
@@ -133,17 +121,21 @@ public class JournalArticleDDMFieldsUpgradeProcess extends UpgradeProcess {
 
 			NamedNodeMap namedNodeMap = node.getAttributes();
 
-			Node nodeName = namedNodeMap.getNamedItem("name");
+			Node nameNode = namedNodeMap.getNamedItem("name");
 
-			String oldNameValue = nodeName.getTextContent();
+			String textContent = nameNode.getTextContent();
 
-			String newNameValue = oldNameValue.replaceAll(
-				StringPool.MINUS, StringPool.BLANK);
-
-			nodeName.setTextContent(newNameValue);
+			nameNode.setTextContent(
+				textContent.replaceAll(StringPool.MINUS, StringPool.BLANK));
 		}
 
-		return _convertDocumentToString(document);
+		StringWriter stringWriter = new StringWriter();
+
+		transformer.transform(
+			new DOMSource(document), new StreamResult(stringWriter));
+
+		return stringWriter.getBuffer(
+		).toString();
 	}
 
 	private final ClassNameLocalService _classNameLocalService;
