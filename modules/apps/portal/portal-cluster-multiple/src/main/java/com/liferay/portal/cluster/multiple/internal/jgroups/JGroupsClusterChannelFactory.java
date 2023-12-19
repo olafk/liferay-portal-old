@@ -272,8 +272,9 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 						StringBundler.concat(
 							"Clustering authentication is using default ",
 							"cluster link authentication value. Please ",
-							"configure \"", PropsKeys.CLUSTER_LINK_AUTH_VALUE,
-							"\" property in portal-ext.properties."));
+							"configure the property \"",
+							PropsKeys.CLUSTER_LINK_AUTH_VALUE,
+							"\" in portal.properties."));
 
 					_defaultSecretWarning = false;
 				}
