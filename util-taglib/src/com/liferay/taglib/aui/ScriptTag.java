@@ -237,19 +237,18 @@ public class ScriptTag extends BaseScriptTag {
 	private int _endTag() throws IOException, JspException {
 		if (Validator.isNotNull(getRequire())) {
 			throw new JspException(
-				"Attribute require may not be used when using direct " +
-					"rendering");
+				"Attribute \"require\" may not be used with direct rendering");
 		}
 
 		if (getSandbox()) {
 			throw new JspException(
-				"Attribute sandbox can only be false when using direct " +
+				"Attribute \"sandbox\" can only be false with direct " +
 					"rendering");
 		}
 
 		if (Validator.isNotNull(getUse())) {
 			throw new JspException(
-				"Attribute use may not be used when using direct rendering");
+				"Attribute \"use\" may not be used with direct rendering");
 		}
 
 		JspWriter jspWriter = pageContext.getOut();
@@ -281,9 +280,9 @@ public class ScriptTag extends BaseScriptTag {
 
 		jspWriter.write(">");
 
-		StringBundler bodyContentSB = getBodyContentAsStringBundler();
+		StringBundler stringBundler = getBodyContentAsStringBundler();
 
-		jspWriter.write(bodyContentSB.toString());
+		jspWriter.write(stringBundler.toString());
 
 		jspWriter.write("</script>");
 
