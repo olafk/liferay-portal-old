@@ -259,24 +259,24 @@ public class ScriptTag extends BaseScriptTag {
 			ContentSecurityPolicyNonceProviderUtil.getNonceAttribute(
 				getRequest()));
 
-		_writeAttr(jspWriter, "async", getAsync());
-		_writeAttr(jspWriter, "blocking", getBlocking());
-		_writeAttr(jspWriter, "crossorigin", getCrossOrigin());
-		_writeAttr(jspWriter, "defer", getDefer());
-		_writeAttr(jspWriter, "fetchpriority", getFetchPriority());
-		_writeAttr(jspWriter, "id", getId());
-		_writeAttr(jspWriter, "integrity", getIntegrity());
-		_writeAttr(jspWriter, "referrerpolicy", getReferrerPolicy());
-		_writeAttr(jspWriter, "src", getSrc());
-		_writeAttr(jspWriter, "type", getType());
+		_write(jspWriter, "async", getAsync());
+		_write(jspWriter, "blocking", getBlocking());
+		_write(jspWriter, "crossorigin", getCrossOrigin());
+		_write(jspWriter, "defer", getDefer());
+		_write(jspWriter, "fetchpriority", getFetchPriority());
+		_write(jspWriter, "id", getId());
+		_write(jspWriter, "integrity", getIntegrity());
+		_write(jspWriter, "referrerpolicy", getReferrerPolicy());
+		_write(jspWriter, "src", getSrc());
+		_write(jspWriter, "type", getType());
 
 		String senna = getSenna();
 
 		if (Objects.equals(senna, "off")) {
-			_writeAttr(jspWriter, "data-senna-off", "true");
+			_write(jspWriter, "data-senna-off", "true");
 		}
 		else if (Validator.isNotNull(senna)) {
-			_writeAttr(jspWriter, "data-senna-track", senna);
+			_write(jspWriter, "data-senna-track", senna);
 		}
 
 		jspWriter.write(">");
@@ -290,7 +290,7 @@ public class ScriptTag extends BaseScriptTag {
 		return EVAL_PAGE;
 	}
 
-	private void _writeAttr(JspWriter jspWriter, String name, boolean value)
+	private void _write(JspWriter jspWriter, String name, boolean value)
 		throws IOException {
 
 		if (value) {
@@ -299,7 +299,7 @@ public class ScriptTag extends BaseScriptTag {
 		}
 	}
 
-	private void _writeAttr(JspWriter jspWriter, String name, String value)
+	private void _write(JspWriter jspWriter, String name, String value)
 		throws IOException {
 
 		if (Validator.isNotNull(value)) {
