@@ -60,14 +60,7 @@ public class MultiBucketsAggregationFacetCollector implements FacetCollector {
 			multiBucketBases.size());
 
 		for (MultiBucketBase multiBucketBase : multiBucketBases) {
-			if (multiBucketBase instanceof StringTermsBucket) {
-				StringTermsBucket stringTermsBucket =
-					(StringTermsBucket)multiBucketBase;
-
-				termCollectorHolder.add(
-					stringTermsBucket.key(), (int)stringTermsBucket.docCount());
-			}
-			else if (multiBucketBase instanceof DoubleTermsBucket) {
+			if (multiBucketBase instanceof DoubleTermsBucket) {
 				DoubleTermsBucket doubleTermsBucket =
 					(DoubleTermsBucket)multiBucketBase;
 
@@ -98,6 +91,13 @@ public class MultiBucketsAggregationFacetCollector implements FacetCollector {
 				termCollectorHolder.add(
 					multiTermsBucket.keyAsString(),
 					(int)multiTermsBucket.docCount());
+			}
+			else if (multiBucketBase instanceof StringTermsBucket) {
+				StringTermsBucket stringTermsBucket =
+					(StringTermsBucket)multiBucketBase;
+
+				termCollectorHolder.add(
+					stringTermsBucket.key(), (int)stringTermsBucket.docCount());
 			}
 		}
 
