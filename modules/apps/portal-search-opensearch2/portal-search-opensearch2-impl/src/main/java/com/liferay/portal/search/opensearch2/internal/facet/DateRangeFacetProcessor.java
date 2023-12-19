@@ -48,6 +48,8 @@ public class DateRangeFacetProcessor
 			return null;
 		}
 
+		Aggregation.Builder aggregationBuilder = new Aggregation.Builder();
+
 		DateRangeAggregation.Builder dateRangeAggregationBuilder =
 			AggregationBuilders.dateRange();
 
@@ -72,8 +74,6 @@ public class DateRangeFacetProcessor
 					RangeParserUtil.parserRange(
 						rangeJSONObject.getString("range"))));
 		}
-
-		Aggregation.Builder aggregationBuilder = new Aggregation.Builder();
 
 		return aggregationBuilder.dateRange(
 			dateRangeAggregationBuilder.build());
