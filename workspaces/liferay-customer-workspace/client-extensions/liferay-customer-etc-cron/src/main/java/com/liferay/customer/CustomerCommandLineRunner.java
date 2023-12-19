@@ -47,17 +47,19 @@ public class CustomerCommandLineRunner implements CommandLineRunner {
 
 		zendeskTicketQuery.addCriterion("status:closed");
 
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
 		Date startDate = new Date(
 			System.currentTimeMillis() -
 				((_zendeskTicketClosedDays + 7) * 24 * 60 * 60 * 1000));
+
+		zendeskTicketQuery.addCriterion(
+			"updated>" + simpleDateFormat.format(startDate));
+
 		Date endDate = new Date(
 			System.currentTimeMillis() -
 				(_zendeskTicketClosedDays * 24 * 60 * 60 * 1000));
 
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-		zendeskTicketQuery.addCriterion(
-			"updated>" + simpleDateFormat.format(startDate));
 		zendeskTicketQuery.addCriterion(
 			"updated<" + simpleDateFormat.format(endDate));
 
@@ -90,9 +92,7 @@ public class CustomerCommandLineRunner implements CommandLineRunner {
 			).accept(
 				MediaType.APPLICATION_JSON
 			).header(
-				HttpHeaders.AUTHORIZATION,
-				_liferayOAuth2AccessTokenManager.getAuthorization(
-					"liferay-customer-etc-cron-oauth-application-headless-server")
+				HttpHeaders.AUTHORIZATION, _getAuthorization()
 			).retrieve(
 			).bodyToMono(
 				String.class
@@ -117,14 +117,18 @@ public class CustomerCommandLineRunner implements CommandLineRunner {
 			).accept(
 				MediaType.APPLICATION_JSON
 			).header(
-				HttpHeaders.AUTHORIZATION,
-				_liferayOAuth2AccessTokenManager.getAuthorization(
-					"liferay-customer-etc-spring-boot-oauth-application-headless-server")
+				HttpHeaders.AUTHORIZATION, _getAuthorization()
 			).retrieve(
 			).bodyToMono(
 				String.class
 			).block();
 		}
+	}
+
+	private String _getAuthorization() {
+		return _liferayOAuth2AccessTokenManager.getAuthorization(
+			"liferay-customer-etc-spring-boot-oauth-application-headless-" +
+				"server");
 	}
 
 	private static final Log _log = LogFactory.getLog(
