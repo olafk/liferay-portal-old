@@ -35,39 +35,27 @@ public class CaptchaResourceTest extends BaseCaptchaResourceTestCase {
 	public void testGetCaptchaChallenge() throws Exception {
 		CaptchaResource.Builder builder = CaptchaResource.builder();
 
-		CaptchaResource captchaResourceForGuestAccess = builder.build();
+		CaptchaResource captchaResource = builder.build();
 
-		Captcha captcha = captchaResourceForGuestAccess.getCaptchaChallenge();
+		Captcha captcha = captchaResource.getCaptchaChallenge();
 
-		String token = captcha.getToken();
-
-		Assert.assertNotNull("CaptchaToken was not returned", token);
+		Assert.assertNotNull(captcha.getToken());
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-			EncryptorUtil.decrypt(testCompany.getKeyObj(), token));
+			EncryptorUtil.decrypt(testCompany.getKeyObj(), captcha.getToken()));
 
-		Assert.assertNotNull(
-			"Decrypted captcha token does not include the captcha answer",
-			jsonObject.get("answer"));
+		Assert.assertNotNull(jsonObject.get("answer"));
 
 		Assert.assertTrue(
-			"Decrypted captcha token does not include a future expiry time",
 			(GetterUtil.getLong(jsonObject.get("expiryTime")) - 1000L) >
 				System.currentTimeMillis());
 
-		String base64Header = "data:image/png;base64,";
-		String base64CaptchaImage = captcha.getImage();
+		String image = captcha.getImage();
+		String prefix = "data:image/png;base64,";
 
-		Assert.assertEquals(
-			"Expected image data to start with \"" + base64Header + "\"",
-			base64Header,
-			base64CaptchaImage.substring(0, base64Header.length()));
-
+		Assert.assertEquals(prefix, image.substring(0, prefix.length()));
 		Assert.assertTrue(
-			"Invalid Base64 encoded image data returned",
-			Base64.decode(
-				base64CaptchaImage.substring(base64Header.length())).length >
-					0);
+			Base64.decode(image.substring(prefix.length())).length > 0);
 	}
 
 	@Override
@@ -98,27 +86,27 @@ public class CaptchaResourceTest extends BaseCaptchaResourceTestCase {
 	}
 
 	private void _assertStatus(
-			String captchaToken, String answer, int status,
+			String token, String answer, int statusCode,
 			CaptchaResource captchaResource)
 		throws Exception {
 
 		Captcha captcha = new Captcha();
 
-		captcha.setToken(captchaToken);
 		captcha.setAnswer(answer);
+		captcha.setToken(token);
 
 		HttpInvoker.HttpResponse httpResponse =
 			captchaResource.postCaptchaResponseHttpResponse(captcha);
 
-		Assert.assertEquals(status, httpResponse.getStatusCode());
+		Assert.assertEquals(statusCode, httpResponse.getStatusCode());
 	}
 
 	private String _getToken() throws Exception {
 		CaptchaResource.Builder builder = CaptchaResource.builder();
 
-		CaptchaResource captchaResourceForGuestAccess = builder.build();
+		CaptchaResource captchaResource = builder.build();
 
-		Captcha captcha = captchaResourceForGuestAccess.getCaptchaChallenge();
+		Captcha captcha = captchaResource.getCaptchaChallenge();
 
 		return captcha.getToken();
 	}

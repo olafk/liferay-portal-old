@@ -93,13 +93,13 @@ public class CaptchaResourceImpl extends BaseCaptchaResourceImpl {
 		long expiryTime = jsonObject.getLong("expiryTime");
 
 		if (expiryTime < System.currentTimeMillis()) {
-			throw new CaptchaTextException("Expired captcha");
+			throw new CaptchaTextException("Captcha is expired");
 		}
 
 		if (!StringUtil.equalsIgnoreCase(
 				jsonObject.getString("answer"), captcha.getAnswer())) {
 
-			throw new CaptchaTextException("Invalid answer");
+			throw new CaptchaTextException("Answer is invalid");
 		}
 	}
 
