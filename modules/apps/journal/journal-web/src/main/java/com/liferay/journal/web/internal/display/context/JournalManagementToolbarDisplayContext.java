@@ -1063,9 +1063,9 @@ public class JournalManagementToolbarDisplayContext
 								() -> {
 									if (FeatureFlagManagerUtil.isEnabled(
 											"LPS-196768") &&
-										(_journalDisplayContext.isSearch() ||
-										 _journalDisplayContext.
-											 isFilterApplied())) {
+										(_journalDisplayContext.
+											isFilterApplied() ||
+										 _journalDisplayContext.isSearch())) {
 
 										return PortletURLBuilder.
 											createRenderURL(
