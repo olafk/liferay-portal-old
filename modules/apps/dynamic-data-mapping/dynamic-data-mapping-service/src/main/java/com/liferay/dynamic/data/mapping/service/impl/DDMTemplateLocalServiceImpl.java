@@ -419,8 +419,8 @@ public class DDMTemplateLocalServiceImpl
 
 		// Template
 
-		if (!PortalInstances.isCurrentCompanyInDeletionProcess() &&
-			!GroupThreadLocal.isDeleteInProcess()) {
+		if (!GroupThreadLocal.isDeleteInProcess() &&
+			!PortalInstances.isCurrentCompanyInDeletionProcess()) {
 
 			int count = _ddmTemplateLinkPersistence.countByTemplateId(
 				template.getTemplateId());
