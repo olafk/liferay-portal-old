@@ -445,7 +445,7 @@ public class IndexHelperImpl implements IndexHelper {
 			new UpdateIndexSettingsIndexRequest(indexName);
 
 		updateIndexSettingsIndexRequest.setSettings(
-			"{\"index\":{\"max_result_window\": " + maxResultWindow + "}}");
+			"{\"index\": {\"max_result_window\": " + maxResultWindow + "}}");
 
 		_searchEngineAdapter.execute(updateIndexSettingsIndexRequest);
 
