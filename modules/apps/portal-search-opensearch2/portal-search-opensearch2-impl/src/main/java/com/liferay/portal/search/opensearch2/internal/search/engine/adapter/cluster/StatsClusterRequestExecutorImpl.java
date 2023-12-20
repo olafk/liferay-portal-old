@@ -49,7 +49,6 @@ public class StatsClusterRequestExecutorImpl
 			ClusterFileSystem clusterFileSystem = clusterNodes.fs();
 
 			long availableInBytes = clusterFileSystem.availableInBytes();
-
 			long totalInBytes = clusterFileSystem.totalInBytes();
 
 			return new StatsClusterResponse(
