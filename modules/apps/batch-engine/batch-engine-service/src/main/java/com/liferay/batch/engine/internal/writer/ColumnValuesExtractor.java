@@ -36,11 +36,11 @@ import java.util.Set;
 public class ColumnValuesExtractor {
 
 	public ColumnValuesExtractor(
-		Map<String, ObjectValuePair<Field, Method>> fieldMethodPairsMap,
+		Map<String, ObjectValuePair<Field, Method>> fieldNameObjectValuePairs,
 		List<String> fieldNames) {
 
 		_columnDescriptors = _getColumnDescriptors(
-			fieldMethodPairsMap, fieldNames, 0, null);
+			fieldNameObjectValuePairs, fieldNames, 0, null);
 	}
 
 	public List<Object[]> extractValues(Object item)
@@ -115,7 +115,7 @@ public class ColumnValuesExtractor {
 	}
 
 	private ColumnDescriptor[] _getColumnDescriptors(
-		Map<String, ObjectValuePair<Field, Method>> fieldMethodPairsMap,
+		Map<String, ObjectValuePair<Field, Method>> fieldNameObjectValuePairs,
 		Collection<String> fieldNames, int masterIndex,
 		ColumnDescriptor parentColumnDescriptor) {
 
@@ -125,13 +125,13 @@ public class ColumnValuesExtractor {
 
 		for (String fieldName : fieldNames) {
 			ObjectValuePair<Field, Method> objectValuePair =
-				fieldMethodPairsMap.get(fieldName);
+				fieldNameObjectValuePairs.get(fieldName);
 
 			if (objectValuePair == null) {
 				columnDescriptors[localIndex] = ColumnDescriptor._from(
 					null, fieldName, masterIndex++, null,
 					parentColumnDescriptor,
-					_getUnsafeFunction(fieldMethodPairsMap, fieldName));
+					_getUnsafeFunction(fieldNameObjectValuePairs, fieldName));
 
 				localIndex++;
 
@@ -143,7 +143,7 @@ public class ColumnValuesExtractor {
 			columnDescriptors[localIndex] = ColumnDescriptor._from(
 				field, field.getName(), masterIndex++,
 				objectValuePair.getValue(), parentColumnDescriptor,
-				_getUnsafeFunction(fieldMethodPairsMap, fieldName));
+				_getUnsafeFunction(fieldNameObjectValuePairs, fieldName));
 
 			Class<?> fieldClass = field.getType();
 
@@ -205,11 +205,11 @@ public class ColumnValuesExtractor {
 
 	private UnsafeFunction<Object, Object, ReflectiveOperationException>
 		_getUnsafeFunction(
-			Map<String, ObjectValuePair<Field, Method>> fieldMethodPairsMap,
+			Map<String, ObjectValuePair<Field, Method>> fieldNameObjectValuePairs,
 			String fieldName) {
 
 		ObjectValuePair<Field, Method> objectValuePair =
-			fieldMethodPairsMap.get(fieldName);
+			fieldNameObjectValuePairs.get(fieldName);
 
 		if (objectValuePair != null) {
 			Field field = objectValuePair.getKey();
@@ -322,7 +322,7 @@ public class ColumnValuesExtractor {
 		}
 
 		ObjectValuePair<Field, Method> propertiesObjectValuePair =
-			fieldMethodPairsMap.get("properties");
+			fieldNameObjectValuePairs.get("properties");
 
 		if (!ItemClassIndexUtil.isObjectEntryProperties(
 				propertiesObjectValuePair)) {

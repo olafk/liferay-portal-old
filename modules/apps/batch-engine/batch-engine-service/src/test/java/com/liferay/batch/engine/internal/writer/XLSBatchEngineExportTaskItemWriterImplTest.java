@@ -106,7 +106,7 @@ public class XLSBatchEngineExportTaskItemWriterImplTest
 
 					if (index == -1) {
 						ObjectValuePair<Field, Method> objectValuePair =
-							fieldMethodPairsMap.get(fieldName);
+							fieldNameObjectValuePairs.get(fieldName);
 
 						Method method = objectValuePair.getValue();
 
@@ -114,7 +114,7 @@ public class XLSBatchEngineExportTaskItemWriterImplTest
 					}
 					else {
 						ObjectValuePair<Field, Method> objectValuePair =
-							fieldMethodPairsMap.get(
+							fieldNameObjectValuePairs.get(
 								fieldName.substring(0, index));
 
 						Method method = objectValuePair.getValue();
@@ -228,7 +228,7 @@ public class XLSBatchEngineExportTaskItemWriterImplTest
 		try (XLSBatchEngineExportTaskItemWriterImpl
 				xlsBatchEngineExportTaskItemWriterImpl =
 					new XLSBatchEngineExportTaskItemWriterImpl(
-						fieldMethodPairsMap, fieldNames,
+						fieldNameObjectValuePairs, fieldNames,
 						unsyncByteArrayOutputStream)) {
 
 			for (Item[] items : getItemGroups()) {

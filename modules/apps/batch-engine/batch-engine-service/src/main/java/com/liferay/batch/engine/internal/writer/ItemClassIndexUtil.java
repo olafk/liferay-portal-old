@@ -42,16 +42,16 @@ public class ItemClassIndexUtil {
 
 		Queue<Class<?>> queue = new LinkedList<>();
 
-		Map<String, ObjectValuePair<Field, Method>> fieldMethodPairsMap =
-			_fieldMethodPairsMap.computeIfAbsent(
+		Map<String, ObjectValuePair<Field, Method>> fieldNameObjectValuePairs =
+			_fieldNameObjectValuePairs.computeIfAbsent(
 				itemClass, clazz -> _index(clazz, queue));
 
 		while ((itemClass = queue.poll()) != null) {
-			_fieldMethodPairsMap.computeIfAbsent(
+			_fieldNameObjectValuePairs.computeIfAbsent(
 				itemClass, clazz -> _index(clazz, queue));
 		}
 
-		return fieldMethodPairsMap;
+		return fieldNameObjectValuePairs;
 	}
 
 	public static boolean isIterable(Class<?> valueClass) {
@@ -164,7 +164,7 @@ public class ItemClassIndexUtil {
 	private static Map<String, ObjectValuePair<Field, Method>> _index(
 		Class<?> clazz, Queue<Class<?>> queue) {
 
-		Map<String, ObjectValuePair<Field, Method>> fieldMethodPairsMap =
+		Map<String, ObjectValuePair<Field, Method>> fieldNameObjectValuePairs =
 			new HashMap<>();
 
 		while (clazz != Object.class) {
@@ -187,7 +187,7 @@ public class ItemClassIndexUtil {
 					continue;
 				}
 
-				fieldMethodPairsMap.put(
+				fieldNameObjectValuePairs.put(
 					name,
 					new ObjectValuePair<>(
 						field, _getGetterMethod(clazz, field, name)));
@@ -212,12 +212,12 @@ public class ItemClassIndexUtil {
 			clazz = clazz.getSuperclass();
 		}
 
-		return fieldMethodPairsMap;
+		return fieldNameObjectValuePairs;
 	}
 
 	private static final Map
 		<Class<?>, Map<String, ObjectValuePair<Field, Method>>>
-			_fieldMethodPairsMap = new ConcurrentReferenceKeyHashMap<>(
+			_fieldNameObjectValuePairs = new ConcurrentReferenceKeyHashMap<>(
 				new ConcurrentReferenceValueHashMap<>(
 					FinalizeManager.WEAK_REFERENCE_FACTORY),
 				FinalizeManager.WEAK_REFERENCE_FACTORY);

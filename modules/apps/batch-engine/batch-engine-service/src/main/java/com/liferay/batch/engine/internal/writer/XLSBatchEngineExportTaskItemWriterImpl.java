@@ -34,7 +34,7 @@ public class XLSBatchEngineExportTaskItemWriterImpl
 	implements BatchEngineExportTaskItemWriter {
 
 	public XLSBatchEngineExportTaskItemWriterImpl(
-		Map<String, ObjectValuePair<Field, Method>> fieldMethodPairsMap,
+		Map<String, ObjectValuePair<Field, Method>> fieldNameObjectValuePairs,
 		List<String> fieldNames, OutputStream outputStream) {
 
 		if (fieldNames.isEmpty()) {
@@ -44,7 +44,7 @@ public class XLSBatchEngineExportTaskItemWriterImpl
 		_outputStream = outputStream;
 
 		_columnValuesExtractor = new ColumnValuesExtractor(
-			fieldMethodPairsMap, fieldNames);
+			fieldNameObjectValuePairs, fieldNames);
 
 		_sheet = _workbook.createSheet();
 

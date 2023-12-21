@@ -124,7 +124,7 @@ public class CSVBatchEngineExportTaskItemWriterImplTest
 				String fieldName = fieldNames.get(i);
 
 				ObjectValuePair<Field, Method> objectValuePair =
-					fieldMethodPairsMap.get(fieldName);
+					fieldNameObjectValuePairs.get(fieldName);
 
 				Field field = objectValuePair.getKey();
 				Method method = objectValuePair.getValue();
@@ -192,7 +192,7 @@ public class CSVBatchEngineExportTaskItemWriterImplTest
 		try (CSVBatchEngineExportTaskItemWriterImpl
 				csvBatchEngineExportTaskItemWriterImpl =
 					new CSVBatchEngineExportTaskItemWriterImpl(
-						StringPool.COMMA, fieldMethodPairsMap, fieldNames,
+						StringPool.COMMA, fieldNameObjectValuePairs, fieldNames,
 						unsyncByteArrayOutputStream, parameters)) {
 
 			for (Item[] items : getItemGroups()) {

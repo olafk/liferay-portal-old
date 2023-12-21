@@ -34,12 +34,12 @@ public class BatchEngineExportTaskItemWriterBuilder {
 	}
 
 	public BatchEngineExportTaskItemWriter build() throws Exception {
-		Map<String, ObjectValuePair<Field, Method>> fieldMethodPairsMap =
+		Map<String, ObjectValuePair<Field, Method>> fieldNameObjectValuePairs =
 			ItemClassIndexUtil.index(_itemClass);
 
 		if (_batchEngineTaskContentType == BatchEngineTaskContentType.CSV) {
 			return new CSVBatchEngineExportTaskItemWriterImpl(
-				_csvFileColumnDelimiter, fieldMethodPairsMap, _fieldNames,
+				_csvFileColumnDelimiter, fieldNameObjectValuePairs, _fieldNames,
 				_outputStream, _parameters);
 		}
 
@@ -57,7 +57,7 @@ public class BatchEngineExportTaskItemWriterBuilder {
 			(_batchEngineTaskContentType == BatchEngineTaskContentType.XLSX)) {
 
 			return new XLSBatchEngineExportTaskItemWriterImpl(
-				fieldMethodPairsMap, _fieldNames, _outputStream);
+				fieldNameObjectValuePairs, _fieldNames, _outputStream);
 		}
 
 		if (_batchEngineTaskContentType == BatchEngineTaskContentType.JSONT) {
