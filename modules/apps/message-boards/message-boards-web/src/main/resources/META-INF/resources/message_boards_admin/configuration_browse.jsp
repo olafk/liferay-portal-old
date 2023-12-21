@@ -8,9 +8,9 @@
 <%@ include file="/message_boards/init.jsp" %>
 
 <%
-MBConfigurationDisplayContext mbConfigurationDisplayContext = new MBConfigurationDisplayContext(request, renderRequest, renderResponse);
-
 Set<Locale> locales = LanguageUtil.getAvailableLocales(themeDisplay.getSiteGroupId());
+
+MBConfigurationDisplayContext mbConfigurationDisplayContext = new MBConfigurationDisplayContext(request, renderRequest, renderResponse);
 
 mbGroupServiceSettings = MBGroupServiceSettings.getInstance(themeDisplay.getSiteGroupId(), request.getParameterMap());
 
