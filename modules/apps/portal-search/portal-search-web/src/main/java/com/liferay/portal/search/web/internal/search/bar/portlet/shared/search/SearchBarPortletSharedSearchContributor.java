@@ -65,7 +65,6 @@ public class SearchBarPortletSharedSearchContributor
 					SearchContextAttributes.
 						ATTRIBUTE_KEY_CONTRIBUTE_TUNING_RANKINGS,
 					Boolean.TRUE);
-
 				searchContext.setIncludeInternalAssetCategories(false);
 			});
 
