@@ -40,9 +40,9 @@ import com.liferay.object.service.ObjectEntryLocalService;
 import com.liferay.object.service.ObjectFieldLocalService;
 import com.liferay.object.service.ObjectRelationshipLocalService;
 import com.liferay.object.web.internal.info.item.ObjectEntryInfoItemFields;
+import com.liferay.object.web.internal.model.ProxyObjectEntry;
 import com.liferay.object.web.internal.util.ObjectEntryUtil;
 import com.liferay.object.web.internal.util.ObjectFieldDBTypeUtil;
-import com.liferay.object.web.internal.util.ProxyObjectEntry;
 import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.StringBundler;
@@ -321,8 +321,7 @@ public class ObjectEntryInfoItemFieldValuesProvider
 
 		objectEntryFieldValues.addAll(
 			_getObjectFieldsInfoFieldValues(
-				_getObjectEntry(
-					_objectDefinition, objectEntry, themeDisplay),
+				_getObjectEntry(_objectDefinition, objectEntry, themeDisplay),
 				_objectFieldLocalService.getObjectFields(
 					objectEntry.getObjectDefinitionId(), false),
 				themeDisplay));
