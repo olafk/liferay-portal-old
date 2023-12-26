@@ -5,7 +5,6 @@
 
 package com.liferay.portal.service.impl;
 
-import com.liferay.petra.sql.dsl.DSLQueryFactoryUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.change.tracking.CTAware;
@@ -21,7 +20,6 @@ import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.kernel.model.UserNotificationEvent;
-import com.liferay.portal.kernel.model.UserNotificationEventTable;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
@@ -533,28 +531,6 @@ public class UserNotificationEventLocalServiceImpl
 
 	@Override
 	public int getUserNotificationEventsCount(
-		long userId, String type, long timestamp, boolean delivered) {
-
-		return dslQueryCount(
-			DSLQueryFactoryUtil.countDistinct(
-				UserNotificationEventTable.INSTANCE.userNotificationEventId
-			).from(
-				UserNotificationEventTable.INSTANCE
-			).where(
-				UserNotificationEventTable.INSTANCE.userId.eq(
-					userId
-				).and(
-					UserNotificationEventTable.INSTANCE.type.eq(type)
-				).and(
-					UserNotificationEventTable.INSTANCE.timestamp.gte(timestamp)
-				).and(
-					UserNotificationEventTable.INSTANCE.delivered.eq(delivered)
-				)
-			));
-	}
-
-	@Override
-	public int getUserNotificationEventsCount(
 		long userId, String type, int deliveryType, boolean delivered) {
 
 		return userNotificationEventPersistence.countByU_T_DT_D(
@@ -568,6 +544,14 @@ public class UserNotificationEventLocalServiceImpl
 
 		return userNotificationEventPersistence.countByU_T_DT_D_A(
 			userId, type, deliveryType, delivered, archived);
+	}
+
+	@Override
+	public int getUserNotificationEventsCount(
+		long userId, String type, long timestamp, boolean delivered) {
+
+		return userNotificationEventPersistence.countByU_T_GteT_D(
+			userId, type, timestamp, delivered);
 	}
 
 	@Override
