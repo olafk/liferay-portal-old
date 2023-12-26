@@ -723,9 +723,7 @@ public class ObjectEntryServiceImpl extends ObjectEntryServiceBaseImpl {
 					StringBundler.concat(
 						"The limit of guest entries for ",
 						objectDefinition.getLabel(),
-						" has been reached and will no longer be accepted. ",
-						"Please contact the administrator for further ",
-						"assistance."),
+						" has been reached and will no longer be accepted"),
 					"the-limit-of-guest-entries-for-object-definition-has-" +
 						"been-reached-and-will-no-longer-be-accepted");
 			}
