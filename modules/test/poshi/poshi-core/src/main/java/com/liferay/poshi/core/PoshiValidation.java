@@ -1290,7 +1290,7 @@ public class PoshiValidation {
 				_exceptions.add(
 					new PoshiElementException(
 						poshiElement, "Parameter name ", nameAttributeValue,
-						" not required"));
+						" is not required"));
 			}
 		}
 
