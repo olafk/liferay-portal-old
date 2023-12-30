@@ -121,8 +121,8 @@ RankingPortletDisplayContext rankingPortletDisplayContext = (RankingPortletDispl
 				<portlet:param name="resultsRankingUid" value="<%= rankingEntryDisplayContext.getUid() %>" />
 				<portlet:param name="aliases" value="<%= rankingEntryDisplayContext.getAliases() %>" />
 				<portlet:param name="companyId" value="<%= String.valueOf(themeDisplay.getCompanyId()) %>" />
-				<portlet:param name="status" value="<%= rankingEntryDisplayContext.getStatus() %>" />
 				<portlet:param name="keywords" value="<%= rankingEntryDisplayContext.getKeywords() %>" />
+				<portlet:param name="status" value="<%= rankingEntryDisplayContext.getStatus() %>" />
 			</portlet:renderURL>
 
 			<liferay-ui:search-container-column-text

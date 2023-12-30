@@ -56,10 +56,10 @@ public class SearchRankingRequest {
 	public SearchRankingResponse search() {
 		SearchSearchRequest searchSearchRequest = new SearchSearchRequest();
 
-		BooleanQuery query = _getQuery();
+		BooleanQuery booleanQuery = _getBooleanQuery();
 
-		if (query.hasClauses()) {
-			searchSearchRequest.setQuery(query);
+		if (booleanQuery.hasClauses()) {
+			searchSearchRequest.setQuery(booleanQuery);
 		}
 		else {
 			searchSearchRequest.setQuery(_queries.matchAll());
@@ -97,7 +97,7 @@ public class SearchRankingRequest {
 			"search-ranking-order-by-type", "asc");
 	}
 
-	private BooleanQuery _getQuery() {
+	private BooleanQuery _getBooleanQuery() {
 		BooleanQuery booleanQuery = _queries.booleanQuery();
 		String keywords = _searchContext.getKeywords();
 		String scope = GetterUtil.getString(
