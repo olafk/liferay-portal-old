@@ -85,18 +85,6 @@ public class SearchRankingRequest {
 		return searchRankingResponse;
 	}
 
-	private String _getOrderByCol() {
-		return SearchOrderByUtil.getOrderByCol(
-			_httpServletRequest, ResultRankingsPortletKeys.RESULT_RANKINGS,
-			"search-ranking-order-by-col", RankingFields.QUERY_STRING_KEYWORD);
-	}
-
-	private String _getOrderByType() {
-		return SearchOrderByUtil.getOrderByType(
-			_httpServletRequest, ResultRankingsPortletKeys.RESULT_RANKINGS,
-			"search-ranking-order-by-type", "asc");
-	}
-
 	private BooleanQuery _getBooleanQuery() {
 		BooleanQuery booleanQuery = _queries.booleanQuery();
 		String keywords = _searchContext.getKeywords();
@@ -144,6 +132,18 @@ public class SearchRankingRequest {
 		}
 
 		return booleanQuery;
+	}
+
+	private String _getOrderByCol() {
+		return SearchOrderByUtil.getOrderByCol(
+			_httpServletRequest, ResultRankingsPortletKeys.RESULT_RANKINGS,
+			"search-ranking-order-by-col", RankingFields.QUERY_STRING_KEYWORD);
+	}
+
+	private String _getOrderByType() {
+		return SearchOrderByUtil.getOrderByType(
+			_httpServletRequest, ResultRankingsPortletKeys.RESULT_RANKINGS,
+			"search-ranking-order-by-type", "asc");
 	}
 
 	private Collection<Sort> _getSorts() {
