@@ -142,11 +142,10 @@ public class KoroneikiRestController extends BaseRestController {
 				);
 			}
 
-			String dxpLicenseUsageType = _getDXPLicenseUsageType(
-				orderItem.getOptions());
+			String name = _getDXPLicenseUsageType(orderItem.getOptions());
 
-			if (dxpLicenseUsageType == null) {
-				dxpLicenseUsageType = orderItem.getSkuExternalReferenceCode();
+			if (name == null) {
+				name = orderItem.getSkuExternalReferenceCode();
 			}
 
 			int provisionedCount = 0;
@@ -177,7 +176,7 @@ public class KoroneikiRestController extends BaseRestController {
 				).put(
 					"endDate", endDate
 				).put(
-					"name", dxpLicenseUsageType
+					"name", name
 				).put(
 					"perpetual", productPurchase.getPerpetual()
 				).put(
