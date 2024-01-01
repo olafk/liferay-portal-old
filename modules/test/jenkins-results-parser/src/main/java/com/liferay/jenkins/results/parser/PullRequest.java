@@ -960,10 +960,10 @@ public class PullRequest {
 		}
 
 		@Override
-		public int compareTo(Comment otherComment) {
+		public int compareTo(Comment comment) {
 			Date createdDate = getCreatedDate();
 
-			return createdDate.compareTo(otherComment.getCreatedDate());
+			return createdDate.compareTo(comment.getCreatedDate());
 		}
 
 		public String getBody() {
