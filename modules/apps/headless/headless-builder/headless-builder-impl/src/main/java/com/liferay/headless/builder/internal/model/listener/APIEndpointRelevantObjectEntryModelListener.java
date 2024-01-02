@@ -281,9 +281,8 @@ public class APIEndpointRelevantObjectEntryModelListener
 
 		Map<String, Serializable> values = objectEntry.getValues();
 
-		String pathString = (String)values.get("path");
-
 		String pathParameter = (String)values.get("pathParameter");
+		String pathString = (String)values.get("path");
 
 		if (Objects.equals(
 				APIApplication.Endpoint.RetrieveType.parse(
