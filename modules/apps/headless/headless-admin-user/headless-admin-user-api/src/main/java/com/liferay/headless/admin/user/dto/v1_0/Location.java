@@ -136,6 +136,7 @@ public class Location implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	protected String addressCountryCode;
 
+	@JsonIgnore
 	private Supplier<String> _addressCountryCodeSupplier;
 
 	@Schema
@@ -266,6 +267,7 @@ public class Location implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	protected String addressRegionCode;
 
+	@JsonIgnore
 	private Supplier<String> _addressRegionCodeSupplier;
 
 	@Schema(description = "The location's ID.")

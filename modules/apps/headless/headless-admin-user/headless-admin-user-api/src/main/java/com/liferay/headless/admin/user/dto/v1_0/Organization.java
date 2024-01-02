@@ -477,6 +477,7 @@ public class Organization implements Serializable {
 	@JsonProperty(access = JsonProperty.Access.READ_WRITE)
 	protected Long imageId;
 
+	@JsonIgnore
 	private Supplier<Long> _imageIdSupplier;
 
 	@Schema(description = "A list of keywords describing the organization.")
