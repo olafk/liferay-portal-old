@@ -295,7 +295,7 @@ public interface ObjectStateFlowLocalService
 		throws PortalException;
 
 	public void updateObjectStateFlow(
-			long objectStateFlowId, long userId, List<ObjectState> objectStates)
+			long userId, long objectStateFlowId, List<ObjectState> objectStates)
 		throws PortalException;
 
 	/**

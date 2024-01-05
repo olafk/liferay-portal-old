@@ -402,12 +402,12 @@ public class ObjectStateFlowLocalServiceWrapper
 
 	@Override
 	public void updateObjectStateFlow(
-			long objectStateFlowId, long userId,
+			long userId, long objectStateFlowId,
 			java.util.List<com.liferay.object.model.ObjectState> objectStates)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		_objectStateFlowLocalService.updateObjectStateFlow(
-			objectStateFlowId, userId, objectStates);
+			userId, objectStateFlowId, objectStates);
 	}
 
 	/**

@@ -351,12 +351,12 @@ public class ObjectStateFlowLocalServiceUtil {
 	}
 
 	public static void updateObjectStateFlow(
-			long objectStateFlowId, long userId,
+			long userId, long objectStateFlowId,
 			List<com.liferay.object.model.ObjectState> objectStates)
 		throws PortalException {
 
 		getService().updateObjectStateFlow(
-			objectStateFlowId, userId, objectStates);
+			userId, objectStateFlowId, objectStates);
 	}
 
 	/**
