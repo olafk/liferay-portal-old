@@ -286,7 +286,7 @@ public class ObjectEntryOpenAPIResourceImpl
 			};
 		}
 
-		HashMap<String, Object> extensionMap =
+		return new DTOProperty(
 			HashMapBuilder.<String, Object>put(
 				"x-batch-unsupported-formats",
 				() -> {
@@ -311,10 +311,8 @@ public class ObjectEntryOpenAPIResourceImpl
 				}
 			).put(
 				"x-parent-map", "properties"
-			).build();
-
-		return new DTOProperty(
-			extensionMap, objectField.getName(), objectField.getDBType()) {
+			).build(),
+			objectField.getName(), objectField.getDBType()) {
 
 			{
 				setRequired(objectField.isRequired());
