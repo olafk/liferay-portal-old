@@ -934,7 +934,7 @@ public class ObjectEntryOpenAPIContributor extends BaseOpenAPIContributor {
 	}
 
 	private final boolean _addRelatedSchemas;
-	private final HashMap<String, String> _batchUnsupportedFormats =
+	private final Map<String, String> _batchUnsupportedFormats =
 		HashMapBuilder.put(
 			"actions", "CSV"
 		).put(
