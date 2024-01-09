@@ -15,5 +15,3 @@ ${dataFactory.toInsertSQL(dataFactory.newVirtualHostModel())}
 <#include "roles.ftl">
 
 <#include "default_groups.ftl">
-
-<#include "guest_user.ftl">
