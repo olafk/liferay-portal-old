@@ -726,7 +726,7 @@ public class ObjectEntryServiceImpl extends ObjectEntryServiceBaseImpl {
 						"The limit of guest entries for ",
 						objectDefinition.getLabel(
 							objectDefinition.getDefaultLanguageId()),
-						" has been reached and will no longer be accepted."),
+						" has been reached and will no longer be accepted"),
 					"the-limit-of-guest-entries-for-object-definition-has-" +
 						"been-reached-and-will-no-longer-be-accepted",
 					objectDefinition.getLabel(

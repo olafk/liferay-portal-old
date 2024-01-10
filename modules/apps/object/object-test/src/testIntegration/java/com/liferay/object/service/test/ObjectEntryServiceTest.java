@@ -699,7 +699,7 @@ public class ObjectEntryServiceTest {
 					"The limit of guest entries for ",
 					_objectDefinition.getLabel(
 						_objectDefinition.getDefaultLanguageId()),
-					" has been reached and will no longer be accepted."),
+					" has been reached and will no longer be accepted"),
 				() -> _objectEntryService.addObjectEntry(
 					0, _objectDefinition.getObjectDefinitionId(),
 					Collections.emptyMap(),
@@ -732,7 +732,7 @@ public class ObjectEntryServiceTest {
 					"The limit of guest entries for ",
 					_objectDefinition.getLabel(
 						_objectDefinition.getDefaultLanguageId()),
-					" has been reached and will no longer be accepted."),
+					" has been reached and will no longer be accepted"),
 				() -> _objectEntryService.addObjectEntry(
 					0, _objectDefinition.getObjectDefinitionId(),
 					Collections.emptyMap(),
@@ -800,7 +800,7 @@ public class ObjectEntryServiceTest {
 					"The limit of guest entries for ",
 					_objectDefinition.getLabel(
 						_objectDefinition.getDefaultLanguageId()),
-					" has been reached and will no longer be accepted."),
+					" has been reached and will no longer be accepted"),
 				() -> _objectEntryService.addObjectEntry(
 					0, _objectDefinition.getObjectDefinitionId(),
 					Collections.emptyMap(),
