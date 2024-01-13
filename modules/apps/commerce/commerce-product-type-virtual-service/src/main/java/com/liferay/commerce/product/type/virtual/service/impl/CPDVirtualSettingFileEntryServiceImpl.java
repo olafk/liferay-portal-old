@@ -5,7 +5,6 @@
 
 package com.liferay.commerce.product.type.virtual.service.impl;
 
-import com.liferay.commerce.product.exception.NoSuchCPDefinitionException;
 import com.liferay.commerce.product.model.CPDefinition;
 import com.liferay.commerce.product.model.CPInstance;
 import com.liferay.commerce.product.model.CommerceCatalog;
@@ -143,12 +142,8 @@ public class CPDVirtualSettingFileEntryServiceImpl
 	private void _checkCommerceCatalog(long cpDefinitionId, String actionId)
 		throws PortalException {
 
-		CPDefinition cpDefinition = _cpDefinitionLocalService.fetchCPDefinition(
+		CPDefinition cpDefinition = _cpDefinitionLocalService.getCPDefinition(
 			cpDefinitionId);
-
-		if (cpDefinition == null) {
-			throw new NoSuchCPDefinitionException();
-		}
 
 		CommerceCatalog commerceCatalog =
 			_commerceCatalogLocalService.fetchCommerceCatalogByGroupId(
