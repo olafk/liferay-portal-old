@@ -73,8 +73,8 @@ public class EditMVCActionCommand extends BaseMVCActionCommand {
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
-		if (!permissionChecker.isOmniadmin() &&
-			!permissionChecker.isCompanyAdmin()) {
+		if (!permissionChecker.isCompanyAdmin() &&
+			!permissionChecker.isOmniadmin()) {
 
 			SessionErrors.add(
 				actionRequest,
