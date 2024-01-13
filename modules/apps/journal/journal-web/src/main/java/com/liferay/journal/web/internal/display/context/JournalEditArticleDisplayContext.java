@@ -1213,9 +1213,7 @@ public class JournalEditArticleDisplayContext {
 		return timeZone.getDisplayName(false, TimeZone.SHORT);
 	}
 
-	public Map<String, Object> getValues(DDMStructure ddmStructure)
-		throws PortalException {
-
+	public Map<String, Object> getValues() throws PortalException {
 		DDMFormValuesToMapConverter ddmFormValuesToMapConverter =
 			(DDMFormValuesToMapConverter)_httpServletRequest.getAttribute(
 				DDMFormValuesToMapConverter.class.getName());
