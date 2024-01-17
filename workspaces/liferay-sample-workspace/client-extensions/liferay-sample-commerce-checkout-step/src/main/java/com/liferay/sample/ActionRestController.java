@@ -34,25 +34,21 @@ public class ActionRestController extends BaseRestController {
 
 		JSONObject jsonObject = new JSONObject(json);
 
-		long commerceOrderId = jsonObject.getLong("commerceOrderId");
-		String pon = jsonObject.getString("pon");
-
-		JSONObject patchPONJSONObject = new JSONObject();
-
-		patchPONJSONObject.put("purchaseOrderNumber", pon);
-
 		String response = WebClient.create(
 			StringBundler.concat(
 				lxcDXPServerProtocol, "://", lxcDXPMainDomain,
 				"/o/headless-commerce-delivery-cart/v1.0/carts/",
-				commerceOrderId)
+				jsonObject.getLong("commerceOrderId"))
 		).patch(
 		).accept(
 			MediaType.APPLICATION_JSON
 		).contentType(
 			MediaType.APPLICATION_JSON
 		).bodyValue(
-			patchPONJSONObject.toString()
+			new JSONObject(
+			).put(
+				"purchaseOrderNumber", jsonObject.getString("pon")
+			).toString()
 		).header(
 			HttpHeaders.AUTHORIZATION, "Bearer " + jwt.getTokenValue()
 		).retrieve(
