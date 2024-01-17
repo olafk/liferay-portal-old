@@ -1079,15 +1079,14 @@ public class BundleSiteInitializerTest {
 					"test-data-definition-1");
 
 		Assert.assertEquals(
-			"Test Data Definition Name 1",
-			dataDefinition.getName(
+			"Test Data Definition Description 1",
+			dataDefinition.getDescription(
 			).get(
 				"en_US"
 			));
-
 		Assert.assertEquals(
-			"Test Data Definition Description 1",
-			dataDefinition.getDescription(
+			"Test Data Definition Name 1",
+			dataDefinition.getName(
 			).get(
 				"en_US"
 			));
@@ -1099,15 +1098,14 @@ public class BundleSiteInitializerTest {
 					"test-data-definition-2");
 
 		Assert.assertEquals(
-			"Test Data Definition Name 2",
-			dataDefinition.getName(
+			"Test Data Definition Description 2",
+			dataDefinition.getDescription(
 			).get(
 				"en_US"
 			));
-
 		Assert.assertEquals(
-			"Test Data Definition Description 2",
-			dataDefinition.getDescription(
+			"Test Data Definition Name 2",
+			dataDefinition.getName(
 			).get(
 				"en_US"
 			));
@@ -1129,15 +1127,14 @@ public class BundleSiteInitializerTest {
 					"test-data-definition-1");
 
 		Assert.assertEquals(
-			"Test Data Definition Name 1",
-			dataDefinition.getName(
+			"Test Data Definition Description 1",
+			dataDefinition.getDescription(
 			).get(
 				"en_US"
 			));
-
 		Assert.assertEquals(
-			"Test Data Definition Description 1",
-			dataDefinition.getDescription(
+			"Test Data Definition Name 1",
+			dataDefinition.getName(
 			).get(
 				"en_US"
 			));
@@ -1149,15 +1146,14 @@ public class BundleSiteInitializerTest {
 					"test-data-definition-2");
 
 		Assert.assertEquals(
-			"Test Data Definition Name 2 Update",
-			dataDefinition.getName(
+			"Test Data Definition Description 2 Update",
+			dataDefinition.getDescription(
 			).get(
 				"en_US"
 			));
-
 		Assert.assertEquals(
-			"Test Data Definition Description 2 Update",
-			dataDefinition.getDescription(
+			"Test Data Definition Name 2 Update",
+			dataDefinition.getName(
 			).get(
 				"en_US"
 			));
