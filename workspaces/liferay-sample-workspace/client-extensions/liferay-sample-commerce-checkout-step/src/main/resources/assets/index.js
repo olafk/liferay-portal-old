@@ -11,10 +11,11 @@ export default function CommerceCheckoutStep() {
 		'_com_liferay_commerce_checkout_web_internal_portlet_CommerceCheckoutPortlet_pon';
 
 	const newInput = document.createElement('input');
-	newInput.setAttribute('type', 'text');
-	newInput.setAttribute('name', inputName);
+
 	newInput.setAttribute('id', inputName);
+	newInput.setAttribute('name', inputName);
 	newInput.setAttribute('placeholder', 'Purchase order number');
+	newInput.setAttribute('type', 'text');
 
 	commerceCheckoutStepContainer.appendChild(newInput);
 }
