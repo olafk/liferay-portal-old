@@ -10,6 +10,6 @@ package com.liferay.commerce.client.extension.web.internal.util;
  */
 public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
-	public static final String RENDER_URL = "renderURL";
+	public static final String RENDER_URL = "RENDER_URL";
 
 }
