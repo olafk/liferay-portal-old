@@ -92,7 +92,7 @@ public class ViewObjectDefinitionsDisplayContext {
 	public List<FDSActionDropdownItem> getFDSActionDropdownItems()
 		throws Exception {
 
-		List<FDSActionDropdownItem> fdsActionDropdownItems = ListUtil.fromArray(
+		return ListUtil.fromArray(
 			new FDSActionDropdownItem(
 				getEditObjectDefinitionURL(), "view", "view",
 				LanguageUtil.get(_objectRequestHelper.getRequest(), "view"),
@@ -116,23 +116,17 @@ public class ViewObjectDefinitionsDisplayContext {
 				"export", "export",
 				LanguageUtil.get(
 					_objectRequestHelper.getRequest(), "export-as-json"),
-				"get", null, null));
-
-		fdsActionDropdownItems.add(
+				"get", null, null),
 			new FDSActionDropdownItem(
 				getPermissionsURL(ObjectDefinition.class.getName()),
 				"password-policies", "permissions",
 				LanguageUtil.get(
 					_objectRequestHelper.getRequest(), "permissions"),
-				"get", "permissions", "modal-permissions"));
-
-		fdsActionDropdownItems.add(
+				"get", "permissions", "modal-permissions"),
 			new FDSActionDropdownItem(
 				null, "trash", "deleteObjectDefinition",
 				LanguageUtil.get(_objectRequestHelper.getRequest(), "delete"),
 				"delete", "delete", null));
-
-		return fdsActionDropdownItems;
 	}
 
 	public String getImportObjectDefinitionURL() throws Exception {
