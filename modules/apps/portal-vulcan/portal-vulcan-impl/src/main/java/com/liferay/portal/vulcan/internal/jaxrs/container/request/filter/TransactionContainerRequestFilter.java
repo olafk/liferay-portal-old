@@ -134,36 +134,39 @@ public class TransactionContainerRequestFilter
 		extends AbstractPhaseInterceptor implements MessageObserver {
 
 		public void commit() {
-			if (_transactionStatusAdapter.isCompleted()) {
-				return;
+			try {
+				_transactionExecutor.commit(
+					_transactionAttributeAdapter, _transactionStatusAdapter);
 			}
-
-			_transactionExecutor.commit(
-				_transactionAttributeAdapter, _transactionStatusAdapter);
+			finally {
+				_complete = true;
+			}
 		}
 
 		@Override
 		public void handleFault(Message message) {
-			rollback("Rollback due to uncaught exception");
+			if (!_complete) {
+				rollback("Rollback due to uncaught exception");
+			}
 		}
 
 		@Override
 		public void handleMessage(Message message) {
-			rollback("Rollback due to uncaught exception");
+			if (!_complete) {
+				rollback("Rollback due to uncaught exception");
+			}
 		}
 
 		@Override
 		public void onMessage(Message message) {
-			rollback("Rollback due to uncaught exception");
+			if (!_complete) {
+				rollback("Rollback due to uncaught exception");
+			}
 
 			_messageObserver.onMessage(message);
 		}
 
 		public void rollback(String message) {
-			if (_transactionStatusAdapter.isCompleted()) {
-				return;
-			}
-
 			Exception exception = new Exception(message);
 
 			try {
@@ -177,6 +180,9 @@ public class TransactionContainerRequestFilter
 						"Unable to roll back the transaction", throwable);
 				}
 			}
+			finally {
+				_complete = true;
+			}
 		}
 
 		private TransactionCleanUpMessageObserver(
@@ -189,6 +195,7 @@ public class TransactionContainerRequestFilter
 			_transactionStatusAdapter = transactionStatusAdapter;
 		}
 
+		private boolean _complete;
 		private final MessageObserver _messageObserver;
 		private final TransactionStatusAdapter _transactionStatusAdapter;
 
