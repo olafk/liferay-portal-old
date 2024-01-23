@@ -187,9 +187,9 @@ public class VelocityManager extends BaseTemplateManager {
 	private String[] _filterRestrictedClasses(String[] restrictedClasses) {
 		if (JavaDetector.isJDK21()) {
 
-			// TODO: remove java.lang.Compiler from
-			// VelocityEngineConfiguration.restrictedClasses() and this method
-			// once fully upgraded to JDK21
+			// TODO Remove java.lang.Compiler from
+			// VelocityEngineConfiguration#restrictedClasses and this method
+			// once we fully upgrade to JDK 21
 
 			return ArrayUtil.remove(restrictedClasses, "java.lang.Compiler");
 		}
