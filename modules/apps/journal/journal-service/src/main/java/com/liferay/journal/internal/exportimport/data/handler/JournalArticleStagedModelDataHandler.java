@@ -1086,7 +1086,7 @@ public class JournalArticleStagedModelDataHandler
 					serviceContext);
 			}
 
-			if (_updateAsset(
+			if (_isUpdateAsset(
 					importedArticle.getGroupId(),
 					importedArticle.getArticleId(),
 					importedArticle.getVersion())) {
@@ -1740,7 +1740,7 @@ public class JournalArticleStagedModelDataHandler
 		}
 	}
 
-	private boolean _updateAsset(
+	private boolean _isUpdateAsset(
 		long groupId, String articleId, double version) {
 
 		JournalArticle article = _journalArticleLocalService.fetchLatestArticle(
