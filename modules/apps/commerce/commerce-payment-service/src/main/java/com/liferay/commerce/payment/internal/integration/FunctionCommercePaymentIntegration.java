@@ -32,6 +32,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.Future;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -61,17 +62,14 @@ public class FunctionCommercePaymentIntegration
 		throws PortalException {
 
 		try {
-			JSONObject jsonObject = _jsonFactory.createJSONObject(
-				new String(
-					_portalCatapult.launch(
-						commercePaymentEntry.getCompanyId(), Http.Method.POST,
-						_functionCommercePaymentIntegrationConfiguration.
-							oAuth2ApplicationExternalReferenceCode(),
-						_getPayloadJSONObject(commercePaymentEntry),
-						"/authorize", commercePaymentEntry.getUserId()
-					).get()));
-
-			_toCommercePaymentEntry(commercePaymentEntry, jsonObject);
+			_toCommercePaymentEntry(
+				commercePaymentEntry,
+				_portalCatapult.launch(
+					commercePaymentEntry.getCompanyId(), Http.Method.POST,
+					_functionCommercePaymentIntegrationConfiguration.
+						oAuth2ApplicationExternalReferenceCode(),
+					_getPayloadJSONObject(commercePaymentEntry), "/authorize",
+					commercePaymentEntry.getUserId()));
 		}
 		catch (Exception exception) {
 			_log.error(exception);
@@ -91,17 +89,14 @@ public class FunctionCommercePaymentIntegration
 		throws PortalException {
 
 		try {
-			JSONObject jsonObject = _jsonFactory.createJSONObject(
-				new String(
-					_portalCatapult.launch(
-						commercePaymentEntry.getCompanyId(), Http.Method.POST,
-						_functionCommercePaymentIntegrationConfiguration.
-							oAuth2ApplicationExternalReferenceCode(),
-						_getPayloadJSONObject(commercePaymentEntry), "/cancel",
-						commercePaymentEntry.getUserId()
-					).get()));
-
-			_toCommercePaymentEntry(commercePaymentEntry, jsonObject);
+			_toCommercePaymentEntry(
+				commercePaymentEntry,
+				_portalCatapult.launch(
+					commercePaymentEntry.getCompanyId(), Http.Method.POST,
+					_functionCommercePaymentIntegrationConfiguration.
+						oAuth2ApplicationExternalReferenceCode(),
+					_getPayloadJSONObject(commercePaymentEntry), "/cancel",
+					commercePaymentEntry.getUserId()));
 		}
 		catch (Exception exception) {
 			_log.error(exception);
@@ -121,17 +116,14 @@ public class FunctionCommercePaymentIntegration
 		throws PortalException {
 
 		try {
-			JSONObject jsonObject = _jsonFactory.createJSONObject(
-				new String(
-					_portalCatapult.launch(
-						commercePaymentEntry.getCompanyId(), Http.Method.POST,
-						_functionCommercePaymentIntegrationConfiguration.
-							oAuth2ApplicationExternalReferenceCode(),
-						_getPayloadJSONObject(commercePaymentEntry), "/capture",
-						commercePaymentEntry.getUserId()
-					).get()));
-
-			_toCommercePaymentEntry(commercePaymentEntry, jsonObject);
+			_toCommercePaymentEntry(
+				commercePaymentEntry,
+				_portalCatapult.launch(
+					commercePaymentEntry.getCompanyId(), Http.Method.POST,
+					_functionCommercePaymentIntegrationConfiguration.
+						oAuth2ApplicationExternalReferenceCode(),
+					_getPayloadJSONObject(commercePaymentEntry), "/capture",
+					commercePaymentEntry.getUserId()));
 		}
 		catch (Exception exception) {
 			_log.error(exception);
@@ -184,17 +176,14 @@ public class FunctionCommercePaymentIntegration
 		throws PortalException {
 
 		try {
-			JSONObject jsonObject = _jsonFactory.createJSONObject(
-				new String(
-					_portalCatapult.launch(
-						commercePaymentEntry.getCompanyId(), Http.Method.POST,
-						_functionCommercePaymentIntegrationConfiguration.
-							oAuth2ApplicationExternalReferenceCode(),
-						_getPayloadJSONObject(commercePaymentEntry), "/refund",
-						commercePaymentEntry.getUserId()
-					).get()));
-
-			_toCommercePaymentEntry(commercePaymentEntry, jsonObject);
+			_toCommercePaymentEntry(
+				commercePaymentEntry,
+				_portalCatapult.launch(
+					commercePaymentEntry.getCompanyId(), Http.Method.POST,
+					_functionCommercePaymentIntegrationConfiguration.
+						oAuth2ApplicationExternalReferenceCode(),
+					_getPayloadJSONObject(commercePaymentEntry), "/refund",
+					commercePaymentEntry.getUserId()));
 		}
 		catch (Exception exception) {
 			_log.error(exception);
@@ -214,17 +203,14 @@ public class FunctionCommercePaymentIntegration
 		throws PortalException {
 
 		try {
-			JSONObject jsonObject = _jsonFactory.createJSONObject(
-				new String(
-					_portalCatapult.launch(
-						commercePaymentEntry.getCompanyId(), Http.Method.POST,
-						_functionCommercePaymentIntegrationConfiguration.
-							oAuth2ApplicationExternalReferenceCode(),
-						_getPayloadJSONObject(commercePaymentEntry),
-						"/set-up-payment", commercePaymentEntry.getUserId()
-					).get()));
-
-			_toCommercePaymentEntry(commercePaymentEntry, jsonObject);
+			_toCommercePaymentEntry(
+				commercePaymentEntry,
+				_portalCatapult.launch(
+					commercePaymentEntry.getCompanyId(), Http.Method.POST,
+					_functionCommercePaymentIntegrationConfiguration.
+						oAuth2ApplicationExternalReferenceCode(),
+					_getPayloadJSONObject(commercePaymentEntry),
+					"/set-up-payment", commercePaymentEntry.getUserId()));
 		}
 		catch (Exception exception) {
 			_log.error(exception);
@@ -332,14 +318,14 @@ public class FunctionCommercePaymentIntegration
 	}
 
 	private void _toCommercePaymentEntry(
-		CommercePaymentEntry commercePaymentEntry, JSONObject jsonObject) {
+			CommercePaymentEntry commercePaymentEntry, Future<byte[]> future)
+		throws Exception {
 
 		commercePaymentEntry.setPaymentStatus(
 			CommercePaymentEntryConstants.STATUS_FAILED);
 
-		if (jsonObject == null) {
-			return;
-		}
+		JSONObject jsonObject = _jsonFactory.createJSONObject(
+			new String(future.get()));
 
 		if (jsonObject.has("amount")) {
 			commercePaymentEntry.setAmount(
