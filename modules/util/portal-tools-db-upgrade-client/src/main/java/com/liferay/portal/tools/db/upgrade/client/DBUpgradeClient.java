@@ -502,8 +502,8 @@ public class DBUpgradeClient {
 			while (_appServer == null) {
 				System.out.print("[ ");
 
-				for (String appServer : _appServers) {
-					System.out.print(appServer + " ");
+				for (String appServerName : _APP_SERVER_NAMES) {
+					System.out.print(appServerName + " ");
 				}
 
 				System.out.println("]");
@@ -619,8 +619,8 @@ public class DBUpgradeClient {
 		while (dataSource == null) {
 			System.out.print("[ ");
 
-			for (String database : _databases) {
-				System.out.print(database + " ");
+			for (String databaseType : _DATABASE_TYPES) {
+				System.out.print(databaseType + " ");
 			}
 
 			System.out.println("]");
@@ -751,16 +751,18 @@ public class DBUpgradeClient {
 			"liferay.home", liferayHome.getCanonicalPath());
 	}
 
+	private static final String[] _APP_SERVER_NAMES = {
+		"jboss", "tomcat", "weblogic", "websphere", "wildfly"
+	};
+
+	private static final String[] _DATABASE_TYPES = {
+		"db2", "mariadb", "mysql", "oracle", "postgresql", "sqlserver"
+	};
+
 	private static final String _GOGO_SHELL_PREFIX = "g! ";
 
 	private static final String _JAVA_HOME = System.getenv("JAVA_HOME");
 
-	private static final String[] _appServers = {
-		"jboss", "tomcat", "weblogic", "websphere", "wildfly"
-	};
-	private static final String[] _databases = {
-		"db2", "mariadb", "mysql", "oracle", "postgresql", "sqlserver"
-	};
 	private static final Pattern _gogoShellAddressPattern = Pattern.compile(
 		"^([^\\:]+):([0-9]{1,5})$");
 	private static File _jarDir;
