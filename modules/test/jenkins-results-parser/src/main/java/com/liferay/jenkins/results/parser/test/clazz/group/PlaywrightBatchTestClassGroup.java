@@ -37,15 +37,9 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 			return;
 		}
 
-		addProjectsToSet(jobProperty.getValue());
+		_addProjectNames(jobProperty.getValue());
 
 		recordJobProperty(jobProperty);
-	}
-
-	public void addProjectsToSet(String projectNames) {
-		projectNames = projectNames.trim();
-
-		Collections.addAll(_projectNamesSet, projectNames.split("\\s*,\\s*"));
 	}
 
 	protected PlaywrightBatchTestClassGroup(
@@ -83,7 +77,7 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 			portalGitWorkingDirectory.getWorkingDirectory(),
 			"build-test-batch.xml");
 
-		for (String projectName : _projectNamesSet) {
+		for (String projectName : _projectNames) {
 			SegmentTestClassGroup segmentTestClassGroup =
 				TestClassGroupFactory.newSegmentTestClassGroup(this);
 
@@ -148,7 +142,7 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 				String projectNames =
 					playwrightTestProjectJobProperty.getValue();
 
-				addProjectsToSet(projectNames);
+				_addProjectNames(projectNames);
 
 				playwrightJobProperties.add(playwrightTestProjectJobProperty);
 			}
@@ -162,6 +156,12 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 	protected static final String PLAYWRIGHT_TEST_PROJECT_PROPERTY_NAME =
 		"playwright.test.project";
 
-	private final Set<String> _projectNamesSet = new HashSet<>();
+	private void _addProjectNames(String projectNames) {
+		projectNames = projectNames.trim();
+
+		Collections.addAll(_projectNames, projectNames.split("\\s*,\\s*"));
+	}
+
+	private final Set<String> _projectNames = new HashSet<>();
 
 }
