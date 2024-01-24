@@ -31,10 +31,10 @@ public class LayoutUpgradeProcess extends UpgradeProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				StringBundler.concat(
-					"SELECT groupId, plid FROM Layout WHERE privateLayout = ? ",
-					"AND (plid IN (SELECT plid FROM LayoutPageTemplateEntry ",
-					"WHERE type_ = ?) OR (classPK IN (SELECT plid FROM ",
-					"LayoutPageTemplateEntry WHERE type_ = ?) AND classNameId ",
+					"select groupId, plid from Layout where privateLayout = ? ",
+					"and (plid IN (select plid from LayoutPageTemplateEntry ",
+					"where type_ = ?) OR (classPK IN (select plid from ",
+					"LayoutPageTemplateEntry where type_ = ?) and classNameId ",
 					"= ?))"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.autoBatch(
