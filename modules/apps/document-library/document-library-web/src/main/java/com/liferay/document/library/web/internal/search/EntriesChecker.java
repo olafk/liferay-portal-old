@@ -207,8 +207,8 @@ public class EntriesChecker extends RowChecker {
 		}
 
 		sb.append(HtmlUtil.buildData(data));
-		sb.append("><span class=\"custom-control-label\"></span>");
-		sb.append("</label></div>");
+		sb.append("><span class=\"custom-control-label\"></span></label>");
+		sb.append("</div>");
 
 		return sb.toString();
 	}

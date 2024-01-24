@@ -78,8 +78,8 @@ public class EmptyOnClickRowChecker extends RowChecker {
 					checkBoxRowIds, checkBoxAllRowIds, checkBoxPostOnClick));
 		}
 
-		sb.append("><span class=\"custom-control-label\"></span>");
-		sb.append("</label></div>");
+		sb.append("><span class=\"custom-control-label\"></span></label>");
+		sb.append("</div>");
 
 		return sb.toString();
 	}
