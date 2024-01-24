@@ -17,9 +17,9 @@ import com.liferay.commerce.product.service.CommerceChannelLocalService;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.Locale;
+import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -106,9 +106,9 @@ public class CommercePaymentMethodGroupRelsDisplayContext {
 
 		CommercePaymentIntegration commercePaymentIntegration = null;
 
-		if (!StringUtil.equals(
-				"function.commerce.payment.integration.configuration",
-				commercePaymentMethodEngineKey)) {
+		if (!Objects.equals(
+				commercePaymentMethodEngineKey,
+				"function.commerce.payment.integration.configuration")) {
 
 			commercePaymentIntegration =
 				_commercePaymentIntegrationRegistry.
@@ -139,9 +139,9 @@ public class CommercePaymentMethodGroupRelsDisplayContext {
 		String commercePaymentMethodEngineKey =
 			getCommercePaymentMethodEngineKey();
 
-		if (!StringUtil.equals(
-				"function.commerce.payment.integration.configuration",
-				commercePaymentMethodEngineKey)) {
+		if (!Objects.equals(
+				commercePaymentMethodEngineKey,
+				"function.commerce.payment.integration.configuration")) {
 
 			_commercePaymentMethodGroupRel =
 				_commercePaymentMethodGroupRelService.

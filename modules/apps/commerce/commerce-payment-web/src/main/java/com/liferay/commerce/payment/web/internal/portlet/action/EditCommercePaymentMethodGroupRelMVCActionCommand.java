@@ -22,12 +22,12 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.Localization;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.File;
 
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -135,7 +135,7 @@ public class EditCommercePaymentMethodGroupRelMVCActionCommand
 			String commercePaymentMethodEngineKey = ParamUtil.getString(
 				actionRequest, "commercePaymentMethodEngineKey");
 
-			if (StringUtil.equals(
+			if (Objects.equals(
 					commercePaymentMethodEngineKey,
 					"function.commerce.payment.integration.configuration")) {
 
