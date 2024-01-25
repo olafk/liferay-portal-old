@@ -13,6 +13,7 @@ import com.liferay.message.boards.model.MBThread;
 import com.liferay.message.boards.service.MBMessageLocalServiceUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.UserNotificationEvent;
 import com.liferay.portal.kernel.notifications.UserNotificationDefinition;
 import com.liferay.portal.kernel.notifications.UserNotificationFeedEntry;
@@ -51,14 +52,15 @@ public class FlagsUserNotificationHandlerTest {
 
 	@Test
 	public void testBodyShouldBeEscaped() throws Exception {
+		UserNotificationEvent userNotificationEvent =
+			new UserNotificationEventImpl();
+
+		String userName = "'\"></option><img src=x onerror=alert(userName)>";
 		long groupId = TestPropsValues.getGroupId();
+		String content = "'\"></option><img src=x onerror=alert(content)>";
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(groupId);
-
-		String userName = "'\"></option><img src=x onerror=alert(userName)>";
-		String content = "'\"></option><img src=x onerror=alert(content)>";
-		String siteName = "'\"></option><img src=x onerror=alert(siteName)>";
 
 		MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
 			null, TestPropsValues.getUserId(), userName, groupId,
@@ -70,13 +72,10 @@ public class FlagsUserNotificationHandlerTest {
 
 		MBThread mbThread = mbMessage.getThread();
 
-		UserNotificationEvent userNotificationEvent =
-			new UserNotificationEventImpl();
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+		String siteName = "'\"></option><img src=x onerror=alert(siteName)>";
 
 		userNotificationEvent.setPayload(
-			jsonObject.put(
+			JSONUtil.put(
 				"className", MBThread.class.getName()
 			).put(
 				"classPK", mbThread.getThreadId()
@@ -113,12 +112,14 @@ public class FlagsUserNotificationHandlerTest {
 
 	@Test
 	public void testGetBody() throws Exception {
+		UserNotificationEvent userNotificationEvent =
+			new UserNotificationEventImpl();
+
 		long groupId = TestPropsValues.getGroupId();
+		String content = "#63;";
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(groupId);
-
-		String content = "#63;";
 
 		MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
 			null, TestPropsValues.getUserId(), StringUtil.randomString(),
@@ -130,13 +131,8 @@ public class FlagsUserNotificationHandlerTest {
 
 		MBThread mbThread = mbMessage.getThread();
 
-		UserNotificationEvent userNotificationEvent =
-			new UserNotificationEventImpl();
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
 		userNotificationEvent.setPayload(
-			jsonObject.put(
+			JSONUtil.put(
 				"className", MBThread.class.getName()
 			).put(
 				"classPK", mbThread.getThreadId()
