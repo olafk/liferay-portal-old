@@ -400,8 +400,7 @@ public class HttpInvoker {
 
 	static {
 		try {
-			_methodField = HttpURLConnection.class.getDeclaredField(
-				"method");
+			_methodField = HttpURLConnection.class.getDeclaredField("method");
 
 			_methodField.setAccessible(true);
 		}
