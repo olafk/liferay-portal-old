@@ -95,7 +95,7 @@ public class GitHubClient {
 				).block();
 
 				if (response == null) {
-					throw new RuntimeException("No response");
+					throw new RuntimeException("Unable to get authorization");
 				}
 
 				return response;
