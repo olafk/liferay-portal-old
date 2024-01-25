@@ -90,7 +90,7 @@ public class LiferayWorkspaceNodePlugin implements Plugin<Project> {
 		}
 		catch (IOException ioException) {
 			throw new GradleException(
-				"Could not read downloaded file", ioException.getCause());
+				"Unable to read downloaded file", ioException.getCause());
 		}
 	}
 
