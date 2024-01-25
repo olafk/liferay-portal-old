@@ -14,6 +14,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -31,11 +32,14 @@ public class ConsoleRestController extends BaseRestController {
 		throws Exception {
 
 		if (emailAddress == null) {
-			emailAddress = jwt.getClaims(
-			).get(
-				"username"
-			)
+			emailAddress = String.valueOf(
+				jwt.getClaims(
+				).get(
+					"username"
+				));
 		}
+
+		String finalEmailAddress = emailAddress;
 
 		return WebClient.create(
 			_consoleAuthURL
@@ -44,7 +48,7 @@ public class ConsoleRestController extends BaseRestController {
 			uriBuilder -> uriBuilder.path(
 				"/admin/user-projects-plan-usage"
 			).queryParam(
-				"userEmail", emailAddress
+				"userEmail", finalEmailAddress
 			).build()
 		).header(
 			HttpHeaders.AUTHORIZATION, "Bearer " + _getAuthorization()
