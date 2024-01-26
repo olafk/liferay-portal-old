@@ -98,7 +98,7 @@ public class LayoutStagedModelDataHandlerTest
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testClientExtensions() throws Exception {
+	public void testClientExtensionEntries() throws Exception {
 		initExport();
 
 		ClientExtensionEntry clientExtensionEntry =
