@@ -59,6 +59,9 @@ public class ObjectFolderExportImportTest extends BaseExportImportTestCase {
 
 	@Test
 	public void testExportImportObjectFolder() throws Exception {
+
+		// Import and export an object folder
+
 		testExportImport(
 			"test-object-folder-1.json", "test-object-folder-1.json",
 			"TESTOBJECTFOLDER1", "TestObjectFolder1");
