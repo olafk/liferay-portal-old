@@ -139,7 +139,6 @@ public class ImportObjectDefinitionMVCActionCommand
 		}
 
 		objectDefinition.setName(ParamUtil.getString(actionRequest, "name"));
-
 		objectDefinition.setObjectFolderExternalReferenceCode(
 			ParamUtil.getString(
 				actionRequest, "objectFolderExternalReferenceCode"));
