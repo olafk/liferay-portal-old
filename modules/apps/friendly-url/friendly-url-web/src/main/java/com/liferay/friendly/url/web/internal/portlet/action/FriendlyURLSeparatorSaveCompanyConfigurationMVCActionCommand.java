@@ -199,7 +199,7 @@ public class FriendlyURLSeparatorSaveCompanyConfigurationMVCActionCommand
 					_language.get(
 						themeDisplay.getLocale(),
 						"friendly-url-separator-error-changes-could-not-be-" +
-							"save-due-to-some-errors")
+							"saved")
 				).put(
 					"fields", fieldsValidationErrorsJSONObject
 				).toString());
