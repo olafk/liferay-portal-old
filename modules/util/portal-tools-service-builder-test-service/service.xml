@@ -11,8 +11,8 @@
 
 		<!-- Other fields -->
 
-		<column name="autoEscapeEnabledColumn" type="String" />
 		<column name="autoEscapeDisabledColumn" type="String" />
+		<column name="autoEscapeEnabledColumn" type="String" />
 	</entity>
 	<entity local-service="false" name="BigDecimalEntry" remote-service="false">
 
