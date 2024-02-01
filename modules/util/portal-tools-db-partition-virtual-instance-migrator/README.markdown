@@ -11,8 +11,8 @@ the needed conditions for a successful migration are met.
 
 ## Usage
 
-```
 java -jar com.liferay.portal.tools.db.partition.virtual.instance.migrator.jar -s "jdbc:mysql://localhost:3306/lpartition_xxxxx?characterEncoding=UTF-8&serverTimezone=GMT&useFastDateParsing=false&useTimezone=true&useUnicode=true" -sp sourcePassword -su sourceUser -t "jdbc:mysql://localhost:3306/lportal?characterEncoding=UTF-8&serverTimezone=GMT&useFastDateParsing=false&useTimezone=true&useUnicode=true" -tp targetPassword -tu targetUser
+```
 
 -h,--help Print help message
 -s,--source-jdbc-url <arg> Set the source JDBC URL
@@ -22,4 +22,3 @@ java -jar com.liferay.portal.tools.db.partition.virtual.instance.migrator.jar -s
 -tp,--target-password <arg> Set the target password
 -tsp,--target-schema-prefix <arg> Set the target schema prefix
 -tu,--target-user <arg> Set the target user
-```
