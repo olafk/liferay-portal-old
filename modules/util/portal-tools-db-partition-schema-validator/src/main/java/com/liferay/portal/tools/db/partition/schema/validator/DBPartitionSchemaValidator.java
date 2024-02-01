@@ -52,7 +52,7 @@ public class DBPartitionSchemaValidator {
 
 		_dbType = _dbType.toLowerCase();
 
-		String jdbcURL;
+		String jdbcURL = null;
 
 		if (_dbType.equals("mysql")) {
 			jdbcURL = _MYSQL_DEFAULT_JDBC_URL;
