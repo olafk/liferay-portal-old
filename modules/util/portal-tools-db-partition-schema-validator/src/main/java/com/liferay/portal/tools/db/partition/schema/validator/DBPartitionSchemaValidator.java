@@ -55,12 +55,12 @@ public class DBPartitionSchemaValidator {
 		String jdbcURL = null;
 
 		if (_dbType.equals("mysql")) {
-			jdbcURL = "jdbc:mysql://localhost/db-name";
+			jdbcURL = "jdbc:mysql://localhost/";
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		}
 		else if (_dbType.equals("postgresql")) {
-			jdbcURL = "jdbc:postgresql://localhost:5432/db-name";
+			jdbcURL = "jdbc:postgresql://localhost:5432/";
 
 			Class.forName("org.postgresql.Driver");
 		}
@@ -71,7 +71,7 @@ public class DBPartitionSchemaValidator {
 
 		_dbName = commandLine.getOptionValue("db-name");
 
-		jdbcURL = jdbcURL.replace("db-name", _dbName);
+		jdbcURL += _dbName;
 
 		if (commandLine.hasOption("jdbc-url")) {
 			jdbcURL = commandLine.getOptionValue("jdbc-url");
