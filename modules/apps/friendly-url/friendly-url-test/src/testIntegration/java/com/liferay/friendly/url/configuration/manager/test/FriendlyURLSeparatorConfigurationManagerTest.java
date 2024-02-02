@@ -61,7 +61,6 @@ public class FriendlyURLSeparatorConfigurationManagerTest {
 				_companyId);
 
 		Assert.assertNotNull(friendlyURLSeparators);
-
 		Assert.assertEquals(
 			_jsonFactory.createJSONObject(
 			).toString(),
@@ -97,7 +96,6 @@ public class FriendlyURLSeparatorConfigurationManagerTest {
 				_companyId);
 
 		Assert.assertNotNull(friendlyURLSeparators);
-
 		Assert.assertEquals(
 			friendlyURLSeparatorsJSONObject.toString(), friendlyURLSeparators);
 	}
@@ -119,7 +117,6 @@ public class FriendlyURLSeparatorConfigurationManagerTest {
 					FriendlyURLSeparatorCompanyConfiguration.class, _companyId);
 
 		Assert.assertNotNull(friendlyURLSeparatorCompanyConfiguration);
-
 		Assert.assertEquals(
 			friendlyURLSeparatorsJSONObject.toString(),
 			friendlyURLSeparatorCompanyConfiguration.friendlyURLSeparators());

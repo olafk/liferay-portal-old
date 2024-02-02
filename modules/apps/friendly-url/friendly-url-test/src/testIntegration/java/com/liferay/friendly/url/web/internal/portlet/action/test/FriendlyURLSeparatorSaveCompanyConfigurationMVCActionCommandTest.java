@@ -213,9 +213,9 @@ public class FriendlyURLSeparatorSaveCompanyConfigurationMVCActionCommandTest {
 		Map<String, String> friendlyURLSeparators =
 			_getRandomFriendlyURLSeparatorsMap();
 
+		friendlyURLSeparators.put(JournalArticle.class.getName(), "test1");
 		friendlyURLSeparators.put(
 			"com.liferay.blogs.model.BlogsEntry", "test1");
-		friendlyURLSeparators.put(JournalArticle.class.getName(), "test1");
 
 		MockActionResponse mockActionResponse = new MockActionResponse();
 
