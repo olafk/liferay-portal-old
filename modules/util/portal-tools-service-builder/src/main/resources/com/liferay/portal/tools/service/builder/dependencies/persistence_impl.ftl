@@ -65,17 +65,10 @@ import ${apiPackagePath}.service.persistence.${entity.name}Util;
 	import ${packagePath}.service.persistence.impl.constants.${portletShortName}PersistenceConstants;
 </#if>
 
-<#if entity.isChangeTrackingEnabled()>
-	import com.liferay.petra.lang.SafeCloseable;
-</#if>
-
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.bean.BeanReference;
+import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.change.tracking.CTColumnResolutionType;
-
-<#if entity.isChangeTrackingEnabled()>
-	import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
-</#if>
-
 import com.liferay.portal.kernel.configuration.Configuration;
 
 <#if !serviceBuilder.isVersionGTE_7_1_0()>
