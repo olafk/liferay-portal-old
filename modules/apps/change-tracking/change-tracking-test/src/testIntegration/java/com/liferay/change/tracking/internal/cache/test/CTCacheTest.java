@@ -64,7 +64,6 @@ public class CTCacheTest {
 		Assert.assertEquals(
 			productionLayout.getCtCollectionId(),
 			cachedLayout.getCtCollectionId());
-
 		Assert.assertEquals(
 			productionLayout.getMvccVersion(), cachedLayout.getMvccVersion());
 
@@ -86,7 +85,6 @@ public class CTCacheTest {
 			Assert.assertEquals(
 				productionLayout.getPrimaryKey(),
 				ctCollection1Layout.getPrimaryKey());
-
 			Assert.assertNotEquals(
 				productionLayout.getCtCollectionId(),
 				ctCollection1Layout.getCtCollectionId());
@@ -97,7 +95,6 @@ public class CTCacheTest {
 			Assert.assertNotEquals(
 				productionLayout.getCtCollectionId(),
 				cachedLayout.getCtCollectionId());
-
 			Assert.assertEquals(
 				ctCollection1Layout.getCtCollectionId(),
 				cachedLayout.getCtCollectionId());
@@ -109,7 +106,6 @@ public class CTCacheTest {
 		Assert.assertEquals(
 			productionLayout.getCtCollectionId(),
 			cachedLayout.getCtCollectionId());
-
 		Assert.assertNotEquals(
 			ctCollection1Layout.getCtCollectionId(),
 			cachedLayout.getCtCollectionId());
@@ -132,7 +128,6 @@ public class CTCacheTest {
 			Assert.assertEquals(
 				productionLayout.getPrimaryKey(),
 				ctCollection2Layout.getPrimaryKey());
-
 			Assert.assertNotEquals(
 				productionLayout.getCtCollectionId(),
 				ctCollection2Layout.getCtCollectionId());
@@ -143,11 +138,9 @@ public class CTCacheTest {
 			Assert.assertNotEquals(
 				productionLayout.getCtCollectionId(),
 				cachedLayout.getCtCollectionId());
-
 			Assert.assertNotEquals(
 				ctCollection1Layout.getCtCollectionId(),
 				cachedLayout.getCtCollectionId());
-
 			Assert.assertEquals(
 				ctCollection2Layout.getCtCollectionId(),
 				cachedLayout.getCtCollectionId());
@@ -198,7 +191,6 @@ public class CTCacheTest {
 			Assert.assertEquals(
 				cachedLayouts.toString(), ctCollection1Layouts.size(),
 				cachedLayouts.size());
-
 			Assert.assertNotEquals(
 				cachedLayouts.toString(), cachedLayouts.size(),
 				productionLayouts.size());
