@@ -218,11 +218,9 @@ public class CTCacheTest {
 			Assert.assertEquals(
 				cachedLayouts.toString(), ctCollection2Layouts.size(),
 				cachedLayouts.size());
-
 			Assert.assertNotEquals(
 				cachedLayouts.toString(), cachedLayouts.size(),
 				productionLayouts.size());
-
 			Assert.assertNotEquals(
 				cachedLayouts.toString(), cachedLayouts.size(),
 				ctCollection1Layouts.size());
