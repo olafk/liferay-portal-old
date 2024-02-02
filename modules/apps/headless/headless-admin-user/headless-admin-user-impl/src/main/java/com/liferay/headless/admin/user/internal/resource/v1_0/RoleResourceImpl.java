@@ -176,8 +176,8 @@ public class RoleResourceImpl extends BaseRoleResourceImpl {
 			RoleTypeContributor roleTypeContributor = roleTypeContributors.get(
 				0);
 
-			type = roleTypeContributor.getType();
 			className = roleTypeContributor.getClassName();
+			type = roleTypeContributor.getType();
 		}
 
 		com.liferay.portal.kernel.model.Role serviceBuilderRole =
@@ -252,8 +252,8 @@ public class RoleResourceImpl extends BaseRoleResourceImpl {
 			RoleTypeContributor roleTypeContributor = roleTypeContributors.get(
 				0);
 
-			type = roleTypeContributor.getType();
 			className = roleTypeContributor.getClassName();
+			type = roleTypeContributor.getType();
 		}
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
