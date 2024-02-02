@@ -207,7 +207,6 @@ public class CTCacheTest {
 					ctCollection2.getCtCollectionId())) {
 
 			LayoutTestUtil.addTypePortletLayout(_group);
-
 			LayoutTestUtil.addTypePortletLayout(_group);
 
 			ctCollection2Layouts = _layoutLocalService.getLayouts(
