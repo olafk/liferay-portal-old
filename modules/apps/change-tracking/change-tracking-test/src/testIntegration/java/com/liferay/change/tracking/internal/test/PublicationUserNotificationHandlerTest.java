@@ -231,7 +231,7 @@ public class PublicationUserNotificationHandlerTest {
 	}
 
 	@Test
-	public void testGetLinkToViewConflictsPage() throws Exception {
+	public void testGetLinkToViewConflicts() throws Exception {
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
 			_group.getGroupId(), RandomTestUtil.randomString(),
 			StringPool.BLANK);
