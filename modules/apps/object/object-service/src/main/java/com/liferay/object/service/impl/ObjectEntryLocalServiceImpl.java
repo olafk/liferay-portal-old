@@ -823,7 +823,7 @@ public class ObjectEntryLocalServiceImpl
 			long userId, Date createDate, long objectDefinitionId)
 		throws PortalException {
 
-		return objectEntryPersistence.countByU_GtC_ODI(
+		return objectEntryPersistence.countByU_GtCD_ODI(
 			userId, createDate, objectDefinitionId);
 	}
 
