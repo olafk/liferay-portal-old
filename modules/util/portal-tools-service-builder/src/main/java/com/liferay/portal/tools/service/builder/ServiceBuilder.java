@@ -8053,7 +8053,7 @@ public class ServiceBuilder {
 
 		String fileName = file.toString();
 
-		int startIndex;
+		int startIndex = 0;
 
 		if (fileName.startsWith(_apiDirName)) {
 			startIndex = _apiDirName.length();
