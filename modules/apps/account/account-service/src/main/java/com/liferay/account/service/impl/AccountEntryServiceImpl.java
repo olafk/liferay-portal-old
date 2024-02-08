@@ -247,11 +247,11 @@ public class AccountEntryServiceImpl extends AccountEntryServiceBaseImpl {
 			getPermissionChecker(), accountEntry, ActionKeys.UPDATE);
 
 		if (accountEntry.getDefaultBillingAddressId() > 0) {
-			_validateAddress(accountEntry.getDefaultBillingAddressId());
+			_validateAddressId(accountEntry.getDefaultBillingAddressId());
 		}
 
 		if (accountEntry.getDefaultShippingAddressId() > 0) {
-			_validateAddress(accountEntry.getDefaultShippingAddressId());
+			_validateAddressId(accountEntry.getDefaultShippingAddressId());
 		}
 
 		if (!_accountEntryModelResourcePermission.contains(
@@ -295,7 +295,7 @@ public class AccountEntryServiceImpl extends AccountEntryServiceBaseImpl {
 		_accountEntryModelResourcePermission.check(
 			getPermissionChecker(), accountEntryId, ActionKeys.UPDATE);
 
-		_validateAddress(addressId);
+		_validateAddressId(addressId);
 
 		return updateDefaultBillingAddressId(accountEntryId, addressId);
 	}
@@ -308,7 +308,7 @@ public class AccountEntryServiceImpl extends AccountEntryServiceBaseImpl {
 		_accountEntryModelResourcePermission.check(
 			getPermissionChecker(), accountEntryId, ActionKeys.UPDATE);
 
-		_validateAddress(addressId);
+		_validateAddressId(addressId);
 
 		return updateDefaultShippingAddressId(accountEntryId, addressId);
 	}
@@ -363,7 +363,7 @@ public class AccountEntryServiceImpl extends AccountEntryServiceBaseImpl {
 		return null;
 	}
 
-	private void _validateAddress(long addressId) throws PortalException {
+	private void _validateAddressId(long addressId) throws PortalException {
 		if (addressId > 0) {
 			_addressService.getAddress(addressId);
 		}
