@@ -136,9 +136,9 @@ public class FriendlyURLResolverRegistryUtilTest {
 			FriendlyURLResolver.class.getClassLoader(),
 			new Class<?>[] {FriendlyURLResolver.class},
 			(proxy, method, args) -> {
-				if (Objects.equals(method.getName(), "getURLSeparator") ||
-					Objects.equals(
-						method.getName(), "getDefaultURLSeparator")) {
+				if (Objects.equals(
+						method.getName(), "getDefaultURLSeparator") ||
+					Objects.equals(method.getName(), "getURLSeparator")) {
 
 					return _SEPARATOR;
 				}
