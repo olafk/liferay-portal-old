@@ -125,26 +125,26 @@ public class AuthorizeRestController extends BaseRestController {
 					).block()));
 
 			sessionCreateParams = SessionCreateParams.builder(
+			).addAllLineItem(
+				_getLineItems(
+					orderJSONObject.getString("currencyCode"),
+					commercePaymentEntryJSONObject.getString("languageId"),
+					orderJSONObject.getJSONArray("orderItems"))
 			).addPaymentMethodType(
 				SessionCreateParams.PaymentMethodType.CARD
+			).addShippingOption(
+				_getShippingOption(
+					orderJSONObject.getString("currencyCode"),
+					orderJSONObject.getLong("shippingAmountValue"),
+					orderJSONObject.getString("shippingOption"))
+			).setCancelUrl(
+				commercePaymentEntryJSONObject.getString("cancelURL")
 			).setCurrency(
 				orderJSONObject.getString("currencyCode")
 			).setMode(
 				SessionCreateParams.Mode.PAYMENT
 			).setSuccessUrl(
 				commercePaymentEntryJSONObject.getString("callbackURL")
-			).setCancelUrl(
-				commercePaymentEntryJSONObject.getString("cancelURL")
-			).addAllLineItem(
-				_getLineItems(
-					orderJSONObject.getString("currencyCode"),
-					commercePaymentEntryJSONObject.getString("languageId"),
-					orderJSONObject.getJSONArray("orderItems"))
-			).addShippingOption(
-				_getShippingOption(
-					orderJSONObject.getString("currencyCode"),
-					orderJSONObject.getLong("shippingAmountValue"),
-					orderJSONObject.getString("shippingOption"))
 			).build();
 		}
 		else {
