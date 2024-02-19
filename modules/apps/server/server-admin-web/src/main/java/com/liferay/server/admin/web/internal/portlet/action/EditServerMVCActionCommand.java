@@ -790,7 +790,6 @@ public class EditServerMVCActionCommand extends BaseMVCActionCommand {
 		portletPreferences.setValue(
 			PropsKeys.MAIL_SESSION_MAIL_ADVANCED_PROPERTIES,
 			advancedProperties);
-
 		portletPreferences.setValue(
 			PropsKeys.MAIL_SESSION_MAIL_POP3_HOST, pop3Host);
 
@@ -801,10 +800,8 @@ public class EditServerMVCActionCommand extends BaseMVCActionCommand {
 
 		portletPreferences.setValue(
 			PropsKeys.MAIL_SESSION_MAIL_POP3_PORT, String.valueOf(pop3Port));
-
 		portletPreferences.setValue(
 			PropsKeys.MAIL_SESSION_MAIL_POP3_USER, pop3User);
-
 		portletPreferences.setValue(
 			PropsKeys.MAIL_SESSION_MAIL_SMTP_HOST, smtpHost);
 
@@ -815,14 +812,11 @@ public class EditServerMVCActionCommand extends BaseMVCActionCommand {
 
 		portletPreferences.setValue(
 			PropsKeys.MAIL_SESSION_MAIL_SMTP_PORT, String.valueOf(smtpPort));
-
 		portletPreferences.setValue(
 			PropsKeys.MAIL_SESSION_MAIL_SMTP_STARTTLS_ENABLE,
 			String.valueOf(smtpStartTLSEnable));
-
 		portletPreferences.setValue(
 			PropsKeys.MAIL_SESSION_MAIL_SMTP_USER, smtpUser);
-
 		portletPreferences.setValue(
 			PropsKeys.MAIL_SESSION_MAIL_STORE_PROTOCOL, storeProtocol);
 		portletPreferences.setValue(
