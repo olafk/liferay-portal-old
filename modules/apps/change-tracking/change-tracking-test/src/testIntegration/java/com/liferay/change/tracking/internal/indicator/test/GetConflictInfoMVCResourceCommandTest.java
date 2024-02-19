@@ -57,6 +57,10 @@ public class GetConflictInfoMVCResourceCommandTest {
 
 	@Before
 	public void setUp() throws Exception {
+		_ctCollection = _ctCollectionLocalService.addCTCollection(
+			null, TestPropsValues.getCompanyId(), TestPropsValues.getUserId(),
+			0, "P1", null);
+
 		_group = GroupTestUtil.addGroup();
 
 		try (SafeCloseable safeCloseable =
@@ -66,10 +70,6 @@ public class GetConflictInfoMVCResourceCommandTest {
 				_group.getGroupId(), RandomTestUtil.randomString(),
 				RandomTestUtil.randomString());
 		}
-
-		_ctCollection = _ctCollectionLocalService.addCTCollection(
-			null, TestPropsValues.getCompanyId(), TestPropsValues.getUserId(),
-			0, "P1", null);
 	}
 
 	@Test

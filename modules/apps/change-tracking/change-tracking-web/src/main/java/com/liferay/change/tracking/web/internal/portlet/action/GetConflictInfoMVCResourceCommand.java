@@ -103,7 +103,6 @@ public class GetConflictInfoMVCResourceCommand extends BaseMVCResourceCommand {
 		}
 
 		long classNameId = ParamUtil.getLong(resourceRequest, "classNameId");
-
 		long classPK = ParamUtil.getLong(resourceRequest, "classPK");
 
 		List<CTEntry> ctEntries = _ctEntryLocalService.dslQuery(
@@ -165,10 +164,10 @@ public class GetConflictInfoMVCResourceCommand extends BaseMVCResourceCommand {
 				new DefaultCTCollectionHistoryProvider<>();
 		}
 
+		CTCollection possibleConflictCollection = null;
+
 		List<CTCollection> ctCollections =
 			ctCollectionHistoryProvider.getCTCollections(classNameId, classPK);
-
-		CTCollection possibleConflictCollection = null;
 
 		for (CTCollection ctCollection : ctCollections) {
 			if ((currentCTCollection != null) &&
