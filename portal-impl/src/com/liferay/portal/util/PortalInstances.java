@@ -172,7 +172,8 @@ public class PortalInstances {
 	}
 
 	/**
-	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link PortalInstancePool#getCompanyIds()}
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             PortalInstancePool#getCompanyIds}
 	 */
 	@Deprecated
 	public static long[] getCompanyIds() {
@@ -180,7 +181,8 @@ public class PortalInstances {
 	}
 
 	/**
-	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link PortalInstancePool#getCompanyIds()}
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             PortalInstancePool#getCompanyIds}
 	 */
 	@Deprecated
 	public static long[] getCompanyIdsBySQL() throws SQLException {
@@ -188,7 +190,8 @@ public class PortalInstances {
 	}
 
 	/**
-	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link PortalInstancePool#getDefaultCompanyId()}
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             PortalInstancePool#getDefaultCompanyId}
 	 */
 	@Deprecated
 	public static long getDefaultCompanyId() {
@@ -196,7 +199,8 @@ public class PortalInstances {
 	}
 
 	/**
-	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link PortalInstancePool#getDefaultCompanyId()}
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             PortalInstancePool#getDefaultCompanyId}
 	 */
 	@Deprecated
 	public static long getDefaultCompanyIdBySQL() throws SQLException {
@@ -204,7 +208,8 @@ public class PortalInstances {
 	}
 
 	/**
-	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link PortalInstancePool#getWebIds()} ()}
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             PortalInstancePool#getWebIds}}
 	 */
 	@Deprecated
 	public static String[] getWebIds() {
