@@ -98,14 +98,16 @@ public class UpdateFaroProjectSubscriptionsMessageListener
 				_faroProjectLocalService.getFaroProjects(
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS)) {
 
-			if (Validator.isNotNull(faroProject.getCorpProjectUuid())) {
-				_faroProjectLocalService.updateSubscription(
-					faroProject.getFaroProjectId(),
-					JSONUtil.writeValueAsString(
-						new FaroSubscriptionDisplay(
-							_provisioningClient.getOSBAccountEntry(
-								faroProject.getCorpProjectUuid()))));
+			if (Validator.isNull(faroProject.getCorpProjectUuid())) {
+				continue;
 			}
+
+			_faroProjectLocalService.updateSubscription(
+				faroProject.getFaroProjectId(),
+				JSONUtil.writeValueAsString(
+					new FaroSubscriptionDisplay(
+						_provisioningClient.getOSBAccountEntry(
+							faroProject.getCorpProjectUuid()))));
 		}
 	}
 
