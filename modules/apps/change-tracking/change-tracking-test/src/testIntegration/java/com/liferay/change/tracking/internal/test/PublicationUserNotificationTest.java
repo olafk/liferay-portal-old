@@ -54,8 +54,6 @@ public class PublicationUserNotificationTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_user = UserTestUtil.addUser();
-
 		_ctCollection = CTCollectionTestUtil.createCTCollectionWithConflict(
 			TestPropsValues.getUser());
 
@@ -67,6 +65,8 @@ public class PublicationUserNotificationTest {
 			GroupConstants.TYPE_SITE_OPEN, false,
 			GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null, false, true,
 			null);
+
+		_user = UserTestUtil.addUser();
 	}
 
 	@Test
