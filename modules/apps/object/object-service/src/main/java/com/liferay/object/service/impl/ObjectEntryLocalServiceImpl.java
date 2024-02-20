@@ -3249,10 +3249,14 @@ public class ObjectEntryLocalServiceImpl
 		List<ObjectField> objectFields =
 			dynamicObjectDefinitionLocalizationTable.getObjectFields();
 
+		if (objectFields.isEmpty()) {
+			return;
+		}
+
 		Set<Locale> locales = _getLocales(
 			objectDefinition.getCompanyId(), objectFields, values);
 
-		if (objectFields.isEmpty() || locales.isEmpty()) {
+		if (locales.isEmpty()) {
 			return;
 		}
 
