@@ -64,6 +64,8 @@ public class PlaywrightTestClass extends BaseTestClass {
 
 		super(batchTestClassGroup, testClassFile);
 
+		_specTitle = specTitle;
+
 		File testPropertiesBaseDir = getTestPropertiesBaseDir(
 			getTestClassFile());
 
@@ -78,8 +80,6 @@ public class PlaywrightTestClass extends BaseTestClass {
 		else {
 			_testrayMainComponentName = null;
 		}
-
-		_specTitle = specTitle;
 	}
 
 	protected PlaywrightTestClass(
