@@ -278,94 +278,62 @@ public class PartnerCommandLineRunner implements CommandLineRunner {
 	}
 
 	private void _sendNotification(
-		JSONObject activityJSONObject,
+		JSONObject activityJSONObject, int plusDays,
 		ZonedDateTime zonedActivityExpirationDate,
 		ZonedDateTime zonedDateTime) {
 
-		long activityId = activityJSONObject.getLong("id");
-		String activityName = activityJSONObject.getString("name");
+		StringBundler sb = new StringBundler(6);
+
+		sb.append("/o/c/activities/");
+		sb.append(activityJSONObject.getLong("id"));
+		sb.append("/object-actions/notificationDueDate");
+		sb.append(plusDays);
+
+		if (plusDays == 1) {
+			sb.append("Day");
+		}
+		else {
+			sb.append("Days");
+		}
+
+		sb.append("TemplateAction");
 
 		if (zonedActivityExpirationDate.toLocalDate(
 			).isEqual(
 				zonedDateTime.plusDays(
-					15
+					plusDays
 				).toLocalDate()
 			)) {
 
 			try {
-				_put(
-					"",
-					StringBundler.concat(
-						"/o/c/activities/", activityId, "/object-actions",
-						"/notificationDueDate15DaysTemplateAction"));
+				_put("", sb.toString());
 
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						StringBundler.concat(
-							"Email notification about being 15 days from the ",
-							"due date was triggered for the creator of ",
-							"activity named: ", activityName, " (", activityId,
-							") via the standalone object action"));
+							"Triggering a ", plusDays,
+							" day notification for activity ",
+							activityJSONObject.getString("id"), " with name ",
+							activityJSONObject.getString("name")));
 				}
 			}
 			catch (Exception exception) {
 				_log.error(exception);
 			}
 		}
-		else if (zonedActivityExpirationDate.toLocalDate(
-				).isEqual(
-					zonedDateTime.plusDays(
-						5
-					).toLocalDate()
-				)) {
+	}
 
-			try {
-				_put(
-					"",
-					StringBundler.concat(
-						"/o/c/activities/", activityId, "/object-actions",
-						"/notificationDueDate5DaysTemplateAction"));
+	private void _sendNotification(
+		JSONObject activityJSONObject,
+		ZonedDateTime zonedActivityExpirationDate,
+		ZonedDateTime zonedDateTime) {
 
-				if (_log.isInfoEnabled()) {
-					_log.info(
-						StringBundler.concat(
-							"Email notification about being 5 days from the ",
-							"due date was triggered for the creator of ",
-							"activity named: ", activityName, " (", activityId,
-							") via the standalone object action"));
-				}
-			}
-			catch (Exception exception) {
-				_log.error(exception);
-			}
-		}
-		else if (zonedActivityExpirationDate.toLocalDate(
-				).isEqual(
-					zonedDateTime.plusDays(
-						1
-					).toLocalDate()
-				)) {
-
-			try {
-				_put(
-					"",
-					StringBundler.concat(
-						"/o/c/activities/", activityId, "/object-actions",
-						"/notificationDueDate1DayTemplateAction"));
-
-				if (_log.isInfoEnabled()) {
-					_log.info(
-						StringBundler.concat(
-							"Email notification about being 1 day from the ",
-							"due date was triggered for the creator of ",
-							"activity named: ", activityName, " (", activityId,
-							") via the standalone object action"));
-				}
-			}
-			catch (Exception exception) {
-				_log.error(exception);
-			}
-		}
+		_sendNotification(
+			activityJSONObject, 1, zonedActivityExpirationDate, zonedDateTime);
+		_sendNotification(
+			activityJSONObject, 5, zonedActivityExpirationDate, zonedDateTime);
+		_sendNotification(
+			activityJSONObject, 15, zonedActivityExpirationDate, zonedDateTime);
 	}
 
 	private String _toString(ZonedDateTime zonedDateTime) {
