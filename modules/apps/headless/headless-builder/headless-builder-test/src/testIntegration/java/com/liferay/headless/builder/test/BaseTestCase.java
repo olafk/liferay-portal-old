@@ -17,7 +17,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.io.File;
 
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
@@ -56,20 +55,8 @@ public abstract class BaseTestCase {
 					bundle.getSymbolicName(),
 					"com.liferay.headless.builder.impl")) {
 
-				for (String processedFileName :
-						Arrays.asList(
-							"00.headless.builder.picklists",
-							"01.headless.builder")) {
-
-					File processedFile = bundle.getDataFile(
-						".com.liferay.headless.builder.internal.batch." +
-							processedFileName +
-								".batch.engine.data.json.0.processed");
-
-					if ((processedFile != null) && processedFile.exists()) {
-						processedFile.delete();
-					}
-				}
+				_setUpProcessedFile("00.headless.builder.picklists");
+				_setUpProcessedFile("01.headless.builder");
 
 				CompletableFuture<Void> completableFuture =
 					_batchEngineUnitProcessor.processBatchEngineUnits(
@@ -90,6 +77,16 @@ public abstract class BaseTestCase {
 		Assert.assertNotEquals(
 			jsonObject.getString("title"), "BAD_REQUEST",
 			jsonObject.getString("status"));
+	}
+
+	private void _setUpProcessedFile(String processedFileName) {
+		File processedFile = bundle.getDataFile(
+			".com.liferay.headless.builder.internal.batch." +
+				processedFileName + ".batch.engine.data.json.0.processed");
+
+		if ((processedFile != null) && processedFile.exists()) {
+			processedFile.delete();
+		}
 	}
 
 	@Inject
