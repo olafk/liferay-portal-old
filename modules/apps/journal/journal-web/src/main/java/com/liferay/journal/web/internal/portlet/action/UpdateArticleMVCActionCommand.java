@@ -455,11 +455,7 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 			}
 
 			if (FeatureFlagManagerUtil.isEnabled("LPD-15596")) {
-				if (article.isScheduled()) {
-					MultiSessionMessages.add(
-						actionRequest, "articleScheduled", article.getId());
-				}
-				else if (article.isPending()) {
+				if (article.isPending()) {
 					ThemeDisplay themeDisplay =
 						(ThemeDisplay)actionRequest.getAttribute(
 							WebKeys.THEME_DISPLAY);
@@ -480,6 +476,10 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 						MultiSessionMessages.add(
 							actionRequest, "articlePending", article.getId());
 					}
+				}
+				else if (article.isScheduled()) {
+					MultiSessionMessages.add(
+						actionRequest, "articleScheduled", article.getId());
 				}
 				else {
 					if (actionName.equals("/journal/add_article")) {
