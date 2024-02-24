@@ -167,8 +167,6 @@ public class FaroSubscriptionDisplay {
 		Date subscriptionModifiedDate = new Date(
 			faroProject.getSubscriptionModifiedTime());
 
-		_usersCount = contactsEngineClient.getUsersCount(faroProject);
-
 		_individualsCount =
 			contactsEngineClient.getIndividualsCreatedSinceCount(
 				faroProject, subscriptionModifiedDate);
@@ -202,6 +200,8 @@ public class FaroSubscriptionDisplay {
 			_pageViewsStatus = getStatus(
 				_pageViewsCountSinceLastAnniversary, _pageViewsLimit);
 		}
+
+		_usersCount = contactsEngineClient.getUsersCount(faroProject);
 	}
 
 	public static class AddOn {
