@@ -30,7 +30,7 @@
 					"indexed": true,
 					"indexedAsKeyword": false,
 					"label": {
-						"en_US": "Commerce Order Item Id"
+						"en_US": "Commerce Order Item ID"
 					},
 					"name": "commerceOrderItemId",
 					"required": true,
@@ -98,7 +98,7 @@
 					"deletionType": "cascade",
 					"externalReferenceCode": "L_COMMERCE_RETURN_TO_L_COMMERCE_RETURN_ITEMS",
 					"label": {
-						"en_US": "Commerce Return to Commerce Return items"
+						"en_US": "Commerce Return to Commerce Return Items"
 					},
 					"name": "commerceReturnToCommerceReturnItems",
 					"objectDefinitionExternalReferenceCode1": "L_COMMERCE_RETURN",
