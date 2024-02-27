@@ -141,7 +141,8 @@ public class ScheduledPublicationUserNotificationHandler
 		return null;
 	}
 
-	private boolean _hasAdministratorRole(UserNotificationEvent userNotificationEvent)
+	private boolean _hasAdministratorRole(
+			UserNotificationEvent userNotificationEvent)
 		throws Exception {
 
 		Role role = _roleLocalService.getRole(

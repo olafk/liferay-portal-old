@@ -90,7 +90,7 @@ public class PublicationUserNotificationHandlerTest {
 		CTCollectionTestUtil.publishCTCollectionWithError(
 			ctCollection.getCtCollectionId());
 
-		_assertUserNotifcationBody(
+		_assertUserNotifcationFeedEntryBody(
 			ctCollection.getCtCollectionId(),
 			StringBundler.concat(
 				"<div class=\"title\">", ctCollection.getName(),
@@ -125,7 +125,7 @@ public class PublicationUserNotificationHandlerTest {
 			CTCollectionTestUtil.publishCTCollectionWithError(
 				ctCollection.getCtCollectionId());
 
-			_assertUserNotifcationBody(
+			_assertUserNotifcationFeedEntryBody(
 				ctCollection.getCtCollectionId(),
 				StringBundler.concat(
 					"<div class=\"title\">", ctCollection.getName(),
@@ -135,7 +135,7 @@ public class PublicationUserNotificationHandlerTest {
 					"administrator to resolve the issue.</div>"),
 				false, user.getUserId());
 
-			_assertUserNotifcationBody(
+			_assertUserNotifcationFeedEntryBody(
 				ctCollection.getCtCollectionId(),
 				StringBundler.concat(
 					"<div class=\"title\">", ctCollection.getName(),
@@ -237,7 +237,7 @@ public class PublicationUserNotificationHandlerTest {
 		}
 	}
 
-	private void _assertUserNotifcationBody(
+	private void _assertUserNotifcationFeedEntryBody(
 			long ctCollectionId, String expectedBody, boolean showConflicts,
 			long userId)
 		throws Exception {
