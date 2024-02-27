@@ -1034,8 +1034,8 @@ public class JournalEditArticleDisplayContext {
 			"displayDate",
 			() -> {
 				if ((_article != null) &&
-					(_article.isScheduled() || _article.isPending()) &&
-					(_article.getDisplayDate() != null)) {
+					(_article.getDisplayDate() != null) &&
+					(_article.isPending() || _article.isScheduled())) {
 
 					Format format =
 						FastDateFormatFactoryUtil.getSimpleDateFormat(
