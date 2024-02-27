@@ -150,7 +150,7 @@ public class SelectTag extends BaseContainerTag {
 		JspWriter jspWriter = pageContext.getOut();
 
 		if (Validator.isNotNull(_label)) {
-			jspWriter.write("<label ");
+			jspWriter.write("<label");
 
 			if (Validator.isNotNull(getId())) {
 				jspWriter.write(" for=\"");
