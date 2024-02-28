@@ -2812,23 +2812,6 @@ public class DLFileEntryLocalServiceImpl
 		return null;
 	}
 
-	private List<DLFileEntry> _getFileEntriesByCompanyIdAndDisplayDate(
-		long companyId, Date displayDate) {
-
-		return dlFileEntryPersistence.dslQuery(
-			DSLQueryFactoryUtil.select(
-				DLFileEntryTable.INSTANCE
-			).from(
-				DLFileEntryTable.INSTANCE
-			).where(
-				DLFileEntryTable.INSTANCE.companyId.eq(
-					companyId
-				).and(
-					DLFileEntryTable.INSTANCE.displayDate.lte(displayDate)
-				)
-			));
-	}
-
 	private List<DLFileEntry> _getFileEntriesByCompanyIdAndExpirationDate(
 		long companyId, Date expirationDate) {
 
@@ -3504,8 +3487,18 @@ public class DLFileEntryLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		List<DLFileEntry> fileEntries =
-			_getFileEntriesByCompanyIdAndDisplayDate(companyId, displayDate);
+		List<DLFileEntry> fileEntries = dlFileEntryPersistence.dslQuery(
+			DSLQueryFactoryUtil.select(
+				DLFileEntryTable.INSTANCE
+			).from(
+				DLFileEntryTable.INSTANCE
+			).where(
+				DLFileEntryTable.INSTANCE.companyId.eq(
+					companyId
+				).and(
+					DLFileEntryTable.INSTANCE.displayDate.lte(displayDate)
+				)
+			));
 
 		for (DLFileEntry fileEntry : fileEntries) {
 			if (fileEntry.isInTrash()) {
