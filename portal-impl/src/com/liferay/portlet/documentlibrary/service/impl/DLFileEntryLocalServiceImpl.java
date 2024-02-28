@@ -3487,7 +3487,7 @@ public class DLFileEntryLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		List<DLFileEntry> fileEntries = dlFileEntryPersistence.dslQuery(
+		List<DLFileEntry> dlFileEntries = dlFileEntryPersistence.dslQuery(
 			DSLQueryFactoryUtil.select(
 				DLFileEntryTable.INSTANCE
 			).from(
@@ -3500,20 +3500,20 @@ public class DLFileEntryLocalServiceImpl
 				)
 			));
 
-		for (DLFileEntry fileEntry : fileEntries) {
-			if (fileEntry.isInTrash()) {
+		for (DLFileEntry dlFileEntry : dlFileEntries) {
+			if (dlFileEntry.isInTrash()) {
 				continue;
 			}
 
 			DLFileVersion latestFileVersion =
 				_dlFileVersionLocalService.fetchLatestFileVersion(
-					fileEntry.getFileEntryId(), false);
+					dlFileEntry.getFileEntryId(), false);
 
 			if (WorkflowConstants.STATUS_SCHEDULED ==
 					latestFileVersion.getStatus()) {
 
 				updateStatus(
-					userId, fileEntry, latestFileVersion,
+					userId, dlFileEntry, latestFileVersion,
 					WorkflowConstants.STATUS_APPROVED, serviceContext,
 					workflowContext);
 			}
