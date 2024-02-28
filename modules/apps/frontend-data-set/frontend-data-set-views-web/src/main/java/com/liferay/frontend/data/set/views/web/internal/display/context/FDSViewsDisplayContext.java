@@ -44,7 +44,7 @@ public class FDSViewsDisplayContext {
 		CETManager cetManager,
 		ObjectDefinitionLocalService objectDefinitionLocalService,
 		RenderRequest renderRequest, RenderResponse renderResponse,
-		ServiceTrackerList<FDSViewsPortlet.CompanyScopedOpenapiResource>
+		ServiceTrackerList<FDSViewsPortlet.CompanyScopedOpenAPIResource>
 			serviceTrackerList) {
 
 		_cetManager = cetManager;
@@ -163,31 +163,31 @@ public class FDSViewsDisplayContext {
 	public JSONArray getRESTApplicationsJSONArray() {
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		List<FDSViewsPortlet.CompanyScopedOpenapiResource>
-			companyScopedOpenapiResources = _serviceTrackerList.toList();
+		List<FDSViewsPortlet.CompanyScopedOpenAPIResource>
+			companyScopedOpenAPIResources = _serviceTrackerList.toList();
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)_renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		long companyId = themeDisplay.getCompanyId();
 
-		companyScopedOpenapiResources = ListUtil.filter(
-			companyScopedOpenapiResources,
-			companyScopedOpenapiResource ->
-				companyScopedOpenapiResource.matches(companyId));
+		companyScopedOpenAPIResources = ListUtil.filter(
+			companyScopedOpenAPIResources,
+			companyScopedOpenAPIResource ->
+				companyScopedOpenAPIResource.matches(companyId));
 
 		Collections.sort(
-			companyScopedOpenapiResources,
+			companyScopedOpenAPIResources,
 			Comparator.comparing(
-				FDSViewsPortlet.CompanyScopedOpenapiResource::
-					getOpenapiResourcePath,
+				FDSViewsPortlet.CompanyScopedOpenAPIResource::
+					getOpenAPIResourcePath,
 				String::compareTo));
 
-		for (FDSViewsPortlet.CompanyScopedOpenapiResource
-				companyScopedOpenapiResource : companyScopedOpenapiResources) {
+		for (FDSViewsPortlet.CompanyScopedOpenAPIResource
+				companyScopedOpenAPIResource : companyScopedOpenAPIResources) {
 
 			jsonArray.put(
-				companyScopedOpenapiResource.getOpenapiResourcePath());
+				companyScopedOpenAPIResource.getOpenAPIResourcePath());
 		}
 
 		return jsonArray;
@@ -210,7 +210,7 @@ public class FDSViewsDisplayContext {
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
 	private final ServiceTrackerList
-		<FDSViewsPortlet.CompanyScopedOpenapiResource> _serviceTrackerList;
+		<FDSViewsPortlet.CompanyScopedOpenAPIResource> _serviceTrackerList;
 	private final ThemeDisplay _themeDisplay;
 
 }

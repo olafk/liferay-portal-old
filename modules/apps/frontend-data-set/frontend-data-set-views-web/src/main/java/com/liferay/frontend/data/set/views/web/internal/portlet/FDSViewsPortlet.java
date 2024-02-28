@@ -72,21 +72,21 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 )
 public class FDSViewsPortlet extends MVCPortlet {
 
-	public static class CompanyScopedOpenapiResource {
+	public static class CompanyScopedOpenAPIResource {
 
-		public CompanyScopedOpenapiResource(
-			long companyId, String openapiResourcePath) {
+		public CompanyScopedOpenAPIResource(
+			long companyId, String openAPIResourcePath) {
 
 			_companyId = companyId;
-			_openapiResourcePath = openapiResourcePath;
+			_openAPIResourcePath = openAPIResourcePath;
 		}
 
 		public long getCompanyId() {
 			return _companyId;
 		}
 
-		public String getOpenapiResourcePath() {
-			return _openapiResourcePath;
+		public String getOpenAPIResourcePath() {
+			return _openAPIResourcePath;
 		}
 
 		public boolean matches(long companyId) {
@@ -98,7 +98,7 @@ public class FDSViewsPortlet extends MVCPortlet {
 		}
 
 		private final long _companyId;
-		private final String _openapiResourcePath;
+		private final String _openAPIResourcePath;
 
 	}
 
@@ -772,21 +772,21 @@ public class FDSViewsPortlet extends MVCPortlet {
 	@Reference
 	private Portal _portal;
 
-	private ServiceTrackerList<CompanyScopedOpenapiResource>
+	private ServiceTrackerList<CompanyScopedOpenAPIResource>
 		_serviceTrackerList;
 
 	private class CompanyScopedRESTApplicationServiceTrackerCustomizer
 		implements ServiceTrackerCustomizer
-			<Object, CompanyScopedOpenapiResource> {
+			<Object, CompanyScopedOpenAPIResource> {
 
 		@Override
-		public CompanyScopedOpenapiResource addingService(
+		public CompanyScopedOpenAPIResource addingService(
 			ServiceReference<Object> serviceReference) {
 
-			String openapiResourcePath = (String)serviceReference.getProperty(
+			String openAPIResourcePath = (String)serviceReference.getProperty(
 				"openapi.resource.path");
 
-			if (openapiResourcePath == null) {
+			if (openAPIResourcePath == null) {
 				return null;
 			}
 
@@ -794,26 +794,26 @@ public class FDSViewsPortlet extends MVCPortlet {
 				"api.version");
 
 			if (apiVersion != null) {
-				openapiResourcePath = openapiResourcePath + "/" + apiVersion;
+				openAPIResourcePath = openAPIResourcePath + "/" + apiVersion;
 			}
 
 			long companyId = GetterUtil.getLong(
 				(String)serviceReference.getProperty("companyId"));
 
-			return new CompanyScopedOpenapiResource(
-				companyId, openapiResourcePath);
+			return new CompanyScopedOpenAPIResource(
+				companyId, openAPIResourcePath);
 		}
 
 		@Override
 		public void modifiedService(
 			ServiceReference<Object> serviceReference,
-			CompanyScopedOpenapiResource companyScopedOpenapiResource) {
+			CompanyScopedOpenAPIResource companyScopedOpenAPIResource) {
 		}
 
 		@Override
 		public void removedService(
 			ServiceReference<Object> serviceReference,
-			CompanyScopedOpenapiResource companyScopedOpenapiResource) {
+			CompanyScopedOpenAPIResource companyScopedOpenAPIResource) {
 
 			_bundleContext.ungetService(serviceReference);
 		}
