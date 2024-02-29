@@ -232,3 +232,8 @@ cfb91a2d45e23ceff2168fb77dddc6f54ef7d868^..71c816fe4fdb4e2aaacc9f5b8d5d42e9182c9
 # Bundle Version 4.0.52
 #
 06e43c874e1f2e63ff064e7a3a4adbf2c1a6e4e1^..f21d3f8c894fe0d450191bd9d4eeefab2b35146a=COMMERCE-12963
+
+#
+# Bundle Version 4.0.53
+#
+f21d3f8c894fe0d450191bd9d4eeefab2b35146a^..db9d1715a7f213a4912c6dacdee1112b8a91987f=LPD-7935
