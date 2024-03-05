@@ -28,9 +28,9 @@ public class StoreAreaTest {
 		Assert.assertEquals("1/2", StoreArea.LIVE.getPath(1, 2));
 		Assert.assertEquals("1/2/a", StoreArea.LIVE.getPath(1, 2, "a"));
 		Assert.assertEquals("1/2/a/b", StoreArea.LIVE.getPath(1, 2, "a", "b"));
-		Assert.assertEquals("1/2/a/b", StoreArea.LIVE.getPath(1, 2, "a/", "b"));
 		Assert.assertEquals(
 			"1/2/a/b", StoreArea.LIVE.getPath(1, 2, "a/", "/b"));
+		Assert.assertEquals("1/2/a/b", StoreArea.LIVE.getPath(1, 2, "a/", "b"));
 		Assert.assertEquals(
 			"1/2/a/b/c", StoreArea.LIVE.getPath(1, 2, "a/", "/b/", "/c"));
 		Assert.assertEquals(
