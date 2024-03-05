@@ -216,7 +216,7 @@ public class UpgradePartitionedConfigurationTableTest
 								configurationEntry.getScope(
 								).getValue(),
 								" ID ", configurationEntryEntry.getKey(),
-								" does not exists")));
+								" does not exist")));
 				}
 			}
 

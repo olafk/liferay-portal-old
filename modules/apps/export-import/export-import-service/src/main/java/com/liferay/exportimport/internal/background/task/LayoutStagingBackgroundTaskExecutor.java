@@ -90,7 +90,7 @@ public class LayoutStagingBackgroundTaskExecutor
 
 			if (targetGroup == null) {
 				throw new NoSuchGroupException(
-					"Target group does not exists with the primary key " +
+					"Target group does not exist with the primary key " +
 						targetGroupId);
 			}
 

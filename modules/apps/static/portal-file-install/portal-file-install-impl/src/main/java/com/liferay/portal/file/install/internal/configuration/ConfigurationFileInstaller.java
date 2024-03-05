@@ -306,7 +306,7 @@ public class ConfigurationFileInstaller implements FileInstaller {
 
 				throw new IllegalArgumentException(
 					StringBundler.concat(
-						"Unable to process ", fileName, ": company ID ",
+						"Unable to process ", fileName, " because company ID ",
 						companyId, " does not exist"));
 			}
 

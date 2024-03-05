@@ -115,7 +115,7 @@ public class ConfigurationUpgradeProcess extends UpgradeProcess {
 							scopeConfiguration.getConfigurationId(),
 							" has been removed because the company ID ",
 							scopeConfiguration.getScopePK(),
-							" does not exists"));
+							" does not exist"));
 				}
 
 				if (Objects.equals(
@@ -128,7 +128,7 @@ public class ConfigurationUpgradeProcess extends UpgradeProcess {
 							scopeConfiguration.getConfigurationId(),
 							" has been removed because the group ID ",
 							scopeConfiguration.getScopePK(),
-							" does not exists"));
+							" does not exist"));
 				}
 			}
 		}
