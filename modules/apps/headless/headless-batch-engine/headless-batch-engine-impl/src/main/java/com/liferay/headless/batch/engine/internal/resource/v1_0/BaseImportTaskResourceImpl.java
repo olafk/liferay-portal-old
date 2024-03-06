@@ -158,7 +158,8 @@ public abstract class BaseImportTaskResourceImpl implements ImportTaskResource {
 	 * curl -X 'DELETE' 'http://localhost:8080/o/headless-batch-engine/v1.0/import-task/{className}'  -u 'test@liferay.com:test'
 	 */
 	@io.swagger.v3.oas.annotations.Operation(
-		description = "Uploads a new file for deleting items in batch."
+		description = "Uploads a new file for deleting items in batch.",
+		requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = {@io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/x-ndjson", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/xml", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "multipart/form-data", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = DeleteImportTaskRequestBody.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "text/csv", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class))})
 	)
 	@io.swagger.v3.oas.annotations.Parameters(
 		value = {
@@ -227,7 +228,7 @@ public abstract class BaseImportTaskResourceImpl implements ImportTaskResource {
 	 */
 	@io.swagger.v3.oas.annotations.Operation(
 		description = "Uploads a new file for deleting items in batch.",
-		requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "multipart/form-data", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = DeleteImportTaskRequestBody.class)))
+		requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = {@io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/x-ndjson", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/xml", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "multipart/form-data", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = DeleteImportTaskRequestBody.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "text/csv", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class))})
 	)
 	@io.swagger.v3.oas.annotations.Parameters(
 		value = {
@@ -290,7 +291,8 @@ public abstract class BaseImportTaskResourceImpl implements ImportTaskResource {
 	 * curl -X 'POST' 'http://localhost:8080/o/headless-batch-engine/v1.0/import-task/{className}'  -u 'test@liferay.com:test'
 	 */
 	@io.swagger.v3.oas.annotations.Operation(
-		description = "Uploads a new file for creating new items in batch."
+		description = "Uploads a new file for creating new items in batch.",
+		requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = {@io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/x-ndjson", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/xml", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "multipart/form-data", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = PostImportTaskRequestBody.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "text/csv", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class))})
 	)
 	@io.swagger.v3.oas.annotations.Parameters(
 		value = {
@@ -373,7 +375,7 @@ public abstract class BaseImportTaskResourceImpl implements ImportTaskResource {
 	 */
 	@io.swagger.v3.oas.annotations.Operation(
 		description = "Uploads a new file for creating new items in batch.",
-		requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "multipart/form-data", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = PostImportTaskRequestBody.class)))
+		requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = {@io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/x-ndjson", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/xml", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "multipart/form-data", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = PostImportTaskRequestBody.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "text/csv", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class))})
 	)
 	@io.swagger.v3.oas.annotations.Parameters(
 		value = {
@@ -450,7 +452,8 @@ public abstract class BaseImportTaskResourceImpl implements ImportTaskResource {
 	 * curl -X 'PUT' 'http://localhost:8080/o/headless-batch-engine/v1.0/import-task/{className}'  -u 'test@liferay.com:test'
 	 */
 	@io.swagger.v3.oas.annotations.Operation(
-		description = "Uploads a new file for updating items in batch."
+		description = "Uploads a new file for updating items in batch.",
+		requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = {@io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/x-ndjson", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/xml", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "multipart/form-data", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = PutImportTaskRequestBody.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "text/csv", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class))})
 	)
 	@io.swagger.v3.oas.annotations.Parameters(
 		value = {
@@ -526,7 +529,7 @@ public abstract class BaseImportTaskResourceImpl implements ImportTaskResource {
 	 */
 	@io.swagger.v3.oas.annotations.Operation(
 		description = "Uploads a new file for updating items in batch.",
-		requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "multipart/form-data", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = PutImportTaskRequestBody.class)))
+		requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = {@io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/x-ndjson", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/xml", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "multipart/form-data", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = PutImportTaskRequestBody.class)), @io.swagger.v3.oas.annotations.media.Content(mediaType = "text/csv", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ImportTask.class))})
 	)
 	@io.swagger.v3.oas.annotations.Parameters(
 		value = {
