@@ -27,9 +27,9 @@ public class GenerateTestrayCSVJobDefinition extends BaseJobDefinition {
 		jobParameterDefinitions.add(
 			new JenkinsBranchURLJobParameterDefinition());
 		jobParameterDefinitions.add(
-			new PortalPullRequestURLJobParameterDefinition());
-		jobParameterDefinitions.add(
 			new JenkinsSlaveLabelJobParameterDefinition("!master"));
+		jobParameterDefinitions.add(
+			new PortalPullRequestURLJobParameterDefinition());
 		jobParameterDefinitions.add(new TestrayBuildIDJobParameterDefinition());
 
 		return jobParameterDefinitions;
