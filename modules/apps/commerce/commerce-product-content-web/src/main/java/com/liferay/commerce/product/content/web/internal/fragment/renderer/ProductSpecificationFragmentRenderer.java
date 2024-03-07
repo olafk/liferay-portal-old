@@ -127,7 +127,6 @@ public class ProductSpecificationFragmentRenderer implements FragmentRenderer {
 					WebKeys.THEME_DISPLAY);
 
 			String label = StringPool.BLANK;
-			String value = StringPool.BLANK;
 
 			CPDefinition cpDefinition = (CPDefinition)infoItem;
 
@@ -149,15 +148,10 @@ public class ProductSpecificationFragmentRenderer implements FragmentRenderer {
 
 				label = cpSpecificationOption.getTitle(
 					themeDisplay.getLanguageId());
-
-				value = cpDefinitionSpecificationOptionValue.getValue(
-					themeDisplay.getLanguageId());
 			}
 
 			httpServletRequest.setAttribute(
 				"liferay-commerce:product-specification:label", label);
-			httpServletRequest.setAttribute(
-				"liferay-commerce:product-specification:value", value);
 
 			httpServletRequest.setAttribute(
 				"liferay-commerce:product-specification:labelElementType",
@@ -165,18 +159,6 @@ public class ProductSpecificationFragmentRenderer implements FragmentRenderer {
 					_getConfigurationValue(
 						fragmentRendererContext.getFragmentEntryLink(),
 						"labelElementType")));
-			httpServletRequest.setAttribute(
-				"liferay-commerce:product-specification:showLabel",
-				GetterUtil.getBoolean(
-					_getConfigurationValue(
-						fragmentRendererContext.getFragmentEntryLink(),
-						"showLabel")));
-			httpServletRequest.setAttribute(
-				"liferay-commerce:product-specification:valueElementType",
-				GetterUtil.getString(
-					_getConfigurationValue(
-						fragmentRendererContext.getFragmentEntryLink(),
-						"valueElementType")));
 
 			String namespace = (String)httpServletRequest.getAttribute(
 				"liferay-commerce:product-specification:namespace");
@@ -191,6 +173,30 @@ public class ProductSpecificationFragmentRenderer implements FragmentRenderer {
 					"liferay-commerce:product-specification:namespace",
 					namespace);
 			}
+
+			httpServletRequest.setAttribute(
+				"liferay-commerce:product-specification:showLabel",
+				GetterUtil.getBoolean(
+					_getConfigurationValue(
+						fragmentRendererContext.getFragmentEntryLink(),
+						"showLabel")));
+
+			String value = StringPool.BLANK;
+
+			if (cpDefinitionSpecificationOptionValue != null) {
+				value = cpDefinitionSpecificationOptionValue.getValue(
+					themeDisplay.getLanguageId());
+			}
+
+			httpServletRequest.setAttribute(
+				"liferay-commerce:product-specification:value", value);
+
+			httpServletRequest.setAttribute(
+				"liferay-commerce:product-specification:valueElementType",
+				GetterUtil.getString(
+					_getConfigurationValue(
+						fragmentRendererContext.getFragmentEntryLink(),
+						"valueElementType")));
 
 			requestDispatcher.include(httpServletRequest, httpServletResponse);
 		}
