@@ -1049,7 +1049,6 @@ public class ProductResourceImpl extends BaseProductResourceImpl {
 		if (images != null) {
 			for (Attachment attachment : images) {
 				serviceContext.setAssetTagNames(attachment.getTags());
-
 				serviceContext.setExpandoBridgeAttributes(
 					_getExpandoBridgeAttributes(attachment));
 
@@ -1073,7 +1072,6 @@ public class ProductResourceImpl extends BaseProductResourceImpl {
 		if (attachments != null) {
 			for (Attachment attachment : attachments) {
 				serviceContext.setAssetTagNames(attachment.getTags());
-
 				serviceContext.setExpandoBridgeAttributes(
 					_getExpandoBridgeAttributes(attachment));
 
