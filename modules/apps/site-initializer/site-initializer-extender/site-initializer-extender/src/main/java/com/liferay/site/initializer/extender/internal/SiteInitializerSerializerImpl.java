@@ -185,7 +185,9 @@ public class SiteInitializerSerializerImpl
 			groupId, parentFolderId);
 
 		for (FileEntry fileEntry : fileEntries) {
-			_serializeFileEntry(fileEntry, parentFolderName, zipWriter);
+			_addZipEntry(
+				_normalize(parentFolderName + "/" + fileEntry.getFileName()),
+				fileEntry.getContentStream(), zipWriter);
 		}
 
 		List<Folder> subfolders = _dlAppService.getFolders(
@@ -196,15 +198,6 @@ public class SiteInitializerSerializerImpl
 				groupId, subfolder.getFolderId(),
 				parentFolderName + "/" + subfolder.getName(), zipWriter);
 		}
-	}
-
-	private void _serializeFileEntry(
-			FileEntry fileEntry, String parentFolderName, ZipWriter zipWriter)
-		throws Exception {
-
-		_addZipEntry(
-			_normalize(parentFolderName + "/" + fileEntry.getFileName()),
-			fileEntry.getContentStream(), zipWriter);
 	}
 
 	private void _serializeStyleBookEntries(long groupId, ZipWriter zipWriter)
