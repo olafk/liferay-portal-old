@@ -408,23 +408,23 @@ public class CTCollectionLocalServiceImpl
 		List<CTEntry> ctEntries = _ctEntryPersistence.findByCtCollectionId(
 			ctCollection.getCtCollectionId());
 
-		Map<Long, List<Long>> modelClassNameMap = new HashMap<>();
+		Map<Long, List<Long>> modelClassPKsMap = new HashMap<>();
 
 		for (CTEntry ctEntry : ctEntries) {
-			List<Long> modelClassPKs = modelClassNameMap.get(
+			List<Long> modelClassPKs = modelClassPKsMap.get(
 				ctEntry.getModelClassNameId());
 
 			if (modelClassPKs == null) {
 				modelClassPKs = new ArrayList<>();
 
-				modelClassNameMap.put(
+				modelClassPKsMap.put(
 					ctEntry.getModelClassNameId(), modelClassPKs);
 			}
 
 			modelClassPKs.add(ctEntry.getModelClassPK());
 		}
 
-		for (Map.Entry<Long, List<Long>> entry : modelClassNameMap.entrySet()) {
+		for (Map.Entry<Long, List<Long>> entry : modelClassPKsMap.entrySet()) {
 			CTService<?> ctService = _ctServiceRegistry.getCTService(
 				entry.getKey());
 
