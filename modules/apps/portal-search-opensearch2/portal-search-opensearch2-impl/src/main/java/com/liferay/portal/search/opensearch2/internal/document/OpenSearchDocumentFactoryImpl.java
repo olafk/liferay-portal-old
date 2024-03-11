@@ -313,7 +313,7 @@ public class OpenSearchDocumentFactoryImpl
 			String value;
 
 			if (date.getTime() == Long.MAX_VALUE) {
-				value = _DATE_MAX_VALUE;
+				value = "99950812133000";
 			}
 			else {
 				Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(
@@ -367,8 +367,6 @@ public class OpenSearchDocumentFactoryImpl
 
 		return value;
 	}
-
-	private static final String _DATE_MAX_VALUE = "99950812133000";
 
 	private final GeoTranslator _geoTranslator = new GeoTranslator();
 

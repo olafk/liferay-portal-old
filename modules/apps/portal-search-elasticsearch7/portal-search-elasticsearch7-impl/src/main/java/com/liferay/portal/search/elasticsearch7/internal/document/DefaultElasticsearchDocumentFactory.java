@@ -109,7 +109,7 @@ public class DefaultElasticsearchDocumentFactory
 			String value;
 
 			if (date.getTime() == Long.MAX_VALUE) {
-				value = _DATE_MAX_VALUE;
+				value = "99950812133000";
 			}
 			else {
 				Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(
@@ -359,7 +359,5 @@ public class DefaultElasticsearchDocumentFactory
 
 		return Double.valueOf(value);
 	}
-
-	private static final String _DATE_MAX_VALUE = "99950812133000";
 
 }
