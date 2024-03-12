@@ -251,11 +251,11 @@ public class FrontendTokenDefinitionRegistryImpl
 				_portal.getClassNameId(LayoutSet.class), layoutSetId,
 				ClientExtensionEntryConstants.TYPE_THEME_CSS);
 
-		if (clientExtensionEntryRel != null) {
-			return clientExtensionEntryRel.getCETExternalReferenceCode();
+		if (clientExtensionEntryRel == null) {
+			return null;
 		}
 
-		return null;
+		return clientExtensionEntryRel.getCETExternalReferenceCode();
 	}
 
 	private FrontendTokenDefinition _getFrontendTokenDefinition(
