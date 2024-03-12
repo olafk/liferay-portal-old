@@ -128,6 +128,8 @@ public class QuestionsConfigurationModelListener
 	private void _enableServiceAccessPolicy(boolean enableAnonymousRead)
 		throws Exception {
 
+		String name = "QUESTIONS";
+
 		SAPEntry sapEntry = _sapEntryService.fetchSAPEntry(
 			CompanyThreadLocal.getCompanyId(), name);
 
@@ -175,7 +177,7 @@ public class QuestionsConfigurationModelListener
 					"getSiteMessageBoardThreadByFriendlyUrlPath\n",
 					headlessDeliveryPackage, "MessageBoardThreadResourceImpl#",
 					"getSiteMessageBoardThreadsPage\n"),
-				true, true, "QUESTIONS",
+				true, true, name,
 				Collections.singletonMap(
 					LocaleThreadLocal.getDefaultLocale(), "Questions"),
 				new ServiceContext());
