@@ -451,10 +451,8 @@ public class GraphQLServletTest {
 
 		_assertGraphQLSchemaField(
 			true, mutationFieldsJSONArray, true, "createTestDTO");
-
 		_assertGraphQLSchemaField(
 			false, mutationFieldsJSONArray, true, "testPath_v1_0");
-
 		_assertGraphQLSchemaField(
 			false,
 			JSONUtil.getValueAsJSONArray(
@@ -802,13 +800,13 @@ public class GraphQLServletTest {
 		boolean mutation, String operationName) {
 
 		StringBuilder sb = new StringBuilder(
-			"This field is deprecated. Please, access this ");
+			"This field is deprecated. Access to ");
 
 		if (mutation) {
-			sb.append("mutation through the following path : mutation/");
+			sb.append("mutation is available at mutation/");
 		}
 		else {
-			sb.append("query through the following path : query/");
+			sb.append("query is available at query/");
 		}
 
 		sb.append("testPath_v1_0/");
