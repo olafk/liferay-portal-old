@@ -1431,14 +1431,12 @@ public class Main {
 							_getBreadcrumbLinksJSONArray(englishFile)));
 				}
 			};
-
 		ContentFieldValue englishContentContentFieldValue =
 			new ContentFieldValue() {
 				{
 					setData(() -> _getHTML(englishFile));
 				}
 			};
-
 		ContentFieldValue englishLandingPageContentFieldValue =
 			new ContentFieldValue() {
 				{
@@ -1447,14 +1445,12 @@ public class Main {
 							_landingPageFiles.contains(englishFile)));
 				}
 			};
-
 		ContentFieldValue englishMD5HexContentFieldValue =
 			new ContentFieldValue() {
 				{
 					setData(() -> DigestUtils.md5Hex(englishFile.toString()));
 				}
 			};
-
 		ContentFieldValue englishNavigationLinksContentFieldValue =
 			new ContentFieldValue() {
 				{
@@ -1464,14 +1460,12 @@ public class Main {
 								englishFile, englishText)));
 				}
 			};
-
 		ContentFieldValue englishProductContentFieldValue =
 			new ContentFieldValue() {
 				{
 					setData(() -> _getProduct(englishFile));
 				}
 			};
-
 		String englishTitle = _getTitle(englishText);
 
 		File japaneseFile = new File(
