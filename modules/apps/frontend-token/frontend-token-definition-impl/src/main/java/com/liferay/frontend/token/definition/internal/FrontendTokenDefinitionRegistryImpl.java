@@ -237,11 +237,11 @@ public class FrontendTokenDefinitionRegistryImpl
 		if ((externalReferenceCode != null) &&
 			FeatureFlagManagerUtil.isEnabled("LPD-10773")) {
 
-			Map<String, FrontendTokenDefinition> frontendTokenDefinitionsMap =
+			Map<String, FrontendTokenDefinition> frontendTokenDefinitions =
 				_getFrontendTokenDefinitionsMap(companyId);
 
 			FrontendTokenDefinition frontendTokenDefinition =
-				frontendTokenDefinitionsMap.get(externalReferenceCode);
+				frontendTokenDefinitions.get(externalReferenceCode);
 
 			if (frontendTokenDefinition != null) {
 				return frontendTokenDefinition;
@@ -280,7 +280,7 @@ public class FrontendTokenDefinitionRegistryImpl
 	private Map<String, FrontendTokenDefinition>
 		_getFrontendTokenDefinitionsMap(long companyId) {
 
-		return _companyFrontendTokenDefinitionsMap.getOrDefault(
+		return _frontendTokenDefinitionsMap.getOrDefault(
 			companyId, new ConcurrentHashMap<>());
 	}
 
@@ -294,12 +294,12 @@ public class FrontendTokenDefinitionRegistryImpl
 			_frontendTokenDefinitionJSONValidator.validate(
 				frontendTokenDefinitionJSON);
 
-			Map<String, FrontendTokenDefinition> frontendTokenDefinitionsMap =
-				_companyFrontendTokenDefinitionsMap.computeIfAbsent(
+			Map<String, FrontendTokenDefinition> frontendTokenDefinitions =
+				_frontendTokenDefinitionsMap.computeIfAbsent(
 					themeCSSCET.getCompanyId(),
 					entry -> new ConcurrentHashMap<>());
 
-			frontendTokenDefinitionsMap.put(
+			frontendTokenDefinitions.put(
 				themeCSSCET.getExternalReferenceCode(),
 				new FrontendTokenDefinitionImpl(
 					jsonFactory.createJSONObject(frontendTokenDefinitionJSON),
@@ -318,10 +318,10 @@ public class FrontendTokenDefinitionRegistryImpl
 	private void _unregisterThemeCSSClientExtensionFrontendTokenDefinition(
 		ThemeCSSCET themeCSSCET) {
 
-		Map<String, FrontendTokenDefinition> frontendTokenDefinitionsMap =
+		Map<String, FrontendTokenDefinition> frontendTokenDefinitions =
 			_getFrontendTokenDefinitionsMap(themeCSSCET.getCompanyId());
 
-		frontendTokenDefinitionsMap.remove(
+		frontendTokenDefinitions.remove(
 			themeCSSCET.getExternalReferenceCode());
 	}
 
@@ -379,7 +379,7 @@ public class FrontendTokenDefinitionRegistryImpl
 		_clientExtensionEntryRelLocalService;
 
 	private final Map<Long, Map<String, FrontendTokenDefinition>>
-		_companyFrontendTokenDefinitionsMap = new ConcurrentHashMap<>();
+		_frontendTokenDefinitionsMap = new ConcurrentHashMap<>();
 	private final FrontendTokenDefinitionJSONValidator
 		_frontendTokenDefinitionJSONValidator =
 			new FrontendTokenDefinitionJSONValidator();
