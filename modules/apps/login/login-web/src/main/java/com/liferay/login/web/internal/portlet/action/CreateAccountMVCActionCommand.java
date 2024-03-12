@@ -222,27 +222,7 @@ public class CreateAccountMVCActionCommand extends BaseMVCActionCommand {
 		}
 		catch (Exception exception) {
 			if (exception instanceof
-					UserScreenNameException.MustNotBeDuplicate) {
-
-				String emailAddress = ParamUtil.getString(
-					actionRequest, "emailAddress");
-
-				User user = _userLocalService.fetchUserByEmailAddress(
-					themeDisplay.getCompanyId(), emailAddress);
-
-				if ((user == null) ||
-					(user.getStatus() != WorkflowConstants.STATUS_INCOMPLETE)) {
-
-					SessionErrors.add(
-						actionRequest, exception.getClass(), exception);
-				}
-				else {
-					actionResponse.setRenderParameter(
-						"mvcPath", "/update_account.jsp");
-				}
-			}
-			else if (exception instanceof
-						UserEmailAddressException.MustNotBeDuplicate) {
+					UserEmailAddressException.MustNotBeDuplicate) {
 
 				String emailAddress = ParamUtil.getString(
 					actionRequest, "emailAddress");
@@ -304,31 +284,52 @@ public class CreateAccountMVCActionCommand extends BaseMVCActionCommand {
 					actionRequest, actionResponse, themeDisplay, user,
 					user.getPasswordUnencrypted());
 			}
-			else if (exception instanceof AddressCityException ||
-					 exception instanceof AddressStreetException ||
-					 exception instanceof AddressZipException ||
-					 exception instanceof CaptchaException ||
-					 exception instanceof CompanyMaxUsersException ||
-					 exception instanceof ContactBirthdayException ||
-					 exception instanceof ContactNameException ||
-					 exception instanceof DuplicateOpenIdException ||
-					 exception instanceof EmailAddressException ||
-					 exception instanceof GroupFriendlyURLException ||
-					 exception instanceof NoSuchCountryException ||
-					 exception instanceof NoSuchListTypeException ||
-					 exception instanceof NoSuchOrganizationException ||
-					 exception instanceof NoSuchRegionException ||
-					 exception instanceof OrganizationParentException ||
-					 exception instanceof PhoneNumberException ||
-					 exception instanceof RequiredFieldException ||
-					 exception instanceof RequiredUserException ||
-					 exception instanceof TermsOfUseException ||
-					 exception instanceof UserEmailAddressException ||
-					 exception instanceof UserIdException ||
-					 exception instanceof UserPasswordException ||
-					 exception instanceof UserScreenNameException ||
-					 exception instanceof UserSmsException ||
-					 exception instanceof WebsiteURLException) {
+			else if (exception instanceof
+						UserScreenNameException.MustNotBeDuplicate) {
+
+				String emailAddress = ParamUtil.getString(
+					actionRequest, "emailAddress");
+
+				User user = _userLocalService.fetchUserByEmailAddress(
+					themeDisplay.getCompanyId(), emailAddress);
+
+				if ((user == null) ||
+					(user.getStatus() != WorkflowConstants.STATUS_INCOMPLETE)) {
+
+					SessionErrors.add(
+						actionRequest, exception.getClass(), exception);
+				}
+				else {
+					actionResponse.setRenderParameter(
+						"mvcPath", "/update_account.jsp");
+				}
+			}
+
+			if (exception instanceof AddressCityException ||
+				exception instanceof AddressStreetException ||
+				exception instanceof AddressZipException ||
+				exception instanceof CaptchaException ||
+				exception instanceof CompanyMaxUsersException ||
+				exception instanceof ContactBirthdayException ||
+				exception instanceof ContactNameException ||
+				exception instanceof DuplicateOpenIdException ||
+				exception instanceof EmailAddressException ||
+				exception instanceof GroupFriendlyURLException ||
+				exception instanceof NoSuchCountryException ||
+				exception instanceof NoSuchListTypeException ||
+				exception instanceof NoSuchOrganizationException ||
+				exception instanceof NoSuchRegionException ||
+				exception instanceof OrganizationParentException ||
+				exception instanceof PhoneNumberException ||
+				exception instanceof RequiredFieldException ||
+				exception instanceof RequiredUserException ||
+				exception instanceof TermsOfUseException ||
+				exception instanceof UserEmailAddressException ||
+				exception instanceof UserIdException ||
+				exception instanceof UserPasswordException ||
+				exception instanceof UserScreenNameException ||
+				exception instanceof UserSmsException ||
+				exception instanceof WebsiteURLException) {
 
 				SessionErrors.add(
 					actionRequest, exception.getClass(), exception);
