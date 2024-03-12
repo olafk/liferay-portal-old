@@ -152,9 +152,10 @@ public class PortletImpl extends PortletBaseImpl {
 		String portletName, String displayName, Set<String> categoryNames,
 		String portletClass, String configurationActionClass,
 		List<String> indexerClasses, String openSearchClass,
-		List<SchedulerEntry> schedulerEntries, String portletURLClass, String friendlyURLMapperClass,
-		String friendlyURLMapping, String friendlyURLRoutes,
-		String urlEncoderClass, String portletDataHandlerClass,
+		List<SchedulerEntry> schedulerEntries, String portletURLClass,
+		String friendlyURLMapperClass, String friendlyURLMapping,
+		String friendlyURLRoutes, String urlEncoderClass,
+		String portletDataHandlerClass,
 		List<String> stagedModelDataHandlerClasses, String templateHandlerClass,
 		String portletConfigurationListenerClass,
 		String portletLayoutListenerClass, String popMessageListenerClass,
@@ -166,18 +167,17 @@ public class PortletImpl extends PortletBaseImpl {
 		String controlPanelEntryCategory, double controlPanelEntryWeight,
 		String controlPanelEntryClass, List<String> assetRendererFactoryClasses,
 		List<String> customAttributesDisplayClasses,
-		String permissionPropagatorClass,
-		List<String> trashHandlerClasses, List<String> workflowHandlerClasses,
-		String defaultPreferences, String preferencesValidator,
-		boolean preferencesCompanyWide, boolean preferencesUniquePerLayout,
-		boolean preferencesOwnedByGroup, boolean useDefaultTemplate,
-		boolean showPortletAccessDenied, boolean showPortletInactive,
-		boolean actionURLRedirect, boolean restoreCurrentView,
-		boolean maximizeEdit, boolean maximizeHelp, boolean popUpPrint,
-		boolean layoutCacheable, boolean instanceable, boolean scopeable,
-		boolean singlePageApplication, String userPrincipalStrategy,
-		boolean privateRequestAttributes, boolean privateSessionAttributes,
-		Set<String> autopropagatedParameters,
+		String permissionPropagatorClass, List<String> trashHandlerClasses,
+		List<String> workflowHandlerClasses, String defaultPreferences,
+		String preferencesValidator, boolean preferencesCompanyWide,
+		boolean preferencesUniquePerLayout, boolean preferencesOwnedByGroup,
+		boolean useDefaultTemplate, boolean showPortletAccessDenied,
+		boolean showPortletInactive, boolean actionURLRedirect,
+		boolean restoreCurrentView, boolean maximizeEdit, boolean maximizeHelp,
+		boolean popUpPrint, boolean layoutCacheable, boolean instanceable,
+		boolean scopeable, boolean singlePageApplication,
+		String userPrincipalStrategy, boolean privateRequestAttributes,
+		boolean privateSessionAttributes, Set<String> autopropagatedParameters,
 		boolean requiresNamespacedParameters, int actionTimeout,
 		int renderTimeout, int renderWeight, boolean ajaxable,
 		List<String> headerPortalCss, List<String> headerPortletCss,
@@ -398,11 +398,10 @@ public class PortletImpl extends PortletBaseImpl {
 			getDefaultPluginSetting(), getCompanyId(), getIcon(),
 			getVirtualPath(), getStrutsPath(), getParentStrutsPath(),
 			getPortletName(), getDisplayName(), getCategoryNames(),
-			getPortletClass(),
-			getConfigurationActionClass(), getIndexerClasses(),
-			getOpenSearchClass(), getSchedulerEntries(), getPortletURLClass(),
-			getFriendlyURLMapperClass(), _friendlyURLMapping,
-			getFriendlyURLRoutes(), getURLEncoderClass(),
+			getPortletClass(), getConfigurationActionClass(),
+			getIndexerClasses(), getOpenSearchClass(), getSchedulerEntries(),
+			getPortletURLClass(), getFriendlyURLMapperClass(),
+			_friendlyURLMapping, getFriendlyURLRoutes(), getURLEncoderClass(),
 			getPortletDataHandlerClass(), getStagedModelDataHandlerClasses(),
 			getTemplateHandlerClass(), getPortletConfigurationListenerClass(),
 			getPortletLayoutListenerClass(), getPopMessageListenerClass(),
@@ -413,16 +412,15 @@ public class PortletImpl extends PortletBaseImpl {
 			getWebDAVStorageClass(), getXmlRpcMethodClass(),
 			getControlPanelEntryCategory(), getControlPanelEntryWeight(),
 			getControlPanelEntryClass(), getAssetRendererFactoryClasses(),
-			getCustomAttributesDisplayClasses(),
-			getPermissionPropagatorClass(), getTrashHandlerClasses(),
-			getWorkflowHandlerClasses(), getDefaultPreferences(),
-			getPreferencesValidator(), isPreferencesCompanyWide(),
-			isPreferencesUniquePerLayout(), isPreferencesOwnedByGroup(),
-			isUseDefaultTemplate(), isShowPortletAccessDenied(),
-			isShowPortletInactive(), isActionURLRedirect(),
-			isRestoreCurrentView(), isMaximizeEdit(), isMaximizeHelp(),
-			isPopUpPrint(), isLayoutCacheable(), isInstanceable(),
-			isScopeable(), isSinglePageApplication(),
+			getCustomAttributesDisplayClasses(), getPermissionPropagatorClass(),
+			getTrashHandlerClasses(), getWorkflowHandlerClasses(),
+			getDefaultPreferences(), getPreferencesValidator(),
+			isPreferencesCompanyWide(), isPreferencesUniquePerLayout(),
+			isPreferencesOwnedByGroup(), isUseDefaultTemplate(),
+			isShowPortletAccessDenied(), isShowPortletInactive(),
+			isActionURLRedirect(), isRestoreCurrentView(), isMaximizeEdit(),
+			isMaximizeHelp(), isPopUpPrint(), isLayoutCacheable(),
+			isInstanceable(), isScopeable(), isSinglePageApplication(),
 			getUserPrincipalStrategy(), isPrivateRequestAttributes(),
 			isPrivateSessionAttributes(), getAutopropagatedParameters(),
 			isRequiresNamespacedParameters(), getActionTimeout(),
@@ -608,6 +606,16 @@ public class PortletImpl extends PortletBaseImpl {
 	@Override
 	public Set<String> getAutopropagatedParameters() {
 		return _autopropagatedParameters;
+	}
+
+	/**
+	 * Returns the category names of the portlet.
+	 *
+	 * @return the category names of the portlet
+	 */
+	@Override
+	public Set<String> getCategoryNames() {
+		return _categoryNames;
 	}
 
 	/**
@@ -801,16 +809,6 @@ public class PortletImpl extends PortletBaseImpl {
 		}
 
 		return _defaultPreferences;
-	}
-
-	/**
-	 * Returns the category names of the portlet.
-	 *
-	 * @return the category names of the portlet
-	 */
-	@Override
-	public Set<String> getCategoryNames() {
-		return _categoryNames;
 	}
 
 	/**
@@ -2999,6 +2997,16 @@ public class PortletImpl extends PortletBaseImpl {
 	}
 
 	/**
+	 * Sets the category names of the portlet.
+	 *
+	 * @param categoryNames the category names of the portlet
+	 */
+	@Override
+	public void setCategoryNames(Set<String> categoryNames) {
+		_categoryNames = categoryNames;
+	}
+
+	/**
 	 * Sets the configuration action class of the portlet.
 	 *
 	 * @param configurationActionClass the configuration action class of the
@@ -3090,16 +3098,6 @@ public class PortletImpl extends PortletBaseImpl {
 	@Override
 	public void setDefaultPreferences(String defaultPreferences) {
 		_defaultPreferences = defaultPreferences;
-	}
-
-	/**
-	 * Sets the category names of the portlet.
-	 *
-	 * @param categoryNames the category names of the portlet
-	 */
-	@Override
-	public void setCategoryNames(Set<String> categoryNames) {
-		_categoryNames = categoryNames;
 	}
 
 	/**
@@ -4321,6 +4319,11 @@ public class PortletImpl extends PortletBaseImpl {
 	private Set<String> _autopropagatedParameters;
 
 	/**
+	 * The names of the category that display the portlet
+	 */
+	private Set<String> _categoryNames;
+
+	/**
 	 * The configuration action class of the portlet.
 	 */
 	private String _configurationActionClass;
@@ -4364,11 +4367,6 @@ public class PortletImpl extends PortletBaseImpl {
 	 * The default preferences of the portlet.
 	 */
 	private String _defaultPreferences;
-
-	/**
-	 * The names of the category that display the portlet
-	 */
-	private Set<String> _categoryNames;
 
 	/**
 	 * The display name of the portlet.
