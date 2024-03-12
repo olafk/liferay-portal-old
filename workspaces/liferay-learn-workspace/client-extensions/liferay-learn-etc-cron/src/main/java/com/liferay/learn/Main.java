@@ -1448,7 +1448,7 @@ public class Main {
 				}
 			};
 
-		ContentFieldValue englishMd5HexContentFieldValue =
+		ContentFieldValue englishMD5HexContentFieldValue =
 			new ContentFieldValue() {
 				{
 					setData(() -> DigestUtils.md5Hex(englishFile.toString()));
@@ -1540,10 +1540,10 @@ public class Main {
 					new ContentField() {
 						{
 							setContentFieldValue(
-								() -> englishMd5HexContentFieldValue);
+								() -> englishMD5HexContentFieldValue);
 							setContentFieldValue_i18n(
 								() -> HashMapBuilder.put(
-									"en-US", englishMd5HexContentFieldValue
+									"en-US", englishMD5HexContentFieldValue
 								).put(
 									"ja-JP",
 									new ContentFieldValue() {
@@ -1648,7 +1648,7 @@ public class Main {
 					new ContentField() {
 						{
 							setContentFieldValue(
-								() -> englishMd5HexContentFieldValue);
+								() -> englishMD5HexContentFieldValue);
 							setName(() -> "md5Hex");
 						}
 					},
