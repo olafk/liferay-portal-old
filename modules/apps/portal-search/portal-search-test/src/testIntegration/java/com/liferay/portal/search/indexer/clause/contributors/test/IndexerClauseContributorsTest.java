@@ -208,74 +208,74 @@ public class IndexerClauseContributorsTest {
 				"gamma"
 			);
 
-		String alwaysPresentContributor =
+		String alwaysPresentContributorClassName =
 			"com.liferay.portal.search.internal.spi.model.query.contributor." +
 				"AlwaysPresentFieldsKeywordQueryContributor";
-		String blogsEntryContributor =
+		String blogsEntryContributorClassName =
 			"com.liferay.blogs.internal.search.spi.model.query.contributor." +
 				"BlogsEntryKeywordQueryContributor";
-		String journalArticleContributor =
+		String journalArticleContributorClassName =
 			"com.liferay.journal.internal.search.spi.model.query.contributor." +
 				"JournalArticleKeywordQueryContributor";
-		String mbMessageContributor =
+		String mbMessageContributorClassName =
 			"com.liferay.message.boards.internal.search.spi.model.query." +
 				"contributor.MBMessageKeywordQueryContributor";
 
 		assertSearch(
 			"[Gamma Article, Gamma Blog, Gamma Message]",
 			withIncludes(
-				alwaysPresentContributor, blogsEntryContributor,
-				journalArticleContributor, mbMessageContributor),
+				alwaysPresentContributorClassName, blogsEntryContributorClassName,
+				journalArticleContributorClassName, mbMessageContributorClassName),
 			consumer);
 
 		assertSearch(
 			"[Gamma Article, Gamma Blog, Gamma Message]",
 			withIncludes(
-				alwaysPresentContributor, blogsEntryContributor,
-				journalArticleContributor, mbMessageContributor),
-			withExcludes(alwaysPresentContributor), consumer);
+				alwaysPresentContributorClassName, blogsEntryContributorClassName,
+				journalArticleContributorClassName, mbMessageContributorClassName),
+			withExcludes(alwaysPresentContributorClassName), consumer);
 
 		assertSearch(
 			"[Gamma Blog, Gamma Message]",
 			withIncludes(
-				alwaysPresentContributor, blogsEntryContributor,
-				journalArticleContributor, mbMessageContributor),
-			withExcludes(blogsEntryContributor, journalArticleContributor),
+				alwaysPresentContributorClassName, blogsEntryContributorClassName,
+				journalArticleContributorClassName, mbMessageContributorClassName),
+			withExcludes(blogsEntryContributorClassName, journalArticleContributorClassName),
 			consumer);
 
 		assertSearch(
 			"[Gamma Message]",
 			withIncludes(
-				alwaysPresentContributor, blogsEntryContributor,
-				journalArticleContributor, mbMessageContributor),
+				alwaysPresentContributorClassName, blogsEntryContributorClassName,
+				journalArticleContributorClassName, mbMessageContributorClassName),
 			withExcludes(
-				alwaysPresentContributor, blogsEntryContributor,
-				journalArticleContributor),
+				alwaysPresentContributorClassName, blogsEntryContributorClassName,
+				journalArticleContributorClassName),
 			consumer);
 
 		assertSearch(
 			"[Gamma Article, Gamma Blog]",
 			withIncludes(
-				alwaysPresentContributor, blogsEntryContributor,
-				journalArticleContributor, mbMessageContributor),
-			withExcludes(blogsEntryContributor, mbMessageContributor), consumer);
+				alwaysPresentContributorClassName, blogsEntryContributorClassName,
+				journalArticleContributorClassName, mbMessageContributorClassName),
+			withExcludes(blogsEntryContributorClassName, mbMessageContributorClassName), consumer);
 
 		assertSearch(
 			"[Gamma Article]",
 			withIncludes(
-				alwaysPresentContributor, blogsEntryContributor,
-				journalArticleContributor, mbMessageContributor),
+				alwaysPresentContributorClassName, blogsEntryContributorClassName,
+				journalArticleContributorClassName, mbMessageContributorClassName),
 			withExcludes(
-				alwaysPresentContributor, blogsEntryContributor,
-				mbMessageContributor),
+				alwaysPresentContributorClassName, blogsEntryContributorClassName,
+				mbMessageContributorClassName),
 			consumer);
 
 		assertSearch(
 			"[Gamma Blog]",
 			withIncludes(
-				alwaysPresentContributor, blogsEntryContributor,
-				journalArticleContributor, mbMessageContributor),
-			withExcludes(journalArticleContributor, mbMessageContributor),
+				alwaysPresentContributorClassName, blogsEntryContributorClassName,
+				journalArticleContributorClassName, mbMessageContributorClassName),
+			withExcludes(journalArticleContributorClassName, mbMessageContributorClassName),
 			consumer);
 	}
 
