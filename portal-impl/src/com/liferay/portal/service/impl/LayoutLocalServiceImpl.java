@@ -3935,9 +3935,9 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 				).and(
 					LayoutTable.INSTANCE.privateLayout.eq(privateLayout)
 				).and(
-					LayoutTable.INSTANCE.system.eq(false)
-				).and(
 					LayoutTable.INSTANCE.parentLayoutId.eq(parentLayoutId)
+				).and(
+					LayoutTable.INSTANCE.system.eq(false)
 				)
 			).orderBy(
 				orderByStep -> orderByStep.orderBy(
