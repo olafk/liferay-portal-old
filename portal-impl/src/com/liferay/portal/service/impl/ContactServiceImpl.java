@@ -112,8 +112,9 @@ public class ContactServiceImpl extends ContactServiceBaseImpl {
 			String jabberSn, String skypeSn, String twitterSn, String jobTitle)
 		throws PortalException {
 
-		String actionId = ActionKeys.UPDATE;
 		Contact contact = contactPersistence.findByPrimaryKey(contactId);
+
+		String actionId = ActionKeys.UPDATE;
 
 		if (Objects.equals(
 				contact.getClassName(),

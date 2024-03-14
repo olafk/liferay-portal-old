@@ -46,9 +46,10 @@ public class EmailAddressServiceImpl extends EmailAddressServiceBaseImpl {
 
 	@Override
 	public void deleteEmailAddress(long emailAddressId) throws PortalException {
-		String actionId = ActionKeys.UPDATE;
 		EmailAddress emailAddress = emailAddressPersistence.findByPrimaryKey(
 			emailAddressId);
+
+		String actionId = ActionKeys.UPDATE;
 
 		if (Objects.equals(
 				emailAddress.getClassName(),
@@ -120,9 +121,10 @@ public class EmailAddressServiceImpl extends EmailAddressServiceBaseImpl {
 			long emailAddressId, String address, long typeId, boolean primary)
 		throws PortalException {
 
-		String actionId = ActionKeys.UPDATE;
 		EmailAddress emailAddress = emailAddressPersistence.findByPrimaryKey(
 			emailAddressId);
+
+		String actionId = ActionKeys.UPDATE;
 
 		if (Objects.equals(
 				emailAddress.getClassName(),

@@ -45,8 +45,9 @@ public class WebsiteServiceImpl extends WebsiteServiceBaseImpl {
 
 	@Override
 	public void deleteWebsite(long websiteId) throws PortalException {
-		String actionId = ActionKeys.UPDATE;
 		Website website = websitePersistence.findByPrimaryKey(websiteId);
+
+		String actionId = ActionKeys.UPDATE;
 
 		if (Objects.equals(
 				website.getClassName(),
@@ -91,8 +92,9 @@ public class WebsiteServiceImpl extends WebsiteServiceBaseImpl {
 			long websiteId, String url, long typeId, boolean primary)
 		throws PortalException {
 
-		String actionId = ActionKeys.UPDATE;
 		Website website = websitePersistence.findByPrimaryKey(websiteId);
+
+		String actionId = ActionKeys.UPDATE;
 
 		if (Objects.equals(
 				website.getClassName(),

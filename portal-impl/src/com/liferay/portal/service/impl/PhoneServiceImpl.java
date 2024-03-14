@@ -45,8 +45,9 @@ public class PhoneServiceImpl extends PhoneServiceBaseImpl {
 
 	@Override
 	public void deletePhone(long phoneId) throws PortalException {
-		String actionId = ActionKeys.UPDATE;
 		Phone phone = phonePersistence.findByPrimaryKey(phoneId);
+
+		String actionId = ActionKeys.UPDATE;
 
 		if (Objects.equals(
 				phone.getClassName(),
@@ -92,8 +93,9 @@ public class PhoneServiceImpl extends PhoneServiceBaseImpl {
 			boolean primary)
 		throws PortalException {
 
-		String actionId = ActionKeys.UPDATE;
 		Phone phone = phonePersistence.findByPrimaryKey(phoneId);
+
+		String actionId = ActionKeys.UPDATE;
 
 		if (Objects.equals(
 				phone.getClassName(),

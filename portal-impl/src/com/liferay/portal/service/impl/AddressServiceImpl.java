@@ -32,8 +32,9 @@ public class AddressServiceImpl extends AddressServiceBaseImpl {
 			String phoneNumber, ServiceContext serviceContext)
 		throws PortalException {
 
-		String actionId = ActionKeys.UPDATE;
 		PermissionChecker permissionChecker = getPermissionChecker();
+
+		String actionId = ActionKeys.UPDATE;
 
 		if (Objects.equals(
 				className, "com.liferay.account.model.AccountEntry")) {
@@ -53,8 +54,9 @@ public class AddressServiceImpl extends AddressServiceBaseImpl {
 
 	@Override
 	public void deleteAddress(long addressId) throws PortalException {
-		String actionId = ActionKeys.UPDATE;
 		Address address = addressPersistence.findByPrimaryKey(addressId);
+
+		String actionId = ActionKeys.UPDATE;
 
 		if (Objects.equals(
 				address.getClassName(),
@@ -116,8 +118,9 @@ public class AddressServiceImpl extends AddressServiceBaseImpl {
 			boolean primary, String phoneNumber)
 		throws PortalException {
 
-		String actionId = ActionKeys.UPDATE;
 		Address address = addressPersistence.findByPrimaryKey(addressId);
+
+		String actionId = ActionKeys.UPDATE;
 
 		if (Objects.equals(
 				address.getClassName(),
