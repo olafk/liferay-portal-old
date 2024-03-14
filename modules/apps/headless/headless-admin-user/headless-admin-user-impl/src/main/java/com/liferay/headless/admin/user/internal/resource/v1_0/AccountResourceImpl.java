@@ -47,6 +47,7 @@ import com.liferay.portal.kernel.search.filter.TermFilter;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.service.AddressLocalService;
+import com.liferay.portal.kernel.service.ContactService;
 import com.liferay.portal.kernel.service.ListTypeLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -329,7 +330,7 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 				Contact contact = accountEntry.fetchContact();
 
 				if (contact == null) {
-					UsersAdminUtil.addOrUpdateContact(
+					_addOrUpdateContact(
 						0, contextUser.getUserId(),
 						AccountEntry.class.getName(),
 						accountEntry.getAccountEntryId(), null, null, null,
@@ -347,7 +348,7 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 						null);
 				}
 				else {
-					UsersAdminUtil.addOrUpdateContact(
+					_addOrUpdateContact(
 						contact.getContactId(), contact.getUserId(),
 						contact.getClassName(), contact.getClassPK(),
 						contact.getEmailAddress(), contact.getFirstName(),
@@ -468,7 +469,7 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 					accountEntry.getAccountEntryId(),
 					_getWebsites(account, null));
 
-				UsersAdminUtil.addOrUpdateContact(
+				_addOrUpdateContact(
 					0, contextUser.getUserId(), AccountEntry.class.getName(),
 					accountEntry.getAccountEntryId(), null, null, null, null, 0,
 					0, true, 0, 1, 1970,
@@ -572,7 +573,7 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 				account.getAccountContactInformation();
 
 			if (accountContactInformation != null) {
-				UsersAdminUtil.addOrUpdateContact(
+				_addOrUpdateContact(
 					contactId, contextUser.getUserId(),
 					AccountEntry.class.getName(),
 					accountEntry.getAccountEntryId(), null, null, null, null, 0,
@@ -587,7 +588,7 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 					null);
 			}
 			else {
-				UsersAdminUtil.addOrUpdateContact(
+				_addOrUpdateContact(
 					contactId, contextUser.getUserId(),
 					AccountEntry.class.getName(),
 					accountEntry.getAccountEntryId(), null, null, null, null, 0,
@@ -643,7 +644,7 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 				account.getAccountContactInformation();
 
 			if (accountContactInformation != null) {
-				UsersAdminUtil.addOrUpdateContact(
+				_addOrUpdateContact(
 					contactId, contextUser.getUserId(),
 					AccountEntry.class.getName(),
 					accountEntry.getAccountEntryId(), null, null, null, null, 0,
@@ -658,7 +659,7 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 					null);
 			}
 			else {
-				UsersAdminUtil.addOrUpdateContact(
+				_addOrUpdateContact(
 					contactId, contextUser.getUserId(),
 					AccountEntry.class.getName(),
 					accountEntry.getAccountEntryId(), null, null, null, null, 0,
@@ -667,6 +668,31 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 		}
 
 		return _toAccount(accountEntry);
+	}
+
+	private void _addOrUpdateContact(
+			long contactId, long userId, String className, long classPK,
+			String emailAddress, String firstName, String middleName,
+			String lastName, long prefixListTypeId, long suffixListTypeId,
+			boolean male, int birthdayMonth, int birthdayDay, int birthdayYear,
+			String smsSn, String facebookSn, String jabberSn, String skypeSn,
+			String twitterSn, String jobTitle)
+		throws Exception {
+
+		if (contactId == 0) {
+			_contactService.addContact(
+				userId, className, classPK, emailAddress, firstName, middleName,
+				lastName, prefixListTypeId, suffixListTypeId, male,
+				birthdayMonth, birthdayDay, birthdayYear, smsSn, facebookSn,
+				jabberSn, skypeSn, twitterSn, jobTitle);
+		}
+		else {
+			_contactService.updateContact(
+				contactId, emailAddress, firstName, middleName, lastName,
+				prefixListTypeId, suffixListTypeId, male, birthdayMonth,
+				birthdayDay, birthdayYear, smsSn, facebookSn, jabberSn, skypeSn,
+				twitterSn, jobTitle);
+		}
 	}
 
 	private ServiceContext _createServiceContext(Account account)
@@ -1061,6 +1087,9 @@ public class AccountResourceImpl extends BaseAccountResourceImpl {
 
 	@Reference
 	private AddressLocalService _addressLocalService;
+
+	@Reference
+	private ContactService _contactService;
 
 	@Reference
 	private DLAppLocalService _dlAppLocalService;
