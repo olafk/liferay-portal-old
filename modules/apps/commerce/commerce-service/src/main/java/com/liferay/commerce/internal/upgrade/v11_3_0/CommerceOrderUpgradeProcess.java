@@ -32,7 +32,7 @@ public class CommerceOrderUpgradeProcess extends UpgradeProcess {
 				while (resultSet1.next()) {
 					long commerceOrderId = resultSet1.getLong(1);
 
-					String shippable = _isShippable(
+					String shippable = _getShippable(
 						connection, commerceOrderId);
 
 					runSQL(
@@ -52,7 +52,7 @@ public class CommerceOrderUpgradeProcess extends UpgradeProcess {
 		};
 	}
 
-	private String _isShippable(Connection connection, long commerceOrderId)
+	private String _getShippable(Connection connection, long commerceOrderId)
 		throws Exception {
 
 		PreparedStatement preparedStatement3 = connection.prepareStatement(
@@ -63,9 +63,7 @@ public class CommerceOrderUpgradeProcess extends UpgradeProcess {
 
 		try (ResultSet resultSet3 = preparedStatement3.executeQuery()) {
 			while (resultSet3.next()) {
-				boolean shippable = resultSet3.getBoolean("shippable");
-
-				if (shippable) {
+				if (resultSet3.getBoolean("shippable")) {
 					return "[$TRUE$]";
 				}
 			}
