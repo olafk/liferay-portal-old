@@ -64,9 +64,8 @@ public class GetAccountRolesMVCResourceCommandTest {
 
 		User user = UserTestUtil.getAdminUser(company.getCompanyId());
 
-		Role role1 = _addAccountRole(user);
-		Role role2 = _addAccountRole(user);
-
+		Role role1 = _addRole(user);
+		Role role2 = _addRole(user);
 		Role role3 = _roleLocalService.addRole(
 			user.getUserId(), AccountRole.class.getName(),
 			AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT,
@@ -126,7 +125,7 @@ public class GetAccountRolesMVCResourceCommandTest {
 		_companyLocalService.deleteCompany(company);
 	}
 
-	private Role _addAccountRole(User user) throws Exception {
+	private Role _addRole(User user) throws Exception {
 		AccountEntry accountEntry = _accountEntryLocalService.addAccountEntry(
 			user.getUserId(), 0L, RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), null, null, null,
