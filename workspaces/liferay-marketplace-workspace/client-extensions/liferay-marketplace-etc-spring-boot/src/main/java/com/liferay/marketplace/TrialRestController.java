@@ -150,15 +150,11 @@ public class TrialRestController extends BaseRestController {
 		portalInstance.setAdmin(
 			new Admin() {
 				{
-					setEmailAddress(emailAddress);
+					setEmailAddress(() -> emailAddress);
 					setFamilyName(
-						jwt.getClaim(
-							"username"
-						).toString());
+						() -> String.valueOf(jwt.getClaim("username")));
 					setGivenName(
-						jwt.getClaim(
-							"username"
-						).toString());
+						() -> String.valueOf(jwt.getClaim("username")));
 				}
 			});
 
