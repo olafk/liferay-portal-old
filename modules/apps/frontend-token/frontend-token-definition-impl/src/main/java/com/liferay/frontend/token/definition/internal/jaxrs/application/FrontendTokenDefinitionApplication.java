@@ -92,8 +92,7 @@ public class FrontendTokenDefinitionApplication extends Application {
 			_log.error(ioException);
 
 			return _getResponse(
-				_language.get(
-					locale, "your-upload-failed-to-complete"),
+				_language.get(locale, "your-upload-failed-to-complete"),
 				Response.Status.INTERNAL_SERVER_ERROR);
 		}
 		catch (JSONException | JSONValidatorException exception) {

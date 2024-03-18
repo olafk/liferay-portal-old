@@ -157,9 +157,7 @@ const FrontendTokenDefinitionFilePicker = ({
 		else if (target.files === null) {
 			setFeedback({
 				displayType: 'danger',
-				message: Liferay.Language.get(
-					'your-upload-failed-to-complete'
-				),
+				message: Liferay.Language.get('your-upload-failed-to-complete'),
 			});
 
 			disableFormSubmitButton(true, portletNamespace);
