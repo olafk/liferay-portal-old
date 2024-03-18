@@ -326,39 +326,33 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 		);
 	}
 
-	private String _getEndpointURL(
+	private String _getEndpoint(
 			String entryClassNames, String filter, String keywords,
 			String nestedFields)
 		throws Exception {
 
-		List<String> parameters = new ArrayList<>();
+		String endpoint = "portal-search-rest/v1.0/search?";
 
 		if (!Validator.isBlank(entryClassNames)) {
-			parameters.add(
-				"entryClassNames=" +
-					URLEncoder.encode(entryClassNames, StringPool.UTF8));
+			endpoint +=
+				"&entryClassNames=" +
+					URLEncoder.encode(entryClassNames, StringPool.UTF8);
 		}
 
 		if (!Validator.isBlank(filter)) {
-			parameters.add(
-				"filter=" + URLEncoder.encode(filter, StringPool.UTF8));
-		}
-
-		if (!Validator.isBlank(keywords)) {
-			parameters.add(
-				"search=" + URLEncoder.encode(keywords, StringPool.UTF8));
+			endpoint +=
+				"&filter=" + URLEncoder.encode(filter, StringPool.UTF8);
 		}
 
 		if (!Validator.isBlank(nestedFields)) {
-			parameters.add(
-				"nestedFields=" +
-					URLEncoder.encode(nestedFields, StringPool.UTF8));
+			endpoint +=
+				"&nestedFields=" +
+					URLEncoder.encode(nestedFields, StringPool.UTF8);
 		}
 
-		String endpoint = "portal-search-rest/v1.0/search";
-
-		if (!parameters.isEmpty()) {
-			endpoint += "?" + StringUtil.merge(parameters, "&");
+		if (!Validator.isBlank(keywords)) {
+			endpoint +=
+				"&search=" + URLEncoder.encode(keywords, StringPool.UTF8);
 		}
 
 		return endpoint;
@@ -411,7 +405,7 @@ public class SearchResultResourceTest extends BaseSearchResultResourceTestCase {
 		return _toSearchPage(
 			HTTPTestUtil.invokeToJSONObject(
 				searchRequestBody.toString(),
-				_getEndpointURL(
+				_getEndpoint(
 					entryClassNames, filter, keywords, nestedFields),
 				Http.Method.POST));
 	}
