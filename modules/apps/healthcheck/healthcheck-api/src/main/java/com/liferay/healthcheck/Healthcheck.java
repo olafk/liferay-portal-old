@@ -19,6 +19,8 @@ public interface Healthcheck {
 
 	public Collection<HealthcheckItem> check(long companyId) throws PortalException;
 
+	public Collection<HealthcheckItem> check(long companyId);
+
 	public String getCategory();
 
 }
