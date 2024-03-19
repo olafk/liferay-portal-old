@@ -452,7 +452,7 @@ public class ObjectDefinitionResourceTest
 			accountEntryRestrictedObjectFieldName,
 			postObjectDefinition.getAccountEntryRestrictedObjectFieldName());
 
-		// Account entry update with null objectDefinitionId2
+		// Account entry update with null object definition ID 2
 
 		accountEntryObjectDefinition.setExternalReferenceCode(
 			RandomTestUtil.randomString());
