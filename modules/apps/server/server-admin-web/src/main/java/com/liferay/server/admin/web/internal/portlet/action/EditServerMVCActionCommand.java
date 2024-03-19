@@ -482,22 +482,24 @@ public class EditServerMVCActionCommand extends BaseMVCActionCommand {
 				});
 			actionableDynamicQuery.setParallel(true);
 			actionableDynamicQuery.setPerformActionMethod(
-				(com.liferay.portal.kernel.model.PortletPreferences pref) -> {
+				(com.liferay.portal.kernel.model.PortletPreferences
+					portletPreferences) -> {
+
 					try (SafeCloseable safeCloseable2 =
 							CTCollectionThreadLocal.
 								setCTCollectionIdWithSafeCloseable(
-									pref.getCtCollectionId())) {
+									portletPreferences.getCtCollectionId())) {
 
-						if ((pref.getOwnerId() !=
+						if ((portletPreferences.getOwnerId() !=
 								PortletKeys.PREFS_OWNER_ID_DEFAULT) ||
-							(pref.getOwnerType() !=
+							(portletPreferences.getOwnerType() !=
 								PortletKeys.PREFS_OWNER_TYPE_LAYOUT)) {
 
 							return;
 						}
 
 						Layout layout = _layoutLocalService.getLayout(
-							pref.getPlid());
+							portletPreferences.getPlid());
 
 						if (layout.isTypeContent() ||
 							layout.isTypeControlPanel()) {
@@ -517,7 +519,9 @@ public class EditServerMVCActionCommand extends BaseMVCActionCommand {
 							String value =
 								typeSettingsUnicodeProperties.getProperty(key);
 
-							if (value.contains(pref.getPortletId())) {
+							if (value.contains(
+									portletPreferences.getPortletId())) {
+
 								orphan = false;
 
 								break;
@@ -527,7 +531,8 @@ public class EditServerMVCActionCommand extends BaseMVCActionCommand {
 						if (orphan) {
 							_portletPreferencesLocalService.
 								deletePortletPreferences(
-									pref.getPortletPreferencesId());
+									portletPreferences.
+										getPortletPreferencesId());
 						}
 					}
 				});
