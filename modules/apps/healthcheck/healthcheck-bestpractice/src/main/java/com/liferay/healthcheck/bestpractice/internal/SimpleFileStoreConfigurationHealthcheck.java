@@ -1,13 +1,13 @@
 /**
- * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-FileCopyrightText: (c) 2024 Liferay, Inc. https://liferay.com
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-package com.liferay.healthcheck.bestpractice;
+package com.liferay.healthcheck.bestpractice.internal;
 
 import com.liferay.healthcheck.Healthcheck;
 import com.liferay.healthcheck.HealthcheckItem;
-import com.liferay.healthcheck.bestpractice.configuration.HealthcheckBestPracticeConfiguration;
+import com.liferay.healthcheck.bestpractice.internal.configuration.HealthcheckBestPracticeConfiguration;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.configuration.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.settings.Settings;
@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = {
-		"com.liferay.healthcheck.bestpractice.configuration.HealthcheckBestPracticeConfiguration",
+		"com.liferay.healthcheck.bestpractice.internal.configuration.HealthcheckBestPracticeConfiguration",
 		"com.liferay.portal.store.file.system.configuration.FileSystemStoreConfiguration"
 	},
 	service = Healthcheck.class
@@ -137,15 +137,12 @@ public class SimpleFileStoreConfigurationHealthcheck implements Healthcheck {
 		_rootDir = dir;
 	}
 
-	@Reference(unbind = "-")
-	protected void setConfigurationProvider(
-		ConfigurationProvider configurationProvider) {
+	// configuration update will actually be handled in the @Modified event,
+	// which will only be triggered in case we have a @Reference to the
+	// ConfigurationProvider (though it's itself unused in this implementation)
 
-		// configuration update will actually be handled in the @Modified event,
-		// which will only be triggered in case we have a @Reference to the
-		// ConfigurationProvider
-
-	}
+	@Reference
+	protected ConfigurationProvider configurationProvider;
 
 	private int _getRecursiveMaxFiles(File dir, int max) {
 		File[] files = dir.listFiles();

@@ -1,9 +1,9 @@
 /**
- * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-FileCopyrightText: (c) 2024 Liferay, Inc. https://liferay.com
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-package com.liferay.healthcheck.bestpractice;
+package com.liferay.healthcheck.bestpractice.internal;
 
 import com.liferay.healthcheck.Healthcheck;
 import com.liferay.healthcheck.HealthcheckItem;
@@ -13,7 +13,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalService;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -31,7 +30,7 @@ public class DefaultSiteInitializerUserHealthcheck implements Healthcheck {
 		Collection<HealthcheckItem> result = new LinkedList<>();
 
 		for (String user : _KNOWN_USERS) {
-			result.addAll(_checkForUser(companyId, user));
+			_checkForUser(companyId, result, user);
 		}
 
 		if (result.isEmpty()) {
@@ -50,8 +49,9 @@ public class DefaultSiteInitializerUserHealthcheck implements Healthcheck {
 		return "healthcheck-category-bestpractice";
 	}
 
-	private Collection<HealthcheckItem> _checkForUser(
-		long companyId, String mailAddress) {
+	private void _checkForUser(
+		long companyId, Collection<HealthcheckItem> result,
+		String mailAddress) {
 
 		try {
 			User user = _userLocalService.getUserByEmailAddress(
@@ -68,22 +68,17 @@ public class DefaultSiteInitializerUserHealthcheck implements Healthcheck {
 					user.getUserId()
 				).toString();
 
-				return Arrays.asList(
+				result.add(
 					new HealthcheckItem(
 						this, false, getClass().getName(), link, _MSG_FOUND,
 						info));
 			}
 		}
-		catch (NoSuchUserException noSuchUserException) {
-
-			// ignore - this is great and exactly what we're after.
-
-		}
 		catch (PortalException portalException) {
-			return Arrays.asList(new HealthcheckItem(this, portalException));
+			if (!(portalException instanceof NoSuchUserException)) {
+				result.add(new HealthcheckItem(this, portalException));
+			}
 		}
-
-		return new LinkedList<>();
 	}
 
 	private static final String[] _KNOWN_USERS = {

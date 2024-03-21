@@ -1,9 +1,9 @@
 /**
- * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-FileCopyrightText: (c) 2024 Liferay, Inc. https://liferay.com
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-package com.liferay.healthcheck.bestpractice;
+package com.liferay.healthcheck.bestpractice.internal;
 
 import com.liferay.healthcheck.Healthcheck;
 import com.liferay.healthcheck.HealthcheckItem;
@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Reference;
 public class DefaultAdminUserHealthcheck implements Healthcheck {
 
 	@Override
-	public Collection<HealthcheckItem> check(long companyId) {
+	public Collection<HealthcheckItem> check(long companyId) throws PortalException {
 		try {
 			User user = _userLocalService.getUserByEmailAddress(
 				companyId, "test@liferay.com");
@@ -38,7 +38,7 @@ public class DefaultAdminUserHealthcheck implements Healthcheck {
 					"test", user.getPassword());
 				Object[] info = {};
 
-				String link = new StringBundler(
+				String parameterizedLink = new StringBundler(
 					_LINK
 				).append(
 					_LINK_PARAMETER
@@ -50,16 +50,13 @@ public class DefaultAdminUserHealthcheck implements Healthcheck {
 					new HealthcheckItem(
 						this,
 						Objects.equals(user.getPassword(), hashedPassword),
-						getClass().getName(), link, _MSG, info));
+						getClass().getName(), parameterizedLink, _MSG, info));
 			}
 		}
-		catch (NoSuchUserException noSuchUserException) {
-
-			// ignore - this is great and exactly what we're after.
-
-		}
 		catch (PortalException portalException) {
-			return Arrays.asList(new HealthcheckItem(this, portalException));
+			if (!(portalException instanceof NoSuchUserException)) {
+				throw portalException;
+			}
 		}
 
 		return Arrays.asList(

@@ -1,9 +1,9 @@
 /**
- * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-FileCopyrightText: (c) 2024 Liferay, Inc. https://liferay.com
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-package com.liferay.healthcheck.bestpractice;
+package com.liferay.healthcheck.bestpractice.internal;
 
 import com.liferay.healthcheck.Healthcheck;
 import com.liferay.healthcheck.HealthcheckItem;
@@ -108,7 +108,7 @@ public class UserPasswordPBKDF2HashHealthcheck implements Healthcheck {
 			result.add(
 				new HealthcheckItem(
 					this, false, getClass().getName(), _LINK,
-					"healthcheck-best-practice-user-count-mismatch-x-uncounted",
+					"healthcheck-bestpractice-user-count-mismatch-x-uncounted",
 					info));
 		}
 
@@ -125,7 +125,7 @@ public class UserPasswordPBKDF2HashHealthcheck implements Healthcheck {
 				result.add(
 					new HealthcheckItem(
 						this, true, getClass().getName(), _LINK,
-						"healthcheck-best-practice-pbkdf2-found-x-entries-" +
+						"healthcheck-bestpractice-pbkdf2-found-x-entries-" +
 							"with-default-algorithm-y",
 						info));
 			}
@@ -138,7 +138,7 @@ public class UserPasswordPBKDF2HashHealthcheck implements Healthcheck {
 				result.add(
 					new HealthcheckItem(
 						this, false, getClass().getName(), _LINK,
-						"healthcheck-best-practice-pbkdf2-found-x-entries-" +
+						"healthcheck-bestpractice-pbkdf2-found-x-entries-" +
 							"with-nondefault-algorithm-y-looking-for-z",
 						info));
 			}
