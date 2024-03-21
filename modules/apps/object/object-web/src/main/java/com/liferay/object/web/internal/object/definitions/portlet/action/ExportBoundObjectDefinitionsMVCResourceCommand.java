@@ -72,7 +72,7 @@ public class ExportBoundObjectDefinitionsMVCResourceCommand
 		ObjectDefinition rootObjectDefinition =
 			objectDefinitionResource.getObjectDefinition(objectDefinitionId);
 
-		Page<ObjectDefinition> boundObjectDefinitionsPage =
+		Page<ObjectDefinition> page =
 			objectDefinitionResource.getObjectDefinitionsPage(
 				null, null,
 				objectDefinitionResource.toFilter(
@@ -81,25 +81,23 @@ public class ExportBoundObjectDefinitionsMVCResourceCommand
 						rootObjectDefinition.getExternalReferenceCode(), "'")),
 				null, null);
 
-		Collection<ObjectDefinition> boundObjectDefinitions =
-			boundObjectDefinitionsPage.getItems();
+		Collection<ObjectDefinition> objectDefinitions = page.getItems();
 
-		JSONArray boundObjectDefinitionsJSONArray =
-			_jsonFactory.createJSONArray();
+		JSONArray jsonArray = _jsonFactory.createJSONArray();
 
-		for (ObjectDefinition boundObjectDefinition : boundObjectDefinitions) {
+		for (ObjectDefinition objectDefinition : objectDefinitions) {
 			ExportImportObjectDefinitionUtil.prepareObjectDefinitionForExport(
-				_jsonFactory, boundObjectDefinition);
+				_jsonFactory, objectDefinition);
 
-			JSONObject boundObjectDefinitionJSONObject =
-				_jsonFactory.createJSONObject(boundObjectDefinition.toString());
+			JSONObject jsonObject = _jsonFactory.createJSONObject(
+				objectDefinition.toString());
 
 			if (!FeatureFlagManagerUtil.isEnabled("LPS-135430")) {
-				boundObjectDefinitionJSONObject.remove("storageType");
+				jsonObject.remove("storageType");
 			}
 
 			JSONObjectSanitizerUtil.sanitize(
-				boundObjectDefinitionJSONObject,
+				jsonObject,
 				new String[] {
 					"dateCreated", "dateModified", "id", "listTypeDefinitionId",
 					"objectDefinitionId", "objectDefinitionId1",
@@ -107,20 +105,17 @@ public class ExportBoundObjectDefinitionsMVCResourceCommand
 					"objectRelationshipId", "titleObjectFieldId"
 				});
 
-			boundObjectDefinitionsJSONArray.put(
-				boundObjectDefinitionJSONObject);
+			jsonArray.put(jsonObject);
 		}
 
-		String boundObjectDefinitionsJSONArrayString =
-			boundObjectDefinitionsJSONArray.toString();
+		String json = jsonArray.toString();
 
 		PortletResponseUtil.sendFile(
 			resourceRequest, resourceResponse,
 			StringBundler.concat(
 				"Bound_Object_Definitions_", objectDefinitionId,
 				StringPool.UNDERLINE, Time.getTimestamp(), ".json"),
-			boundObjectDefinitionsJSONArrayString.getBytes(),
-			ContentTypes.APPLICATION_JSON);
+			json.getBytes(), ContentTypes.APPLICATION_JSON);
 	}
 
 	@Reference
