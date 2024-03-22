@@ -90,7 +90,7 @@ public class HealthcheckWebPortlet extends MVCPortlet {
 						healthcheck.check(themeDisplay.getCompanyId()));
 				}
 				catch (Exception exception) {
-					_log.error(exception);
+					_log.warn(exception);
 					checks.add(new HealthcheckItem(healthcheck, exception));
 				}
 			}
