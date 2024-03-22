@@ -17,7 +17,8 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface Healthcheck {
 
-	public Collection<HealthcheckItem> check(long companyId) throws PortalException;
+	public Collection<HealthcheckItem> check(long companyId)
+		throws PortalException;
 
 	public String getCategory();
 
