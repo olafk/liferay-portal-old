@@ -62,12 +62,12 @@ public class ContentIndexedHealthcheck implements Healthcheck {
 		return Arrays.asList(
 			new HealthcheckItem(
 				this, exists, getClass().getName(), _LINK,
-				exists ? _MSG : _ERROR_MSG, indexCount, dbCount));
+				exists ? _MSG : _ERROR_MSG, dbCount, indexCount));
 	}
 
 	@Override
 	public String getCategory() {
-		return "health-check-category-operation";
+		return "healthcheck-category-operation";
 	}
 
 	private static final String _ERROR_MSG =

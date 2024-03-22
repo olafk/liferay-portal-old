@@ -30,11 +30,13 @@ import org.osgi.service.component.annotations.Reference;
 public class BlindSelfSignedCertificateTrustHealthcheck implements Healthcheck {
 
 	@Override
-	public Collection<HealthcheckItem> check(long companyId) throws PortalException {
+	public Collection<HealthcheckItem> check(long companyId)
+		throws PortalException {
+
 		return Arrays.asList(
 			new HealthcheckItem(
-				this, !getTrustSetting(companyId), getClass().getName(),
-				_LINK, _MSG));
+				this, !getTrustSetting(companyId), getClass().getName(), _LINK,
+				_MSG));
 	}
 
 	@Override
@@ -50,13 +52,6 @@ public class BlindSelfSignedCertificateTrustHealthcheck implements Healthcheck {
 				DDMDataProviderConfiguration.class, companyId);
 
 		return ddmDataProviderConfiguration.trustSelfSignedCertificates();
-	}
-
-	@Reference
-	protected void setConfigurationProvider(
-		ConfigurationProvider configurationProvider) {
-
-		_configurationProvider = configurationProvider;
 	}
 
 	private static final String _DDM =

@@ -28,7 +28,9 @@ import org.osgi.service.component.annotations.Reference;
 public class DefaultAdminUserHealthcheck implements Healthcheck {
 
 	@Override
-	public Collection<HealthcheckItem> check(long companyId) throws PortalException {
+	public Collection<HealthcheckItem> check(long companyId)
+		throws PortalException {
+
 		try {
 			User user = _userLocalService.getUserByEmailAddress(
 				companyId, "test@liferay.com");

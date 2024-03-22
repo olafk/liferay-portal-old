@@ -171,7 +171,7 @@ public class ClientExtensionHostHealthcheck implements Healthcheck {
 
 	@Override
 	public String getCategory() {
-		return "health-check-category-operation";
+		return "healthcheck-category-operation";
 	}
 
 	@Activate

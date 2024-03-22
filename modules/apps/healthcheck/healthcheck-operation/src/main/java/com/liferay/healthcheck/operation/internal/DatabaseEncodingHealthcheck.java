@@ -137,7 +137,7 @@ public class DatabaseEncodingHealthcheck implements Healthcheck {
 
 	@Override
 	public String getCategory() {
-		return "health-check-category-operation";
+		return "healthcheck-category-operation";
 	}
 
 	private String _extractSchema(String connectionURL) {

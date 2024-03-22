@@ -36,12 +36,18 @@ public class DxpLicenseValidityHealthcheck implements Healthcheck {
 		if (ReleaseInfo.isDXP()) {
 			Map<String, String> licenseProperties =
 				LicenseManagerUtil.getLicenseProperties("Portal");
+			if(licenseProperties == null) {
+				return Arrays.asList(
+					new HealthcheckItem(
+						this, false,
+						getClass().getName() + "-unknown", null,
+						"healthcheck-license-not-found"));
+			}
 
 			long expires = Long.valueOf(
 				licenseProperties.get("expirationDate"));
 
-			long now = new Date(
-			).getTime();
+			long now = new Date().getTime();
 
 			long remainingMillis = expires - now;
 
@@ -60,7 +66,7 @@ public class DxpLicenseValidityHealthcheck implements Healthcheck {
 
 	@Override
 	public String getCategory() {
-		return "health-check-category-operation";
+		return "healthcheck-category-operation";
 	}
 
 	@Activate

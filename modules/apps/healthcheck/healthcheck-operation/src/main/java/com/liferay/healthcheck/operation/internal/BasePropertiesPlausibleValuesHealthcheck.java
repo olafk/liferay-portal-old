@@ -90,7 +90,7 @@ public abstract class BasePropertiesPlausibleValuesHealthcheck<T>
 
 	@Override
 	public String getCategory() {
-		return "health-check-category-operation";
+		return "healthcheck-category-operation";
 	}
 
 	public interface PropertyValidator {
