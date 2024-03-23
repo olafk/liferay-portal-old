@@ -11,13 +11,14 @@ import com.liferay.healthcheck.web.internal.constants.HealthcheckWebPortletKeys;
 import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerList;
 import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerListFactory;
 import com.liferay.osgi.service.tracker.collections.map.PropertyServiceReferenceComparator;
-import com.liferay.portal.kernel.exception.RolePermissionsException;
+import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
@@ -48,6 +50,10 @@ import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 /**
+ * A temporary ugly UI for showing Healthcheck results. Not meant to
+ * be committed to master, but just provides a simple UI to check the result
+ * of the first healthchecks implemented.
+ *
  * @author Olaf Kock
  */
 @Component(
@@ -74,9 +80,13 @@ public class HealthcheckWebPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		List<HealthcheckItem> checks = new LinkedList<>();
+		List<LocalizedHealthcheckItem> localizedHealthcheckItems =
+			new LinkedList<>();
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		Locale locale = themeDisplay.getLocale();
 
 		if (themeDisplay.getPermissionChecker(
 			).isCompanyAdmin(
@@ -92,40 +102,53 @@ public class HealthcheckWebPortlet extends MVCPortlet {
 
 			for (Healthcheck healthcheck : healthchecks) {
 				try {
-					checks.addAll(
-						healthcheck.check(themeDisplay.getCompanyId()));
+					Collection<HealthcheckItem> checks = healthcheck.check(
+						themeDisplay.getCompanyId());
+
+					_localize(
+						locale, checks, healthcheck, localizedHealthcheckItems);
 				}
 				catch (Exception exception) {
 					_log.error(exception);
-					checks.add(new HealthcheckItem(healthcheck, exception));
+
+					String healthcheckClassName = healthcheck.getClass(
+					).getName();
+
+					localizedHealthcheckItems.add(
+						new LocalizedHealthcheckItem(
+							false,
+							_lookup(
+								locale, healthcheck, healthcheck.getCategory()),
+							_lookup(
+								locale, healthcheck,
+								"an-exception-occurred-for-x-x-x",
+								healthcheckClassName,
+								exception.getClass(
+								).getName(),
+								exception.getMessage()),
+							null, healthcheckClassName + "-exception"));
 				}
 			}
 		}
 		else {
-			Healthcheck dummy = new Healthcheck() {
+			String permissionDenied = _language.get(
+				locale, "permission-denied");
 
-				@Override
-				public Collection<HealthcheckItem> check(long companyId) {
-					return null;
-				}
-
-				@Override
-				public String getCategory() {
-					return "healthcheck-category-generic";
-				}
-
-			};
-
-			checks.add(
-				new HealthcheckItem(dummy, new RolePermissionsException()));
+			localizedHealthcheckItems.add(
+				new LocalizedHealthcheckItem(
+					false, permissionDenied, permissionDenied, null,
+					permissionDenied));
 		}
 
 		Collections.sort(
-			checks,
-			new Comparator<HealthcheckItem>() {
+			localizedHealthcheckItems,
+			new Comparator<LocalizedHealthcheckItem>() {
 
 				@Override
-				public int compare(HealthcheckItem arg0, HealthcheckItem arg1) {
+				public int compare(
+					LocalizedHealthcheckItem arg0,
+					LocalizedHealthcheckItem arg1) {
+
 					if (arg0.isResolved() == arg1.isResolved()) {
 						return arg0.getCategory(
 						).compareTo(
@@ -146,23 +169,24 @@ public class HealthcheckWebPortlet extends MVCPortlet {
 		String[] ignoredChecksArray = portletPreferences.getValues(
 			"ignore", new String[0]);
 
-		Set<String> ignoreChecks = new HashSet<>(
+		Set<String> ignoredChecks = new HashSet<>(
 			Arrays.asList(ignoredChecksArray));
 
 		int failed = 0;
 		int succeeded = 0;
 		int ignored = 0;
 
-		for (Iterator<HealthcheckItem> iterator = checks.iterator();
+		for (Iterator<LocalizedHealthcheckItem> iterator =
+				localizedHealthcheckItems.iterator();
 			 iterator.hasNext();) {
 
-			HealthcheckItem check = (HealthcheckItem)iterator.next();
+			LocalizedHealthcheckItem currentItem = iterator.next();
 
-			if (ignoreChecks.contains(check.getKey())) {
+			if (ignoredChecks.contains(currentItem.getSourceKey())) {
 				iterator.remove();
 				ignored++;
 			}
-			else if (check.isResolved()) {
+			else if (currentItem.isResolved()) {
 				succeeded++;
 			}
 			else {
@@ -170,11 +194,12 @@ public class HealthcheckWebPortlet extends MVCPortlet {
 			}
 		}
 
-		renderRequest.setAttribute("checks", checks);
-		renderRequest.setAttribute("failedChecks", failed);
-		renderRequest.setAttribute("ignoredChecks", ignored);
-		renderRequest.setAttribute("succeededChecks", succeeded);
-		renderRequest.setAttribute("the-ignored-checks", ignoreChecks);
+		renderRequest.setAttribute("ignoredHealthchecks", ignoredChecks);
+		renderRequest.setAttribute(
+			"localizedHealthchecks", localizedHealthcheckItems);
+		renderRequest.setAttribute("numberOfFailedHealthchecks", failed);
+		renderRequest.setAttribute("numberOfIgnoredHealthchecks", ignored);
+		renderRequest.setAttribute("numberOfSucceededHealthchecks", succeeded);
 
 		super.doView(renderRequest, renderResponse);
 	}
@@ -244,25 +269,54 @@ public class HealthcheckWebPortlet extends MVCPortlet {
 		_serviceTrackerList.close();
 	}
 
+	private void _localize(
+		Locale locale, Collection<HealthcheckItem> healthcheckItems,
+		Healthcheck healthcheck,
+		List<LocalizedHealthcheckItem> localizedHealthcheckItems) {
+
+		for (HealthcheckItem healthcheckItem : healthcheckItems) {
+			String key = healthcheckItem.getMessageKey();
+			Object[] parameters = healthcheckItem.getMessageParameters();
+
+			localizedHealthcheckItems.add(
+				new LocalizedHealthcheckItem(
+					healthcheckItem.isResolved(),
+					_lookup(locale, healthcheck, healthcheck.getCategory()),
+					_lookup(locale, healthcheck, key, parameters),
+					healthcheckItem.getLink(), healthcheckItem.getSourceKey()));
+		}
+	}
+
+	private String _lookup(
+		Locale locale, Healthcheck healthcheck, String key,
+		Object... parameters) {
+
+		String message = ResourceBundleUtil.getString(
+			ResourceBundleUtil.getBundle(
+				locale,
+				healthcheck.getClass(
+				).getClassLoader()),
+			key, parameters);
+
+		if (message == null) {
+			message = _language.format(locale, key, parameters);
+
+			if (message == null) {
+				message = key;
+			}
+		}
+
+		return message;
+	}
+
 	private static final Log _log = LogFactoryUtil.getLog(
 		HealthcheckWebPortlet.class);
 
-	// 	@Reference(
-	// 		cardinality = ReferenceCardinality.MULTIPLE,
-	// 		policyOption = ReferencePolicyOption.GREEDY, unbind = "_unregister"
-	// 	)
-	// 	private void _register(Healthcheck healthcheck) {
-	// 		_healthchecks.add(healthcheck);
-	// 	}
-
-	// 	private void _unregister(Healthcheck healthcheck) {
-	// 		_healthchecks.remove(healthcheck);
-	// 	}
+	@Reference
+	private Language _language;
 
 	@Reference
 	private Portal _portal;
-
-	// 	private final List<Healthcheck> _healthchecks = new LinkedList<>();
 
 	private ServiceTrackerList<Healthcheck> _serviceTrackerList;
 

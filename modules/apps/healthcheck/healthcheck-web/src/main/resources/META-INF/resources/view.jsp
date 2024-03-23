@@ -12,9 +12,9 @@
 	</p>
 
 	<%
-	List<HealthcheckItem> checks = (List<HealthcheckItem>)renderRequest.getAttribute("checks");
-	int ignoredChecks = (int)renderRequest.getAttribute("ignoredChecks");
-	Set<String> theIgnoredChecks = (Set<String>)renderRequest.getAttribute("the-ignored-checks");
+	List<LocalizedHealthcheckItem> checks = (List<LocalizedHealthcheckItem>)renderRequest.getAttribute("localizedHealthchecks");
+	int numberOfIgnoredHealthchecks = (int)renderRequest.getAttribute("numberOfIgnoredHealthchecks");
+	Set<String> theIgnoredChecks = (Set<String>)renderRequest.getAttribute("ignoredHealthchecks");
 	%>
 
 	<div class="align-items-lg-start align-items-md-start align-items-sm-start align-items-start flex-lg-row flex-md-row flex-row flex-sm-row row">
@@ -26,7 +26,7 @@
 				/>
 
 				<br />
-				<%= (int)renderRequest.getAttribute("failedChecks") %>
+				<%= (int)renderRequest.getAttribute("numberOfFailedHealthchecks") %>
 			</div>
 
 			<liferay-ui:message key="failed" />
@@ -39,7 +39,7 @@
 				/>
 
 				<br />
-				<%= (int)renderRequest.getAttribute("succeededChecks") %>
+				<%= (int)renderRequest.getAttribute("numberOfSucceededHealthchecks") %>
 			</div>
 
 			<liferay-ui:message key="succeeded" />
@@ -52,7 +52,7 @@
 				/>
 
 				<br />
-				<%= ignoredChecks %>
+				<%= numberOfIgnoredHealthchecks %>
 			</div>
 
 			<liferay-ui:message key="ignored" />
@@ -64,7 +64,7 @@
 	<table>
 
 		<%
-		for (HealthcheckItem check : checks) {
+		for (LocalizedHealthcheckItem check : checks) {
 			String style = check.isResolved() ? "" : "font-weight:bold;";
 			String symbol = check.isResolved() ? "check-circle" : "exclamation-circle";
 		%>
@@ -72,8 +72,8 @@
 		<tr style="border: 1px solid grey; <%= style %>">
 			<td style="min-width: 3em; text-align: center;"><clay:icon
 					symbol="<%= symbol %>" /></td>
-			<td><%= check.getCategory(themeDisplay.getLocale()) %></td>
-			<td style="overflow-wrap: break-word;"><%= check.getMessage(themeDisplay.getLocale()) %></td>
+			<td><%= check.getCategory() %></td>
+			<td style="overflow-wrap: break-word;"><%= check.getMessage() %></td>
 			<td style="padding: 2px; word-wrap: normal;">
 
 				<%
@@ -88,7 +88,7 @@
 			</td>
 			<td style="padding: 2px;"><aui:button-row>
 					<portlet:actionURL name="ignoreMessage" var="ignoreAction">
-						<portlet:param name="ignore" value="<%= check.getKey() %>" />
+						<portlet:param name="ignore" value="<%= check.getSourceKey() %>" />
 					</portlet:actionURL>
 
 					<aui:button onClick="<%= ignoreAction %>" value="ignore" />
@@ -101,7 +101,7 @@
 
 	</table>
 
-	<c:if test="<%= ignoredChecks > 0 %>">
+	<c:if test="<%= numberOfIgnoredHealthchecks > 0 %>">
 
 	<div style="margin-top: 2rem;">
 		<portlet:actionURL name="resetIgnore" var="resetIgnoreAction" />
@@ -109,7 +109,7 @@
 		<aui:button onClick="<%= resetIgnoreAction %>" value="reset-ignore" />
 	</div>
 	<!--
-Ignored <%= ignoredChecks %> healthcheck(s):
+Ignored <%= numberOfIgnoredHealthchecks %> healthcheck(s):
 
 <%
 for (String theCheck : theIgnoredChecks) {

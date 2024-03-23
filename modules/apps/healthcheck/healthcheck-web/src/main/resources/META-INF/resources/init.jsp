@@ -14,7 +14,7 @@ taglib uri="http://liferay.com/tld/clay" prefix="clay" %><%@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.healthcheck.HealthcheckItem" %>
+<%@ page import="com.liferay.healthcheck.web.internal.portlet.LocalizedHealthcheckItem" %>
 
 <%@ page import="java.util.List" %><%@
 page import="java.util.Set" %>
