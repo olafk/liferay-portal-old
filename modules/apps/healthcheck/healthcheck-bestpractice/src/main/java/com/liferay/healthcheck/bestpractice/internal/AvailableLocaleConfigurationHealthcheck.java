@@ -28,6 +28,10 @@ import org.osgi.service.component.annotations.Component;
  * This check makes sure that available languages have at least 5 characters
  * (e.g. "en_GB"), and are supported by the underlying JVM
  *
+ * (Note: On Java8, this typically triggers a few locales that are used by
+ * Liferay, but that the underlying JVM does not provide - with this check,
+ * at least this condition can be signalled to the administrator)
+ *
  * @author Olaf Kock
  */
 @Component(service = Healthcheck.class)
@@ -47,7 +51,7 @@ public class AvailableLocaleConfigurationHealthcheck implements Healthcheck {
 
 			result.add(
 				new HealthcheckItem(
-					this, true, getClass().getName(), _LINK, _MSG, info));
+					true, getClass().getName(), _LINK, _MSG, info));
 		}
 
 		return result;
@@ -71,8 +75,8 @@ public class AvailableLocaleConfigurationHealthcheck implements Healthcheck {
 			if (loc.length() < 5) {
 				result.add(
 					new HealthcheckItem(
-						this, false, getClass().getName(), _LINK,
-						_MSG_SHORT_LOCALE, loc, collectionName));
+						false, getClass().getName(), _LINK, _MSG_SHORT_LOCALE,
+						loc, collectionName));
 			}
 
 			if (!(_availableLocales.contains(loc) ||
@@ -80,8 +84,8 @@ public class AvailableLocaleConfigurationHealthcheck implements Healthcheck {
 
 				result.add(
 					new HealthcheckItem(
-						this, false, getClass().getName(), _LINK,
-						_MSG_MISSING_LOCALE, loc, collectionName));
+						false, getClass().getName(), _LINK, _MSG_MISSING_LOCALE,
+						loc, collectionName));
 			}
 		}
 	}

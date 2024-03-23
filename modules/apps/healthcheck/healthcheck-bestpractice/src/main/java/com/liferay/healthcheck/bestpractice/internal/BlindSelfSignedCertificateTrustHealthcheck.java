@@ -21,14 +21,14 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
+ * Configuration settings allow to "trust all certificates" for DataProviders.
+ * As this is a security issue in production systems, we'll signal the
+ * detection of this setting. Can be ignored in DEV systems, but shouldn't be
+ * ignored in PRD.
+ *
  * @author Olaf Kock
  */
-@Component(
-
-// 	configurationPid = "com.liferay.healthcheck.bestpractice.internal.configuration.HealthcheckBestPracticeConfiguration",
-
-	service = Healthcheck.class
-)
+@Component(service = Healthcheck.class)
 public class BlindSelfSignedCertificateTrustHealthcheck implements Healthcheck {
 
 	@Override
@@ -37,7 +37,7 @@ public class BlindSelfSignedCertificateTrustHealthcheck implements Healthcheck {
 
 		return Arrays.asList(
 			new HealthcheckItem(
-				this, !getTrustSetting(companyId), getClass().getName(), _LINK,
+				!getTrustSetting(companyId), getClass().getName(), _LINK,
 				_MSG));
 	}
 

@@ -37,7 +37,6 @@ public class MetaspaceHealthcheck implements Healthcheck {
 
 				return Arrays.asList(
 					new HealthcheckItem(
-						this,
 						(maxMetaspace >= (768 * 1024 * 1024)) ||
 						(maxMetaspace == -1),
 						getClass().getName(), _LINK, _MSG, maxMetaspace));
@@ -46,7 +45,7 @@ public class MetaspaceHealthcheck implements Healthcheck {
 
 		return Arrays.asList(
 			new HealthcheckItem(
-				this, false, getClass().getName(), _LINK, _MSG, "---"));
+				false, getClass().getName(), _LINK, _MSG, "---"));
 	}
 
 	@Override

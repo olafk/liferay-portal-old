@@ -52,7 +52,7 @@ public class RemoteElasticHealthcheck implements Healthcheck {
 
 		return Arrays.asList(
 			new HealthcheckItem(
-				this, remote, getClass().getName(), _LINK, _MSG,
+				remote, getClass().getName(), _LINK, _MSG,
 				_productionModeEnabled, _operationMode));
 	}
 

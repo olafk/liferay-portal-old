@@ -25,7 +25,7 @@ import org.osgi.service.component.annotations.Reference;
  * For a long time, the well known default administrator account
  * test@liferay.com was created in new systems. Make sure that this
  * account is not around on this system, especially when still
- * equiped with the default password
+ * using the default password "test".
  *
  * @author Olaf Kock
  */
@@ -55,7 +55,6 @@ public class DefaultAdminUserHealthcheck implements Healthcheck {
 
 				return Arrays.asList(
 					new HealthcheckItem(
-						this,
 						Objects.equals(user.getPassword(), hashedPassword),
 						getClass().getName(), parameterizedLink, _MSG, info));
 			}
@@ -67,7 +66,7 @@ public class DefaultAdminUserHealthcheck implements Healthcheck {
 		}
 
 		return Arrays.asList(
-			new HealthcheckItem(this, true, getClass().getName(), _LINK, _MSG));
+			new HealthcheckItem(true, getClass().getName(), _LINK, _MSG));
 	}
 
 	@Override

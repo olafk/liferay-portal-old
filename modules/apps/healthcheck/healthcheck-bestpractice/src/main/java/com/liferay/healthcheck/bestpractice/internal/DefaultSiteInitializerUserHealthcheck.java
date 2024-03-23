@@ -24,7 +24,8 @@ import org.osgi.service.component.annotations.Reference;
  * Several SiteInitializers create default users - once such a SiteInitializer
  * has been used, those might be present in production systems. Check for
  * their existence and trigger admins to delete them or ignore, if this is a
- * dev system.
+ * dev system, and if it's acceptable to have an account where _everybody_
+ * can reset the password (e.g. through mailinator.com).
  *
  * @author Olaf Kock
  */
@@ -41,8 +42,7 @@ public class DefaultSiteInitializerUserHealthcheck implements Healthcheck {
 
 		if (result.isEmpty()) {
 			result.add(
-				new HealthcheckItem(
-					this, true, getClass().getName(), null, _MSG));
+				new HealthcheckItem(true, getClass().getName(), null, _MSG));
 		}
 
 		return result;
@@ -72,7 +72,7 @@ public class DefaultSiteInitializerUserHealthcheck implements Healthcheck {
 
 				result.add(
 					new HealthcheckItem(
-						this, false,
+						false,
 						StringUtil.merge(
 							new String[] {getClass().getName(), mailAddress},
 							"-"),
