@@ -1,0 +1,3 @@
+Bundle-Name: Liferay Healthcheck Operation
+Bundle-SymbolicName: com.liferay.healthcheck.operation
+Bundle-Version: 1.0.0
