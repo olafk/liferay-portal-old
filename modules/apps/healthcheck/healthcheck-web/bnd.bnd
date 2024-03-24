@@ -1,0 +1,3 @@
+Bundle-Name: Liferay Healthcheck Web
+Bundle-SymbolicName: com.liferay.healthcheck.web
+Bundle-Version: 1.0.0
