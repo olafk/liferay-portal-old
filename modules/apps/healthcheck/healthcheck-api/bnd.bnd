@@ -1,0 +1,4 @@
+Bundle-Name: Liferay-Healthcheck-API
+Bundle-SymbolicName: com.liferay.healthcheck.api
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.healthcheck
