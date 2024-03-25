@@ -22,7 +22,7 @@ export function GroovyScriptWarningModal({setShowGroovyScriptWarningModal}) {
 
 			<ClayModal.Body>
 				{Liferay.Language.get(
-					'workflow-definitions-that-include-groovy-script-are-deactivated-for-your-instance'
+					'workflow-definitions-that-include-groovy-scripts-are-deactivated-for-your-instance'
 				)}
 				&nbsp;
 				<a>
