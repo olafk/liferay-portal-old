@@ -191,7 +191,7 @@ public class HttpImplTest {
 		_testTCPKeepAlive(true);
 	}
 
-	private Tuple _getHttpConnectionStrategies() {
+	private Tuple _getTuple() {
 		ClientExecChain clientExecChain = ReflectionTestUtil.getFieldValue(
 			_closeableHttpClient, "execChain");
 
@@ -213,10 +213,10 @@ public class HttpImplTest {
 		boolean expectedKeepAlive,
 		long expectedKeepAliveTimeoutInMilliseconds) {
 
-		Tuple connectionStrategiesTuple = _getHttpConnectionStrategies();
+		Tuple tuple = _getTuple();
 
 		ConnectionReuseStrategy connectionReuseStrategy =
-			(ConnectionReuseStrategy)connectionStrategiesTuple.getObject(1);
+			(ConnectionReuseStrategy)tuple.getObject(1);
 
 		Assert.assertEquals(
 			expectedKeepAlive,
@@ -227,7 +227,7 @@ public class HttpImplTest {
 		if (expectedKeepAlive) {
 			ConnectionKeepAliveStrategy connectionKeepAliveStrategy =
 				(ConnectionKeepAliveStrategy)
-					connectionStrategiesTuple.getObject(0);
+					tuple.getObject(0);
 
 			BasicPoolEntry basicPoolEntry = new BasicPoolEntry(
 				"id", new HttpHost("localhost", 8080),
