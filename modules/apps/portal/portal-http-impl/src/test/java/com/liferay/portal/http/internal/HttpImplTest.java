@@ -75,8 +75,6 @@ public class HttpImplTest {
 
 	@Before
 	public void setUp() {
-		_httpImpl = new HttpImpl();
-
 		_httpImpl.activate(Collections.emptyMap());
 
 		DCLSingleton<PoolingHttpClientConnectionManager>
@@ -283,7 +281,7 @@ public class HttpImplTest {
 	private CloseableHttpClient _closeableHttpClient;
 	private final HttpContext _httpContext = new BasicHttpContext(null);
 	private final HttpHost _httpHost = new HttpHost("localhost", 8080);
-	private HttpImpl _httpImpl;
+	private final HttpImpl _httpImpl = new HttpImpl();
 	private final HttpResponse _httpResponse = new BasicHttpResponse(
 		new BasicStatusLine(HttpVersion.HTTP_1_1, HttpStatus.SC_OK, "OK"));
 	private PoolingHttpClientConnectionManager
