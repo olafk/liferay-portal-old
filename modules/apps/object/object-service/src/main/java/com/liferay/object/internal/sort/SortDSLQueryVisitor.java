@@ -38,35 +38,35 @@ public class SortDSLQueryVisitor extends BaseSortDSLQueryVisitor {
 
 	@Override
 	public DSLQuery visit(DSLQuery dslQuery, Sort sort) throws PortalException {
-		ObjectDefinition currentObjectDefinition = sort.getObjectDefinition();
+		ObjectDefinition objectDefinition = sort.getObjectDefinition();
 
 		List<String> fieldPathParts = StringUtil.split(
 			sort.getFieldPath(), CharPool.FORWARD_SLASH);
 
-		List<String> relationshipNames = ListUtil.subList(
+		List<String> objectRelationshipNames = ListUtil.subList(
 			fieldPathParts, 0, fieldPathParts.size() - 1);
 
-		for (int i = 0; i < relationshipNames.size(); i++) {
-			String relationshipName = relationshipNames.get(i);
+		for (int i = 0; i < objectRelationshipNames.size(); i++) {
+			String objectRelationshipName = objectRelationshipNames.get(i);
 
 			ObjectRelationship objectRelationship =
 				objectRelationshipLocalService.
 					getObjectRelationshipByObjectDefinitionId(
-						currentObjectDefinition.getObjectDefinitionId(),
-						relationshipName);
+						objectDefinition.getObjectDefinitionId(),
+						objectRelationshipName);
 
 			ObjectDefinition relatedObjectDefinition =
 				ObjectRelationshipUtil.getRelatedObjectDefinition(
-					currentObjectDefinition, objectRelationship);
+					objectDefinition, objectRelationship);
 
-			dslQuery = _visitWithRelationship(
-				dslQuery, currentObjectDefinition, objectRelationship,
+			dslQuery = _visit(
+				dslQuery, objectDefinition, objectRelationship,
 				StringUtil.merge(
-					relationshipNames.subList(0, i + 1),
+					objectRelationshipNames.subList(0, i + 1),
 					StringPool.FORWARD_SLASH),
 				relatedObjectDefinition, sort);
 
-			currentObjectDefinition = relatedObjectDefinition;
+			objectDefinition = relatedObjectDefinition;
 		}
 
 		ObjectEntryFieldSortDSLQueryVisitor
@@ -75,17 +75,18 @@ public class SortDSLQueryVisitor extends BaseSortDSLQueryVisitor {
 					objectFieldLocalService);
 
 		return objectEntryFieldSortDSLQueryVisitor.visit(
-			dslQuery, new Sort(currentObjectDefinition, sort));
+			dslQuery, new Sort(objectDefinition, sort));
 	}
 
-	private DSLQuery _visitWithRelationship(
+	private DSLQuery _visit(
 			DSLQuery dslQuery, ObjectDefinition objectDefinition,
 			ObjectRelationship objectRelationship, String path,
 			ObjectDefinition relatedObjectDefinition, Sort sort)
 		throws PortalException {
 
 		if (!FeatureFlagManagerUtil.isEnabled("LPD-18730")) {
-			throw new InvalidSortException("Unable to sort by a related field");
+			throw new InvalidSortException(
+				"Unable to sort by a related object field");
 		}
 
 		if (!Objects.equals(
@@ -96,14 +97,15 @@ public class SortDSLQueryVisitor extends BaseSortDSLQueryVisitor {
 				objectRelationship.getType(), CharPool.SPACE);
 
 			throw new InvalidSortException(
-				"Unable to sort by a " + relationshipType + " related field");
+				"Unable to sort by a " + relationshipType +
+					" related object field");
 		}
 
 		if (objectDefinition.getObjectDefinitionId() !=
 				objectRelationship.getObjectDefinitionId1()) {
 
 			throw new InvalidSortException(
-				"Unable to sort by a many to one related field");
+				"Unable to sort by a many to one related object field");
 		}
 
 		ObjectEntry1ToMRelationshipSortDSLQueryVisitor

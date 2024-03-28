@@ -76,11 +76,11 @@ public abstract class BaseSortDSLQueryVisitor {
 	}
 
 	protected Table getAliasedTable(
-			String fieldName, ObjectDefinition objectDefinition, String prefix)
+			String name, ObjectDefinition objectDefinition, String prefix)
 		throws PortalException {
 
 		Table table = objectFieldLocalService.getTable(
-			objectDefinition.getObjectDefinitionId(), fieldName);
+			objectDefinition.getObjectDefinitionId(), name);
 
 		if (Validator.isBlank(prefix)) {
 			return table;
@@ -92,9 +92,9 @@ public abstract class BaseSortDSLQueryVisitor {
 	protected Stack<BaseASTNode> getAllBaseASTNodes(
 		Class<?> clazz, DSLQuery dslQuery) {
 
-		BaseASTNode baseASTNode = (BaseASTNode)dslQuery;
-
 		Stack<BaseASTNode> allBaseASTNodes = new Stack<>();
+
+		BaseASTNode baseASTNode = (BaseASTNode)dslQuery;
 
 		while ((baseASTNode != null) && !clazz.isInstance(baseASTNode)) {
 			allBaseASTNodes.push(baseASTNode);
@@ -103,7 +103,7 @@ public abstract class BaseSortDSLQueryVisitor {
 		}
 
 		if (baseASTNode == null) {
-			throw new IllegalStateException("baseASTNode is null");
+			throw new IllegalStateException("Base AST node is null");
 		}
 
 		allBaseASTNodes.push(baseASTNode);

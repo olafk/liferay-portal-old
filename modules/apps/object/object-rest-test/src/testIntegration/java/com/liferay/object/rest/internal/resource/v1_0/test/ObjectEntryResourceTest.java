@@ -211,10 +211,6 @@ public class ObjectEntryResourceTest {
 		).locale(
 			LocaleUtil.getDefault()
 		).build();
-
-		_dateFormat = DateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd");
-		_dateTimeDateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
-			"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 	}
 
 	@AfterClass
@@ -239,14 +235,12 @@ public class ObjectEntryResourceTest {
 			_LIST_TYPE_ENTRY_KEY_1,
 			Collections.singletonMap(
 				LocaleUtil.US, RandomTestUtil.randomString()));
-
 		_listTypeEntryLocalService.addListTypeEntry(
 			null, TestPropsValues.getUserId(),
 			_listTypeDefinition.getListTypeDefinitionId(),
 			_LIST_TYPE_ENTRY_KEY_2,
 			Collections.singletonMap(
 				LocaleUtil.US, RandomTestUtil.randomString()));
-
 		_listTypeEntryLocalService.addListTypeEntry(
 			null, TestPropsValues.getUserId(),
 			_listTypeDefinition.getListTypeDefinitionId(),
@@ -497,7 +491,6 @@ public class ObjectEntryResourceTest {
 					RandomTestUtil.randomString(), _OBJECT_FIELD_NAME_2,
 					false)),
 			ObjectDefinitionConstants.SCOPE_COMPANY);
-
 		_objectDefinition3 = ObjectDefinitionTestUtil.publishObjectDefinition(
 			ObjectDefinitionTestUtil.getRandomName(),
 			Arrays.asList(
@@ -572,7 +565,6 @@ public class ObjectEntryResourceTest {
 					RandomTestUtil.randomString(), _OBJECT_FIELD_NAME_3,
 					false)),
 			ObjectDefinitionConstants.SCOPE_COMPANY);
-
 		_objectDefinition4 = ObjectDefinitionTestUtil.publishObjectDefinition(
 			Arrays.asList(
 				ObjectFieldUtil.createObjectField(
@@ -778,7 +770,6 @@ public class ObjectEntryResourceTest {
 
 		_objectEntry1 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition1, _OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1);
-
 		_objectEntry2 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition2, _OBJECT_FIELD_NAME_2, _OBJECT_FIELD_VALUE_2);
 
@@ -1360,13 +1351,10 @@ public class ObjectEntryResourceTest {
 
 		_objectEntry1 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition1, _OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1);
-
 		_objectEntry2 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition2, _OBJECT_FIELD_NAME_2, _OBJECT_FIELD_VALUE_2);
-
 		_objectEntry3 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition3, _OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3);
-
 		_objectEntry4 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition4, _OBJECT_FIELD_NAME_4, _OBJECT_FIELD_VALUE_4);
 
@@ -1374,7 +1362,6 @@ public class ObjectEntryResourceTest {
 			_objectDefinition1, _objectDefinition2,
 			_objectEntry1.getPrimaryKey(), _objectEntry2.getPrimaryKey(),
 			ObjectRelationshipConstants.TYPE_MANY_TO_MANY);
-
 		_objectRelationship2 = _addObjectRelationshipAndRelateObjectEntries(
 			_objectDefinition2, _objectDefinition3,
 			_objectEntry2.getPrimaryKey(), _objectEntry3.getPrimaryKey(),
@@ -1856,7 +1843,6 @@ public class ObjectEntryResourceTest {
 
 		_objectEntry1 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition1, _OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1);
-
 		_objectEntry2 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition2, _OBJECT_FIELD_NAME_2, _OBJECT_FIELD_VALUE_2);
 
@@ -2035,10 +2021,8 @@ public class ObjectEntryResourceTest {
 
 		_objectEntry1 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition1, _OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1);
-
 		_objectEntry2 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition2, _OBJECT_FIELD_NAME_2, _OBJECT_FIELD_VALUE_2);
-
 		_objectEntry3 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition3, _OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3);
 
@@ -2046,7 +2030,6 @@ public class ObjectEntryResourceTest {
 			_objectDefinition1, _objectDefinition2,
 			_objectEntry1.getPrimaryKey(), _objectEntry2.getPrimaryKey(),
 			ObjectRelationshipConstants.TYPE_MANY_TO_MANY);
-
 		_objectRelationship2 = _addObjectRelationshipAndRelateObjectEntries(
 			_objectDefinition2, _objectDefinition3,
 			_objectEntry2.getPrimaryKey(), _objectEntry3.getPrimaryKey(),
@@ -2679,7 +2662,6 @@ public class ObjectEntryResourceTest {
 				_OBJECT_FIELD_NAME_MULTISELECT_PICKLIST, _LIST_TYPE_ENTRY_KEY_1
 			).build(),
 			_TAG_1);
-
 		_objectEntry2 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition2,
 			HashMapBuilder.<String, Serializable>put(
@@ -2688,7 +2670,6 @@ public class ObjectEntryResourceTest {
 				_OBJECT_FIELD_NAME_MULTISELECT_PICKLIST, _LIST_TYPE_ENTRY_KEY_1
 			).build(),
 			_TAG_1);
-
 		_objectEntry3 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition3,
 			HashMapBuilder.<String, Serializable>put(
@@ -2704,7 +2685,6 @@ public class ObjectEntryResourceTest {
 			_objectDefinition1, _objectDefinition2,
 			_objectEntry1.getPrimaryKey(), _objectEntry2.getPrimaryKey(),
 			ObjectRelationshipConstants.TYPE_MANY_TO_MANY);
-
 		_objectRelationship2 = _addObjectRelationshipAndRelateObjectEntries(
 			_objectDefinition2, _objectDefinition3,
 			_objectEntry2.getPrimaryKey(), _objectEntry3.getPrimaryKey(),
@@ -2719,7 +2699,6 @@ public class ObjectEntryResourceTest {
 					_OBJECT_FIELD_NAME_MULTISELECT_PICKLIST,
 					_LIST_TYPE_ENTRY_KEY_1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -2730,7 +2709,6 @@ public class ObjectEntryResourceTest {
 					_OBJECT_FIELD_NAME_MULTISELECT_PICKLIST,
 					_LIST_TYPE_ENTRY_KEY_1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -2741,7 +2719,6 @@ public class ObjectEntryResourceTest {
 					_OBJECT_FIELD_NAME_MULTISELECT_PICKLIST,
 					_LIST_TYPE_ENTRY_KEY_1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -2763,7 +2740,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(),
 					_objectRelationship2.getName(), _TAG_1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -2772,7 +2748,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(),
 					_objectRelationship2.getName(), _TAG_1.substring(1))),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -2781,7 +2756,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(),
 					_objectRelationship2.getName(), _TAG_1.substring(0, 2))),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -2803,7 +2777,6 @@ public class ObjectEntryResourceTest {
 					_OBJECT_FIELD_NAME_MULTISELECT_PICKLIST,
 					_LIST_TYPE_ENTRY_KEY_1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -2814,7 +2787,6 @@ public class ObjectEntryResourceTest {
 					_OBJECT_FIELD_NAME_MULTISELECT_PICKLIST,
 					_LIST_TYPE_ENTRY_KEY_1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -2825,7 +2797,6 @@ public class ObjectEntryResourceTest {
 					_OBJECT_FIELD_NAME_MULTISELECT_PICKLIST,
 					_LIST_TYPE_ENTRY_KEY_1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -2847,7 +2818,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(),
 					_objectRelationship1.getName(), _TAG_1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -2856,7 +2826,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(),
 					_objectRelationship1.getName(), _TAG_1.substring(1))),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -2865,7 +2834,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(),
 					_objectRelationship1.getName(), _TAG_1.substring(0, 2))),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -2887,7 +2855,6 @@ public class ObjectEntryResourceTest {
 			_objectDefinition1, _objectDefinition2,
 			_objectEntry1.getPrimaryKey(), _objectEntry2.getPrimaryKey(),
 			ObjectRelationshipConstants.TYPE_ONE_TO_MANY);
-
 		_objectRelationship2 = _addObjectRelationshipAndRelateObjectEntries(
 			_objectDefinition2, _objectDefinition3,
 			_objectEntry2.getPrimaryKey(), _objectEntry3.getPrimaryKey(),
@@ -2902,7 +2869,6 @@ public class ObjectEntryResourceTest {
 					_OBJECT_FIELD_NAME_MULTISELECT_PICKLIST,
 					_LIST_TYPE_ENTRY_KEY_1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -2913,7 +2879,6 @@ public class ObjectEntryResourceTest {
 					_OBJECT_FIELD_NAME_MULTISELECT_PICKLIST,
 					_LIST_TYPE_ENTRY_KEY_1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -2924,7 +2889,6 @@ public class ObjectEntryResourceTest {
 					_OBJECT_FIELD_NAME_MULTISELECT_PICKLIST,
 					_LIST_TYPE_ENTRY_KEY_1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -2946,7 +2910,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(),
 					_objectRelationship2.getName(), _TAG_1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -2955,7 +2918,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(),
 					_objectRelationship2.getName(), _TAG_1.substring(1))),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -2964,7 +2926,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(),
 					_objectRelationship2.getName(), _TAG_1.substring(0, 2))),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -2986,7 +2947,6 @@ public class ObjectEntryResourceTest {
 					_OBJECT_FIELD_NAME_MULTISELECT_PICKLIST,
 					_LIST_TYPE_ENTRY_KEY_1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -2997,7 +2957,6 @@ public class ObjectEntryResourceTest {
 					_OBJECT_FIELD_NAME_MULTISELECT_PICKLIST,
 					_LIST_TYPE_ENTRY_KEY_1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -3008,7 +2967,6 @@ public class ObjectEntryResourceTest {
 					_OBJECT_FIELD_NAME_MULTISELECT_PICKLIST,
 					_LIST_TYPE_ENTRY_KEY_1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -3030,7 +2988,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(),
 					_objectRelationship1.getName(), _TAG_1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -3039,7 +2996,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(),
 					_objectRelationship1.getName(), _TAG_1.substring(1))),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -3048,7 +3004,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(),
 					_objectRelationship1.getName(), _TAG_1.substring(0, 2))),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -3068,7 +3023,6 @@ public class ObjectEntryResourceTest {
 
 		_objectEntry1 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition1, _OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1);
-
 		_objectEntry2 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition2, _OBJECT_FIELD_NAME_2, _OBJECT_FIELD_VALUE_2);
 
@@ -3230,7 +3184,6 @@ public class ObjectEntryResourceTest {
 
 		_objectEntry1 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition1, _OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1);
-
 		_objectEntry2 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition2, _OBJECT_FIELD_NAME_2, _OBJECT_FIELD_VALUE_2);
 
@@ -3610,10 +3563,8 @@ public class ObjectEntryResourceTest {
 
 		_objectEntry1 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition1, _OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1);
-
 		_objectEntry2 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition2, _OBJECT_FIELD_NAME_2, _OBJECT_FIELD_VALUE_2);
-
 		_objectEntry3 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition3, _OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3);
 
@@ -3621,7 +3572,6 @@ public class ObjectEntryResourceTest {
 			_objectDefinition1, _objectDefinition2,
 			_objectEntry1.getPrimaryKey(), _objectEntry2.getPrimaryKey(),
 			ObjectRelationshipConstants.TYPE_MANY_TO_MANY);
-
 		_objectRelationship2 = _addObjectRelationshipAndRelateObjectEntries(
 			_objectDefinition2, _objectDefinition3,
 			_objectEntry2.getPrimaryKey(), _objectEntry3.getPrimaryKey(),
@@ -3638,7 +3588,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(), _OBJECT_FIELD_NAME_3,
 					_OBJECT_FIELD_VALUE_3 - 1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -3650,7 +3599,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(), _OBJECT_FIELD_NAME_3,
 					_OBJECT_FIELD_VALUE_3 - 1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -3674,7 +3622,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(),
 					_objectEntry3.getObjectEntryId() - 1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -3687,7 +3634,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(),
 					_objectEntry3.getObjectEntryId() - 1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -3710,7 +3656,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(), _OBJECT_FIELD_NAME_1,
 					_OBJECT_FIELD_VALUE_1 - 1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -3722,7 +3667,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(), _OBJECT_FIELD_NAME_1,
 					_OBJECT_FIELD_VALUE_1 - 1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -3746,7 +3690,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(),
 					_objectEntry1.getObjectEntryId() - 1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -3759,7 +3702,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(),
 					_objectEntry1.getObjectEntryId() - 1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -3780,7 +3722,6 @@ public class ObjectEntryResourceTest {
 			_objectDefinition1, _objectDefinition2,
 			_objectEntry1.getPrimaryKey(), _objectEntry2.getPrimaryKey(),
 			ObjectRelationshipConstants.TYPE_ONE_TO_MANY);
-
 		_objectRelationship2 = _addObjectRelationshipAndRelateObjectEntries(
 			_objectDefinition2, _objectDefinition3,
 			_objectEntry2.getPrimaryKey(), _objectEntry3.getPrimaryKey(),
@@ -3797,7 +3738,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(), _OBJECT_FIELD_NAME_3,
 					_OBJECT_FIELD_VALUE_3 - 1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -3809,7 +3749,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(), _OBJECT_FIELD_NAME_3,
 					_OBJECT_FIELD_VALUE_3 - 1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -3833,7 +3772,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(),
 					_objectEntry3.getObjectEntryId() - 1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -3846,7 +3784,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(),
 					_objectEntry3.getObjectEntryId() - 1)),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1,
 			_escape(
@@ -3869,7 +3806,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(), _OBJECT_FIELD_NAME_1,
 					_OBJECT_FIELD_VALUE_1 - 1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -3881,7 +3817,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(), _OBJECT_FIELD_NAME_1,
 					_OBJECT_FIELD_VALUE_1 - 1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -3905,7 +3840,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(),
 					_objectEntry1.getObjectEntryId() - 1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -3918,7 +3852,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(),
 					_objectEntry1.getObjectEntryId() - 1)),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3,
 			_escape(
@@ -4177,10 +4110,8 @@ public class ObjectEntryResourceTest {
 
 		_objectEntry1 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition1, _OBJECT_FIELD_NAME_1, objectFieldValue1);
-
 		_objectEntry2 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition2, _OBJECT_FIELD_NAME_2, objectFieldValue2);
-
 		_objectEntry3 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition3, _OBJECT_FIELD_NAME_3, objectFieldValue3);
 
@@ -4190,7 +4121,6 @@ public class ObjectEntryResourceTest {
 			_objectDefinition1, _objectDefinition2,
 			_objectEntry1.getPrimaryKey(), _objectEntry2.getPrimaryKey(),
 			ObjectRelationshipConstants.TYPE_ONE_TO_MANY);
-
 		_objectRelationship2 = _addObjectRelationshipAndRelateObjectEntries(
 			_objectDefinition2, _objectDefinition3,
 			_objectEntry2.getPrimaryKey(), _objectEntry3.getPrimaryKey(),
@@ -4204,7 +4134,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(), _OBJECT_FIELD_NAME_3,
 					objectFieldValue3.substring(1))),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, objectFieldValue1,
 			_escape(
@@ -4228,7 +4157,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(),
 					objectEntry3ExternalReferenceCode.substring(1))),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, objectFieldValue1,
 			_escape(
@@ -4249,7 +4177,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(), _OBJECT_FIELD_NAME_1,
 					objectFieldValue1.substring(1))),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, objectFieldValue3,
 			_escape(
@@ -4273,7 +4200,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(),
 					objectEntry1ExternalReferenceCode.substring(1))),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, objectFieldValue3,
 			_escape(
@@ -4295,7 +4221,6 @@ public class ObjectEntryResourceTest {
 			_objectDefinition1, _objectDefinition2,
 			_objectEntry1.getPrimaryKey(), _objectEntry2.getPrimaryKey(),
 			ObjectRelationshipConstants.TYPE_ONE_TO_MANY);
-
 		_objectRelationship2 = _addObjectRelationshipAndRelateObjectEntries(
 			_objectDefinition2, _objectDefinition3,
 			_objectEntry2.getPrimaryKey(), _objectEntry3.getPrimaryKey(),
@@ -4309,7 +4234,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(), _OBJECT_FIELD_NAME_3,
 					objectFieldValue3.substring(1))),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, objectFieldValue1,
 			_escape(
@@ -4333,7 +4257,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship2.getName(),
 					objectEntry3ExternalReferenceCode.substring(1))),
 			_objectDefinition1);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_1, objectFieldValue1,
 			_escape(
@@ -4354,7 +4277,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(), _OBJECT_FIELD_NAME_1,
 					objectFieldValue1.substring(1))),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, objectFieldValue3,
 			_escape(
@@ -4378,7 +4300,6 @@ public class ObjectEntryResourceTest {
 					_objectRelationship1.getName(),
 					objectEntry1ExternalReferenceCode.substring(1))),
 			_objectDefinition3);
-
 		_assertFilterString(
 			_OBJECT_FIELD_NAME_3, objectFieldValue3,
 			_escape(
@@ -4466,7 +4387,6 @@ public class ObjectEntryResourceTest {
 
 		_objectEntry1 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition1, _OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1);
-
 		_objectEntry2 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition2, _OBJECT_FIELD_NAME_2, _OBJECT_FIELD_VALUE_2);
 
@@ -4483,7 +4403,6 @@ public class ObjectEntryResourceTest {
 				{_OBJECT_FIELD_NAME_2, String.valueOf(_OBJECT_FIELD_VALUE_2)}
 			},
 			Type.MANY_TO_MANY);
-
 		_testGetNestedFieldDetailsInRelationships(
 			_objectRelationship2.getName(), 3, _objectRelationship2.getName(),
 			_objectDefinition1,
@@ -4494,7 +4413,6 @@ public class ObjectEntryResourceTest {
 				{_OBJECT_FIELD_NAME_2, String.valueOf(_OBJECT_FIELD_VALUE_2)}
 			},
 			Type.MANY_TO_MANY);
-
 		_testGetNestedFieldDetailsInRelationships(
 			_objectRelationship2.getName(), 5, _objectRelationship2.getName(),
 			_objectDefinition1,
@@ -4507,7 +4425,6 @@ public class ObjectEntryResourceTest {
 				{_OBJECT_FIELD_NAME_2, String.valueOf(_OBJECT_FIELD_VALUE_2)}
 			},
 			Type.MANY_TO_MANY);
-
 		_testGetNestedFieldDetailsInRelationships(
 			_objectRelationship2.getName(), 6, _objectRelationship2.getName(),
 			_objectDefinition1,
@@ -4541,12 +4458,6 @@ public class ObjectEntryResourceTest {
 				{_OBJECT_FIELD_NAME_1, String.valueOf(_OBJECT_FIELD_VALUE_1)}
 			},
 			Type.MANY_TO_ONE);
-
-		String relatedObjectDefinitionName = StringUtil.removeFirst(
-			StringUtil.removeLast(
-				_objectDefinition1.getPKObjectFieldName(), "Id"),
-			"c_");
-
 		_testGetNestedFieldDetailsInRelationships(
 			relationshipFieldNameNestedFieldName, null,
 			StringUtil.removeLast(relationshipFieldName, "Id"),
@@ -4557,6 +4468,11 @@ public class ObjectEntryResourceTest {
 			},
 			Type.MANY_TO_ONE);
 
+		String relatedObjectDefinitionName = StringUtil.removeFirst(
+			StringUtil.removeLast(
+				_objectDefinition1.getPKObjectFieldName(), "Id"),
+			"c_");
+
 		_testGetNestedFieldDetailsInRelationships(
 			relationshipFieldNameNestedFieldName, null,
 			relatedObjectDefinitionName, _objectDefinition2,
@@ -4565,7 +4481,6 @@ public class ObjectEntryResourceTest {
 				{_OBJECT_FIELD_NAME_1, String.valueOf(_OBJECT_FIELD_VALUE_1)}
 			},
 			Type.MANY_TO_ONE);
-
 		_testGetNestedFieldDetailsInRelationships(
 			relationshipFieldNameNestedFieldName, null,
 			RandomTestUtil.randomString() + relatedObjectDefinitionName,
@@ -4584,7 +4499,6 @@ public class ObjectEntryResourceTest {
 				{_OBJECT_FIELD_NAME_1, String.valueOf(_OBJECT_FIELD_VALUE_1)}
 			},
 			Type.MANY_TO_ONE);
-
 		_testGetNestedFieldDetailsInRelationships(
 			_objectRelationship3.getName(), null,
 			_objectRelationship3.getName(), _objectDefinition2,
@@ -4609,7 +4523,6 @@ public class ObjectEntryResourceTest {
 				{_OBJECT_FIELD_NAME_2, String.valueOf(_OBJECT_FIELD_VALUE_2)}
 			},
 			Type.ONE_TO_MANY);
-
 		_testGetNestedFieldDetailsInRelationships(
 			_objectRelationship1.getName(), 3, _objectRelationship1.getName(),
 			_objectDefinition1,
@@ -4620,7 +4533,6 @@ public class ObjectEntryResourceTest {
 				{_OBJECT_FIELD_NAME_2, String.valueOf(_OBJECT_FIELD_VALUE_2)}
 			},
 			Type.ONE_TO_MANY);
-
 		_testGetNestedFieldDetailsInRelationships(
 			_objectRelationship1.getName(), 5, _objectRelationship1.getName(),
 			_objectDefinition1,
@@ -4633,7 +4545,6 @@ public class ObjectEntryResourceTest {
 				{_OBJECT_FIELD_NAME_2, String.valueOf(_OBJECT_FIELD_VALUE_2)}
 			},
 			Type.ONE_TO_MANY);
-
 		_testGetNestedFieldDetailsInRelationships(
 			_objectRelationship1.getName(), 6, _objectRelationship1.getName(),
 			_objectDefinition1,
@@ -4658,13 +4569,10 @@ public class ObjectEntryResourceTest {
 
 		_objectEntry1 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition1, _OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1);
-
 		_objectEntry2 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition2, _OBJECT_FIELD_NAME_2, _OBJECT_FIELD_VALUE_2);
-
 		_objectEntry3 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition3, _OBJECT_FIELD_NAME_3, _OBJECT_FIELD_VALUE_3);
-
 		_objectEntry4 = ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition4, _OBJECT_FIELD_NAME_4, _OBJECT_FIELD_VALUE_4);
 
@@ -11250,8 +11158,11 @@ public class ObjectEntryResourceTest {
 
 	private static AssetVocabulary _assetVocabulary;
 	private static BundleContext _bundleContext;
-	private static DateFormat _dateFormat;
-	private static DateFormat _dateTimeDateFormat;
+	private static final DateFormat _dateFormat =
+		DateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd");
+	private static final DateFormat _dateTimeDateFormat =
+		DateFormatFactoryUtil.getSimpleDateFormat(
+			"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 	private static List<ServiceRegistration<?>> _serviceRegistrations;
 	private static TaxonomyCategoryResource _taxonomyCategoryResource;
 	private static final TestDLFileEntryModelListener

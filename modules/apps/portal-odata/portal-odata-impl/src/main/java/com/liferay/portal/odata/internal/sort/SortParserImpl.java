@@ -177,19 +177,19 @@ public class SortParserImpl implements SortParser {
 
 		List<EntityField> parentEntityFields = new ArrayList<>();
 
+		Map<String, EntityField> currentEntityFields = entityFields;
+
 		List<String> fieldNameParts = StringUtil.split(
 			fieldName, CharPool.FORWARD_SLASH);
-
-		Map<String, EntityField> currentEntityFields = entityFields;
 
 		for (int i = 0; i < (fieldNameParts.size() - 1); i++) {
 			ComplexEntityField complexEntityField =
 				(ComplexEntityField)currentEntityFields.get(
 					fieldNameParts.get(i));
 
-			parentEntityFields.add(complexEntityField);
-
 			currentEntityFields = complexEntityField.getEntityFieldsMap();
+
+			parentEntityFields.add(complexEntityField);
 		}
 
 		return parentEntityFields;
