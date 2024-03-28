@@ -558,6 +558,7 @@ public class DDMValueUtil {
 				contentFieldValue, localizedContentFieldValues,
 				(localizedContentFieldValue, locale) -> {
 					String optionValues = localizedContentFieldValue.getData();
+
 					String value = localizedContentFieldValue.getValue();
 
 					if (Validator.isNotNull(value)) {
@@ -583,7 +584,6 @@ public class DDMValueUtil {
 			ddmFormField.getDDMFormFieldOptions();
 
 		Map<String, LocalizedValue> options = ddmFormFieldOptions.getOptions();
-
 		Map<String, String> optionsReferences =
 			ddmFormFieldOptions.getOptionsReferences();
 
