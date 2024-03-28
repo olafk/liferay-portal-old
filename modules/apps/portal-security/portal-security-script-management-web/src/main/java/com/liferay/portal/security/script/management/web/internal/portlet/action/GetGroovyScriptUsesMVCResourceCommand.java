@@ -68,8 +68,8 @@ public class GetGroovyScriptUsesMVCResourceCommand
 		List<GroovyScriptUse> groovyScriptUses = new ArrayList<>();
 
 		if (DBPartition.isPartitionEnabled()) {
-			_companyLocalService.forEachCompany(
-				company -> _addGroovyScriptUses(
+			_companyLocalService.forEachCompanyId(
+				companyId -> _addGroovyScriptUses(
 					groovyScriptUses, resourceRequest));
 		}
 		else {
