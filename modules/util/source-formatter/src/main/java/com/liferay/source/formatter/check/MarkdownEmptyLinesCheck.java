@@ -58,6 +58,7 @@ public class MarkdownEmptyLinesCheck extends BaseFileCheck {
 					sb.append("\n");
 
 					codeBlock = !codeBlock;
+					previousLine = line;
 
 					continue;
 				}
@@ -73,8 +74,9 @@ public class MarkdownEmptyLinesCheck extends BaseFileCheck {
 					continue;
 				}
 
-				if ((!codeBlock && _isHeader(line) && (sb.index() > 0) &&
-					 !Validator.isBlank(previousLine)) ||
+				if ((!codeBlock &&
+					 (_isHeader(line) || previousLine.startsWith("```")) &&
+					 (sb.index() > 0) && !Validator.isBlank(previousLine)) ||
 					(_isHeader(previousLine) && !line.startsWith("- ") &&
 					 !line.startsWith("* "))) {
 
