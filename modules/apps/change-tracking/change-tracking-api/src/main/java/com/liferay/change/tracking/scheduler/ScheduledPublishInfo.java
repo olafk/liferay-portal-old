@@ -15,13 +15,13 @@ import java.util.Date;
 public class ScheduledPublishInfo {
 
 	public ScheduledPublishInfo(
-		CTCollection ctCollection, long userId, String jobName,
-		Date startDate) {
+		CTCollection ctCollection, String jobName, Date startDate,
+		long userId) {
 
 		_ctCollection = ctCollection;
-		_userId = userId;
 		_jobName = jobName;
 		_startDate = startDate;
+		_userId = userId;
 	}
 
 	public CTCollection getCTCollection() {

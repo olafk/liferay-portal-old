@@ -62,9 +62,9 @@ public class PublishSchedulerImpl implements PublishScheduler {
 		Message message = schedulerResponse.getMessage();
 
 		return new ScheduledPublishInfo(
-			ctCollection, message.getLong("userId"),
-			schedulerResponse.getJobName(),
-			_schedulerEngineHelper.getStartTime(schedulerResponse));
+			ctCollection, schedulerResponse.getJobName(),
+			_schedulerEngineHelper.getStartTime(schedulerResponse),
+			message.getLong("userId"));
 	}
 
 	public List<ScheduledPublishInfo> getScheduledPublishInfos()
