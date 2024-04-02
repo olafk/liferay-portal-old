@@ -547,7 +547,7 @@ public class Main {
 	private JSONArray _getBreadcrumbJSONArray(File file) throws Exception {
 		JSONArray breadcrumbJSONArray = new JSONArray();
 
-		File parentMarkdownFile;
+		File parentMarkdownFile = null;
 
 		while ((parentMarkdownFile = _getParentMarkdownFile(file)) != null) {
 			breadcrumbJSONArray.put(
@@ -562,13 +562,12 @@ public class Main {
 	private JSONArray _getChildrenJSONArray(File file) throws Exception {
 		JSONArray childrenJSONArray = new JSONArray();
 
-		Document document = _parser.parse(
-			FileUtils.readFileToString(file, StandardCharsets.UTF_8));
-
 		SnakeYamlFrontMatterVisitor snakeYamlFrontMatterVisitor =
 			new SnakeYamlFrontMatterVisitor();
 
-		snakeYamlFrontMatterVisitor.visit(document);
+		snakeYamlFrontMatterVisitor.visit(
+			_parser.parse(
+				FileUtils.readFileToString(file, StandardCharsets.UTF_8)));
 
 		Map<String, Object> data = snakeYamlFrontMatterVisitor.getData();
 
