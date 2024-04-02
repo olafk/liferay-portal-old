@@ -199,8 +199,6 @@ public class CalendarBookingInfoItemFieldValuesProvider
 	private String _getInvitations(CalendarBooking calendarBooking)
 		throws PortalException {
 
-		Locale locale = LocaleUtil.getMostRelevantLocale();
-
 		List<CalendarBooking> acceptedCalendarBookings =
 			_calendarBookingService.getChildCalendarBookings(
 				calendarBooking.getParentCalendarBookingId(),
@@ -231,7 +229,8 @@ public class CalendarBookingInfoItemFieldValuesProvider
 				CalendarBookingWorkflowConstants.STATUS_MAYBE);
 
 		return _language.format(
-			locale, "accepted-x-declined-x-pending-x-maybe-x",
+			LocaleUtil.getMostRelevantLocale(),
+			"accepted-x-declined-x-pending-x-maybe-x",
 			new Integer[] {
 				acceptedCalendarBookings.size(),
 				declinedCalendarBookings.size(), pendingCalendarBookings.size(),
