@@ -64,13 +64,13 @@ public class TestrayCommandLineRunner implements CommandLineRunner {
 		}
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Archiving " + jsonArray.length() + " builds");
+			_log.info("Archiving " + jsonArray.length() + " Testray builds");
 		}
 
 		_put(jsonArray.toString(), "/o/c/builds/batch");
 	}
 
-	public void deleteArchivedTestrayBuilds() throws Exception {
+	public void deleteTestrayBuilds() throws Exception {
 		JSONArray jsonArray = _get(
 			uriBuilder -> uriBuilder.path(
 				"/o/c/builds"
@@ -88,7 +88,7 @@ public class TestrayCommandLineRunner implements CommandLineRunner {
 		);
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Deleting " + jsonArray.length() + " builds");
+			_log.info("Deleting " + jsonArray.length() + " Testray builds");
 		}
 
 		_delete(jsonArray.toString(), "/o/c/builds/batch");
@@ -96,7 +96,7 @@ public class TestrayCommandLineRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		deleteArchivedTestrayBuilds();
+		deleteTestrayBuilds();
 
 		archiveTestrayBuilds();
 	}
