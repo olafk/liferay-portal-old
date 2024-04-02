@@ -459,55 +459,45 @@ public class DDMFieldUpgradeProcess extends UpgradeProcess {
 		}
 
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				"select parentStructureId from DDMStructureVersion where " +
-					"structureId = ? and structureVersionId = ? and " +
-						"ctCollectionId = 0")) {
+				StringBundler.concat(
+					"select parentStructureId from DDMStructureVersion where ",
+					"structureId = ", structureId, " and structureVersionId = ",
+					structureVersionId, " and ctCollectionId = 0"));
+			PreparedStatement preparedStatement2 = connection.prepareStatement(
+				"select structureVersionId from DDMStructureVersion where " +
+					"structureId = ?");
+			ResultSet resultSet1 = preparedStatement1.executeQuery()) {
 
-			preparedStatement1.setLong(1, structureId);
-			preparedStatement1.setLong(2, structureVersionId);
+			if (resultSet1.next()) {
+				long parentStructureId = resultSet1.getLong(
+					"parentStructureId");
 
-			try (ResultSet resultSet1 = preparedStatement1.executeQuery()) {
-				if (resultSet1.next()) {
-					long parentStructureId = resultSet1.getLong(
-						"parentStructureId");
+				fullHierarchyDDMForm = _getDDMForm(
+					structureId, structureVersionId);
 
-					fullHierarchyDDMForm = _getDDMForm(
-						structureId, structureVersionId);
+				_fullHierarchyDDMForms.put(
+					structureVersionId, fullHierarchyDDMForm);
 
-					if (parentStructureId > 0) {
-						PreparedStatement preparedStatement2 =
-							connection.prepareStatement(
-								StringBundler.concat(
-									"select structureVersionId from ",
-									"DDMStructureVersion where structureId = ",
-									"?"));
-
-						preparedStatement2.setLong(1, parentStructureId);
-
-						try (ResultSet resultSet2 =
-								preparedStatement2.executeQuery()) {
-
-							if (resultSet2.next()) {
-								DDMForm parentDDMForm =
-									_getFullHierarchyDDMForm(
-										parentStructureId,
-										resultSet2.getLong(
-											"structureVersionId"));
-
-								List<DDMFormField> ddmFormFields =
-									fullHierarchyDDMForm.getDDMFormFields();
-
-								ddmFormFields.addAll(
-									parentDDMForm.getDDMFormFields());
-							}
-						}
-					}
-
-					_fullHierarchyDDMForms.put(
-						structureVersionId, fullHierarchyDDMForm);
-
+				if (parentStructureId <= 0) {
 					return fullHierarchyDDMForm;
 				}
+
+				preparedStatement2.setLong(1, parentStructureId);
+
+				try (ResultSet resultSet2 = preparedStatement2.executeQuery()) {
+					if (resultSet2.next()) {
+						DDMForm parentDDMForm = _getFullHierarchyDDMForm(
+							parentStructureId,
+							resultSet2.getLong("structureVersionId"));
+
+						List<DDMFormField> ddmFormFields =
+							fullHierarchyDDMForm.getDDMFormFields();
+
+						ddmFormFields.addAll(parentDDMForm.getDDMFormFields());
+					}
+				}
+
+				return fullHierarchyDDMForm;
 			}
 		}
 
