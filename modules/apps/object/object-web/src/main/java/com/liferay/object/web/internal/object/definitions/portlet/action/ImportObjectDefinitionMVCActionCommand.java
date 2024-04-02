@@ -105,6 +105,8 @@ public class ImportObjectDefinitionMVCActionCommand
 	private JSONObject _importObjectDefinition(ActionRequest actionRequest)
 		throws Exception {
 
+		JSONArray errorsMessageJSONArray = _jsonFactory.createJSONArray();
+
 		ObjectDefinitionResource.Builder builder =
 			_objectDefinitionResourceFactory.create();
 
@@ -115,10 +117,10 @@ public class ImportObjectDefinitionMVCActionCommand
 			themeDisplay.getUser()
 		).build();
 
+		JSONArray jsonArray = _jsonFactory.createJSONArray();
+
 		UploadPortletRequest uploadPortletRequest =
 			_portal.getUploadPortletRequest(actionRequest);
-
-		JSONArray jsonArray = _jsonFactory.createJSONArray();
 
 		String objectDefinitionJSON = FileUtil.read(
 			uploadPortletRequest.getFile("objectDefinitionJSON"));
@@ -133,8 +135,6 @@ public class ImportObjectDefinitionMVCActionCommand
 		else {
 			jsonArray.put(_jsonFactory.createJSONObject(objectDefinitionJSON));
 		}
-
-		JSONArray errorsMessageJSONArray = _jsonFactory.createJSONArray();
 
 		for (Object object : jsonArray) {
 			JSONObject jsonObject = (JSONObject)object;
