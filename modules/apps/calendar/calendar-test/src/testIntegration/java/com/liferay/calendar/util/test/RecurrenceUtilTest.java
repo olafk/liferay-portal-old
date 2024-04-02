@@ -100,7 +100,7 @@ public class RecurrenceUtilTest {
 		recurrence.setFrequency(Frequency.DAILY);
 		recurrence.setInterval(2);
 
-		_setUntilDate(recurrence);
+		_setUntilJCalendar(recurrence);
 
 		Assert.assertEquals(
 			"Every 2 Days, Until January 1, 1970",
@@ -127,7 +127,7 @@ public class RecurrenceUtilTest {
 		recurrence.setFrequency(Frequency.DAILY);
 		recurrence.setInterval(1);
 
-		_setUntilDate(recurrence);
+		_setUntilJCalendar(recurrence);
 
 		Assert.assertEquals(
 			"Daily, Until January 1, 1970",
@@ -182,7 +182,7 @@ public class RecurrenceUtilTest {
 		recurrence.setInterval(1);
 
 		_setPositionalWeekdays(recurrence);
-		_setUntilDate(recurrence);
+		_setUntilJCalendar(recurrence);
 
 		Assert.assertEquals(
 			"Monthly, on First Sunday, Until January 1, 1970",
@@ -238,7 +238,7 @@ public class RecurrenceUtilTest {
 		recurrence.setInterval(2);
 
 		_setPositionalWeekdays(recurrence);
-		_setUntilDate(recurrence);
+		_setUntilJCalendar(recurrence);
 
 		Assert.assertEquals(
 			"Every 2 Months, on First Sunday, Until January 1, 1970",
@@ -265,7 +265,7 @@ public class RecurrenceUtilTest {
 		recurrence.setFrequency(Frequency.MONTHLY);
 		recurrence.setInterval(2);
 
-		_setUntilDate(recurrence);
+		_setUntilJCalendar(recurrence);
 
 		Assert.assertEquals(
 			"Every 2 Months, Until January 1, 1970",
@@ -292,7 +292,7 @@ public class RecurrenceUtilTest {
 		recurrence.setFrequency(Frequency.MONTHLY);
 		recurrence.setInterval(1);
 
-		_setUntilDate(recurrence);
+		_setUntilJCalendar(recurrence);
 
 		Assert.assertEquals(
 			"Monthly, Until January 1, 1970",
@@ -353,7 +353,7 @@ public class RecurrenceUtilTest {
 		recurrence.setInterval(1);
 
 		_setPositionalWeekdays(recurrence);
-		_setUntilDate(recurrence);
+		_setUntilJCalendar(recurrence);
 
 		Assert.assertEquals(
 			"Weekly, on Sunday, Until January 1, 1970",
@@ -409,7 +409,7 @@ public class RecurrenceUtilTest {
 		recurrence.setInterval(2);
 
 		_setPositionalWeekdays(recurrence);
-		_setUntilDate(recurrence);
+		_setUntilJCalendar(recurrence);
 
 		Assert.assertEquals(
 			"Every 2 Weeks, on Sunday, Until January 1, 1970",
@@ -436,7 +436,7 @@ public class RecurrenceUtilTest {
 		recurrence.setFrequency(Frequency.WEEKLY);
 		recurrence.setInterval(2);
 
-		_setUntilDate(recurrence);
+		_setUntilJCalendar(recurrence);
 
 		Assert.assertEquals(
 			"Every 2 Weeks, Until January 1, 1970",
@@ -463,7 +463,7 @@ public class RecurrenceUtilTest {
 		recurrence.setFrequency(Frequency.WEEKLY);
 		recurrence.setInterval(1);
 
-		_setUntilDate(recurrence);
+		_setUntilJCalendar(recurrence);
 
 		Assert.assertEquals(
 			"Weekly, Until January 1, 1970",
@@ -518,7 +518,7 @@ public class RecurrenceUtilTest {
 		recurrence.setInterval(1);
 
 		_setPositionalWeekdays(recurrence);
-		_setUntilDate(recurrence);
+		_setUntilJCalendar(recurrence);
 
 		Assert.assertEquals(
 			"Yearly, on the First Sunday of January, Until January 1, 1970",
@@ -574,7 +574,7 @@ public class RecurrenceUtilTest {
 		recurrence.setInterval(2);
 
 		_setPositionalWeekdays(recurrence);
-		_setUntilDate(recurrence);
+		_setUntilJCalendar(recurrence);
 
 		Assert.assertEquals(
 			"Every 2 Years, on First Sunday of January, Until January 1, 1970",
@@ -601,7 +601,7 @@ public class RecurrenceUtilTest {
 		recurrence.setFrequency(Frequency.YEARLY);
 		recurrence.setInterval(2);
 
-		_setUntilDate(recurrence);
+		_setUntilJCalendar(recurrence);
 
 		Assert.assertEquals(
 			"Every 2 Years, Until January 1, 1970",
@@ -628,7 +628,7 @@ public class RecurrenceUtilTest {
 		recurrence.setFrequency(Frequency.YEARLY);
 		recurrence.setInterval(1);
 
-		_setUntilDate(recurrence);
+		_setUntilJCalendar(recurrence);
 
 		Assert.assertEquals(
 			"Yearly, Until January 1, 1970",
@@ -643,7 +643,7 @@ public class RecurrenceUtilTest {
 		recurrence.setPositionalWeekdays(positionalWeekdays);
 	}
 
-	private void _setUntilDate(Recurrence recurrence) {
+	private void _setUntilJCalendar(Recurrence recurrence) {
 		java.util.Calendar untilJCalendar = java.util.Calendar.getInstance();
 
 		untilJCalendar.setTime(new Date(0));
