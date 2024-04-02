@@ -56,9 +56,9 @@ public class ScanCodeS3Object {
 		return getURLString();
 	}
 
-	protected ScanCodeS3Object(ScanCodeS3Bucket scanCodeS3Bucket, Blob blob) {
-		_scanCodeS3Bucket = scanCodeS3Bucket;
+	protected ScanCodeS3Object(Blob blob, ScanCodeS3Bucket scanCodeS3Bucket) {
 		_blob = blob;
+		_scanCodeS3Bucket = scanCodeS3Bucket;
 
 		try {
 			_url = new URL(

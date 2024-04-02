@@ -179,7 +179,7 @@ public class ScanCodeS3Bucket {
 				blobInfo, FileUtils.readFileToByteArray(file));
 
 			ScanCodeS3Object scanCodeS3Object =
-				ScanCodeS3ObjectFactory.newScanCodeS3Object(this, blob);
+				ScanCodeS3ObjectFactory.newScanCodeS3Object(blob, this);
 
 			_s3URL = scanCodeS3Object.getURLString();
 
@@ -213,7 +213,7 @@ public class ScanCodeS3Bucket {
 			blobInfo, value.getBytes(StandardCharsets.UTF_8));
 
 		ScanCodeS3Object scanCodeS3Object =
-			ScanCodeS3ObjectFactory.newScanCodeS3Object(this, blob);
+			ScanCodeS3ObjectFactory.newScanCodeS3Object(blob, this);
 
 		_s3URL = scanCodeS3Object.getURLString();
 
@@ -282,7 +282,7 @@ public class ScanCodeS3Bucket {
 			return null;
 		}
 
-		return ScanCodeS3ObjectFactory.newScanCodeS3Object(this, blob);
+		return ScanCodeS3ObjectFactory.newScanCodeS3Object(blob, this);
 	}
 
 	public List<ScanCodeS3Object> getScanCodeS3Objects() {
@@ -294,7 +294,7 @@ public class ScanCodeS3Bucket {
 
 		for (Blob blob : blobPage.iterateAll()) {
 			scanCodeS3Objects.add(
-				ScanCodeS3ObjectFactory.newScanCodeS3Object(this, blob));
+				ScanCodeS3ObjectFactory.newScanCodeS3Object(blob, this));
 		}
 
 		return scanCodeS3Objects;

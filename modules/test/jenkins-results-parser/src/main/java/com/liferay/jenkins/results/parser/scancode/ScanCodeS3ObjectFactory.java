@@ -18,7 +18,7 @@ import java.util.Map;
 public class ScanCodeS3ObjectFactory {
 
 	public static ScanCodeS3Object newScanCodeS3Object(
-		ScanCodeS3Bucket scanCodeS3Bucket, Blob blob) {
+		Blob blob, ScanCodeS3Bucket scanCodeS3Bucket) {
 
 		if (blob == null) {
 			return null;
@@ -32,7 +32,7 @@ public class ScanCodeS3ObjectFactory {
 		}
 
 		ScanCodeS3Object scanCodeS3Object = new ScanCodeS3Object(
-			scanCodeS3Bucket, blob);
+			blob, scanCodeS3Bucket);
 
 		_scanCodeS3Objects.put(mapKey, scanCodeS3Object);
 
