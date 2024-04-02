@@ -48,14 +48,14 @@ public class DXPEntityAnalyticsExportDispatchTaskExecutor
 			return;
 		}
 
+		Date resourceLastModifiedDate = null;
+
 		UnicodeProperties dispatchTaskSettingsUnicodeProperties =
 			dispatchTrigger.getDispatchTaskSettingsUnicodeProperties();
 
 		boolean forceFullExport = GetterUtil.getBoolean(
 			dispatchTaskSettingsUnicodeProperties.getProperty(
 				"forceFullExport", StringPool.FALSE));
-
-		Date resourceLastModifiedDate = null;
 
 		if (!forceFullExport) {
 			resourceLastModifiedDate = getResourceLastModifiedDate(
