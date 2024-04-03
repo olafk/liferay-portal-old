@@ -97,6 +97,18 @@ public abstract class BaseObjectEntryManager {
 			getGroupId(objectDefinition, scopeKey), actionId);
 	}
 
+	protected ObjectField fetchObjectFieldByName(
+		String name, List<ObjectField> objectFields) {
+
+		for (ObjectField objectField : objectFields) {
+			if (Objects.equals(name, objectField.getName())) {
+				return objectField;
+			}
+		}
+
+		return null;
+	}
+
 	protected DateFormat getDateFormat() {
 		return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 	}
@@ -142,18 +154,6 @@ public abstract class BaseObjectEntryManager {
 		}
 
 		return 0;
-	}
-
-	protected ObjectField fetchObjectFieldByName(
-		String name, List<ObjectField> objectFields) {
-
-		for (ObjectField objectField : objectFields) {
-			if (Objects.equals(name, objectField.getName())) {
-				return objectField;
-			}
-		}
-
-		return null;
 	}
 
 	protected PortletResourcePermission getPortletResourcePermission(
@@ -380,6 +380,21 @@ public abstract class BaseObjectEntryManager {
 	@Reference
 	protected UserLocalService userLocalService;
 
+	private ObjectField _fetchObjectFieldByExternalReferenceCode(
+		String externalReferenceCode, List<ObjectField> objectFields) {
+
+		for (ObjectField objectField : objectFields) {
+			if (Objects.equals(
+					externalReferenceCode,
+					objectField.getExternalReferenceCode())) {
+
+				return objectField;
+			}
+		}
+
+		return null;
+	}
+
 	private ListEntry _getListEntry(
 		DTOConverterContext dtoConverterContext, String externalReferenceCode,
 		ObjectDefinition objectDefinition, ObjectField objectField) {
@@ -405,21 +420,6 @@ public abstract class BaseObjectEntryManager {
 						listTypeEntry.getNameMap()));
 			}
 		};
-	}
-
-	private ObjectField _fetchObjectFieldByExternalReferenceCode(
-		String externalReferenceCode, List<ObjectField> objectFields) {
-
-		for (ObjectField objectField : objectFields) {
-			if (Objects.equals(
-					externalReferenceCode,
-					objectField.getExternalReferenceCode())) {
-
-				return objectField;
-			}
-		}
-
-		return null;
 	}
 
 	private boolean _hasPortletResourcePermission(
