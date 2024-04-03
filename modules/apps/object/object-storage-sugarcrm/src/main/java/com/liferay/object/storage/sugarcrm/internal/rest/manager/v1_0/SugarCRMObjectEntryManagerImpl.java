@@ -259,9 +259,11 @@ public class SugarCRMObjectEntryManagerImpl
 
 		sb.append(StringPool.QUESTION);
 
-		_appendSorts(sb, objectDefinition, sorts);
+		if (!count) {
+			_appendSorts(sb, objectDefinition, sorts);
 
-		_appendPagination(sb, pagination);
+			_appendPagination(sb, pagination);
+		}
 
 		_appendFilter(sb, objectDefinition, filterString);
 
