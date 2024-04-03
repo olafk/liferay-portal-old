@@ -176,20 +176,20 @@ public class SugarCRMQueryExpressionVisitorImpl
 
 		JSONArray jsonArray = null;
 
-		JSONObject leftjsonObject = (JSONObject)left;
-		JSONObject rightjsonObject = (JSONObject)right;
+		JSONObject leftJSONObject = (JSONObject)left;
+		JSONObject rightJSONObject = (JSONObject)right;
 
-		if (Validator.isNotNull(leftjsonObject.getJSONArray(operator))) {
-			jsonArray = leftjsonObject.getJSONArray(operator);
+		if (Validator.isNotNull(leftJSONObject.getJSONArray(operator))) {
+			jsonArray = leftJSONObject.getJSONArray(operator);
 		}
 		else {
 			jsonArray = JSONFactoryUtil.createJSONArray(
 			).put(
-				leftjsonObject
+				leftJSONObject
 			);
 		}
 
-		jsonArray.put(rightjsonObject);
+		jsonArray.put(rightJSONObject);
 
 		sb.append(
 			JSONFactoryUtil.createJSONObject(
