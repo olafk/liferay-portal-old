@@ -9,8 +9,8 @@ import com.liferay.object.model.ObjectField;
 import com.liferay.object.service.ObjectFieldLocalService;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -161,14 +161,8 @@ public class SugarCRMQueryExpressionVisitorImpl
 		Object left, String operator, Object right, StringBuilder sb) {
 
 		sb.append(
-			JSONFactoryUtil.createJSONObject(
-			).put(
-				left.toString(),
-				JSONFactoryUtil.createJSONObject(
-				).put(
-					operator, right.toString()
-				)
-			).toString());
+			JSONUtil.put(
+				left.toString(), JSONUtil.put(operator, right.toString())));
 	}
 
 	private void _buildBinaryOperationAndOr(
@@ -183,19 +177,12 @@ public class SugarCRMQueryExpressionVisitorImpl
 			jsonArray = leftJSONObject.getJSONArray(operator);
 		}
 		else {
-			jsonArray = JSONFactoryUtil.createJSONArray(
-			).put(
-				leftJSONObject
-			);
+			jsonArray = JSONUtil.put(leftJSONObject);
 		}
 
 		jsonArray.put(rightJSONObject);
 
-		sb.append(
-			JSONFactoryUtil.createJSONObject(
-			).put(
-				operator, jsonArray
-			).toString());
+		sb.append(JSONUtil.put(operator, jsonArray));
 	}
 
 	private final long _objectDefinitionId;
