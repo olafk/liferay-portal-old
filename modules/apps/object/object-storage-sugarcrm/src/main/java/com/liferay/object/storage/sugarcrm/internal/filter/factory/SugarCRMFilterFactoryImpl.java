@@ -9,7 +9,7 @@ import com.liferay.object.constants.ObjectDefinitionConstants;
 import com.liferay.object.model.ObjectDefinition;
 import com.liferay.object.rest.filter.factory.BaseFilterFactory;
 import com.liferay.object.rest.filter.factory.FilterFactory;
-import com.liferay.object.storage.sugarcrm.internal.odata.filter.expression.SugarQueryExpressionVisitorImpl;
+import com.liferay.object.storage.sugarcrm.internal.odata.filter.expression.SugarCRMQueryExpressionVisitorImpl;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.odata.filter.expression.ExpressionVisitor;
 
@@ -29,7 +29,7 @@ public class SugarCRMFilterFactoryImpl
 	public ExpressionVisitor<?> getExpressionVisitor(
 		EntityModel entityModel, ObjectDefinition objectDefinition) {
 
-		return new SugarQueryExpressionVisitorImpl(
+		return new SugarCRMQueryExpressionVisitorImpl(
 			objectDefinition.getObjectDefinitionId(), objectFieldLocalService);
 	}
 

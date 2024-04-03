@@ -30,10 +30,10 @@ import java.util.Objects;
 /**
  * @author Maurice Sepe
  */
-public class SugarQueryExpressionVisitorImpl
+public class SugarCRMQueryExpressionVisitorImpl
 	implements ExpressionVisitor<Object> {
 
-	public SugarQueryExpressionVisitorImpl(
+	public SugarCRMQueryExpressionVisitorImpl(
 		long objectDefinitionId,
 		ObjectFieldLocalService objectFieldLocalService) {
 
