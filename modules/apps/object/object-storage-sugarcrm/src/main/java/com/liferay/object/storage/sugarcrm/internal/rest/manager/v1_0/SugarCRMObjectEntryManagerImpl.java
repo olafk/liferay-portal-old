@@ -39,7 +39,6 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
@@ -212,7 +211,8 @@ public class SugarCRMObjectEntryManagerImpl
 	}
 
 	private void _appendSorts(
-		StringBuilder sb, ObjectDefinition objectDefinition, Sort[] sorts) {
+			StringBuilder sb, ObjectDefinition objectDefinition, Sort[] sorts)
+		throws Exception {
 
 		if (ArrayUtil.isEmpty(sorts)) {
 			return;
@@ -220,33 +220,23 @@ public class SugarCRMObjectEntryManagerImpl
 
 		sb.append("order_by=");
 
-		List<ObjectField> objectFields =
-			_objectFieldLocalService.getObjectFields(
-				objectDefinition.getObjectDefinitionId());
-
 		for (int i = 0; i < sorts.length; i++) {
-			for (ObjectField objectField : objectFields) {
-				if (!Objects.equals(
-						sorts[i].getFieldName(), objectField.getName())) {
+			ObjectField objectField = _objectFieldLocalService.getObjectField(
+				objectDefinition.getObjectDefinitionId(),
+				sorts[i].getFieldName());
 
-					continue;
-				}
+			if (i > 0) {
+				sb.append(",");
+			}
 
-				if (i > 0) {
-					sb.append(",");
-				}
+			sb.append(objectField.getExternalReferenceCode());
+			sb.append(":");
 
-				sb.append(objectField.getExternalReferenceCode());
-				sb.append(":");
-
-				if (sorts[i].isReverse()) {
-					sb.append("DESC");
-				}
-				else {
-					sb.append("ASC");
-				}
-
-				break;
+			if (sorts[i].isReverse()) {
+				sb.append("DESC");
+			}
+			else {
+				sb.append("ASC");
 			}
 		}
 
@@ -254,8 +244,9 @@ public class SugarCRMObjectEntryManagerImpl
 	}
 
 	private String _generatePreparedLocation(
-		ObjectDefinition objectDefinition, String filterString,
-		Pagination pagination, Sort[] sorts, boolean count) {
+			ObjectDefinition objectDefinition, String filterString,
+			Pagination pagination, Sort[] sorts, boolean count)
+		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
 
