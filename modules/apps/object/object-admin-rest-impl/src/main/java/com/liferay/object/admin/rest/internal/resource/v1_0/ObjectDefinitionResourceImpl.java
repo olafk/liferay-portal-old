@@ -196,8 +196,6 @@ public class ObjectDefinitionResourceImpl
 			throw new ObjectDefinitionStorageTypeException();
 		}
 
-		_addListTypeDefinition(objectDefinition);
-
 		String rootObjectDefinitionExternalReferenceCode =
 			objectDefinition.getRootObjectDefinitionExternalReferenceCode();
 
@@ -212,6 +210,8 @@ public class ObjectDefinitionResourceImpl
 				WorkflowConstants.STATUS_DRAFT,
 				rootObjectDefinitionExternalReferenceCode);
 		}
+
+		_addListTypeDefinition(objectDefinition);
 
 		com.liferay.object.model.ObjectDefinition
 			serviceBuilderObjectDefinition;
