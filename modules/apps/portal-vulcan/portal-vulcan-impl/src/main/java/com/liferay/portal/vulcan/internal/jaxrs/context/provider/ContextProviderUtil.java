@@ -124,19 +124,21 @@ public class ContextProviderUtil {
 
 		Object resource = getMatchedResource(message);
 
-		if (resource != null) {
-			OperationResourceInfo operationResourceInfo = exchange.get(
-				OperationResourceInfo.class);
+		if (resource == null) {
+			return;
+		}
 
-			ClassResourceInfo classResourceInfo =
-				operationResourceInfo.getClassResourceInfo();
+		OperationResourceInfo operationResourceInfo = exchange.get(
+			OperationResourceInfo.class);
 
-			ResourceProvider resourceProvider =
-				classResourceInfo.getResourceProvider();
+		ClassResourceInfo classResourceInfo =
+			operationResourceInfo.getClassResourceInfo();
 
-			if (resourceProvider != null) {
-				resourceProvider.releaseInstance(message, resource);
-			}
+		ResourceProvider resourceProvider =
+			classResourceInfo.getResourceProvider();
+
+		if (resourceProvider != null) {
+			resourceProvider.releaseInstance(message, resource);
 		}
 	}
 

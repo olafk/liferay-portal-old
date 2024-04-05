@@ -117,6 +117,7 @@ public class PrototypeResourceTest {
 	@Test
 	public void testGet() throws Exception {
 		System.gc();
+
 		System.runFinalization();
 
 		// Invalid endpoint
@@ -142,7 +143,14 @@ public class PrototypeResourceTest {
 					"?filter=invalid",
 				Http.Method.GET));
 
-		// Valid siteId
+		// Invalid site ID
+
+		Assert.assertEquals(
+			404,
+			HTTPTestUtil.invokeToHttpCode(
+				StringPool.BLANK, "test-vulcan/test/0", Http.Method.GET));
+
+		// Valid site ID
 
 		Assert.assertEquals(
 			200,
@@ -151,15 +159,10 @@ public class PrototypeResourceTest {
 				"test-vulcan/test/" + TestPropsValues.getGroupId(),
 				Http.Method.GET));
 
-		// Invalid siteId
-
-		Assert.assertEquals(
-			404,
-			HTTPTestUtil.invokeToHttpCode(
-				StringPool.BLANK, "test-vulcan/test/0", Http.Method.GET));
-
 		System.gc();
+
 		System.runFinalization();
+
 		Assert.assertEquals(0, _instances);
 	}
 
