@@ -93,23 +93,24 @@ public class SelectDateCommerceOptionTypeImpl implements CommerceOptionType {
 			return;
 		}
 
+		PrintWriter printWriter = httpServletResponse.getWriter();
+
+		printWriter.write("<div>");
+
 		AccountEntry accountEntry = null;
-		BigDecimal minQuantity = BigDecimal.ONE;
-		Object productOption = null;
-		Sku sku = null;
-
+		CommerceContext commerceContext =
+			(CommerceContext)httpServletRequest.getAttribute(
+				CommerceWebKeys.COMMERCE_CONTEXT);
 		CPDefinition cpDefinition = cpDefinitionOptionRel.getCPDefinition();
-
 		DefaultDTOConverterContext defaultDTOConverterContext =
 			new DefaultDTOConverterContext(
 				_dtoConverterRegistry,
 				cpDefinitionOptionRel.getCPDefinitionOptionRelId(),
 				_portal.getLocale(httpServletRequest), null,
 				_portal.getUser(httpServletRequest));
-
-		CommerceContext commerceContext =
-			(CommerceContext)httpServletRequest.getAttribute(
-				CommerceWebKeys.COMMERCE_CONTEXT);
+		BigDecimal minQuantity = BigDecimal.ONE;
+		Object productOption = null;
+		Sku sku = null;
 
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
@@ -117,10 +118,9 @@ public class SelectDateCommerceOptionTypeImpl implements CommerceOptionType {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		boolean admin = CPPortletKeys.CP_DEFINITIONS.equals(
-			portletDisplay.getPortletName());
+		if (CPPortletKeys.CP_DEFINITIONS.equals(
+				portletDisplay.getPortletName())) {
 
-		if (admin) {
 			defaultDTOConverterContext.setAttribute(
 				"showProductOptionValues", Boolean.TRUE);
 
@@ -160,16 +160,10 @@ public class SelectDateCommerceOptionTypeImpl implements CommerceOptionType {
 			}
 		}
 
-		PrintWriter printWriter = httpServletResponse.getWriter();
-
-		printWriter.write("<div>");
-
-		String moduleName = _npmResolver.resolveModuleName(
-			"commerce-frontend-js");
-
 		_reactRenderer.renderReact(
 			new ComponentDescriptor(
-				moduleName + "/components/product_options/ProductOptionSelect"),
+				_npmResolver.resolveModuleName("commerce-frontend-js") +
+					"/components/product_options/ProductOptionSelect"),
 			HashMapBuilder.<String, Object>put(
 				"accountId",
 				(accountEntry == null) ? 0 : accountEntry.getAccountEntryId()
@@ -182,7 +176,9 @@ public class SelectDateCommerceOptionTypeImpl implements CommerceOptionType {
 			).put(
 				"forceRequired", forceRequired
 			).put(
-				"isAdmin", admin
+				"isAdmin",
+				CPPortletKeys.CP_DEFINITIONS.equals(
+					portletDisplay.getPortletName())
 			).put(
 				"json", json
 			).put(
