@@ -37,8 +37,8 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -214,7 +214,7 @@ public class LayoutServiceTest {
 			String name, boolean privateLayout, String typeSettings)
 		throws Exception {
 
-		HashMap<Locale, String> map = HashMapBuilder.put(
+		Map<Locale, String> map = HashMapBuilder.put(
 			_locale, name
 		).build();
 
