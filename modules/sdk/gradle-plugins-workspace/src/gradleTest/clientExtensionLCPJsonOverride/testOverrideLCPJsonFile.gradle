@@ -5,9 +5,9 @@ ext.expectedContentStrings = [
 	'"memory" : 500',
 	'"LIFERAY_ROUTES_DXP" : "/etc/liferay/lxc/dxp-metadata"'
 ]
+ext.taskPath = ":client-extension-override-lcp-json:createClientExtensionConfig"
 ext.unexpectedContentStrings = [
 	'"memory" : 300',
 ]
-ext.taskPath = ":client-extension-override-lcp-json:createClientExtensionConfig"
 
 apply from: project.property("commonScript.testClientExtensionBuildFileContentsTestCase.gradle")
