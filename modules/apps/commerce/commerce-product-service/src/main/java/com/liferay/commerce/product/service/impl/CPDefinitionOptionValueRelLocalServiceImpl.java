@@ -174,9 +174,9 @@ public class CPDefinitionOptionValueRelLocalServiceImpl
 		cpDefinitionOptionValueRel.setUserName(user.getFullName());
 		cpDefinitionOptionValueRel.setCPDefinitionOptionRelId(
 			cpDefinitionOptionRelId);
-		cpDefinitionOptionValueRel.setExpandoBridgeAttributes(serviceContext);
 		cpDefinitionOptionValueRel.setKey(key);
 		cpDefinitionOptionValueRel.setNameMap(nameMap);
+		cpDefinitionOptionValueRel.setExpandoBridgeAttributes(serviceContext);
 
 		if (cpDefinitionOptionRel.isPriceTypeStatic()) {
 			cpDefinitionOptionValueRel.setPrice(
@@ -262,9 +262,9 @@ public class CPDefinitionOptionValueRelLocalServiceImpl
 		cpDefinitionOptionValueRel.setUserName(user.getFullName());
 		cpDefinitionOptionValueRel.setCPDefinitionOptionRelId(
 			cpDefinitionOptionRelId);
-		cpDefinitionOptionValueRel.setExpandoBridgeAttributes(serviceContext);
 		cpDefinitionOptionValueRel.setKey(key);
 		cpDefinitionOptionValueRel.setNameMap(nameMap);
+		cpDefinitionOptionValueRel.setExpandoBridgeAttributes(serviceContext);
 
 		if (cpDefinitionOptionRel.isPriceTypeStatic()) {
 			cpDefinitionOptionValueRel.setPrice(BigDecimal.ZERO);
@@ -804,10 +804,10 @@ public class CPDefinitionOptionValueRelLocalServiceImpl
 			_updateCPDefinitionOptionValueRelCPInstance(
 				cpDefinitionOptionValueRel, cpInstanceId);
 
-		cpDefinitionOptionValueRel.setExpandoBridgeAttributes(serviceContext);
 		cpDefinitionOptionValueRel.setKey(key);
 		cpDefinitionOptionValueRel.setNameMap(nameMap);
 		cpDefinitionOptionValueRel.setPriority(priority);
+		cpDefinitionOptionValueRel.setExpandoBridgeAttributes(serviceContext);
 
 		if (cpDefinitionOptionRel.isPriceTypeStatic()) {
 			cpDefinitionOptionValueRel.setPrice(price);
