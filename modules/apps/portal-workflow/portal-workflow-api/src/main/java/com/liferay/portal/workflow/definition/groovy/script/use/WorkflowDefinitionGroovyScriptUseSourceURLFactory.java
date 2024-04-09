@@ -42,19 +42,20 @@ public class WorkflowDefinitionGroovyScriptUseSourceURLFactory {
 				WorkflowPortletKeys.KALEO_DESIGNER);
 
 			url = HttpComponentsUtil.addParameter(
+				url, namespace + "mvcPath",
+				"/designer/edit_workflow_definition.jsp");
+			url = HttpComponentsUtil.addParameter(
+				url, namespace + "redirect",
+				controlPanelWorkflowPortletBaseURL);
+			url = HttpComponentsUtil.addParameter(
 				url, namespace + "clearSessionMessage", true);
 			url = HttpComponentsUtil.addParameter(
 				url, namespace + "draftVersion",
 				workflowDefinitionVersion + ".0");
 			url = HttpComponentsUtil.addParameter(
-				url, namespace + "mvcPath",
-				"/designer/edit_workflow_definition.jsp");
-			url = HttpComponentsUtil.addParameter(
 				url, namespace + "name", workflowDefinitionName);
 
-			return HttpComponentsUtil.addParameter(
-				url, namespace + "redirect",
-				controlPanelWorkflowPortletBaseURL);
+			return url;
 		}
 
 		String namespace = portal.getPortletNamespace(
@@ -84,9 +85,10 @@ public class WorkflowDefinitionGroovyScriptUseSourceURLFactory {
 		url = HttpComponentsUtil.addParameter(url, "p_p_lifecycle", "0");
 		url = HttpComponentsUtil.addParameter(
 			url, "p_p_state", WindowState.MAXIMIZED.toString());
-
-		return HttpComponentsUtil.addParameter(
+		url = HttpComponentsUtil.addParameter(
 			url, "p_p_mode", PortletMode.VIEW.toString());
+
+		return url;
 	}
 
 }
