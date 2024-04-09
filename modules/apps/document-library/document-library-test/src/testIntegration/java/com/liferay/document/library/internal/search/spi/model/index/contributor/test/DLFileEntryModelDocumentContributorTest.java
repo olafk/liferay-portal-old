@@ -141,7 +141,7 @@ public class DLFileEntryModelDocumentContributorTest {
 	}
 
 	@Test
-	public void testTextExtractionIsCachedInDLStoreForCtCollection()
+	public void testTextExtractionIsCachedInDLStoreForCTCollection()
 		throws Exception {
 
 		CTCollection ctCollection = _ctCollectionLocalService.addCTCollection(
@@ -187,7 +187,7 @@ public class DLFileEntryModelDocumentContributorTest {
 	}
 
 	@Test
-	public void testTextExtractionIsNotCachedInDLStoreForReadOnlyCtCollection()
+	public void testTextExtractionIsNotCachedInDLStoreForReadOnlyCTCollection()
 		throws Exception {
 
 		CTCollection ctCollection = _ctCollectionLocalService.addCTCollection(
