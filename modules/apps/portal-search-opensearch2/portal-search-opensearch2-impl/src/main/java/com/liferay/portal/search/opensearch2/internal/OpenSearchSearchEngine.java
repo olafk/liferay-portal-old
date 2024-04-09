@@ -363,13 +363,11 @@ public class OpenSearchSearchEngine
 
 	private String _createAutoCreateIndexSetting(boolean enable) {
 		String currentValue = _getAutoCreateIndexSetting();
-
-		String enableAutoCreateLiferayIndexPattern = StringBundler.concat(
-			StringPool.PLUS, _indexNameBuilder.getIndexNamePrefix(),
-			StringPool.STAR);
-
 		String disableAutoCreateLiferayIndexPattern = StringBundler.concat(
 			StringPool.MINUS, _indexNameBuilder.getIndexNamePrefix(),
+			StringPool.STAR);
+		String enableAutoCreateLiferayIndexPattern = StringBundler.concat(
+			StringPool.PLUS, _indexNameBuilder.getIndexNamePrefix(),
 			StringPool.STAR);
 
 		if (enable) {
