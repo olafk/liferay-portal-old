@@ -21,7 +21,7 @@ import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorManager;
 import com.liferay.portal.workflow.kaleo.runtime.action.executor.ActionExecutor;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -81,24 +81,25 @@ public class ActionExecutorManagerImpl implements ActionExecutorManager {
 
 	@Override
 	public String[] getFunctionActionExecutorKeys() {
-		HashSet<String> filteredKeySet = new HashSet<>();
+		List<String> actionExecutorKeys = new ArrayList<>();
 
-		for (String key : _serviceTrackerMap.keySet()) {
+		for (String actionExecutorKey : _serviceTrackerMap.keySet()) {
 			if (ListUtil.isEmpty(
 					_getActionExecutors(
-						key, CompanyThreadLocal.getCompanyId()))) {
+						actionExecutorKey,
+						CompanyThreadLocal.getCompanyId()))) {
 
 				continue;
 			}
 
-			filteredKeySet.add(key);
+			actionExecutorKeys.add(actionExecutorKey);
 		}
 
 		return TransformUtil.transformToArray(
-			filteredKeySet,
-			key -> {
-				if (key.startsWith("function")) {
-					return key;
+			actionExecutorKeys,
+			actionExecutorKey -> {
+				if (actionExecutorKey.startsWith("function")) {
+					return actionExecutorKey;
 				}
 
 				return null;
@@ -138,17 +139,13 @@ public class ActionExecutorManagerImpl implements ActionExecutorManager {
 			ListUtil.fromCollection(
 				_serviceTrackerMap.getService(actionExecutorKey)),
 			actionExecutor -> {
-				boolean allowed = true;
-
 				if (actionExecutor instanceof CompanyScoped) {
-					CompanyScoped actionExecutorCompanyScoped =
-						(CompanyScoped)actionExecutor;
+					CompanyScoped companyScoped = (CompanyScoped)actionExecutor;
 
-					allowed = actionExecutorCompanyScoped.isAllowedCompany(
-						companyId);
+					return companyScoped.isAllowedCompany(companyId);
 				}
 
-				return allowed;
+				return true;
 			});
 	}
 
