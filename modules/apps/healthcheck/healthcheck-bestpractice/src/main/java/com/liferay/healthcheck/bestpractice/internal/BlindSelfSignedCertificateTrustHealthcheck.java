@@ -60,32 +60,13 @@ public class BlindSelfSignedCertificateTrustHealthcheck implements Healthcheck {
 
 	// TODO: Replace with _portal.getControlPanelFullURL() implementation
 
-	private static final String _LINK = new StringBundler(
-	).append(
-		"/group/control_panel/manage?p_p_id="
-	).append(
-		ConfigurationAdminPortletKeys.INSTANCE_SETTINGS
-	).append(
-		"&_"
-	).append(
-		ConfigurationAdminPortletKeys.INSTANCE_SETTINGS
-	).append(
-		"_mvcRenderCommandName=%2Fconfiguration_admin%2Fedit_configuration&_"
-	).append(
-		ConfigurationAdminPortletKeys.INSTANCE_SETTINGS
-	).append(
-		"_factoryPid="
-	).append(
-		_DDM
-	).append(
-		"&_"
-	).append(
-		ConfigurationAdminPortletKeys.INSTANCE_SETTINGS
-	).append(
-		"_pid="
-	).append(
-		_DDM
-	).toString();
+	private static final String _LINK = StringBundler.concat(
+		"/group/control_panel/manage?p_p_id=",
+		ConfigurationAdminPortletKeys.INSTANCE_SETTINGS, "&_",
+		ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
+		"_mvcRenderCommandName=%2Fconfiguration_admin%2Fedit_configuration&_",
+		ConfigurationAdminPortletKeys.INSTANCE_SETTINGS, "_factoryPid=", _DDM,
+		"&_", ConfigurationAdminPortletKeys.INSTANCE_SETTINGS, "_pid=", _DDM);
 
 	private static final String _MSG =
 		"do-not-trust-self-signed-dataprovider-certificates";

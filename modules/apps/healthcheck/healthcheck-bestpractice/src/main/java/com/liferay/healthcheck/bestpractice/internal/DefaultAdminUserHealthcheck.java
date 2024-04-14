@@ -44,13 +44,8 @@ public class DefaultAdminUserHealthcheck implements Healthcheck {
 				String hashedPassword = PasswordEncryptorUtil.encrypt(
 					"test", user.getPassword());
 
-				String parameterizedLink = new StringBundler(
-					_LINK
-				).append(
-					_LINK_PARAMETER
-				).append(
-					user.getUserId()
-				).toString();
+				String parameterizedLink = StringBundler.concat(
+					_LINK, _LINK_PARAMETER, user.getUserId());
 
 				return Arrays.asList(
 					new HealthcheckItem(

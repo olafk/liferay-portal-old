@@ -57,13 +57,8 @@ public class DefaultSiteInitializerUserHealthcheck implements Healthcheck {
 			companyId, mailAddress);
 
 		if (user != null) {
-			String link = new StringBundler(
-				_LINK
-			).append(
-				_LINK_PARAMETER
-			).append(
-				user.getUserId()
-			).toString();
+			String link = StringBundler.concat(
+				_LINK, _LINK_PARAMETER, user.getUserId());
 
 			result.add(
 				new HealthcheckItem(false, link, _MSG_FOUND, mailAddress));
