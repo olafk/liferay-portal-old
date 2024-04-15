@@ -7302,39 +7302,6 @@ public class ObjectEntryResourceTest {
 
 	@FeatureFlags("LPD-18730")
 	@Test
-	public void testSortByUnsupportedObjectFields() throws Exception {
-		_objectRelationship1 = ObjectRelationshipTestUtil.addObjectRelationship(
-			_objectDefinition1, _objectDefinition2, TestPropsValues.getUserId(),
-			ObjectRelationshipConstants.TYPE_MANY_TO_MANY);
-
-		_testSortByUnsupportedObjectField(
-			"Unable to sort by a many to many related object field",
-			_objectDefinition1,
-			String.format(
-				"%s/%s:asc", _objectRelationship1.getName(),
-				_OBJECT_FIELD_NAME_TEXT));
-
-		_objectRelationship2 = ObjectRelationshipTestUtil.addObjectRelationship(
-			_objectDefinition2, _objectDefinition1, TestPropsValues.getUserId(),
-			ObjectRelationshipConstants.TYPE_ONE_TO_MANY);
-
-		_testSortByUnsupportedObjectField(
-			"Unable to sort by a many to one related object field",
-			_objectDefinition1,
-			String.format(
-				"%s/%s:asc", _objectRelationship2.getName(),
-				_OBJECT_FIELD_NAME_TEXT));
-
-		_testSortByUnsupportedObjectField(
-			"Unable to sort by property: objectDefinitionId",
-			_objectDefinition1, "objectDefinitionId");
-		_testSortByUnsupportedObjectField(
-			"Unable to sort by property: siteId", _siteScopedObjectDefinition1,
-			"siteId");
-	}
-
-	@FeatureFlags("LPD-18730")
-	@Test
 	public void testSortByOneToManyRelationshipCustomObjectFields()
 		throws Exception {
 
@@ -8570,6 +8537,39 @@ public class ObjectEntryResourceTest {
 					jsonObject.getLong("id"));
 			}
 		}
+	}
+
+	@FeatureFlags("LPD-18730")
+	@Test
+	public void testSortByUnsupportedObjectFields() throws Exception {
+		_objectRelationship1 = ObjectRelationshipTestUtil.addObjectRelationship(
+			_objectDefinition1, _objectDefinition2, TestPropsValues.getUserId(),
+			ObjectRelationshipConstants.TYPE_MANY_TO_MANY);
+
+		_testSortByUnsupportedObjectField(
+			"Unable to sort by a many to many related object field",
+			_objectDefinition1,
+			String.format(
+				"%s/%s:asc", _objectRelationship1.getName(),
+				_OBJECT_FIELD_NAME_TEXT));
+
+		_objectRelationship2 = ObjectRelationshipTestUtil.addObjectRelationship(
+			_objectDefinition2, _objectDefinition1, TestPropsValues.getUserId(),
+			ObjectRelationshipConstants.TYPE_ONE_TO_MANY);
+
+		_testSortByUnsupportedObjectField(
+			"Unable to sort by a many to one related object field",
+			_objectDefinition1,
+			String.format(
+				"%s/%s:asc", _objectRelationship2.getName(),
+				_OBJECT_FIELD_NAME_TEXT));
+
+		_testSortByUnsupportedObjectField(
+			"Unable to sort by property: objectDefinitionId",
+			_objectDefinition1, "objectDefinitionId");
+		_testSortByUnsupportedObjectField(
+			"Unable to sort by property: siteId", _siteScopedObjectDefinition1,
+			"siteId");
 	}
 
 	private void _addModelResourcePermissions(
@@ -10834,32 +10834,6 @@ public class ObjectEntryResourceTest {
 		_assertItem(1, pageJSONObject, "id", expectedJSONObject1.getLong("id"));
 	}
 
-	private void _testSortByUnsupportedObjectField(
-			String expectedTitle, ObjectDefinition objectDefinition,
-			String sortString)
-		throws Exception {
-
-		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
-				"com.liferay.portal.vulcan.internal.jaxrs.exception.mapper." +
-					"WebApplicationExceptionMapper",
-				LoggerTestUtil.ERROR)) {
-
-			String endpoint = _getEndpoint(
-				TestPropsValues.getGroupId(), objectDefinition);
-
-			JSONAssert.assertEquals(
-				JSONUtil.put(
-					"status", "BAD_REQUEST"
-				).put(
-					"title", expectedTitle
-				).toString(),
-				HTTPTestUtil.invokeToString(
-					null, endpoint + "?sort=" + URLCodec.encodeURL(sortString),
-					Http.Method.GET),
-				JSONCompareMode.STRICT);
-		}
-	}
-
 	private void _testSortByOneToManyRelationshipCustomObjectFields(
 			String endpoint1, String endpoint2, JSONObject expectedJSONObject1,
 			JSONObject expectedJSONObject2, JSONObject relatedJSONObject1,
@@ -10933,6 +10907,32 @@ public class ObjectEntryResourceTest {
 				valuesJSONObject4.toString(),
 				endpoint2 + "/" + relatedJSONObject4.getLong("id"),
 				Http.Method.PATCH);
+		}
+	}
+
+	private void _testSortByUnsupportedObjectField(
+			String expectedTitle, ObjectDefinition objectDefinition,
+			String sortString)
+		throws Exception {
+
+		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
+				"com.liferay.portal.vulcan.internal.jaxrs.exception.mapper." +
+					"WebApplicationExceptionMapper",
+				LoggerTestUtil.ERROR)) {
+
+			String endpoint = _getEndpoint(
+				TestPropsValues.getGroupId(), objectDefinition);
+
+			JSONAssert.assertEquals(
+				JSONUtil.put(
+					"status", "BAD_REQUEST"
+				).put(
+					"title", expectedTitle
+				).toString(),
+				HTTPTestUtil.invokeToString(
+					null, endpoint + "?sort=" + URLCodec.encodeURL(sortString),
+					Http.Method.GET),
+				JSONCompareMode.STRICT);
 		}
 	}
 
