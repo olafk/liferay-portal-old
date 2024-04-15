@@ -131,7 +131,7 @@ public class FriendlyURLEntryLocalServiceTest {
 
 	@FeatureFlags("LPD-11147")
 	@Test
-	public void testAddFriendlyURLEntryWithCategories() throws Exception {
+	public void testAddFriendlyURLEntryWithAssetCategories() throws Exception {
 		ServiceContext serviceContext = _getServiceContext();
 
 		AssetVocabulary assetVocabulary =
@@ -142,7 +142,6 @@ public class FriendlyURLEntryLocalServiceTest {
 		AssetCategory assetCategory1 = _assetCategoryLocalService.addCategory(
 			TestPropsValues.getUserId(), _group.getGroupId(), "cat1",
 			assetVocabulary.getVocabularyId(), serviceContext);
-
 		AssetCategory assetCategory2 = _assetCategoryLocalService.addCategory(
 			TestPropsValues.getUserId(), _group.getGroupId(), "cat2",
 			assetVocabulary.getVocabularyId(), serviceContext);
