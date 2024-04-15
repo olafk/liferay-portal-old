@@ -173,14 +173,14 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 			}
 
 			if (exception instanceof CompanyMaxUsersException ||
-					 exception instanceof CookieNotSupportedException ||
-					 exception instanceof NoSuchUserException ||
-					 exception instanceof PasswordExpiredException ||
-					 exception instanceof UserEmailAddressException ||
-					 exception instanceof UserIdException ||
-					 exception instanceof UserLockoutException ||
-					 exception instanceof UserPasswordException ||
-					 exception instanceof UserScreenNameException) {
+				exception instanceof CookieNotSupportedException ||
+				exception instanceof NoSuchUserException ||
+				exception instanceof PasswordExpiredException ||
+				exception instanceof UserEmailAddressException ||
+				exception instanceof UserIdException ||
+				exception instanceof UserLockoutException ||
+				exception instanceof UserPasswordException ||
+				exception instanceof UserScreenNameException) {
 
 				SessionErrors.add(
 					actionRequest, exception.getClass(), exception);
