@@ -107,32 +107,32 @@ public class JspServletPerformanceTest {
 	public void testElExpressionWithUndefinedScopedVariablesJsp()
 		throws Exception {
 
-		_testJsp(_EL_EXPRESSION_UNDEFINED_SCOPED_VARIABLES_JSP_FILE_NAME, 1);
+		_testJsp(_FILE_NAME_EL_EXPRESSION_UNDEFINED_SCOPED_VARIABLES_JSP, 1);
 
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
 			_testJsp(
-				_EL_EXPRESSION_UNDEFINED_SCOPED_VARIABLES_JSP_FILE_NAME,
+				_FILE_NAME_EL_EXPRESSION_UNDEFINED_SCOPED_VARIABLES_JSP,
 				_NUMBER_OF_REQUESTS);
 		}
 	}
 
 	@Test
 	public void testElExpressionWithUndefinedVariablesJsp() throws Exception {
-		_testJsp(_EL_EXPRESSION_UNDEFINED_VARIABLES_JSP_FILE_NAME, 1);
+		_testJsp(_FILE_NAME_EL_EXPRESSION_UNDEFINED_VARIABLES_JSP, 1);
 
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
 			_testJsp(
-				_EL_EXPRESSION_UNDEFINED_VARIABLES_JSP_FILE_NAME,
+				_FILE_NAME_EL_EXPRESSION_UNDEFINED_VARIABLES_JSP,
 				_NUMBER_OF_REQUESTS);
 		}
 	}
 
 	@Test
 	public void testJsp() throws Exception {
-		_testJsp(_TEST_JSP_FILE_NAME, 1);
+		_testJsp(_FILE_NAME_TEST_JSP, 1);
 
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			_testJsp(_TEST_JSP_FILE_NAME, _NUMBER_OF_REQUESTS);
+			_testJsp(_FILE_NAME_TEST_JSP, _NUMBER_OF_REQUESTS);
 		}
 	}
 
@@ -161,7 +161,7 @@ public class JspServletPerformanceTest {
 			jarOutputStream.closeEntry();
 
 			String fileName =
-				_EL_EXPRESSION_UNDEFINED_SCOPED_VARIABLES_JSP_FILE_NAME;
+				_FILE_NAME_EL_EXPRESSION_UNDEFINED_SCOPED_VARIABLES_JSP;
 
 			jarOutputStream.putNextEntry(
 				new ZipEntry("META-INF/resources/" + fileName));
@@ -169,7 +169,7 @@ public class JspServletPerformanceTest {
 			jarOutputStream.write(
 				_getBytes(
 					"<html><body>",
-					_EL_EXPRESSION_UNDEFINED_SCOPED_VARIABLES_JSP_FILE_NAME,
+					_FILE_NAME_EL_EXPRESSION_UNDEFINED_SCOPED_VARIABLES_JSP,
 					"${elExpression0.test}${elExpression1.test}",
 					"${elExpression2.test}${elExpression3.test}",
 					"${elExpression4.test}${elExpression5.test}",
@@ -182,12 +182,12 @@ public class JspServletPerformanceTest {
 			jarOutputStream.putNextEntry(
 				new ZipEntry(
 					"META-INF/resources/" +
-						_EL_EXPRESSION_UNDEFINED_VARIABLES_JSP_FILE_NAME));
+						_FILE_NAME_EL_EXPRESSION_UNDEFINED_VARIABLES_JSP));
 
 			jarOutputStream.write(
 				_getBytes(
 					"<html><body>",
-					_EL_EXPRESSION_UNDEFINED_VARIABLES_JSP_FILE_NAME,
+					_FILE_NAME_EL_EXPRESSION_UNDEFINED_VARIABLES_JSP,
 					"${elExpression0}${elExpression1}${elExpression2}",
 					"${elExpression3}${elExpression4}${elExpression5}",
 					"${elExpression6}${elExpression7}${elExpression8}",
@@ -196,11 +196,11 @@ public class JspServletPerformanceTest {
 			jarOutputStream.closeEntry();
 
 			jarOutputStream.putNextEntry(
-				new ZipEntry("META-INF/resources/" + _TEST_JSP_FILE_NAME));
+				new ZipEntry("META-INF/resources/" + _FILE_NAME_TEST_JSP));
 
 			jarOutputStream.write(
 				_getBytes(
-					"<html><body>", _TEST_JSP_FILE_NAME, "</body></html>"));
+					"<html><body>", _FILE_NAME_TEST_JSP, "</body></html>"));
 
 			jarOutputStream.closeEntry();
 
@@ -239,16 +239,16 @@ public class JspServletPerformanceTest {
 	}
 
 	private static final String
-		_EL_EXPRESSION_UNDEFINED_SCOPED_VARIABLES_JSP_FILE_NAME =
+		_FILE_NAME_EL_EXPRESSION_UNDEFINED_SCOPED_VARIABLES_JSP =
 			"el_expression_undefined_scoped_variables.jsp";
 
 	private static final String
-		_EL_EXPRESSION_UNDEFINED_VARIABLES_JSP_FILE_NAME =
+		_FILE_NAME_EL_EXPRESSION_UNDEFINED_VARIABLES_JSP =
 			"el_expression_undefined_variables.jsp";
 
 	private static final int _NUMBER_OF_REQUESTS = 1000;
 
-	private static final String _TEST_JSP_FILE_NAME = "test.jsp";
+	private static final String _FILE_NAME_TEST_JSP = "test.jsp";
 
 	private static final String _WEB_CONTEXT_PATH =
 		"/test-jsp-servlet-performance";
