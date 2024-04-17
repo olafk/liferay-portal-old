@@ -51,7 +51,8 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 
 	@Override
 	public LayoutPageTemplateCollection addLayoutPageTemplateCollection(
-			long userId, long groupId, long parentLayoutPageTemplateCollection,
+			long userId, long groupId, 
+			long parentLayoutPageTemplateCollectionId,
 			String name, String description, int type,
 			ServiceContext serviceContext)
 		throws PortalException {
@@ -78,7 +79,7 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 		layoutPageTemplateCollection.setModifiedDate(
 			serviceContext.getModifiedDate(new Date()));
 		layoutPageTemplateCollection.setParentLayoutPageTemplateCollectionId(
-			parentLayoutPageTemplateCollection);
+			parentLayoutPageTemplateCollectionId);
 		layoutPageTemplateCollection.setLayoutPageTemplateCollectionKey(
 			_generateLayoutPageTemplateCollectionKey(groupId, name, type));
 		layoutPageTemplateCollection.setName(name);
@@ -99,14 +100,15 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 
 	@Override
 	public LayoutPageTemplateCollection copyLayoutPageTemplateCollection(
-			long userId, long groupId, long layoutPageTemplateCollectionId,
+			long userId, long groupId,
+			long sourceLayoutPageTemplateCollectionId,
 			long layoutParentPageTemplateCollectionId, boolean copyPermissions,
 			ServiceContext serviceContext)
 		throws Exception {
 
 		LayoutPageTemplateCollection sourceLayoutPageTemplateCollection =
 			layoutPageTemplateCollectionPersistence.findByPrimaryKey(
-				layoutPageTemplateCollectionId);
+				sourceLayoutPageTemplateCollectionId);
 
 		LayoutPageTemplateCollection targetLayoutPageTemplateCollection =
 			addLayoutPageTemplateCollection(
