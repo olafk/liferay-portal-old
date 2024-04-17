@@ -145,10 +145,8 @@ public class EditCPInstanceCommerceTierPriceEntryMVCActionCommand
 			actionRequest, "price");
 		BigDecimal minQuantity = _commerceOrderItemQuantityFormatter.parse(
 			actionRequest, "minQuantity");
-
 		boolean overrideDiscount = ParamUtil.getBoolean(
 			actionRequest, "overrideDiscount");
-
 		BigDecimal discountLevel1 = _commercePriceFormatter.parse(
 			actionRequest, "discountLevel1");
 		BigDecimal discountLevel2 = _commercePriceFormatter.parse(

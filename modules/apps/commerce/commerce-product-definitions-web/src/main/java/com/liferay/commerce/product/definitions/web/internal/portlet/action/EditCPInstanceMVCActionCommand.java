@@ -234,18 +234,15 @@ public class EditCPInstanceMVCActionCommand extends BaseMVCActionCommand {
 		boolean purchasable = ParamUtil.getBoolean(
 			actionRequest, "purchasable");
 		boolean published = ParamUtil.getBoolean(actionRequest, "published");
-
 		double width = ParamUtil.getDouble(actionRequest, "width");
 		double height = ParamUtil.getDouble(actionRequest, "height");
 		double depth = ParamUtil.getDouble(actionRequest, "depth");
 		double weight = ParamUtil.getDouble(actionRequest, "weight");
-
 		BigDecimal price = _commercePriceFormatter.parse(
 			actionRequest, "price");
 		BigDecimal promoPrice = _commercePriceFormatter.parse(
 			actionRequest, "promoPrice");
 		BigDecimal cost = _commercePriceFormatter.parse(actionRequest, "cost");
-
 		int displayDateMonth = ParamUtil.getInteger(
 			actionRequest, "displayDateMonth");
 		int displayDateDay = ParamUtil.getInteger(

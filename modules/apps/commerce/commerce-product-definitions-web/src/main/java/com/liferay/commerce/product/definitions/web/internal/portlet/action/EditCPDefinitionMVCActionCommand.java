@@ -606,7 +606,6 @@ public class EditCPDefinitionMVCActionCommand extends BaseMVCActionCommand {
 		boolean displayStockQuantity = ParamUtil.getBoolean(
 			actionRequest, "displayStockQuantity");
 		boolean backOrders = ParamUtil.getBoolean(actionRequest, "backOrders");
-
 		BigDecimal minStockQuantity = _commerceOrderItemQuantityFormatter.parse(
 			actionRequest, "minStockQuantity");
 		BigDecimal minOrderQuantity = _commerceOrderItemQuantityFormatter.parse(

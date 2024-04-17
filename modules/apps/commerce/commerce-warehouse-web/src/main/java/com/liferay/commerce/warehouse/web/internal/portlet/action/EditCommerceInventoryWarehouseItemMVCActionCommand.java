@@ -77,7 +77,6 @@ public class EditCommerceInventoryWarehouseItemMVCActionCommand
 
 		BigDecimal quantity = _commerceOrderItemQuantityFormatter.parse(
 			actionRequest, "quantity");
-
 		String unitOfMeasureKey = ParamUtil.getString(
 			actionRequest, "unitOfMeasureKey");
 
