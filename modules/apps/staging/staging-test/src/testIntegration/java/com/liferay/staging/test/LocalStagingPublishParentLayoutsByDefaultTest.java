@@ -370,11 +370,9 @@ public class LocalStagingPublishParentLayoutsByDefaultTest
 						childLayout.getLayoutId(), parentLayout.getLayoutId()
 					})));
 
-		ThemeDisplay themeDisplay = _getThemeDisplay(stagingGroup);
-
 		_mockPortletRequest = new MockPortletRequest();
 
-		_mockPortletRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
+		_mockPortletRequest.setAttribute(WebKeys.THEME_DISPLAY, _getThemeDisplay(stagingGroup));
 
 		_mockPortletRequest.setParameter(
 			"exportImportConfigurationId", String.valueOf(0));
@@ -410,11 +408,9 @@ public class LocalStagingPublishParentLayoutsByDefaultTest
 				stagingGroup.getGroupId(), false,
 				StringUtil.merge(new long[] {childLayout.getLayoutId()})));
 
-		themeDisplay = _getThemeDisplay(stagingGroup);
-
 		_mockPortletRequest = new MockPortletRequest();
 
-		_mockPortletRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
+		_mockPortletRequest.setAttribute(WebKeys.THEME_DISPLAY, _getThemeDisplay(stagingGroup));
 		_mockPortletRequest.setAttribute(
 			"layoutIdMap", selectedLayoutsJSONArray.toString());
 
