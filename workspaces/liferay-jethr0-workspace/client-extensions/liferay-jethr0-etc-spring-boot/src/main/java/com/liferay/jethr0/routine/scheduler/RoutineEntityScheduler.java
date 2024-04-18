@@ -159,7 +159,7 @@ public class RoutineEntityScheduler {
 			scheduler.scheduleJob(getJobDetail(routineEntity), trigger);
 
 			if (_log.isWarnEnabled()) {
-				_log.warn("Scheduled routine id " + routineEntity.getId());
+				_log.warn("Scheduled routine ID " + routineEntity.getId());
 			}
 		}
 		catch (SchedulerException schedulerException) {
@@ -182,7 +182,7 @@ public class RoutineEntityScheduler {
 			scheduler.unscheduleJob(trigger.getKey());
 
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unscheduled routine id " + routineEntity.getId());
+				_log.warn("Unscheduled routine ID " + routineEntity.getId());
 			}
 		}
 		catch (SchedulerException schedulerException) {
