@@ -106,7 +106,7 @@ public class LocalStagingPublishParentLayoutsByDefaultTest
 
 		String content = StringUtil.replace(
 			_read("journal_content.xml"),
-			new String[] {"[$GROUP_NAME]", "$LAYOUT_FRIENDLY_URL"},
+			new String[] {"[$GROUP_NAME$]", "[$LAYOUT_FRIENDLY_URL$]"},
 			new String[] {
 				StringUtil.toLowerCase(stagingGroup.getName("en_US")),
 				StringUtil.toLowerCase(childLayout.getFriendlyURL())
