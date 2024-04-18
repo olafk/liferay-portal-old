@@ -29,11 +29,11 @@ public class ValidatorUtil {
 
 		Recorder recorder = new Recorder();
 
+		_validateCompany(
+			recorder, sourceLiferayInstance, targetLiferayInstance);
 		_validatePartitionedTables(
 			recorder, sourceLiferayInstance, targetLiferayInstance);
 		_validateRelease(
-			recorder, sourceLiferayInstance, targetLiferayInstance);
-		_validateCompany(
 			recorder, sourceLiferayInstance, targetLiferayInstance);
 
 		return recorder;
