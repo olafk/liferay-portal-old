@@ -131,7 +131,7 @@ public class DBPartitionMigrationValidator {
 
 		try {
 			String exportFilePath = _write(
-				DatabaseUtil.exportLiferayInstance(_connection),
+				DatabaseUtil.exportLiferayDatabase(_connection),
 				commandLine.getOptionValue("output-dir"));
 
 			System.out.println(
@@ -219,7 +219,7 @@ public class DBPartitionMigrationValidator {
 		printWriter.close();
 	}
 
-	private static LiferayInstance _read(String path) throws IOException {
+	private static LiferayDatabase _read(String path) throws IOException {
 		ObjectMapper objectMapper = new ObjectMapper() {
 			{
 				SimpleModule simpleModule = new SimpleModule();
@@ -231,7 +231,7 @@ public class DBPartitionMigrationValidator {
 			}
 		};
 
-		return objectMapper.readValue(new File(path), LiferayInstance.class);
+		return objectMapper.readValue(new File(path), LiferayDatabase.class);
 	}
 
 	private static void _validate(String[] args) {
@@ -253,7 +253,7 @@ public class DBPartitionMigrationValidator {
 		}
 
 		try {
-			_sourceLiferayInstance = _read(
+			_sourceLiferayDatabase = _read(
 				commandLine.getOptionValue("source-file"));
 		}
 		catch (IOException ioException) {
@@ -266,7 +266,7 @@ public class DBPartitionMigrationValidator {
 		}
 
 		try {
-			_targetLiferayInstance = _read(
+			_targetLiferayDatabase = _read(
 				commandLine.getOptionValue("target-file"));
 		}
 		catch (IOException ioException) {
@@ -278,14 +278,14 @@ public class DBPartitionMigrationValidator {
 			_exit(_LIFERAY_COMMON_EXIT_CODE_BAD);
 		}
 
-		if (!_targetLiferayInstance.isExportedCompanyDefault()) {
+		if (!_targetLiferayDatabase.isExportedCompanyDefault()) {
 			System.err.println("Target is not the default partition");
 
 			_exit(_LIFERAY_COMMON_EXIT_CODE_BAD);
 		}
 
 		Recorder recorder = ValidatorUtil.validateDatabases(
-			_sourceLiferayInstance, _targetLiferayInstance);
+			_sourceLiferayDatabase, _targetLiferayDatabase);
 
 		if (recorder.hasErrors() || recorder.hasWarnings()) {
 			recorder.printMessages();
@@ -294,7 +294,7 @@ public class DBPartitionMigrationValidator {
 		}
 	}
 
-	private static String _write(LiferayInstance liferayInstance, String path)
+	private static String _write(LiferayDatabase liferayDatabase, String path)
 		throws IOException {
 
 		File exportDir = null;
@@ -338,10 +338,10 @@ public class DBPartitionMigrationValidator {
 		File exportFile = new File(
 			exportDir,
 			StringBundler.concat(
-				simpleDateFormat.format(liferayInstance.getDate()), "_export_",
-				liferayInstance.getExportedCompanyId(), ".json"));
+				simpleDateFormat.format(liferayDatabase.getDate()), "_export_",
+				liferayDatabase.getExportedCompanyId(), ".json"));
 
-		objectMapper.writeValue(exportFile, liferayInstance);
+		objectMapper.writeValue(exportFile, liferayDatabase);
 
 		return exportFile.getCanonicalPath();
 	}
@@ -362,8 +362,8 @@ public class DBPartitionMigrationValidator {
 	private static final int _LIFERAY_COMMON_EXIT_CODE_OK = 0;
 
 	private static Connection _connection;
-	private static LiferayInstance _sourceLiferayInstance;
-	private static LiferayInstance _targetLiferayInstance;
+	private static LiferayDatabase _sourceLiferayDatabase;
+	private static LiferayDatabase _targetLiferayDatabase;
 
 	private static class VersionDeserializer extends StdDeserializer<Version> {
 

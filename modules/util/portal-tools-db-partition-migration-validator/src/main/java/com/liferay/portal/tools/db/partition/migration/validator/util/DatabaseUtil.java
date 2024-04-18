@@ -9,7 +9,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.db.DBInspector;
 import com.liferay.portal.kernel.version.Version;
 import com.liferay.portal.tools.db.partition.migration.validator.Company;
-import com.liferay.portal.tools.db.partition.migration.validator.LiferayInstance;
+import com.liferay.portal.tools.db.partition.migration.validator.LiferayDatabase;
 import com.liferay.portal.tools.db.partition.migration.validator.Release;
 
 import java.sql.Connection;
@@ -24,19 +24,19 @@ import java.util.List;
  */
 public class DatabaseUtil {
 
-	public static LiferayInstance exportLiferayInstance(Connection connection)
+	public static LiferayDatabase exportLiferayDatabase(Connection connection)
 		throws Exception {
 
-		LiferayInstance liferayInstance = new LiferayInstance();
+		LiferayDatabase liferayDatabase = new LiferayDatabase();
 
-		liferayInstance.setCompanies(_getCompanies(connection));
-		liferayInstance.setExportedCompanyId(_getExportedCompanyId(connection));
-		liferayInstance.setExportedCompanyDefault(
+		liferayDatabase.setCompanies(_getCompanies(connection));
+		liferayDatabase.setExportedCompanyId(_getExportedCompanyId(connection));
+		liferayDatabase.setExportedCompanyDefault(
 			_isDefaultCompany(connection));
-		liferayInstance.setReleases(_getReleases(connection));
-		liferayInstance.setTableNames(_getPartitionedTableNames(connection));
+		liferayDatabase.setReleases(_getReleases(connection));
+		liferayDatabase.setTableNames(_getPartitionedTableNames(connection));
 
-		return liferayInstance;
+		return liferayDatabase;
 	}
 
 	public static String replaceSchemaName(String jdbcURL, String schemaName) {

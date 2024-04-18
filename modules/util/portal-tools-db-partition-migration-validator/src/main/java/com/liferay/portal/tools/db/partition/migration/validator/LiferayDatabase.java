@@ -11,9 +11,9 @@ import java.util.List;
 /**
  * @author Luis Ortiz
  */
-public class LiferayInstance {
+public class LiferayDatabase {
 
-	public LiferayInstance() {
+	public LiferayDatabase() {
 		_date = new Date(System.currentTimeMillis());
 	}
 
