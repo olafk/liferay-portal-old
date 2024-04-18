@@ -155,7 +155,7 @@ public class DBPartitionMigrationValidator {
 			"p", "password", true, "Set the database user password.");
 		options.addOption(
 			"s", "schema-name", true,
-			"Set the database schema name for the source partition.");
+			"Set the database schema name.");
 		options.addRequiredOption(
 			"u", "user", true, "Set the database user name.");
 
@@ -165,14 +165,15 @@ public class DBPartitionMigrationValidator {
 	private static Options _getMainOptions() {
 		Options options = new Options();
 
-		options.addOption("h", "help", false, "Display options.");
+		options.addOption("h", "help", false, "Print help message.");
 
 		OptionGroup optionGroup = new OptionGroup();
 
 		optionGroup.addOption(
-			new Option("e", "export", false, "Execute data export."));
+			new Option("e", "export", false, "Export database."));
 		optionGroup.addOption(
-			new Option("v", "validate", false, "Execute data validation."));
+			new Option(
+				"v", "validate", false, "Validate two databases."));
 
 		options.addOptionGroup(optionGroup);
 
@@ -197,8 +198,8 @@ public class DBPartitionMigrationValidator {
 
 		helpFormatter.printUsage(
 			printWriter, _HELP_WIDTH,
-			"./db_partition_migration_validator.sh <OPERATION_MODE> " +
-				"[OPERATION_PARAMETERS]");
+			"./db_partition_migration_validator.sh <operation-mode> " +
+				"<operation-parameters>");
 		helpFormatter.printWrapped(
 			printWriter, _HELP_WIDTH, "\nOperation mode:");
 		helpFormatter.printOptions(
@@ -206,17 +207,18 @@ public class DBPartitionMigrationValidator {
 			_HELP_DESC_PAD);
 		helpFormatter.printWrapped(
 			printWriter, _HELP_WIDTH, _HELP_DESC_PAD,
-			"\nData export parameters:");
+			"\nExport parameters:");
 		helpFormatter.printOptions(
 			printWriter, _HELP_WIDTH, _getExportOptions(), _HELP_LEFT_PAD,
 			_HELP_DESC_PAD);
 		helpFormatter.printWrapped(
-			printWriter, _HELP_WIDTH, "\nData validation parameters:");
+			printWriter, _HELP_WIDTH, "\nValidate parameters:");
 		helpFormatter.printOptions(
 			printWriter, _HELP_WIDTH, _getValidationOptions(), _HELP_LEFT_PAD,
 			_HELP_DESC_PAD);
 
 		printWriter.flush();
+
 		printWriter.close();
 	}
 
