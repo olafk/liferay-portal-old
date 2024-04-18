@@ -84,7 +84,7 @@ For `liferay-sample-etc-cron` and `liferay-sample-etc-spring-boot` the third typ
 
 - *liferay-sample-etc-frontend*
 
-	Share code through an import map client extension.
+	Share code via JavaScript import maps to a custom element.
 
 - *liferay-sample-etc-node*
 
@@ -124,7 +124,7 @@ For `liferay-sample-etc-cron` and `liferay-sample-etc-spring-boot` the third typ
 
 - *liferay-sample-js-import-maps-entry*
 
-	Make jQuery available via JavaScript import maps.
+	Share jQuery via JavaScript import maps.
 
 - *liferay-sample-site-initializer*
 
