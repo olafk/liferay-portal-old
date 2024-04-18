@@ -163,6 +163,10 @@ public class DBPartitionMigrationValidator {
 	}
 
 	private static Options _getMainOptions() {
+		Options options = new Options();
+
+		options.addOption("h", "help", false, "Display options.");
+
 		OptionGroup optionGroup = new OptionGroup();
 
 		optionGroup.addOption(
@@ -170,9 +174,6 @@ public class DBPartitionMigrationValidator {
 		optionGroup.addOption(
 			new Option("v", "validate", false, "Execute data validation."));
 
-		Options options = new Options();
-
-		options.addOption("h", "help", false, "Display options.");
 		options.addOptionGroup(optionGroup);
 
 		return options;
@@ -205,12 +206,12 @@ public class DBPartitionMigrationValidator {
 			_HELP_DESC_PAD);
 		helpFormatter.printWrapped(
 			printWriter, _HELP_WIDTH, _HELP_DESC_PAD,
-			"\nData Export parameters:");
+			"\nData export parameters:");
 		helpFormatter.printOptions(
 			printWriter, _HELP_WIDTH, _getExportOptions(), _HELP_LEFT_PAD,
 			_HELP_DESC_PAD);
 		helpFormatter.printWrapped(
-			printWriter, _HELP_WIDTH, "\nData Validation parameters:");
+			printWriter, _HELP_WIDTH, "\nData validation parameters:");
 		helpFormatter.printOptions(
 			printWriter, _HELP_WIDTH, _getValidationOptions(), _HELP_LEFT_PAD,
 			_HELP_DESC_PAD);
@@ -225,7 +226,7 @@ public class DBPartitionMigrationValidator {
 				SimpleModule simpleModule = new SimpleModule();
 
 				simpleModule.addDeserializer(
-					Version.class, new VersionDeserializer());
+					Version.class, new VersionStdDeserializer());
 
 				registerModule(simpleModule);
 			}
@@ -322,15 +323,15 @@ public class DBPartitionMigrationValidator {
 				configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
 				enable(SerializationFeature.INDENT_OUTPUT);
 				setDateFormat(new ISO8601DateFormat());
+				setDefaultPrettyPrinter(
+					new DefaultPrettyPrinter() {
+						{
+							indentArraysWith(
+								DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
+						}
+					});
 			}
 		};
-
-		DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();
-
-		prettyPrinter.indentArraysWith(
-			DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
-
-		objectMapper.setDefaultPrettyPrinter(prettyPrinter);
 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
 			"yyyyMMddHHmmss");
@@ -365,9 +366,10 @@ public class DBPartitionMigrationValidator {
 	private static LiferayDatabase _sourceLiferayDatabase;
 	private static LiferayDatabase _targetLiferayDatabase;
 
-	private static class VersionDeserializer extends StdDeserializer<Version> {
+	private static class VersionStdDeserializer
+		extends StdDeserializer<Version> {
 
-		public VersionDeserializer() {
+		public VersionStdDeserializer() {
 			this(null);
 		}
 
@@ -382,24 +384,23 @@ public class DBPartitionMigrationValidator {
 				jsonParser
 			);
 
-			int major = (Integer)jsonNode.get(
-				"major"
-			).numberValue();
-			int micro = (Integer)jsonNode.get(
-				"micro"
-			).numberValue();
-			int minor = (Integer)jsonNode.get(
-				"minor"
-			).numberValue();
-			String qualifier = jsonNode.get(
-				"qualifier"
-			).asText();
-
-			return new Version(major, minor, micro, qualifier);
+			return new Version(
+				(Integer)jsonNode.get(
+					"major"
+				).numberValue(),
+				(Integer)jsonNode.get(
+					"minor"
+				).numberValue(),
+				(Integer)jsonNode.get(
+					"micro"
+				).numberValue(),
+				jsonNode.get(
+					"qualifier"
+				).asText());
 		}
 
-		protected VersionDeserializer(Class<?> vc) {
-			super(vc);
+		protected VersionStdDeserializer(Class<?> clazz) {
+			super(clazz);
 		}
 
 	}
