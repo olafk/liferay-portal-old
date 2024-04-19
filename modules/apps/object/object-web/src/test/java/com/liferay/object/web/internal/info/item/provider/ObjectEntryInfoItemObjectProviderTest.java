@@ -129,11 +129,11 @@ public class ObjectEntryInfoItemObjectProviderTest {
 	public void testGetInfoItemProxyObjectEntryInfoItemIdentifierCachedInObjectEntriesAttribute()
 		throws Exception {
 
-		String externalReferenceCode = RandomTestUtil.randomString();
-		ObjectEntry objectEntry = Mockito.mock(ObjectEntry.class);
-
 		ERCInfoItemIdentifier ercInfoItemIdentifier = new ERCInfoItemIdentifier(
 			externalReferenceCode);
+
+		String externalReferenceCode = RandomTestUtil.randomString();
+		ObjectEntry objectEntry = Mockito.mock(ObjectEntry.class);
 
 		_setUpProxyObjectEntry(externalReferenceCode, objectEntry);
 
@@ -153,10 +153,9 @@ public class ObjectEntryInfoItemObjectProviderTest {
 	public void testGetInfoItemProxyObjectEntryInfoItemIdentifierNotCachedInObjectEntriesAttribute()
 		throws Exception {
 
+		Map<String, Object> attributes = new HashMap<>();
 		String externalReferenceCode = RandomTestUtil.randomString();
 		ObjectEntry objectEntry = Mockito.mock(ObjectEntry.class);
-
-		Map<String, Object> attributes = new HashMap<>();
 
 		_assertGetInfoItemProxyObjectEntry(
 			attributes, new ERCInfoItemIdentifier(externalReferenceCode),
@@ -189,16 +188,17 @@ public class ObjectEntryInfoItemObjectProviderTest {
 		throws Exception {
 
 		String externalReferenceCode = RandomTestUtil.randomString();
-		ObjectEntry objectEntry = Mockito.mock(ObjectEntry.class);
 
 		ERCInfoItemIdentifier ercInfoItemIdentifier = new ERCInfoItemIdentifier(
 			externalReferenceCode);
 
-		com.liferay.object.rest.dto.v1_0.ObjectEntry proxyObjectEntry =
-			_setUpProxyObjectEntry(externalReferenceCode, objectEntry);
-
 		Assert.assertEquals(
 			objectEntry, _assertGetInfoItem(ercInfoItemIdentifier));
+
+		ObjectEntry objectEntry = Mockito.mock(ObjectEntry.class);
+
+		com.liferay.object.rest.dto.v1_0.ObjectEntry proxyObjectEntry =
+			_setUpProxyObjectEntry(externalReferenceCode, objectEntry);
 
 		Mockito.verifyNoInteractions(_objectEntryLocalService);
 		Mockito.verify(
