@@ -1753,6 +1753,10 @@ public class ObjectActionLocalServiceTest {
 					}
 				});
 
+			thread1.start();
+
+			thread1.join();
+
 			Thread thread2 = new Thread(
 				() -> {
 					try {
@@ -1768,10 +1772,8 @@ public class ObjectActionLocalServiceTest {
 					}
 				});
 
-			thread1.start();
 			thread2.start();
 
-			thread1.join();
 			thread2.join();
 
 			Assert.assertEquals(

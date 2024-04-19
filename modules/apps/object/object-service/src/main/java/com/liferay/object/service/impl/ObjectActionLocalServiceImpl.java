@@ -404,8 +404,8 @@ public class ObjectActionLocalServiceImpl
 		if (locked) {
 			throw new LockedObjectActionException(
 				String.format(
-					"Unable to update the status of the object action %d " +
-						"because it is being updated by another thread",
+					"Unable to update the status of object action %d because " +
+						"it is being updated by another thread",
 					objectActionId));
 		}
 
