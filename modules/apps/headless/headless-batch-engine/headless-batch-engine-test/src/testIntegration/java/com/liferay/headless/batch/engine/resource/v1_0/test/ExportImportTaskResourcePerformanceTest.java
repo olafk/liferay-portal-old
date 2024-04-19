@@ -530,7 +530,7 @@ public class ExportImportTaskResourcePerformanceTest {
 			log(
 				StringBundler.concat(
 					"Completed ", name, " in ", delta, " ms, speed: ",
-					String.format("%.2f", speed), " items/s"));
+					String.format("%.2f", speed), " items per second"));
 
 			Assert.assertTrue(
 				StringBundler.concat(
