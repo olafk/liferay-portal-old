@@ -290,9 +290,9 @@ public class ExportImportTaskResourcePerformanceTest {
 	private String _invoke(String url) throws IOException {
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
-		httpInvoker.userNameAndPassword("test@liferay.com:test");
 		httpInvoker.httpMethod(HttpInvoker.HttpMethod.GET);
 		httpInvoker.path(url);
+		httpInvoker.userNameAndPassword("test@liferay.com:test");
 
 		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
 
