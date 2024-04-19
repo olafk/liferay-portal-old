@@ -96,7 +96,6 @@ public class TicketResourceTest extends BaseTicketResourceTestCase {
 							getGraphQLFields())),
 					"JSONObject/data",
 					"Object/userAccountEmailVerificationTicket")));
-
 		assertValid(
 			TicketSerDes.toDTO(
 				JSONUtil.getValueAsString(
@@ -132,7 +131,6 @@ public class TicketResourceTest extends BaseTicketResourceTestCase {
 							getGraphQLFields())),
 					"JSONObject/data",
 					"Object/userAccountPasswordResetTicket")));
-
 		assertValid(
 			TicketSerDes.toDTO(
 				JSONUtil.getValueAsString(
