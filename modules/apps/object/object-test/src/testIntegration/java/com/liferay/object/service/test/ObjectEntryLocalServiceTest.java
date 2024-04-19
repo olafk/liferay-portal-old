@@ -1709,8 +1709,9 @@ public class ObjectEntryLocalServiceTest {
 		_assertCount(1);
 
 		_assertObjectEntryValues(
-			22, values,
-			_objectEntryLocalService.getValues(objectEntry.getObjectEntryId()));
+			23, values,
+			_objectEntryLocalService.getValues(objectEntry.getObjectEntryId()),
+			null);
 
 		values = HashMapBuilder.<String, Serializable>put(
 			"emailAddressRequired", "peter@liferay.com"
@@ -1725,8 +1726,9 @@ public class ObjectEntryLocalServiceTest {
 		_assertCount(1);
 
 		_assertObjectEntryValues(
-			22, values,
-			_objectEntryLocalService.getValues(objectEntry.getObjectEntryId()));
+			23, values,
+			_objectEntryLocalService.getValues(objectEntry.getObjectEntryId()),
+			null);
 
 		_addOrUpdateObjectEntry(
 			"james", 0,
@@ -2363,7 +2365,7 @@ public class ObjectEntryLocalServiceTest {
 		_assertCount(1);
 
 		_assertObjectEntryValues(
-			22, values1, _getValuesFromDatabase(objectEntries.get(0)));
+			23, values1, _getValuesFromDatabase(objectEntries.get(0)), null);
 
 		// Add second object entry
 
@@ -2387,9 +2389,9 @@ public class ObjectEntryLocalServiceTest {
 		_assertCount(2);
 
 		_assertObjectEntryValues(
-			22, values1, _getValuesFromDatabase(objectEntries.get(0)));
+			23, values1, _getValuesFromDatabase(objectEntries.get(0)), null);
 		_assertObjectEntryValues(
-			22, values2, _getValuesFromDatabase(objectEntries.get(1)));
+			23, values2, _getValuesFromDatabase(objectEntries.get(1)), null);
 
 		// Add third object entry
 
@@ -2413,11 +2415,11 @@ public class ObjectEntryLocalServiceTest {
 		_assertCount(3);
 
 		_assertObjectEntryValues(
-			22, values1, _getValuesFromDatabase(objectEntries.get(0)));
+			23, values1, _getValuesFromDatabase(objectEntries.get(0)), null);
 		_assertObjectEntryValues(
-			22, values2, _getValuesFromDatabase(objectEntries.get(1)));
+			23, values2, _getValuesFromDatabase(objectEntries.get(1)), null);
 		_assertObjectEntryValues(
-			22, values3, _getValuesFromDatabase(objectEntries.get(2)));
+			23, values3, _getValuesFromDatabase(objectEntries.get(2)), null);
 
 		// Irrelevant object definition
 
@@ -2492,7 +2494,7 @@ public class ObjectEntryLocalServiceTest {
 		Assert.assertEquals(
 			objectEntry.getObjectEntryId(),
 			values.get(_objectDefinition.getPKObjectFieldName()));
-		Assert.assertEquals(values.toString(), 22, values.size());
+		Assert.assertEquals(values.toString(), 23, values.size());
 
 		AssertUtils.assertFailure(
 			NoSuchObjectEntryException.class,
@@ -2534,7 +2536,7 @@ public class ObjectEntryLocalServiceTest {
 
 		_assertCount(1);
 
-		_assertObjectEntryValues(28, values1, valuesList.get(0));
+		_assertObjectEntryValues(29, values1, valuesList.get(0), null);
 
 		// Add second object entry
 
@@ -2558,8 +2560,8 @@ public class ObjectEntryLocalServiceTest {
 
 		_assertCount(2);
 
-		_assertObjectEntryValues(28, values1, valuesList.get(0));
-		_assertObjectEntryValues(28, values2, valuesList.get(1));
+		_assertObjectEntryValues(29, values1, valuesList.get(0), null);
+		_assertObjectEntryValues(29, values2, valuesList.get(1), null);
 
 		// Add third object entry
 
@@ -2583,9 +2585,9 @@ public class ObjectEntryLocalServiceTest {
 
 		_assertCount(3);
 
-		_assertObjectEntryValues(28, values1, valuesList.get(0));
-		_assertObjectEntryValues(28, values2, valuesList.get(1));
-		_assertObjectEntryValues(28, values3, valuesList.get(2));
+		_assertObjectEntryValues(29, values1, valuesList.get(0), null);
+		_assertObjectEntryValues(29, values2, valuesList.get(1), null);
+		_assertObjectEntryValues(29, values3, valuesList.get(2), null);
 
 		// Irrelevant object definition
 
@@ -2625,7 +2627,7 @@ public class ObjectEntryLocalServiceTest {
 
 		Assert.assertEquals(valuesList.toString(), 1, valuesList.size());
 
-		_assertObjectEntryValues(28, values3, valuesList.get(0));
+		_assertObjectEntryValues(29, values3, valuesList.get(0), null);
 
 		PermissionThreadLocal.setPermissionChecker(originalPermissionChecker);
 		PrincipalThreadLocal.setName(originalName);
@@ -2649,8 +2651,8 @@ public class ObjectEntryLocalServiceTest {
 
 		Assert.assertEquals(valuesList.toString(), 2, valuesList.size());
 
-		_assertObjectEntryValues(28, values1, valuesList.get(0));
-		_assertObjectEntryValues(28, values3, valuesList.get(1));
+		_assertObjectEntryValues(29, values1, valuesList.get(0), null);
+		_assertObjectEntryValues(29, values3, valuesList.get(1), null);
 
 		// Predicate with permissions check
 
@@ -2665,7 +2667,7 @@ public class ObjectEntryLocalServiceTest {
 
 		Assert.assertEquals(valuesList.toString(), 1, valuesList.size());
 
-		_assertObjectEntryValues(28, values3, valuesList.get(0));
+		_assertObjectEntryValues(29, values3, valuesList.get(0), null);
 
 		PermissionThreadLocal.setPermissionChecker(originalPermissionChecker);
 		PrincipalThreadLocal.setName(originalName);
@@ -2747,7 +2749,7 @@ public class ObjectEntryLocalServiceTest {
 		List<ObjectEntry> objectEntries = baseModelSearchResult.getBaseModels();
 
 		_assertObjectEntryValues(
-			22, values1, _getValuesFromDatabase(objectEntries.get(0)));
+			23, values1, _getValuesFromDatabase(objectEntries.get(0)), null);
 
 		// Add second object entry
 
@@ -2772,9 +2774,9 @@ public class ObjectEntryLocalServiceTest {
 		objectEntries = baseModelSearchResult.getBaseModels();
 
 		_assertObjectEntryValues(
-			22, values1, _getValuesFromDatabase(objectEntries.get(0)));
+			23, values1, _getValuesFromDatabase(objectEntries.get(0)), null);
 		_assertObjectEntryValues(
-			22, values2, _getValuesFromDatabase(objectEntries.get(1)));
+			23, values2, _getValuesFromDatabase(objectEntries.get(1)), null);
 
 		// Add third object entry
 
@@ -2799,11 +2801,11 @@ public class ObjectEntryLocalServiceTest {
 		objectEntries = baseModelSearchResult.getBaseModels();
 
 		_assertObjectEntryValues(
-			22, values1, _getValuesFromDatabase(objectEntries.get(0)));
+			23, values1, _getValuesFromDatabase(objectEntries.get(0)), null);
 		_assertObjectEntryValues(
-			22, values2, _getValuesFromDatabase(objectEntries.get(1)));
+			23, values2, _getValuesFromDatabase(objectEntries.get(1)), null);
 		_assertObjectEntryValues(
-			22, values3, _getValuesFromDatabase(objectEntries.get(2)));
+			23, values3, _getValuesFromDatabase(objectEntries.get(2)), null);
 
 		// With keywords
 
@@ -2934,7 +2936,7 @@ public class ObjectEntryLocalServiceTest {
 		Assert.assertEquals(
 			objectEntry.getObjectEntryId(),
 			values.get(_objectDefinition.getPKObjectFieldName()));
-		Assert.assertEquals(values.toString(), 22, values.size());
+		Assert.assertEquals(values.toString(), 23, values.size());
 
 		Calendar calendar = new GregorianCalendar();
 
@@ -3016,7 +3018,7 @@ public class ObjectEntryLocalServiceTest {
 		Assert.assertEquals(
 			objectEntry.getObjectEntryId(),
 			values.get(_objectDefinition.getPKObjectFieldName()));
-		Assert.assertEquals(values.toString(), 22, values.size());
+		Assert.assertEquals(values.toString(), 23, values.size());
 
 		_objectEntryLocalService.updateObjectEntry(
 			TestPropsValues.getUserId(), objectEntry.getObjectEntryId(),
@@ -3060,7 +3062,7 @@ public class ObjectEntryLocalServiceTest {
 		Assert.assertEquals(
 			objectEntry.getObjectEntryId(),
 			values.get(_objectDefinition.getPKObjectFieldName()));
-		Assert.assertEquals(values.toString(), 22, values.size());
+		Assert.assertEquals(values.toString(), 23, values.size());
 
 		_objectEntryLocalService.updateObjectEntry(
 			TestPropsValues.getUserId(), objectEntry.getObjectEntryId(),
@@ -3359,7 +3361,7 @@ public class ObjectEntryLocalServiceTest {
 
 	private void _assertObjectEntryValues(
 		int expectedValuesSize, Map<String, Serializable> expectedValues,
-		Map<String, Serializable> actualValues) {
+		Map<String, Serializable> actualValues, List<String> fields) {
 
 		Assert.assertEquals(
 			expectedValues.get("emailAddressDomain"),
