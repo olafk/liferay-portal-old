@@ -112,16 +112,12 @@ public class CTCollectionLocalServicePerformanceTest {
 			siteInitializer.initialize(group.getGroupId());
 		}
 
-		try (PerformanceTimer performanceTimer =
-				new PerformanceTimer(45000)) {
-
+		try (PerformanceTimer performanceTimer = new PerformanceTimer(45000)) {
 			_ctProcessLocalService.addCTProcess(
 				_ctCollection2.getUserId(), _ctCollection2.getCtCollectionId());
 		}
 
-		try (PerformanceTimer performanceTimer =
-				new PerformanceTimer(10000)) {
-
+		try (PerformanceTimer performanceTimer = new PerformanceTimer(10000)) {
 			_ctCollectionLocalService.checkConflicts(_ctCollection1);
 		}
 
@@ -146,16 +142,12 @@ public class CTCollectionLocalServicePerformanceTest {
 			LayoutTestUtil.addTypeContentLayout(_group, layoutName);
 		}
 
-		try (PerformanceTimer performanceTimer =
-				new PerformanceTimer(10000)) {
-
+		try (PerformanceTimer performanceTimer = new PerformanceTimer(10000)) {
 			_ctProcessLocalService.addCTProcess(
 				_ctCollection2.getUserId(), _ctCollection2.getCtCollectionId());
 		}
 
-		try (PerformanceTimer performanceTimer =
-				new PerformanceTimer(10000)) {
-
+		try (PerformanceTimer performanceTimer = new PerformanceTimer(10000)) {
 			_ctCollectionLocalService.checkConflicts(_ctCollection1);
 		}
 	}

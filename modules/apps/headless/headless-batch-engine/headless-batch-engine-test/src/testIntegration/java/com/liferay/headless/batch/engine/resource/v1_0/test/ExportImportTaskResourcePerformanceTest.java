@@ -507,9 +507,7 @@ public class ExportImportTaskResourcePerformanceTest {
 
 	private class ItemCountPerformanceTimer extends PerformanceTimer {
 
-		public ItemCountPerformanceTimer(
-			int count, String name, long maxTime) {
-
+		public ItemCountPerformanceTimer(int count, String name, long maxTime) {
 			this(
 				count, getInvokerName(null, name), System.currentTimeMillis(),
 				maxTime, null);

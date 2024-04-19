@@ -93,9 +93,7 @@ public class CTProcessLocalServicePerformanceTest {
 
 		DDMFormTestUtil.addTextDDMFormFields(ddmForm, formFieldName);
 
-		try (PerformanceTimer performanceTimer =
-				new PerformanceTimer(10000)) {
-
+		try (PerformanceTimer performanceTimer = new PerformanceTimer(10000)) {
 			_ctProcessLocalService.addCTProcess(
 				_ctCollection.getUserId(), _ctCollection.getCtCollectionId());
 		}
@@ -134,9 +132,7 @@ public class CTProcessLocalServicePerformanceTest {
 
 		journalArticle = JournalTestUtil.updateArticle(journalArticle);
 
-		try (PerformanceTimer performanceTimer =
-				new PerformanceTimer(10000)) {
-
+		try (PerformanceTimer performanceTimer = new PerformanceTimer(10000)) {
 			_ctProcessLocalService.addCTProcess(
 				_ctCollection.getUserId(), _ctCollection.getCtCollectionId());
 		}
