@@ -183,9 +183,9 @@ public class ExportImportTaskResourcePerformanceTest {
 				"export-import-task-resource-performance-test-entities",
 			count,
 			GetterUtil.getLong(
-				_properties.getProperty("test.entities.export.maxTime")),
+				_properties.getProperty("test.entities.export.max.time")),
 			GetterUtil.getLong(
-				_properties.getProperty("test.entities.download.maxTime")));
+				_properties.getProperty("test.entities.download.max.time")));
 	}
 
 	@Test
@@ -200,9 +200,9 @@ public class ExportImportTaskResourcePerformanceTest {
 		_testPostExportTask(
 			"com.liferay.headless.admin.user.dto.v1_0.UserAccount", count,
 			GetterUtil.getLong(
-				_properties.getProperty("user.accounts.export.maxTime")),
+				_properties.getProperty("user.accounts.export.max.time")),
 			GetterUtil.getLong(
-				_properties.getProperty("user.accounts.download.maxTime")));
+				_properties.getProperty("user.accounts.download.max.time")));
 	}
 
 	@Test
@@ -213,7 +213,7 @@ public class ExportImportTaskResourcePerformanceTest {
 			GetterUtil.getInteger(
 				_properties.getProperty("test.entities.count")),
 			GetterUtil.getLong(
-				_properties.getProperty("test.entities.import.maxTime")));
+				_properties.getProperty("test.entities.import.max.time")));
 	}
 
 	@Test
@@ -223,7 +223,7 @@ public class ExportImportTaskResourcePerformanceTest {
 			GetterUtil.getInteger(
 				_properties.getProperty("user.accounts.count")),
 			GetterUtil.getLong(
-				_properties.getProperty("user.accounts.import.maxTime")));
+				_properties.getProperty("user.accounts.import.max.time")));
 	}
 
 	private String _createBatchJSON(String className, int count) {
