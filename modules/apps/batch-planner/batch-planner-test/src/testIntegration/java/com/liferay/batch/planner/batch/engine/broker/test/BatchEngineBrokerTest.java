@@ -315,12 +315,12 @@ public class BatchEngineBrokerTest {
 
 	@Test
 	public void testImportExportCompanyScopeObjectEntryCSV() throws Exception {
+		DLFileEntry dlFileEntry = _addDLFileEntry(
+			TestPropsValues.getGroupId(), TestPropsValues.getUserId());
+
 		_objectDefinition1 = _publishObjectDefinition(
 			"TestObjectCSV", ObjectDefinitionConstants.SCOPE_COMPANY,
 			TestPropsValues.getUser());
-
-		DLFileEntry dlFileEntry = _addDLFileEntry(
-			TestPropsValues.getGroupId(), TestPropsValues.getUserId());
 
 		_addObjectEntryInDifferentCompany("TestObjectCSV");
 
