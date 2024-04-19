@@ -326,8 +326,6 @@ public class ExportImportTaskResourcePerformanceTest {
 			_log.info("Class name: " + className);
 		}
 
-		HttpInvoker httpInvoker = null;
-
 		String externalReferenceCode = null;
 
 		Map<String, String> classNamePartsMap = _splitClassName(className);
@@ -336,7 +334,7 @@ public class ExportImportTaskResourcePerformanceTest {
 				new TestEntityPerformanceTimer(
 					count, className + "#export", maxExportTime)) {
 
-			httpInvoker = HttpInvoker.newHttpInvoker();
+			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
 			httpInvoker.header(
 				HttpHeaders.ACCEPT, ContentTypes.APPLICATION_JSON);
@@ -390,7 +388,7 @@ public class ExportImportTaskResourcePerformanceTest {
 				new TestEntityPerformanceTimer(
 					count, className + "#download", maxDownloadTime)) {
 
-			httpInvoker = HttpInvoker.newHttpInvoker();
+			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
 			httpInvoker.header(
 				HttpHeaders.ACCEPT, ContentTypes.APPLICATION_OCTET_STREAM);
