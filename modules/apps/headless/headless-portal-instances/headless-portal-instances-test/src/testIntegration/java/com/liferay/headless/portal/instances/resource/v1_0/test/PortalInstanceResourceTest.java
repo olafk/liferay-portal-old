@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.test.util.CompanyTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.test.rule.Inject;
@@ -382,13 +383,21 @@ public class PortalInstanceResourceTest
 
 		String firstName = RandomTestUtil.randomString();
 		String lastName = RandomTestUtil.randomString();
-		String email = StringUtil.toLowerCase(firstName + "@liferay.com");
+		String emailAddress = StringUtil.toLowerCase(
+			firstName + "@liferay.com");
 
 		randomPortalInstance.setAdmin(
 			Admin.toDTO(
-				StringBundler.concat(
-					"{\"emailAddress\": \"", email, "\", \"familyName\": \"",
-					lastName, "\", \"givenName\": \"", firstName, "\"}")));
+				JSONUtil.put(
+					"emailAddress",
+					emailAddress
+				).put(
+					"familyName",
+					lastName
+				).put(
+					"givenName",
+					firstName
+				).toString()));
 
 		PortalInstance postPortalInstance =
 			testPostPortalInstance_addPortalInstance(randomPortalInstance);
@@ -396,7 +405,7 @@ public class PortalInstanceResourceTest
 		try {
 			Assert.assertNotNull(
 				_userLocalService.getUserByEmailAddress(
-					postPortalInstance.getCompanyId(), email));
+					postPortalInstance.getCompanyId(), emailAddress));
 
 			assertEquals(randomPortalInstance, postPortalInstance);
 			assertValid(postPortalInstance);
