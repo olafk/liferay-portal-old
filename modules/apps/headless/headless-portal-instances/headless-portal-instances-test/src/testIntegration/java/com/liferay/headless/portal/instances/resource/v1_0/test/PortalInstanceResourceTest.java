@@ -382,7 +382,7 @@ public class PortalInstanceResourceTest
 		PortalInstance randomPortalInstance = randomPortalInstance();
 
 		String firstName = RandomTestUtil.randomString();
-		String lastName = RandomTestUtil.randomString();
+
 		String emailAddress = StringUtil.toLowerCase(
 			firstName + "@liferay.com");
 
@@ -393,7 +393,7 @@ public class PortalInstanceResourceTest
 					emailAddress
 				).put(
 					"familyName",
-					lastName
+					RandomTestUtil.randomString()
 				).put(
 					"givenName",
 					firstName
