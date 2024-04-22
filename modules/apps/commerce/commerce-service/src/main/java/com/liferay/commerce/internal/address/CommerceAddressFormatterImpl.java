@@ -69,8 +69,8 @@ public class CommerceAddressFormatterImpl implements CommerceAddressFormatter {
 
 	@Override
 	public String getDescriptiveAddress(
-			CommerceAddress commerceAddress, boolean showDescription,
-			Locale locale)
+			CommerceAddress commerceAddress, Locale locale,
+			boolean showDescription)
 		throws PortalException {
 
 		StringBundler sb = new StringBundler(8);

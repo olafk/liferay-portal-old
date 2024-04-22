@@ -215,7 +215,7 @@ public class CommerceShipmentDisplayContext
 		}
 
 		return _commerceAddressFormatter.getDescriptiveAddress(
-			commerceAddress, true, locale);
+			commerceAddress, locale, true);
 	}
 
 	public String getFDSName() throws PortalException {

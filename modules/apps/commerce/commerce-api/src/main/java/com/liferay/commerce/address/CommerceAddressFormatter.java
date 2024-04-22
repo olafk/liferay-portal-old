@@ -20,8 +20,8 @@ public interface CommerceAddressFormatter {
 		throws PortalException;
 
 	public String getDescriptiveAddress(
-			CommerceAddress commerceAddress, boolean showDescription,
-			Locale locale)
+			CommerceAddress commerceAddress, Locale locale,
+			boolean showDescription)
 		throws PortalException;
 
 	public String getOneLineAddress(CommerceAddress commerceAddress)
