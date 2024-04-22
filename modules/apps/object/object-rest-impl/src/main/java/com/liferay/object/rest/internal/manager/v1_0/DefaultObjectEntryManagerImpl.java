@@ -393,7 +393,7 @@ public class DefaultObjectEntryManagerImpl
 			}
 		}
 
-		List<String> selectedObjectFieldNames = null;
+		String[] selectedObjectFieldNames = null;
 
 		UriInfo uriInfo = dtoConverterContext.getUriInfo();
 
@@ -401,11 +401,11 @@ public class DefaultObjectEntryManagerImpl
 			MultivaluedMap<String, String> queryParameters =
 				uriInfo.getQueryParameters();
 
-			String fieldsString = queryParameters.getFirst("fields");
+			String fields = queryParameters.getFirst("fields");
 
-			if (fieldsString != null) {
-				selectedObjectFieldNames = Arrays.asList(
-					StringUtil.split(fieldsString, StringPool.COMMA));
+			if (fields != null) {
+				selectedObjectFieldNames = StringUtil.split(
+					fields, StringPool.COMMA);
 			}
 		}
 
