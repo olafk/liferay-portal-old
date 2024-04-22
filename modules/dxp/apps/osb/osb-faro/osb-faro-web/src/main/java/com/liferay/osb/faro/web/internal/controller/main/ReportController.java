@@ -150,14 +150,12 @@ public class ReportController extends BaseFaroController {
 			assetId, assetType, channelId, fromDateString, null, query,
 			rangeKey, toDateString, type);
 
-		Map<String, List<String>> queryParameters;
-
-		if (result instanceof Map<?, ?>) {
-			queryParameters = (Map<String, List<String>>)result;
-		}
-		else {
+		if (!(result instanceof Map<?, ?>)) {
 			return result;
 		}
+
+		Map<String, List<String>> queryParameters =
+			(Map<String, List<String>>)result;
 
 		return contactsEngineClient.getReportsExportCSVCount(
 			faroProjectLocalService.getFaroProjectByGroupId(groupId),
