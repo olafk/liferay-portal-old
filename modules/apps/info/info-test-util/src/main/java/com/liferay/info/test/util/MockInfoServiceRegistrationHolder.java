@@ -51,15 +51,11 @@ public class MockInfoServiceRegistrationHolder implements AutoCloseable {
 
 		_mockInfoItemCapabilitiesProvider =
 			new MockInfoItemCapabilitiesProvider(infoItemCapabilities);
-
 		_mockInfoItemFormProvider = new MockInfoItemFormProvider(infoFieldSet);
-
 		_mockInfoItemPermissionProvider = new MockInfoItemPermissionProvider(
 			mockObject);
-
 		_mockObjectLayoutDisplayPageObjectProvider =
 			new MockObjectLayoutDisplayPageObjectProvider(mockObject, portal);
-
 		_mockObjectLayoutDisplayPageProvider =
 			new MockObjectLayoutDisplayPageProvider(
 				_mockObjectLayoutDisplayPageObjectProvider);

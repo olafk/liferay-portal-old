@@ -42,12 +42,12 @@ public class MockObject {
 	}
 
 	public boolean hasPermission(String actionId) {
-		if (Objects.equals(ActionKeys.VIEW, actionId)) {
-			return _viewPermission;
-		}
-
 		if (Objects.equals(ActionKeys.UPDATE, actionId)) {
 			return _updatePermission;
+		}
+
+		if (Objects.equals(ActionKeys.VIEW, actionId)) {
+			return _viewPermission;
 		}
 
 		return false;

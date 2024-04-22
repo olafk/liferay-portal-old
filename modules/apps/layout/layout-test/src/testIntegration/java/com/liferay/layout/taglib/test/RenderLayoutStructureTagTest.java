@@ -1111,7 +1111,6 @@ public class RenderLayoutStructureTagTest {
 		throws Exception {
 
 		Matcher matcher = _inputJSONObjectPattern.matcher(content);
-
 		Locale locale = _portal.getSiteDefaultLocale(_group);
 
 		for (InfoField infoField : infoFields) {
@@ -1187,20 +1186,18 @@ public class RenderLayoutStructureTagTest {
 				_companyLocalService.getCompany(layout.getCompanyId()), _group,
 				layout);
 
-		mockHttpServletRequest.setMethod(HttpMethods.GET);
-
 		mockHttpServletRequest.setAttribute(
 			LayoutDisplayPageWebKeys.LAYOUT_DISPLAY_PAGE_OBJECT_PROVIDER,
 			layoutDisplayPageObjectProvider);
+		mockHttpServletRequest.setAttribute(
+			"ORIGINAL_HTTP_SERVLET_REQUEST", mockHttpServletRequest);
+		mockHttpServletRequest.setMethod(HttpMethods.GET);
 
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)mockHttpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
 		themeDisplay.setRequest(mockHttpServletRequest);
-
-		mockHttpServletRequest.setAttribute(
-			"ORIGINAL_HTTP_SERVLET_REQUEST", mockHttpServletRequest);
 
 		return mockHttpServletRequest;
 	}

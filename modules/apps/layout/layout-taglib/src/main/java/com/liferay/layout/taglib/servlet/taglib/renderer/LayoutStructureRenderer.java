@@ -948,13 +948,13 @@ public class LayoutStructureRenderer {
 		jspWriter.write(
 			String.valueOf(formStyledLayoutStructureItem.getClassTypeId()));
 
+		boolean readOnly = false;
+
 		LayoutDisplayPageObjectProvider<?> layoutDisplayPageObjectProvider =
 			(LayoutDisplayPageObjectProvider<?>)
 				_httpServletRequest.getAttribute(
 					LayoutDisplayPageWebKeys.
 						LAYOUT_DISPLAY_PAGE_OBJECT_PROVIDER);
-
-		boolean readOnly = false;
 
 		if ((layoutDisplayPageObjectProvider != null) &&
 			(layoutDisplayPageObjectProvider.getClassNameId() ==
