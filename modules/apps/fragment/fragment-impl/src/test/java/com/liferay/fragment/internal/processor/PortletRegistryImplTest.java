@@ -202,8 +202,8 @@ public class PortletRegistryImplTest {
 	@Test
 	public void testGetFragmentEntryLinkPortletIdsWithSpecialCharacters() {
 		String instanceId = RandomTestUtil.randomString();
-		String portletName = RandomTestUtil.randomString();
 		String namespace = RandomTestUtil.randomString();
+		String portletName = RandomTestUtil.randomString();
 		String specialCharacters = "-. ";
 
 		_assertGetFragmentEntryLinkPortletIds(
