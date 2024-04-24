@@ -60,7 +60,7 @@ public class DefaultTransactionExecutorTest {
 			recordPlatformTransactionManager);
 
 		TransactionAttributeAdapter transactionAttributeAdapter =
-			_newTransactionAttributeAdapter(t -> false);
+			_newTransactionAttributeAdapter(throwable -> false);
 
 		transactionExecutor.execute(transactionAttributeAdapter, () -> null);
 
@@ -392,7 +392,8 @@ public class DefaultTransactionExecutorTest {
 			recordPlatformTransactionManager);
 
 		TransactionAttributeAdapter transactionAttributeAdapter =
-			_newTransactionAttributeAdapter(t -> t == appException);
+			_newTransactionAttributeAdapter(
+				throwable -> throwable == appException);
 
 		assertTransactionExecutorThreadLocal(transactionExecutor, false);
 
