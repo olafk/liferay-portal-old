@@ -1602,7 +1602,7 @@ public class DefaultObjectEntryManagerImpl
 				objectDefinition.getScope(),
 				ObjectDefinitionConstants.SCOPE_SITE);
 
-			HashMap<String, String> templateParameterMap = HashMapBuilder.put(
+			Map<String, String> templateParameterMap = HashMapBuilder.put(
 				() -> {
 					if (scopeSite) {
 						return "scopeKey";
