@@ -354,7 +354,7 @@ public class GraphQLServletTest {
 					new GraphQLField(
 						"testPath_v1_0",
 						new GraphQLField(
-							"testNotFoundDTO", new GraphQLField("id"))),
+							"testNoPermissionOverDTO", new GraphQLField("id"))),
 					"query"),
 				"JSONArray/errors", "Object/0", "JSONObject/extensions",
 				"Object/code"));
@@ -366,7 +366,7 @@ public class GraphQLServletTest {
 					new GraphQLField(
 						"testPath_v1_0",
 						new GraphQLField(
-							"testNoPermissionOverDTO", new GraphQLField("id"))),
+							"testNotFoundDTO", new GraphQLField("id"))),
 					"query"),
 				"JSONArray/errors", "Object/0", "JSONObject/extensions",
 				"Object/code"));
@@ -388,7 +388,8 @@ public class GraphQLServletTest {
 			"Not Found",
 			JSONUtil.getValueAsString(
 				_invoke(
-					new GraphQLField("testNotFoundDTO", new GraphQLField("id")),
+					new GraphQLField(
+						"testNoPermissionOverDTO", new GraphQLField("id")),
 					"query"),
 				"JSONArray/errors", "Object/0", "JSONObject/extensions",
 				"Object/code"));
@@ -397,8 +398,7 @@ public class GraphQLServletTest {
 			"Not Found",
 			JSONUtil.getValueAsString(
 				_invoke(
-					new GraphQLField(
-						"testNoPermissionOverDTO", new GraphQLField("id")),
+					new GraphQLField("testNotFoundDTO", new GraphQLField("id")),
 					"query"),
 				"JSONArray/errors", "Object/0", "JSONObject/extensions",
 				"Object/code"));
