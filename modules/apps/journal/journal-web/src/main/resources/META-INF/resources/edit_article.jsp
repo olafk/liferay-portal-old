@@ -323,7 +323,7 @@ journalEditArticleDisplayContext.setViewAttributes();
 										/>
 
 										<p class="text-3 text-secondary" id="<portlet:namespace />descriptionNotTranslatableMessage" hidden>
-											<liferay-ui:message arguments="description" key="the-x-will-not-count-as-translatable-field" />
+											<liferay-ui:message arguments="description" key="the-x-will-not-count-as-a-translatable-field" />
 										</p>
 									</div>
 
