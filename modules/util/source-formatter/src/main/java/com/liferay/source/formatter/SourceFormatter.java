@@ -195,7 +195,6 @@ public class SourceFormatter {
 				GitUtil.getCurrentBranchAddedFileNames(
 					sourceFormatterArgs.getBaseDirName(),
 					sourceFormatterArgs.getGitWorkingBranchName()));
-
 			sourceFormatterArgs.setCurrentBranchRenamedFileNames(
 				GitUtil.getCurrentBranchRenamedFileNames(
 					sourceFormatterArgs.getBaseDirName(),
