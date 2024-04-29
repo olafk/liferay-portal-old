@@ -71,7 +71,6 @@ public class DatabaseUtilTest {
 		catch (Exception exception) {
 			Assert.assertTrue(
 				exception instanceof UnsupportedOperationException);
-
 			Assert.assertEquals(
 				"Database schema has to have a single company or database " +
 					"partitioning must be enabled",
@@ -82,13 +81,12 @@ public class DatabaseUtilTest {
 	@Test
 	public void testDefaultPartition() throws Exception {
 		_testDefaultPartition(
-			true,
-			liferayDatabase -> Assert.assertTrue(
-				liferayDatabase.isExportedCompanyDefault()));
-
-		_testDefaultPartition(
 			false,
 			liferayDatabase -> Assert.assertFalse(
+				liferayDatabase.isExportedCompanyDefault()));
+		_testDefaultPartition(
+			true,
+			liferayDatabase -> Assert.assertTrue(
 				liferayDatabase.isExportedCompanyDefault()));
 	}
 
