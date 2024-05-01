@@ -50,10 +50,9 @@
 					"en_US": "actionLabel"
 				},
 				"name": "actionLabel",
-				"objectActionExecutorKey": "webhook",
+				"objectActionExecutorKey": "groovy",
 				"objectActionTriggerKey": "standalone",
 				"parameters": {
-					"url": "http://localhost:8080"
 				},
 				"status": {
 					"code": 0,
@@ -523,8 +522,8 @@
 				"active": false,
 				"dateCreated": "2023-09-19T14:02:26Z",
 				"dateModified": "2023-09-19T14:02:26Z",
-				"engine": "ddm",
-				"engineLabel": "Expression Builder",
+				"engine": "groovy",
+				"engineLabel": "Groovy",
 				"errorLabel": {
 				},
 				"externalReferenceCode": "74ad169a-6ed2-d875-aff8-a5afde81682e",
