@@ -1278,8 +1278,6 @@ public class TestrayImportResultsDispatchTaskExecutor
 
 				String name = blob.getName();
 
-				_tarName = name;
-
 				if (name.equals(s3InboxFolderName + "/")) {
 					continue;
 				}
@@ -1289,8 +1287,6 @@ public class TestrayImportResultsDispatchTaskExecutor
 
 					_processArchive(
 						companyId, blob.getContent(), serviceContext, userId);
-
-					_tarFilesProcessed++;
 
 					blob.copyTo(
 						unicodeProperties.getProperty("s3BucketName"),
