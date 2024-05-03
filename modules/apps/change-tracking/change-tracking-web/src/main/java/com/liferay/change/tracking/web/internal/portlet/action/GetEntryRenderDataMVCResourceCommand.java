@@ -647,7 +647,7 @@ public class GetEntryRenderDataMVCResourceCommand
 			}
 
 			Map<String, Object> workflowData = _getWorkflowData(
-				ctEntry, rightModel, themeDisplay, resourceResponse);
+				ctEntry, rightModel, resourceResponse, themeDisplay);
 
 			if (workflowData != null) {
 				jsonObject.put("workflowData", workflowData);
@@ -1123,8 +1123,8 @@ public class GetEntryRenderDataMVCResourceCommand
 	}
 
 	private <T extends BaseModel<T>> Map<String, Object> _getWorkflowData(
-			CTEntry ctEntry, T model, ThemeDisplay themeDisplay,
-			ResourceResponse resourceResponse)
+			CTEntry ctEntry, T model, ResourceResponse resourceResponse,
+			ThemeDisplay themeDisplay)
 		throws Exception {
 
 		try (SafeCloseable safeCloseable =
