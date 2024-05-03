@@ -46,7 +46,7 @@ public class UpgradeListTypeAuditFieldsTest {
 	}
 
 	@Test
-	public void testUpgradeListType() throws UpgradeException {
+	public void testUpgrade() throws UpgradeException {
 		UpgradeProcess upgradeProcess = new UpgradeListTypeAuditFields();
 
 		upgradeProcess.upgrade();
