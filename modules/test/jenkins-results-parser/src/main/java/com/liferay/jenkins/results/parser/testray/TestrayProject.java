@@ -125,9 +125,9 @@ public class TestrayProject {
 				TestrayRoutine newTestrayRoutine = new TestrayRoutine(
 					this, jsonObject.getJSONObject("data"));
 
+				_testrayRoutinesByID.put(getID(), newTestrayRoutine);
 				_testrayRoutinesByName.put(
 					testrayRoutineName, newTestrayRoutine);
-				_testrayRoutinesByID.put(getID(), newTestrayRoutine);
 
 				return newTestrayRoutine;
 			}
