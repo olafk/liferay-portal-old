@@ -1837,9 +1837,9 @@ public class ObjectActionLocalServiceTest {
 	public void testOnAfterUpdateObjectActionWithAttachmentObjectField()
 		throws Exception {
 
-		ObjectDefinition publishedObjectDefinition =
-			_publishCustomObjectDefinition(
-				false,
+		ObjectDefinition objectDefinition =
+			ObjectDefinitionTestUtil.addCustomObjectDefinition(
+				false, _objectDefinitionLocalService,
 				Arrays.asList(
 					ObjectFieldUtil.createObjectField(
 						ObjectFieldConstants.BUSINESS_TYPE_INTEGER,
@@ -1873,16 +1873,15 @@ public class ObjectActionLocalServiceTest {
 
 		_objectActionLocalService.addObjectAction(
 			RandomTestUtil.randomString(), TestPropsValues.getUserId(),
-			publishedObjectDefinition.getObjectDefinitionId(), true,
-			StringPool.BLANK, RandomTestUtil.randomString(),
+			objectDefinition.getObjectDefinitionId(), true, StringPool.BLANK,
+			RandomTestUtil.randomString(),
 			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
 			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
 			RandomTestUtil.randomString(),
 			ObjectActionExecutorConstants.KEY_UPDATE_OBJECT_ENTRY,
 			ObjectActionTriggerConstants.KEY_ON_AFTER_UPDATE,
 			UnicodePropertiesBuilder.put(
-				"objectDefinitionId",
-				publishedObjectDefinition.getObjectDefinitionId()
+				"objectDefinitionId", objectDefinition.getObjectDefinitionId()
 			).put(
 				"predefinedValues",
 				JSONUtil.putAll(
@@ -1898,7 +1897,7 @@ public class ObjectActionLocalServiceTest {
 			false);
 
 		ObjectEntry objectEntry = _addObjectEntry(
-			0, publishedObjectDefinition.getObjectDefinitionId(),
+			0, objectDefinition.getObjectDefinitionId(),
 			HashMapBuilder.<String, Serializable>put(
 				"integerField", String.valueOf(RandomTestUtil.randomInt())
 			).put(
@@ -1907,7 +1906,7 @@ public class ObjectActionLocalServiceTest {
 
 		_objectEntryLocalService.addOrUpdateObjectEntry(
 			objectEntry.getExternalReferenceCode(), TestPropsValues.getUserId(),
-			0, publishedObjectDefinition.getObjectDefinitionId(),
+			0, objectDefinition.getObjectDefinitionId(),
 			HashMapBuilder.<String, Serializable>put(
 				"integerField", String.valueOf(RandomTestUtil.randomInt())
 			).put(
