@@ -122,16 +122,16 @@ public class WorkflowEngineConcurrentTest extends BaseWorkflowManagerTestCase {
 					SchedulerEngine.class.getClassLoader(),
 					new Class<?>[] {SchedulerEngine.class},
 					(proxy, method, args) -> {
-						if (Objects.equals(method.getName(), "schedule")) {
+						if (Objects.equals(
+								method.getName(), "getScheduledJob")) {
+
+							return new SchedulerResponse();
+						}
+						else if (Objects.equals(method.getName(), "schedule")) {
 							Message message = (Message)args[3];
 
 							_kaleoTimerInstanceTokenIds.add(
 								message.getLong("kaleoTimerInstanceTokenId"));
-						}
-						else if (Objects.equals(
-									method.getName(), "getScheduledJob")) {
-
-							return new SchedulerResponse();
 						}
 
 						return null;
