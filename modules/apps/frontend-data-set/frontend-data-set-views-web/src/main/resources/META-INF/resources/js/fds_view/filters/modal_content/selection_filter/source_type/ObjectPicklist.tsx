@@ -96,7 +96,7 @@ function ObjectPicklist({
 						options={[
 							{
 								disabled: true,
-								label: Liferay.Language.get('choose-an-option'),
+								label: Liferay.Language.get('select'),
 								value: '',
 							},
 							...picklists.map((item) => ({
