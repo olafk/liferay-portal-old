@@ -1420,8 +1420,6 @@ public class DefaultObjectEntryManagerImplTest
 		DLFolder dlFolder = _dlFolderService.getFolder(
 			group.getGroupId(), 0, folderName);
 
-		Assert.assertNotNull(dlFolder);
-
 		Assert.assertNotNull(
 			_dlFileEntryService.getFileEntryByFileName(
 				group.getGroupId(), dlFolder.getFolderId(), fileName));
