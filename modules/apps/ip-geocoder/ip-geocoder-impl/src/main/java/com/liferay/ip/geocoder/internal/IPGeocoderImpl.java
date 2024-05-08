@@ -54,11 +54,15 @@ public class IPGeocoderImpl implements IPGeocoder {
 	public IPInfo getIPInfo(HttpServletRequest httpServletRequest) {
 		String ipAddress = _getIPAddress(httpServletRequest);
 
-		if (!_countryCodes.containsKey(ipAddress)) {
-			_countryCodes.put(ipAddress, _getCountryCode(ipAddress));
+		String countryCode = _countryCodes.get(ipAddress);
+
+		if (countryCode == null) {
+			countryCode = _getCountryCode(ipAddress);
+
+			_countryCodes.put(ipAddress, countryCode);
 		}
 
-		return new IPInfo(_countryCodes.get(ipAddress), ipAddress);
+		return new IPInfo(countryCode, ipAddress);
 	}
 
 	@Activate
