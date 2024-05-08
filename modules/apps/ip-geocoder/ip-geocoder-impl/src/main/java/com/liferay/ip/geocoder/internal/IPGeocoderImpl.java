@@ -71,7 +71,11 @@ public class IPGeocoderImpl implements IPGeocoder {
 
 		CacheBuilder<Object, Object> cacheBuilder = CacheBuilder.newBuilder();
 
-		cacheBuilder.expireAfterAccess(1, TimeUnit.HOURS);
+		cacheBuilder.expireAfterAccess(
+			1, TimeUnit.HOURS
+		).maximumSize(
+			100000
+		);
 
 		Cache<String, String> cache = cacheBuilder.build();
 
