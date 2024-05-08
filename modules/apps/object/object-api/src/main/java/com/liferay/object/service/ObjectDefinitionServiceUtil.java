@@ -70,8 +70,8 @@ public class ObjectDefinitionServiceUtil {
 
 		return getService().addSystemObjectDefinition(
 			externalReferenceCode, userId, objectFolderId, enableComments,
-			enableIndexSearch, labelMap, name, panelAppOrder,
-			panelCategoryKey, pluralLabelMap, portlet, scope, objectFields);
+			enableIndexSearch, labelMap, name, panelAppOrder, panelCategoryKey,
+			pluralLabelMap, portlet, scope, objectFields);
 	}
 
 	public static ObjectDefinition deleteObjectDefinition(

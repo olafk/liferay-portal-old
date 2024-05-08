@@ -610,8 +610,8 @@ public class ObjectDefinitionServiceHttp {
 				methodKey, externalReferenceCode, objectDefinitionId,
 				accountEntryRestrictedObjectFieldId, descriptionObjectFieldId,
 				objectFolderId, titleObjectFieldId, accountEntryRestricted,
-				active, enableCategorization, enableComments,
-				enableIndexSearch, enableLocalization, enableObjectEntryDraft,
+				active, enableCategorization, enableComments, enableIndexSearch,
+				enableLocalization, enableObjectEntryDraft,
 				enableObjectEntryHistory, labelMap, name, panelAppOrder,
 				panelCategoryKey, portlet, pluralLabelMap, scope, status);
 

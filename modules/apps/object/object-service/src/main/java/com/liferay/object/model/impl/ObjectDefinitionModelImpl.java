@@ -84,8 +84,7 @@ public class ObjectDefinitionModelImpl
 		{"accountEntryRestricted", Types.BOOLEAN}, {"active_", Types.BOOLEAN},
 		{"dbTableName", Types.VARCHAR}, {"label", Types.VARCHAR},
 		{"className", Types.VARCHAR}, {"enableCategorization", Types.BOOLEAN},
-		{"enableComments", Types.BOOLEAN},
-		{"enableIndexSearch", Types.BOOLEAN},
+		{"enableComments", Types.BOOLEAN}, {"enableIndexSearch", Types.BOOLEAN},
 		{"enableLocalization", Types.BOOLEAN},
 		{"enableObjectEntryDraft", Types.BOOLEAN},
 		{"enableObjectEntryHistory", Types.BOOLEAN},
@@ -386,8 +385,7 @@ public class ObjectDefinitionModelImpl
 			attributeGetterFunctions.put(
 				"enableComments", ObjectDefinition::getEnableComments);
 			attributeGetterFunctions.put(
-				"enableIndexSearch",
-				ObjectDefinition::getEnableIndexSearch);
+				"enableIndexSearch", ObjectDefinition::getEnableIndexSearch);
 			attributeGetterFunctions.put(
 				"enableLocalization", ObjectDefinition::getEnableLocalization);
 			attributeGetterFunctions.put(
@@ -2083,8 +2081,7 @@ public class ObjectDefinitionModelImpl
 
 		objectDefinitionCacheModel.enableComments = isEnableComments();
 
-		objectDefinitionCacheModel.enableIndexSearch =
-			isEnableIndexSearch();
+		objectDefinitionCacheModel.enableIndexSearch = isEnableIndexSearch();
 
 		objectDefinitionCacheModel.enableLocalization = isEnableLocalization();
 

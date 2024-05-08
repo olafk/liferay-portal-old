@@ -70,8 +70,8 @@ public class ObjectDefinitionServiceWrapper
 
 		return _objectDefinitionService.addSystemObjectDefinition(
 			externalReferenceCode, userId, objectFolderId, enableComments,
-			enableIndexSearch, labelMap, name, panelAppOrder,
-			panelCategoryKey, pluralLabelMap, portlet, scope, objectFields);
+			enableIndexSearch, labelMap, name, panelAppOrder, panelCategoryKey,
+			pluralLabelMap, portlet, scope, objectFields);
 	}
 
 	@Override

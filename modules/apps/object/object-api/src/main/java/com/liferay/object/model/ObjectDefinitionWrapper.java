@@ -445,9 +445,9 @@ public class ObjectDefinitionWrapper
 	}
 
 	/**
-	 * Returns the enable indexed search of this object definition.
+	 * Returns the enable index search of this object definition.
 	 *
-	 * @return the enable indexed search of this object definition
+	 * @return the enable index search of this object definition
 	 */
 	@Override
 	public boolean getEnableIndexSearch() {
@@ -977,9 +977,9 @@ public class ObjectDefinitionWrapper
 	}
 
 	/**
-	 * Returns <code>true</code> if this object definition is enable indexed search.
+	 * Returns <code>true</code> if this object definition is enable index search.
 	 *
-	 * @return <code>true</code> if this object definition is enable indexed search; <code>false</code> otherwise
+	 * @return <code>true</code> if this object definition is enable index search; <code>false</code> otherwise
 	 */
 	@Override
 	public boolean isEnableIndexSearch() {
@@ -1195,9 +1195,9 @@ public class ObjectDefinitionWrapper
 	}
 
 	/**
-	 * Sets whether this object definition is enable indexed search.
+	 * Sets whether this object definition is enable index search.
 	 *
-	 * @param enableIndexSearch the enable indexed search of this object definition
+	 * @param enableIndexSearch the enable index search of this object definition
 	 */
 	@Override
 	public void setEnableIndexSearch(boolean enableIndexSearch) {
