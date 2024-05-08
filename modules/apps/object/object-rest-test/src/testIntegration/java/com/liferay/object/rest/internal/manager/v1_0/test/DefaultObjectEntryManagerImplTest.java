@@ -1344,7 +1344,7 @@ public class DefaultObjectEntryManagerImplTest
 
 	@Test
 	public void testAddObjectEntryWithAttachmentObjectField() throws Exception {
-		String folderName = RandomTestUtil.randomString();
+		String dlFolderName = RandomTestUtil.randomString();
 
 		ObjectDefinition objectDefinition = _createObjectDefinition(
 			Collections.singletonList(
@@ -1373,7 +1373,7 @@ public class DefaultObjectEntryManagerImplTest
 						_createObjectFieldSetting(
 							ObjectFieldSettingConstants.
 								NAME_STORAGE_DL_FOLDER_PATH,
-							"/" + folderName))
+							"/" + dlFolderName))
 				).build()),
 			ObjectDefinitionConstants.SCOPE_SITE);
 
@@ -1418,7 +1418,7 @@ public class DefaultObjectEntryManagerImplTest
 			String.valueOf(group.getGroupId()));
 
 		DLFolder dlFolder = _dlFolderService.getFolder(
-			group.getGroupId(), 0, folderName);
+			group.getGroupId(), 0, dlFolderName);
 
 		Assert.assertNotNull(
 			_dlFileEntryService.getFileEntryByFileName(
