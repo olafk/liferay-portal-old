@@ -166,9 +166,9 @@ public class FaroUserLocalServiceImpl extends FaroUserLocalServiceBaseImpl {
 	}
 
 	@Override
-	public void deleteFaroUsers(User liveUser) throws PortalException {
+	public void deleteFaroUsers(long liveUserId) throws PortalException {
 		List<FaroUser> faroUsers = faroUserPersistence.findByLiveUserId(
-			liveUser.getUserId());
+			liveUserId);
 
 		for (FaroUser faroUser : faroUsers) {
 			deleteFaroUser(faroUser.getFaroUserId());
