@@ -42,9 +42,9 @@ public class JournalArticleAssetEntryClassTypeIdUpgradeProcess
 
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				StringBundler.concat(
-					"select distinct AssetEntry.entryId, ",
-					"AssetEntry.classTypeId, JournalArticle.DDMStructureId, ",
-					"AssetEntry.ctCollectionId from AssetEntry, ",
+					"select distinct AssetEntry.ctCollectionId, ",
+					"AssetEntry.entryId, AssetEntry.classTypeId, ",
+					"JournalArticle.DDMStructureId from AssetEntry ",
 					"JournalArticle where AssetEntry.classNameId = ",
 					classNameId,
 					" and (AssetEntry.classPK = JournalArticle.id_ or ",
@@ -53,19 +53,19 @@ public class JournalArticleAssetEntryClassTypeIdUpgradeProcess
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection,
-					"update AssetEntry set classTypeId = ? where entryId = ? " +
-						"and ctCollectionId = ?");
+					"update AssetEntry set classTypeId = ? where " +
+						"ctCollectionId = ? and entryId = ?");
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
-				long entryId = resultSet.getLong(1);
-				long classTypeId = resultSet.getLong(2);
-				long ddmStructureId = resultSet.getLong(3);
-				long ctCollectionId = resultSet.getLong(4);
+				long ctCollectionId = resultSet.getLong(1);
+				long entryId = resultSet.getLong(2);
+				long classTypeId = resultSet.getLong(3);
+				long ddmStructureId = resultSet.getLong(4);
 
 				preparedStatement2.setLong(1, ddmStructureId);
-				preparedStatement2.setLong(2, entryId);
-				preparedStatement2.setLong(3, ctCollectionId);
+				preparedStatement2.setLong(2, ctCollectionId);
+				preparedStatement2.setLong(3, entryId);
 
 				preparedStatement2.addBatch();
 
