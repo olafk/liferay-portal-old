@@ -704,32 +704,6 @@
 					"type": "Clob"
 				},
 				{
-					"DBType": "Date",
-					"businessType": "Date",
-					"indexed": false,
-					"label": {
-						"en_US": "Create Date"
-					},
-					"name": "createDate",
-					"readOnly": "true",
-					"state": false,
-					"system": true,
-					"type": "Date"
-				},
-				{
-					"DBType": "String",
-					"businessType": "Text",
-					"indexed": false,
-					"label": {
-						"en_US": "Author"
-					},
-					"name": "creator",
-					"readOnly": "true",
-					"state": false,
-					"system": true,
-					"type": "String"
-				},
-				{
 					"DBType": "String",
 					"businessType": "MultiselectPicklist",
 					"indexed": true,
@@ -756,46 +730,6 @@
 					"readOnly": "false",
 					"state": false,
 					"type": "String"
-				},
-				{
-					"DBType": "String",
-					"businessType": "Text",
-					"indexed": false,
-					"label": {
-						"en_US": "External Reference Code"
-					},
-					"name": "externalReferenceCode",
-					"readOnly": "false",
-					"state": false,
-					"system": true,
-					"type": "String"
-				},
-				{
-					"DBType": "Long",
-					"businessType": "LongInteger",
-					"indexed": true,
-					"indexedAsKeyword": true,
-					"label": {
-						"en_US": "ID"
-					},
-					"name": "id",
-					"readOnly": "true",
-					"state": false,
-					"system": true,
-					"type": "Long"
-				},
-				{
-					"DBType": "Date",
-					"businessType": "Date",
-					"indexed": false,
-					"label": {
-						"en_US": "Modified Date"
-					},
-					"name": "modifiedDate",
-					"readOnly": "true",
-					"state": false,
-					"system": true,
-					"type": "Date"
 				},
 				{
 					"DBType": "String",
