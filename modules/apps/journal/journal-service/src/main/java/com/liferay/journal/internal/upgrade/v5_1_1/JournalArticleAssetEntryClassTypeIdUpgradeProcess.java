@@ -44,7 +44,7 @@ public class JournalArticleAssetEntryClassTypeIdUpgradeProcess
 				StringBundler.concat(
 					"select distinct AssetEntry.ctCollectionId, ",
 					"AssetEntry.entryId, AssetEntry.classTypeId, ",
-					"JournalArticle.DDMStructureId from AssetEntry ",
+					"JournalArticle.DDMStructureId from AssetEntry, ",
 					"JournalArticle where AssetEntry.classNameId = ",
 					classNameId,
 					" and (AssetEntry.classPK = JournalArticle.id_ or ",
