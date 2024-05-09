@@ -242,17 +242,13 @@ public class HttpInvoker {
 		return fileName;
 	}
 
-	private HttpURLConnection _getHttpURLConnection(
-			HttpMethod httpMethod, String urlString)
-		throws IOException {
-
+	private HttpURLConnection _getHttpURLConnection(HttpMethod httpMethod, String urlString) throws IOException {
 		URL url = new URL(urlString);
 
-		HttpURLConnection httpURLConnection =
-			(HttpURLConnection)url.openConnection();
+		HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
 
 		try {
-			HttpURLConnection setMethodHttpURLConnection = httpURLConnection;
+			HttpURLConnection methodHttpURLConnection = httpURLConnection;
 
 			if (Objects.equals(url.getProtocol(), "https")) {
 				Class<?> clazz = httpURLConnection.getClass();
@@ -261,11 +257,10 @@ public class HttpInvoker {
 
 				field.setAccessible(true);
 
-				setMethodHttpURLConnection = (HttpURLConnection)field.get(
-					httpURLConnection);
+				methodHttpURLConnection = (HttpURLConnection)field.get(httpURLConnection);
 			}
 
-			_methodField.set(setMethodHttpURLConnection, httpMethod.name());
+			_methodField.set(methodHttpURLConnection, httpMethod.name());
 		}
 		catch (ReflectiveOperationException reflectiveOperationException) {
 			throw new IOException(reflectiveOperationException);
@@ -323,12 +318,10 @@ public class HttpInvoker {
 			urlString += queryString;
 		}
 
-		HttpURLConnection httpURLConnection = _getHttpURLConnection(
-			_httpMethod, urlString);
+		HttpURLConnection httpURLConnection = _getHttpURLConnection(_httpMethod, urlString);
 
 		if (_encodedUserNameAndPassword != null) {
-			httpURLConnection.setRequestProperty(
-				"Authorization", "Basic " + _encodedUserNameAndPassword);
+			httpURLConnection.setRequestProperty("Authorization", "Basic " + _encodedUserNameAndPassword);
 		}
 
 		if (_contentType != null) {
@@ -336,8 +329,7 @@ public class HttpInvoker {
 		}
 
 		for (Map.Entry<String, String> header : _headers.entrySet()) {
-			httpURLConnection.setRequestProperty(
-				header.getKey(), header.getValue());
+			httpURLConnection.setRequestProperty(header.getKey(), header.getValue());
 		}
 
 		_writeBody(httpURLConnection);
