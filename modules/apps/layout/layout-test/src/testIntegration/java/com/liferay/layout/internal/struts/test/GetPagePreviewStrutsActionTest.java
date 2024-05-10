@@ -211,12 +211,6 @@ public class GetPagePreviewStrutsActionTest {
 			_companyLocalService.getCompany(TestPropsValues.getCompanyId()));
 		_themeDisplay.setLanguageId(
 			LanguageUtil.getLanguageId(LocaleUtil.getDefault()));
-		_themeDisplay.setPermissionChecker(
-			PermissionThreadLocal.getPermissionChecker());
-		_themeDisplay.setRealUser(TestPropsValues.getUser());
-		_themeDisplay.setScopeGroupId(_group.getGroupId());
-		_themeDisplay.setSiteGroupId(_group.getGroupId());
-		_themeDisplay.setUser(TestPropsValues.getUser());
 
 		Layout layout = _layoutLocalService.getLayout(
 			_layoutService.getControlPanelLayoutPlid());
@@ -224,7 +218,14 @@ public class GetPagePreviewStrutsActionTest {
 		_themeDisplay.setLayout(layout);
 		_themeDisplay.setLayoutTypePortlet(
 			(LayoutTypePortlet)layout.getLayoutType());
+
+		_themeDisplay.setPermissionChecker(
+			PermissionThreadLocal.getPermissionChecker());
 		_themeDisplay.setPlid(layout.getPlid());
+		_themeDisplay.setRealUser(TestPropsValues.getUser());
+		_themeDisplay.setScopeGroupId(_group.getGroupId());
+		_themeDisplay.setSiteGroupId(_group.getGroupId());
+		_themeDisplay.setUser(TestPropsValues.getUser());
 	}
 
 	private static final String[] _DEFAULT_THEME_IDS = {
