@@ -60,18 +60,19 @@ public class MailServiceTestUtil {
 		for (com.dumbster.smtp.MailMessage mailMessage :
 				_smtpServer.getMessages()) {
 
-			String messageHeaderValue = mailMessage.getFirstHeaderValue(
+			String mailMessageHeaderValue = mailMessage.getFirstHeaderValue(
 				headerName);
 
-			if (messageHeaderValue == null) {
+			if (mailMessageHeaderValue == null) {
 				continue;
 			}
 
-			String[] messageHeaderValues = messageHeaderValue.split("[,;]\\s*");
+			String[] mailMessageHeaderValues = mailMessageHeaderValue.split(
+				"[,;]\\s*");
 
-			Arrays.sort(messageHeaderValues);
+			Arrays.sort(mailMessageHeaderValues);
 
-			if (Arrays.equals(messageHeaderValues, headerValues)) {
+			if (Arrays.equals(mailMessageHeaderValues, headerValues)) {
 				return new MailMessageImpl(mailMessage);
 			}
 		}
@@ -95,10 +96,10 @@ public class MailServiceTestUtil {
 				}
 			}
 			else {
-				String messageHeaderValue = mailMessage.getFirstHeaderValue(
+				String mailMessageHeaderValue = mailMessage.getFirstHeaderValue(
 					headerName);
 
-				if (messageHeaderValue.equals(headerValue)) {
+				if (mailMessageHeaderValue.equals(headerValue)) {
 					mailMessages.add(mailMessage);
 				}
 			}
