@@ -72,13 +72,12 @@ public class CategoryFacetTest extends BaseFacetedSearcherTestCase {
 
 		_assetVocabulary = _assetVocabularyLocalService.addDefaultVocabulary(
 			_group.getGroupId());
-
 		_user = UserTestUtil.addUser(_group.getGroupId());
 	}
 
 	@Test
 	public void testAggregation() throws Exception {
-		_addAssetCategoryToUserServiceContext(RandomTestUtil.randomString());
+		_addAssetCategoryToUser(RandomTestUtil.randomString());
 
 		_addJournalArticle();
 
@@ -105,7 +104,7 @@ public class CategoryFacetTest extends BaseFacetedSearcherTestCase {
 
 		// See LPS-58543
 
-		_addAssetCategoryToUserServiceContext("To Do");
+		_addAssetCategoryToUser("To Do");
 
 		SearchContext searchContext = _getSearchContext();
 
@@ -120,7 +119,7 @@ public class CategoryFacetTest extends BaseFacetedSearcherTestCase {
 
 	@Test
 	public void testSelection() throws Exception {
-		_addAssetCategoryToUserServiceContext(RandomTestUtil.randomString());
+		_addAssetCategoryToUser(RandomTestUtil.randomString());
 
 		_addJournalArticle();
 
@@ -143,9 +142,7 @@ public class CategoryFacetTest extends BaseFacetedSearcherTestCase {
 			Collections.singletonMap(_getAssetVocabularyCategoryId(), 1));
 	}
 
-	private void _addAssetCategoryToUserServiceContext(String title)
-		throws Exception {
-
+	private void _addAssetCategoryToUser(String title) throws Exception {
 		_assetCategory = _assetCategoryLocalService.addCategory(
 			TestPropsValues.getUserId(), _group.getGroupId(), title,
 			_assetVocabulary.getVocabularyId(),
