@@ -61,21 +61,21 @@ public class CPJSONUtil {
 				cpDefinitionOptionRelKeysCPDefinitionOptionValueRelKeys.
 					entrySet()) {
 
-			List<String> entryValue = entry.getValue();
+			List<String> value = entry.getValue();
 
 			jsonArray.put(
 				JSONUtil.put(
 					"key", entry.getKey()
 				).put(
-					"skuOptionName", entryValue.get(0)
+					"skuOptionName", value.get(0)
 				).put(
 					"skuOptionValueNames",
 					JSONFactoryUtil.createJSONArray(
-						Collections.singletonList(entryValue.get(1)))
+						Collections.singletonList(value.get(1)))
 				).put(
 					"value",
 					JSONFactoryUtil.createJSONArray(
-						Collections.singletonList(entryValue.get(2)))
+						Collections.singletonList(value.get(2)))
 				));
 		}
 
