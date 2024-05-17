@@ -84,8 +84,8 @@ public class TestrayManagerImpl implements TestrayManager {
 		throws Exception {
 
 		long startTime = System.currentTimeMillis();
-		String dueStatus = "successful";
 
+		String dueStatus = "successful";
 		Path tempDirectoryPath = null;
 		Path tempFilePath = null;
 
@@ -126,6 +126,7 @@ public class TestrayManagerImpl implements TestrayManager {
 				}
 				catch (Exception exception) {
 					dueStatus = "failed";
+
 					_log.error(exception);
 				}
 				finally {
@@ -135,6 +136,7 @@ public class TestrayManagerImpl implements TestrayManager {
 		}
 		catch (Exception exception) {
 			dueStatus = "failed";
+
 			_log.error(exception);
 		}
 		finally {
@@ -162,6 +164,7 @@ public class TestrayManagerImpl implements TestrayManager {
 		throws Exception {
 
 		long startTime = System.currentTimeMillis();
+
 		String dueStatus = "successful";
 
 		try {
@@ -196,6 +199,7 @@ public class TestrayManagerImpl implements TestrayManager {
 		}
 		catch (Exception exception) {
 			_log.error(exception);
+
 			dueStatus = "failed";
 
 			throw exception;
