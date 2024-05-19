@@ -79,37 +79,39 @@ public class ObjectActionMDFRequestStatusManagementRestController
 			);
 		}
 
-		if (!newActivityStatusJSONObject.isEmpty()) {
-			JSONObject responseJSONObject = get(
-				uriBuilder -> uriBuilder.path(
-					"/o/c/activities"
-				).queryParam(
-					"filter",
-					"r_mdfReqToActs_c_mdfRequestId eq '" +
-						mdfRequestJSONObject.getString("id") + "'"
-				).queryParam(
-					"page", "1"
-				).queryParam(
-					"pageSize", "-1"
-				).build());
-
-			JSONArray itemsJSONArray = responseJSONObject.getJSONArray("items");
-
-			for (int i = 0; i < itemsJSONArray.length(); i++) {
-				JSONObject itemJSONObject = itemsJSONArray.getJSONObject(i);
-
-				JSONObject activityStatusJSONObject =
-					itemJSONObject.getJSONObject("activityStatus");
-
-				activityStatusJSONObject.put(
-					"key", newActivityStatusJSONObject.getString("key")
-				).put(
-					"name", newActivityStatusJSONObject.getString("name")
-				);
-			}
-
-			put(itemsJSONArray.toString(), "/o/c/activities/batch");
+		if (newActivityStatusJSONObject.isEmpty()) {
+			return new ResponseEntity<>(json, HttpStatus.OK);
 		}
+
+		JSONObject responseJSONObject = get(
+			uriBuilder -> uriBuilder.path(
+				"/o/c/activities"
+			).queryParam(
+				"filter",
+				"r_mdfReqToActs_c_mdfRequestId eq '" +
+					mdfRequestJSONObject.getString("id") + "'"
+			).queryParam(
+				"page", "1"
+			).queryParam(
+				"pageSize", "-1"
+			).build());
+
+		JSONArray itemsJSONArray = responseJSONObject.getJSONArray("items");
+
+		for (int i = 0; i < itemsJSONArray.length(); i++) {
+			JSONObject itemJSONObject = itemsJSONArray.getJSONObject(i);
+
+			JSONObject activityStatusJSONObject = itemJSONObject.getJSONObject(
+				"activityStatus");
+
+			activityStatusJSONObject.put(
+				"key", newActivityStatusJSONObject.getString("key")
+			).put(
+				"name", newActivityStatusJSONObject.getString("name")
+			);
+		}
+
+		put(itemsJSONArray.toString(), "/o/c/activities/batch");
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
 	}
