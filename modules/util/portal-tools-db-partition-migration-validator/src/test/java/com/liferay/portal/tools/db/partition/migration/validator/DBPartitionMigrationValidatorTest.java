@@ -90,7 +90,8 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 	private void _mockDatabase(
 			List<Company> companies, List<Long> companyIds,
 			List<Long> companyInfoIds, boolean defaultPartition,
-			List<Release> releases, List<String> tableNames)
+			String password, List<Release> releases, String schemaName,
+			List<String> tableNames, String url, String user)
 		throws Exception {
 
 		mockGetColumns(tableNames);
@@ -98,8 +99,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		mockGetCompanyIds(companyIds);
 		mockGetCompanyInfos(companyInfoIds);
 		mockGetConnection(
-			_PASSWORD, StringUtil.replace(_URL, "lportal", _SCHEMA_NAME),
-			_USER);
+			password, StringUtil.replace(url, "lportal", schemaName), user);
 		mockGetReleases(releases);
 		mockGetTables(defaultPartition);
 	}
@@ -132,24 +132,29 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 				RandomTestUtil.randomString(), RandomTestUtil.randomString()));
 		List<Long> companyInfoIds = Arrays.asList(
 			RandomTestUtil.randomLong(), RandomTestUtil.randomLong());
+		String password = RandomTestUtil.randomString();
 		List<Release> releases = Arrays.asList(
 			new Release(Version.parseVersion("14.2.4"), "module1", 0, true),
 			new Release(Version.parseVersion("2.0.1"), "module2", 1, false));
+		String schemaName = RandomTestUtil.randomString();
+		String url = "jdbc:mysql://localhost:3306/lportal?useUnicode=true";
+		String user = RandomTestUtil.randomString();
 
 		_mockDatabase(
-			companies, companyIds, companyInfoIds, defaultPartition, releases,
+			companies, companyIds, companyInfoIds, defaultPartition, password,
+			releases, schemaName,
 			Arrays.asList(
-				"Company", "Object_x_" + companyIds.get(0), "Table1",
-				"Table2"));
+				"Company", "Object_x_" + companyIds.get(0), "Table1", "Table2"),
+			url, user);
 
 		File outputDirectory = temporaryFolder.newFolder();
 
 		try {
 			DBPartitionMigrationValidator.main(
 				new String[] {
-					"--export", "--jdbc-url", _URL, "--output-dir",
-					outputDirectory.getAbsolutePath(), "--password", _PASSWORD,
-					"--schema-name", _SCHEMA_NAME, "--user", _USER
+					"--export", "--jdbc-url", url, "--output-dir",
+					outputDirectory.getAbsolutePath(), "--password", password,
+					"--schema-name", schemaName, "--user", user
 				});
 		}
 		catch (RuntimeException runtimeException) {
@@ -217,15 +222,6 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 			).toString(),
 			content, false);
 	}
-
-	private static final String _PASSWORD = RandomTestUtil.randomString();
-
-	private static final String _SCHEMA_NAME = RandomTestUtil.randomString();
-
-	private static final String _URL =
-		"jdbc:mysql://localhost:3306/lportal?useUnicode=true";
-
-	private static final String _USER = RandomTestUtil.randomString();
 
 	private final ByteArrayOutputStream _errByteArrayOutputStream =
 		new ByteArrayOutputStream();
