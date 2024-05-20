@@ -86,59 +86,6 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		JSONAssert.assertEquals(_getCompaniesOutput(companies), content, false);
 	}
 
-	private void _testExport(
-			List<Company> companies, List<Long> companyIds,
-			List<Long> companyInfoIds, boolean defaultPartition,
-			List<Release> releases)
-		throws Exception {
-
-		_mockDatabase(
-			companies, companyIds, companyInfoIds, defaultPartition, releases,
-			Arrays.asList(
-				"Table1", "Company", "Table2",
-				"Object_x_" + companyIds.get(0)));
-
-		File outputDirectory = temporaryFolder.newFolder("tempExports");
-
-		try {
-			DBPartitionMigrationValidator.main(
-				new String[] {
-					"--export", "--jdbc-url", _URL, "--user", _USER,
-					"--password", _PASSWORD, "--output-dir",
-					outputDirectory.getAbsolutePath(), "--schema-name",
-					_SCHEMA_NAME
-				});
-		}
-		catch (RuntimeException runtimeException) {
-			if (companyInfoIds.size() > 1) {
-				Assert.assertEquals("1", runtimeException.getMessage());
-				Assert.assertTrue(
-					_errByteArrayOutputStream.toString(
-					).contains(
-						"Database schema has to have a single company or " +
-							"database partitioning must be enabled"
-					));
-
-				File[] files = outputDirectory.listFiles();
-
-				Assert.assertEquals(Arrays.toString(files), 0, files.length);
-
-				return;
-			}
-
-			Assert.assertEquals("0", runtimeException.getMessage());
-		}
-
-		File[] files = outputDirectory.listFiles();
-
-		Assert.assertEquals(Arrays.toString(files), 1, files.length);
-
-		String content = _read(files[0]);
-
-		_assertFileContent(
-			companies, companyInfoIds, content, defaultPartition, releases);
-	}
-
 	private List<Company> _generateCompanies() {
 		return Arrays.asList(
 			new Company(
@@ -293,6 +240,59 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		}
 
 		return sb.toString();
+	}
+
+	private void _testExport(
+			List<Company> companies, List<Long> companyIds,
+			List<Long> companyInfoIds, boolean defaultPartition,
+			List<Release> releases)
+		throws Exception {
+
+		_mockDatabase(
+			companies, companyIds, companyInfoIds, defaultPartition, releases,
+			Arrays.asList(
+				"Table1", "Company", "Table2",
+				"Object_x_" + companyIds.get(0)));
+
+		File outputDirectory = temporaryFolder.newFolder("tempExports");
+
+		try {
+			DBPartitionMigrationValidator.main(
+				new String[] {
+					"--export", "--jdbc-url", _URL, "--user", _USER,
+					"--password", _PASSWORD, "--output-dir",
+					outputDirectory.getAbsolutePath(), "--schema-name",
+					_SCHEMA_NAME
+				});
+		}
+		catch (RuntimeException runtimeException) {
+			if (companyInfoIds.size() > 1) {
+				Assert.assertEquals("1", runtimeException.getMessage());
+				Assert.assertTrue(
+					_errByteArrayOutputStream.toString(
+					).contains(
+						"Database schema has to have a single company or " +
+							"database partitioning must be enabled"
+					));
+
+				File[] files = outputDirectory.listFiles();
+
+				Assert.assertEquals(Arrays.toString(files), 0, files.length);
+
+				return;
+			}
+
+			Assert.assertEquals("0", runtimeException.getMessage());
+		}
+
+		File[] files = outputDirectory.listFiles();
+
+		Assert.assertEquals(Arrays.toString(files), 1, files.length);
+
+		String content = _read(files[0]);
+
+		_assertFileContent(
+			companies, companyInfoIds, content, defaultPartition, releases);
 	}
 
 	private static final String _PASSWORD = RandomTestUtil.randomString();
