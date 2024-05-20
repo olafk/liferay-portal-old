@@ -82,12 +82,25 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 			content, false);
 
 		JSONAssert.assertEquals(
-			_getTableNamesOutput(Arrays.asList("Table1", "Table2")), content,
-			false);
+			new JSONObject(
+			).put(
+				"tableNames", new JSONArray(Arrays.asList("Table1", "Table2"))
+			).toString(),
+			content, false);
 
-		JSONAssert.assertEquals(_getReleasesOutput(releases), content, false);
+		JSONAssert.assertEquals(
+			new JSONObject(
+			).put(
+				"releases", new JSONArray(releases)
+			).toString(),
+			content, false);
 
-		JSONAssert.assertEquals(_getCompaniesOutput(companies), content, false);
+		JSONAssert.assertEquals(
+			new JSONObject(
+			).put(
+				"companies", new JSONArray(companies)
+			).toString(),
+			content, false);
 	}
 
 	private List<Company> _generateCompanies() {
@@ -106,29 +119,6 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 			new Release(Version.parseVersion("2.0.1"), "module2", 1, false));
 	}
 
-	private String _getCompaniesOutput(List<Company> companies) {
-		JSONArray companiesJSONArray = new JSONArray();
-
-		for (Company company : companies) {
-			companiesJSONArray.put(
-				new JSONObject(
-				).put(
-					"companyId", company.getCompanyId()
-				).put(
-					"companyName", company.getCompanyName()
-				).put(
-					"virtualHostname", company.getVirtualHostname()
-				).put(
-					"webId", company.getWebId()
-				));
-		}
-
-		return new JSONObject(
-		).put(
-			"companies", companiesJSONArray
-		).toString();
-	}
-
 	private String _getExportedCompanyIdOutput(List<Long> companyInfoIds) {
 		JSONObject jsonObject = new JSONObject();
 
@@ -140,60 +130,6 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		}
 
 		return jsonObject.toString();
-	}
-
-	private String _getReleasesOutput(List<Release> releases) {
-		JSONArray releasesJSONArray = new JSONArray();
-
-		for (Release release : releases) {
-			releasesJSONArray.put(
-				new JSONObject(
-				).put(
-					"schemaVersion",
-					new JSONObject(
-					).put(
-						"major",
-						release.getSchemaVersion(
-						).getMajor()
-					).put(
-						"micro",
-						release.getSchemaVersion(
-						).getMicro()
-					).put(
-						"minor",
-						release.getSchemaVersion(
-						).getMinor()
-					).put(
-						"qualifier",
-						release.getSchemaVersion(
-						).getQualifier()
-					)
-				).put(
-					"servletContextName", release.getServletContextName()
-				).put(
-					"state", release.getState()
-				).put(
-					"verified", release.getVerified()
-				));
-		}
-
-		return new JSONObject(
-		).put(
-			"releases", releasesJSONArray
-		).toString();
-	}
-
-	private String _getTableNamesOutput(List<String> tableNames) {
-		JSONArray tableNamesJSONArray = new JSONArray();
-
-		for (String tableName : tableNames) {
-			tableNamesJSONArray.put(tableName);
-		}
-
-		return new JSONObject(
-		).put(
-			"tableNames", tableNamesJSONArray
-		).toString();
 	}
 
 	private void _mockDatabase(
