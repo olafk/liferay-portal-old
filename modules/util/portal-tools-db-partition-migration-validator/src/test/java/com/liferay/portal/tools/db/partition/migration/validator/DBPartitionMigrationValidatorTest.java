@@ -185,13 +185,13 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 		}
 		catch (RuntimeException runtimeException) {
 			if (companyInfoIds.size() > 1) {
-				Assert.assertEquals("1", runtimeException.getMessage());
 				Assert.assertTrue(
 					_errByteArrayOutputStream.toString(
 					).contains(
 						"Database schema has to have a single company or " +
 							"database partitioning must be enabled"
 					));
+				Assert.assertEquals("1", runtimeException.getMessage());
 
 				File[] files = outputDirectory.listFiles();
 
