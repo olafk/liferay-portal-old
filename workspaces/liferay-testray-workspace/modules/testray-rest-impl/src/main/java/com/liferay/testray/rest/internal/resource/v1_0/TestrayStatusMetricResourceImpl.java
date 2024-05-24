@@ -6,7 +6,6 @@
 package com.liferay.testray.rest.internal.resource.v1_0;
 
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
@@ -460,9 +459,6 @@ public class TestrayStatusMetricResourceImpl
 		List<Map<String, Object>> values = TestrayUtil.executeQuery(
 			sql, params);
 
-		Role role = _roleLocalService.getRole(
-			contextUser.getCompanyId(), "Testray Administrator");
-
 		return Page.of(
 			transform(
 				values,
@@ -473,7 +469,10 @@ public class TestrayStatusMetricResourceImpl
 					if (ListUtil.fromArray(
 							contextUser.getRoleIds()
 						).contains(
-							role.getRoleId()
+							_roleLocalService.getRole(
+								contextUser.getCompanyId(),
+								"Testray Administrator"
+							).getRoleId()
 						)) {
 
 						URI baseURI = contextUriInfo.getBaseUri();
