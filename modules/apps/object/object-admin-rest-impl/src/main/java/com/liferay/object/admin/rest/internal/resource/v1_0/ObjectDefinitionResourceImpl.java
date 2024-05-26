@@ -879,11 +879,11 @@ public class ObjectDefinitionResourceImpl
 					continue;
 				}
 
-				String siteDefaultLanguageId = LocaleUtil.toLanguageId(
-					LocaleUtil.getSiteDefault());
-
 				Map<String, String> labelMap = new HashMap<>(
 					objectAction.getLabel());
+
+				String siteDefaultLanguageId = LocaleUtil.toLanguageId(
+					LocaleUtil.getSiteDefault());
 
 				if (!Objects.equals(defaultLanguageId, siteDefaultLanguageId) &&
 					Validator.isNull(labelMap.get(siteDefaultLanguageId)) &&
