@@ -1426,7 +1426,8 @@ public class StructuredContentResourceTest
 		return structuredContent;
 	}
 
-	private StructuredContent _randomStructuredContent(String dataValue)
+	private StructuredContent _randomStructuredContent(
+			String contentFieldValueData)
 		throws Exception {
 
 		StructuredContent structuredContent = super.randomStructuredContent();
@@ -1437,7 +1438,7 @@ public class StructuredContentResourceTest
 					{
 						contentFieldValue = new ContentFieldValue() {
 							{
-								data = dataValue;
+								data = contentFieldValueData;
 							}
 						};
 						name = "Foo";
