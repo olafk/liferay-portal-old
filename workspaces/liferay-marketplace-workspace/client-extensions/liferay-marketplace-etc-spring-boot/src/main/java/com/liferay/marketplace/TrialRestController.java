@@ -389,13 +389,14 @@ public class TrialRestController extends BaseRestController {
 
 		OrderResource orderResource = _getOrderResource();
 
-		Order order = new Order();
-
-		order.setCustomFields(() -> customFields);
-
-		order.setOrderStatus(() -> orderStatus);
-
-		orderResource.patchOrder(orderId, order);
+		orderResource.patchOrder(
+			orderId,
+			new Order() {
+				{
+					setCustomFields(() -> customFields);
+					setOrderStatus(() -> orderStatus);
+				}
+			});
 	}
 
 	private static final int _ORDER_STATUS_CANCELLED = 8;
