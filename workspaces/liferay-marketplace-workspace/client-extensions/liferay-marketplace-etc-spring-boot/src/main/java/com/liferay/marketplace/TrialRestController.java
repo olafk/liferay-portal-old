@@ -56,9 +56,9 @@ public class TrialRestController extends BaseRestController {
 
 	@DeleteMapping("{orderId}")
 	public void delete(@RequestParam String orderId) throws Exception {
-		_deletePortalInstance(orderId);
-
 		_consoleService.deleteProject(orderId);
+
+		_deletePortalInstance(orderId);
 	}
 
 	@PostMapping("provisioning")
@@ -66,12 +66,7 @@ public class TrialRestController extends BaseRestController {
 			@AuthenticationPrincipal Jwt jwt, @RequestBody String json)
 		throws Exception {
 
-		_initResourceBuilders();
-
 		JSONObject jsonObject = new JSONObject(json);
-
-		JSONObject modelDTOOrderJSONObject = jsonObject.getJSONObject(
-			"modelDTOOrder");
 
 		long orderId = jsonObject.getLong("classPK");
 
@@ -79,7 +74,12 @@ public class TrialRestController extends BaseRestController {
 			_log.info("Provisioning order " + orderId);
 		}
 
-		Page<Order> ordersPage = _orderResource.getOrdersPage(
+		JSONObject modelDTOOrderJSONObject = jsonObject.getJSONObject(
+			"modelDTOOrder");
+
+		OrderResource orderResource = _getOrderResource();
+
+		Page<Order> ordersPage = orderResource.getOrdersPage(
 			"",
 			"accountId/any(x:(x eq " +
 				modelDTOOrderJSONObject.getString("accountId") +
@@ -121,7 +121,7 @@ public class TrialRestController extends BaseRestController {
 		}
 		catch (Exception exception) {
 			_log.error(
-				"Unable to set up cloud project for order " + orderId + ":",
+				"Unable to set up project for order " + orderId + ":",
 				exception);
 
 			_deletePortalInstance(String.valueOf(orderId));
@@ -207,8 +207,23 @@ public class TrialRestController extends BaseRestController {
 		}
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Virtual instance deleted for order " + orderId);
+			_log.info("Portal instance deleted for order " + orderId);
 		}
+	}
+
+	private OrderResource _getOrderResource() throws Exception {
+		URL liferayDXPURL = new URL(
+			lxcDXPServerProtocol + "://" + lxcDXPMainDomain);
+
+		return OrderResource.builder(
+		).endpoint(
+			liferayDXPURL
+		).header(
+			HttpHeaders.AUTHORIZATION,
+			_liferayOAuth2AccessTokenManager.getAuthorization(
+				"liferay-marketplace-etc-spring-boot-oauth-application-" +
+					"headless-server")
+		).build();
 	}
 
 	private PortalInstanceResource _getPortalInstanceResource()
@@ -231,21 +246,6 @@ public class TrialRestController extends BaseRestController {
 			_getPortalInstanceResource();
 
 		return portalInstanceResource.getPortalInstancesPage(true);
-	}
-
-	private void _initResourceBuilders() throws Exception {
-		URL liferayDXPURL = new URL(
-			lxcDXPServerProtocol + "://" + lxcDXPMainDomain);
-
-		_orderResource = OrderResource.builder(
-		).endpoint(
-			liferayDXPURL
-		).header(
-			HttpHeaders.AUTHORIZATION,
-			_liferayOAuth2AccessTokenManager.getAuthorization(
-				"liferay-marketplace-etc-spring-boot-oauth-application-" +
-					"headless-server")
-		).build();
 	}
 
 	private void _postNotificationQueueEntry(
@@ -383,13 +383,15 @@ public class TrialRestController extends BaseRestController {
 			Map<String, ?> customFields, long orderId, int orderStatus)
 		throws Exception {
 
+		OrderResource orderResource = _getOrderResource();
+
 		Order order = new Order();
 
 		order.setCustomFields(() -> customFields);
 
 		order.setOrderStatus(() -> orderStatus);
 
-		_orderResource.patchOrder(orderId, order);
+		orderResource.patchOrder(orderId, order);
 	}
 
 	private static final int _ORDER_STATUS_CANCELLED = 8;
@@ -413,8 +415,6 @@ public class TrialRestController extends BaseRestController {
 
 	@Autowired
 	private LiferayOAuth2AccessTokenManager _liferayOAuth2AccessTokenManager;
-
-	private OrderResource _orderResource;
 
 	@Value("${liferay.marketplace.trial.dxp.domain}")
 	private String _trialDXPDomain;
