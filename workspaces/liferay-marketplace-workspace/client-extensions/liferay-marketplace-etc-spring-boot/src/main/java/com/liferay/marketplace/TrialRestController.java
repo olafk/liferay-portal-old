@@ -347,6 +347,9 @@ public class TrialRestController extends BaseRestController {
 			Jwt jwt, String emailAddress, long orderId)
 		throws Exception {
 
+		PortalInstanceResource portalInstanceResource =
+			_getPortalInstanceResource();
+
 		PortalInstance portalInstance = new PortalInstance();
 
 		Admin admin = new Admin();
@@ -361,15 +364,16 @@ public class TrialRestController extends BaseRestController {
 				"username"
 			).toString());
 
-		String domain = orderId + "." + _trialDXPDomain;
-
 		portalInstance.setAdmin(() -> admin);
 
 		portalInstance.setDomain(() -> "lxc.app");
+
+		String domain = orderId + "." + _trialDXPDomain;
+
 		portalInstance.setPortalInstanceId(() -> domain);
 		portalInstance.setVirtualHost(() -> domain);
 
-		portalInstance = _getPortalInstanceResource().postPortalInstance(
+		portalInstance = portalInstanceResource.postPortalInstance(
 			portalInstance);
 
 		if (_log.isInfoEnabled()) {
