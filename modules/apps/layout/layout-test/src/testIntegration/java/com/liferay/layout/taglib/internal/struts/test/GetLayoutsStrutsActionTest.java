@@ -98,13 +98,12 @@ public class GetLayoutsStrutsActionTest {
 			_companyLocalService.getCompany(_group.getCompanyId()), _group,
 			_layoutLocalService.getLayout(
 				_portal.getControlPanelPlid(_group.getCompanyId())));
-
 		_user = UserTestUtil.addGroupUser(_group, RoleConstants.SITE_MEMBER);
 	}
 
 	@Test
 	public void testGetLayoutsStrutsActionWithPagination() throws Exception {
-		Map<Long, List<Long>> layoutIdsMap = _getLayouts(
+		Map<Long, List<Long>> layoutIdsMap = _getLayoutIdsMap(
 			_COUNT_ROOT_LAYOUTS, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
 
 		int count = layoutIdsMap.size();
@@ -170,7 +169,8 @@ public class GetLayoutsStrutsActionTest {
 		}
 	}
 
-	private Map<Long, List<Long>> _getLayouts(int count, long parentLayoutId)
+	private Map<Long, List<Long>> _getLayoutIdsMap(
+			int count, long parentLayoutId)
 		throws Exception {
 
 		Map<Long, List<Long>> layoutIdsMap = new HashMap<>();
@@ -209,7 +209,7 @@ public class GetLayoutsStrutsActionTest {
 			if ((parentLayoutId == LayoutConstants.DEFAULT_PARENT_LAYOUT_ID) &&
 				_randomBooleanWithProbability(_CHILDREN_PROBABILITY)) {
 
-				Map<Long, List<Long>> childrenLayoutIdsMap = _getLayouts(
+				Map<Long, List<Long>> childrenLayoutIdsMap = _getLayoutIdsMap(
 					_COUNT_CHILDREN_LAYOUTS, layout.getLayoutId());
 
 				childrenLayoutIds.addAll(childrenLayoutIdsMap.keySet());
@@ -227,7 +227,6 @@ public class GetLayoutsStrutsActionTest {
 
 		MockHttpServletRequest mockHttpServletRequest =
 			_getMockHttpServletRequest(start, end);
-
 		MockHttpServletResponse mockHttpServletResponse =
 			new MockHttpServletResponse();
 
@@ -258,10 +257,8 @@ public class GetLayoutsStrutsActionTest {
 
 		mockHttpServletRequest.addParameter(
 			"groupId", String.valueOf(_group.getGroupId()));
-
 		mockHttpServletRequest.addParameter("start", String.valueOf(start));
 		mockHttpServletRequest.addParameter("end", String.valueOf(end));
-
 		mockHttpServletRequest.setAttribute(
 			WebKeys.LAYOUT, _themeDisplay.getLayout());
 		mockHttpServletRequest.setAttribute(
