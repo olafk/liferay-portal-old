@@ -47,7 +47,7 @@ public class ConsoleService {
 			return _accessToken;
 		}
 
-		String response = WebClient.create(
+		String json = WebClient.create(
 			_consoleAuthURL
 		).post(
 		).uri(
@@ -68,12 +68,12 @@ public class ConsoleService {
 			String.class
 		).block();
 
-		if (response == null) {
+		if (json == null) {
 			throw new Exception("Unable to get authorization");
 		}
 
 		_accessToken = new JSONObject(
-			response
+			json
 		).getString(
 			"token"
 		);
@@ -83,21 +83,20 @@ public class ConsoleService {
 		return _accessToken;
 	}
 
-	public void setUpCloudProject(String dxpVirtualInstanceId, long orderId)
+	public void setUpProject(String dxpVirtualInstanceId, long orderId)
 		throws Exception {
 
-		JSONObject projectJSONObject = _postProject(
+		JSONObject jsonObject = _postProject(
 			true, _consoleProjectPrefix + "-ext" + orderId);
 
 		_inviteProject(
-			_trialAdminEmailAddress, projectJSONObject.getString("projectId"));
+			_trialAdminEmailAddress, jsonObject.getString("projectId"));
 
-		_linkDXPWithProject(
-			dxpVirtualInstanceId, projectJSONObject.getString("id"));
+		_linkDXPWithProject(dxpVirtualInstanceId, jsonObject.getString("id"));
 
 		_deployApp(
 			_consoleAuthEmailAddress, String.valueOf(orderId),
-			projectJSONObject.getString("projectId"));
+			jsonObject.getString("projectId"));
 	}
 
 	private void _deployApp(String email, String orderId, String projectId)

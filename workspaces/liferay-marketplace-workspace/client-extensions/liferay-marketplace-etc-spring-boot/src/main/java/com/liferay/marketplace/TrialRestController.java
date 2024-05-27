@@ -122,7 +122,7 @@ public class TrialRestController extends BaseRestController {
 			orderId);
 
 		try {
-			_consoleService.setUpCloudProject(
+			_consoleService.setUpProject(
 				portalInstance.getVirtualHost(), orderId);
 		}
 		catch (Exception exception) {
