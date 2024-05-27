@@ -108,16 +108,16 @@ public class GetLayoutsStrutsActionTest {
 
 		int count = layoutIdsMap.size();
 
-		int completePagesCount = count / _PAGE_SIZE;
+		int pagesCount = count / _PAGE_SIZE;
 		int remainingItemsCount = count % _PAGE_SIZE;
 
-		int lastPageIndex = completePagesCount - 1;
+		int lastPageIndex = pagesCount - 1;
 
 		if (remainingItemsCount > 0) {
 			lastPageIndex++;
 		}
 
-		for (int i = 0, offset = 0; i < completePagesCount;
+		for (int i = 0, offset = 0; i < pagesCount;
 			 i++, offset = offset + _PAGE_SIZE) {
 
 			_assertGetLayoutsStrutsAction(
@@ -128,7 +128,7 @@ public class GetLayoutsStrutsActionTest {
 		if (remainingItemsCount > 0) {
 			_assertGetLayoutsStrutsAction(
 				remainingItemsCount, false, layoutIdsMap,
-				completePagesCount * _PAGE_SIZE, count);
+				pagesCount * _PAGE_SIZE, count);
 		}
 	}
 
