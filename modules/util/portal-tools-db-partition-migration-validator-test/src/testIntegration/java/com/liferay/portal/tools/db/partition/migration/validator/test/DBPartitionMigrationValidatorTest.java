@@ -74,6 +74,7 @@ public class DBPartitionMigrationValidatorTest extends BaseDBPartitionTestCase {
 	@After
 	public void tearDown() throws Exception {
 		FileUtils.deleteDirectory(_outputDirectory);
+
 		System.setErr(_originalErrPrintStream);
 		System.setOut(_originalOutPrintStream);
 	}
