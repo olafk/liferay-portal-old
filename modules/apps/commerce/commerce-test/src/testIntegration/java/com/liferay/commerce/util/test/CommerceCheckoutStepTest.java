@@ -128,16 +128,16 @@ public class CommerceCheckoutStepTest {
 			"A different account is created"
 		);
 
-		String email = "buyer@liferay.com";
+		String emailAddress = "buyer@liferay.com";
 
 		AccountEntry accountEntry1 = _accountEntryLocalService.addAccountEntry(
 			_serviceContext.getUserId(),
 			AccountConstants.PARENT_ACCOUNT_ENTRY_ID_DEFAULT,
-			RandomTestUtil.randomString(), null, null, email, null, null,
+			RandomTestUtil.randomString(), null, null, emailAddress, null, null,
 			AccountConstants.ACCOUNT_ENTRY_TYPE_BUSINESS,
 			WorkflowConstants.STATUS_APPROVED, _serviceContext);
 
-		Assert.assertEquals(email, accountEntry1.getEmailAddress());
+		Assert.assertEquals(emailAddress, accountEntry1.getEmailAddress());
 
 		CommerceOrder commerceOrder1 =
 			_commerceOrderLocalService.addCommerceOrder(
@@ -154,7 +154,8 @@ public class CommerceCheckoutStepTest {
 
 		Assert.assertTrue(commerceOrder2.isGuestOrder());
 
-		ActionRequest actionRequest = _processAction(commerceOrder2, email);
+		ActionRequest actionRequest = _processAction(
+			commerceOrder2, emailAddress);
 
 		commerceOrder2 = (CommerceOrder)actionRequest.getAttribute(
 			CommerceCheckoutWebKeys.COMMERCE_ORDER);
@@ -169,7 +170,7 @@ public class CommerceCheckoutStepTest {
 
 		AccountEntry accountEntry2 = commerceOrder2.getAccountEntry();
 
-		Assert.assertEquals(email, accountEntry2.getEmailAddress());
+		Assert.assertEquals(emailAddress, accountEntry2.getEmailAddress());
 
 		Assert.assertEquals(
 			1,
@@ -203,9 +204,10 @@ public class CommerceCheckoutStepTest {
 
 		Assert.assertTrue(commerceOrder1.isGuestOrder());
 
-		String email = "buyer@liferay.com";
+		String emailAddress = "buyer@liferay.com";
 
-		ActionRequest actionRequest = _processAction(commerceOrder1, email);
+		ActionRequest actionRequest = _processAction(
+			commerceOrder1, emailAddress);
 
 		commerceOrder1 = (CommerceOrder)actionRequest.getAttribute(
 			CommerceCheckoutWebKeys.COMMERCE_ORDER);
@@ -217,7 +219,7 @@ public class CommerceCheckoutStepTest {
 
 		Assert.assertTrue(commerceOrder2.isGuestOrder());
 
-		actionRequest = _processAction(commerceOrder2, email);
+		actionRequest = _processAction(commerceOrder2, emailAddress);
 
 		commerceOrder2 = (CommerceOrder)actionRequest.getAttribute(
 			CommerceCheckoutWebKeys.COMMERCE_ORDER);
@@ -234,8 +236,8 @@ public class CommerceCheckoutStepTest {
 		AccountEntry accountEntry1 = commerceOrder1.getAccountEntry();
 		AccountEntry accountEntry2 = commerceOrder2.getAccountEntry();
 
-		Assert.assertEquals(email, accountEntry1.getEmailAddress());
-		Assert.assertEquals(email, accountEntry2.getEmailAddress());
+		Assert.assertEquals(emailAddress, accountEntry1.getEmailAddress());
+		Assert.assertEquals(emailAddress, accountEntry2.getEmailAddress());
 	}
 
 	@Rule
@@ -256,7 +258,7 @@ public class CommerceCheckoutStepTest {
 	}
 
 	private MockLiferayPortletActionRequest _processAction(
-			CommerceOrder commerceOrder, String email)
+			CommerceOrder commerceOrder, String emailAddress)
 		throws Exception {
 
 		MockLiferayPortletActionRequest mockLiferayPortletActionRequest =
@@ -284,7 +286,7 @@ public class CommerceCheckoutStepTest {
 			"countryId", String.valueOf(_country.getCountryId()));
 		mockLiferayPortletActionRequest.setParameter(
 			"description", RandomTestUtil.randomString());
-		mockLiferayPortletActionRequest.setParameter("email", email);
+		mockLiferayPortletActionRequest.setParameter("email", emailAddress);
 		mockLiferayPortletActionRequest.setParameter(
 			"name", RandomTestUtil.randomString());
 		mockLiferayPortletActionRequest.setParameter("newAddress", "true");
