@@ -26,7 +26,10 @@ public interface PersistentAuditMessageProcessorConfiguration {
 	@Meta.AD(deflt = "2000", name = "buffer-size", required = false)
 	public int bufferSize();
 
-	@Meta.AD(deflt = "60000", name = "flush-interval", required = false)
+	@Meta.AD(
+		deflt = "60000", name = "flush-interval-in-milliseconds",
+		required = false
+	)
 	public long flushInterval();
 
 }
