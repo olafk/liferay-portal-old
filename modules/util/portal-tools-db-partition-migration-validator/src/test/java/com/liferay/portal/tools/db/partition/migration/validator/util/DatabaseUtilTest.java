@@ -85,6 +85,9 @@ public class DatabaseUtilTest extends BaseTestCase {
 
 	@Test
 	public void testReplaceSchemaName() {
+
+		//
+
 		Assert.assertEquals(
 			"jdbc:mysql://localhost:3306/lportal",
 			DatabaseUtil.replaceSchemaName(
@@ -94,6 +97,8 @@ public class DatabaseUtilTest extends BaseTestCase {
 			DatabaseUtil.replaceSchemaName(
 				"jdbc:postgresql://localhost:5432/lportal", null));
 
+		//
+
 		Assert.assertEquals(
 			"jdbc:mysql://localhost:3306/schemaName",
 			DatabaseUtil.replaceSchemaName(
@@ -101,7 +106,10 @@ public class DatabaseUtilTest extends BaseTestCase {
 		Assert.assertEquals(
 			"jdbc:postgresql://localhost:5432/lportal?currentSchema=schemaName",
 			DatabaseUtil.replaceSchemaName(
+
 				"jdbc:postgresql://localhost:5432/lportal", "schemaName"));
+
+		//
 
 		Assert.assertEquals(
 			"jdbc:mysql://localhost:3306/schemaName?parameter=value",
