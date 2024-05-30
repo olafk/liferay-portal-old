@@ -34,6 +34,14 @@ public class ListObjectFieldFilterContributorTest {
 
 	@Test
 	public void testValidate() throws PortalException {
+		Language language = Mockito.mock(Language.class);
+
+		Mockito.when(
+			language.get(LocaleUtil.getDefault(), "approved")
+		).thenReturn(
+			"approved"
+		);
+
 		ObjectViewFilterColumn objectViewFilterColumn = Mockito.mock(
 			ObjectViewFilterColumn.class);
 
@@ -47,14 +55,6 @@ public class ListObjectFieldFilterContributorTest {
 			objectViewFilterColumn.getJSON()
 		).thenReturn(
 			"{\"includes\": [0, 1]}"
-		);
-
-		Language language = Mockito.mock(Language.class);
-
-		Mockito.when(
-			language.get(LocaleUtil.getDefault(), "approved")
-		).thenReturn(
-			"approved"
 		);
 
 		ReflectionTestUtil.setFieldValue(
