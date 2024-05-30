@@ -369,7 +369,6 @@ public class NoticeableThreadPoolExecutorTest {
 		};
 
 		noticeableThreadPoolExecutor.execute(slowRunnable);
-
 		noticeableThreadPoolExecutor.execute(slowRunnable);
 
 		Assert.assertEquals(
