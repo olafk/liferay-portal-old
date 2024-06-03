@@ -56,7 +56,7 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 		Assert.assertTrue(httpResponseString.contains(key));
 	}
 
-	private void _assertRedirect(String redirect, HttpResponse httpResponse)
+	private void _assertRedirect(HttpResponse httpResponse, String redirect)
 		throws Exception {
 
 		Assert.assertEquals(httpResponse.getStatusCode(), 302);
@@ -103,12 +103,12 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 				"_mvcRenderCommandName=/login/login&p_p_id=", _P_P_ID,
 				"&p_p_lifecycle=1&p_p_mode=view&p_p_state=normal"));
 
-		_assertRedirect("/c", httpResponse1);
+		_assertRedirect(httpResponse1, "/c");
 
 		HttpResponse httpResponse2 = HttpUtil.doGet(
 			csrfToken, _createURL("/c"));
 
-		_assertRedirect(StringPool.SLASH, httpResponse2);
+		_assertRedirect(httpResponse2, StringPool.SLASH);
 
 		HttpResponse httpResponse3 = HttpUtil.doGet(
 			csrfToken, _createURL(StringPool.SLASH));
@@ -135,7 +135,7 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 			"&p_p_lifecycle=0&p_p_mode=view&p_p_state=exclusive&",
 			"saveLastPath=false");
 
-		_assertRedirect(redirect, httpResponse1);
+		_assertRedirect(httpResponse1, redirect);
 
 		HttpResponse httpResponse2 = HttpUtil.doGet(
 			csrfToken, _createURL(redirect));
