@@ -39,7 +39,7 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 		_assertContent(httpResponse, "Liferay.currentURL");
 
 		return ListUtil.fromArray(
-			new ObjectValuePair<>("homePage", httpResponse.getDuration()),
+			new ObjectValuePair<>("viewHomePage", httpResponse.getDuration()),
 			new ObjectValuePair<>(
 				"viewLoginPage", _viewLoginPage(httpResponse.getCSRFToken())),
 			new ObjectValuePair<>(
