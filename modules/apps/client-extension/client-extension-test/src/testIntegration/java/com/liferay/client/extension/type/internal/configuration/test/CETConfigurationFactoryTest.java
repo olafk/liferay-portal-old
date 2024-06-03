@@ -100,7 +100,7 @@ public class CETConfigurationFactoryTest {
 		String liferayMode = SystemProperties.get("liferay.mode");
 
 		try {
-			SystemProperties.set("liferay.mode", "non-test");
+			SystemProperties.clear("liferay.mode");
 
 			Dictionary<String, Object> properties =
 				HashMapDictionaryBuilder.<String, Object>put(
