@@ -36,7 +36,7 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 		HttpResponse httpResponse = HttpUtil.doGet(
 			null, _creatURL(StringPool.FORWARD_SLASH));
 
-		_assertResult(httpResponse, "Liferay.currentURL");
+		_assertContent(httpResponse, "Liferay.currentURL");
 
 		return ListUtil.fromArray(
 			new ObjectValuePair<>("homePage", httpResponse.getDuration()),
@@ -59,7 +59,7 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 		Assert.assertEquals(url.toString(), httpResponse.getRedirect());
 	}
 
-	private void _assertResult(HttpResponse httpResponse, String key) {
+	private void _assertContent(HttpResponse httpResponse, String key) {
 		Assert.assertEquals(httpResponse.getStatusCode(), 200);
 
 		String httpResponseString = httpResponse.toString();
@@ -114,7 +114,7 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 		HttpResponse httpResponse3 = HttpUtil.doGet(
 			csrfToken, _creatURL(StringPool.SLASH));
 
-		_assertResult(httpResponse3, "ProductNavigationUserPersonalBarPortlet");
+		_assertContent(httpResponse3, "ProductNavigationUserPersonalBarPortlet");
 
 		return _getDuration(httpResponse1, httpResponse2, httpResponse3);
 	}
@@ -139,7 +139,7 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 		HttpResponse httpResponse2 = HttpUtil.doGet(
 			csrfToken, _creatURL(redirect));
 
-		_assertResult(httpResponse2, "Remember Me");
+		_assertContent(httpResponse2, "Remember Me");
 
 		return _getDuration(httpResponse1, httpResponse2);
 	}
