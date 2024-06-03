@@ -72,13 +72,13 @@ public class LiferayOAuth2ResourceServerEnableWebSecurityTest {
 			new JWSAlgorithmFamilyJWSKeySelector<>(
 				JWSAlgorithm.Family.RSA,
 				new RemoteJWKSet<>(
-					new URL("http://localhost:8181/o/oauth2/jwks")))
+					new URL("http://localhost:63636/o/oauth2/jwks")))
 		);
 
-		_clientAndServer = ClientAndServer.startClientAndServer(8181);
+		_clientAndServer = ClientAndServer.startClientAndServer(63636);
 
 		new MockServerClient(
-			"localhost", 8181
+			"localhost", 63636
 		).when(
 			HttpRequest.request(
 			).withMethod(
@@ -107,7 +107,7 @@ public class LiferayOAuth2ResourceServerEnableWebSecurityTest {
 	@Test
 	public void testGetJWTWithClientIdFromERC() throws Exception {
 		try (CloseableMockServerClient closeableMockServerClient =
-				new CloseableMockServerClient("localhost", 8181)) {
+				new CloseableMockServerClient("localhost", 63636)) {
 
 			closeableMockServerClient.when(
 				HttpRequest.request(

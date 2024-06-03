@@ -69,13 +69,13 @@ public class LiferayOAuth2ClientConfigurationExternalTest {
 			new JWSAlgorithmFamilyJWSKeySelector<>(
 				JWSAlgorithm.Family.RSA,
 				new RemoteJWKSet<>(
-					new URL("http://localhost:8181/o/oauth2/jwks")))
+					new URL("http://localhost:63636/o/oauth2/jwks")))
 		);
 
-		_clientAndServer = ClientAndServer.startClientAndServer(8181);
+		_clientAndServer = ClientAndServer.startClientAndServer(63636);
 
 		new MockServerClient(
-			"localhost", 8181
+			"localhost", 63636
 		).when(
 			HttpRequest.request(
 			).withMethod(
@@ -117,7 +117,7 @@ public class LiferayOAuth2ClientConfigurationExternalTest {
 			clientRegistration.getProviderDetails();
 
 		Assert.assertEquals(
-			"http://localhost:8181/o/oauth2/token",
+			"http://localhost:63636/o/oauth2/token",
 			providerDetails.getTokenUri());
 	}
 
