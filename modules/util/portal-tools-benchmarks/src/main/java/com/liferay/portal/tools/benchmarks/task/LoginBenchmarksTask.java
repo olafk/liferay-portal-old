@@ -123,15 +123,15 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 			},
 			_newURL(_URL_LOGIN_POST));
 
-		_assertRedirect(httpResponse1, _URL_REDIRECT);
+		_assertRedirect(httpResponse1, "/c");
 
 		HttpResponse httpResponse2 = HttpUtil.doGet(
-			csrfToken, _newURL(_URL_REDIRECT));
+			csrfToken, _newURL("/c"));
 
-		_assertRedirect(httpResponse2, _URL_LOGIN_REDIRECT);
+		_assertRedirect(httpResponse2, StringPool.SLASH);
 
 		HttpResponse httpResponse3 = HttpUtil.doGet(
-			csrfToken, _newURL(_URL_LOGIN_REDIRECT));
+			csrfToken, _newURL(StringPool.SLASH));
 
 		_assertResult(httpResponse3, "ProductNavigationUserPersonalBarPortlet");
 
@@ -178,10 +178,6 @@ public class LoginBenchmarksTask implements BenchmarksTask {
 		"p_p_state=normal&p_p_mode=view&", _P_P_ID_PREFIX,
 		"_javax.portlet.action=/login/login&", _P_P_ID_PREFIX,
 		"_mvcRenderCommandName=/login/login");
-
-	private static final String _URL_LOGIN_REDIRECT = StringPool.SLASH;
-
-	private static final String _URL_REDIRECT = "/c";
 
 	private final String _emailAddress;
 	private final String _hostName;
