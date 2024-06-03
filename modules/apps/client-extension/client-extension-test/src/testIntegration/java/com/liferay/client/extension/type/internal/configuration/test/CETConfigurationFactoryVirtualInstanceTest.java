@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.SystemProperties;
 import com.liferay.portal.test.rule.Inject;
@@ -197,7 +198,8 @@ public class CETConfigurationFactoryVirtualInstanceTest {
 		}
 	}
 
-	private static final String _VIRTUAL_HOSTNAME = "vi.localtest.me";
+	private static final String _VIRTUAL_HOSTNAME =
+		RandomTestUtil.randomString() + ".localtest.me";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		CETConfigurationFactoryVirtualInstanceTest.class);
