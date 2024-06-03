@@ -24,12 +24,12 @@ import java.util.Objects;
 public class LoginBenchmarksTask implements BenchmarksTask {
 
 	public LoginBenchmarksTask(
-		String hostname, int port, String emailAddress, String password) {
+		String emailAddress, String hostname, String password, int port) {
 
-		_hostname = hostname;
-		_port = port;
 		_emailAddress = emailAddress;
+		_hostname = hostname;
 		_password = password;
+		_port = port;
 	}
 
 	public List<Map.Entry<String, Long>> execute() throws Exception {
