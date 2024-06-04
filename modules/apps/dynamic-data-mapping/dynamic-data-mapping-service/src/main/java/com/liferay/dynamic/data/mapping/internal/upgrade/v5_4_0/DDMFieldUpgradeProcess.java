@@ -48,7 +48,6 @@ public class DDMFieldUpgradeProcess extends UpgradeProcess {
 
 				updatePreparedStatement.setLong(
 					2, resultSet.getLong("ctCollectionId"));
-
 				updatePreparedStatement.setLong(
 					3, resultSet.getLong("fieldId"));
 

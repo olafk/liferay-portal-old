@@ -68,11 +68,9 @@ public class DDMContentUpgradeProcessTest extends BaseCTUpgradeProcessTestCase {
 		fieldSetDDMFormField.addNestedDDMFormField(
 			DDMFormTestUtil.createTextDDMFormField(
 				"field1", false, false, false));
-
 		fieldSetDDMFormField.addNestedDDMFormField(
 			DDMFormTestUtil.createTextDDMFormField(
 				"field2", false, false, false));
-
 		fieldSetDDMFormField.setProperty(
 			"rows",
 			JSONUtil.putAll(
