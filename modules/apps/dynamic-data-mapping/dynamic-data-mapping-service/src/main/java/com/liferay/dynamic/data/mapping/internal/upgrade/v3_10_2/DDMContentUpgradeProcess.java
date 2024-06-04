@@ -72,8 +72,8 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 			PreparedStatement updatePreparedStatement =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
-					"update DDMContent set data_ = ? where contentId = ? and " +
-						"ctCollectionId = ?")) {
+					"update DDMContent set data_ = ? where ctCollectionId = " +
+						"? and contentId = ?")) {
 
 			try (ResultSet resultSet = selectPreparedStatement.executeQuery()) {
 				while (resultSet.next()) {
@@ -88,9 +88,9 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 
 					updatePreparedStatement.setString(1, newData);
 					updatePreparedStatement.setLong(
-						2, resultSet.getLong("contentId"));
+						2, resultSet.getLong("ctCollectionId"));
 					updatePreparedStatement.setLong(
-						3, resultSet.getLong("ctCollectionId"));
+						3, resultSet.getLong("contentId"));
 
 					updatePreparedStatement.addBatch();
 				}
