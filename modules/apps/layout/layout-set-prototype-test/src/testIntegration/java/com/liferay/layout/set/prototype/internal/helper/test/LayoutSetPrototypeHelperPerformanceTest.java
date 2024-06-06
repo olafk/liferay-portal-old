@@ -67,13 +67,13 @@ public class LayoutSetPrototypeHelperPerformanceTest {
 	public void testGetDuplicatedFriendlyURLLayoutsWithLayoutSetPrototypeLayout()
 		throws Exception {
 
-		List<Long> layoutPlids = new ArrayList<>();
+		List<Long> plids = new ArrayList<>();
 
 		for (Group group : _groups) {
 			Layout layout = LayoutTestUtil.addTypePortletLayout(
 				group.getGroupId(), "test", false);
 
-			layoutPlids.add(layout.getPlid());
+			plids.add(layout.getPlid());
 		}
 
 		Layout layoutSetPrototypeLayout = LayoutTestUtil.addTypePortletLayout(
@@ -82,21 +82,20 @@ public class LayoutSetPrototypeHelperPerformanceTest {
 		_entityCache.clearCache();
 		_multiVMPool.clear();
 
-		long[] conflictLayoutPlids = null;
+		long[] conflictPlids = null;
 
 		try (PerformanceTimer performanceTimer = new PerformanceTimer(1000)) {
-			conflictLayoutPlids = TransformUtil.transformToLongArray(
+			conflictPlids = TransformUtil.transformToLongArray(
 				_layoutSetPrototypeHelper.getDuplicatedFriendlyURLLayouts(
 					layoutSetPrototypeLayout),
 				layout -> layout.getPlid());
 		}
 
 		Assert.assertEquals(
-			conflictLayoutPlids.toString(), layoutPlids.size(),
-			conflictLayoutPlids.length);
+			conflictPlids.toString(), plids.size(), conflictPlids.length);
 
-		for (Long plid : layoutPlids) {
-			Assert.assertTrue(ArrayUtil.contains(conflictLayoutPlids, plid));
+		for (Long plid : plids) {
+			Assert.assertTrue(ArrayUtil.contains(conflictPlids, plid));
 		}
 	}
 
