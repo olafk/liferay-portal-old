@@ -856,20 +856,17 @@ public class UserLocalServiceTest {
 		long userId = user.getUserId();
 
 		user = _assertFailedLoginAttempts(
-			1,
 			() -> _userLocalService.authenticateByEmailAddress(
 				companyId, emailAddress, RandomTestUtil.randomString(), null,
 				null, null),
 			user);
 		user = _assertFailedLoginAttempts(
-			1,
 			() -> _userLocalService.authenticateByScreenName(
 				companyId, screenName, RandomTestUtil.randomString(), null,
 				null, null),
 			user);
 
 		_assertFailedLoginAttempts(
-			1,
 			() -> _userLocalService.authenticateByUserId(
 				companyId, userId, RandomTestUtil.randomString(), null, null,
 				null),
@@ -1088,7 +1085,6 @@ public class UserLocalServiceTest {
 	}
 
 	private User _assertFailedLoginAttempts(
-			int expectedFailedLoginAttempts,
 			UnsafeRunnable<PortalException> unsafeRunnable, User user)
 		throws Exception {
 
@@ -1102,8 +1098,7 @@ public class UserLocalServiceTest {
 
 		user = _userLocalService.fetchUser(user.getUserId());
 
-		Assert.assertEquals(
-			expectedFailedLoginAttempts, user.getFailedLoginAttempts());
+		Assert.assertEquals(1, user.getFailedLoginAttempts());
 
 		return user;
 	}
