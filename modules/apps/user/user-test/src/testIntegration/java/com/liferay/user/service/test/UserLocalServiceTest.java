@@ -890,18 +890,18 @@ public class UserLocalServiceTest {
 		String screenName = user.getScreenName();
 		long userId = user.getUserId();
 
-		user = _assertUnlockout(
+		user = _assertLockout(
 			() -> _userLocalService.authenticateByEmailAddress(
 				companyId, emailAddress, RandomTestUtil.randomString(), null,
 				null, null),
 			user);
-		user = _assertUnlockout(
+		user = _assertLockout(
 			() -> _userLocalService.authenticateByScreenName(
 				companyId, screenName, RandomTestUtil.randomString(), null,
 				null, null),
 			user);
 
-		_assertUnlockout(
+		_assertLockout(
 			() -> _userLocalService.authenticateByUserId(
 				companyId, userId, RandomTestUtil.randomString(), null, null,
 				null),
@@ -1103,7 +1103,7 @@ public class UserLocalServiceTest {
 		return user;
 	}
 
-	private User _assertUnlockout(
+	private User _assertLockout(
 			UnsafeRunnable<PortalException> unsafeRunnable, User user)
 		throws Exception {
 
