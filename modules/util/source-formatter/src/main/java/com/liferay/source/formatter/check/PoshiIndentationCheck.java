@@ -83,7 +83,7 @@ public class PoshiIndentationCheck extends BaseFileCheck {
 		sb.append(CharPool.NEW_LINE);
 		sb.append(indent);
 
-		return _formatJsonInCurl(sb.toString());
+		return _formatJSONInCurl(sb.toString());
 	}
 
 	private String _fixTableIndentation(
@@ -181,7 +181,7 @@ public class PoshiIndentationCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private String _formatJsonInCurl(String content) {
+	private String _formatJSONInCurl(String content) {
 		int x = content.indexOf("-d '{");
 
 		if (x == -1) {
