@@ -508,7 +508,6 @@ public class FinderCacheImpl
 
 		_serviceRegistration = bundleContext.registerService(
 			CacheRegistryItem.class, new FinderCacheCacheRegistryItem(), null);
-
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
 			bundleContext, ArgumentsResolver.class, "class.name",
 			new ServiceTrackerCustomizer
