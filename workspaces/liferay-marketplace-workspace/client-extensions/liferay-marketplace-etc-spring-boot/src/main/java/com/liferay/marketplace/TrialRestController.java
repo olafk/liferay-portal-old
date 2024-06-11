@@ -348,7 +348,7 @@ public class TrialRestController extends BaseRestController {
 				HttpHeaders.AUTHORIZATION, authorization
 			).build();
 
-		NotificationTemplate notificationTemplate = null;
+		NotificationTemplate notificationTemplate;
 
 		try {
 			notificationTemplate =
@@ -375,18 +375,13 @@ public class TrialRestController extends BaseRestController {
 		NotificationQueueEntry notificationQueueEntry =
 			new NotificationQueueEntry();
 
-		String body = notificationTemplate.getBody(
-		).get(
-			"en_US"
-		);
-
-		for (Map.Entry<String, String> entry : map.entrySet()) {
-			body = StringUtil.replace(body, entry.getKey(), entry.getValue());
-		}
-
-		String finalBody = body;
-
-		notificationQueueEntry.setBody(() -> finalBody);
+		notificationQueueEntry.setBody(
+			() -> _replace(
+				notificationTemplate.getBody(
+				).get(
+					"en_US"
+				),
+				map));
 
 		JSONArray jsonArray = new JSONObject(
 			String.valueOf(notificationTemplate)
@@ -412,20 +407,13 @@ public class TrialRestController extends BaseRestController {
 				).build()
 			});
 
-		String subject = notificationTemplate.getSubject(
-		).get(
-			"en_US"
-		);
-
-		for (Map.Entry<String, String> entry : map.entrySet()) {
-			subject = StringUtil.replace(
-				subject, entry.getKey(), entry.getValue());
-		}
-
-		String finalSubject = subject;
-
-		notificationQueueEntry.setSubject(() -> finalSubject);
-
+		notificationQueueEntry.setSubject(
+			() -> _replace(
+				notificationTemplate.getSubject(
+				).get(
+					"en_US"
+				),
+				map));
 		notificationQueueEntry.setType(notificationTemplate::getType);
 
 		notificationQueueEntryResource.postNotificationQueueEntry(
@@ -477,6 +465,15 @@ public class TrialRestController extends BaseRestController {
 		}
 
 		return portalInstance;
+	}
+
+	private String _replace(String string, Map<String, String> map) {
+		for (Map.Entry<String, String> entry : map.entrySet()) {
+			string = StringUtil.replace(
+				string, entry.getKey(), entry.getValue());
+		}
+
+		return string;
 	}
 
 	private void _updateOrder(
