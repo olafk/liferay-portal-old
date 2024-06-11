@@ -68,23 +68,15 @@ public class InviteAccountUsersMVCActionCommandTest {
 		_group = GroupTestUtil.addGroup();
 
 		_company = _companyLocalService.getCompany(_group.getCompanyId());
-
 		_layout = LayoutTestUtil.addTypeContentLayout(_group);
-
 		_serviceContext = ServiceContextTestUtil.getServiceContext(
 			_group.getGroupId(), TestPropsValues.getUserId());
 	}
 
 	@Test
 	public void testInviteAccountUser() throws Exception {
-		User user = _userLocalService.fetchUserByEmailAddress(
-			_company.getCompanyId(), "test@liferay.com");
-
 		MockLiferayPortletActionRequest mockLiferayPortletActionRequest =
 			new MockLiferayPortletActionRequest();
-
-		mockLiferayPortletActionRequest.setAttribute(
-			WebKeys.THEME_DISPLAY, _getThemeDisplay());
 
 		mockLiferayPortletActionRequest.addParameter(
 			"accountEntryId",
@@ -92,7 +84,9 @@ public class InviteAccountUsersMVCActionCommandTest {
 		mockLiferayPortletActionRequest.addParameter("count", "1");
 		mockLiferayPortletActionRequest.addParameter(
 			"emailAddresses0",
-			new String[] {"test@liferay.com", "buyer@liferay.com"});
+			new String[] {"buyer@liferay.com", "test@liferay.com"});
+		mockLiferayPortletActionRequest.setAttribute(
+			WebKeys.THEME_DISPLAY, _getThemeDisplay());
 
 		ReflectionTestUtil.invoke(
 			_mvcActionCommand, "doTransactionalCommand",
@@ -101,6 +95,9 @@ public class InviteAccountUsersMVCActionCommandTest {
 			new MockLiferayPortletActionResponse());
 
 		List<User> accountEntryUsers = _accountEntry.fetchUsers();
+
+		User user = _userLocalService.fetchUserByEmailAddress(
+			_company.getCompanyId(), "test@liferay.com");
 
 		Assert.assertFalse(accountEntryUsers.contains(user));
 
