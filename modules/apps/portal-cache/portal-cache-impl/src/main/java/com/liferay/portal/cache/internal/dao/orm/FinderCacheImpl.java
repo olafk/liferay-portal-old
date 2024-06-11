@@ -709,34 +709,37 @@ public class FinderCacheImpl
 				argumentsResolverHolder = _argumentsResolverHolderMap.get(
 					tableName);
 
-				if (argumentsResolverHolder != null) {
-					ArgumentsResolver argumentsResolver =
-						argumentsResolverHolder.getArgumentsResolver();
+				if (argumentsResolverHolder == null) {
+					continue;
+				}
 
-					if (!Objects.equals(
-							argumentsResolver.getClassName(),
-							argumentsResolver.getTableName())) {
+				ArgumentsResolver argumentsResolver =
+					argumentsResolverHolder.getArgumentsResolver();
 
-						Class<?> clazz = argumentsResolver.getClass();
+				if (Objects.equals(
+						argumentsResolver.getClassName(),
+						argumentsResolver.getTableName())) {
 
-						ClassLoader classLoader = clazz.getClassLoader();
+					continue;
+				}
 
-						try {
-							Class<?> modelImplClass = classLoader.loadClass(
-								argumentsResolver.getClassName());
+				Class<?> clazz = argumentsResolver.getClass();
 
-							ctAware = CTModel.class.isAssignableFrom(
-								modelImplClass);
+				ClassLoader classLoader = clazz.getClassLoader();
 
-							if (ctAware) {
-								break;
-							}
-						}
-						catch (ClassNotFoundException classNotFoundException) {
-							if (_log.isWarnEnabled()) {
-								_log.warn(classNotFoundException);
-							}
-						}
+				try {
+					Class<?> modelImplClass = classLoader.loadClass(
+						argumentsResolver.getClassName());
+
+					ctAware = CTModel.class.isAssignableFrom(modelImplClass);
+
+					if (ctAware) {
+						break;
+					}
+				}
+				catch (ClassNotFoundException classNotFoundException) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(classNotFoundException);
 					}
 				}
 			}
