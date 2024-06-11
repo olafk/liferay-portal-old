@@ -87,7 +87,9 @@ public class DLFileShortcutLocalServiceTest {
 	}
 
 	@Test(expected = NoSuchFolderException.class)
-	public void testAddDLFileShortcutWithDLFolderFromOtherGroup() throws Exception {
+	public void testAddDLFileShortcutWithDLFolderFromOtherGroup()
+		throws Exception {
+
 		Group group = GroupTestUtil.addGroup();
 
 		DLFolder dlFolder = DLTestUtil.addDLFolder(group.getGroupId());
