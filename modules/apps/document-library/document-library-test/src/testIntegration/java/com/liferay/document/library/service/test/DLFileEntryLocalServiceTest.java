@@ -58,7 +58,6 @@ import com.liferay.expando.kernel.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.expando.kernel.service.ExpandoTableLocalServiceUtil;
 import com.liferay.petra.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.petra.sql.dsl.DSLQueryFactoryUtil;
-import com.liferay.petra.sql.dsl.query.DSLQuery;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.test.util.ConfigurationTemporarySwapper;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -1276,37 +1275,36 @@ public class DLFileEntryLocalServiceTest {
 		}
 
 		AtomicInteger atomicInteger = new AtomicInteger(0);
+		String description = RandomTestUtil.randomString();
+		RuntimeException runtimeException = new RuntimeException();
 
 		try {
 			_dlFileEntryLocalService.forEachFileEntry(
 				TestPropsValues.getCompanyId(),
 				dlFileEntry -> {
 					if (atomicInteger.incrementAndGet() == 20) {
-						throw new TestException();
+						throw runtimeException;
 					}
 
-					dlFileEntry.setDescription("Updated");
+					dlFileEntry.setDescription(description);
 				},
 				0L, new String[] {ContentTypes.TEXT_PLAIN});
 
-			Assert.fail("TestException was not thrown");
+			Assert.fail();
 		}
 		catch (SystemException systemException) {
-			if (!(systemException.getCause() instanceof TestException)) {
-				throw systemException;
-			}
+			Assert.assertEquals(systemException.getCause(), runtimeException);
 		}
 
-		DSLQuery dslQuery = DSLQueryFactoryUtil.count(
-		).from(
-			DLFileEntryTable.INSTANCE
-		).where(
-			DLFileEntryTable.INSTANCE.description.eq("Updated")
-		);
-
-		int countUpdated = _dlFileEntryLocalService.dslQueryCount(dslQuery);
-
-		Assert.assertEquals(10, countUpdated);
+		Assert.assertEquals(
+			10,
+			_dlFileEntryLocalService.dslQueryCount(
+				DSLQueryFactoryUtil.count(
+				).from(
+					DLFileEntryTable.INSTANCE
+				).where(
+					DLFileEntryTable.INSTANCE.description.eq(description)
+				)));
 	}
 
 	@Test
@@ -1673,8 +1671,5 @@ public class DLFileEntryLocalServiceTest {
 
 	@DeleteAfterTestRun
 	private Group _group;
-
-	private static class TestException extends RuntimeException {
-	}
 
 }
