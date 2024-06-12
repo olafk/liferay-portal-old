@@ -162,7 +162,7 @@ public class DisplayPageInfoItemFieldSetProviderTest {
 
 	@Test
 	public void testGetInfoFieldValuesWithDoAsUserId() throws Exception {
-		_themeDisplay.setDoAsUserId("impersonated");
+		_themeDisplay.setDoAsUserId(RandomTestUtil.randomString());
 
 		_assertInfoFieldValues(
 			FriendlyURLResolverConstants.URL_SEPARATOR_X_CUSTOM_ASSET);
