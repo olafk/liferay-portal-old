@@ -59,12 +59,13 @@ public class PBKDF2PasswordEncryptor implements PasswordEncryptor {
 				pbkdf2EncryptionConfiguration.getSaltBytes(),
 				pbkdf2EncryptionConfiguration.getRounds());
 
+			byte[] saltBytes = pbkdf2EncryptionConfiguration.getSaltBytes();
+
 			KeyParameter keyParameter =
 				(KeyParameter)
 					pkcs5S2ParametersGenerator.generateDerivedMacParameters(
 						pbkdf2EncryptionConfiguration.getKeySize());
 
-			byte[] saltBytes = pbkdf2EncryptionConfiguration.getSaltBytes();
 			byte[] secretKeyBytes = keyParameter.getKey();
 
 			ByteBuffer byteBuffer = ByteBuffer.allocate(
