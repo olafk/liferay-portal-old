@@ -5519,14 +5519,14 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	private static final Log _log = LogFactoryUtil.getLog(
 		GroupLocalServiceImpl.class);
 
-	private static final MethodHandler
-		_clearStagingGroupIdsMethodHandler = new MethodHandler(
+	private static final MethodHandler _clearStagingGroupIdsMethodHandler =
+		new MethodHandler(
 			new MethodKey(
 				GroupLocalServiceImpl.class, "_clearStagingGroupIds"));
-	private static final DCLSingleton<Map<Long, Long>>
-		_stagingGroupIdsDCLSingleton = new DCLSingleton<>();
 	private static final Snapshot<ReindexerBridge> _reindexerBridgeSnapshot =
 		new Snapshot<>(GroupLocalServiceImpl.class, ReindexerBridge.class);
+	private static final DCLSingleton<Map<Long, Long>>
+		_stagingGroupIdsDCLSingleton = new DCLSingleton<>();
 	private static volatile int _stagingGroupsInMemoryFilterLimit =
 		PropsValues.STAGING_GROUPS_IN_MEMORY_FILTER_LIMIT;
 
