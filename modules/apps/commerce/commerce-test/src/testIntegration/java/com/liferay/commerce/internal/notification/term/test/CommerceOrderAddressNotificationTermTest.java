@@ -62,17 +62,17 @@ public class CommerceOrderAddressNotificationTermTest {
 		_commerceOrder = CommerceTestUtil.addB2CCommerceOrder(
 			TestPropsValues.getUserId(), commerceChannel.getGroupId(), commerceCurrency);
 
-		CommerceAddress billingCommerceAddress =
+		CommerceAddress billingAddress =
 			CommerceTestUtil.addUserCommerceAddress(TestPropsValues.getGroupId(), TestPropsValues.getUserId());
 
-		CommerceAddress shippingCommerceAddress =
+		CommerceAddress shippingAddress =
 			CommerceTestUtil.addUserCommerceAddress(TestPropsValues.getGroupId(), TestPropsValues.getUserId());
 
 		_commerceOrder.setBillingAddressId(
-			billingCommerceAddress.getCommerceAddressId());
+			billingAddress.getCommerceAddressId());
 
 		_commerceOrder.setShippingAddressId(
-			shippingCommerceAddress.getCommerceAddressId());
+			shippingAddress.getCommerceAddressId());
 
 		_commerceOrder = _commerceOrderLocalService.updateCommerceOrder(
 			_commerceOrder);
