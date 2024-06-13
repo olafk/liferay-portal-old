@@ -140,6 +140,13 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 			SamlSpSessionLocalServiceUtil.class,
 			SamlSpSessionLocalService.class);
 
+		ReflectionTestUtil.setFieldValue(
+			_webSsoProfileImpl, "credentialResolver", credentialResolver);
+		ReflectionTestUtil.setFieldValue(
+			_webSsoProfileImpl, "localEntityManager",
+			keyStoreLocalEntityManager);
+		ReflectionTestUtil.setFieldValue(_webSsoProfileImpl, "portal", portal);
+
 		PortalCache<String, String> portalCache = new TestPortalCache<>(
 			StringPool.BLANK);
 
@@ -151,13 +158,8 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 			portalCache);
 
 		ReflectionTestUtil.setFieldValue(
-			_webSsoProfileImpl, "credentialResolver", credentialResolver);
-		ReflectionTestUtil.setFieldValue(
-			_webSsoProfileImpl, "localEntityManager",
-			keyStoreLocalEntityManager);
-		ReflectionTestUtil.setFieldValue(_webSsoProfileImpl, "portal", portal);
-		ReflectionTestUtil.setFieldValue(
 			_webSsoProfileImpl, "_relayStateHelper", _relayStateHelperImpl);
+
 		ReflectionTestUtil.setFieldValue(
 			_webSsoProfileImpl, "samlBindingProvider", samlBindingProvider);
 		ReflectionTestUtil.setFieldValue(

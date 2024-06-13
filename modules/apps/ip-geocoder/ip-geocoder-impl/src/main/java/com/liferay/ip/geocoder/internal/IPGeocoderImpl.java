@@ -68,10 +68,11 @@ public class IPGeocoderImpl implements IPGeocoder {
 
 	@Activate
 	protected void activate(Map<String, String> properties) {
+		_properties = properties;
+
 		_portalCache =
 			(PortalCache<String, String>)_singleVMPool.getPortalCache(
 				IPGeocoderImpl.class.getName());
-		_properties = properties;
 	}
 
 	private DatabaseReader _createDatabaseReader() {

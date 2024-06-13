@@ -102,6 +102,16 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 			SamlSpSessionLocalServiceUtil.class,
 			SamlSpSessionLocalService.class);
 
+		_singleLogoutProfileImpl = new SingleLogoutProfileImpl();
+
+		ReflectionTestUtil.setFieldValue(
+			_singleLogoutProfileImpl, "credentialResolver", credentialResolver);
+		ReflectionTestUtil.setFieldValue(
+			_singleLogoutProfileImpl, "localEntityManager",
+			keyStoreLocalEntityManager);
+		ReflectionTestUtil.setFieldValue(
+			_singleLogoutProfileImpl, "portal", portal);
+
 		PortalCache<String, String> portalCache = new TestPortalCache<>(
 			StringPool.BLANK);
 
@@ -112,18 +122,10 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 			_relayStateHelperImpl, "_relayStateTokensToRedirectsPortalCache",
 			portalCache);
 
-		_singleLogoutProfileImpl = new SingleLogoutProfileImpl();
-
 		ReflectionTestUtil.setFieldValue(
 			_singleLogoutProfileImpl, "_relayStateHelper",
 			_relayStateHelperImpl);
-		ReflectionTestUtil.setFieldValue(
-			_singleLogoutProfileImpl, "credentialResolver", credentialResolver);
-		ReflectionTestUtil.setFieldValue(
-			_singleLogoutProfileImpl, "localEntityManager",
-			keyStoreLocalEntityManager);
-		ReflectionTestUtil.setFieldValue(
-			_singleLogoutProfileImpl, "portal", portal);
+
 		ReflectionTestUtil.setFieldValue(
 			_singleLogoutProfileImpl, "samlBindingProvider",
 			samlBindingProvider);
