@@ -243,22 +243,23 @@ public class CommerceNotificationHelperImpl
 					}
 
 					_addNotificationQueueEntry(
-						commerceNotificationTemplate.getGroupId(), commerceNotificationType,
-						commerceNotificationTemplate, fromName, toUserString,
-						toUserString, cc, bcc, subject, body, object);
+						commerceNotificationTemplate.getGroupId(),
+						commerceNotificationType, commerceNotificationTemplate,
+						fromName, toUserString, toUserString, cc, bcc, subject,
+						body, object);
 				}
 				else {
 					_addNotificationQueueEntry(
-						commerceNotificationTemplate.getGroupId(), commerceNotificationType,
-						commerceNotificationTemplate, fromName, toUser, cc, bcc,
-						subject, body, object);
+						commerceNotificationTemplate.getGroupId(),
+						commerceNotificationType, commerceNotificationTemplate,
+						fromName, toUser, cc, bcc, subject, body, object);
 				}
 			}
 			else {
 				_addNotificationQueueEntry(
-					commerceNotificationTemplate.getGroupId(), commerceNotificationType,
-					commerceNotificationTemplate, fromName, toUser, cc, bcc,
-					subject, body, object);
+					commerceNotificationTemplate.getGroupId(),
+					commerceNotificationType, commerceNotificationTemplate,
+					fromName, toUser, cc, bcc, subject, body, object);
 			}
 		}
 	}
