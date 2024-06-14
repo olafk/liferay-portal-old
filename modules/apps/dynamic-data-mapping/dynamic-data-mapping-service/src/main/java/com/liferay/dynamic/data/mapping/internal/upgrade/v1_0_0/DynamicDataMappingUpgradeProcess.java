@@ -1366,7 +1366,7 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 
 				// Template resource class name
 
-				String className;
+				String className = null;
 
 				if (classNameId != PortalUtil.getClassNameId(
 						DDMStructure.class)) {
