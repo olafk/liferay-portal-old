@@ -108,16 +108,16 @@ public class SetUpPaymentRestController extends BaseRestController {
 					"Bearer " + jwt.getTokenValue(),
 					new JSONObject(
 					).put(
+						"externalReferenceCode", transactionCode
+					).put(
 						"hmacSignature",
 						typeSettingsJSONObject.getString("hmacSignature")
-					).put(
-						"webhookUsername",
-						typeSettingsJSONObject.getString("webhookUsername")
 					).put(
 						"webhookPassword",
 						typeSettingsJSONObject.getString("webhookPassword")
 					).put(
-						"externalReferenceCode", transactionCode
+						"webhookUsername",
+						typeSettingsJSONObject.getString("webhookUsername")
 					).toString(),
 					"/o/c/n1a0adyenwebhooks/");
 			}
