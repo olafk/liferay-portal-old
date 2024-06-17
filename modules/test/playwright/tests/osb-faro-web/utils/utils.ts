@@ -21,14 +21,21 @@ export async function createIndividuals(apiHelpers, names: string[]) {
 	await apiHelpers.jsonWebServicesOSBAsah.createIndividuals(individuals);
 }
 
-export async function changeTimeFilterTo(page: Page, timeFilter: string, cardName?: string) {
-    if (cardName) {
-        await page.locator(`[id="container\\.report\\.${cardName}Card"]`).getByRole('button', { name: 'Last 30 days' }).click();
-        await page.getByRole('menuitem', {name: timeFilter}).click();
+export async function changeTimeFilterTo(
+	page: Page,
+	timeFilter: string,
+	cardName?: string
+) {
+	if (cardName) {
+		await page
+			.locator(`[id="container\\.report\\.${cardName}Card"]`)
+			.getByRole('button', {name: 'Last 30 days'})
+			.click();
+		await page.getByRole('menuitem', {name: timeFilter}).click();
 	}
 	else {
 		await page.getByRole('button', {name: 'Last 30 days'}).click();
-	    await page.getByRole('menuitem', {name: timeFilter}).click();
+		await page.getByRole('menuitem', {name: timeFilter}).click();
 	}
 }
 

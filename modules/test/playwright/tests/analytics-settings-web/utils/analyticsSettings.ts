@@ -57,7 +57,11 @@ export async function goToAnalyticsCloudInstanceSettings(page: Page) {
 	});
 }
 
-export async function navigateToSitePage(page: Page, pageName: string, siteName?: string) {
+export async function navigateToSitePage(
+	page: Page,
+	pageName: string,
+	siteName?: string
+) {
 	const pageNameURL = pageName.replace(/ /g, '-').toLowerCase();
 
 	if (siteName) {
@@ -93,7 +97,11 @@ export async function syncAllContacts(page: Page) {
 	await page.getByRole('button', {exact: true, name: 'Next'}).click();
 }
 
-export async function syncAnalyticsCloud(apiHelpers, page: Page, propertyName: string) {
+export async function syncAnalyticsCloud(
+	apiHelpers,
+	page: Page,
+	propertyName: string
+) {
 	await createChannel(apiHelpers, propertyName);
 
 	await createDataSource(page);

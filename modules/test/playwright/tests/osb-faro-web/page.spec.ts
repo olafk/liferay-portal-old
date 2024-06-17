@@ -64,7 +64,11 @@ const createSitePage = async function (apiHelpers, pageTitle: string) {
 	});
 };
 
-const goToWithReferrer = async function (page: Page, referrer: string, url: string) {
+const goToWithReferrer = async function (
+	page: Page,
+	referrer: string,
+	url: string
+) {
 	await page.goto(referrer);
 
 	await page.evaluate((url) => {
