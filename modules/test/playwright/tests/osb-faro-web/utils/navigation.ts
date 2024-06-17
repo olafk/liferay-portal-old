@@ -16,3 +16,8 @@ export async function navigateToACPage(page: Page) {
 		.click();
 }
 
+export async function navigateToACPageViaURL(page: Page, projectID: number, channelID: number) {
+	await page.goto(
+		`${faroConfig.environment.baseUrl}/workspace/${projectID}/${channelID}/sites`
+	);
+}
