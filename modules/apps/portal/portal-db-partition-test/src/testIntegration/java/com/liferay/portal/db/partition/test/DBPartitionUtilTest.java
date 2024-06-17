@@ -355,6 +355,7 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 		}
 		finally {
 			deletePartitionRequiredData();
+
 			removeDBPartitions();
 		}
 	}
