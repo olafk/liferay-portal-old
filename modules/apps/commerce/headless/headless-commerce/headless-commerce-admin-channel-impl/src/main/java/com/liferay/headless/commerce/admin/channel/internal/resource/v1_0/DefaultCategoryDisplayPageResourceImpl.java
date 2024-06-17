@@ -43,6 +43,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class DefaultCategoryDisplayPageResourceImpl
 	extends BaseDefaultCategoryDisplayPageResourceImpl {
 
+	@Override
 	public void deleteChannelByExternalReferenceCodeDefaultCategoryDisplayPage(
 			String externalReferenceCode)
 		throws Exception {
@@ -56,6 +57,7 @@ public class DefaultCategoryDisplayPageResourceImpl
 			commerceChannel.getCommerceChannelId());
 	}
 
+	@Override
 	public void deleteChannelIdDefaultCategoryDisplayPage(Long id)
 		throws Exception {
 
@@ -75,6 +77,7 @@ public class DefaultCategoryDisplayPageResourceImpl
 		modifiableSettings.store();
 	}
 
+	@Override
 	public DefaultCategoryDisplayPage
 			getChannelByExternalReferenceCodeDefaultCategoryDisplayPage(
 				String externalReferenceCode)
@@ -89,6 +92,7 @@ public class DefaultCategoryDisplayPageResourceImpl
 			commerceChannel.getCommerceChannelId());
 	}
 
+	@Override
 	public DefaultCategoryDisplayPage getChannelIdDefaultCategoryDisplayPage(
 			Long id)
 		throws Exception {
@@ -114,6 +118,7 @@ public class DefaultCategoryDisplayPageResourceImpl
 		return _toDefaultCategoryDisplayPage(commerceChannel);
 	}
 
+	@Override
 	public DefaultCategoryDisplayPage
 			postChannelByExternalReferenceCodeDefaultCategoryDisplayPage(
 				String externalReferenceCode,
@@ -129,6 +134,7 @@ public class DefaultCategoryDisplayPageResourceImpl
 			commerceChannel.getCommerceChannelId(), defaultCategoryDisplayPage);
 	}
 
+	@Override
 	public DefaultCategoryDisplayPage postChannelIdDefaultCategoryDisplayPage(
 			Long id, DefaultCategoryDisplayPage defaultCategoryDisplayPage)
 		throws Exception {

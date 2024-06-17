@@ -43,6 +43,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class DefaultProductDisplayPageResourceImpl
 	extends BaseDefaultProductDisplayPageResourceImpl {
 
+	@Override
 	public void deleteChannelByExternalReferenceCodeDefaultProductDisplayPage(
 			String externalReferenceCode)
 		throws Exception {
@@ -56,6 +57,7 @@ public class DefaultProductDisplayPageResourceImpl
 			commerceChannel.getCommerceChannelId());
 	}
 
+	@Override
 	public void deleteChannelIdDefaultProductDisplayPage(Long id)
 		throws Exception {
 
@@ -75,6 +77,7 @@ public class DefaultProductDisplayPageResourceImpl
 		modifiableSettings.store();
 	}
 
+	@Override
 	public DefaultProductDisplayPage
 			getChannelByExternalReferenceCodeDefaultProductDisplayPage(
 				String externalReferenceCode)
@@ -89,6 +92,7 @@ public class DefaultProductDisplayPageResourceImpl
 			commerceChannel.getCommerceChannelId());
 	}
 
+	@Override
 	public DefaultProductDisplayPage getChannelIdDefaultProductDisplayPage(
 			Long id)
 		throws Exception {
@@ -114,6 +118,7 @@ public class DefaultProductDisplayPageResourceImpl
 		return _toDefaultProductDisplayPage(commerceChannel);
 	}
 
+	@Override
 	public DefaultProductDisplayPage
 			postChannelByExternalReferenceCodeDefaultProductDisplayPage(
 				String externalReferenceCode,
@@ -129,6 +134,7 @@ public class DefaultProductDisplayPageResourceImpl
 			commerceChannel.getCommerceChannelId(), defaultProductDisplayPage);
 	}
 
+	@Override
 	public DefaultProductDisplayPage postChannelIdDefaultProductDisplayPage(
 			Long id, DefaultProductDisplayPage defaultProductDisplayPage)
 		throws Exception {

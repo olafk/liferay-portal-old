@@ -45,16 +45,19 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class CategoryDisplayPageResourceImpl
 	extends BaseCategoryDisplayPageResourceImpl {
 
+	@Override
 	public void deleteCategoryDisplayPage(Long id) throws Exception {
 		_cpDisplayLayoutService.deleteCPDisplayLayout(id);
 	}
 
+	@Override
 	public CategoryDisplayPage getCategoryDisplayPage(Long id)
 		throws Exception {
 
 		return _toCategoryDisplayPage(id);
 	}
 
+	@Override
 	public Page<CategoryDisplayPage>
 			getChannelByExternalReferenceCodeCategoryDisplayPagesPage(
 				String externalReferenceCode, String search, Filter filter,
@@ -71,6 +74,7 @@ public class CategoryDisplayPageResourceImpl
 			sorts);
 	}
 
+	@Override
 	public Page<CategoryDisplayPage> getChannelIdCategoryDisplayPagesPage(
 			Long id, String search, Filter filter, Pagination pagination,
 			Sort[] sorts)
@@ -115,6 +119,7 @@ public class CategoryDisplayPageResourceImpl
 			});
 	}
 
+	@Override
 	public CategoryDisplayPage patchCategoryDisplayPage(
 			Long id, CategoryDisplayPage categoryDisplayPage)
 		throws Exception {
@@ -139,6 +144,7 @@ public class CategoryDisplayPageResourceImpl
 		return _toCategoryDisplayPage(id);
 	}
 
+	@Override
 	public CategoryDisplayPage
 			postChannelByExternalReferenceCodeCategoryDisplayPage(
 				String externalReferenceCode,
@@ -154,6 +160,7 @@ public class CategoryDisplayPageResourceImpl
 			commerceChannel.getCommerceChannelId(), categoryDisplayPage);
 	}
 
+	@Override
 	public CategoryDisplayPage postChannelIdCategoryDisplayPage(
 			Long id, CategoryDisplayPage categoryDisplayPage)
 		throws Exception {
