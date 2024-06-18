@@ -89,11 +89,39 @@ public class CommerceOrderItemsNotificationTermEvaluator
 			return termName;
 		}
 
+		Writer writer = new UnsyncStringWriter();
+
+		Class<?> clazz = getClass();
+
+		ClassLoader classLoader = clazz.getClassLoader();
+
+		URL url = classLoader.getResource(
+			"dependencies/commerce_order_order_items.ftl");
+
+		Template template = TemplateManagerUtil.getTemplate(
+			TemplateConstants.LANG_TYPE_FTL,
+			new URLTemplateResource(url.getPath(), url), false);
+
 		Map<String, Object> termValues = (Map<String, Object>)object;
 
-		return _getOrderItemsHTML(
+		CommerceOrder commerceOrder =
 			_commerceOrderLocalService.getCommerceOrder(
-				GetterUtil.getLong(termValues.get("id"))));
+				GetterUtil.getLong(termValues.get("id")));
+
+		User user = _userLocalService.getUser(commerceOrder.getUserId());
+
+		Locale locale = user.getLocale();
+
+		template.put("orderItems", _getOrderItems(commerceOrder, locale));
+		template.put("optionLabel", _language.get(locale, "option"));
+		template.put("qtyLabel", _language.get(locale, "qty"));
+		template.put("skuLabel", _language.get(locale, "sku"));
+		template.put("tableLabel", _language.get(locale, "order-items"));
+		template.put("uomLabel", _language.get(locale, "uom"));
+
+		template.processTemplate(writer);
+
+		return writer.toString();
 	}
 
 	private long _getCommerceOrderItemCPDefinitionId(
@@ -198,29 +226,6 @@ public class CommerceOrderItemsNotificationTermEvaluator
 		return orderItems;
 	}
 
-	private String _getOrderItemsHTML(CommerceOrder commerceOrder)
-		throws PortalException {
-
-		Writer writer = new UnsyncStringWriter();
-
-		Class<?> clazz = getClass();
-
-		ClassLoader classLoader = clazz.getClassLoader();
-
-		URL url = classLoader.getResource(
-			"dependencies/commerce_order_order_items.ftl");
-
-		Template template = TemplateManagerUtil.getTemplate(
-			TemplateConstants.LANG_TYPE_FTL,
-			new URLTemplateResource(url.getPath(), url), false);
-
-		_populateParameters(template, commerceOrder);
-
-		template.processTemplate(writer);
-
-		return writer.toString();
-	}
-
 	private String _getOriginalPrice(
 			CommerceOrderItem commerceOrderItem,
 			CommerceCurrency commerceCurrency, Locale locale)
@@ -251,22 +256,6 @@ public class CommerceOrderItemsNotificationTermEvaluator
 		}
 
 		return StringPool.BLANK;
-	}
-
-	private void _populateParameters(
-			Template template, CommerceOrder commerceOrder)
-		throws PortalException {
-
-		User user = _userLocalService.getUser(commerceOrder.getUserId());
-
-		Locale locale = user.getLocale();
-
-		template.put("orderItems", _getOrderItems(commerceOrder, locale));
-		template.put("optionLabel", _language.get(locale, "option"));
-		template.put("qtyLabel", _language.get(locale, "qty"));
-		template.put("skuLabel", _language.get(locale, "sku"));
-		template.put("tableLabel", _language.get(locale, "order-items"));
-		template.put("uomLabel", _language.get(locale, "uom"));
 	}
 
 	private final CommerceMoneyFactory _commerceMoneyFactory;
