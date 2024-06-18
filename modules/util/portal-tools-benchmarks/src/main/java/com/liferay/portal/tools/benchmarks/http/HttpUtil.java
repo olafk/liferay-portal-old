@@ -169,11 +169,11 @@ public class HttpUtil {
 		CentralizedThreadLocal.withInitial(() -> new byte[8192]);
 
 	static {
-		HttpURLConnection.setFollowRedirects(false);
-
 		CookieHandler.setDefault(
 			new CookieManager(
 				new ThreadLocalCookieStore(), CookiePolicy.ACCEPT_ALL));
+
+		HttpURLConnection.setFollowRedirects(false);
 	}
 
 }
