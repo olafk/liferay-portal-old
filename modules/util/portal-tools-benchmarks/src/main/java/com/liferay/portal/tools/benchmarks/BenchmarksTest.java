@@ -83,15 +83,36 @@ public class BenchmarksTest {
 	public void execute() throws Exception {
 		System.out.println("Running Login test ...");
 
-		_executeBenchmarksTask(
+		Function<String[], BenchmarksTask> benchmarkTaskFunction =
 			testData -> new LoginBenchmarksTask(
-				testData[0], testData[1], _userPassword, 8080),
-			_loadData(
-				_createLoadDataSQL(),
-				resultSet -> new String[] {
-					resultSet.getString("emailAddress"),
-					resultSet.getString("hostname")
-				}));
+				testData[0], testData[1], _userPassword, 8080);
+
+		String[][] data = _loadData(
+			_createLoadDataSQL(),
+			resultSet -> new String[] {
+				resultSet.getString("emailAddress"),
+				resultSet.getString("hostname")
+			});
+
+		if (!_skipWarmUp) {
+			System.out.println("\nStart warming up data ...");
+
+			_executeBenchmarksTask(
+				benchmarkTaskFunction, data, index -> index, data.length, 1);
+
+			System.out.println("\nWarming up finished");
+		}
+		else {
+			System.out.println("\nSkip warming up data ...");
+		}
+
+		System.out.println("\nStart running test ...");
+
+		_executeBenchmarksTask(
+			benchmarkTaskFunction, data, index -> index % data.length,
+			_runCount, _threadCount);
+
+		System.out.println("\nTest run finished");
 	}
 
 	private String _createLoadDataSQL() {
@@ -120,32 +141,6 @@ public class BenchmarksTest {
 		sb.append("virtualHost.companyId = company.companyId;");
 
 		return sb.toString();
-	}
-
-	private void _executeBenchmarksTask(
-			Function<String[], BenchmarksTask> benchmarkTaskFunction,
-			String[][] data)
-		throws Exception {
-
-		if (!_skipWarmUp) {
-			System.out.println("\nStart warming up data ...");
-
-			_executeBenchmarksTask(
-				benchmarkTaskFunction, data, index -> index, data.length, 1);
-
-			System.out.println("\nWarming up finished");
-		}
-		else {
-			System.out.println("\nSkip warming up data ...");
-		}
-
-		System.out.println("\nStart running test ...");
-
-		_executeBenchmarksTask(
-			benchmarkTaskFunction, data, index -> index % data.length,
-			_runCount, _threadCount);
-
-		System.out.println("\nTest run finished");
 	}
 
 	private void _executeBenchmarksTask(
