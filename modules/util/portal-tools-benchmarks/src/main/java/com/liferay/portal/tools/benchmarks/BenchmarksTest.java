@@ -38,6 +38,8 @@ public class BenchmarksTest {
 				"benchmarks.test.excluded.company.web.ids", "liferay.com"));
 		_jdbcDriverClassName = System.getProperty(
 			"benchmarks.test.jdbc.driverClassName", "com.mysql.cj.jdbc.Driver");
+		_jdbcPassword = System.getProperty(
+			"benchmarks.test.jdbc.password", StringPool.BLANK);
 		_jdbcURL = System.getProperty(
 			"benchmarks.test.jdbc.url",
 			StringBundler.concat(
@@ -47,8 +49,6 @@ public class BenchmarksTest {
 				"useUnicode=true"));
 		_jdbcUsername = System.getProperty(
 			"benchmarks.test.jdbc.username", StringPool.BLANK);
-		_jdbcPassword = System.getProperty(
-			"benchmarks.test.jdbc.password", StringPool.BLANK);
 		_runCount = GetterUtil.getInteger(
 			System.getProperty("benchmarks.test.run.count", "1"));
 		_skipWarmUp = Boolean.parseBoolean(
@@ -60,21 +60,21 @@ public class BenchmarksTest {
 
 		StringBundler sb = new StringBundler(16);
 
-		sb.append("\nCurrent properties:\n	Excluded Companies:");
+		sb.append("\nCurrent properties:\n\n\tExcluded company web IDs:");
 		sb.append(_excludedCompanyWebIds);
-		sb.append("\n	JDBC Driver Class Name: ");
+		sb.append("\n\tJDBC driver class name: ");
 		sb.append(_jdbcDriverClassName);
-		sb.append("\n	JDBC URL: ");
-		sb.append(_jdbcURL);
-		sb.append("\n	JDBC User Name: ");
-		sb.append(_jdbcUsername);
-		sb.append("\n	JDBC Password: ");
+		sb.append("\n\tJDBC password: ");
 		sb.append(_jdbcPassword);
-		sb.append("\n	Run Count: ");
+		sb.append("\n\tJDBC URL: ");
+		sb.append(_jdbcURL);
+		sb.append("\n\tJDBC user name: ");
+		sb.append(_jdbcUsername);
+		sb.append("\n\tRun count: ");
 		sb.append(_runCount);
-		sb.append("\n	Thread Count: ");
+		sb.append("\n\tThread count: ");
 		sb.append(_threadCount);
-		sb.append("\n	User Password: ");
+		sb.append("\n\tUser password: ");
 		sb.append(_userPassword);
 
 		System.out.println(sb);
