@@ -244,6 +244,7 @@ pre[class*='language-'] {
 			padding: 12px;
 			text-align: center;
 		}
+
 		.banner-title {
 			font-size: 20px;
 			font-weight: 600;
@@ -272,9 +273,11 @@ pre[class*='language-'] {
 		gap: 0.5rem;
 		padding: 8px 16px;
 	}
+
 	.menu-sign-in a {
 		text-decoration: underline;
 	}
+	
 	.previous-lesson-icon {
 		color: var(--color-action-neutral-default, #2b3a4b);
 	}

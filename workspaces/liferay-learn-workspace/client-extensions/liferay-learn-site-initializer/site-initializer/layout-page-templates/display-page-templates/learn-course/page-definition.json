@@ -120,7 +120,7 @@
 				"definition": {
 					"customCSS": ".[$FRAGMENT_CLASS$] {\nposition: relative;\n}",
 					"customCSSViewports": [
-						{
+						{	
 							"customCSS": ".[$FRAGMENT_CLASS$] {\nposition: relative;\nflex-wrap: wrap;\n}",
 							"id": "landscapeMobile"
 						}
@@ -247,7 +247,7 @@
 							},
 							{
 								"definition": {
-									"customCSS": ".[$FRAGMENT_CLASS$] .course-nav-bottom__banner {\n    background-image: url('/documents/d/liferay-learn/smallwaves-svg?imagePreview=1');\n    background-repeat: no-repeat;\n    background-position: calc(100% + 60px) center;\n    background-size: 220px 220px;\n  }\n\n",
+									"customCSS": ".[$FRAGMENT_CLASS$] .course-nav-bottom__banner {\n    background-image: url([$DOCUMENT_URL:/site-initializer/documents/group/vectors/waves_sm.svg$]);\n    background-repeat: no-repeat;\n    background-position: calc(100% + 60px) center;\n    background-size: 220px 220px;\n  }\n\n",
 									"fragmentStyle": {
 										"backgroundColor": "colorNeutral1",
 										"borderRadius": "borderRadiusLg",
