@@ -19,6 +19,7 @@ import com.liferay.commerce.service.CommerceOrderLocalService;
 import com.liferay.commerce.util.CommerceOrderItemQuantityFormatter;
 import com.liferay.notification.term.evaluator.NotificationTermEvaluator;
 import com.liferay.object.model.ObjectDefinition;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.petra.io.unsync.UnsyncStringWriter;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -41,7 +42,6 @@ import java.math.BigDecimal;
 
 import java.net.URL;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -112,7 +112,13 @@ public class CommerceOrderItemsNotificationTermEvaluator
 
 		Locale locale = user.getLocale();
 
-		template.put("orderItems", _getOrderItems(commerceOrder, locale));
+		template.put(
+			"orderItems",
+			TransformUtil.transform(
+				commerceOrder.getCommerceOrderItems(),
+				commerceOrderItem -> _getOrderItem(
+					commerceOrderItem, commerceOrder.getCommerceCurrency(),
+					locale)));
 		template.put("optionLabel", _language.get(locale, "option"));
 		template.put("qtyLabel", _language.get(locale, "qty"));
 		template.put("skuLabel", _language.get(locale, "sku"));
@@ -231,24 +237,6 @@ public class CommerceOrderItemsNotificationTermEvaluator
 		).put(
 			"uom", commerceOrderItem.getUnitOfMeasureKey()
 		).build();
-	}
-
-	private List<Object> _getOrderItems(
-			CommerceOrder commerceOrder, Locale locale)
-		throws PortalException {
-
-		List<Object> orderItems = new ArrayList<>();
-
-		for (CommerceOrderItem commerceOrderItem :
-				commerceOrder.getCommerceOrderItems()) {
-
-			orderItems.add(
-				_getOrderItem(
-					commerceOrderItem, commerceOrder.getCommerceCurrency(),
-					locale));
-		}
-
-		return orderItems;
 	}
 
 	private final CommerceMoneyFactory _commerceMoneyFactory;
