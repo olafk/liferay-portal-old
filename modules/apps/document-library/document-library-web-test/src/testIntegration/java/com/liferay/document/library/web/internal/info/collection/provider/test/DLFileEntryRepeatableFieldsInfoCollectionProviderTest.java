@@ -60,8 +60,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
-import java.io.InputStream;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -317,10 +315,8 @@ public class DLFileEntryRepeatableFieldsInfoCollectionProviderTest {
 	private String _readFileToString(String fileName) throws Exception {
 		Class<?> clazz = getClass();
 
-		InputStream inputStream = clazz.getResourceAsStream(
-			"dependencies/" + fileName);
-
-		return StringUtil.read(inputStream);
+		return StringUtil.read(
+			clazz.getResourceAsStream("dependencies/" + fileName));
 	}
 
 	@Inject(filter = "ddm.form.deserializer.type=json")
