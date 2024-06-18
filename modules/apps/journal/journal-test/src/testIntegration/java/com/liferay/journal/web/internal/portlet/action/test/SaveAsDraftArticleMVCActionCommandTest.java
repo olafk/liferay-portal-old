@@ -76,7 +76,7 @@ public class SaveAsDraftArticleMVCActionCommandTest {
 	}
 
 	@Test
-	public void testProcessActionWithExpiredPreviousVersion() throws Exception {
+	public void testProcessAction() throws Exception {
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
