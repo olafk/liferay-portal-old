@@ -412,7 +412,7 @@ public class LayoutSetPrototypeHelperImpl implements LayoutSetPrototypeHelper {
 	private List<Layout> _getDuplicatedFriendlyURLSiteLayouts(Layout layout)
 		throws PortalException {
 
-		return _layoutLocalService.fetchLayouts(
+		return _layoutLocalService.getLayouts(
 			SetUtil.fromList(
 				_layoutLocalService.dslQuery(
 					DSLQueryFactoryUtil.selectDistinct(

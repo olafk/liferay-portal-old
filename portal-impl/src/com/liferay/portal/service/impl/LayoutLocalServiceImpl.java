@@ -1129,7 +1129,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 	}
 
 	@Override
-	public List<Layout> fetchLayouts(Set<Serializable> primaryKeys) {
+	public List<Layout> getLayouts(Set<Serializable> primaryKeys) {
 		Map<Serializable, Layout> layoutsMap =
 			layoutPersistence.fetchByPrimaryKeys(primaryKeys);
 
