@@ -181,9 +181,9 @@ public class BenchmarksTest {
 		sb.append("user.type_ = 1 and user.companyId = company.companyId and ");
 		sb.append("virtualHost.companyId = company.companyId;");
 
-		String loadDataSQL = sb.toString();
+		String sql = sb.toString();
 
-		System.out.println("\nTest data load SQL : " + loadDataSQL);
+		System.out.println("\nSQL : " + sql);
 
 		Class.forName(_jdbcDriverClassName);
 
@@ -192,7 +192,7 @@ public class BenchmarksTest {
 		try (Connection connection = DriverManager.getConnection(
 				_jdbcURL, _jdbcUserName, _jdbcPassword);
 			PreparedStatement preparedStatement = connection.prepareStatement(
-				loadDataSQL);
+				sql);
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
