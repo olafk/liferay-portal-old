@@ -91,7 +91,7 @@ public class CommerceOrderItemsNotificationTermEvaluator
 
 		Map<String, Object> termValues = (Map<String, Object>)object;
 
-		return _getOrderItemsTable(
+		return _getOrderItemsHTML(
 			_commerceOrderLocalService.getCommerceOrder(
 				GetterUtil.getLong(termValues.get("id"))));
 	}
@@ -198,7 +198,7 @@ public class CommerceOrderItemsNotificationTermEvaluator
 		return orderItems;
 	}
 
-	private String _getOrderItemsTable(CommerceOrder commerceOrder)
+	private String _getOrderItemsHTML(CommerceOrder commerceOrder)
 		throws PortalException {
 
 		Writer writer = new UnsyncStringWriter();
