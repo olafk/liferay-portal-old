@@ -40,7 +40,11 @@ test('check if updated custom event displayName is shown on segment criteria car
 	const newCustomEventName = `${customEventName}EV`;
 
 	await test.step('Connect the DXP to AC', async () => {
-		await syncAnalyticsCloud(apiHelpers, page, channelName);
+		await syncAnalyticsCloud({
+			apiHelpers,
+			channelName,
+			page,
+		});
 	});
 
 	await test.step('Go to DXP Home Page > Create a custom event', async () => {
@@ -73,26 +77,51 @@ test('check if updated custom event displayName is shown on segment criteria car
 
 	await test.step('Go to Analytics Cloud and Switch the property', async () => {
 		await navigateToACPage(page);
-		await switchChannel(page, channelName);
+		await switchChannel({
+			channelName,
+			page,
+		});
 	});
 
 	await test.step('Go to Settings > Go to Events > Go to Custom Events Tab', async () => {
-		await navigateTo(page, 'Settings');
-		await navigateTo(page, 'Definitions');
-		await navigateTo(page, 'Events');
-		await navigateTo(page, 'Custom Events');
+		await navigateTo({
+			page,
+			pageName: 'Settings',
+		});
+		await navigateTo({
+			page,
+			pageName: 'Definitions',
+		});
+		await navigateTo({
+			page,
+			pageName: 'Events',
+		});
+		await navigateTo({
+			page,
+			pageName: 'Custom Events',
+		});
 	});
 
 	await test.step('Change the display name of the event', async () => {
-		await changeEventDisplayName(page, customEventName, newCustomEventName);
+		await changeEventDisplayName({
+			eventName: customEventName,
+			newEventName: newCustomEventName,
+			page,
+		});
 
 		await expect(page.getByText(newCustomEventName).nth(1)).toBeVisible();
 		await page.locator('button.close').click();
 	});
 
 	await test.step('Go to Segments', async () => {
-		await navigateTo(page, 'Exit Settings');
-		await navigateTo(page, 'Segments');
+		await navigateTo({
+			page,
+			pageName: 'Exit Settings',
+		});
+		await navigateTo({
+			page,
+			pageName: 'Segments',
+		});
 	});
 
 	await test.step('Create dynamic segment', async () => {
@@ -104,7 +133,11 @@ test('check if updated custom event displayName is shown on segment criteria car
 	});
 
 	await test.step('Add the custom event criteria to the segment', async () => {
-		await addSegmentField(page, 'Events', newCustomEventName);
+		await addSegmentField({
+			page,
+			segmentCriterion: newCustomEventName,
+			segmentType: 'Events',
+		});
 	});
 
 	await test.step('Check that the added criteria is using the name of the updated custom event', async () => {
@@ -114,11 +147,17 @@ test('check if updated custom event displayName is shown on segment criteria car
 	});
 
 	await test.step('Add a value to the attribute value field', async () => {
-		await editCriteriaAttributeValue(page, 'testAttribute');
+		await editCriteriaAttributeValue({
+			attributeValue: 'testAttribute',
+			page,
+		});
 	});
 
 	await test.step('Add a name to the segment', async () => {
-		await setSegmentName(page, 'Test Dynamic Segment');
+		await setSegmentName({
+			page,
+			segmentName: 'Test Dynamic Segment',
+		});
 	});
 
 	await test.step('Save the segment', async () => {

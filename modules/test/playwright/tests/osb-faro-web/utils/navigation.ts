@@ -7,7 +7,13 @@ import {Page} from '@playwright/test';
 
 import {faroConfig} from '../faro.config';
 
-export async function navigateTo(page: Page, pageName: string) {
+export async function navigateTo({
+	page,
+	pageName,
+}: {
+	page: Page;
+	pageName: string;
+}) {
 	await page.getByRole('link', {name: pageName}).first().click();
 }
 
@@ -21,11 +27,15 @@ export async function navigateToACPage(page: Page) {
 		.click();
 }
 
-export async function navigateToACPageViaURL(
-	page: Page,
-	projectID: number,
-	channelID: number
-) {
+export async function navigateToACPageViaURL({
+	channelID,
+	page,
+	projectID,
+}: {
+	channelID: string;
+	page: Page;
+	projectID: string;
+}) {
 	await page.goto(
 		`${faroConfig.environment.baseUrl}/workspace/${projectID}/${channelID}/sites`
 	);

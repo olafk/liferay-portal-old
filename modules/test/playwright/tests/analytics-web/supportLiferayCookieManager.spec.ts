@@ -77,9 +77,12 @@ async function changeCookiePreference(page: Page, options) {
 }
 
 async function connectACToDXP(apiHelpers, page: Page) {
-	const propertyName = 'My Property - ' + getRandomString();
+	const channelName = 'My Property - ' + getRandomString();
 
-	await createChannel(apiHelpers, propertyName);
+	await createChannel({
+		apiHelpers,
+		channelName,
+	});
 
 	await createDataSource(page);
 
@@ -97,7 +100,10 @@ async function connectACToDXP(apiHelpers, page: Page) {
 
 	await connectToAnalyticsCloud(page);
 
-	await syncSite(page, propertyName);
+	await syncSite({
+		channelName,
+		page,
+	});
 
 	await syncAllContacts(page);
 

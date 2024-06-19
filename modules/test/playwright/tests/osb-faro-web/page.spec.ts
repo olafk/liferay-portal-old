@@ -10,6 +10,7 @@ import {dataApiHelpersTest} from '../../fixtures/dataApiHelpersTest';
 import {featureFlagsTest} from '../../fixtures/featureFlagsTest';
 import {loginAnalyticsCloudTest} from '../../fixtures/loginAnalyticsCloudTest';
 import {loginTest} from '../../fixtures/loginTest';
+import {ApiHelpers} from '../../helpers/ApiHelpers';
 import {liferayConfig} from '../../liferay.config';
 import getRandomString from '../../utils/getRandomString';
 import {
@@ -41,7 +42,13 @@ export const test = mergeTests(
 	loginTest()
 );
 
-const createSitePage = async function (apiHelpers, pageTitle: string) {
+const createSitePage = async function ({
+	apiHelpers,
+	pageTitle,
+}: {
+	apiHelpers: ApiHelpers;
+	pageTitle: string;
+}) {
 	const company =
 		await apiHelpers.jsonWebServicesCompany.getCompanyByWebId(
 			'liferay.com'
@@ -64,11 +71,15 @@ const createSitePage = async function (apiHelpers, pageTitle: string) {
 	});
 };
 
-const goToWithReferrer = async function (
-	page: Page,
-	referrer: string,
-	url: string
-) {
+const goToWithReferrer = async function ({
+	page,
+	referrer,
+	url,
+}: {
+	page: Page;
+	referrer: string;
+	url: string;
+}) {
 	await page.goto(referrer);
 
 	await page.evaluate((url) => {
@@ -85,14 +96,20 @@ test('shows individuals who viewed a page less than 24 hours ago', async ({
 	page,
 }) => {
 	const channelName = 'My Property - ' + getRandomString();
-	const {channel, project} = await createChannel(apiHelpers, channelName);
+	const {channel, project} = await createChannel({
+		apiHelpers,
+		channelName,
+	});
 	const date1 = new Date();
 	const individualsPresentIn24Hours = ['user1 user1', 'user2 user2'];
 	const individualPresentIn30Days = ['user3 user3'];
 
 	await test.step('Create 3 Individuals and their respective Identity directly in the AC database', async () => {
 		const individualNames = ['user1', 'user2', 'user3'];
-		await createIndividuals(apiHelpers, individualNames);
+		await createIndividuals({
+			apiHelpers,
+			names: individualNames,
+		});
 
 		await apiHelpers.jsonWebServicesOSBAsah.createIdentities([
 			{
@@ -153,32 +170,57 @@ test('shows individuals who viewed a page less than 24 hours ago', async ({
 	});
 
 	await test.step('Go to Analytics Cloud and Switch the property', async () => {
-		await navigateToACPageViaURL(page, project.groupId, channel.id);
+		await navigateToACPageViaURL({
+			channelID: channel.id,
+			page,
+			projectID: project.groupId,
+		});
 	});
 
 	await test.step('Go to Pages Tab', async () => {
-		await navigateTo(page, 'Pages');
+		await navigateTo({
+			page,
+			pageName: 'Pages',
+		});
 	});
 
 	await test.step('Access one of the pages on the list > Go to Known Individuals Tab', async () => {
-		await navigateTo(page, 'Liferay');
-		await navigateTo(page, 'Known Individuals');
+		await navigateTo({
+			page,
+			pageName: 'Liferay',
+		});
+		await navigateTo({
+			page,
+			pageName: 'Known Individuals',
+		});
 	});
 
 	await test.step('Check that User3 User3 is appearing in the list', async () => {
-		await viewNameListIsPresent(page, individualPresentIn30Days);
+		await viewNameListIsPresent({
+			itemNames: individualPresentIn30Days,
+			page,
+		});
 	});
 
 	await test.step('Change the time filter to Last 24 hours', async () => {
-		await changeTimeFilterTo(page, 'Last 24 hours');
+		await changeTimeFilterTo({
+			page,
+			timeFilter: 'Last 24 hours',
+		});
 	});
 
 	await test.step('Check that User1 User1 and User2 User2 are appearing in the list', async () => {
-		await viewNameListIsPresent(page, individualsPresentIn24Hours);
+		await viewNameListIsPresent({
+			itemNames: individualsPresentIn24Hours,
+			page,
+		});
 	});
 
 	await test.step('Check that User3 User3 is appearing in the list', async () => {
-		await viewNameListIsNotPresent(page, individualPresentIn30Days);
+		await viewNameListIsNotPresent({
+			itemNames: individualPresentIn30Days,
+			page,
+		});
 	});
 
 	await test.step('Delete the property that was used during automation execution', async () => {
@@ -191,19 +233,26 @@ test('shows individuals who viewed a page less than 24 hours ago', async ({
 
 test('shows outside pages in path analysis', async ({apiHelpers, page}) => {
 	const pageTitle = 'My Page';
-	const sitePage = await createSitePage(apiHelpers, pageTitle);
+	const sitePage = await createSitePage({
+		apiHelpers,
+		pageTitle,
+	});
 	const channelName = 'My Property - ' + getRandomString();
 
 	await test.step('Connect the DXP to AC', async () => {
-		await syncAnalyticsCloud(apiHelpers, page, channelName);
+		await syncAnalyticsCloud({
+			apiHelpers,
+			channelName,
+			page,
+		});
 	});
 
 	await test.step('Access the DXP Home Page using Google Page as a reference page', async () => {
-		await goToWithReferrer(
+		await goToWithReferrer({
 			page,
-			'https://www.google.com',
-			liferayConfig.environment.baseUrl
-		);
+			referrer: 'https://www.google.com',
+			url: liferayConfig.environment.baseUrl,
+		});
 
 		await page.waitForTimeout(10000);
 	});
@@ -215,20 +264,35 @@ test('shows outside pages in path analysis', async ({apiHelpers, page}) => {
 
 	await test.step('Go to Analytics Cloud and Switch the property', async () => {
 		await navigateToACPage(page);
-		await switchChannel(page, channelName);
+		await switchChannel({
+			channelName,
+			page,
+		});
 	});
 
 	await test.step('Go to Pages Tab', async () => {
-		await navigateTo(page, 'Pages');
+		await navigateTo({
+			page,
+			pageName: 'Pages',
+		});
 	});
 
 	await test.step('Change the time filter to Last 24 hours', async () => {
-		await changeTimeFilterTo(page, 'Last 24 hours');
+		await changeTimeFilterTo({
+			page,
+			timeFilter: 'Last 24 hours',
+		});
 	});
 
 	await test.step('Access one of the pages on the list > Go to Path Tab', async () => {
-		await navigateTo(page, 'Home - Liferay DXP');
-		await navigateTo(page, 'Path');
+		await navigateTo({
+			page,
+			pageName: 'Home - Liferay DXP',
+		});
+		await navigateTo({
+			page,
+			pageName: 'Path',
+		});
 	});
 
 	await test.step('Check that Google Page appears the referral pages and the number of views', async () => {
@@ -268,17 +332,30 @@ test('shows outside pages in path analysis', async ({apiHelpers, page}) => {
 
 test('shows tracked pages in path analysis', async ({apiHelpers, page}) => {
 	const pageTitle1 = 'My Page 1';
-	const sitePage1 = await createSitePage(apiHelpers, pageTitle1);
+	const sitePage1 = await createSitePage({
+		apiHelpers,
+		pageTitle: pageTitle1,
+	});
 	const pageTitle2 = 'My Page 2';
-	const sitePage2 = await createSitePage(apiHelpers, pageTitle2);
+	const sitePage2 = await createSitePage({
+		apiHelpers,
+		pageTitle: pageTitle2,
+	});
 	const channelName = 'My Property - ' + getRandomString();
 
 	await test.step('Connect the DXP to AC', async () => {
-		await syncAnalyticsCloud(apiHelpers, page, channelName);
+		await syncAnalyticsCloud({
+			apiHelpers,
+			channelName,
+			page,
+		});
 	});
 
 	await test.step('Go to My Page 1', async () => {
-		await navigateToSitePage(page, pageTitle1);
+		await navigateToSitePage({
+			page,
+			pageName: pageTitle1,
+		});
 		await page.waitForTimeout(10000);
 	});
 
@@ -294,20 +371,35 @@ test('shows tracked pages in path analysis', async ({apiHelpers, page}) => {
 
 	await test.step('Go to Analytics Cloud and Switch the property', async () => {
 		await navigateToACPage(page);
-		await switchChannel(page, channelName);
+		await switchChannel({
+			channelName,
+			page,
+		});
 	});
 
 	await test.step('Go to Pages Tab', async () => {
-		await navigateTo(page, 'Pages');
+		await navigateTo({
+			page,
+			pageName: 'Pages',
+		});
 	});
 
 	await test.step('Change the time filter to Last 24 hours', async () => {
-		await changeTimeFilterTo(page, 'Last 24 hours');
+		await changeTimeFilterTo({
+			page,
+			timeFilter: 'Last 24 hours',
+		});
 	});
 
 	await test.step('Access one of the pages on the list > Go to Path Tab', async () => {
-		await navigateTo(page, 'My Page 1 - Liferay DXP');
-		await navigateTo(page, 'Path');
+		await navigateTo({
+			page,
+			pageName: 'My Page 1 - Liferay DXP',
+		});
+		await navigateTo({
+			page,
+			pageName: 'Path',
+		});
 	});
 
 	await test.step('Check that My Page 2 and Direct Traffic appear as referral pages', async () => {

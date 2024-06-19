@@ -7,12 +7,19 @@ import {Page} from '@playwright/test';
 
 import {searchTerm} from './utils';
 
-export async function changeEventDisplayName(
-	page: Page,
-	eventName: string,
-	newEventName: string
-) {
-	await searchTerm(page, eventName);
+export async function changeEventDisplayName({
+	eventName,
+	newEventName,
+	page,
+}: {
+	eventName: string;
+	newEventName: string;
+	page: Page;
+}) {
+	await searchTerm({
+		page,
+		searchTerm: eventName,
+	});
 	await page.waitForSelector(`text=${eventName}`);
 
 	await page.getByRole('link', {name: eventName}).click();

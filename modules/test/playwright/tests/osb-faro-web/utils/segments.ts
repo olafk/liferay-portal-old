@@ -5,15 +5,22 @@
 
 import {Page} from '@playwright/test';
 
-export async function addSegmentField(
-	page: Page,
-	segmentType: string,
-	segmentCriterion: string
-) {
+export async function addSegmentField({
+	page,
+	segmentCriterion,
+	segmentType,
+}: {
+	page: Page;
+	segmentCriterion?: string;
+	segmentType: string;
+}) {
 	await page.locator('button.dropdown-toggle.btn-outline-secondary').click();
 	await page.getByRole('menuitem', {name: segmentType}).click();
 
-	await dragAndDropCriteriaItem(page, segmentCriterion);
+	await dragAndDropCriteriaItem({
+		page,
+		segmentField: segmentCriterion,
+	});
 }
 
 export async function createDynamicSegment(page: Page) {
@@ -26,20 +33,26 @@ export async function createStaticSegment(page: Page) {
 	await page.getByRole('menuitem', {name: 'Static Segment'}).click();
 }
 
-export async function dragAndDropCriteriaItem(
-	page: Page,
-	segmentField: string
-) {
+export async function dragAndDropCriteriaItem({
+	page,
+	segmentField,
+}: {
+	page: Page;
+	segmentField: string;
+}) {
 	const source = page.getByText(segmentField);
 	const target = page.locator('div.drop-zone-target').last();
 
 	return await source.dragTo(target);
 }
 
-export async function editCriteriaAttributeValue(
-	page: Page,
-	attributeValue: string
-) {
+export async function editCriteriaAttributeValue({
+	attributeValue,
+	page,
+}: {
+	attributeValue: string;
+	page: Page;
+}) {
 	await page
 		.locator('input[data-testid="attribute-value-string-input"]')
 		.click();
@@ -58,7 +71,13 @@ export async function saveSegment(page: Page) {
 	await page.waitForSelector('div.alert-success', {state: 'visible'});
 }
 
-export async function setSegmentName(page: Page, segmentName: string) {
+export async function setSegmentName({
+	page,
+	segmentName,
+}: {
+	page: Page;
+	segmentName: string;
+}) {
 	await page.getByRole('button', {name: 'Unnamed Segment'}).click();
 	await page.getByPlaceholder('Unnamed Segment').fill(segmentName);
 }

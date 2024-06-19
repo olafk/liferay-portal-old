@@ -5,7 +5,15 @@
 
 import {Page, expect} from '@playwright/test';
 
-export async function createIndividuals(apiHelpers, names: string[]) {
+import {ApiHelpers} from '../../../helpers/ApiHelpers';
+
+export async function createIndividuals({
+	apiHelpers,
+	names,
+}: {
+	apiHelpers: ApiHelpers;
+	names: string[];
+}) {
 	const individuals = names.map((name) => ({
 		emailAddress: `${name}@liferay.com`,
 		fields: [
@@ -21,11 +29,15 @@ export async function createIndividuals(apiHelpers, names: string[]) {
 	await apiHelpers.jsonWebServicesOSBAsah.createIndividuals(individuals);
 }
 
-export async function changeTimeFilterTo(
-	page: Page,
-	timeFilter: string,
-	cardName?: string
-) {
+export async function changeTimeFilterTo({
+	cardName,
+	page,
+	timeFilter,
+}: {
+	cardName?: string;
+	page: Page;
+	timeFilter: string;
+}) {
 	if (cardName) {
 		await page
 			.locator(`[id="container\\.report\\.${cardName}Card"]`)
@@ -39,16 +51,25 @@ export async function changeTimeFilterTo(
 	}
 }
 
-export async function searchTerm(page: Page, searchTerm: string) {
+export async function searchTerm({
+	page,
+	searchTerm,
+}: {
+	page: Page;
+	searchTerm: string;
+}) {
 	await page.getByPlaceholder('Search').first().click();
 	await page.getByPlaceholder('Search').first().fill(searchTerm);
 	await page.getByPlaceholder('Search').first().press('Enter');
 }
 
-export async function viewNameListIsNotPresent(
-	page: Page,
-	itemNames: string[]
-) {
+export async function viewNameListIsNotPresent({
+	itemNames,
+	page,
+}: {
+	itemNames: string[];
+	page: Page;
+}) {
 	for (const itemName of itemNames) {
 		await expect(page.getByRole('cell', {name: itemName})).toBeHidden({
 			timeout: 100 * 1000,
@@ -56,7 +77,13 @@ export async function viewNameListIsNotPresent(
 	}
 }
 
-export async function viewNameListIsPresent(page: Page, itemNames: string[]) {
+export async function viewNameListIsPresent({
+	itemNames,
+	page,
+}: {
+	itemNames: string[];
+	page: Page;
+}) {
 	for (const itemName of itemNames) {
 		await expect(page.getByRole('cell', {name: itemName})).toBeVisible({
 			timeout: 100 * 1000,

@@ -5,6 +5,7 @@
 
 import {Page, expect} from '@playwright/test';
 
+import {ApiHelpers} from '../../../helpers/ApiHelpers';
 import {liferayConfig} from '../../../liferay.config';
 import {createChannel} from '../../osb-faro-web/utils/channel';
 import {createDataSource} from '../../osb-faro-web/utils/dataSource';
@@ -57,11 +58,15 @@ export async function goToAnalyticsCloudInstanceSettings(page: Page) {
 	});
 }
 
-export async function navigateToSitePage(
-	page: Page,
-	pageName: string,
-	siteName?: string
-) {
+export async function navigateToSitePage({
+	page,
+	pageName,
+	siteName,
+}: {
+	page: Page;
+	pageName: string;
+	siteName?: string;
+}) {
 	const pageNameURL = pageName.replace(/ /g, '-').toLowerCase();
 
 	if (siteName) {
@@ -97,12 +102,19 @@ export async function syncAllContacts(page: Page) {
 	await page.getByRole('button', {exact: true, name: 'Next'}).click();
 }
 
-export async function syncAnalyticsCloud(
+export async function syncAnalyticsCloud({
 	apiHelpers,
-	page: Page,
-	propertyName: string
-) {
-	await createChannel(apiHelpers, propertyName);
+	channelName,
+	page,
+}: {
+	apiHelpers: ApiHelpers;
+	channelName: string;
+	page: Page;
+}) {
+	await createChannel({
+		apiHelpers,
+		channelName,
+	});
 
 	await createDataSource(page);
 
@@ -114,14 +126,23 @@ export async function syncAnalyticsCloud(
 
 	await connectToAnalyticsCloud(page);
 
-	await syncSite(page, propertyName);
+	await syncSite({
+		channelName,
+		page,
+	});
 
 	await syncAllContacts(page);
 
 	await page.getByRole('button', {name: 'Finish'}).click();
 }
 
-export async function syncSite(page: Page, propertyName: string) {
+export async function syncSite({
+	channelName,
+	page,
+}: {
+	channelName: string;
+	page: Page;
+}) {
 	await expect(
 		page.getByRole('heading', {name: 'Property Assignment'})
 	).toBeVisible({
@@ -134,11 +155,11 @@ export async function syncSite(page: Page, propertyName: string) {
 		timeout: 100 * 1000,
 	});
 
-	await page.getByPlaceholder('Search').fill(propertyName);
+	await page.getByPlaceholder('Search').fill(channelName);
 
 	await page.getByRole('button', {name: 'Search'}).click();
 
-	await expect(page.getByRole('cell', {name: propertyName})).toBeVisible({
+	await expect(page.getByRole('cell', {name: channelName})).toBeVisible({
 		timeout: 100 * 1000,
 	});
 

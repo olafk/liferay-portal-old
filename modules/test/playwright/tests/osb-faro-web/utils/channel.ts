@@ -5,13 +5,21 @@
 
 import {Page} from '@playwright/test';
 
-export async function createChannel(apiHelpers, name: string) {
+import {ApiHelpers} from '../../../helpers/ApiHelpers';
+
+export async function createChannel({
+	apiHelpers,
+	channelName,
+}: {
+	apiHelpers: ApiHelpers;
+	channelName: string;
+}) {
 	const projects = await apiHelpers.jsonWebServicesOSBFaro.getProjects();
 
 	const project = projects.find(({name}) => name === 'FARO-DEV-liferay');
 
 	const channel = await apiHelpers.jsonWebServicesOSBFaro.createChannel(
-		name,
+		channelName,
 		project.groupId
 	);
 
@@ -21,7 +29,13 @@ export async function createChannel(apiHelpers, name: string) {
 	};
 }
 
-export async function switchChannel(page: Page, channelName: string) {
+export async function switchChannel({
+	channelName,
+	page,
+}: {
+	channelName: string;
+	page: Page;
+}) {
 	await page.locator('.channels-menu.button-root').click();
 	await page.getByRole('link', {name: channelName}).click();
 }
