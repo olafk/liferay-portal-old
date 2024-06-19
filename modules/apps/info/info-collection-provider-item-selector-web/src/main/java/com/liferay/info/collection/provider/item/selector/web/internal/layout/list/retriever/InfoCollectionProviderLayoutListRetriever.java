@@ -92,6 +92,11 @@ public class InfoCollectionProviderLayoutListRetriever
 				layoutListRetrieverContext.getConfiguration());
 		}
 
+		if (infoCollectionProvider instanceof FilteredInfoCollectionProvider) {
+			collectionQuery.setInfoFilters(
+				layoutListRetrieverContext.getInfoFilters());
+		}
+
 		if (infoCollectionProvider instanceof
 				RelatedInfoItemCollectionProvider) {
 
@@ -132,11 +137,6 @@ public class InfoCollectionProviderLayoutListRetriever
 			collectionQuery.setConfiguration(
 				layoutListRetrieverContext.getConfiguration());
 			collectionQuery.setRelatedItemObject(relatedItem);
-		}
-
-		if (infoCollectionProvider instanceof FilteredInfoCollectionProvider) {
-			collectionQuery.setInfoFilters(
-				layoutListRetrieverContext.getInfoFilters());
 		}
 
 		return infoCollectionProvider.getCollectionInfoPage(collectionQuery);
