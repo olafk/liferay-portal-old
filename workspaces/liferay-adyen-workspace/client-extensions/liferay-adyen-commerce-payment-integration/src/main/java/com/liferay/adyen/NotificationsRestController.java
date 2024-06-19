@@ -132,7 +132,7 @@ public class NotificationsRestController extends BaseRestController {
 						json, commercePaymentEntryId, errorMessages,
 						paymentStatus);
 
-					_delete(
+					delete(
 						_liferayOAuth2AccessTokenManager.getAuthorization(
 							"liferay-adyen-payment-integration-oauth-" +
 								"application-headless-server"),
@@ -183,21 +183,6 @@ public class NotificationsRestController extends BaseRestController {
 		}
 
 		return false;
-	}
-
-	private void _delete(String authorization, String path) {
-		getWebClient(
-		).delete(
-		).uri(
-			uriBuilder -> uriBuilder.path(
-				path
-			).build()
-		).header(
-			HttpHeaders.AUTHORIZATION, authorization
-		).retrieve(
-		).bodyToMono(
-			String.class
-		).subscribe();
 	}
 
 	private JSONObject _get(String authorization, String path) {

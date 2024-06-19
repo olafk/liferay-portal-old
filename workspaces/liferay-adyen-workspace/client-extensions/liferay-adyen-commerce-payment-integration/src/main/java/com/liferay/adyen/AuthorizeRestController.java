@@ -17,7 +17,6 @@ import org.apache.commons.logging.LogFactory;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -75,7 +74,7 @@ public class AuthorizeRestController extends BaseRestController {
 				JSONObject payloadJSONObject = new JSONObject(
 					commercePaymentEntryJSONObject.getString("payload"));
 
-				_delete(
+				delete(
 					"Bearer " + jwt.getTokenValue(),
 					"/o/c/n1a0adyenwebhooks/by-external-reference-code/" +
 						payloadJSONObject.getString("id"));
@@ -102,21 +101,6 @@ public class AuthorizeRestController extends BaseRestController {
 				"paymentStatus", paymentStatus
 			).toString(),
 			HttpStatus.OK);
-	}
-
-	private void _delete(String authorization, String path) {
-		getWebClient(
-		).delete(
-		).uri(
-			uriBuilder -> uriBuilder.path(
-				path
-			).build()
-		).header(
-			HttpHeaders.AUTHORIZATION, authorization
-		).retrieve(
-		).bodyToMono(
-			String.class
-		).subscribe();
 	}
 
 	private static final Log _log = LogFactory.getLog(

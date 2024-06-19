@@ -23,6 +23,21 @@ import org.springframework.web.reactive.function.client.WebClient;
  */
 public abstract class BaseRestController {
 
+	protected void delete(String authorization, String path) {
+		getWebClient(
+		).delete(
+		).uri(
+			uriBuilder -> uriBuilder.path(
+				path
+			).build()
+		).header(
+			HttpHeaders.AUTHORIZATION, authorization
+		).retrieve(
+		).bodyToMono(
+			String.class
+		).subscribe();
+	}
+
 	protected WebClient getWebClient() {
 		return WebClient.builder(
 		).baseUrl(
