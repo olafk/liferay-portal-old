@@ -456,10 +456,8 @@ public class GetCollectionFieldMVCResourceCommand
 			repeatableFieldInfoCollectionProviderItemSelectorCriterion.
 				setDesiredItemSelectorReturnTypes(
 					new InfoListProviderItemSelectorReturnType());
-
 			repeatableFieldInfoCollectionProviderItemSelectorCriterion.
 				setItemType(itemType);
-
 			repeatableFieldInfoCollectionProviderItemSelectorCriterion.
 				setItemSubtype(
 					layoutObjectReferenceJSONObject.getString("itemSubtype"));
