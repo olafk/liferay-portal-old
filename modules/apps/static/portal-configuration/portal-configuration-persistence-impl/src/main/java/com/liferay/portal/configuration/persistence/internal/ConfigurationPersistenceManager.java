@@ -13,7 +13,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.persistence.ConfigurationOverridePropertiesUtil;
 import com.liferay.portal.configuration.persistence.InMemoryOnlyConfigurationThreadLocal;
 import com.liferay.portal.configuration.persistence.ReloadablePersistenceManager;
-import com.liferay.portal.configuration.persistence.internal.upgrade.schema.ConfigurationSchemaCreator;
+import com.liferay.portal.configuration.persistence.internal.upgrade.release.ConfigurationSchemaCreator;
 import com.liferay.portal.configuration.persistence.listener.ConfigurationModelListener;
 import com.liferay.portal.configuration.persistence.listener.ConfigurationModelListenerException;
 import com.liferay.portal.db.partition.util.DBPartitionUtil;
