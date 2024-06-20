@@ -81,6 +81,8 @@ public class CopyDLObjectsMVCActionCommandTest {
 			invocationOnMock -> null
 		);
 
+		PortalUtil portalUtil = new PortalUtil();
+
 		Portal portal = Mockito.mock(Portal.class);
 
 		Mockito.when(
@@ -88,8 +90,6 @@ public class CopyDLObjectsMVCActionCommandTest {
 		).thenReturn(
 			new MockHttpServletRequest()
 		);
-
-		PortalUtil portalUtil = new PortalUtil();
 
 		portalUtil.setPortal(portal);
 	}
