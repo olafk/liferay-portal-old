@@ -67,15 +67,29 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 	}
 
 	@Test
-	public void testUpgradeWithPaginationTypeRandom() throws Exception {
+	public void testUpgradeWithNumberOfItemsPerPage() throws Exception {
+		int numberOfItems = RandomTestUtil.randomInt();
+		int numberOfItemsPerPage = RandomTestUtil.randomInt();
+
 		_assertUpgradeWithItemConfig(
 			HashMapBuilder.<String, Object>put(
 				"displayAllItems", false
 			).put(
-				"paginationType", CollectionPaginationUtil.PAGINATION_TYPE_NONE
+				"numberOfItemsPerPage", numberOfItemsPerPage
+			).put(
+				"numberOfPages",
+				(int)Math.ceil(numberOfItems / (double)numberOfItemsPerPage)
+			).put(
+				"paginationType",
+				CollectionPaginationUtil.PAGINATION_TYPE_NUMERIC
 			).build(),
 			HashMapBuilder.<String, Object>put(
-				"paginationType", RandomTestUtil.randomString()
+				"numberOfItems", numberOfItems
+			).put(
+				"numberOfItemsPerPage", numberOfItemsPerPage
+			).put(
+				"paginationType",
+				CollectionPaginationUtil.PAGINATION_TYPE_NUMERIC
 			).build());
 	}
 
@@ -106,33 +120,6 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 	}
 
 	@Test
-	public void testUpgradeWithNumberOfItemsPerPage() throws Exception {
-		int numberOfItems = RandomTestUtil.randomInt();
-		int numberOfItemsPerPage = RandomTestUtil.randomInt();
-
-		_assertUpgradeWithItemConfig(
-			HashMapBuilder.<String, Object>put(
-				"displayAllItems", false
-			).put(
-				"numberOfItemsPerPage", numberOfItemsPerPage
-			).put(
-				"numberOfPages",
-				(int)Math.ceil(numberOfItems / (double)numberOfItemsPerPage)
-			).put(
-				"paginationType",
-				CollectionPaginationUtil.PAGINATION_TYPE_NUMERIC
-			).build(),
-			HashMapBuilder.<String, Object>put(
-				"numberOfItems", numberOfItems
-			).put(
-				"numberOfItemsPerPage", numberOfItemsPerPage
-			).put(
-				"paginationType",
-				CollectionPaginationUtil.PAGINATION_TYPE_NUMERIC
-			).build());
-	}
-
-	@Test
 	public void testUpgradeWithPaginationTypeNumeric() throws Exception {
 		_assertUpgradeWithItemConfig(
 			HashMapBuilder.<String, Object>put(
@@ -148,6 +135,19 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 	}
 
 	@Test
+	public void testUpgradeWithPaginationTypeRandom() throws Exception {
+		_assertUpgradeWithItemConfig(
+			HashMapBuilder.<String, Object>put(
+				"displayAllItems", false
+			).put(
+				"paginationType", CollectionPaginationUtil.PAGINATION_TYPE_NONE
+			).build(),
+			HashMapBuilder.<String, Object>put(
+				"paginationType", RandomTestUtil.randomString()
+			).build());
+	}
+
+	@Test
 	public void testUpgradeWithPaginationTypeRegular() throws Exception {
 		_assertUpgradeWithItemConfig(
 			HashMapBuilder.<String, Object>put(
@@ -159,6 +159,21 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 			HashMapBuilder.<String, Object>put(
 				"paginationType",
 				CollectionPaginationUtil.PAGINATION_TYPE_REGULAR
+			).build());
+	}
+
+	@Test
+	public void testUpgradeWithPaginationTypeSimple() throws Exception {
+		_assertUpgradeWithItemConfig(
+			HashMapBuilder.<String, Object>put(
+				"displayAllItems", false
+			).put(
+				"paginationType",
+				CollectionPaginationUtil.PAGINATION_TYPE_SIMPLE
+			).build(),
+			HashMapBuilder.<String, Object>put(
+				"paginationType",
+				CollectionPaginationUtil.PAGINATION_TYPE_SIMPLE
 			).build());
 	}
 
@@ -194,21 +209,6 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest {
 				CollectionPaginationUtil.PAGINATION_TYPE_NUMERIC
 			).put(
 				"showAllItems", false
-			).build());
-	}
-
-	@Test
-	public void testUpgradeWithPaginationTypeSimple() throws Exception {
-		_assertUpgradeWithItemConfig(
-			HashMapBuilder.<String, Object>put(
-				"displayAllItems", false
-			).put(
-				"paginationType",
-				CollectionPaginationUtil.PAGINATION_TYPE_SIMPLE
-			).build(),
-			HashMapBuilder.<String, Object>put(
-				"paginationType",
-				CollectionPaginationUtil.PAGINATION_TYPE_SIMPLE
 			).build());
 	}
 
