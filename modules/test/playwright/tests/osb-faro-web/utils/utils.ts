@@ -5,28 +5,6 @@
 
 import {Page, expect} from '@playwright/test';
 
-export async function changeTimeFilterTo({
-	cardName,
-	page,
-	timeFilter,
-}: {
-	cardName?: string;
-	page: Page;
-	timeFilter: string;
-}) {
-	if (cardName) {
-		await page
-			.locator(`[id="container\\.report\\.${cardName}Card"]`)
-			.getByRole('button', {name: 'Last 30 days'})
-			.click();
-		await page.getByRole('menuitem', {name: timeFilter}).click();
-	}
-	else {
-		await page.getByRole('button', {name: 'Last 30 days'}).click();
-		await page.getByRole('menuitem', {name: timeFilter}).click();
-	}
-}
-
 export async function searchByTerm({
 	page,
 	searchTerm,

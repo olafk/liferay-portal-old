@@ -26,11 +26,8 @@ import {
 	navigateToACSitesPageViaURL,
 	navigateToACWorkspace,
 } from './utils/navigation';
-import {
-	changeTimeFilterTo,
-	expectNotToBeVisible,
-	expectToBeVisible,
-} from './utils/utils';
+import {changeTimeFilter} from './utils/time-filter';
+import {expectNotToBeVisible, expectToBeVisible} from './utils/utils';
 
 export const test = mergeTests(
 	apiHelpersTest,
@@ -203,9 +200,9 @@ test('shows individuals who viewed a page less than 24 hours ago', async ({
 	});
 
 	await test.step('Change the time filter to Last 24 hours', async () => {
-		await changeTimeFilterTo({
+		await changeTimeFilter({
 			page,
-			timeFilter: 'Last 24 hours',
+			timeFilterPeriod: 'Last 24 hours',
 		});
 	});
 
@@ -278,9 +275,9 @@ test('shows outside pages in path analysis', async ({apiHelpers, page}) => {
 	});
 
 	await test.step('Change the time filter to Last 24 hours', async () => {
-		await changeTimeFilterTo({
+		await changeTimeFilter({
 			page,
-			timeFilter: 'Last 24 hours',
+			timeFilterPeriod: 'Last 24 hours',
 		});
 	});
 
@@ -385,9 +382,9 @@ test('shows tracked pages in path analysis', async ({apiHelpers, page}) => {
 	});
 
 	await test.step('Change the time filter to Last 24 hours', async () => {
-		await changeTimeFilterTo({
+		await changeTimeFilter({
 			page,
-			timeFilter: 'Last 24 hours',
+			timeFilterPeriod: 'Last 24 hours',
 		});
 	});
 
