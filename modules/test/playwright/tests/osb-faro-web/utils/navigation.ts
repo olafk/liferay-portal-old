@@ -27,7 +27,7 @@ export async function navigateToACPage(page: Page) {
 		.click();
 }
 
-export async function navigateToACPageViaURL({
+export async function navigateToACSitesPageViaURL({
 	channelID,
 	page,
 	projectID,

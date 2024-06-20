@@ -22,8 +22,8 @@ import getPageDefinition from '../layout-content-page-editor-web/utils/getPageDe
 import {createChannel, switchChannel} from './utils/channel';
 import {
 	navigateTo,
-	navigateToACPage,
-	navigateToACPageViaURL,
+	navigateToACWorkspace,
+	navigateToACSitesPageViaURL,
 } from './utils/navigation';
 import {
 	changeTimeFilterTo,
@@ -170,7 +170,7 @@ test('shows individuals who viewed a page less than 24 hours ago', async ({
 	});
 
 	await test.step('Go to Analytics Cloud and Switch the property', async () => {
-		await navigateToACPageViaURL({
+		await navigateToACSitesPageViaURL({
 			channelID: channel.id,
 			page,
 			projectID: project.groupId,
