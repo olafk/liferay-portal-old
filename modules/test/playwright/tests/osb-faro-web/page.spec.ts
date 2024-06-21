@@ -229,12 +229,12 @@ test('shows individuals who viewed a page less than 24 hours ago', async ({
 });
 
 test('shows outside pages in path analysis', async ({apiHelpers, page}) => {
+	const channelName = 'My Property - ' + getRandomString();
 	const pageTitle = 'My Page';
 	const sitePage = await createSitePage({
 		apiHelpers,
 		pageTitle,
 	});
-	const channelName = 'My Property - ' + getRandomString();
 
 	await test.step('Connect the DXP to AC', async () => {
 		await syncAnalyticsCloud({
@@ -328,6 +328,7 @@ test('shows outside pages in path analysis', async ({apiHelpers, page}) => {
 });
 
 test('shows tracked pages in path analysis', async ({apiHelpers, page}) => {
+	const channelName = 'My Property - ' + getRandomString();
 	const pageTitle1 = 'My Page 1';
 	const sitePage1 = await createSitePage({
 		apiHelpers,
@@ -338,7 +339,6 @@ test('shows tracked pages in path analysis', async ({apiHelpers, page}) => {
 		apiHelpers,
 		pageTitle: pageTitle2,
 	});
-	const channelName = 'My Property - ' + getRandomString();
 
 	await test.step('Connect the DXP to AC', async () => {
 		await syncAnalyticsCloud({
