@@ -385,9 +385,9 @@ public class JournalArticleItemSelectorViewDisplayContextTest {
 
 		BreadcrumbEntry breadcrumbEntry = breadcrumbEntries.get(0);
 
-		String url = breadcrumbEntry.getURL();
-
 		Assert.assertEquals("sites-and-libraries", breadcrumbEntry.getTitle());
+
+		String url = breadcrumbEntry.getURL();
 
 		Assert.assertTrue(url.contains("param_groupType=site"));
 		Assert.assertTrue(
@@ -396,11 +396,11 @@ public class JournalArticleItemSelectorViewDisplayContextTest {
 
 		breadcrumbEntry = breadcrumbEntries.get(1);
 
-		url = breadcrumbEntry.getURL();
-
 		Assert.assertEquals(
 			_group.getDescriptiveName(LocaleUtil.getDefault()),
 			breadcrumbEntry.getTitle());
+
+		url = breadcrumbEntry.getURL();
 
 		Assert.assertTrue(url.contains("param_groupType=site"));
 		Assert.assertTrue(
@@ -412,10 +412,10 @@ public class JournalArticleItemSelectorViewDisplayContextTest {
 
 		breadcrumbEntry = breadcrumbEntries.get(2);
 
-		url = breadcrumbEntry.getURL();
-
 		Assert.assertEquals(
 			_ancestorJournalFolder.getName(), breadcrumbEntry.getTitle());
+
+		url = breadcrumbEntry.getURL();
 
 		Assert.assertTrue(url.contains("param_groupType=site"));
 		Assert.assertTrue(
