@@ -182,13 +182,15 @@ public class MailEngineTest {
 				PropsKeys.DATA_LIMIT_MAIL_MESSAGE_MAX_PERIOD,
 				String.valueOf(maxMailMessagePeriod));
 
-			Bundle curBundle = FrameworkUtil.getBundle(MailEngineTest.class);
+			Bundle portalUtilTestBundle = FrameworkUtil.getBundle(
+				MailEngineTest.class);
 
-			Bundle bundle = BundleUtil.getBundle(
-				curBundle.getBundleContext(),
+			Bundle mailMessagingImplBundle = BundleUtil.getBundle(
+				portalUtilTestBundle.getBundleContext(),
 				"com.liferay.mail.messaging.impl");
 
-			BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
+			BundleWiring bundleWiring = mailMessagingImplBundle.adapt(
+				BundleWiring.class);
 
 			ClassLoader classLoader = bundleWiring.getClassLoader();
 
