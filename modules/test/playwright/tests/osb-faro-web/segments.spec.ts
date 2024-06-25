@@ -13,7 +13,7 @@ import {liferayConfig} from '../../liferay.config';
 import getRandomString from '../../utils/getRandomString';
 import {syncAnalyticsCloud} from '../analytics-settings-web/utils/analyticsSettings';
 import {switchChannel} from './utils/channel';
-import {changeEventDisplayName} from './utils/definitions';
+import {changeEventDisplayName} from './utils/event-definitions';
 import {navigateTo, navigateToACWorkspace} from './utils/navigation';
 import {
 	addSegmentField,
