@@ -127,11 +127,14 @@ public class SetupAdminAutoLoginTest {
 			new MockHttpServletRequest(
 				ServletContextPool.get(StringPool.BLANK), HttpMethods.GET,
 				StringPool.SLASH);
-		String password = RandomTestUtil.randomString();
 
 		mockHttpServletRequest.addParameter(Constants.CMD, "update");
+
+		String password = RandomTestUtil.randomString();
+
 		mockHttpServletRequest.addParameter("password1", password);
 		mockHttpServletRequest.addParameter("password2", password);
+
 		mockHttpServletRequest.addParameter("p_auth", "test");
 
 		HttpSession httpSession = mockHttpServletRequest.getSession();
