@@ -419,8 +419,6 @@ public class LayoutSEOLinkManagerPageTitleTest {
 				StringBundler.concat(_group.getName(), " - ", companyName),
 				_layoutSEOLinkManager.getPageTitleSuffix(_layout, companyName));
 
-			// Asserts instance and site share the same name
-
 			Assert.assertEquals(
 				_group.getName(),
 				_layoutSEOLinkManager.getPageTitleSuffix(
