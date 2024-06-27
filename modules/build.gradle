@@ -412,7 +412,7 @@ gradle.beforeProject {
 				rtlExcludedPathRegexps = [".+"]
 			}
 
-			if (project.path.contains("-theme") || project.name.equals("portal-osgi-web-wab-reference-support-test")) {
+			if (project.name.equals("portal-osgi-web-wab-reference-support-test") || project.path.contains("-theme")) {
 				if (FileUtil.exists(project, "package.json")) {
 					JsonSlurper jsonSlurper = new JsonSlurper()
 
