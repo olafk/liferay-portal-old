@@ -28,8 +28,7 @@ public class RelevantRuleEngine {
 
 	public static RelevantRuleEngine getInstance() {
 		if (_relevantRuleEngine == null) {
-			throw new IllegalStateException(
-				"RelevantRuleEngine is not initialized");
+			throw new IllegalStateException("Relevant rule engine is null");
 		}
 
 		return _relevantRuleEngine;
