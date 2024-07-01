@@ -132,7 +132,6 @@ public class SXPBlueprintUpgradeProcessTest {
 		Assert.assertArrayEquals(
 			expectedExcludes,
 			generalConfiguration.getClauseContributorsExcludes());
-
 		Assert.assertArrayEquals(
 			expectedIncludes,
 			generalConfiguration.getClauseContributorsIncludes());
