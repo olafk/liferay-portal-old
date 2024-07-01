@@ -126,7 +126,6 @@ public class UserSearchPermissionFilterContributorTest {
 			ResourceConstants.SCOPE_GROUP_TEMPLATE,
 			String.valueOf(GroupConstants.DEFAULT_PARENT_GROUP_ID),
 			AccountActionKeys.VIEW_USERS);
-
 		RoleTestUtil.addResourcePermission(
 			organizationRole, Organization.class.getName(),
 			ResourceConstants.SCOPE_GROUP_TEMPLATE,
