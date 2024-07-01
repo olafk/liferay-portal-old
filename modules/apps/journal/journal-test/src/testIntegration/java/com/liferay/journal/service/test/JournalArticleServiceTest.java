@@ -312,12 +312,11 @@ public class JournalArticleServiceTest {
 		_ddmTemplateLocalService.deleteTemplate(ddmTemplate.getTemplateId());
 
 		Assert.assertNull(
-			_ddmTemplateLinkLocalService.fetchDDMTemplateLink(
-				ddmTemplateLink.getTemplateLinkId()));
-
-		Assert.assertNull(
 			_ddmTemplateLocalService.fetchDDMTemplate(
 				ddmTemplate.getTemplateId()));
+		Assert.assertNull(
+			_ddmTemplateLinkLocalService.fetchDDMTemplateLink(
+				ddmTemplateLink.getTemplateLinkId()));
 	}
 
 	@Test
