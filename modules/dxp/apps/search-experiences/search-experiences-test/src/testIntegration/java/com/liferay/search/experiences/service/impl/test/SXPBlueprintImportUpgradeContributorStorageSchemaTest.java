@@ -68,15 +68,15 @@ public class SXPBlueprintImportUpgradeContributorStorageSchemaTest {
 				_sxpBlueprintV10.getSXPBlueprintId());
 
 		_assertGeneralConfiguration(
-			sxpBlueprintV10, _WILDCARD_ARRAY, new String[0]);
+			_WILDCARD_ARRAY, new String[0], sxpBlueprintV10, );
 
 		SXPBlueprint sxpBlueprintV11 =
 			_sxpBlueprintLocalService.getSXPBlueprint(
 				_sxpBlueprintV11.getSXPBlueprintId());
 
 		_assertGeneralConfiguration(
-			sxpBlueprintV11, _getExpectedExcludes(_sxpBlueprintV11),
-			_getExpectedIncludes(_sxpBlueprintV11));
+			_getExpectedExcludes(_sxpBlueprintV11),
+			_getExpectedIncludes(_sxpBlueprintV11), sxpBlueprintV11);
 	}
 
 	@Test
@@ -86,15 +86,15 @@ public class SXPBlueprintImportUpgradeContributorStorageSchemaTest {
 				_sxpBlueprintV10.getSXPBlueprintId());
 
 		_assertGeneralConfiguration(
-			sxpBlueprintV10, new String[0], _WILDCARD_ARRAY);
+			new String[0], _WILDCARD_ARRAY, sxpBlueprintV10);
 
 		SXPBlueprint sxpBlueprintV11 =
 			_sxpBlueprintLocalService.getSXPBlueprint(
 				_sxpBlueprintV11.getSXPBlueprintId());
 
 		_assertGeneralConfiguration(
-			sxpBlueprintV11, _getExpectedExcludes(_sxpBlueprintV11),
-			_getExpectedIncludes(_sxpBlueprintV11));
+			_getExpectedExcludes(_sxpBlueprintV11),
+			_getExpectedIncludes(_sxpBlueprintV11), sxpBlueprintV11);
 	}
 
 	@Test
@@ -111,23 +111,23 @@ public class SXPBlueprintImportUpgradeContributorStorageSchemaTest {
 				_sxpBlueprintV10.getSXPBlueprintId());
 
 		_assertGeneralConfiguration(
-			sxpBlueprintV10, new String[0], expectedIncludes);
+			new String[0], expectedIncludes, sxpBlueprintV10);
 
 		SXPBlueprint sxpBlueprintV11 =
 			_sxpBlueprintLocalService.getSXPBlueprint(
 				_sxpBlueprintV11.getSXPBlueprintId());
 
 		_assertGeneralConfiguration(
-			sxpBlueprintV11, _getExpectedExcludes(_sxpBlueprintV11),
-			_getExpectedIncludes(_sxpBlueprintV11));
+			_getExpectedExcludes(_sxpBlueprintV11),
+			_getExpectedIncludes(_sxpBlueprintV11), sxpBlueprintV11);
 	}
 
 	@Rule
 	public TestName testName = new TestName();
 
 	private void _assertGeneralConfiguration(
-			SXPBlueprint sxpBlueprint, String[] expectedExcludes,
-			String[] expectedIncludes)
+			String[] expectedExcludes,
+			String[] expectedIncludes, SXPBlueprint sxpBlueprint)
 		throws Exception {
 
 		GeneralConfiguration generalConfiguration = _getGeneralConfiguration(
