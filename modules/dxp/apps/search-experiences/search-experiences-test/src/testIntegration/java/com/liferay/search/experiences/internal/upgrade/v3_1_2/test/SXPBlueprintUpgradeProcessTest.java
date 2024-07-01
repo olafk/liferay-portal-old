@@ -86,21 +86,21 @@ public class SXPBlueprintUpgradeProcessTest {
 	}
 
 	@Test
-	public void testUpgradeBlueprintDisableAllContributors() throws Exception {
+	public void testUpgradeSXPBlueprintWithDisableAllContributors() throws Exception {
 		_runUpgrade();
 
 		_assertGeneralConfiguration(_WILDCARD_ARRAY, new String[0]);
 	}
 
 	@Test
-	public void testUpgradeBlueprintEnableAllContributors() throws Exception {
+	public void testUpgradeSXPBlueprintWithEnableAllContributors() throws Exception {
 		_runUpgrade();
 
 		_assertGeneralConfiguration(new String[0], _WILDCARD_ARRAY);
 	}
 
 	@Test
-	public void testUpgradeBlueprintEnableSomeContributors() throws Exception {
+	public void testUpgradeSXPBlueprintWithEnableSomeContributors() throws Exception {
 		_runUpgrade();
 
 		String[] expectedIncludes = {
