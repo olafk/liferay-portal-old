@@ -58,30 +58,27 @@ public class ConfigurationPortalInstanceLifecycleListener
 			return;
 		}
 
-		HashMap<String, String> configurations =
-			DBPartitionUtil.getConfigurations(
-				PortalInstances.getCompanyInCopyProcess());
+		Map<String, String> configurations = DBPartitionUtil.getConfigurations(
+			PortalInstances.getCompanyInCopyProcess());
 
-		for (Map.Entry<String, String> configurationEntry :
-				configurations.entrySet()) {
-
-			String dictionaryString = configurationEntry.getValue();
+		for (Map.Entry<String, String> entry : configurations.entrySet()) {
+			String dictionaryString = entry.getValue();
 
 			Dictionary<String, Object> dictionary = ConfigurationHandler.read(
 				new UnsyncByteArrayInputStream(
 					dictionaryString.getBytes(StringPool.UTF8)));
 
 			if (dictionary.get("service.factoryPid") != null) {
+				if (dictionary.get("companyId") != null) {
+					dictionary.put("companyId", company.getCompanyId());
+				}
+
 				Configuration configuration =
 					_configurationAdmin.createFactoryConfiguration(
 						(String)dictionary.get("service.factoryPid"),
 						StringPool.QUESTION);
 
 				dictionary.put("service.pid", configuration.getPid());
-
-				if (dictionary.get("companyId") != null) {
-					dictionary.put("companyId", company.getCompanyId());
-				}
 
 				configuration.update(dictionary);
 			}

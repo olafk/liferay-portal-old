@@ -53,6 +53,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
@@ -183,7 +184,7 @@ public class DBPartitionUtil {
 		return pids;
 	}
 
-	public static HashMap<String, String> getConfigurations(long companyId)
+	public static Map<String, String> getConfigurations(long companyId)
 		throws SQLException {
 
 		Connection connection = CurrentConnectionUtil.getConnection(
@@ -195,7 +196,7 @@ public class DBPartitionUtil {
 					_getPartitionName(companyId), ".Configuration_"));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
-			HashMap<String, String> configurations = new HashMap<>();
+			Map<String, String> configurations = new HashMap<>();
 
 			while (resultSet.next()) {
 				configurations.put(
