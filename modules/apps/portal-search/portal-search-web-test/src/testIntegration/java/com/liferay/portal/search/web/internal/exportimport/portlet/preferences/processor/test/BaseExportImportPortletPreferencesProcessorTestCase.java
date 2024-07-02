@@ -16,8 +16,7 @@ import org.junit.Test;
 /**
  * @author Gustavo Lima
  */
-public abstract class
-	BaseSearchWidgetsExportImportPortletPreferencesProcessorTestCase {
+public abstract class BaseExportImportPortletPreferencesProcessorTestCase {
 
 	@Test
 	public void testExportImportPortletPreferencesProcessorCapabilities() {
