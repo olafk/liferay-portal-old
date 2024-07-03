@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.vulcan.internal.jaxrs.serializer.JSONArrayStdSerializer;
 import com.liferay.portal.vulcan.internal.jaxrs.serializer.JSONObjectStdSerializer;
-import com.liferay.portal.vulcan.jaxrs.serializer.UnsafeSupplierSerializer;
+import com.liferay.portal.vulcan.jaxrs.serializer.UnsafeSupplierJsonSerializer;
 
 import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Provider;
@@ -52,7 +52,7 @@ public class ObjectMapperContextResolver
 						addSerializer(
 							(Class<UnsafeSupplier<Object, Exception>>)
 								(Class<?>)UnsafeSupplier.class,
-							new UnsafeSupplierSerializer());
+							new UnsafeSupplierJsonSerializer());
 					}
 				});
 			setDateFormat(new ISO8601DateFormat());

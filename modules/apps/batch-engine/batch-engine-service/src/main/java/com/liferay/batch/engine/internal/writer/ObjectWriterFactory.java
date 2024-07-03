@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.vulcan.jackson.databind.ser.VulcanPropertyFilter;
-import com.liferay.portal.vulcan.jaxrs.serializer.UnsafeSupplierSerializer;
+import com.liferay.portal.vulcan.jaxrs.serializer.UnsafeSupplierJsonSerializer;
 
 import java.util.HashSet;
 import java.util.List;
@@ -52,7 +52,7 @@ public class ObjectWriterFactory {
 						addSerializer(
 							(Class<UnsafeSupplier<Object, Exception>>)
 								(Class<?>)UnsafeSupplier.class,
-							new UnsafeSupplierSerializer());
+							new UnsafeSupplierJsonSerializer());
 					}
 				});
 			setDateFormat(new ISO8601DateFormat());

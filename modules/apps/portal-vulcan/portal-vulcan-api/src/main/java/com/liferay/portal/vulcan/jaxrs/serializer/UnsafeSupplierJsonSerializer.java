@@ -15,7 +15,7 @@ import com.liferay.petra.function.UnsafeSupplier;
  * @author Alberto Javier Moreno Lage
  * @author Carlos Correa
  */
-public class UnsafeSupplierSerializer
+public class UnsafeSupplierJsonSerializer
 	extends JsonSerializer<UnsafeSupplier<Object, Exception>> {
 
 	@Override
