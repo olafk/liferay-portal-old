@@ -11,9 +11,9 @@ import com.liferay.portal.kernel.model.UserConstants;
 import com.liferay.portal.kernel.security.auth.FullNameGenerator;
 import com.liferay.portal.kernel.security.auth.FullNameGeneratorFactory;
 import com.liferay.portal.kernel.service.RoleLocalService;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -399,16 +399,14 @@ public class TestrayCaseResultResourceImpl
 		Map<String, Object> value) {
 
 		try {
-			if (ListUtil.fromArray(
-					contextUser.getRoleIds()
-				).contains(
+			if (ArrayUtil.contains(
+					contextUser.getRoleIds(),
 					_roleLocalService.getRole(
 						contextUser.getCompanyId(), "Testray Administrator"
 					).getRoleId()
 				) ||
-				ListUtil.fromArray(
-					contextUser.getRoleIds()
-				).contains(
+				ArrayUtil.contains(
+					contextUser.getRoleIds(),
 					_roleLocalService.getRole(
 						contextUser.getCompanyId(), "Testray Lead"
 					).getRoleId()
