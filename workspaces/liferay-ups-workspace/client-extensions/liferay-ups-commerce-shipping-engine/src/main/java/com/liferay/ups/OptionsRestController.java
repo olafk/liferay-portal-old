@@ -74,8 +74,6 @@ public class OptionsRestController extends BaseRestController {
 			JSONObject orderItemJSONObject = orderItemsJSONArray.getJSONObject(
 				i);
 
-			quantity += orderItemJSONObject.getInt("quantity");
-
 			JSONObject skuJSONObject = _get(
 				"Bearer " + jwt.getTokenValue(),
 				"/o/headless-commerce-admin-catalog/v1.0/skus/" +
@@ -83,6 +81,9 @@ public class OptionsRestController extends BaseRestController {
 
 			depth += skuJSONObject.getDouble("depth");
 			height += skuJSONObject.getDouble("height");
+
+			quantity += orderItemJSONObject.getInt("quantity");
+
 			weight += skuJSONObject.getDouble("weight");
 			width += skuJSONObject.getDouble("width");
 		}
