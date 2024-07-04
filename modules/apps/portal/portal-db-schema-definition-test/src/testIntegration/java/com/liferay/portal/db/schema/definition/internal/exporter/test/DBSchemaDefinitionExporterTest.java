@@ -148,18 +148,18 @@ public class DBSchemaDefinitionExporterTest {
 	}
 
 	private void _assertIndexes(DataSource copyDataSource) throws Exception {
-		List<String> indexColumns = DatabaseTestUtil.getIndexColumns(
+		List<String> indexColumnNames = DatabaseTestUtil.getIndexColumnNames(
 			InfrastructureUtil.getDataSource());
-		List<String> copyIndexColumns = DatabaseTestUtil.getIndexColumns(
+		List<String> copyIndexColumnNames = DatabaseTestUtil.getIndexColumnNames(
 			copyDataSource);
 
 		Assert.assertEquals(
 			StringUtils.difference(
-				copyIndexColumns.toString(), indexColumns.toString()),
-			indexColumns.size(), copyIndexColumns.size());
+				copyIndexColumnNames.toString(), indexColumnNames.toString()),
+			indexColumnNames.size(), copyIndexColumnNames.size());
 
-		for (int i = 0; i < indexColumns.size(); i++) {
-			Assert.assertEquals(indexColumns.get(i), copyIndexColumns.get(i));
+		for (int i = 0; i < indexColumnNames.size(); i++) {
+			Assert.assertEquals(indexColumnNames.get(i), copyIndexColumnNames.get(i));
 		}
 	}
 

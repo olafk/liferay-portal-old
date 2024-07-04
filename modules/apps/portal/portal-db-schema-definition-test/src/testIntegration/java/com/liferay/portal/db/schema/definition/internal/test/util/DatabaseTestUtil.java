@@ -62,12 +62,12 @@ public class DatabaseTestUtil {
 		}
 	}
 
-	public static List<String> getIndexColumns(DataSource dataSource)
+	public static List<String> getIndexColumnNames(DataSource dataSource)
 		throws Exception {
 
 		DB db = DBManagerUtil.getDB();
 
-		List<String> indexColumns = new ArrayList<>();
+		List<String> indexColumnNames = new ArrayList<>();
 
 		try (Connection connection = dataSource.getConnection()) {
 			DatabaseMetaData databaseMetaData = connection.getMetaData();
@@ -89,15 +89,15 @@ public class DatabaseTestUtil {
 						continue;
 					}
 
-					indexColumns.addAll(
-						_getIndexColumns(connection, db, tableName, false));
+					indexColumnNames.addAll(
+						_getIndexColumnNames(connection, db, tableName, false));
 				}
 			}
 		}
 
-		Collections.sort(indexColumns);
+		Collections.sort(indexColumnNames);
 
-		return indexColumns;
+		return indexColumnNames;
 	}
 
 	public static String getSchemaURL(String schemaName) {
@@ -174,11 +174,11 @@ public class DatabaseTestUtil {
 			PropsValues.JDBC_DEFAULT_PASSWORD, StringPool.BLANK);
 	}
 
-	private static List<String> _getIndexColumns(
+	private static List<String> _getIndexColumnNames(
 			Connection connection, DB db, String tableName, boolean unique)
 		throws Exception {
 
-		List<String> indexColumns = new ArrayList<>();
+		List<String> indexColumnNames = new ArrayList<>();
 
 		try (ResultSet resultSet = db.getIndexResultSet(
 				connection, tableName, unique)) {
@@ -191,12 +191,12 @@ public class DatabaseTestUtil {
 					resultSet.getShort("ORDINAL_POSITION")
 				};
 
-				indexColumns.add(
+				indexColumnNames.add(
 					ArrayUtil.toString(tableIndexArray, (String)null));
 			}
 		}
 
-		return indexColumns;
+		return indexColumnNames;
 	}
 
 	private static String _getMySQLSchemaURL(String schemaName) {
