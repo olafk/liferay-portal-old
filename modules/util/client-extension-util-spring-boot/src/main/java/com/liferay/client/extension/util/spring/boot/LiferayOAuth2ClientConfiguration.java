@@ -68,8 +68,8 @@ public class LiferayOAuth2ClientConfiguration {
 		List<ClientRegistration> clientRegistrations = new ArrayList<>(
 			Arrays.asList(_getClientRegistrations()));
 
-		if (_extraClientRegistrationRepository != null) {
-			_extraClientRegistrationRepository.forEach(
+		if (_extraInMemoryClientRegistrationRepository != null) {
+			_extraInMemoryClientRegistrationRepository.forEach(
 				clientRegistrations::add);
 		}
 
@@ -87,8 +87,8 @@ public class LiferayOAuth2ClientConfiguration {
 		List<ClientRegistration> clientRegistrations = new ArrayList<>(
 			Arrays.asList(_getClientRegistrations()));
 
-		if (_extraReactiveClientRegistrationRepository != null) {
-			_extraReactiveClientRegistrationRepository.forEach(
+		if (_extraInMemoryReactiveClientRegistrationRepository != null) {
+			_extraInMemoryReactiveClientRegistrationRepository.forEach(
 				clientRegistrations::add);
 		}
 
@@ -206,12 +206,12 @@ public class LiferayOAuth2ClientConfiguration {
 	@Autowired(required = false)
 	@Qualifier("extra")
 	private InMemoryClientRegistrationRepository
-		_extraClientRegistrationRepository;
+		_extraInMemoryClientRegistrationRepository;
 
 	@Autowired(required = false)
 	@Qualifier("extra")
 	private InMemoryReactiveClientRegistrationRepository
-		_extraReactiveClientRegistrationRepository;
+		_extraInMemoryReactiveClientRegistrationRepository;
 
 	@Value("${com.liferay.lxc.dxp.domains}")
 	private String _lxcDXPDomains;
