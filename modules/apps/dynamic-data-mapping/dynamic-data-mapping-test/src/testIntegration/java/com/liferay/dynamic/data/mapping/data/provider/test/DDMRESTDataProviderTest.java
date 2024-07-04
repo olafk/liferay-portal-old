@@ -513,13 +513,13 @@ public class DDMRESTDataProviderTest {
 							false),
 						null, null, null, null, null, null));
 
-			Assert.assertEquals(
-				DDMDataProviderResponseStatus.SERVICE_UNAVAILABLE,
-				ddmDataProviderResponse.getStatus());
 			Assert.assertTrue(
 				ListUtil.isEmpty(
 					ddmDataProviderResponse.getOutput(
 						outputParameterId, List.class)));
+			Assert.assertEquals(
+				DDMDataProviderResponseStatus.SERVICE_UNAVAILABLE,
+				ddmDataProviderResponse.getStatus());
 		}
 	}
 
