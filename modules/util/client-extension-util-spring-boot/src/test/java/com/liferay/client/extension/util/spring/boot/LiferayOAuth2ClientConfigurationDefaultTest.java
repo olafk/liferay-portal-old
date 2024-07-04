@@ -139,6 +139,42 @@ public class LiferayOAuth2ClientConfigurationDefaultTest {
 	}
 
 	@Test
+	public void testExtraRegistrations() {
+		InMemoryClientRegistrationRepository
+			inMemoryClientRegistrationRepository =
+				(InMemoryClientRegistrationRepository)
+					_clientRegistrationRepository;
+
+		Assert.assertNull(
+			inMemoryClientRegistrationRepository.findByRegistrationId("extra"));
+
+		List<ClientRegistration> clientRegistrations = new ArrayList<>();
+
+		inMemoryClientRegistrationRepository.forEach(clientRegistrations::add);
+
+		Assert.assertEquals(
+			clientRegistrations.toString(), 2, clientRegistrations.size());
+
+		InMemoryReactiveClientRegistrationRepository
+			inMemoryReactiveClientRegistrationRepository =
+				(InMemoryReactiveClientRegistrationRepository)
+					_reactiveClientRegistrationRepository;
+
+		Assert.assertNull(
+			inMemoryReactiveClientRegistrationRepository.findByRegistrationId(
+				"extra"
+			).block());
+
+		clientRegistrations = new ArrayList<>();
+
+		inMemoryReactiveClientRegistrationRepository.forEach(
+			clientRegistrations::add);
+
+		Assert.assertEquals(
+			clientRegistrations.toString(), 2, clientRegistrations.size());
+	}
+
+	@Test
 	public void testGetAuthorizationFailure() {
 		expectedException.expect(IllegalArgumentException.class);
 		expectedException.expectMessage(
@@ -176,42 +212,6 @@ public class LiferayOAuth2ClientConfigurationDefaultTest {
 			expected,
 			_liferayOAuth2AccessTokenManager.getAuthorization(
 				"foo-baker-headless-server"));
-	}
-
-	@Test
-	public void testExtraRegistrations() {
-		InMemoryClientRegistrationRepository
-			inMemoryClientRegistrationRepository =
-				(InMemoryClientRegistrationRepository)
-					_clientRegistrationRepository;
-
-		Assert.assertNull(
-			inMemoryClientRegistrationRepository.findByRegistrationId("extra"));
-
-		List<ClientRegistration> clientRegistrations = new ArrayList<>();
-
-		inMemoryClientRegistrationRepository.forEach(clientRegistrations::add);
-
-		Assert.assertEquals(
-			clientRegistrations.toString(), 2, clientRegistrations.size());
-
-		InMemoryReactiveClientRegistrationRepository
-			inMemoryReactiveClientRegistrationRepository =
-				(InMemoryReactiveClientRegistrationRepository)
-					_reactiveClientRegistrationRepository;
-
-		Assert.assertNull(
-			inMemoryReactiveClientRegistrationRepository.findByRegistrationId(
-				"extra"
-			).block());
-
-		clientRegistrations = new ArrayList<>();
-
-		inMemoryReactiveClientRegistrationRepository.forEach(
-			clientRegistrations::add);
-
-		Assert.assertEquals(
-			clientRegistrations.toString(), 2, clientRegistrations.size());
 	}
 
 	@Rule
