@@ -21,9 +21,7 @@ import java.io.InputStreamReader;
 
 import java.nio.charset.StandardCharsets;
 
-import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -56,13 +54,33 @@ public class MessageResourceImpl extends BaseMessageResourceImpl {
 
 	@Override
 	public Page<Message> getMessagesPage(String[] keys, String languageId) {
-		List<Message> messages = new ArrayList<>();
+		return Page.of(
+			transformToList(
+				keys,
+				key -> {
+					Message message = new Message();
 
-		for (String key : keys) {
-			messages.add(_getMessageByKey(key, languageId));
-		}
+					message.setKey(() -> key);
+					message.setLanguageId(() -> languageId);
 
-		return Page.of(messages);
+					PLOEntry ploEntry = _ploEntryLocalService.fetchPLOEntry(
+						contextCompany.getCompanyId(), key, languageId);
+
+					if (ploEntry != null) {
+						message.setCreateDate(ploEntry::getCreateDate);
+						message.setId(ploEntry::getPloEntryId);
+						message.setModifiedDate(ploEntry::getModifiedDate);
+						message.setOverride(() -> true);
+						message.setValue(ploEntry::getValue);
+					}
+					else {
+						message.setValue(
+							() -> _language.get(
+								LocaleUtil.fromLanguageId(languageId), key));
+					}
+
+					return message;
+				}));
 	}
 
 	@Override
@@ -115,31 +133,6 @@ public class MessageResourceImpl extends BaseMessageResourceImpl {
 		message.setModifiedDate(ploEntry::getModifiedDate);
 
 		message.setOverride(() -> true);
-
-		return message;
-	}
-
-	private Message _getMessageByKey(String key, String languageId) {
-		PLOEntry ploEntry = _ploEntryLocalService.fetchPLOEntry(
-			contextCompany.getCompanyId(), key, languageId);
-
-		Message message = new Message();
-
-		message.setKey(() -> key);
-		message.setLanguageId(() -> languageId);
-
-		if (ploEntry != null) {
-			message.setCreateDate(ploEntry::getCreateDate);
-			message.setModifiedDate(ploEntry::getModifiedDate);
-			message.setValue(ploEntry::getValue);
-			message.setOverride(() -> true);
-			message.setId(ploEntry::getPloEntryId);
-		}
-		else {
-			message.setValue(
-				() -> _language.get(
-					LocaleUtil.fromLanguageId(languageId), key));
-		}
 
 		return message;
 	}
