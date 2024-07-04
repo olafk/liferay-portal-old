@@ -90,20 +90,13 @@ public class OptionsRestController extends BaseRestController {
 				StringUtil.split(
 					typeSettingsJSONObject.getString("ratingCodes"))) {
 
-			try {
-				jsonArray.put(
-					_postRate(
-						typeSettingsJSONObject.getString("clientId"),
-						typeSettingsJSONObject.getString("clientSecret"), code,
-						depth, height, log, quantity,
-						orderJSONObject.getJSONObject("shippingAddress"),
-						typeSettingsJSONObject, weight, width));
-			}
-			catch (Exception exception) {
-				if (log.isDebugEnabled()) {
-					log.debug(exception);
-				}
-			}
+			jsonArray.put(
+				_postRate(
+					typeSettingsJSONObject.getString("clientId"),
+					typeSettingsJSONObject.getString("clientSecret"), code,
+					depth, height, log, quantity,
+					orderJSONObject.getJSONObject("shippingAddress"),
+					typeSettingsJSONObject, weight, width));
 		}
 
 		return new ResponseEntity<>(
