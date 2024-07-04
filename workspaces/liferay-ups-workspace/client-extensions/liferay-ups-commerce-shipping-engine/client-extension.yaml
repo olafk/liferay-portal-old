@@ -23,7 +23,6 @@ liferay-ups-commerce-shipping-engine-oauth-application-user-agent:
     .serviceScheme: http
     name: Liferay UPS Commerce Shipping Engine OAuth Application User Agent
     scopes:
-        - Liferay.Headless.Admin.List.Type.everything
         - Liferay.Headless.Admin.Workflow.everything
         - Liferay.Headless.Commerce.Admin.Catalog.everything
     type: oAuthApplicationUserAgent
