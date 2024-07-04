@@ -108,10 +108,10 @@ public class DatabaseTestUtil {
 		return _getPostgreSQLSchemaURL(schemaName);
 	}
 
-	public static List<String> getTableColumns(DataSource dataSource)
+	public static List<String> getTableColumnNames(DataSource dataSource)
 		throws Exception {
 
-		List<String> tableColumns = new ArrayList<>();
+		List<String> tableColumnNames = new ArrayList<>();
 
 		try (Connection connection = dataSource.getConnection()) {
 			DatabaseMetaData databaseMetaData = connection.getMetaData();
@@ -143,15 +143,15 @@ public class DatabaseTestUtil {
 						resultSet.getString("IS_AUTOINCREMENT")
 					};
 
-					tableColumns.add(
+					tableColumnNames.add(
 						ArrayUtil.toString(columnArray, (String)null));
 				}
 			}
 		}
 
-		Collections.sort(tableColumns);
+		Collections.sort(tableColumnNames);
 
-		return tableColumns;
+		return tableColumnNames;
 	}
 
 	public static void importFileTo(File file, DataSource targetDataSource)
