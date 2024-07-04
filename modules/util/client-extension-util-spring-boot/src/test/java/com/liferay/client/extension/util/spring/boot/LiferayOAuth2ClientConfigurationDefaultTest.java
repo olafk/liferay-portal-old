@@ -179,7 +179,7 @@ public class LiferayOAuth2ClientConfigurationDefaultTest {
 	}
 
 	@Test
-	public void testNoExtraClientRegistrationsExist() {
+	public void testExtraRegistrations() {
 		InMemoryClientRegistrationRepository
 			inMemoryClientRegistrationRepository =
 				(InMemoryClientRegistrationRepository)
