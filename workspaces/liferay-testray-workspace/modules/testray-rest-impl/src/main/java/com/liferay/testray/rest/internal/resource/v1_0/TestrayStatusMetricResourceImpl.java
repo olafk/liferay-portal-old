@@ -583,7 +583,7 @@ public class TestrayStatusMetricResourceImpl
 			sb.append(") ");
 		}
 
-		sb.append("group by b.c_buildId_ order by b.dueDate_ desc");
+		sb.append("group by b.c_buildId_ order by b.c_buildId_ desc");
 
 		String sql = StringUtil.replace(
 			sb.toString(), "[%COMPANY_ID%]",
