@@ -32,11 +32,10 @@ public abstract class
 
 		List<Capability> exportCapabilities =
 			_exportImportPortletPreferencesProcessor.getExportCapabilities();
-
-		Assert.assertFalse(exportCapabilities.isEmpty());
-
 		List<Capability> importCapabilities =
 			_exportImportPortletPreferencesProcessor.getImportCapabilities();
+
+		Assert.assertFalse(exportCapabilities.isEmpty());
 
 		Assert.assertFalse(importCapabilities.isEmpty());
 	}
