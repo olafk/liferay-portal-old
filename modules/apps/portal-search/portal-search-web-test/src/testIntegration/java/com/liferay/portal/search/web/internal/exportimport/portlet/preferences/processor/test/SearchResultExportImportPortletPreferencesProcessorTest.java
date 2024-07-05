@@ -20,7 +20,7 @@ import org.junit.runner.RunWith;
  * @author Gustavo Lima
  */
 @RunWith(Arquillian.class)
-public class SearchResultsExportImportPortletPreferencesProcessorTest
+public class SearchResultExportImportPortletPreferencesProcessorTest
 	extends BaseExportImportPortletPreferencesProcessorTestCase {
 
 	@ClassRule
