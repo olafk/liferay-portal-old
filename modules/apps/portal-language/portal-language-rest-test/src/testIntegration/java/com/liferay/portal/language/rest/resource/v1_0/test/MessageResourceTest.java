@@ -87,7 +87,7 @@ public class MessageResourceTest extends BaseMessageResourceTestCase {
 
 		try {
 			FileUtil.write(
-				file, "property-1=Property 1\nproperty-2=Property 2");
+				file, "property-1=Property One\nproperty-2=Property Two");
 
 			messageResource.postMessageImport(
 				"en_US", null,
@@ -119,12 +119,12 @@ public class MessageResourceTest extends BaseMessageResourceTestCase {
 			Message message1 = messageResource.getMessage(
 				"property-1", "en_US");
 
-			Assert.assertEquals("Property 1", message1.getValue());
+			Assert.assertEquals("Property One", message1.getValue());
 
 			Message message2 = messageResource.getMessage(
 				"property-2", "en_US");
 
-			Assert.assertEquals("Property 2", message2.getValue());
+			Assert.assertEquals("Property Two", message2.getValue());
 		}
 		finally {
 			FileUtil.delete(file);
