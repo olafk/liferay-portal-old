@@ -36,12 +36,6 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class MessageResourceTest extends BaseMessageResourceTestCase {
 
-	@Before
-	@Override
-	public void setUp() throws Exception {
-		super.setUp();
-	}
-
 	@After
 	@Override
 	public void tearDown() throws Exception {
