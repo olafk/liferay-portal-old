@@ -78,7 +78,9 @@ public class AddContentLayoutMVCActionCommandCopyCategoriesAndTagsTest {
 	}
 
 	@Test
-	public void testAddContentLayoutCopyTagsAndCategories() throws Exception {
+	public void testAddContentLayoutCopyAssetCategoriesAndAssetTags()
+		throws Exception {
+
 		Layout layout = _layoutLocalService.fetchLayout(
 			_layoutPageTemplateEntry.getPlid());
 
