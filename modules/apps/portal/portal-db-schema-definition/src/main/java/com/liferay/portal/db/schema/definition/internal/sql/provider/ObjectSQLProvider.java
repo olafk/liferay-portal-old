@@ -58,6 +58,8 @@ public class ObjectSQLProvider implements SQLProvider {
 	private void _appendIndexesSQL() throws Exception {
 		DataSource dataSource = InfrastructureUtil.getDataSource();
 
+		// LPD-25786 Do not reuse _db
+
 		DB sourceDB = DBManagerUtil.getDB();
 
 		try (Connection connection = dataSource.getConnection()) {
