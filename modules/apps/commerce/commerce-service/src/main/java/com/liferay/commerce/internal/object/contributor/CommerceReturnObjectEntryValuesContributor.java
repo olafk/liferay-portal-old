@@ -90,11 +90,11 @@ public class CommerceReturnObjectEntryValuesContributor
 					objectDefinition.getObjectDefinitionId());
 			}
 
-			Map<String, Serializable> originalObjectEntryValues =
+			Map<String, Serializable> originalValues =
 				originalObjectEntry.getValues();
 
 			String currentReturnStatus = GetterUtil.getString(
-				originalObjectEntryValues.get("returnStatus"));
+				originalValues.get("returnStatus"));
 
 			String newReturnStatus = GetterUtil.getString(
 				values.get("returnStatus"));
