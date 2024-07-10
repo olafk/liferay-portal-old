@@ -24,11 +24,7 @@ public class PLOEntryLanguageIdException extends PortalException {
 					"Language ID \"", languageId,
 					"\" is not one of the available language IDs: ",
 					Arrays.toString(PropsValues.LOCALES)));
-
-			this.languageId = languageId;
 		}
-
-		public final String languageId;
 
 	}
 
