@@ -811,8 +811,8 @@ public class ObjectActionLocalServiceImpl
 				   ObjectActionTriggerConstants.KEY_ON_AFTER_UPDATE)))) {
 
 			throw new ObjectActionParametersException(
-				"The parameter \"usePreferredLanguageForGuests\" is not used " +
-					"in this type of request");
+				"The parameter \"usePreferredLanguageForGuests\" is invalid " +
+					"for this object action");
 		}
 
 		if (MapUtil.isNotEmpty(errorMessageKeys)) {

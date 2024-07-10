@@ -1867,8 +1867,8 @@ public class ObjectActionLocalServiceTest {
 
 		AssertUtils.assertFailure(
 			ObjectActionParametersException.class,
-			"The parameter \"usePreferredLanguageForGuests\" is not used in " +
-				"this type of request",
+			"The parameter \"usePreferredLanguageForGuests\" is invalid for " +
+				"this object action",
 			() -> _addObjectAction(
 				RandomTestUtil.randomString(),
 				ObjectActionExecutorConstants.KEY_NOTIFICATION,
@@ -1879,8 +1879,8 @@ public class ObjectActionLocalServiceTest {
 				false));
 		AssertUtils.assertFailure(
 			ObjectActionParametersException.class,
-			"The parameter \"usePreferredLanguageForGuests\" is not used in " +
-				"this type of request",
+			"The parameter \"usePreferredLanguageForGuests\" is invalid for " +
+				"this object action",
 			() -> _addObjectAction(
 				RandomTestUtil.randomString(),
 				ObjectActionExecutorConstants.KEY_WEBHOOK,
@@ -1891,8 +1891,8 @@ public class ObjectActionLocalServiceTest {
 				false));
 		AssertUtils.assertFailure(
 			ObjectActionParametersException.class,
-			"The parameter \"usePreferredLanguageForGuests\" is not used in " +
-				"this type of request",
+			"The parameter \"usePreferredLanguageForGuests\" is invalid for " +
+				"this object action",
 			() -> _addObjectAction(
 				RandomTestUtil.randomString(),
 				ObjectActionExecutorConstants.KEY_WEBHOOK,
