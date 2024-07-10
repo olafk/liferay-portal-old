@@ -151,7 +151,11 @@ public class MessageResourceImpl extends BaseMessageResourceImpl {
 
 		Set<String> keySet = resourceBundle.keySet();
 
-		keySet.addAll(_getCompanyPLOEntryKeys(contextCompany.getCompanyId()));
+		keySet.addAll(
+			transform(
+				_ploEntryLocalService.getPLOEntries(
+					contextCompany.getCompanyId()),
+				ploEntry -> ploEntry.getKey()));
 
 		List<String> keys = new ArrayList<>(keySet);
 
@@ -193,18 +197,6 @@ public class MessageResourceImpl extends BaseMessageResourceImpl {
 		message.setValue(ploEntry::getValue);
 
 		return message;
-	}
-
-	private List<String> _getCompanyPLOEntryKeys(long companyId) {
-		List<String> keys = new ArrayList<>();
-
-		for (PLOEntry ploEntry :
-				_ploEntryLocalService.getPLOEntries(companyId)) {
-
-			keys.add(ploEntry.getKey());
-		}
-
-		return keys;
 	}
 
 	@Reference
