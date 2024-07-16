@@ -76,7 +76,6 @@ public class ObjectActionUpgradeProcess extends UpgradeProcess {
 				}
 
 				preparedStatement2.setString(1, unicodeProperties.toString());
-
 				preparedStatement2.setLong(
 					2, resultSet.getLong("objectActionId"));
 

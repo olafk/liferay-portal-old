@@ -116,16 +116,12 @@ public class ObjectActionUpgradeProcessTest {
 
 		_assertFalseUsePreferredLanguageForGuestsParameter(
 			objectAction1.getObjectActionId());
-
 		_assertNullUsePreferredLanguageForGuestsParameter(
 			objectAction2.getObjectActionId());
-
 		_assertFalseUsePreferredLanguageForGuestsParameter(
 			objectAction3.getObjectActionId());
-
 		_assertNullUsePreferredLanguageForGuestsParameter(
 			objectAction4.getObjectActionId());
-
 		_assertNullUsePreferredLanguageForGuestsParameter(
 			objectAction5.getObjectActionId());
 	}
