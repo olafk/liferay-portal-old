@@ -62,11 +62,8 @@ public class AutocompleteUserMVCResourceCommandTest {
 	@Before
 	public void setUp() throws Exception {
 		_user1 = UserTestUtil.addUser();
-		_user2 = UserTestUtil.addUser();
 
 		_permissionChecker = PermissionCheckerFactoryUtil.create(_user1);
-
-		UserGroup userGroup = UserGroupTestUtil.addUserGroup();
 
 		Role role = _roleLocalService.getRole(
 			TestPropsValues.getCompanyId(), RoleConstants.PUBLICATIONS_USER);
@@ -75,11 +72,16 @@ public class AutocompleteUserMVCResourceCommandTest {
 			role, CTCollection.class.getName(), ResourceConstants.SCOPE_COMPANY,
 			String.valueOf(_user1.getCompanyId()), CTActionKeys.INVITE_USERS);
 
+		UserGroup userGroup = UserGroupTestUtil.addUserGroup();
+
 		_groupLocalService.addRoleGroup(
 			role.getRoleId(), userGroup.getGroupId());
 
 		_userLocalService.addUserGroupUser(
 			userGroup.getUserGroupId(), _user1.getUserId());
+
+		_user2 = UserTestUtil.addUser();
+
 		_userLocalService.addUserGroupUser(
 			userGroup.getUserGroupId(), _user2.getUserId());
 	}
