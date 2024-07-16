@@ -372,26 +372,6 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 	}
 
 	@Override
-	public InfoPage<AssetEntry> getInfoPage(
-			PortletRequest portletRequest,
-			PortletPreferences portletPreferences,
-			PermissionChecker permissionChecker, long[] groupIds,
-			long[] allCategoryIds, String[] allTagNames,
-			boolean deleteMissingAssetEntries, boolean checkPermission,
-			int start, int end)
-		throws Exception {
-
-		List<AssetEntry> assetEntries = getAssetEntries(
-			portletRequest, portletPreferences, permissionChecker, groupIds,
-			allCategoryIds, allTagNames, deleteMissingAssetEntries,
-			checkPermission);
-
-		return InfoPage.of(
-			ListUtil.subList(assetEntries, start, end),
-			Pagination.of(end, start), assetEntries.size());
-	}
-
-	@Override
 	public AssetEntryQuery getAssetEntryQuery(
 			PortletPreferences portletPreferences, long groupId, Layout layout,
 			long[] overrideAllAssetCategoryIds,
@@ -863,6 +843,26 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		}
 
 		return ArrayUtil.toLongArray(groupIds);
+	}
+
+	@Override
+	public InfoPage<AssetEntry> getInfoPage(
+			PortletRequest portletRequest,
+			PortletPreferences portletPreferences,
+			PermissionChecker permissionChecker, long[] groupIds,
+			long[] allCategoryIds, String[] allTagNames,
+			boolean deleteMissingAssetEntries, boolean checkPermission,
+			int start, int end)
+		throws Exception {
+
+		List<AssetEntry> assetEntries = getAssetEntries(
+			portletRequest, portletPreferences, permissionChecker, groupIds,
+			allCategoryIds, allTagNames, deleteMissingAssetEntries,
+			checkPermission);
+
+		return InfoPage.of(
+			ListUtil.subList(assetEntries, start, end),
+			Pagination.of(end, start), assetEntries.size());
 	}
 
 	@Override

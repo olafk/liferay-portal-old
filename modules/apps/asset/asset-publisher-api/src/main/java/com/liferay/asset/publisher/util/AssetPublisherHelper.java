@@ -88,15 +88,6 @@ public interface AssetPublisherHelper {
 			boolean deleteMissingAssetEntries, boolean checkPermission)
 		throws Exception;
 
-	public InfoPage<AssetEntry> getInfoPage(
-			PortletRequest portletRequest,
-			PortletPreferences portletPreferences,
-			PermissionChecker permissionChecker, long[] groupIds,
-			long[] allCategoryIds, String[] allTagNames,
-			boolean deleteMissingAssetEntries, boolean checkPermission,
-			int start, int end)
-		throws Exception;
-
 	public AssetEntryQuery getAssetEntryQuery(
 			PortletPreferences portletPreferences, long groupId, Layout layout,
 			long[] overrideAllAssetCategoryIds,
@@ -154,6 +145,15 @@ public interface AssetPublisherHelper {
 	public long[] getGroupIds(
 		PortletPreferences portletPreferences, long scopeGroupId,
 		Layout layout);
+
+	public InfoPage<AssetEntry> getInfoPage(
+			PortletRequest portletRequest,
+			PortletPreferences portletPreferences,
+			PermissionChecker permissionChecker, long[] groupIds,
+			long[] allCategoryIds, String[] allTagNames,
+			boolean deleteMissingAssetEntries, boolean checkPermission,
+			int start, int end)
+		throws Exception;
 
 	public String[] getKeywords(PortletPreferences portletPreferences);
 
