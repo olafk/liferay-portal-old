@@ -86,7 +86,6 @@ public class PortletConfigImplTest {
 		ResourceBundle resourceBundle, Locale locale, String expectedValue) {
 
 		Assert.assertEquals(locale, resourceBundle.getLocale());
-
 		Assert.assertEquals(
 			expectedValue,
 			ResourceBundleUtil.getString(
@@ -130,14 +129,14 @@ public class PortletConfigImplTest {
 			portletConfig.getResourceBundle(LocaleUtil.SPAIN), LocaleUtil.SPAIN,
 			null);
 
-		_registerResourceBundle(LocaleUtil.US, "value1");
-		_registerResourceBundle(LocaleUtil.SPAIN, "value2");
+		_registerResourceBundle(LocaleUtil.SPAIN, "value1");
+		_registerResourceBundle(LocaleUtil.US, "value2");
 
 		_assertResourceBundle(
-			portletConfig.getResourceBundle(LocaleUtil.US), LocaleUtil.US,
+			portletConfig.getResourceBundle(LocaleUtil.SPAIN), LocaleUtil.SPAIN,
 			"value1");
 		_assertResourceBundle(
-			portletConfig.getResourceBundle(LocaleUtil.SPAIN), LocaleUtil.SPAIN,
+			portletConfig.getResourceBundle(LocaleUtil.US), LocaleUtil.US,
 			"value2");
 	}
 

@@ -126,13 +126,13 @@ public class EmbeddedPortletWhenEmbeddingPortletInLayoutTemplateTest
 
 		themeDisplay.setLayoutTypePortlet(
 			(LayoutTypePortlet)layout.getLayoutType());
+		themeDisplay.setLocale(LocaleUtil.getDefault());
 
 		LayoutSet layoutSet = group.getPublicLayoutSet();
 
 		themeDisplay.setLookAndFeel(
 			layoutSet.getTheme(), layoutSet.getColorScheme());
 
-		themeDisplay.setLocale(LocaleUtil.getDefault());
 		themeDisplay.setPermissionChecker(
 			PermissionCheckerFactoryUtil.create(TestPropsValues.getUser()));
 		themeDisplay.setRealUser(TestPropsValues.getUser());
