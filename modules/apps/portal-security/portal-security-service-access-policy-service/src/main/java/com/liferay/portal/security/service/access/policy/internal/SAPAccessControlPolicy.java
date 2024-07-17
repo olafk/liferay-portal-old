@@ -298,7 +298,7 @@ public class SAPAccessControlPolicy extends BaseAccessControlPolicy {
 			if (localRestClientDispatch) {
 				systemServiceAccessPolicyNames.add(
 					sapConfiguration.
-						systemRestClientTemplateObjectSAPEntryName());
+						systemRESTClientTemplateObjectSAPEntryName());
 			}
 		}
 

@@ -45,21 +45,21 @@ public interface SAPConfiguration {
 		name = "system-rest-client-template-object-sap-entry-name",
 		required = false
 	)
-	public String systemRestClientTemplateObjectSAPEntryName();
+	public String systemRESTClientTemplateObjectSAPEntryName();
 
 	@Meta.AD(
 		deflt = "System Service Access Policy for Local RESTClient Requests",
 		name = "system-rest-client-template-object-sap-entry-description",
 		required = false
 	)
-	public String systemRestClientTemplateObjectSAPEntryDescription();
+	public String systemRESTClientTemplateObjectSAPEntryDescription();
 
 	@Meta.AD(
 		deflt = "*",
 		name = "system-rest-client-template-object-sap-entry-service-signatures",
 		required = false
 	)
-	public String systemRestClientTemplateObjectSAPEntryServiceSignatures();
+	public String systemRESTClientTemplateObjectSAPEntryServiceSignatures();
 
 	@Meta.AD(
 		deflt = "SYSTEM_USER_PASSWORD",
