@@ -9,6 +9,8 @@ import aQute.bnd.annotation.metatype.Meta;
 
 import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClassDefinition;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 /**
  * @author Mika Koivisto
  */
@@ -17,6 +19,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 	id = "com.liferay.portal.security.service.access.policy.configuration.SAPConfiguration",
 	localization = "content/Language", name = "sap-configuration-name"
 )
+@ProviderType
 public interface SAPConfiguration {
 
 	@Meta.AD(deflt = "true", name = "use-system-sap-entries", required = false)
