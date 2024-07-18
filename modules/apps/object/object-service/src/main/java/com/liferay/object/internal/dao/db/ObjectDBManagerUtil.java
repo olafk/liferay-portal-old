@@ -51,8 +51,9 @@ public class ObjectDBManagerUtil {
 
 	public static void runSQL(DataSource dataSource, Log log, String sql) {
 
-		// Objects DDL instructions end with ";". Only DB#runSQL can handle it.
-		// See LPD-25786.
+		// DB#runSQL can handle SQL made up of multiple statements delimited by
+		// semicolons, whereas the default implementation in
+		// *ServiceBaseImpl#runSQL cannot. See LPD-25786.
 
 		if (log.isDebugEnabled()) {
 			log.debug("SQL: " + sql);
