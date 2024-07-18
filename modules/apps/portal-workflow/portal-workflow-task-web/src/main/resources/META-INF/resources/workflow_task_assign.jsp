@@ -10,8 +10,9 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-long assigneeUserId = ParamUtil.getLong(renderRequest, "assigneeUserId");
 String backURL = ParamUtil.getString(request, "backURL", redirect);
+
+long assigneeUserId = ParamUtil.getLong(renderRequest, "assigneeUserId");
 
 WorkflowTask workflowTask = workflowTaskDisplayContext.getWorkflowTask();
 
