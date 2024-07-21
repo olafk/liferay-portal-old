@@ -168,7 +168,6 @@ public class DLFileEntryModelDocumentContributorTest {
 
 		_testIndexDefaultLanguageId(
 			company.getLocale(), "true", LocaleUtil.HUNGARY);
-
 		_testIndexDefaultLanguageId(
 			LocaleUtil.HUNGARY, "false", LocaleUtil.HUNGARY);
 	}
@@ -370,17 +369,16 @@ public class DLFileEntryModelDocumentContributorTest {
 			Locale expectedLocale, String inheritLocales, Locale locale)
 		throws Exception {
 
-		DLFileEntry dlFileEntry = _addDLFileEntry();
-
 		Document document = new DocumentImpl();
 
 		UnicodeProperties typeSettingsUnicodeProperties =
 			_group.getTypeSettingsProperties();
 
-		String languageId = LanguageUtil.getLanguageId(locale);
-
 		typeSettingsUnicodeProperties.setProperty(
 			GroupConstants.TYPE_SETTINGS_KEY_INHERIT_LOCALES, inheritLocales);
+
+		String languageId = LanguageUtil.getLanguageId(locale);
+
 		typeSettingsUnicodeProperties.setProperty(
 			PropsKeys.LOCALES, languageId);
 		typeSettingsUnicodeProperties.setProperty("languageId", languageId);
@@ -388,6 +386,8 @@ public class DLFileEntryModelDocumentContributorTest {
 		_group.setTypeSettingsProperties(typeSettingsUnicodeProperties);
 
 		_group = _groupLocalService.updateGroup(_group);
+
+		DLFileEntry dlFileEntry = _addDLFileEntry();
 
 		_dlFileEntryModelDocumentContributor.contribute(document, dlFileEntry);
 
