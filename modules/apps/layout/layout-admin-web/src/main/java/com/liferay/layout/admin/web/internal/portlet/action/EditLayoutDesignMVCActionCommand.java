@@ -71,29 +71,29 @@ public class EditLayoutDesignMVCActionCommand extends BaseMVCActionCommand {
 			long userId, ServiceContext serviceContext)
 		throws PortalException {
 
-		if (Validator.isNotNull(cetExternalReferenceCode)) {
-			ClientExtensionEntryRel clientExtensionEntryRel =
-				_clientExtensionEntryRelLocalService.
-					fetchClientExtensionEntryRelByExternalReferenceCode(
-						cetExternalReferenceCode, layout.getCompanyId());
-
-			if (clientExtensionEntryRel == null) {
-				_clientExtensionEntryRelLocalService.
-					deleteClientExtensionEntryRels(
-						_portal.getClassNameId(Layout.class), layout.getPlid(),
-						type);
-
-				_clientExtensionEntryRelLocalService.addClientExtensionEntryRel(
-					userId, layout.getGroupId(),
-					_portal.getClassNameId(Layout.class), layout.getPlid(),
-					cetExternalReferenceCode, type, StringPool.BLANK,
-					serviceContext);
-			}
-		}
-		else {
+		if (Validator.isNull(cetExternalReferenceCode)) {
 			_clientExtensionEntryRelLocalService.deleteClientExtensionEntryRels(
 				_portal.getClassNameId(Layout.class), layout.getPlid(), type);
+
+			return;
 		}
+
+		ClientExtensionEntryRel clientExtensionEntryRel =
+			_clientExtensionEntryRelLocalService.
+				fetchClientExtensionEntryRelByExternalReferenceCode(
+					cetExternalReferenceCode, layout.getCompanyId());
+
+		if (clientExtensionEntryRel != null) {
+			return;
+		}
+
+		_clientExtensionEntryRelLocalService.deleteClientExtensionEntryRels(
+			_portal.getClassNameId(Layout.class), layout.getPlid(), type);
+
+		_clientExtensionEntryRelLocalService.addClientExtensionEntryRel(
+			userId, layout.getGroupId(), _portal.getClassNameId(Layout.class),
+			layout.getPlid(), cetExternalReferenceCode, type, StringPool.BLANK,
+			serviceContext);
 	}
 
 	private void _updateClientExtensions(
