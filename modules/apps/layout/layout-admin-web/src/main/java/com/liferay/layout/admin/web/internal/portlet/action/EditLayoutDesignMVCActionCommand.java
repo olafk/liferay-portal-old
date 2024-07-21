@@ -96,7 +96,7 @@ public class EditLayoutDesignMVCActionCommand extends BaseMVCActionCommand {
 			serviceContext);
 	}
 
-	private void _updateClientExtensions(
+	private void _updateClientExtensionEntryRels(
 			ActionRequest actionRequest, Layout layout, long userId)
 		throws PortalException {
 
@@ -251,7 +251,7 @@ public class EditLayoutDesignMVCActionCommand extends BaseMVCActionCommand {
 				!deleteLogo, iconBytes, styleBookEntryId, faviconFileEntryId,
 				masterLayoutPlid, serviceContext);
 
-			_updateClientExtensions(
+			_updateClientExtensionEntryRels(
 				actionRequest, layout, themeDisplay.getUserId());
 
 			UnicodeProperties formTypeSettingsUnicodeProperties =
@@ -277,7 +277,7 @@ public class EditLayoutDesignMVCActionCommand extends BaseMVCActionCommand {
 					styleBookEntryId, faviconFileEntryId,
 					draftLayout.getMasterLayoutPlid(), serviceContext);
 
-				_updateClientExtensions(
+				_updateClientExtensionEntryRels(
 					actionRequest, draftLayout, themeDisplay.getUserId());
 			}
 
