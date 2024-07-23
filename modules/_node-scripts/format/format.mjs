@@ -13,7 +13,7 @@ import stylelint from 'stylelint';
 
 import {getRootDir} from '../util/constants.mjs';
 import fileExists from '../util/fileExists.mjs';
-import getGitModifiedFiles from '../util/getGitModifiedFiles.mjs';
+import {getGitModifiedFiles} from '../util/gitCommands.mjs';
 import {readIgnoreFile} from '../util/readIgnoreFile.mjs';
 import {ID_END, ID_START} from './jsp/getPaddedReplacement.mjs';
 import processJSP from './jsp/processJSP.mjs';
