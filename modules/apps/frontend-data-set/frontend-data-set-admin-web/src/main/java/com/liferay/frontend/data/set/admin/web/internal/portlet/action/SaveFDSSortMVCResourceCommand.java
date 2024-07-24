@@ -63,7 +63,7 @@ public class SaveFDSSortMVCResourceCommand
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String dataSetId = ParamUtil.getString(resourceRequest, "dataSetId");
+		long dataSetId = ParamUtil.getLong(resourceRequest, "dataSetId");
 		String externalReferenceCode = ParamUtil.getString(
 			resourceRequest, "externalReferenceCode");
 		String fieldName = ParamUtil.getString(resourceRequest, "fieldName");
@@ -78,8 +78,7 @@ public class SaveFDSSortMVCResourceCommand
 
 		if (useAsDefaultSorting) {
 			Collection<ObjectEntry> fdsSortObjectEntries =
-				_getFDSSortObjectEntries(
-					fdsViewObjectDefinition, Long.valueOf(dataSetId));
+				_getFDSSortObjectEntries(fdsViewObjectDefinition, dataSetId);
 
 			for (ObjectEntry fdsSortObjectEntry : fdsSortObjectEntries) {
 				Map<String, Object> properties =
@@ -130,8 +129,7 @@ public class SaveFDSSortMVCResourceCommand
 			new ServiceContext());
 
 		Collection<ObjectEntry> updatedFDSSortObjectEntries =
-			_getFDSSortObjectEntries(
-				fdsViewObjectDefinition, Long.valueOf(dataSetId));
+			_getFDSSortObjectEntries(fdsViewObjectDefinition, dataSetId);
 
 		JSONPortletResponseUtil.writeJSON(
 			resourceRequest, resourceResponse, updatedFDSSortObjectEntries);
