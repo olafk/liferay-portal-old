@@ -52,3 +52,9 @@ export async function getUpstreamRemoteName() {
 
 	return line.split(/\s/)[0];
 }
+
+export async function getCurrentBranchName() {
+	const {stdout} = await $`git rev-parse --abbrev-ref HEAD`;
+
+	return stdout;
+}
