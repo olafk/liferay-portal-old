@@ -1,6 +1,7 @@
 # Database Partition Migration Validator Tool
 
-This tool validates the compatibility between the source and target databases for a partition migration.
+This tool validates the compatibility between the source and target databases
+for a partition migration.
 
 ## Requirements
 
@@ -10,7 +11,7 @@ This tool validates the compatibility between the source and target databases fo
 ## Usage
 
 ```
-./db_partition_migration_validator.sh <command> [parameters]
+./db_partition_migration_validator.sh <command> <parameters>
 ```
 
 Commands:

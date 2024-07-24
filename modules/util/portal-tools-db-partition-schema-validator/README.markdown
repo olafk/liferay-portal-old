@@ -11,7 +11,7 @@ that they only contain data associated with their proper company ID.
 ## Usage
 
 ```
-java -jar com.liferay.portal.tools.db.partition.schema.validator.jar [parameters] 
+java -jar com.liferay.portal.tools.db.partition.schema.validator.jar <parameters>
 ```
 
 Parameters:
