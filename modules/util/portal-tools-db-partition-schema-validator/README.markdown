@@ -27,6 +27,6 @@ Parameters:
 ## Examples
 
 ```
-java -jar com.liferay.portal.tools.db.partition.schema.validator.jar --db-type mysql --db-name xyz123 --password xyz123 --user xyz123
-java -jar com.liferay.portal.tools.db.partition.schema.validator.jar --db-type postgresql --db-name xyz123 --password xyz123 --user xyz123 
+java -jar com.liferay.portal.tools.db.partition.schema.validator.jar --db-name xyz123 --db-type mysql --password xyz123 --user xyz123
+java -jar com.liferay.portal.tools.db.partition.schema.validator.jar --db-name xyz123 --db-type postgresql --password xyz123 --user xyz123 
 ```
