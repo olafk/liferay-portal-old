@@ -31,7 +31,7 @@ public class DefaultJournalArticleLayoutDisplayPageProviderTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testDefaultURLSeparator() {
+	public void testGetDefaultURLSeparator() {
 		Assert.assertEquals(
 			JournalArticleConstants.CANONICAL_URL_SEPARATOR,
 			_layoutDisplayPageProvider.getDefaultURLSeparator());
