@@ -56,11 +56,11 @@ public class FacetBucketUtil {
 		for (String fieldValue : field.getValues()) {
 			fieldValue = _removeCurlyBraces(fieldValue);
 
-			String[] pairs = fieldValue.split(StringPool.COMMA_AND_SPACE);
+			String[] parts = fieldValue.split(StringPool.COMMA_AND_SPACE);
 
-			if (_pairsContainFieldNameFieldValue(
-					filterFieldName, filterFieldValue, pairs) &&
-				_pairsContainFieldNameFieldValue(fieldName, term, pairs)) {
+			if (_containsFieldNameFieldValue(
+					filterFieldName, filterFieldValue, parts) &&
+				_containsFieldNameFieldValue(fieldName, term, parts)) {
 
 				return true;
 			}
@@ -86,10 +86,10 @@ public class FacetBucketUtil {
 		return false;
 	}
 
-	private static boolean _pairsContainFieldNameFieldValue(
-		String fieldName, String fieldValue, String[] pairs) {
+	private static boolean _containsFieldNameFieldValue(
+		String fieldName, String fieldValue, String[] parts) {
 
-		for (String pair : pairs) {
+		for (String pair : parts) {
 			if (pair.equals(fieldName + "=" + fieldValue)) {
 				return true;
 			}
