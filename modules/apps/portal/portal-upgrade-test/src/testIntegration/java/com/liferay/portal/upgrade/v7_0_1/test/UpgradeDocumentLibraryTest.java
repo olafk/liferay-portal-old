@@ -63,7 +63,8 @@ public class UpgradeDocumentLibraryTest {
 			_currentSchemaVersion =
 				PortalUpgradeProcess.getCurrentSchemaVersion(connection);
 
-			_updateSchemaVersion(connection, _ORIGINAL_SCHEMA_VERSION);
+			PortalUpgradeProcess.updateSchemaVersion(
+				connection, _ORIGINAL_SCHEMA_VERSION);
 
 			_upgrading = StartupHelperUtil.isUpgrading();
 		}
@@ -72,7 +73,8 @@ public class UpgradeDocumentLibraryTest {
 	@After
 	public void tearDown() throws Exception {
 		try (Connection connection = DataAccess.getConnection()) {
-			_updateSchemaVersion(connection, _currentSchemaVersion);
+			PortalUpgradeProcess.updateSchemaVersion(
+				connection, _currentSchemaVersion);
 		}
 	}
 
@@ -158,12 +160,6 @@ public class UpgradeDocumentLibraryTest {
 
 			preparedStatement.executeUpdate();
 		}
-	}
-
-	private void _updateSchemaVersion(Connection connection, Version version)
-		throws Exception {
-
-		PortalUpgradeProcess.updateSchemaVersion(connection, version);
 	}
 
 	private static final String _CLASS_NAME =
