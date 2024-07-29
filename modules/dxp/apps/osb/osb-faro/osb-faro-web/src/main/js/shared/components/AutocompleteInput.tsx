@@ -40,7 +40,6 @@ const AutocompleteInput: React.FC<IAutocompleteProps> = ({
 	onBlur,
 	onChange,
 	placeholder,
-	testId,
 	value
 }) => {
 	const [networkStatus, setNetworkStatus] = useState(NetworkStatus.Unused);
@@ -93,7 +92,7 @@ const AutocompleteInput: React.FC<IAutocompleteProps> = ({
 			allowsCustomValue
 			aria-labelledby='clay-autocomplete-label-1'
 			className={getCN('select-input-root', className)}
-			data-testid={testId}
+			data-testid='attribute-value-string-input'
 			disabled={disabled}
 			id='clay-autocomplete-1'
 			items={items as string[]}

@@ -128,7 +128,6 @@ export default class CustomStringInput extends React.Component<ICustomStringInpu
 			className: getCN(className, {
 				'has-error': showError
 			}),
-			'data-testid': 'string-input',
 			onBlur: this.handleBlur,
 			value
 		};

@@ -68,7 +68,7 @@ describe('CustomStringInput', () => {
 			/>
 		);
 
-		expect(queryByTestId('string-input')).toBeNull();
+		expect(queryByTestId('attribute-value-string-input')).toBeNull();
 	});
 
 	it('should render w/ has-error when touched and not valid', () => {
