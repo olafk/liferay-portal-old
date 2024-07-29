@@ -23,8 +23,8 @@ export async function addNestedSegmentField({
 	await page.getByRole('menuitem', {name: criterionType}).click();
 
 	await dragAndDropCriteriaItem({
-		page,
 		nestedSegmentField,
+		page,
 		segmentField: criterionName,
 	});
 }

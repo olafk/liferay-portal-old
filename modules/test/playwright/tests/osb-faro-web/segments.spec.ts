@@ -51,10 +51,6 @@ import {
 	viewNameNotPresentOnTableList,
 	viewNameOnTableList,
 } from './utils/utils';
-import {liferayConfig} from '../../liferay.config';
-import {syncAnalyticsCloud} from '../analytics-settings-web/utils/analyticsSettings';
-import {createSitePage, navigateToSitePage} from './utils/portal';
-import {featureFlagsTest} from '../../fixtures/featureFlagsTest';
 
 export const test = mergeTests(
 	apiHelpersTest,
