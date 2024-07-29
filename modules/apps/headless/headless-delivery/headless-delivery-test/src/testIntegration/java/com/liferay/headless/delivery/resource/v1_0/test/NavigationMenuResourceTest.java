@@ -224,7 +224,7 @@ public class NavigationMenuResourceTest
 			JournalArticle.class.getName(), journalArticle.getTitle(),
 			"structuredContent", false);
 
-		_testGetNavigationMenuWithSubmenuAndPageNavigationItems();
+		_testGetNavigationMenuWithChildNavigationMenusAndNavigationMenuItems();
 	}
 
 	@Override
@@ -757,7 +757,7 @@ public class NavigationMenuResourceTest
 		}
 	}
 
-	private void _testGetNavigationMenuWithSubmenuAndPageNavigationItems()
+	private void _testGetNavigationMenuWithChildNavigationMenusAndNavigationMenuItems()
 		throws Exception {
 
 		Map<Locale, String> layoutNameMap1 = HashMapBuilder.put(
