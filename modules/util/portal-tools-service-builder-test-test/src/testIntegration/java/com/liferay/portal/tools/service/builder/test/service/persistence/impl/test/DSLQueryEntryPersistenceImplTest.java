@@ -323,42 +323,6 @@ public class DSLQueryEntryPersistenceImplTest {
 	}
 
 	@Test
-	public void testDSLQueryWithDSLFunction() {
-		Assert.assertEquals(
-			Arrays.asList(0L, 1L, 2L),
-			_dslQueryEntryPersistence.dslQuery(
-				DSLQueryFactoryUtil.select(
-					DSLFunctionFactoryUtil.subtract(
-						DSLQueryStatusEntryTable.INSTANCE.dslQueryStatusEntryId,
-						new Scalar<>(1L)
-					).as(
-						"alias"
-					)
-				).from(
-					DSLQueryStatusEntryTable.INSTANCE
-				).orderBy(
-					DSLQueryStatusEntryTable.INSTANCE.dslQueryStatusEntryId.
-						ascending()
-				)));
-		Assert.assertEquals(
-			Arrays.asList(2L, 1L, 0L),
-			_dslQueryEntryPersistence.dslQuery(
-				DSLQueryFactoryUtil.select(
-					DSLFunctionFactoryUtil.subtract(
-						new Scalar<>(3L),
-						DSLQueryStatusEntryTable.INSTANCE.dslQueryStatusEntryId
-					).as(
-						"alias"
-					)
-				).from(
-					DSLQueryStatusEntryTable.INSTANCE
-				).orderBy(
-					DSLQueryStatusEntryTable.INSTANCE.dslQueryStatusEntryId.
-						ascending()
-				)));
-	}
-
-	@Test
 	public void testDSLQueryWithAlias() {
 		Assert.assertEquals(
 			Arrays.asList(0L, 1L, 1L),
@@ -385,6 +349,42 @@ public class DSLQueryEntryPersistenceImplTest {
 						new Scalar<>(2L)
 					).as(
 						"alias", Double.class
+					)
+				).from(
+					DSLQueryStatusEntryTable.INSTANCE
+				).orderBy(
+					DSLQueryStatusEntryTable.INSTANCE.dslQueryStatusEntryId.
+						ascending()
+				)));
+	}
+
+	@Test
+	public void testDSLQueryWithDSLFunction() {
+		Assert.assertEquals(
+			Arrays.asList(0L, 1L, 2L),
+			_dslQueryEntryPersistence.dslQuery(
+				DSLQueryFactoryUtil.select(
+					DSLFunctionFactoryUtil.subtract(
+						DSLQueryStatusEntryTable.INSTANCE.dslQueryStatusEntryId,
+						new Scalar<>(1L)
+					).as(
+						"alias"
+					)
+				).from(
+					DSLQueryStatusEntryTable.INSTANCE
+				).orderBy(
+					DSLQueryStatusEntryTable.INSTANCE.dslQueryStatusEntryId.
+						ascending()
+				)));
+		Assert.assertEquals(
+			Arrays.asList(2L, 1L, 0L),
+			_dslQueryEntryPersistence.dslQuery(
+				DSLQueryFactoryUtil.select(
+					DSLFunctionFactoryUtil.subtract(
+						new Scalar<>(3L),
+						DSLQueryStatusEntryTable.INSTANCE.dslQueryStatusEntryId
+					).as(
+						"alias"
 					)
 				).from(
 					DSLQueryStatusEntryTable.INSTANCE
