@@ -128,12 +128,6 @@ public class AddContentLayoutMVCActionCommandCopyPortletSetupsTest {
 			_getMockLiferayPortletActionRequest()
 		throws Exception {
 
-		Layout layout = _layoutPrototype.getLayout();
-
-		LayoutPageTemplateEntry layoutPageTemplateEntry =
-			_layoutPageTemplateEntryLocalService.
-				fetchLayoutPageTemplateEntryByPlid(layout.getPlid());
-
 		MockLiferayPortletActionRequest mockLiferayPortletActionRequest =
 			new MockLiferayPortletActionRequest();
 
@@ -141,10 +135,18 @@ public class AddContentLayoutMVCActionCommandCopyPortletSetupsTest {
 			WebKeys.THEME_DISPLAY, _getThemeDisplay());
 		mockLiferayPortletActionRequest.setParameter(
 			"groupId", String.valueOf(_group.getGroupId()));
+
+		Layout layout = _layoutPrototype.getLayout();
+
+		LayoutPageTemplateEntry layoutPageTemplateEntry =
+			_layoutPageTemplateEntryLocalService.
+				fetchLayoutPageTemplateEntryByPlid(layout.getPlid());
+
 		mockLiferayPortletActionRequest.setParameter(
 			"layoutPageTemplateEntryId",
 			String.valueOf(
 				layoutPageTemplateEntry.getLayoutPageTemplateEntryId()));
+
 		mockLiferayPortletActionRequest.setParameter(
 			"privateLayout", String.valueOf(Boolean.FALSE));
 		mockLiferayPortletActionRequest.setParameter(
