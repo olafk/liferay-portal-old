@@ -456,8 +456,6 @@ public class SkuResourceImpl extends BaseSkuResourceImpl {
 			return cpInstance;
 		}
 
-		// Virtual
-
 		SkuVirtualSettings skuVirtualSettings = sku.getSkuVirtualSettings();
 
 		if (skuVirtualSettings != null) {
@@ -471,8 +469,6 @@ public class SkuResourceImpl extends BaseSkuResourceImpl {
 				_cpdVirtualSettingFileEntryService, _uniqueFileNameProvider,
 				serviceContext);
 		}
-
-		// Unit of Measure
 
 		if (ArrayUtil.isEmpty(sku.getSkuUnitOfMeasures())) {
 			SkuUtil.updateCommercePriceEntries(
