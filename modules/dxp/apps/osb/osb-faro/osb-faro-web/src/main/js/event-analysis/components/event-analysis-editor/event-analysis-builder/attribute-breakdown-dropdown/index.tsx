@@ -17,15 +17,15 @@ import {
 	Breakdown,
 	DataTypes
 } from 'event-analysis/utils/types';
-import {BREAKDOWN_FNS_MAP} from 'event-analysis/utils/utils';
+import {
+	BREAKDOWN_FNS_MAP,
+	getModifiedEventAttributeDefinitions,
+	getTabs
+} from 'event-analysis/utils/utils';
 import {close, modalTypes, open} from 'shared/actions/modals';
 import {connect, ConnectedProps} from 'react-redux';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import {DISPLAY_NAME} from 'shared/util/pagination';
-import {
-	getModifiedEventAttributeDefinitions,
-	getTabs
-} from '../attribute-dropdown-util';
 import {OrderByDirections} from 'shared/util/constants';
 import {SafeResults} from 'shared/hoc/util';
 import {useQuery} from '@apollo/react-hooks';

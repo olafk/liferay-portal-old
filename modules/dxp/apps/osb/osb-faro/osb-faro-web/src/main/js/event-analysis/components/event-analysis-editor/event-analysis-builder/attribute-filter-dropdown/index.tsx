@@ -23,7 +23,7 @@ import {DISPLAY_NAME} from 'shared/util/pagination';
 import {
 	getModifiedEventAttributeDefinitions,
 	getTabs
-} from '../attribute-dropdown-util';
+} from 'event-analysis/utils/utils';
 import {OrderByDirections} from 'shared/util/constants';
 import {SafeResults} from 'shared/hoc/util';
 import {useQuery} from '@apollo/react-hooks';
