@@ -1685,6 +1685,10 @@
 			"store": true,
 			"type": "geo_point"
 		},
+		"groupExternalReferenceCode": {
+			"store": true,
+			"type": "keyword"
+		},
 		"groupId": {
 			"store": true,
 			"type": "keyword"
@@ -1864,6 +1868,10 @@
 			"type": "keyword"
 		},
 		"rootEntryClassPK": {
+			"store": true,
+			"type": "keyword"
+		},
+		"scopeGroupExternalReferenceCode": {
 			"store": true,
 			"type": "keyword"
 		},
