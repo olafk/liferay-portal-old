@@ -62,8 +62,8 @@ public class ExportImportContentProcessorUtil {
 						"Staged model with class name ",
 						stagedModel.getModelClassName(), " and primary key ",
 						stagedModel.getPrimaryKeyObj(),
-						" references asset entry with class primary key ",
-						classPK, " and class name ", className,
+						" references asset entry with class name ", className,
+						" and class primary key ", classPK,
 						" that could not be exported due to ", exception);
 
 					if (Validator.isNotNull(exception.getMessage())) {
