@@ -19,6 +19,7 @@ import com.liferay.testray.rest.internal.util.TestrayUtil;
 import com.liferay.testray.rest.resource.v1_0.TestrayCaseResultResource;
 
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 
@@ -421,17 +423,25 @@ public class TestrayCaseResultResourceImpl
 	public Response getTestrayExportCaseResultTestrayBuild(
 		Long testrayBuildId) {
 
-		StreamingOutput streamingOutput = outputStream -> _generateCSV(
-			outputStream, testrayBuildId);
-
 		return Response.ok(
-			streamingOutput
+			new StreamingOutput() {
+
+				@Override
+				public void write(OutputStream outputStream)
+					throws IOException, WebApplicationException {
+
+					_write(outputStream, testrayBuildId);
+				}
+
+			}
 		).header(
 			"Content-Disposition", "attachment; filename=\"case_results.csv\""
 		).build();
 	}
 
-	private void _generateCSV(OutputStream outputStream, long testrayBuildId) {
+	private void _write(OutputStream outputStream, long testrayBuildId)
+		throws IOException {
+
 		try (CSVPrinter csvPrinter = new CSVPrinter(
 				new BufferedWriter(new OutputStreamWriter(outputStream)),
 				CSVFormat.DEFAULT.builder(
@@ -470,7 +480,7 @@ public class TestrayCaseResultResourceImpl
 			csvPrinter.flush();
 		}
 		catch (Exception exception) {
-			throw new RuntimeException(exception);
+			throw new IOException(exception);
 		}
 	}
 
