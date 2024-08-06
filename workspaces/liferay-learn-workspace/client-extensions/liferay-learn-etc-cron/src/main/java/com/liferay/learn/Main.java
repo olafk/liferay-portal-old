@@ -1655,6 +1655,14 @@ public class Main {
 								() -> englishNavigationContentFieldValue);
 							setName(() -> "navigation");
 						}
+					},
+					new ContentField() {
+						{
+							setContentFieldValue(
+								() ->
+									englishShowChildrenCardsContentFieldValue);
+							setName(() -> "showChildrenCards");
+						}
 					}
 				});
 			structuredContent.setDescription(
