@@ -924,10 +924,10 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 				JenkinsResultsParserUtil.combine(
 					"jenkins.remote.url[", _masterName, "]"));
 
-			if (JenkinsResultsParserUtil.isNullOrEmpty(_masterURL) ||
-				JenkinsResultsParserUtil.isNullOrEmpty(_masterRemoteURL)) {
+			if (JenkinsResultsParserUtil.isNullOrEmpty(_masterRemoteURL) ||
+				JenkinsResultsParserUtil.isNullOrEmpty(_masterURL)) {
 
-				throw new IllegalArgumentException(masterName + " is unknown.");
+				throw new IllegalArgumentException(masterName + " is unknown");
 			}
 
 			Integer slaveRAM = getSlaveRAMMinimumDefault();
