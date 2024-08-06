@@ -68,7 +68,6 @@ public class ExternalReferenceCodeModelDocumentContributorTest {
 		_blogsEntry = BlogsTestUtil.addEntryWithWorkflow(
 			TestPropsValues.getUserId(), RandomTestUtil.randomString(), false,
 			_serviceContext);
-
 		_journalArticle = JournalTestUtil.addArticle(
 			TestPropsValues.getGroupId(), 0,
 			PortalUtil.getClassNameId(JournalArticle.class),
@@ -80,7 +79,6 @@ public class ExternalReferenceCodeModelDocumentContributorTest {
 				LocaleUtil.US, StringPool.BLANK
 			).build(),
 			LocaleUtil.getSiteDefault(), false, true, _serviceContext);
-
 		_journalFolder = JournalFolderServiceUtil.addFolder(
 			null, TestPropsValues.getGroupId(), 0,
 			RandomTestUtil.randomString(), StringPool.BLANK, _serviceContext);
@@ -90,13 +88,13 @@ public class ExternalReferenceCodeModelDocumentContributorTest {
 
 	@Test
 	public void testContributeExternalReferenceCode() throws Exception {
-		_assertERCSearch(_blogsEntry);
-		_assertERCSearch(_journalArticle);
-		_assertERCSearch(_journalFolder);
-		_assertERCSearch(_user);
+		_testContributeExternalReferenceCode(_blogsEntry);
+		_testContributeExternalReferenceCode(_journalArticle);
+		_testContributeExternalReferenceCode(_journalFolder);
+		_testContributeExternalReferenceCode(_user);
 	}
 
-	private void _assertERCSearch(
+	private void _testContributeExternalReferenceCode(
 			ExternalReferenceCodeModel externalReferenceCodeModel)
 		throws Exception {
 
