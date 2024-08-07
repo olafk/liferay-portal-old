@@ -1681,8 +1681,8 @@ public class JournalEditArticleDisplayContext {
 				_article.getGroupId(), _article.getArticleId());
 
 		if ((oldestArticle == null) ||
-			((oldestArticle.getVersion() == _article.getVersion()) &&
-			 (oldestArticle.getStatus() == WorkflowConstants.STATUS_DRAFT))) {
+			((oldestArticle.getStatus() == WorkflowConstants.STATUS_DRAFT) &&
+			 (oldestArticle.getVersion() == _article.getVersion()))) {
 
 			return true;
 		}
