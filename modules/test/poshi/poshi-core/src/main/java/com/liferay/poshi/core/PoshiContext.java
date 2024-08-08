@@ -17,6 +17,7 @@ import com.liferay.poshi.core.pql.PQLEntityFactory;
 import com.liferay.poshi.core.script.PoshiScriptParserException;
 import com.liferay.poshi.core.selenium.LiferaySelenium;
 import com.liferay.poshi.core.selenium.LiferaySeleniumMethod;
+import com.liferay.poshi.core.util.ArrayUtil;
 import com.liferay.poshi.core.util.FileUtil;
 import com.liferay.poshi.core.util.GetterUtil;
 import com.liferay.poshi.core.util.MathUtil;
@@ -646,7 +647,7 @@ public class PoshiContext {
 
 		String testBaseDirName = PropsUtil.get("test.base.dir.name");
 
-		if (((baseDirNames == null) || (baseDirNames.length == 0)) &&
+		if (ArrayUtil.isEmpty(baseDirNames) &&
 			(Validator.isNull(testBaseDirName) || testBaseDirName.isEmpty())) {
 
 			throw new RuntimeException("Please set 'test.base.dir.name'");

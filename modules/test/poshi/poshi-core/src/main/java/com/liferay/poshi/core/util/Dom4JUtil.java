@@ -119,7 +119,7 @@ public class Dom4JUtil {
 	public static Element getNewAnchorElement(
 		String href, Element parentElement, Object... items) {
 
-		if ((items == null) || (items.length == 0)) {
+		if (ArrayUtil.isEmpty(items)) {
 			return null;
 		}
 

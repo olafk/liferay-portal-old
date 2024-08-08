@@ -104,7 +104,7 @@ public class StringUtil {
 	}
 
 	public static String combine(String... strings) {
-		if ((strings == null) || (strings.length == 0)) {
+		if (ArrayUtil.isEmpty(strings)) {
 			return "";
 		}
 
