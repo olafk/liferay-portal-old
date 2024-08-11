@@ -1,5 +1,5 @@
 Bundle-Name: Liferay Content Dashboard Document Library Implementation
 Bundle-SymbolicName: com.liferay.content.dashboard.document.library.impl
-Bundle-Version: 1.0.49
+Bundle-Version: 1.0.50
 Web-ContextPath: /content-dashboard-document-library-impl
 -dsannotations-options: inherit
