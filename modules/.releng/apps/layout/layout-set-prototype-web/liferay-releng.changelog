@@ -317,3 +317,8 @@ cb7419540316e7edef6c17d770671e81754ded8c^..7df3b6e0f000990f7d5b2e942afaae0342d47
 # Bundle Version 5.0.59
 #
 7df3b6e0f000990f7d5b2e942afaae0342d47ac2^..abaf3cd8d27c0de7a154cb7110beeb8ebf7f4d58=LPD-31151
+
+#
+# Bundle Version 5.0.60
+#
+abaf3cd8d27c0de7a154cb7110beeb8ebf7f4d58^..2568a9119a6ac510665ddb5c1c3ea368c3a475aa=LPD-26935 LPD-32125 LRCI-4395
