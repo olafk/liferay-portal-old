@@ -122,6 +122,16 @@ public class AssetListEntryServiceWrapper
 	}
 
 	@Override
+	public AssetListEntry fetchAssetListEntryByExternalReferenceCode(
+			String externalReferenceCode, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _assetListEntryService.
+			fetchAssetListEntryByExternalReferenceCode(
+				externalReferenceCode, groupId);
+	}
+
+	@Override
 	public java.util.List<AssetListEntry> getAssetListEntries(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<AssetListEntry>
@@ -273,6 +283,15 @@ public class AssetListEntryServiceWrapper
 
 		return _assetListEntryService.getAssetListEntry(
 			groupId, assetListEntryKey);
+	}
+
+	@Override
+	public AssetListEntry getAssetListEntryByExternalReferenceCode(
+			String externalReferenceCode, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		return _assetListEntryService.getAssetListEntryByExternalReferenceCode(
+			externalReferenceCode, groupId);
 	}
 
 	@Override

@@ -113,6 +113,14 @@ public class AssetListEntryServiceUtil {
 		return getService().fetchAssetListEntry(assetListEntryId);
 	}
 
+	public static AssetListEntry fetchAssetListEntryByExternalReferenceCode(
+			String externalReferenceCode, long groupId)
+		throws PortalException {
+
+		return getService().fetchAssetListEntryByExternalReferenceCode(
+			externalReferenceCode, groupId);
+	}
+
 	public static List<AssetListEntry> getAssetListEntries(
 		long groupId, int start, int end,
 		OrderByComparator<AssetListEntry> orderByComparator) {
@@ -236,6 +244,14 @@ public class AssetListEntryServiceUtil {
 		throws PortalException {
 
 		return getService().getAssetListEntry(groupId, assetListEntryKey);
+	}
+
+	public static AssetListEntry getAssetListEntryByExternalReferenceCode(
+			String externalReferenceCode, long groupId)
+		throws PortalException {
+
+		return getService().getAssetListEntryByExternalReferenceCode(
+			externalReferenceCode, groupId);
 	}
 
 	public static AssetListEntry getAssetListEntryByUuidAndGroupId(
