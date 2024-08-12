@@ -62,7 +62,7 @@ public class CaptureRestController extends BaseRestController {
 				typeSettingsJSONObject.getString("mode"));
 
 			String captureOrderResponse = WebClient.create(
-				getEnvironmentURL(typeSettingsJSONObject.getString("mode"))
+				getPayPalURL(typeSettingsJSONObject.getString("mode"))
 			).post(
 			).uri(
 				"v2/checkout/orders/" + transactionCodeCapture

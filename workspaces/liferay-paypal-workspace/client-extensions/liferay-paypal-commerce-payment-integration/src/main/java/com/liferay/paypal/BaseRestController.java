@@ -28,7 +28,7 @@ public class BaseRestController
 
 		JSONObject authorizationRequestJSONObject = new JSONObject(
 			WebClient.create(
-				getEnvironmentURL(mode)
+				getPayPalURL(mode)
 			).post(
 			).uri(
 				"/v1/oauth2/token"
@@ -49,7 +49,7 @@ public class BaseRestController
 		return authorizationRequestJSONObject.getString("access_token");
 	}
 
-	protected String getEnvironmentURL(String mode) {
+	protected String getPayPalURL(String mode) {
 		if (mode.equals("live")) {
 			return "https://api-m.paypal.com";
 		}

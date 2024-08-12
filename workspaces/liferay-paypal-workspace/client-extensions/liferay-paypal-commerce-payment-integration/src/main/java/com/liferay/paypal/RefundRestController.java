@@ -5,6 +5,8 @@
 
 package com.liferay.paypal;
 
+import com.liferay.petra.string.StringBundler;
+
 import java.math.BigDecimal;
 
 import java.util.Objects;
@@ -47,55 +49,63 @@ public class RefundRestController extends BaseRestController {
 		try {
 			JSONObject jsonObject = new JSONObject(json);
 
-			JSONObject typeSettingsJSONObject = jsonObject.getJSONObject(
-				"typeSettings");
-
 			JSONObject commercePaymentEntryJSONObject =
 				jsonObject.getJSONObject("commercePaymentEntry");
 
-			String transactionCodeRefund =
-				commercePaymentEntryJSONObject.getString("transactionCode") +
-					"/refund";
+			JSONObject typeSettingsJSONObject = jsonObject.getJSONObject(
+				"typeSettings");
 
 			String authorization = getAuthorization(
 				typeSettingsJSONObject.getString("clientId"),
 				typeSettingsJSONObject.getString("clientSecret"),
 				typeSettingsJSONObject.getString("mode"));
 
-			String refundOrderResponse = WebClient.create(
-				getEnvironmentURL(typeSettingsJSONObject.getString("mode"))
-			).post(
-			).uri(
-				"v2/payments/captures/" + transactionCodeRefund
-			).contentType(
-				MediaType.APPLICATION_JSON
-			).header(
-				HttpHeaders.AUTHORIZATION, "Bearer " + authorization
-			).header(
-				"PayPal-Partner-Attribution-Id", "Liferay_SP_PPCP_API"
-			).header(
-				"Prefer", "return=representation"
-			).bodyValue(
-				new JSONObject(
-				).put(
-					"amount",
-					_getAmountJSONObject(commercePaymentEntryJSONObject)
-				).toString()
-			).retrieve(
-			).bodyToMono(
-				String.class
-			).block();
-
-			JSONObject refundOrderResponseJSONObject = new JSONObject(
-				refundOrderResponse);
+			JSONObject refundResponseJSONObject = new JSONObject(
+				WebClient.create(
+					getPayPalURL(typeSettingsJSONObject.getString("mode"))
+				).post(
+				).uri(
+					StringBundler.concat(
+						"v2/payments/captures/",
+						commercePaymentEntryJSONObject.getString(
+							"transactionCode"),
+						"/refund")
+				).contentType(
+					MediaType.APPLICATION_JSON
+				).header(
+					HttpHeaders.AUTHORIZATION, "Bearer " + authorization
+				).header(
+					"PayPal-Partner-Attribution-Id", "Liferay_SP_PPCP_API"
+				).header(
+					"Prefer", "return=representation"
+				).bodyValue(
+					new JSONObject(
+					).put(
+						"amount",
+						new JSONObject(
+						).put(
+							"currency_code",
+							commercePaymentEntryJSONObject.getString(
+								"currencyCode")
+						).put(
+							"value",
+							BigDecimal.valueOf(
+								commercePaymentEntryJSONObject.getDouble(
+									"amount")
+							).longValue()
+						)
+					).toString()
+				).retrieve(
+				).bodyToMono(
+					String.class
+				).block());
 
 			if (Objects.equals(
-					refundOrderResponseJSONObject.getString("status"),
+					refundResponseJSONObject.getString("status"),
 					"COMPLETED")) {
 
 				paymentStatus = "17";
-
-				transactionCode = refundOrderResponseJSONObject.getString("id");
+				transactionCode = refundResponseJSONObject.getString("id");
 			}
 		}
 		catch (Exception exception) {
@@ -114,24 +124,6 @@ public class RefundRestController extends BaseRestController {
 				"transactionCode", transactionCode
 			).toString(),
 			HttpStatus.OK);
-	}
-
-	private JSONObject _getAmountJSONObject(
-		JSONObject commercePaymentEntryJSONObject) {
-
-		JSONObject amountJSONObject = new JSONObject();
-
-		amountJSONObject.put(
-			"currency_code",
-			commercePaymentEntryJSONObject.getString("currencyCode")
-		).put(
-			"value",
-			BigDecimal.valueOf(
-				commercePaymentEntryJSONObject.getDouble("amount")
-			).longValue()
-		);
-
-		return amountJSONObject;
 	}
 
 	private static final Log _log = LogFactory.getLog(
