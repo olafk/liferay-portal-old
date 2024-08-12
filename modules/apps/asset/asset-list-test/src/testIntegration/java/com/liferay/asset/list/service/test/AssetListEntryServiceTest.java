@@ -23,13 +23,22 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.model.ResourceConstants;
+import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.model.role.RoleConstants;
+import com.liferay.portal.kernel.security.auth.PrincipalException;
+import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
+import com.liferay.portal.kernel.test.context.ContextUserReplace;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.test.util.RoleTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
+import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -250,6 +259,63 @@ public class AssetListEntryServiceTest {
 	}
 
 	@Test
+	public void testFetchAndGetAssetListEntryByExternalReferenceCode()
+		throws Exception {
+
+		AssetListEntry assetListEntry = _addAssetListEntry(
+			RandomTestUtil.randomString());
+
+		Assert.assertEquals(
+			assetListEntry,
+			_assetListEntryService.fetchAssetListEntryByExternalReferenceCode(
+				assetListEntry.getExternalReferenceCode(),
+				_group.getGroupId()));
+		Assert.assertEquals(
+			assetListEntry,
+			_assetListEntryService.getAssetListEntryByExternalReferenceCode(
+				assetListEntry.getExternalReferenceCode(),
+				_group.getGroupId()));
+
+		RoleTestUtil.removeResourcePermission(
+			RoleConstants.GUEST, AssetListEntry.class.getName(),
+			ResourceConstants.SCOPE_INDIVIDUAL,
+			String.valueOf(assetListEntry.getAssetListEntryId()),
+			ActionKeys.VIEW);
+		RoleTestUtil.removeResourcePermission(
+			RoleConstants.SITE_MEMBER, AssetListEntry.class.getName(),
+			ResourceConstants.SCOPE_INDIVIDUAL,
+			String.valueOf(assetListEntry.getAssetListEntryId()),
+			ActionKeys.VIEW);
+
+		User user = UserTestUtil.addGroupUser(
+			_group, RoleConstants.SITE_MEMBER);
+
+		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
+				user)) {
+
+			_assetListEntryService.fetchAssetListEntryByExternalReferenceCode(
+				assetListEntry.getExternalReferenceCode(), _group.getGroupId());
+
+			Assert.fail();
+		}
+		catch (PrincipalException.MustHavePermission principalException) {
+		}
+
+		try (ContextUserReplace contextUserReplace = new ContextUserReplace(
+				user)) {
+
+			_assetListEntryService.getAssetListEntryByExternalReferenceCode(
+				assetListEntry.getExternalReferenceCode(), _group.getGroupId());
+
+			Assert.fail();
+		}
+		catch (PrincipalException.MustHavePermission principalException) {
+		}
+
+		_userLocalService.deleteUser(user);
+	}
+
+	@Test
 	public void testGetAssetListEntriesByGroup() throws PortalException {
 		List<AssetListEntry> originalAssetListEntries =
 			_assetListEntryService.getAssetListEntries(
@@ -465,5 +531,8 @@ public class AssetListEntryServiceTest {
 
 	@DeleteAfterTestRun
 	private Group _group;
+
+	@Inject
+	private UserLocalService _userLocalService;
 
 }
