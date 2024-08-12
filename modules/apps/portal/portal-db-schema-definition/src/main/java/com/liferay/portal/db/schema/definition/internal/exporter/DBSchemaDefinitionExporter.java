@@ -139,22 +139,11 @@ public class DBSchemaDefinitionExporter {
 		}
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		DBSchemaDefinitionExporter.class);
+	private void _generateReport(String dirName, DBType exportDBType)
+		throws Exception {
 
-	@Reference
-	private CompanyLocalService _companyLocalService;
-
-	@Reference
-	private ConfigurationAdmin _configurationAdmin;
-
-	@Reference
-	private ReleaseLocalService _releaseLocalService;
-
-	private void _generateReport(String dirName, DBType exportDBType) throws Exception {
 		String installedPatchNames = StringUtil.merge(
-			PatcherValues.INSTALLED_PATCH_NAMES,
-			StringPool.COMMA_AND_SPACE);
+			PatcherValues.INSTALLED_PATCH_NAMES, StringPool.COMMA_AND_SPACE);
 		Release release = _releaseLocalService.fetchRelease(
 			ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME);
 
@@ -163,8 +152,7 @@ public class DBSchemaDefinitionExporter {
 			StringUtil.merge(
 				new Object[] {
 					"Export date: " + _toString(new Date()),
-					"Portal build date: " +
-						_toString(release.getBuildDate()),
+					"Portal build date: " + _toString(release.getBuildDate()),
 					"Portal build number: " + release.getBuildNumber(),
 					"Portal installed patches: " + installedPatchNames,
 					"Portal schema version: " + release.getSchemaVersion(),
@@ -199,7 +187,8 @@ public class DBSchemaDefinitionExporter {
 		return tableNames;
 	}
 
-	private Set<String> _getExportTableNames(long companyId, String dirName, String type)
+	private Set<String> _getExportTableNames(
+			long companyId, String dirName, String type)
 		throws Exception {
 
 		Set<String> tableNames = new HashSet<>();
@@ -227,17 +216,39 @@ public class DBSchemaDefinitionExporter {
 				tableNames.add((tableName == null) ? parts[2] : tableName);
 			}
 			else if (type.equals("VIEW") &&
-					 StringUtil.startsWith(
-						 line, "create or replace view")) {
+					 StringUtil.startsWith(line, "create or replace view")) {
 
 				tableNames.add(
 					StringUtil.extractLast(
-						line.split(StringPool.SPACE)[4],
-						StringPool.PERIOD));
+						line.split(StringPool.SPACE)[4], StringPool.PERIOD));
 			}
 		}
 
 		return tableNames;
+	}
+
+	private String _getTablesInfo(
+			long companyId, String dirName, String message, String type)
+		throws Exception {
+
+		Set<String> dbTableNames = _getDBTableNames(type);
+		Set<String> exportTableNames = _getExportTableNames(
+			companyId, dirName, type);
+
+		String missingTableNames = StringUtil.merge(
+			SetUtil.asymmetricDifference(dbTableNames, exportTableNames),
+			StringPool.COMMA_AND_SPACE);
+
+		return StringUtil.merge(
+			new Object[] {
+				StringUtil.replace(message, '?', "database") +
+					dbTableNames.size(),
+				StringUtil.replace(message, '?', "export") +
+					exportTableNames.size(),
+				StringUtil.replace(message, '?', "missing") + missingTableNames,
+				StringPool.NEW_LINE
+			},
+			StringPool.NEW_LINE);
 	}
 
 	private String _getTablesInfo(String dirName) throws Exception {
@@ -267,7 +278,7 @@ public class DBSchemaDefinitionExporter {
 						"TABLE"));
 				sb.append(
 					_getTablesInfo(
-						companyId, dirName, 
+						companyId, dirName,
 						StringBundler.concat(
 							"Virtual instance ", companyId, " ? views: "),
 						"VIEW"));
@@ -276,33 +287,20 @@ public class DBSchemaDefinitionExporter {
 		return sb.toString();
 	}
 
-	private String _getTablesInfo(
-			long companyId, String dirName, String message, String type)
-		throws Exception {
-
-		Set<String> dbTableNames = _getDBTableNames(type);
-		Set<String> exportTableNames = _getExportTableNames(
-			companyId, dirName, type);
-
-		String missingTableNames = StringUtil.merge(
-			SetUtil.asymmetricDifference(dbTableNames, exportTableNames),
-			StringPool.COMMA_AND_SPACE);
-
-		return StringUtil.merge(
-			new Object[] {
-				StringUtil.replace(message, '?', "database") +
-					dbTableNames.size(),
-				StringUtil.replace(message, '?', "export") +
-					exportTableNames.size(),
-				StringUtil.replace(message, '?', "missing") +
-					missingTableNames,
-				StringPool.NEW_LINE
-			},
-			StringPool.NEW_LINE);
-	}
-
 	private String _toString(Date date) {
 		return Time.getSimpleDate(date, DateUtil.ISO_8601_PATTERN);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DBSchemaDefinitionExporter.class);
+
+	@Reference
+	private CompanyLocalService _companyLocalService;
+
+	@Reference
+	private ConfigurationAdmin _configurationAdmin;
+
+	@Reference
+	private ReleaseLocalService _releaseLocalService;
 
 }
