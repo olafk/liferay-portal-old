@@ -279,7 +279,6 @@ public abstract class BaseEntityRelationshipDALO
 		Set<JSONObject> jsonObjects = new HashSet<>();
 
 		int currentPage = 1;
-		int lastPage = -1;
 
 		while (true) {
 			int finalCurrentPage = currentPage;
@@ -328,9 +327,6 @@ public abstract class BaseEntityRelationshipDALO
 						JSONObject responseJSONObject = new JSONObject(
 							response);
 
-						Integer localLastPage = responseJSONObject.getInt(
-							"lastPage");
-
 						JSONArray itemsJSONArray =
 							responseJSONObject.getJSONArray("items");
 
@@ -344,7 +340,8 @@ public abstract class BaseEntityRelationshipDALO
 						}
 
 						return new ImmutablePair<>(
-							localLastPage, localJsonObjects);
+							responseJSONObject.getInt("lastPage"),
+							localJsonObjects);
 					});
 
 			Pair<Integer, Set<JSONObject>> pair = unsafeSupplier.get();
@@ -353,7 +350,7 @@ public abstract class BaseEntityRelationshipDALO
 				break;
 			}
 
-			lastPage = pair.getKey();
+			int lastPage = pair.getKey();
 
 			jsonObjects.addAll(pair.getValue());
 
