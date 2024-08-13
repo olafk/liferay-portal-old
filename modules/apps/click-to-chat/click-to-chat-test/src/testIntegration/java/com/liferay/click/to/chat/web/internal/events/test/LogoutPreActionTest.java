@@ -75,10 +75,6 @@ public class LogoutPreActionTest {
 				_mockHttpServletRequest, new MockHttpServletResponse());
 		}
 
-		_assertCookiesDeleted();
-	}
-
-	private void _assertCookiesDeleted() {
 		Assert.assertNull(
 			CookiesManagerUtil.getCookieValue(
 				"intercom-id-test", _mockHttpServletRequest));
