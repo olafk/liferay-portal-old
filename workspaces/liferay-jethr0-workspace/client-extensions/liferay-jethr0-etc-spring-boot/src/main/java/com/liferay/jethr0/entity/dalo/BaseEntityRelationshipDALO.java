@@ -330,16 +330,9 @@ public abstract class BaseEntityRelationshipDALO
 						JSONArray itemsJSONArray =
 							responseJSONObject.getJSONArray("items");
 
-						Set<JSONObject> localJsonObjects = new HashSet<>();
-
-						for (int i = 0; i < itemsJSONArray.length(); i++) {
-							localJsonObjects.add(
-								itemsJSONArray.getJSONObject(i));
-						}
-
 						return new ImmutablePair<>(
 							responseJSONObject.getInt("lastPage"),
-							localJsonObjects);
+							new HashSet(itemsJSONArray.toList()));
 					});
 
 			Pair<Integer, Set<JSONObject>> pair = unsafeSupplier.get();
