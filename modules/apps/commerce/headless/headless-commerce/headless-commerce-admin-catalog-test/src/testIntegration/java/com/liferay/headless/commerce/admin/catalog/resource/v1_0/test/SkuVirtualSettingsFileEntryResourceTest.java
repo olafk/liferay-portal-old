@@ -52,14 +52,9 @@ public class SkuVirtualSettingsFileEntryResourceTest
 	public void setUp() throws Exception {
 		super.setUp();
 
-		_user = UserTestUtil.addOmniadminUser();
-
-		_serviceContext = ServiceContextTestUtil.getServiceContext(
-			testGroup.getCompanyId(), testGroup.getGroupId(),
-			_user.getUserId());
-
 		_commerceCurrency = CommerceCurrencyTestUtil.addCommerceCurrency(
 			testCompany.getCompanyId());
+		_user = UserTestUtil.addOmniadminUser();
 
 		_commerceCatalog = CommerceTestUtil.addCommerceCatalog(
 			testCompany.getCompanyId(), testCompany.getGroupId(),
@@ -72,6 +67,10 @@ public class SkuVirtualSettingsFileEntryResourceTest
 		List<CPInstance> cpInstances = _cpDefinition.getCPInstances();
 
 		CPInstance cpInstance = cpInstances.get(0);
+
+		_serviceContext = ServiceContextTestUtil.getServiceContext(
+			testGroup.getCompanyId(), testGroup.getGroupId(),
+			_user.getUserId());
 
 		_cpDefinitionVirtualSetting =
 			_cpDefinitionVirtualSettingLocalService.
