@@ -397,34 +397,6 @@ public class ProductResourceTest extends BaseProductResourceTestCase {
 		return productResource.postProduct(product);
 	}
 
-	private Product _randomProductVirtual() throws Exception {
-		return new Product() {
-			{
-				active = true;
-				catalogId = _commerceCatalog.getCommerceCatalogId();
-				description = LanguageUtils.getLanguageIdMap(
-					RandomTestUtil.randomLocaleStringMap());
-				externalReferenceCode = StringUtil.toLowerCase(
-					RandomTestUtil.randomString());
-				name = LanguageUtils.getLanguageIdMap(
-					RandomTestUtil.randomLocaleStringMap());
-				productType = VirtualCPTypeConstants.NAME;
-				productVirtualSettings = new ProductVirtualSettings() {
-					{
-						attachment = Base64.encode(
-							FileUtil.getBytes(
-								ProductResourceTest.class,
-								"dependencies/image.jpg"));
-						duration = RandomTestUtil.randomLong();
-						maxUsages = RandomTestUtil.randomInt();
-					}
-				};
-				shortDescription = LanguageUtils.getLanguageIdMap(
-					RandomTestUtil.randomLocaleStringMap());
-			}
-		};
-	}
-
 	private Product _randomProductWithSku() throws Exception {
 		return new Product() {
 			{
@@ -545,7 +517,31 @@ public class ProductResourceTest extends BaseProductResourceTestCase {
 		).build();
 
 		Product randomVirtualProduct = productResource.postProduct(
-			_randomProductVirtual());
+			new Product() {
+				{
+					active = true;
+					catalogId = _commerceCatalog.getCommerceCatalogId();
+					description = LanguageUtils.getLanguageIdMap(
+						RandomTestUtil.randomLocaleStringMap());
+					externalReferenceCode = StringUtil.toLowerCase(
+						RandomTestUtil.randomString());
+					name = LanguageUtils.getLanguageIdMap(
+						RandomTestUtil.randomLocaleStringMap());
+					productType = VirtualCPTypeConstants.NAME;
+					productVirtualSettings = new ProductVirtualSettings() {
+						{
+							attachment = Base64.encode(
+								FileUtil.getBytes(
+									ProductResourceTest.class,
+									"dependencies/image.jpg"));
+							duration = RandomTestUtil.randomLong();
+							maxUsages = RandomTestUtil.randomInt();
+						}
+					};
+					shortDescription = LanguageUtils.getLanguageIdMap(
+						RandomTestUtil.randomLocaleStringMap());
+				}
+			});
 
 		ProductVirtualSettings productVirtualSettings =
 			randomVirtualProduct.getProductVirtualSettings();
