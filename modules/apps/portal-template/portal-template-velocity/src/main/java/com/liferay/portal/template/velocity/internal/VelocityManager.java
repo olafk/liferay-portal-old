@@ -255,9 +255,6 @@ public class VelocityManager extends BaseTemplateManager {
 				VelocityEngine.RUNTIME_LOG_LOGSYSTEM_CLASS,
 				_velocityEngineConfiguration.logger());
 			extendedProperties.setProperty(
-				VelocityManager.VelocityTemplateResourceLoader.class.getName(),
-				_velocityTemplateResourceLoader);
-			extendedProperties.setProperty(
 				VelocityEngine.VM_LIBRARY,
 				_getVelocimacroLibrary(VelocityManager.class));
 			extendedProperties.setProperty(
@@ -266,6 +263,9 @@ public class VelocityManager extends BaseTemplateManager {
 			extendedProperties.setProperty(
 				VelocityEngine.VM_PERM_ALLOW_INLINE_REPLACE_GLOBAL,
 				String.valueOf(!_velocityTemplateResourceCache.isEnabled()));
+			extendedProperties.setProperty(
+				VelocityManager.VelocityTemplateResourceLoader.class.getName(),
+				_velocityTemplateResourceLoader);
 			extendedProperties.setProperty(
 				"liferay." + RuntimeConstants.INTROSPECTOR_RESTRICT_CLASSES +
 					".methods",
