@@ -438,10 +438,10 @@ public class CalendarBookingTestUtil {
 	}
 
 	public static long getCalendarTimeInMillis(int day, int hour, int minute) {
-		java.util.Calendar calendar = CalendarFactoryUtil.getCalendar(
+		java.util.Calendar jCalendar = CalendarFactoryUtil.getCalendar(
 			2022, java.util.Calendar.JANUARY, day, hour, minute);
 
-		return calendar.getTimeInMillis();
+		return jCalendar.getTimeInMillis();
 	}
 
 	public static CalendarBooking getChildCalendarBooking(
