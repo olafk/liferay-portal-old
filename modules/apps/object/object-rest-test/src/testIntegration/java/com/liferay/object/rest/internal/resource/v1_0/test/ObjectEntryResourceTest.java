@@ -11706,10 +11706,12 @@ public class ObjectEntryResourceTest {
 			() -> {
 				Link link = new Link();
 
-				FileEntry curFileEntry = _dlAppLocalService.getFileEntry(
-					_testDLFileEntryModelListener.getLastFileEntryId());
+				FileEntry serviceBuilderFileEntry =
+					_dlAppLocalService.getFileEntry(
+						_testDLFileEntryModelListener.getLastFileEntryId());
 
-				FileVersion fileVersion = curFileEntry.getFileVersion();
+				FileVersion fileVersion =
+					serviceBuilderFileEntry.getFileVersion();
 
 				long folderId = DLFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 				long repositoryId = 0;
@@ -11746,8 +11748,9 @@ public class ObjectEntryResourceTest {
 					StringBundler.concat(
 						"/documents/", repositoryId, "/", folderId, "/",
 						URLCodec.encodeURL(fileEntry.getName()), "/",
-						curFileEntry.getExternalReferenceCode(), "?version=",
-						fileVersion.getVersion(), "&t=", modifiedDate.getTime(),
+						serviceBuilderFileEntry.getExternalReferenceCode(),
+						"?version=", fileVersion.getVersion(), "&t=",
+						modifiedDate.getTime(),
 						"&download=true&objectDefinitionExternalReferenceCode=",
 						objectDefinition.getExternalReferenceCode(),
 						"&objectEntryExternalReferenceCode=",
