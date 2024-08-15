@@ -1,5 +1,3 @@
-<#-- Sample user -->
-
 <#assign
 	sampleUserModel = dataFactory.newSampleUserModel()
 

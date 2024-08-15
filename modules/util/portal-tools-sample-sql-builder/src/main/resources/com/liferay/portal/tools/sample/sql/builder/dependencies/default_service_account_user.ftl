@@ -1,5 +1,3 @@
-<#-- Default service account user -->
-
 <#assign
 	defaultServiceAccountUserModel = dataFactory.newDefaultServiceAccountUserModel()
 />
