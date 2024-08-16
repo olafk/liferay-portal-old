@@ -103,11 +103,11 @@ public class
 			commerceOrder, CommerceOrderConstants.ORDER_STATUS_COMPLETED,
 			user.getUserId(), true);
 
+		ObjectDefinition commerceReturnObjectDefinition = null;
+
 		List<ObjectDefinition> objectDefinitions =
 			_objectDefinitionLocalService.getObjectDefinitions(
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
-		ObjectDefinition commerceReturnObjectDefinition = null;
 
 		for (ObjectDefinition objectDefinition : objectDefinitions) {
 			if (StringUtil.equals(
