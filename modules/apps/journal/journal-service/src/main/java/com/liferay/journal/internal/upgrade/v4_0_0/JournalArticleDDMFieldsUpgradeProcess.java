@@ -67,42 +67,35 @@ public class JournalArticleDDMFieldsUpgradeProcess extends UpgradeProcess {
 		long classNameId = _classNameLocalService.getClassNameId(
 			JournalArticle.class);
 
-		try {
-			try (PreparedStatement preparedStatement1 =
-					connection.prepareStatement(
-						"select id_, groupId, companyId, content, " +
-							"DDMStructureKey from JournalArticle where " +
-								"ctCollectionId = 0");
-				ResultSet resultSet = preparedStatement1.executeQuery()) {
+		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
+				"select id_, groupId, companyId, content, DDMStructureKey " +
+					"from JournalArticle where ctCollectionId = 0");
+			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
-				while (resultSet.next()) {
-					long id = resultSet.getLong("id_");
-					long groupId = resultSet.getLong("groupId");
+			while (resultSet.next()) {
+				long id = resultSet.getLong("id_");
+				long groupId = resultSet.getLong("groupId");
 
-					CompanyThreadLocal.setCompanyId(
-						resultSet.getLong("companyId"));
+				CompanyThreadLocal.setCompanyId(resultSet.getLong("companyId"));
 
-					String content = resultSet.getString("content");
+				String content = resultSet.getString("content");
 
-					String ddmStructureKey = resultSet.getString(
-						"DDMStructureKey");
+				String ddmStructureKey = resultSet.getString("DDMStructureKey");
 
-					DDMStructure ddmStructure =
-						_ddmStructureLocalService.getStructure(
-							_portal.getSiteGroupId(groupId), classNameId,
-							ddmStructureKey, true);
+				DDMStructure ddmStructure =
+					_ddmStructureLocalService.getStructure(
+						_portal.getSiteGroupId(groupId), classNameId,
+						ddmStructureKey, true);
 
-					content = _convertFieldNames(content);
+				content = _convertFieldNames(content);
 
-					DDMFormValues ddmFormValues =
-						_fieldsToDDMFormValuesConverter.convert(
-							ddmStructure,
-							_journalConverter.getDDMFields(
-								ddmStructure, content));
+				DDMFormValues ddmFormValues =
+					_fieldsToDDMFormValuesConverter.convert(
+						ddmStructure,
+						_journalConverter.getDDMFields(ddmStructure, content));
 
-					_ddmFieldLocalService.updateDDMFormValues(
-						ddmStructure.getStructureId(), id, ddmFormValues);
-				}
+				_ddmFieldLocalService.updateDDMFormValues(
+					ddmStructure.getStructureId(), id, ddmFormValues);
 			}
 		}
 		finally {
