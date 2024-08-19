@@ -260,10 +260,10 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public <T> T getObject(int parameterIndex, Class<T> type)
+	public <T> T getObject(int parameterIndex, Class<T> clazz)
 		throws SQLException {
 
-		return _callableStatement.getObject(parameterIndex, type);
+		return _callableStatement.getObject(parameterIndex, clazz);
 	}
 
 	@Override
@@ -279,10 +279,10 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public <T> T getObject(String parameterName, Class<T> type)
+	public <T> T getObject(String parameterName, Class<T> clazz)
 		throws SQLException {
 
-		return _callableStatement.getObject(parameterName, type);
+		return _callableStatement.getObject(parameterName, clazz);
 	}
 
 	@Override
