@@ -161,8 +161,8 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public Date getDate(int parameterIndex, Calendar cal) throws SQLException {
-		return _callableStatement.getDate(parameterIndex, cal);
+	public Date getDate(int parameterIndex, Calendar calendar) throws SQLException {
+		return _callableStatement.getDate(parameterIndex, calendar);
 	}
 
 	@Override
@@ -171,10 +171,10 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public Date getDate(String parameterName, Calendar cal)
+	public Date getDate(String parameterName, Calendar calendar)
 		throws SQLException {
 
-		return _callableStatement.getDate(parameterName, cal);
+		return _callableStatement.getDate(parameterName, calendar);
 	}
 
 	@Override
@@ -353,8 +353,8 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public Time getTime(int parameterIndex, Calendar cal) throws SQLException {
-		return _callableStatement.getTime(parameterIndex, cal);
+	public Time getTime(int parameterIndex, Calendar calendar) throws SQLException {
+		return _callableStatement.getTime(parameterIndex, calendar);
 	}
 
 	@Override
@@ -363,10 +363,10 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public Time getTime(String parameterName, Calendar cal)
+	public Time getTime(String parameterName, Calendar calendar)
 		throws SQLException {
 
-		return _callableStatement.getTime(parameterName, cal);
+		return _callableStatement.getTime(parameterName, calendar);
 	}
 
 	@Override
@@ -375,10 +375,10 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public Timestamp getTimestamp(int parameterIndex, Calendar cal)
+	public Timestamp getTimestamp(int parameterIndex, Calendar calendar)
 		throws SQLException {
 
-		return _callableStatement.getTimestamp(parameterIndex, cal);
+		return _callableStatement.getTimestamp(parameterIndex, calendar);
 	}
 
 	@Override
@@ -387,10 +387,10 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public Timestamp getTimestamp(String parameterName, Calendar cal)
+	public Timestamp getTimestamp(String parameterName, Calendar calendar)
 		throws SQLException {
 
-		return _callableStatement.getTimestamp(parameterName, cal);
+		return _callableStatement.getTimestamp(parameterName, calendar);
 	}
 
 	@Override
@@ -731,10 +731,10 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public void setDate(int parameterIndex, Date date, Calendar cal)
+	public void setDate(int parameterIndex, Date date, Calendar calendar)
 		throws SQLException {
 
-		_callableStatement.setDate(parameterIndex, date, cal);
+		_callableStatement.setDate(parameterIndex, date, calendar);
 	}
 
 	@Override
@@ -743,10 +743,10 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public void setDate(String parameterName, Date date, Calendar cal)
+	public void setDate(String parameterName, Date date, Calendar calendar)
 		throws SQLException {
 
-		_callableStatement.setDate(parameterName, date, cal);
+		_callableStatement.setDate(parameterName, date, calendar);
 	}
 
 	@Override
@@ -1022,10 +1022,10 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public void setTime(int parameterIndex, Time time, Calendar cal)
+	public void setTime(int parameterIndex, Time time, Calendar calendar)
 		throws SQLException {
 
-		_callableStatement.setTime(parameterIndex, time, cal);
+		_callableStatement.setTime(parameterIndex, time, calendar);
 	}
 
 	@Override
@@ -1034,10 +1034,10 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public void setTime(String parameterName, Time time, Calendar cal)
+	public void setTime(String parameterName, Time time, Calendar calendar)
 		throws SQLException {
 
-		_callableStatement.setTime(parameterName, time, cal);
+		_callableStatement.setTime(parameterName, time, calendar);
 	}
 
 	@Override
@@ -1049,10 +1049,10 @@ public class CallableStatementWrapper
 
 	@Override
 	public void setTimestamp(
-			int parameterIndex, Timestamp timestamp, Calendar cal)
+			int parameterIndex, Timestamp timestamp, Calendar calendar)
 		throws SQLException {
 
-		_callableStatement.setTimestamp(parameterIndex, timestamp, cal);
+		_callableStatement.setTimestamp(parameterIndex, timestamp, calendar);
 	}
 
 	@Override
@@ -1064,10 +1064,10 @@ public class CallableStatementWrapper
 
 	@Override
 	public void setTimestamp(
-			String parameterName, Timestamp timestamp, Calendar cal)
+			String parameterName, Timestamp timestamp, Calendar calendar)
 		throws SQLException {
 
-		_callableStatement.setTimestamp(parameterName, timestamp, cal);
+		_callableStatement.setTimestamp(parameterName, timestamp, calendar);
 	}
 
 	@Override

@@ -222,10 +222,10 @@ public class PreparedStatementWrapper
 	}
 
 	@Override
-	public void setDate(int parameterIndex, Date date, Calendar cal)
+	public void setDate(int parameterIndex, Date date, Calendar calendar)
 		throws SQLException {
 
-		_preparedStatement.setDate(parameterIndex, date, cal);
+		_preparedStatement.setDate(parameterIndex, date, calendar);
 	}
 
 	@Override
@@ -368,10 +368,10 @@ public class PreparedStatementWrapper
 	}
 
 	@Override
-	public void setTime(int parameterIndex, Time time, Calendar cal)
+	public void setTime(int parameterIndex, Time time, Calendar calendar)
 		throws SQLException {
 
-		_preparedStatement.setTime(parameterIndex, time, cal);
+		_preparedStatement.setTime(parameterIndex, time, calendar);
 	}
 
 	@Override
@@ -383,10 +383,10 @@ public class PreparedStatementWrapper
 
 	@Override
 	public void setTimestamp(
-			int parameterIndex, Timestamp timestamp, Calendar cal)
+			int parameterIndex, Timestamp timestamp, Calendar calendar)
 		throws SQLException {
 
-		_preparedStatement.setTimestamp(parameterIndex, timestamp, cal);
+		_preparedStatement.setTimestamp(parameterIndex, timestamp, calendar);
 	}
 
 	@Override
