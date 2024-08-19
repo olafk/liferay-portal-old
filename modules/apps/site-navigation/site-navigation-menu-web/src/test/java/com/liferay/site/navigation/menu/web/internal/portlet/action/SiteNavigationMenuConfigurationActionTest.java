@@ -372,6 +372,9 @@ public class SiteNavigationMenuConfigurationActionTest {
 			String siteNavigationMenuExternalReferenceCode)
 		throws PortalException {
 
+		SiteNavigationMenuService siteNavigationMenuService = Mockito.mock(
+			SiteNavigationMenuService.class);
+
 		SiteNavigationMenu siteNavigationMenu = Mockito.mock(
 			SiteNavigationMenu.class);
 
@@ -380,9 +383,6 @@ public class SiteNavigationMenuConfigurationActionTest {
 		).thenReturn(
 			siteNavigationMenuExternalReferenceCode
 		);
-
-		SiteNavigationMenuService siteNavigationMenuService = Mockito.mock(
-			SiteNavigationMenuService.class);
 
 		Mockito.when(
 			siteNavigationMenuService.fetchSiteNavigationMenu(Mockito.anyLong())
