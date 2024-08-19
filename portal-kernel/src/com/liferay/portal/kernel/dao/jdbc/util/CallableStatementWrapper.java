@@ -832,8 +832,8 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public void setNClob(int parameterIndex, NClob value) throws SQLException {
-		_callableStatement.setNClob(parameterIndex, value);
+	public void setNClob(int parameterIndex, NClob nClob) throws SQLException {
+		_callableStatement.setNClob(parameterIndex, nClob);
 	}
 
 	@Override
@@ -851,10 +851,10 @@ public class CallableStatementWrapper
 	}
 
 	@Override
-	public void setNClob(String parameterName, NClob value)
+	public void setNClob(String parameterName, NClob nClob)
 		throws SQLException {
 
-		_callableStatement.setNClob(parameterName, value);
+		_callableStatement.setNClob(parameterName, nClob);
 	}
 
 	@Override
