@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Ignore SIGHUP to avoid stopping the process when terminal disconnects.
+# Ignore SIGHUP to keep the script running if the terminal disconnects.
 #
 
 trap '' 1
