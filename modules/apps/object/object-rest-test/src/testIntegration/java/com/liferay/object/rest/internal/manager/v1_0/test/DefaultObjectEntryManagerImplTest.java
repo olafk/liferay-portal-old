@@ -3437,13 +3437,7 @@ public class DefaultObjectEntryManagerImplTest
 			).put(
 				"richTextObjectFieldName", "<i>richTextObjectFieldNameValue</i>"
 			).build();
-
 		ObjectEntry parentObjectEntry1 = _addObjectEntry(
-			_objectDefinition1,
-			HashMapBuilder.<String, Object>put(
-				"textObjectFieldName", RandomTestUtil.randomString()
-			).build());
-		ObjectEntry parentObjectEntry2 = _addObjectEntry(
 			_objectDefinition1,
 			HashMapBuilder.<String, Object>put(
 				"textObjectFieldName", RandomTestUtil.randomString()
@@ -3477,6 +3471,13 @@ public class DefaultObjectEntryManagerImplTest
 					).build();
 				}
 			});
+
+		ObjectEntry parentObjectEntry2 = _addObjectEntry(
+			_objectDefinition1,
+			HashMapBuilder.<String, Object>put(
+				"textObjectFieldName", RandomTestUtil.randomString()
+			).build());
+
 		assertEquals(
 			_defaultObjectEntryManager.partialUpdateObjectEntry(
 				_simpleDTOConverterContext, _objectDefinition2,
