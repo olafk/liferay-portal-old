@@ -141,9 +141,9 @@ public class RelationshipObjectFieldBusinessType
 
 		Object value = values.get(objectField.getName());
 
-		Long valueLong = GetterUtil.getLong(value);
+		long valueLong = GetterUtil.getLong(value);
 
-		if (Validator.isNull(valueLong)) {
+		if (valueLong == 0) {
 			return value;
 		}
 
