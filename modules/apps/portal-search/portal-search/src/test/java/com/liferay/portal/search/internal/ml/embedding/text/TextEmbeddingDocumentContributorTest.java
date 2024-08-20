@@ -110,7 +110,7 @@ public class TextEmbeddingDocumentContributorTest {
 	}
 
 	@Test
-	public void testGetEmbeddingProviderConfigurationWithTextEmbeddingsNotEnabled()
+	public void testGetEmbeddingProviderConfigurationWithTextEmbeddingsDisabled()
 		throws Exception {
 
 		_setSemanticSearchConfiguration(
