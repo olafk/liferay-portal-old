@@ -219,8 +219,8 @@ public class MappingsHelperImpl implements MappingsHelper {
 		}
 	}
 
-	private JSONObject _removeLegacyDocumentType(String source) {
-		JSONObject jsonObject = _createJSONObject(source);
+	private JSONObject _removeLegacyDocumentType(String json) {
+		JSONObject jsonObject = _createJSONObject(json);
 
 		if (jsonObject.has(
 				IndexMappingsConstants.LEGACY_LIFERAY_DOCUMENT_TYPE)) {
