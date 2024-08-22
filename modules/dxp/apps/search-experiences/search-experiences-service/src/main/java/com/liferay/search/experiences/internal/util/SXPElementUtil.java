@@ -93,15 +93,15 @@ public class SXPElementUtil {
 	}
 
 	private static List<SXPElement> _createSXPElements() {
-		List<SXPElement> sxpElements = new ArrayList<>();
-
-		Package pkg = CompanyModelListener.class.getPackage();
-
-		String path = StringUtil.replace(
-			pkg.getName(), CharPool.PERIOD, CharPool.SLASH);
-
 		try {
+			List<SXPElement> sxpElements = new ArrayList<>();
+
 			Bundle bundle = FrameworkUtil.getBundle(CompanyModelListener.class);
+
+			Package pkg = CompanyModelListener.class.getPackage();
+
+			String path = StringUtil.replace(
+				pkg.getName(), CharPool.PERIOD, CharPool.SLASH);
 
 			Enumeration<URL> enumeration = bundle.findEntries(
 				path.concat("/dependencies"), "*.json", false);
@@ -112,12 +112,12 @@ public class SXPElementUtil {
 						SXPElementUtil.toSXPElement(
 							URLUtil.toString(enumeration.nextElement())));
 			}
+
+			return sxpElements;
 		}
 		catch (IOException ioException) {
 			throw new ExceptionInInitializerError(ioException);
 		}
-
-		return sxpElements;
 	}
 
 	private static List<SXPElement> _getOrCreateSXPElements() {
