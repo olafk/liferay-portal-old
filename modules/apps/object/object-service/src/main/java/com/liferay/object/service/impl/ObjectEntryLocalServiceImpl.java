@@ -337,16 +337,16 @@ public class ObjectEntryLocalServiceImpl
 			objectEntry.setValues(insertedValues);
 		}
 
-		ServiceContext resourcePermissionServiceContext = new ServiceContext();
-
-		resourcePermissionServiceContext.setIndexingEnabled(false);
-		resourcePermissionServiceContext.setStrictAdd(true);
-
 		_resourcePermissionLocalService.addResourcePermissions(
 			objectEntry.getCompanyId(), objectEntry.getGroupId(),
 			objectEntry.getUserId(), objectDefinition.getClassName(),
 			String.valueOf(objectEntry.getPrimaryKey()), false,
-			resourcePermissionServiceContext);
+			new ServiceContext() {
+				{
+					setIndexingEnabled(false);
+					setStrictAdd(true);
+				}
+			});
 
 		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
 			try {
