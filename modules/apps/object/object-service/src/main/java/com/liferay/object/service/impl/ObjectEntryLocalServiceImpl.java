@@ -3570,11 +3570,11 @@ public class ObjectEntryLocalServiceImpl
 				int index = 1;
 
 				_setColumn(
-					preparedStatement, index++, Types.BIGINT, objectEntryId,
-					columnNames, insertedValues);
+					columnNames, index++, insertedValues, preparedStatement,
+					Types.BIGINT, objectEntryId);
 				_setColumn(
-					preparedStatement, index++, Types.VARCHAR, languageId,
-					columnNames, insertedValues);
+					columnNames, index++, insertedValues, preparedStatement,
+					Types.VARCHAR, languageId);
 
 				for (ObjectField objectField : objectFields) {
 					Column<?, ?> column =
@@ -3582,12 +3582,12 @@ public class ObjectEntryLocalServiceImpl
 							objectField.getDBColumnName());
 
 					_setColumn(
-						preparedStatement, index++, column.getSQLType(),
+						columnNames, index++, insertedValues, preparedStatement,
+						column.getSQLType(),
 						_getLocalizedValue(
 							languageId,
 							(Map<String, String>)values.get(
-								objectField.getI18nObjectFieldName())),
-						columnNames, insertedValues);
+								objectField.getI18nObjectFieldName())));
 				}
 
 				preparedStatement.addBatch();
@@ -3720,8 +3720,8 @@ public class ObjectEntryLocalServiceImpl
 			int index = 1;
 
 			_setColumn(
-				preparedStatement, index++, Types.BIGINT, objectEntryId,
-				columnNames, insertedValues);
+				columnNames, index++, insertedValues, preparedStatement,
+				Types.BIGINT, objectEntryId);
 
 			for (ObjectField objectField : objectFields) {
 				if (!objectField.hasInsertValues() ||
@@ -3752,16 +3752,16 @@ public class ObjectEntryLocalServiceImpl
 							values.get(objectField.getName())));
 
 					_setColumn(
-						preparedStatement, index++, column.getSQLType(), value,
-						columnNames, insertedValues);
+						columnNames, index++, insertedValues, preparedStatement,
+						column.getSQLType(), value);
 
 					column = dynamicObjectDefinitionTable.getColumn(
 						objectField.getSortableDBColumnName());
 
 					_setColumn(
-						preparedStatement, index++, column.getSQLType(),
-						_getAutoIncrementSortableValue(prefix, suffix, value),
-						columnNames, insertedValues);
+						columnNames, index++, insertedValues, preparedStatement,
+						column.getSQLType(),
+						_getAutoIncrementSortableValue(prefix, suffix, value));
 
 					continue;
 				}
@@ -3771,8 +3771,8 @@ public class ObjectEntryLocalServiceImpl
 				}
 
 				_setColumn(
-					dynamicObjectDefinitionTable, index++, objectField,
-					preparedStatement, values, columnNames, insertedValues);
+					columnNames, dynamicObjectDefinitionTable, index++,
+					insertedValues, objectField, preparedStatement, values);
 			}
 
 			preparedStatement.executeUpdate();
@@ -3997,11 +3997,11 @@ public class ObjectEntryLocalServiceImpl
 	}
 
 	private void _setColumn(
+			List<String> columnNames,
 			DynamicObjectDefinitionTable dynamicObjectDefinitionTable,
-			int index, ObjectField objectField,
-			PreparedStatement preparedStatement,
-			Map<String, Serializable> values, List<String> columnNames,
-			Map<String, Serializable> insertedValues)
+			int index, Map<String, Serializable> insertedValues,
+			ObjectField objectField, PreparedStatement preparedStatement,
+			Map<String, Serializable> values)
 		throws Exception {
 
 		Column<?, ?> column = dynamicObjectDefinitionTable.getColumn(
@@ -4013,9 +4013,9 @@ public class ObjectEntryLocalServiceImpl
 				ObjectFieldConstants.BUSINESS_TYPE_ENCRYPTED)) {
 
 			_setColumn(
-				preparedStatement, index, column.getSQLType(),
-				_encryptor.encrypt(_getKey(), (String)value), columnNames,
-				insertedValues);
+				columnNames, index, insertedValues, preparedStatement,
+				column.getSQLType(),
+				_encryptor.encrypt(_getKey(), (String)value));
 		}
 		else if (objectField.compareBusinessType(
 					ObjectFieldConstants.BUSINESS_TYPE_MULTISELECT_PICKLIST)) {
@@ -4033,13 +4033,13 @@ public class ObjectEntryLocalServiceImpl
 			}
 
 			_setColumn(
-				preparedStatement, index, column.getSQLType(), valueString,
-				columnNames, insertedValues);
+				columnNames, index, insertedValues, preparedStatement,
+				column.getSQLType(), valueString);
 		}
 		else {
 			_setColumn(
-				preparedStatement, index, column.getSQLType(), value,
-				columnNames, insertedValues);
+				columnNames, index, insertedValues, preparedStatement,
+				column.getSQLType(), value);
 		}
 	}
 
@@ -4047,9 +4047,9 @@ public class ObjectEntryLocalServiceImpl
 	 * @see com.liferay.portal.upgrade.util.Table#setColumn
 	 */
 	private void _setColumn(
-			PreparedStatement preparedStatement, int index, int sqlType,
-			Object value, List<String> columnNames,
-			Map<String, Serializable> insertedValues)
+			List<String> columnNames, int index,
+			Map<String, Serializable> insertedValues,
+			PreparedStatement preparedStatement, int sqlType, Object value)
 		throws Exception {
 
 		if (sqlType == Types.BIGINT) {
@@ -4454,13 +4454,13 @@ public class ObjectEntryLocalServiceImpl
 				}
 
 				_setColumn(
-					dynamicObjectDefinitionTable, index++, objectField,
-					preparedStatement, values, columnNames, insertedValues);
+					columnNames, dynamicObjectDefinitionTable, index++,
+					insertedValues, objectField, preparedStatement, values);
 			}
 
 			_setColumn(
-				preparedStatement, index++, Types.BIGINT, objectEntryId,
-				columnNames, insertedValues);
+				columnNames, index++, insertedValues, preparedStatement,
+				Types.BIGINT, objectEntryId);
 
 			preparedStatement.executeUpdate();
 
