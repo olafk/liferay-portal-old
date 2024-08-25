@@ -149,8 +149,6 @@ export class FiltersPage {
 		this.searchInput = page.getByPlaceholder('Search');
 	}
 
-
-
 	async assertFiltersTableRowCount(rowCount: number) {
 		await expect(
 			this.filterTable.locator('tbody').locator('tr')
