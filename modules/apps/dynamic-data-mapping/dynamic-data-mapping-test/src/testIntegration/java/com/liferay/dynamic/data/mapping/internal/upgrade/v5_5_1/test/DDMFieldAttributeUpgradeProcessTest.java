@@ -84,7 +84,7 @@ public class DDMFieldAttributeUpgradeProcessTest {
 	}
 
 	@Test
-	public void testClassUpgradeProcess() throws Exception {
+	public void testUpgradeProcess() throws Exception {
 		_addDDMFormValues();
 
 		_assertCompanyId(CompanyConstants.SYSTEM);
