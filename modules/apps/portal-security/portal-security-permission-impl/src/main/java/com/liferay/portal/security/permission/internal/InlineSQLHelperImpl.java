@@ -589,22 +589,22 @@ public class InlineSQLHelperImpl implements InlineSQLHelper {
 
 		int scope = ResourceConstants.SCOPE_INDIVIDUAL;
 
-		String optimizerHint = StringPool.BLANK;
+		String selectOptimizer = StringPool.BLANK;
 
 		if (DBManagerUtil.getDBType() == DBType.MYSQL) {
-			optimizerHint = "/*+ SUBQUERY(MATERIALIZATION) */";
+			selectOptimizer = "/*+ SUBQUERY(MATERIALIZATION) */";
 		}
 
 		return StringUtil.replace(
 			resourcePermissionSQL,
 			new String[] {
-				"[$OPTIMIZER_HINT$]", "[$CLASS_NAME$]", "[$COMPANY_ID$]",
-				"[$RESOURCE_SCOPE_INDIVIDUAL$]", "[$ROLE_IDS_OR_OWNER_ID$]"
+				"[$CLASS_NAME$]", "[$COMPANY_ID$]",
+				"[$RESOURCE_SCOPE_INDIVIDUAL$]", "[$ROLE_IDS_OR_OWNER_ID$]",
+				"[$SELECT_OPTIMIZER$]"
 			},
 			new String[] {
-				optimizerHint, className,
-				String.valueOf(permissionChecker.getCompanyId()),
-				String.valueOf(scope), roleIdsOrOwnerIdSQL
+				className, String.valueOf(permissionChecker.getCompanyId()),
+				String.valueOf(scope), roleIdsOrOwnerIdSQL, selectOptimizer
 			});
 	}
 
