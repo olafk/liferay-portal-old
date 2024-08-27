@@ -24,5 +24,5 @@ import org.osgi.service.component.annotations.Component;
 	service = Application.class
 )
 @Generated("")
-public class TestApplication extends Application {
+public class PortalToolsRESTBuilderTestApplication extends Application {
 }
