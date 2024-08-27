@@ -3121,6 +3121,22 @@ public abstract class Base${schemaName}ResourceTestCase {
 					/>
 
 					() -> {
+						<#list properties?keys as propertyName>
+							<#if stringUtil.equals(propertyName, "siteId")>
+								${schemaVarName}.setGroupId(testGroup.getGroupId());
+							<#elseif stringUtil.equals(properties[propertyName], "Integer")>
+								${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.randomInt());
+							<#elseif propertyName?contains("email") && stringUtil.equals(properties[propertyName], "String")>
+								${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()) + "@liferay.com");
+							<#elseif stringUtil.equals(properties[propertyName], "String")>
+								${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()));
+							<#elseif randomDataTypes?seq_contains(properties[propertyName])>
+								${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.random${properties[propertyName]}());
+							<#elseif stringUtil.equals(properties[propertyName], "Date")>
+								${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.nextDate());
+							</#if>
+						</#list>
+
 						${childSchemaName} ${schemaVarName} = new ${childSchemaName}();
 
 						<#list childProperties?keys as propertyName>
@@ -3140,22 +3156,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 						</#list>
 
 						${schemaVarName}.set${discriminatorPropertyName?cap_first}(${schemaName}.${discriminatorPropertyName?cap_first}.create("${mappingName}"));
-
-						<#list properties?keys as propertyName>
-							<#if stringUtil.equals(propertyName, "siteId")>
-								${schemaVarName}.setGroupId(testGroup.getGroupId());
-							<#elseif stringUtil.equals(properties[propertyName], "Integer")>
-								${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.randomInt());
-							<#elseif propertyName?contains("email") && stringUtil.equals(properties[propertyName], "String")>
-								${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()) + "@liferay.com");
-							<#elseif stringUtil.equals(properties[propertyName], "String")>
-								${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()));
-							<#elseif randomDataTypes?seq_contains(properties[propertyName])>
-								${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.random${properties[propertyName]}());
-							<#elseif stringUtil.equals(properties[propertyName], "Date")>
-								${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.nextDate());
-							</#if>
-						</#list>
 
 						return ${schemaVarName};
 					}
