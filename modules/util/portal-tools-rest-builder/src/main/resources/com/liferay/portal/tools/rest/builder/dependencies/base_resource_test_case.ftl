@@ -3140,14 +3140,28 @@ public abstract class Base${schemaName}ResourceTestCase {
 						</#list>
 
 						${schemaVarName}.set${discriminatorPropertyName?cap_first}(${schemaName}.${discriminatorPropertyName?cap_first}.create("${mappingName}"));
-						setCommonAttributes(${schemaVarName});
+
+						<#list properties?keys as propertyName>
+							<#if stringUtil.equals(propertyName, "siteId")>
+								${schemaVarName}.setGroupId(testGroup.getGroupId());
+							<#elseif stringUtil.equals(properties[propertyName], "Integer")>
+								${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.randomInt());
+							<#elseif propertyName?contains("email") && stringUtil.equals(properties[propertyName], "String")>
+								${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()) + "@liferay.com");
+							<#elseif stringUtil.equals(properties[propertyName], "String")>
+								${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()));
+							<#elseif randomDataTypes?seq_contains(properties[propertyName])>
+								${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.random${properties[propertyName]}());
+							<#elseif stringUtil.equals(properties[propertyName], "Date")>
+								${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.nextDate());
+							</#if>
+						</#list>
 
 						return ${schemaVarName};
 					}
 
 					<#if mappingName?has_next>
 						,
-
 					</#if>
 				</#list>
 
@@ -3178,26 +3192,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 				};
 			</#if>
 		}
-
-		<#if schema.discriminator?has_content>
-			private <T extends ${schemaName}> void setCommonAttributes(T ${schemaVarName}) {
-				<#list properties?keys as propertyName>
-					<#if stringUtil.equals(propertyName, "siteId")>
-						${schemaVarName}.setGroupId(testGroup.getGroupId());
-					<#elseif stringUtil.equals(properties[propertyName], "Integer")>
-						${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.randomInt());
-					<#elseif propertyName?contains("email") && stringUtil.equals(properties[propertyName], "String")>
-						${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()) + "@liferay.com");
-					<#elseif stringUtil.equals(properties[propertyName], "String")>
-						${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()));
-					<#elseif randomDataTypes?seq_contains(properties[propertyName])>
-						${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.random${properties[propertyName]}());
-					<#elseif stringUtil.equals(properties[propertyName], "Date")>
-						${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.nextDate());
-					</#if>
-				</#list>
-			}
-		</#if>
 
 		protected ${schemaName} randomIrrelevant${schemaName}() throws Exception {
 			${schemaName} randomIrrelevant${schemaName} = random${schemaName}();
