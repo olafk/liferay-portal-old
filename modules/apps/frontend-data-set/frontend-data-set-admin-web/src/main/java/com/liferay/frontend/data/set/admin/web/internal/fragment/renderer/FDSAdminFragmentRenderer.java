@@ -1089,7 +1089,7 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 
 		if (FeatureFlagManagerUtil.isEnabled("LPD-25230")) {
 			FDSAPIURLResolver fdsAPIURLResolver =
-				_fdsAPIURLResolverRegistry.getResolver(
+				_fdsAPIURLResolverRegistry.getFDSAPIURLResolver(
 					restApplication, restSchema);
 
 			if (fdsAPIURLResolver != null) {

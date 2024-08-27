@@ -33,7 +33,7 @@ public class FDSAPIURLResolverRegistryImpl
 	implements FDSAPIURLResolverRegistry {
 
 	@Override
-	public FDSAPIURLResolver getResolver(
+	public FDSAPIURLResolver getFDSAPIURLResolver(
 		String restApplication, String restSchema) {
 
 		String key = StringBundler.concat(
@@ -54,8 +54,8 @@ public class FDSAPIURLResolverRegistryImpl
 	}
 
 	@Override
-	public List<FDSAPIURLResolver> getResolvers() {
-		List<FDSAPIURLResolver> resolvers = new ArrayList<>();
+	public List<FDSAPIURLResolver> getFDSAPIURLResolvers() {
+		List<FDSAPIURLResolver> fdsAPIURLResolvers = new ArrayList<>();
 
 		List<ServiceWrapper<FDSAPIURLResolver>> serviceWrappers =
 			ListUtil.fromCollection(_serviceTrackerMap.values());
@@ -63,10 +63,10 @@ public class FDSAPIURLResolverRegistryImpl
 		for (ServiceWrapper<FDSAPIURLResolver> serviceWrapper :
 				serviceWrappers) {
 
-			resolvers.add(serviceWrapper.getService());
+			fdsAPIURLResolvers.add(serviceWrapper.getService());
 		}
 
-		return Collections.unmodifiableList(resolvers);
+		return Collections.unmodifiableList(fdsAPIURLResolvers);
 	}
 
 	@Activate

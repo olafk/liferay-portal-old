@@ -15,9 +15,9 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface FDSAPIURLResolverRegistry {
 
-	public FDSAPIURLResolver getResolver(
+	public FDSAPIURLResolver getFDSAPIURLResolver(
 		String restApplication, String restSchema);
 
-	public List<FDSAPIURLResolver> getResolvers();
+	public List<FDSAPIURLResolver> getFDSAPIURLResolvers();
 
 }

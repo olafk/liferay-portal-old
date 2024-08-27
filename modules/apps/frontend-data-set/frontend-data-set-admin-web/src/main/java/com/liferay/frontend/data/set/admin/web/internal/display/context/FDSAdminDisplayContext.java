@@ -207,11 +207,11 @@ public class FDSAdminDisplayContext {
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		if (FeatureFlagManagerUtil.isEnabled("LPD-25230")) {
-			List<FDSAPIURLResolver> resolvers =
-				_fdsAPIURLResolverRegistry.getResolvers();
+			List<FDSAPIURLResolver> fdsAPIURLResolvers =
+				_fdsAPIURLResolverRegistry.getFDSAPIURLResolvers();
 
-			for (FDSAPIURLResolver resolver : resolvers) {
-				jsonArray.put(resolver.getSchema());
+			for (FDSAPIURLResolver fdsAPIURLResolver : fdsAPIURLResolvers) {
+				jsonArray.put(fdsAPIURLResolver.getSchema());
 			}
 		}
 
