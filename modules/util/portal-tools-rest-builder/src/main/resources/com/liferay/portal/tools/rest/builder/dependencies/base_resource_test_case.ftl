@@ -3120,61 +3120,42 @@ public abstract class Base${schemaName}ResourceTestCase {
 						childProperties = freeMarkerTool.getDTOProperties(configYAML, openAPIYAML, childSchemaName, allSchemas)
 					/>
 
-						() -> {
-							${childSchemaName} ${schemaVarName} = new ${childSchemaName}();
-							<#list childProperties?keys as propertyName>
-								<#if stringUtil.equals(propertyName, "siteId")>
-									${schemaVarName}.setGroupId(testGroup.getGroupId());
-								<#elseif stringUtil.equals(childProperties[propertyName], "Integer")>
-									${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.randomInt());
-								<#elseif propertyName?contains("email") && stringUtil.equals(childProperties[propertyName], "String")>
-									${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()) + "@liferay.com");
-								<#elseif stringUtil.equals(childProperties[propertyName], "String")>
-									${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()));
-								<#elseif randomDataTypes?seq_contains(childProperties[propertyName])>
-									${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.random${childProperties[propertyName]}());
-								<#elseif stringUtil.equals(childProperties[propertyName], "Date")>
-									${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.nextDate());
-								</#if>
-							</#list>
-							${schemaVarName}.set${discriminatorPropertyName?cap_first}(${schemaName}.${discriminatorPropertyName?cap_first}.create("${mappingName}"));
-							setCommonAttributes(${schemaVarName});
+					() -> {
+						${childSchemaName} ${schemaVarName} = new ${childSchemaName}();
 
-							return ${schemaVarName};
-						}
+						<#list childProperties?keys as propertyName>
+							<#if stringUtil.equals(propertyName, "siteId")>
+								${schemaVarName}.setGroupId(testGroup.getGroupId());
+							<#elseif stringUtil.equals(childProperties[propertyName], "Integer")>
+								${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.randomInt());
+							<#elseif propertyName?contains("email") && stringUtil.equals(childProperties[propertyName], "String")>
+								${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()) + "@liferay.com");
+							<#elseif stringUtil.equals(childProperties[propertyName], "String")>
+								${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()));
+							<#elseif randomDataTypes?seq_contains(childProperties[propertyName])>
+								${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.random${childProperties[propertyName]}());
+							<#elseif stringUtil.equals(childProperties[propertyName], "Date")>
+								${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.nextDate());
+							</#if>
+						</#list>
 
-						<#if mappingName?has_next>
-							,
+						${schemaVarName}.set${discriminatorPropertyName?cap_first}(${schemaName}.${discriminatorPropertyName?cap_first}.create("${mappingName}"));
+						setCommonAttributes(${schemaVarName});
 
-						</#if>
+						return ${schemaVarName};
+					}
 
+					<#if mappingName?has_next>
+						,
+
+					</#if>
 				</#list>
 
-					);
+				);
 
-					Supplier<${schemaName}> supplier = suppliers.get(RandomTestUtil.randomInt(0, suppliers.size() - 1));
+				Supplier<${schemaName}> supplier = suppliers.get(RandomTestUtil.randomInt(0, suppliers.size() - 1));
 
-					return supplier.get();
-				}
-
-				private <T extends ${schemaName}> void setCommonAttributes(T ${schemaVarName}) {
-					<#list properties?keys as propertyName>
-						<#if stringUtil.equals(propertyName, "siteId")>
-							${schemaVarName}.setGroupId(testGroup.getGroupId());
-						<#elseif stringUtil.equals(properties[propertyName], "Integer")>
-							${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.randomInt());
-						<#elseif propertyName?contains("email") && stringUtil.equals(properties[propertyName], "String")>
-							${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()) + "@liferay.com");
-						<#elseif stringUtil.equals(properties[propertyName], "String")>
-							${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()));
-						<#elseif randomDataTypes?seq_contains(properties[propertyName])>
-							${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.random${properties[propertyName]}());
-						<#elseif stringUtil.equals(properties[propertyName], "Date")>
-							${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.nextDate());
-						</#if>
-					</#list>
-				}
-
+				return supplier.get();
 			<#else>
 				return new ${schemaName}() {
 					{
@@ -3195,9 +3176,28 @@ public abstract class Base${schemaName}ResourceTestCase {
 						</#list>
 					}
 				};
-			}
-
 			</#if>
+		}
+
+		<#if schema.discriminator?has_content>
+			private <T extends ${schemaName}> void setCommonAttributes(T ${schemaVarName}) {
+				<#list properties?keys as propertyName>
+					<#if stringUtil.equals(propertyName, "siteId")>
+						${schemaVarName}.setGroupId(testGroup.getGroupId());
+					<#elseif stringUtil.equals(properties[propertyName], "Integer")>
+						${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.randomInt());
+					<#elseif propertyName?contains("email") && stringUtil.equals(properties[propertyName], "String")>
+						${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()) + "@liferay.com");
+					<#elseif stringUtil.equals(properties[propertyName], "String")>
+						${schemaVarName}.set${propertyName?cap_first}(StringUtil.toLowerCase(RandomTestUtil.randomString()));
+					<#elseif randomDataTypes?seq_contains(properties[propertyName])>
+						${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.random${properties[propertyName]}());
+					<#elseif stringUtil.equals(properties[propertyName], "Date")>
+						${schemaVarName}.set${propertyName?cap_first}(RandomTestUtil.nextDate());
+					</#if>
+				</#list>
+			}
+		</#if>
 
 		protected ${schemaName} randomIrrelevant${schemaName}() throws Exception {
 			${schemaName} randomIrrelevant${schemaName} = random${schemaName}();
