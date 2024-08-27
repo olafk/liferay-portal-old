@@ -930,34 +930,6 @@ public class CartResourceImpl extends BaseCartResourceImpl {
 	private void _updateOrder(CommerceOrder commerceOrder, Cart cart)
 		throws Exception {
 
-		long commerceShippingMethodId =
-			commerceOrder.getCommerceShippingMethodId();
-
-		CommerceShippingMethod commerceShippingMethod =
-			_commerceShippingMethodLocalService.fetchCommerceShippingMethod(
-				commerceOrder.getGroupId(), cart.getShippingMethod());
-
-		if (commerceShippingMethod != null) {
-			commerceShippingMethodId =
-				commerceShippingMethod.getCommerceShippingMethodId();
-		}
-
-		String purchaseOrderNumber = StringPool.BLANK;
-
-		if (commerceOrder.isOpen()) {
-			purchaseOrderNumber = GetterUtil.get(
-				cart.getPurchaseOrderNumber(),
-				commerceOrder.getPurchaseOrderNumber());
-		}
-		else {
-			purchaseOrderNumber = commerceOrder.getPurchaseOrderNumber();
-		}
-
-		CommerceContext commerceContext = _commerceContextFactory.create(
-			contextCompany.getCompanyId(), commerceOrder.getGroupId(),
-			contextUser.getUserId(), commerceOrder.getCommerceOrderId(),
-			commerceOrder.getCommerceAccountId());
-
 		long billingAddressId = GetterUtil.getLong(cart.getBillingAddressId());
 
 		if (billingAddressId == 0) {
@@ -972,6 +944,18 @@ public class CartResourceImpl extends BaseCartResourceImpl {
 			else {
 				billingAddressId = commerceAddress.getCommerceAddressId();
 			}
+		}
+
+		long commerceShippingMethodId =
+			commerceOrder.getCommerceShippingMethodId();
+
+		CommerceShippingMethod commerceShippingMethod =
+			_commerceShippingMethodLocalService.fetchCommerceShippingMethod(
+				commerceOrder.getGroupId(), cart.getShippingMethod());
+
+		if (commerceShippingMethod != null) {
+			commerceShippingMethodId =
+				commerceShippingMethod.getCommerceShippingMethodId();
 		}
 
 		long shippingAddressId = GetterUtil.getLong(
@@ -990,6 +974,22 @@ public class CartResourceImpl extends BaseCartResourceImpl {
 				shippingAddressId = commerceAddress.getCommerceAddressId();
 			}
 		}
+
+		String purchaseOrderNumber = StringPool.BLANK;
+
+		if (commerceOrder.isOpen()) {
+			purchaseOrderNumber = GetterUtil.get(
+				cart.getPurchaseOrderNumber(),
+				commerceOrder.getPurchaseOrderNumber());
+		}
+		else {
+			purchaseOrderNumber = commerceOrder.getPurchaseOrderNumber();
+		}
+
+		CommerceContext commerceContext = _commerceContextFactory.create(
+			contextCompany.getCompanyId(), commerceOrder.getGroupId(),
+			contextUser.getUserId(), commerceOrder.getCommerceOrderId(),
+			commerceOrder.getCommerceAccountId());
 
 		_commerceOrderEngine.updateCommerceOrder(
 			commerceOrder.getExternalReferenceCode(),
