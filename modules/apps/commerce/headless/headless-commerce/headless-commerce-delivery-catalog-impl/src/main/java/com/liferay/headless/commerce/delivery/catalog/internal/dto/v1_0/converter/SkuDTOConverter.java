@@ -406,7 +406,8 @@ public class SkuDTOConverter implements DTOConverter<CPInstance, Sku> {
 
 		CommerceCurrency commerceCurrency =
 			commerceContext.getCommerceCurrency();
-
+		CommerceMoney pricingQuantityUnitPriceCommerceMoney =
+			commerceProductPrice.getPricingQuantityUnitPrice();
 		CommerceMoney unitPriceCommerceMoney =
 			commerceProductPrice.getUnitPrice();
 
@@ -414,9 +415,6 @@ public class SkuDTOConverter implements DTOConverter<CPInstance, Sku> {
 			commerceProductPrice.getUnitPromoPrice();
 
 		BigDecimal unitPrice = unitPriceCommerceMoney.getPrice();
-
-		CommerceMoney pricingQuantityUnitPriceCommerceMoney =
-			commerceProductPrice.getPricingQuantityUnitPrice();
 
 		Price price = new Price() {
 			{
