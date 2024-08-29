@@ -32,3 +32,8 @@ fe6eca8cdc8df15a867db7e36f3729729d928a3e^..b020ad2affa8acaf8c30f5e9f24a732edb79e
 # Bundle Version 1.2.1
 #
 b020ad2affa8acaf8c30f5e9f24a732edb79e706^..fede4259642f0275f301068fb3b08cecbf44c9c5=LPD-24564
+
+#
+# Bundle Version 2.0.0
+#
+fede4259642f0275f301068fb3b08cecbf44c9c5^..f4bd1cc688b6c8932d59bced1d604b34af23a43d=LPD-23982 LPD-31143 LPD-33180
