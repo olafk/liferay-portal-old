@@ -114,7 +114,6 @@ public class PortletPreferencesUpgradeProcessTest
 				SiteNavigationConstants.TYPE_DEFAULT, true,
 				ServiceContextTestUtil.getServiceContext(
 					group.getGroupId(), TestPropsValues.getUserId()));
-
 		String rootMenuItemId = String.valueOf(RandomTestUtil.randomLong());
 
 		testUpgrade(
