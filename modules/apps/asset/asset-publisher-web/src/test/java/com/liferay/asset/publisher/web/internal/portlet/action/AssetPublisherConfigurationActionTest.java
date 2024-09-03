@@ -81,6 +81,7 @@ public class AssetPublisherConfigurationActionTest {
 		).fetchAssetListEntry(
 			assetListEntry.getAssetListEntryId()
 		);
+
 		Mockito.verify(
 			assetPublisherConfigurationAction.groupLocalService
 		).getGroup(
@@ -121,6 +122,7 @@ public class AssetPublisherConfigurationActionTest {
 		).fetchAssetListEntry(
 			0
 		);
+
 		Mockito.verifyNoInteractions(
 			assetPublisherConfigurationAction.groupLocalService);
 		Mockito.verify(
@@ -128,6 +130,7 @@ public class AssetPublisherConfigurationActionTest {
 		).reset(
 			"assetListEntryExternalReferenceCode"
 		);
+
 		Mockito.verify(
 			portletPreferences
 		).reset(
@@ -165,6 +168,7 @@ public class AssetPublisherConfigurationActionTest {
 
 		Mockito.verifyNoInteractions(
 			assetPublisherConfigurationAction.groupLocalService);
+
 		Mockito.verify(
 			portletPreferences
 		).reset(
@@ -287,11 +291,13 @@ public class AssetPublisherConfigurationActionTest {
 		).thenReturn(
 			RandomTestUtil.randomString()
 		);
+
 		Mockito.when(
 			assetListEntry.getAssetListEntryId()
 		).thenReturn(
 			RandomTestUtil.randomLong()
 		);
+
 		Mockito.when(
 			assetListEntry.getGroupId()
 		).thenReturn(
@@ -368,6 +374,7 @@ public class AssetPublisherConfigurationActionTest {
 		).thenReturn(
 			localizedValuesMap
 		);
+
 		Mockito.when(
 			assetPublisherPortletInstanceConfiguration.
 				emailAssetEntryAddedSubject()
@@ -393,11 +400,13 @@ public class AssetPublisherConfigurationActionTest {
 		).thenReturn(
 			RandomTestUtil.randomString()
 		);
+
 		Mockito.when(
 			group.getGroupId()
 		).thenReturn(
 			groupId
 		);
+
 		Mockito.when(
 			group.getGroupKey()
 		).thenReturn(
@@ -420,6 +429,7 @@ public class AssetPublisherConfigurationActionTest {
 			).thenReturn(
 				null
 			);
+
 			Mockito.when(
 				groupLocalService.getGroup(Mockito.anyLong())
 			).thenReturn(
@@ -432,6 +442,7 @@ public class AssetPublisherConfigurationActionTest {
 			).thenReturn(
 				group
 			);
+
 			Mockito.when(
 				groupLocalService.getGroup(group.getGroupId())
 			).thenReturn(
@@ -488,6 +499,7 @@ public class AssetPublisherConfigurationActionTest {
 			).thenReturn(
 				null
 			);
+
 			_groupLocalServiceUtilMockedStatic.when(
 				() -> GroupLocalServiceUtil.getGroup(Mockito.anyLong())
 			).thenReturn(
@@ -500,6 +512,7 @@ public class AssetPublisherConfigurationActionTest {
 			).thenReturn(
 				group
 			);
+
 			_groupLocalServiceUtilMockedStatic.when(
 				() -> GroupLocalServiceUtil.getGroup(group.getGroupId())
 			).thenReturn(

@@ -200,6 +200,7 @@ public class BaseConfigurationActionTest {
 			).thenReturn(
 				null
 			);
+
 			_groupLocalServiceUtilMockedStatic.when(
 				() -> GroupLocalServiceUtil.getGroup(Mockito.anyLong())
 			).thenReturn(
@@ -213,6 +214,7 @@ public class BaseConfigurationActionTest {
 			).thenReturn(
 				group
 			);
+
 			_groupLocalServiceUtilMockedStatic.when(
 				() -> GroupLocalServiceUtil.getGroup(group.getGroupId())
 			).thenReturn(

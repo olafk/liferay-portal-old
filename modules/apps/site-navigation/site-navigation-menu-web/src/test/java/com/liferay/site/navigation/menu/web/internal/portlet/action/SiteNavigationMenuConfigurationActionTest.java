@@ -249,6 +249,7 @@ public class SiteNavigationMenuConfigurationActionTest {
 			).thenReturn(
 				null
 			);
+
 			_groupLocalServiceUtilMockedStatic.when(
 				() -> GroupLocalServiceUtil.getGroup(Mockito.anyLong())
 			).thenReturn(
@@ -262,6 +263,7 @@ public class SiteNavigationMenuConfigurationActionTest {
 			).thenReturn(
 				group
 			);
+
 			_groupLocalServiceUtilMockedStatic.when(
 				() -> GroupLocalServiceUtil.getGroup(group.getGroupId())
 			).thenReturn(
