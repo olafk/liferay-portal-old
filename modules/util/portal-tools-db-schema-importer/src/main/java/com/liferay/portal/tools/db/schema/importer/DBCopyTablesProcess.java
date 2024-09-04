@@ -7,7 +7,6 @@ package com.liferay.portal.tools.db.schema.importer;
 
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.dao.jdbc.postgresql.PostgreSQLJDBCUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
@@ -76,17 +75,15 @@ public class DBCopyTablesProcess {
 
 		List<String> sourceColumnNames = _sourceColumnNamesMap.get(
 			sourceTableName);
-
 		List<String> targetColumnNames = _targetColumnNamesMap.get(
 			targetTableName);
 
 		if (sourceColumnNames.size() > targetColumnNames.size()) {
 			throw new IllegalStateException(
 				StringBundler.concat(
-					"Incorrect number of columns for table ", targetTableName,
-					". Source has ", sourceColumnNames.size(),
-					" and target has ", targetColumnNames.size(),
-					StringPool.PERIOD));
+					"Source table ", targetTableName, " has ",
+					sourceColumnNames.size(), " but target table name has ",
+					targetColumnNames.size(), " columns"));
 		}
 		else if (sourceColumnNames.size() < targetColumnNames.size()) {
 			Set<String> sourceColumnNamesSet = new TreeSet<String>(
@@ -104,7 +101,6 @@ public class DBCopyTablesProcess {
 		String selectSQL = StringBundler.concat(
 			"select ", StringUtil.merge(sourceColumnNames), " from ",
 			sourceTableName);
-
 		String insertSQL = StringBundler.concat(
 			"insert into ", targetTableName, "(",
 			StringUtil.merge(targetColumnNames), ") values (",
