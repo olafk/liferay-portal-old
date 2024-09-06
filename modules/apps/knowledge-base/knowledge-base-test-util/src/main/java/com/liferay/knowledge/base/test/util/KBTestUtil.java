@@ -35,6 +35,16 @@ import java.io.FileInputStream;
  */
 public class KBTestUtil {
 
+	public static KBArticle addKBArticle(long groupId) throws PortalException {
+		return KBArticleLocalServiceUtil.addKBArticle(
+			null, TestPropsValues.getUserId(),
+			PortalUtil.getClassNameId(KBFolder.class.getName()), 0,
+			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
+			RandomTestUtil.randomString(), RandomTestUtil.randomString(), null,
+			null, RandomTestUtil.nextDate(), null, null, null,
+			ServiceContextTestUtil.getServiceContext(groupId));
+	}
+
 	public static File addKBArticleAttachment(
 			long userId, long resourcePrimKey, String attachmentFileName,
 			Class<?> clazz, String testFileName)
@@ -55,16 +65,6 @@ public class KBTestUtil {
 		}
 
 		return file;
-	}
-
-	public static KBArticle addKBArticle(long groupId) throws PortalException {
-		return KBArticleLocalServiceUtil.addKBArticle(
-			null, TestPropsValues.getUserId(),
-			PortalUtil.getClassNameId(KBFolder.class.getName()), 0,
-			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
-			RandomTestUtil.randomString(), RandomTestUtil.randomString(), null,
-			null, RandomTestUtil.nextDate(), null, null, null,
-			ServiceContextTestUtil.getServiceContext(groupId));
 	}
 
 	public static KBArticle addKBArticleWithWorkflow(
