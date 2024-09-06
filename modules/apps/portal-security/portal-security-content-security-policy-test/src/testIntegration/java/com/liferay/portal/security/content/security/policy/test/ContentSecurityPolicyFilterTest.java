@@ -223,10 +223,10 @@ public class ContentSecurityPolicyFilterTest {
 		return sb.toString();
 	}
 
-	private HttpURLConnection _openHttpURLConnection(String spec)
+	private HttpURLConnection _openHttpURLConnection(String urlString)
 		throws IOException {
 
-		URL url = new URL(spec);
+		URL url = new URL(urlString);
 
 		HttpURLConnection httpURLConnection =
 			(HttpURLConnection)url.openConnection();
