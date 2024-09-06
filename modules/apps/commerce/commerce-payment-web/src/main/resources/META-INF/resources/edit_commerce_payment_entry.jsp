@@ -8,6 +8,8 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String backURL = ParamUtil.getString(request, "backURL", String.valueOf(renderResponse.createRenderURL()));
+
 CommercePaymentEntryDisplayContext commercePaymentEntryDisplayContext = (CommercePaymentEntryDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
 CommercePaymentEntry commercePaymentEntry = commercePaymentEntryDisplayContext.getCommercePaymentEntry();
@@ -16,9 +18,6 @@ String note = (commercePaymentEntry == null) ? StringPool.BLANK : commercePaymen
 int paymentStatus = (commercePaymentEntry == null) ? CommercePaymentEntryConstants.STATUS_PENDING : commercePaymentEntry.getPaymentStatus();
 
 portletDisplay.setShowBackIcon(true);
-
-String backURL = ParamUtil.getString(request, "backURL", String.valueOf(renderResponse.createRenderURL()));
-
 portletDisplay.setURLBack(backURL);
 %>
 
