@@ -241,7 +241,7 @@ public class AssetLinksTag extends IncludeTag {
 			if (assetRenderer == null) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"No asset renderer found for classPK " +
+						"No asset renderer found for class PK " +
 							assetLinkEntry.getClassPK());
 				}
 
