@@ -234,10 +234,10 @@ public class DBSchemaImporterProcess {
 			partitionName = "Default";
 		}
 
-		Set<String> sourceTableNames = _getElement(sourceDataSource, "TABLE");
-		Set<String> sourceViewNames = _getElement(sourceDataSource, "VIEW");
-		Set<String> targetTableNames = _getElement(targetDataSource, "TABLE");
-		Set<String> targetViewNames = _getElement(targetDataSource, "VIEW");
+		Set<String> sourceTableNames = _getNames(sourceDataSource, "TABLE");
+		Set<String> sourceViewNames = _getNames(sourceDataSource, "VIEW");
+		Set<String> targetTableNames = _getNames(targetDataSource, "TABLE");
+		Set<String> targetViewNames = _getNames(targetDataSource, "VIEW");
 
 		return StringUtil.merge(
 			new Object[] {
@@ -262,10 +262,10 @@ public class DBSchemaImporterProcess {
 			StringPool.NEW_LINE);
 	}
 
-	private Set<String> _getElement(DataSource dataSource, String type)
+	private Set<String> _getNames(DataSource dataSource, String type)
 		throws Exception {
 
-		Set<String> elementNames = new HashSet<>();
+		Set<String> names = new HashSet<>();
 
 		try (Connection connection = dataSource.getConnection()) {
 			DatabaseMetaData databaseMetaData = connection.getMetaData();
@@ -275,14 +275,14 @@ public class DBSchemaImporterProcess {
 					new String[] {type})) {
 
 				while (resultSet.next()) {
-					elementNames.add(
+					names.add(
 						StringUtil.toLowerCase(
 							resultSet.getString("TABLE_NAME")));
 				}
 			}
 		}
 
-		return elementNames;
+		return names;
 	}
 
 	private String _getSessionCharsetEncoding(DataSource dataSource)
