@@ -169,11 +169,10 @@ public class DisplayContextUtil {
 		List<String> typeNames = new ArrayList<>();
 
 		Searcher searcher = _searcherSnapshot.get();
+		Sorts sorts = _sortsSnapshot.get();
 
 		SearchRequestBuilderFactory searchRequestBuilderFactory =
 			_searchRequestBuilderFactorySnapshot.get();
-
-		Sorts sorts = _sortsSnapshot.get();
 
 		SearchRequestBuilder searchRequestBuilder =
 			searchRequestBuilderFactory.builder(
