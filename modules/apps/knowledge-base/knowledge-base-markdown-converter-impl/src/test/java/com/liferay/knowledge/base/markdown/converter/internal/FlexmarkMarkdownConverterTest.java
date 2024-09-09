@@ -30,7 +30,7 @@ public class FlexmarkMarkdownConverterTest {
 	public void testMultilineHeading() throws Exception {
 		String randomId = StringUtil.randomId();
 
-		String markdownString = StringBundler.concat(
+		String markdown = StringBundler.concat(
 			"The liferay-ui:logo-selector Tag Requires Parameter Changes ",
 			"[](id=", randomId, ")\n", "=================================");
 
@@ -39,7 +39,7 @@ public class FlexmarkMarkdownConverterTest {
 
 		MarkdownConverter markdownConverter = markdownConverterFactory.create();
 
-		String html = markdownConverter.convert(markdownString);
+		String html = markdownConverter.convert(markdown);
 
 		Assert.assertTrue(html, html.contains("id=\"" + randomId + "\""));
 	}
@@ -48,7 +48,7 @@ public class FlexmarkMarkdownConverterTest {
 	public void testPrefixHeading() throws Exception {
 		String randomId = StringUtil.randomId();
 
-		String markdownString = StringBundler.concat(
+		String markdown = StringBundler.concat(
 			"### The liferay-ui:logo-selector Tag Requires Parameter Changes ",
 			"[](id=", randomId, ")");
 
@@ -57,7 +57,7 @@ public class FlexmarkMarkdownConverterTest {
 
 		MarkdownConverter markdownConverter = markdownConverterFactory.create();
 
-		String html = markdownConverter.convert(markdownString);
+		String html = markdownConverter.convert(markdown);
 
 		Assert.assertTrue(html, html.contains("id=\"" + randomId + "\""));
 	}
