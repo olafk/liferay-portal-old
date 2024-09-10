@@ -10,13 +10,18 @@ import java.io.Closeable;
 import java.util.Iterator;
 import java.util.List;
 
+import org.osgi.annotation.versioning.ProviderType;
+
 /**
  * @author Adolfo Pérez
  */
+@ProviderType
 public interface ServiceTrackerList<T> extends Closeable, Iterable<T> {
 
 	@Override
 	public void close();
+
+	public boolean isEmpty();
 
 	@Override
 	public Iterator<T> iterator();
