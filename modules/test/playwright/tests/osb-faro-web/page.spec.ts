@@ -685,9 +685,7 @@ test(
 		await test.step('Check that Snúið Vinsælar þú Page appear as referral page', async () => {
 			await expect(
 				page.getByText('Snúið Vinsælar ...', {exact: true}).first()
-			).toBeVisible({
-				timeout: 100 * 1000,
-			});
+			).toBeVisible();
 		});
 
 		await test.step('Delete pages created in DXP during automation execution', async () => {
