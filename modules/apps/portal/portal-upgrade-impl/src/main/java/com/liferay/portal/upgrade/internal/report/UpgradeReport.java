@@ -363,22 +363,21 @@ public class UpgradeReport {
 				for (String loadedSource : PropsUtil.getLoadedSources()) {
 					URI uri = new URI(loadedSource);
 
-					String propertiesFilePath = StringPool.BLANK;
+					String propertiesFilePathString = StringPool.BLANK;
 
 					if (StringUtil.equals("file", uri.getScheme())) {
-						propertiesFilePath = Paths.get(
-							uri
-						).toString();
+						propertiesFilePathString = String.valueOf(
+							Paths.get(uri));
 					}
 
-					if (!FileUtil.exists(propertiesFilePath)) {
+					if (!FileUtil.exists(propertiesFilePathString)) {
 						continue;
 					}
 
 					Properties properties = new Properties();
 
 					try (InputStream inputStream = new FileInputStream(
-							propertiesFilePath)) {
+							propertiesFilePathString)) {
 
 						properties.load(inputStream);
 					}
@@ -386,14 +385,14 @@ public class UpgradeReport {
 						if (_log.isWarnEnabled()) {
 							_log.warn(
 								"Unable to load properties file from: " +
-									propertiesFilePath,
+									propertiesFilePathString,
 								ioException);
 						}
 
 						continue;
 					}
 
-					propertiesMap.put(propertiesFilePath, properties);
+					propertiesMap.put(propertiesFilePathString, properties);
 				}
 
 				String envPrefix = "LIFERAY_";

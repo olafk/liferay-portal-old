@@ -596,21 +596,21 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 
 	@Test
 	public void testPropertiesSetByUserWithFile() throws Exception {
-		File propertiesFile = temporaryFolder.newFile("test.properties");
-
-		URI propertiesFileURI = propertiesFile.toURI();
-
-		String propertiesFilePath = "file:" + propertiesFileURI.getPath();
-
 		List<String> loadedSources = PropsUtil.getLoadedSources();
 
-		loadedSources.add(propertiesFilePath);
+		File file = temporaryFolder.newFile("test.properties");
+
+		URI uri = file.toURI();
+
+		String loadedSource = "file:" + uri.getPath();
+
+		loadedSources.add(loadedSource);
 
 		Properties properties = new Properties();
 
 		properties.setProperty("my.property", "my property value");
 
-		try (Writer writer = new FileWriter(propertiesFile)) {
+		try (Writer writer = new FileWriter(file)) {
 			properties.store(writer, null);
 
 			_appender.start();
@@ -619,15 +619,15 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 
 			_assertLogContextContains(
 				"upgrade.report.properties.set.by.user",
-				propertiesFile.getAbsolutePath());
+				file.getAbsolutePath());
 			_assertLogContextContains(
 				"upgrade.report.properties.set.by.user",
 				"my.property: my property value");
-			_assertReport(propertiesFile.getAbsolutePath());
+			_assertReport(file.getAbsolutePath());
 			_assertReport("my.property: my property value");
 		}
 		finally {
-			loadedSources.remove(propertiesFilePath);
+			loadedSources.remove(loadedSource);
 		}
 	}
 
