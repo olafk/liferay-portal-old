@@ -12,16 +12,15 @@ ObjectDefinition objectDefinition = (ObjectDefinition)request.getAttribute(Objec
 
 ObjectDefinitionsDetailsDisplayContext objectDefinitionsDetailsDisplayContext = (ObjectDefinitionsDetailsDisplayContext)request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT);
 
-String backURL = ParamUtil.getString(
-	request, "backURL",
-	URLBuilder.create(
-		String.valueOf(renderResponse.createRenderURL())
-	).setParameter(
-		"objectFolderName", objectDefinitionsDetailsDisplayContext.getObjectFolderName()
-	).build());
-
 portletDisplay.setShowBackIcon(true);
-portletDisplay.setURLBack(backURL);
+portletDisplay.setURLBack(
+	ParamUtil.getString(
+		request, "backURL",
+		URLBuilder.create(
+			String.valueOf(renderResponse.createRenderURL())
+		).setParameter(
+			"objectFolderName", objectDefinitionsDetailsDisplayContext.getObjectFolderName()
+		).build()));
 
 renderResponse.setTitle(LanguageUtil.format(request, "edit-x", objectDefinition.getLabel(locale, true), false));
 %>
@@ -31,7 +30,7 @@ renderResponse.setTitle(LanguageUtil.format(request, "edit-x", objectDefinition.
 		module="{EditObjectDetails} from object-web"
 		props='<%=
 			HashMapBuilder.<String, Object>put(
-				"backURL", backURL
+				"backURL", portletDisplay.getBackURL()
 			).put(
 				"companies", objectDefinitionsDetailsDisplayContext.getScopeJSONArray("company")
 			).put(
