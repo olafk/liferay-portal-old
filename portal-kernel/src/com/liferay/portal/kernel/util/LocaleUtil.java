@@ -189,7 +189,7 @@ public class LocaleUtil {
 		return _localeUtil._toLanguageIds(locales);
 	}
 
-	public static Map<String, Object> toPropertyMap(Locale locale) {
+	public static Map<String, Object> toMap(Locale locale) {
 		return HashMapBuilder.<String, Object>put(
 			"country", locale.getCountry()
 		).put(
