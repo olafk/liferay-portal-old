@@ -535,7 +535,8 @@ public class LayoutStagedModelDataHandlerTest
 				false, StringPool.BLANK, RandomTestUtil.randomString(),
 				StringPool.BLANK,
 				ServiceContextTestUtil.getServiceContext(
-					stagingGroup.getGroupId()));
+					stagingGroup.getGroupId()),
+				StringPool.BLANK);
 
 		Layout layout = LayoutTestUtil.addTypeContentLayout(stagingGroup);
 
