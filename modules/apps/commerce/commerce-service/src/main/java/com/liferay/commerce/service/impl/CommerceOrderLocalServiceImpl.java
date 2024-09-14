@@ -380,7 +380,7 @@ public class CommerceOrderLocalServiceImpl
 
 		commerceOrder = commerceOrderPersistence.update(commerceOrder);
 
-		// Add folder
+		// Repository
 
 		LocalRepository localRepository = commerceOrder.getLocalRepository();
 
