@@ -57,6 +57,8 @@ import com.liferay.object.system.SystemObjectDefinitionManagerRegistry;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.feature.flag.FeatureFlagManagerUtil;
 import com.liferay.portal.kernel.language.Language;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -110,7 +112,23 @@ public class ObjectDefinitionResourceImpl
 	public void deleteObjectDefinition(Long objectDefinitionId)
 		throws Exception {
 
+		long startTime = 0;
+
+		if (_log.isInfoEnabled()) {
+			_log.info(
+				"Started object definition deletion " + objectDefinitionId);
+
+			startTime = System.currentTimeMillis();
+		}
+
 		_objectDefinitionService.deleteObjectDefinition(objectDefinitionId);
+
+		if (_log.isInfoEnabled()) {
+			_log.info(
+				StringBundler.concat(
+					"Finished object definition deletion ", objectDefinitionId,
+					" in ", System.currentTimeMillis() - startTime, "ms"));
+		}
 	}
 
 	@Override
@@ -1419,6 +1437,9 @@ public class ObjectDefinitionResourceImpl
 					"another root object definition"));
 		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ObjectDefinitionResourceImpl.class);
 
 	private static final EntityModel _entityModel =
 		new ObjectDefinitionEntityModel();
