@@ -53,11 +53,10 @@ public class CETItemSelectorViewDescriptorTest {
 			new MockHttpServletRequest();
 
 		mockHttpServletRequest.setAttribute(
-			WebKeys.THEME_DISPLAY, Mockito.mock(ThemeDisplay.class));
-
-		mockHttpServletRequest.setAttribute(
 			JavaConstants.JAVAX_PORTLET_REQUEST,
 			new MockLiferayResourceRequest());
+		mockHttpServletRequest.setAttribute(
+			WebKeys.THEME_DISPLAY, Mockito.mock(ThemeDisplay.class));
 
 		_cetItemSelectorViewDescriptor = new CETItemSelectorViewDescriptor(
 			_cetManager, _cetItemSelectorCriterion, mockHttpServletRequest,
