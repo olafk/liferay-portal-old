@@ -53,18 +53,6 @@ public class GeneralSXPSearchRequestBodyContributorTest {
 				entryClassNames.toArray(new String[1])));
 	}
 
-	private Configuration _setUpConfiguration(String[] entryClassNameArray) {
-		Configuration configuration = new Configuration();
-
-		GeneralConfiguration generalConfiguration = new GeneralConfiguration();
-
-		generalConfiguration.setSearchableAssetTypes(entryClassNameArray);
-
-		configuration.setGeneralConfiguration(generalConfiguration);
-
-		return configuration;
-	}
-
 	private SearchRequestBuilder _setUpSearchRequestBuilder(
 		Consumer<SearchContext> searchContextConsumer) {
 
@@ -105,8 +93,17 @@ public class GeneralSXPSearchRequestBodyContributorTest {
 			searchContextConsumer);
 
 		generalSXPSearchRequestBodyContributor.contribute(
-			_setUpConfiguration(searchableAssetTypes), searchRequestBuilder,
-			null);
+			new Configuration() {
+				{
+					setGeneralConfiguration(
+						new GeneralConfiguration() {
+							{
+								setSearchableAssetTypes(searchableAssetTypes);
+							}
+						});
+				}
+			},
+			searchRequestBuilder, null);
 
 		SearchRequest searchRequest = searchRequestBuilder.build();
 
