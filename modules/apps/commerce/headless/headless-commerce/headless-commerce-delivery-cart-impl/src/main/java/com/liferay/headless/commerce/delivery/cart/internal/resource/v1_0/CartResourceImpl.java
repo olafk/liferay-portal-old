@@ -1115,17 +1115,18 @@ public class CartResourceImpl extends BaseCartResourceImpl {
 			requestedDeliveryDateCalendar.setTime(
 				cart.getRequestedDeliveryDate());
 
-			DateConfig requestedDeliveryDate = new DateConfig(
+			DateConfig requestedDeliveryDateConfig = new DateConfig(
 				requestedDeliveryDateCalendar);
 
 			_commerceOrderService.updateInfo(
 				commerceOrder.getCommerceOrderId(),
 				GetterUtil.getString(
 					cart.getPrintedNote(), commerceOrder.getPrintedNote()),
-				requestedDeliveryDate.getMonth(),
-				requestedDeliveryDate.getDay(), requestedDeliveryDate.getYear(),
-				requestedDeliveryDate.getHour(),
-				requestedDeliveryDate.getMinute(), serviceContext);
+				requestedDeliveryDateConfig.getMonth(),
+				requestedDeliveryDateConfig.getDay(),
+				requestedDeliveryDateConfig.getYear(),
+				requestedDeliveryDateConfig.getHour(),
+				requestedDeliveryDateConfig.getMinute(), serviceContext);
 		}
 		else {
 			_commerceOrderService.updatePrintedNote(
