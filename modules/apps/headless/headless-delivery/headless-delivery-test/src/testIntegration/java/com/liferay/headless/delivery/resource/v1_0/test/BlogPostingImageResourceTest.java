@@ -39,8 +39,8 @@ public class BlogPostingImageResourceTest
 		super.testPostSiteBlogPostingImage();
 
 		_testPostSiteBlogPostingImageRollback();
-		_testPostSiteBlogPostingImageWithDuplicatedExternalReferenceCode();
-		_testPostSiteBlogPostingImageWithDuplicatedTitle();
+		_testPostSiteBlogPostingImageWithDuplicateExternalReferenceCode();
+		_testPostSiteBlogPostingImageWithDuplicateTitle();
 	}
 
 	@Override
@@ -146,7 +146,7 @@ public class BlogPostingImageResourceTest
 		Assert.assertNull(folder);
 	}
 
-	private void _testPostSiteBlogPostingImageWithDuplicatedExternalReferenceCode()
+	private void _testPostSiteBlogPostingImageWithDuplicateExternalReferenceCode()
 		throws Exception {
 
 		Map<String, File> multipartFiles = getMultipartFiles();
@@ -172,7 +172,7 @@ public class BlogPostingImageResourceTest
 		}
 	}
 
-	private void _testPostSiteBlogPostingImageWithDuplicatedTitle()
+	private void _testPostSiteBlogPostingImageWithDuplicateTitle()
 		throws Exception {
 
 		Map<String, File> multipartFiles = getMultipartFiles();
