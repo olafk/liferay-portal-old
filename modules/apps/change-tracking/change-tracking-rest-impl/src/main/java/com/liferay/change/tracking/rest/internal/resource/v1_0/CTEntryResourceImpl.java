@@ -159,7 +159,6 @@ public class CTEntryResourceImpl extends BaseCTEntryResourceImpl {
 				}
 
 				searchContext.setAttribute("ctCollectionId", -1);
-
 				searchContext.setCompanyId(contextCompany.getCompanyId());
 
 				BooleanFilter booleanFilter = new BooleanFilter();
@@ -173,14 +172,15 @@ public class CTEntryResourceImpl extends BaseCTEntryResourceImpl {
 					String.valueOf(WorkflowConstants.STATUS_EXPIRED),
 					BooleanClauseOccur.MUST_NOT);
 
-				BooleanQueryImpl booleanQueryImpl = new BooleanQueryImpl();
-
-				booleanQueryImpl.setPreBooleanFilter(booleanFilter);
-
 				searchContext.setBooleanClauses(
 					new BooleanClause[] {
 						BooleanClauseFactoryUtil.create(
-							booleanQueryImpl, BooleanClauseOccur.MUST.getName())
+							new BooleanQueryImpl() {
+								{
+									setPreBooleanFilter(booleanFilter);
+								}
+							},
+							BooleanClauseOccur.MUST.getName())
 					});
 
 				if (Validator.isNotNull(search)) {
