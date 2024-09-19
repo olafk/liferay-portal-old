@@ -748,7 +748,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 				}
 			});
 
-		_testPatchUserAccountWithImageExternalReferenceCodes();
+		_testPatchUserAccountWithImageExternalReferenceCode();
 	}
 
 	@Override
@@ -895,7 +895,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 	public void testPostUserAccount() throws Exception {
 		super.testPostUserAccount();
 
-		_testPostUserAccountWithImageExternalReferenceCodes();
+		_testPostUserAccountWithImageExternalReferenceCode();
 
 		_testPostUserAccountWithSAPEntry();
 	}
@@ -975,7 +975,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 					userAccount.setPassword(() -> null);
 				}));
 
-		_testPutUserAccountWithImageExternalReferenceCodes();
+		_testPutUserAccountWithImageExternalReferenceCode();
 	}
 
 	@Override
@@ -1037,7 +1037,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 					userAccount.setPassword(() -> null);
 				}));
 
-		_testPutUserAccountByExternalReferenceCodeWithImageExternalReferenceCodes();
+		_testPutUserAccountByExternalReferenceCodeWithImageExternalReferenceCode();
 	}
 
 	@Override
@@ -1928,7 +1928,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		}
 	}
 
-	private void _testPatchUserAccountWithImageExternalReferenceCodes()
+	private void _testPatchUserAccountWithImageExternalReferenceCode()
 		throws Exception {
 
 		UserAccount postUserAccount = testPatchUserAccount_addUserAccount();
@@ -1996,7 +1996,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		}
 	}
 
-	private void _testPostUserAccountWithImageExternalReferenceCodes()
+	private void _testPostUserAccountWithImageExternalReferenceCode()
 		throws Exception {
 
 		UserAccount randomUserAccount = randomUserAccount();
@@ -2067,7 +2067,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		_sapEntryLocalService.deleteSAPEntry(sapEntry);
 	}
 
-	private void _testPutUserAccountByExternalReferenceCodeWithImageExternalReferenceCodes()
+	private void _testPutUserAccountByExternalReferenceCodeWithImageExternalReferenceCode()
 		throws Exception {
 
 		UserAccount postUserAccount =
@@ -2090,7 +2090,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		Assert.assertTrue(putUserAccount.getImageId() > 0);
 	}
 
-	private void _testPutUserAccountWithImageExternalReferenceCodes()
+	private void _testPutUserAccountWithImageExternalReferenceCode()
 		throws Exception {
 
 		UserAccount postUserAccount = testPutUserAccount_addUserAccount();

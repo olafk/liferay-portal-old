@@ -277,7 +277,7 @@ public class OrganizationResourceTest extends BaseOrganizationResourceTestCase {
 	public void testPatchOrganization() throws Exception {
 		super.testPatchOrganization();
 
-		_testPatchOrganizationWithImageExternalReferenceCodes();
+		_testPatchOrganizationWithImageExternalReferenceCode();
 	}
 
 	@Override
@@ -287,7 +287,7 @@ public class OrganizationResourceTest extends BaseOrganizationResourceTestCase {
 
 		super.testPatchOrganizationByExternalReferenceCode();
 
-		_testPatchOrganizationByExternalReferenceCodeWithImageExternalReferenceCodes();
+		_testPatchOrganizationByExternalReferenceCodeWithImageExternalReferenceCode();
 	}
 
 	@Override
@@ -335,7 +335,7 @@ public class OrganizationResourceTest extends BaseOrganizationResourceTestCase {
 		super.testPostOrganization();
 
 		_testPostOrganizationWithNameOverMaximumLength();
-		_testPostOrganizationWithImageExternalReferenceCodes();
+		_testPostOrganizationWithImageExternalReferenceCode();
 	}
 
 	@Override
@@ -390,7 +390,7 @@ public class OrganizationResourceTest extends BaseOrganizationResourceTestCase {
 	public void testPutOrganization() throws Exception {
 		super.testPutOrganization();
 
-		_testPutOrganizationWithImageExternalReferenceCodes();
+		_testPutOrganizationWithImageExternalReferenceCode();
 	}
 
 	@Override
@@ -398,7 +398,7 @@ public class OrganizationResourceTest extends BaseOrganizationResourceTestCase {
 	public void testPutOrganizationByExternalReferenceCode() throws Exception {
 		super.testPutOrganizationByExternalReferenceCode();
 
-		_testPutOrganizationByExternalReferenceCodeWithImageExternalReferenceCodes();
+		_testPutOrganizationByExternalReferenceCodeWithImageExternalReferenceCode();
 	}
 
 	@Override
@@ -696,7 +696,7 @@ public class OrganizationResourceTest extends BaseOrganizationResourceTestCase {
 		return parentOrganization;
 	}
 
-	private void _testPatchOrganizationByExternalReferenceCodeWithImageExternalReferenceCodes()
+	private void _testPatchOrganizationByExternalReferenceCodeWithImageExternalReferenceCode()
 		throws Exception {
 
 		Organization postOrganization =
@@ -719,7 +719,7 @@ public class OrganizationResourceTest extends BaseOrganizationResourceTestCase {
 		Assert.assertTrue(patchOrganization.getImageId() > 0);
 	}
 
-	private void _testPatchOrganizationWithImageExternalReferenceCodes()
+	private void _testPatchOrganizationWithImageExternalReferenceCode()
 		throws Exception {
 
 		Organization postOrganization = testPatchOrganization_addOrganization();
@@ -739,7 +739,7 @@ public class OrganizationResourceTest extends BaseOrganizationResourceTestCase {
 		Assert.assertTrue(patchOrganization.getImageId() > 0);
 	}
 
-	private void _testPostOrganizationWithImageExternalReferenceCodes()
+	private void _testPostOrganizationWithImageExternalReferenceCode()
 		throws Exception {
 
 		Organization randomOrganization = randomOrganization();
@@ -769,7 +769,7 @@ public class OrganizationResourceTest extends BaseOrganizationResourceTestCase {
 			organizationResource.postOrganizationHttpResponse(organization));
 	}
 
-	private void _testPutOrganizationByExternalReferenceCodeWithImageExternalReferenceCodes()
+	private void _testPutOrganizationByExternalReferenceCodeWithImageExternalReferenceCode()
 		throws Exception {
 
 		Organization postOrganization =
@@ -792,7 +792,7 @@ public class OrganizationResourceTest extends BaseOrganizationResourceTestCase {
 		Assert.assertTrue(putOrganization.getImageId() > 0);
 	}
 
-	private void _testPutOrganizationWithImageExternalReferenceCodes()
+	private void _testPutOrganizationWithImageExternalReferenceCode()
 		throws Exception {
 
 		Organization postOrganization = testPutOrganization_addOrganization();
