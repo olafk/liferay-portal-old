@@ -701,12 +701,6 @@ public class JournalTransformerTest {
 	private void _testCreateTemplateNodeDocumentLibraryDDMFormField()
 		throws Exception {
 
-		JSONObject jsonObject = JSONUtil.put(
-			"fileEntryId", RandomTestUtil.randomLong()
-		).put(
-			"groupId", RandomTestUtil.randomLong()
-		);
-
 		DDMFormField ddmFormField = new DDMFormField(
 			"name", DDMFormFieldTypeConstants.DOCUMENT_LIBRARY);
 
@@ -718,6 +712,12 @@ public class JournalTransformerTest {
 
 		Element dynamicContentElement = rootElement.addElement(
 			"dynamic-content");
+
+		JSONObject jsonObject = JSONUtil.put(
+			"fileEntryId", RandomTestUtil.randomLong()
+		).put(
+			"groupId", RandomTestUtil.randomLong()
+		);
 
 		dynamicContentElement.setText(jsonObject.toString());
 
@@ -731,7 +731,6 @@ public class JournalTransformerTest {
 			new ThemeDisplay());
 
 		Assert.assertFalse(MapUtil.isEmpty(templateNode.getAttributes()));
-
 		Assert.assertEquals(
 			jsonObject.getString("fileEntryId"),
 			templateNode.getAttribute("fileEntryId"));
