@@ -173,9 +173,9 @@ public class JournalTransformerTest {
 
 	@Test
 	public void testCreateTemplateNode() throws Exception {
+		_testCreateTemplateNodeDocumentLibraryDDMFormField();
 		_testCreateTemplateNodeSelectTypeDDMFormFieldWithOptions();
 		_testCreateTemplateNodeSelectTypeDDMFormFieldWithoutOptions();
-		_testCreateTemplateNodeDocumentLibraryDDMFormField();
 	}
 
 	@Test
