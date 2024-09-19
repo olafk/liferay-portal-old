@@ -676,12 +676,9 @@ public class JournalTransformerTest {
 			break;
 		}
 
-		Assert.assertNotNull(templateVariableDefinition);
-
 		Assert.assertEquals(
 			templateVariableDefinition.getLabel(), label,
 			templateVariableDefinition.getLabel());
-
 		Assert.assertEquals(
 			expectedValue,
 			_transformMethod.invoke(
