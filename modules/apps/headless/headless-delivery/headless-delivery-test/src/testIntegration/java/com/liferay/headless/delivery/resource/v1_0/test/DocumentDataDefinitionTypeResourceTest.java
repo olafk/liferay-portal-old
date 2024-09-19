@@ -129,6 +129,7 @@ public class DocumentDataDefinitionTypeResourceTest
 		return documentDataDefinitionType;
 	}
 
+	@Override
 	protected DocumentDataDefinitionType
 			testGraphQLDocumentDataDefinitionType_addDocumentDataDefinitionType()
 		throws Exception {

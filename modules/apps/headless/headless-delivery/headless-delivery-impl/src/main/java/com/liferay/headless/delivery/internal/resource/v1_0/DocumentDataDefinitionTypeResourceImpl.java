@@ -60,7 +60,7 @@ public class DocumentDataDefinitionTypeResourceImpl
 			throw new UnsupportedOperationException();
 		}
 
-		DLFileEntryType fileEntryType =
+		DLFileEntryType dlFileEntryType =
 			_dlFileEntryTypeService.getFileEntryType(
 				documentDataDefinitionTypeId);
 
@@ -73,7 +73,7 @@ public class DocumentDataDefinitionTypeResourceImpl
 			).build();
 
 		dataDefinitionResource.deleteDataDefinition(
-			fileEntryType.getDataDefinitionId());
+			dlFileEntryType.getDataDefinitionId());
 
 		_dlFileEntryTypeService.deleteFileEntryType(
 			documentDataDefinitionTypeId);
