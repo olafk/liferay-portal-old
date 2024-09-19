@@ -574,20 +574,6 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 			});
 	}
 
-	private String _getId(String fieldName, String sourceType) {
-		if (Objects.equals(sourceType, "API_REST_APPLICATION")) {
-			return fieldName;
-		}
-
-		int index = fieldName.lastIndexOf(StringPool.FORWARD_SLASH);
-
-		if (index <= 0) {
-			return fieldName;
-		}
-
-		return fieldName.substring(0, index);
-	}
-
 	private JSONArray _getFiltersJSONArray(
 			ObjectDefinition fdsViewObjectDefinition,
 			ObjectEntry fdsViewObjectEntry,
@@ -653,6 +639,7 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 				String source = MapUtil.getString(properties, "source");
 
 				if (Validator.isNotNull(source)) {
+					String finalFieldName = fieldName;
 					String sourceType = MapUtil.getString(
 						properties, "sourceType");
 
@@ -661,7 +648,23 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 					).put(
 						"entityFieldType", FDSEntityFieldTypes.STRING
 					).put(
-						"id", _getId(fieldName, sourceType)
+						"id",
+						() -> {
+							if (Objects.equals(
+									sourceType, "API_REST_APPLICATION")) {
+
+								return finalFieldName;
+							}
+
+							int index = finalFieldName.lastIndexOf(
+								StringPool.FORWARD_SLASH);
+
+							if (index <= 0) {
+								return finalFieldName;
+							}
+
+							return finalFieldName.substring(0, index);
+						}
 					).put(
 						"label", _getValue("label", "fieldName", properties)
 					).put(
