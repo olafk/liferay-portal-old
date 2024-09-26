@@ -211,6 +211,7 @@ public class JspCompiler extends Jsr199JavaCompiler {
 		ErrorDispatcher errorDispatcher, boolean suppressLogging) {
 
 		_compilerOptions.add("-XDuseUnsharedTable");
+		_compilerOptions.add("-proc:none");
 
 		Options options = jspCompilationContext.getOptions();
 
@@ -293,8 +294,6 @@ public class JspCompiler extends Jsr199JavaCompiler {
 		_errorDispatcher = errorDispatcher;
 
 		_jspRuntimeContext = jspCompilationContext.getRuntimeContext();
-
-		_compilerOptions.add("-proc:none");
 	}
 
 	@Override
