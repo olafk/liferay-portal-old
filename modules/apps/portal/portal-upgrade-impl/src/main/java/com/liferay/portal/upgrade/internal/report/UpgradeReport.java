@@ -105,7 +105,7 @@ public class UpgradeReport {
 		}
 
 		_executionDateString = _getExecutionDateString();
-		_executionTime =
+		_executionTimeString =
 			(DBUpgrader.getUpgradeTime() / Time.SECOND) + " seconds";
 		_rootDir = _getRootDir();
 
@@ -213,7 +213,7 @@ public class UpgradeReport {
 		return LinkedHashMapBuilder.<String, Object>put(
 			"execution.date", _executionDateString
 		).put(
-			"execution.time", _executionTime
+			"execution.time", _executionTimeString
 		).put(
 			"result", upgradeRecorder.getResult()
 		).put(
@@ -545,7 +545,7 @@ public class UpgradeReport {
 		return LinkedHashMapBuilder.<String, Object>put(
 			"execution.date", _executionDateString
 		).put(
-			"execution.time", _executionTime
+			"execution.time", _executionTimeString
 		).put(
 			"errors", _getMessagesPrinters(upgradeRecorder.getErrorMessages())
 		).put(
@@ -976,7 +976,7 @@ public class UpgradeReport {
 	private double _dlSize;
 	private final Thread _dlSizeThread = new DLSizeThread();
 	private String _executionDateString;
-	private String _executionTime;
+	private String _executionTimeString;
 	private final int _initialBuildNumber;
 	private Map<String, Integer> _initialTableCounts;
 	private String _rootDir;
