@@ -61,10 +61,6 @@ public class SaveCompanyConfigurationMVCActionCommand
 
 		_sitemapConfigurationManager.saveSitemapCompanyConfiguration(
 			themeDisplay.getCompanyId(),
-			ParamUtil.getBoolean(actionRequest, "includeCategories"),
-			ParamUtil.getBoolean(actionRequest, "includePages"),
-			ParamUtil.getBoolean(actionRequest, "includeWebContent"),
-			ParamUtil.getBoolean(actionRequest, "xmlSitemapIndexEnabled"),
 			ArrayUtil.filter(
 				ArrayUtil.unique(
 					ParamUtil.getLongValues(
@@ -77,7 +73,11 @@ public class SaveCompanyConfigurationMVCActionCommand
 					}
 
 					return true;
-				}));
+				}),
+			ParamUtil.getBoolean(actionRequest, "includeCategories"),
+			ParamUtil.getBoolean(actionRequest, "includePages"),
+			ParamUtil.getBoolean(actionRequest, "includeWebContent"),
+			ParamUtil.getBoolean(actionRequest, "xmlSitemapIndexEnabled"));
 
 		SessionMessages.add(
 			actionRequest, "requestProcessed",

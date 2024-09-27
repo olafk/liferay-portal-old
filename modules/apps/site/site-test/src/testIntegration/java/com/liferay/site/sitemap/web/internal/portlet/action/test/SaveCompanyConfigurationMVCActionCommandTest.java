@@ -106,10 +106,10 @@ public class SaveCompanyConfigurationMVCActionCommandTest {
 	@AfterClass
 	public static void tearDownClass() throws Exception {
 		_sitemapConfigurationManager.saveSitemapCompanyConfiguration(
-			_company.getCompanyId(), _originalIncludeCategories,
-			_originalIncludePages, _originalIncludeWebContent,
-			_originalXMLSitemapIndexEnabled,
-			ArrayUtil.toArray(_originalCompanySitemapGroupIds));
+			_company.getCompanyId(),
+			ArrayUtil.toArray(_originalCompanySitemapGroupIds),
+			_originalIncludeCategories, _originalIncludePages,
+			_originalIncludeWebContent, _originalXMLSitemapIndexEnabled);
 
 		PrincipalThreadLocal.setName(_originalName);
 	}

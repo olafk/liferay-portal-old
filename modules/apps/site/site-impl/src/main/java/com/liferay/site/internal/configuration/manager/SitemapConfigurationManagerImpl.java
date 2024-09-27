@@ -115,9 +115,9 @@ public class SitemapConfigurationManagerImpl
 
 	@Override
 	public void saveSitemapCompanyConfiguration(
-			long companyId, boolean includeCategories, boolean includePages,
-			boolean includeWebContent, boolean xmlSitemapIndexEnabled,
-			long[] companySitemapGroupIds)
+			long companyId, long[] companySitemapGroupIds,
+			boolean includeCategories, boolean includePages,
+			boolean includeWebContent, boolean xmlSitemapIndexEnabled)
 		throws ConfigurationException {
 
 		_configurationProvider.saveCompanyConfiguration(
