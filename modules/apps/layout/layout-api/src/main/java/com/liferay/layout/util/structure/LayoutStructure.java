@@ -480,8 +480,25 @@ public class LayoutStructure {
 		int position = 0;
 
 		if (parentLayoutStructureItem instanceof
-				FormStepContainerStyledLayoutStructureItem ||
-			parentLayoutStructureItem instanceof RowStyledLayoutStructureItem) {
+				CollectionStyledLayoutStructureItem) {
+
+			List<String> childrenItemIds =
+				parentLayoutStructureItem.getChildrenItemIds();
+
+			if (ListUtil.isEmpty(childrenItemIds)) {
+				throw new UnsupportedOperationException(
+					"Unable to copy items because collection does not have " +
+						"collection items");
+			}
+
+			parentItemId = childrenItemIds.get(0);
+
+			position = -1;
+		}
+		else if (parentLayoutStructureItem instanceof
+					FormStepContainerStyledLayoutStructureItem ||
+				 parentLayoutStructureItem instanceof
+				 	RowStyledLayoutStructureItem) {
 
 			parentItemId = parentLayoutStructureItem.getParentItemId();
 
@@ -501,22 +518,6 @@ public class LayoutStructure {
 				newParentLayoutStructureItem.getChildrenItemIds();
 
 			position = childrenItemIds.indexOf(oldParentItemId) + 1;
-		}
-		else if (parentLayoutStructureItem instanceof
-					CollectionStyledLayoutStructureItem) {
-
-			List<String> childrenItemIds =
-				parentLayoutStructureItem.getChildrenItemIds();
-
-			if (ListUtil.isEmpty(childrenItemIds)) {
-				throw new UnsupportedOperationException(
-					"Unable to copy items because collection does not have " +
-						"collection items");
-			}
-
-			parentItemId = childrenItemIds.get(0);
-
-			position = -1;
 		}
 
 		List<LayoutStructureItem> copiedLayoutStructureItems =
