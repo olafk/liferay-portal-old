@@ -44,7 +44,6 @@ public class TreeFactoryImpl implements TreeFactory {
 
 		ObjectRelationshipLocalService objectRelationshipLocalService =
 			_objectRelationshipLocalServiceSnapshot.get();
-
 		ObjectDefinition rootObjectDefinition =
 			objectDefinitionLookupUnsafeFunction.apply(objectDefinitionId);
 
