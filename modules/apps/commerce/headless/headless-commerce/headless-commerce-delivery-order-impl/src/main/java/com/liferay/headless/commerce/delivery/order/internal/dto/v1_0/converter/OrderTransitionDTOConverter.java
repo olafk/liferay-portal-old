@@ -37,7 +37,6 @@ public class OrderTransitionDTOConverter
 
 		CommerceOrder commerceOrder = _commerceOrderService.getCommerceOrder(
 			(Long)dtoConverterContext.getId());
-
 		ObjectValuePair<Long, String> transitionOVP =
 			(ObjectValuePair<Long, String>)dtoConverterContext.getAttribute(
 				"transitionOVP");
