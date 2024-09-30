@@ -85,7 +85,7 @@ const InteractionsByPageChart: React.FC<IInteractionsByPageChartProps> = ({
 			activeTabIndex={activeTabIndex}
 			emptyChartProps={{
 				description: Liferay.Language.get(
-					'check-back-later-to-see-if-your-data-sources-have-received-the-data'
+					'check-back-later-to-see-if-your-data-sources-are-populated-with-data'
 				),
 				link: {
 					title: Liferay.Language.get(
