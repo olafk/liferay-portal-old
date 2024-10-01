@@ -24,8 +24,6 @@ jar {
 
 jarTransformed {
 	doLast {
-		delete files(jar.archivePath)
-
 		org.eclipse.transformer.cli.JakartaTransformerCLI.runWith(new org.eclipse.transformer.cli.JakartaTransformerCLI(System.out, System.out, new String[] {configurations.compileOnly.singleFile, jar.archivePath}))
 	}
 
