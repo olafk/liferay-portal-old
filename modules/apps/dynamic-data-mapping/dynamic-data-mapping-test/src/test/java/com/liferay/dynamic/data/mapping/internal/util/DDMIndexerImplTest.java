@@ -119,10 +119,9 @@ public class DDMIndexerImplTest {
 
 	@Before
 	public void setUp() throws Exception {
+		_ddmIndexer = _createDDMIndexer(false);
 		_ddmFixture.setUp();
 		_documentFixture.setUp();
-
-		_ddmIndexer = _createDDMIndexer(false);
 
 		_setUpJSONFactoryUtil();
 		_setUpPortalUtil();
