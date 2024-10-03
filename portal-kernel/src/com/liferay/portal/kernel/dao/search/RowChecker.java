@@ -304,10 +304,12 @@ public class RowChecker {
 			sb.append("disabled ");
 		}
 
+		sb.append("\" id=\"");
+
 		String id = StringUtil.randomId();
 
-		sb.append("\" id=\"");
 		sb.append(id);
+
 		sb.append("\" name=\"");
 		sb.append(name);
 		sb.append("\" title=\"");
