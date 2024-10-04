@@ -35,20 +35,6 @@ export default function historyReducer(state, action) {
 					edited: false,
 				},
 			};
-		case EVENT_TYPES.HISTORY.MARK:
-			return {
-				history: {
-					...state.history,
-					edited: true,
-				},
-			};
-		case EVENT_TYPES.HISTORY.UNMARK:
-			return {
-				history: {
-					...state.history,
-					edited: false,
-				},
-			};
 		case EVENT_TYPES.HISTORY.GOTO:
 			setTimeout(() => Liferay.fire('ddm:restoreState'), 100);
 
@@ -57,6 +43,13 @@ export default function historyReducer(state, action) {
 				history: {
 					...state.history,
 					currentStep: action.step,
+				},
+			};
+		case EVENT_TYPES.HISTORY.MARK:
+			return {
+				history: {
+					...state.history,
+					edited: true,
 				},
 			};
 		case EVENT_TYPES.HISTORY.NEXT:
@@ -85,6 +78,13 @@ export default function historyReducer(state, action) {
 					...state.history,
 					currentStep: 0,
 					steps: [state],
+				},
+			};
+		case EVENT_TYPES.HISTORY.UNMARK:
+			return {
+				history: {
+					...state.history,
+					edited: false,
 				},
 			};
 		default:
