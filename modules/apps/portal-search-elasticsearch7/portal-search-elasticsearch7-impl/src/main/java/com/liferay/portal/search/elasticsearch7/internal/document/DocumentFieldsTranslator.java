@@ -114,14 +114,13 @@ public class DocumentFieldsTranslator {
 		if (StringUtil.startsWith(value2, StringPool.OPEN_CURLY_BRACE) &&
 			(value1 instanceof Map)) {
 
-			return _getGeoLocationPointFromCoordinates(
-				(Map<String, Object>)value1);
+			return _getGeoLocationPoint((Map<String, Object>)value1);
 		}
 
 		return _getGeoLocationPointFromGeoHash(value2);
 	}
 
-	private GeoLocationPoint _getGeoLocationPointFromCoordinates(
+	private GeoLocationPoint _getGeoLocationPoint(
 		Map<String, Object> map) {
 
 		if (MapUtil.isEmpty(map) || !map.containsKey("coordinates")) {
