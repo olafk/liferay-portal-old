@@ -129,10 +129,8 @@ public class ObjectEntryServiceTest {
 
 		_originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
-
 		_tree = TreeTestUtil.createObjectDefinitionTree(
 			_objectDefinitionLocalService, _objectRelationshipLocalService);
-
 		_user = UserTestUtil.addUser();
 
 		ObjectDefinition rootObjectDefinition =

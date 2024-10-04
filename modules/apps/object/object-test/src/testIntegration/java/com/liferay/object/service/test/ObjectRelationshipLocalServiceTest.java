@@ -114,10 +114,10 @@ public class ObjectRelationshipLocalServiceTest {
 			_addAndPublishModifiableSystemObjectDefinition();
 		_objectDefinition1 = _addAndPublishCustomObjectDefinition();
 		_objectDefinition2 = _addAndPublishCustomObjectDefinition();
-		_systemObjectDefinition2 = _addSystemObjectDefinition(
-			"/o/test-endpoint/entries");
 		_objectDefinitionTreeFactory = new ObjectDefinitionTreeFactory(
 			_objectDefinitionLocalService, _objectRelationshipLocalService);
+		_systemObjectDefinition2 = _addSystemObjectDefinition(
+			"/o/test-endpoint/entries");
 	}
 
 	@Test
