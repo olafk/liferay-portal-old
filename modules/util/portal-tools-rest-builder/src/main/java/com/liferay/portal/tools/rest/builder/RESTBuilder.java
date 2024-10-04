@@ -2040,6 +2040,8 @@ public class RESTBuilder {
 			baseClientJSDir.getPath(),
 			"/src/main/resources/META-INF/resources/", targetClientType);
 
+		// TODO Sort args, use only -- (replace -y)
+
 		ProcessBuilder processBuilder = new ProcessBuilder(
 			Arrays.asList(
 				_getNPMPathString(), "exec", "-y", "--prefix", _getNodePrefix(),
