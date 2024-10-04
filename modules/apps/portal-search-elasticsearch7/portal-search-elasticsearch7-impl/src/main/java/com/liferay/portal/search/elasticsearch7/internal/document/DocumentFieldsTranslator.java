@@ -123,9 +123,7 @@ public class DocumentFieldsTranslator {
 			geoPoint.getLat(), geoPoint.getLon());
 	}
 
-	private GeoLocationPoint _getGeoLocationPoint(
-		Map<String, Object> map) {
-
+	private GeoLocationPoint _getGeoLocationPoint(Map<String, Object> map) {
 		if (MapUtil.isEmpty(map) || !map.containsKey("coordinates")) {
 			return null;
 		}
