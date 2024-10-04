@@ -92,11 +92,11 @@ export default function fieldChange({
 
 		if (Liferay.FeatureFlags['LPD-11228']) {
 			if (
-				fieldInstance.type === 'numeric' ||
-				fieldInstance.type === 'text' ||
-				fieldInstance.type === 'rich_text' ||
+				fieldInstance.type === 'color' ||
 				fieldInstance.type === 'image' ||
-				fieldInstance.type === 'color'
+				fieldInstance.type === 'numeric' ||
+				fieldInstance.type === 'rich_text' ||
+				fieldInstance.type === 'text'
 			) {
 				dispatch({type: EVENT_TYPES.HISTORY.MARK});
 			}
@@ -187,11 +187,11 @@ export default function fieldChange({
 
 		if (Liferay.FeatureFlags['LPD-11228']) {
 			if (
-				fieldInstance.type !== 'numeric' &&
-				fieldInstance.type !== 'text' &&
-				fieldInstance.type !== 'rich_text' &&
+				fieldInstance.type !== 'color' &&
 				fieldInstance.type !== 'image' &&
-				fieldInstance.type !== 'color'
+				fieldInstance.type !== 'numeric' &&
+				fieldInstance.type !== 'rich_text' &&
+				fieldInstance.type !== 'text'
 			) {
 				setTimeout(
 					() =>
