@@ -47,12 +47,12 @@ public class DTOProperty {
 		return _name;
 	}
 
-	public Boolean getReadOnly() {
-		return _readOnly;
-	}
-
 	public String getType() {
 		return _type;
+	}
+
+	public boolean isReadOnly() {
+		return _readOnly;
 	}
 
 	public boolean isRequired() {
