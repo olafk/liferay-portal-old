@@ -864,22 +864,24 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 	public Group getItemSelectorScopeGroup(Group scopeGroup)
 		throws PortalException {
 
-		if (scopeGroup.isLayoutPrototype()) {
-			LayoutPrototype layoutPrototype =
-				_layoutPrototypeLocalService.fetchLayoutPrototype(
-					scopeGroup.getClassPK());
+		if (!scopeGroup.isLayoutPrototype()) {
+			return scopeGroup;
+		}
 
-			LayoutPageTemplateEntry layoutPageTemplateEntry =
-				_layoutPageTemplateEntryLocalService.
-					fetchFirstLayoutPageTemplateEntry(
-						layoutPrototype.getLayoutPrototypeId());
+		LayoutPrototype layoutPrototype =
+			_layoutPrototypeLocalService.fetchLayoutPrototype(
+				scopeGroup.getClassPK());
 
-			if ((layoutPageTemplateEntry != null) &&
-				(layoutPageTemplateEntry.getGroupId() > 0)) {
+		LayoutPageTemplateEntry layoutPageTemplateEntry =
+			_layoutPageTemplateEntryLocalService.
+				fetchFirstLayoutPageTemplateEntry(
+					layoutPrototype.getLayoutPrototypeId());
 
-				return _groupLocalService.getGroup(
-					layoutPageTemplateEntry.getGroupId());
-			}
+		if ((layoutPageTemplateEntry != null) &&
+			(layoutPageTemplateEntry.getGroupId() > 0)) {
+
+			return _groupLocalService.getGroup(
+				layoutPageTemplateEntry.getGroupId());
 		}
 
 		return scopeGroup;
