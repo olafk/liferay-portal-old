@@ -1090,11 +1090,11 @@ public abstract class BaseUpgradeLogAppenderTestCase {
 
 		Assert.assertTrue(reportFile.exists());
 
+		URI uri = reportFile.toURI();
+
 		Assert.assertTrue(
 			StringUtil.contains(
-				reportFile.toURI(
-				).getPath(),
-				_upgradeReportDir, StringPool.BLANK));
+				uri.getPath(), _upgradeReportDir, StringPool.BLANK));
 
 		Assert.assertTrue(
 			StringUtil.contains(
