@@ -94,13 +94,6 @@ public class ClientExtensionEntryRelLocalServiceImpl
 	}
 
 	@Override
-	public List<ClientExtensionEntryRel> findClientExtensionEntryRels(
-		String type) {
-
-		return clientExtensionEntryRelPersistence.findByType(type);
-	}
-
-	@Override
 	public List<ClientExtensionEntryRel> getClientExtensionEntryRels(
 		long classNameId, long classPK) {
 
@@ -122,6 +115,13 @@ public class ClientExtensionEntryRelLocalServiceImpl
 
 		return clientExtensionEntryRelPersistence.findByC_C_T(
 			classNameId, classPK, type, start, end);
+	}
+
+	@Override
+	public List<ClientExtensionEntryRel> getClientExtensionEntryRels(
+		String type) {
+
+		return clientExtensionEntryRelPersistence.findByType(type);
 	}
 
 	@Override

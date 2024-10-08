@@ -156,7 +156,7 @@ public class SVG4EverybodyTopHeadDynamicInclude extends BaseDynamicInclude {
 
 	private ThemeSpritemapCET _getThemeSpritemapCET(Layout layout) {
 		List<ClientExtensionEntryRel> clientExtensionEntryRels =
-			_clientExtensionEntryRelLocalService.findClientExtensionEntryRels(
+			_clientExtensionEntryRelLocalService.getClientExtensionEntryRels(
 				ClientExtensionEntryConstants.TYPE_THEME_SPRITEMAP);
 
 		if (clientExtensionEntryRels.isEmpty()) {
