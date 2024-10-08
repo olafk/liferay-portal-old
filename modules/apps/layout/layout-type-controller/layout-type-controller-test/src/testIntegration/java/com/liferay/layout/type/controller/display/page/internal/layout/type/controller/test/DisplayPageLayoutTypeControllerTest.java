@@ -134,6 +134,17 @@ public class DisplayPageLayoutTypeControllerTest {
 			LayoutTypeControllerTracker.getLayoutTypeController(
 				LayoutConstants.TYPE_ASSET_DISPLAY);
 
+		MockHttpServletRequest mockHttpServletRequest =
+			new MockHttpServletRequest();
+
+		mockHttpServletRequest.setAttribute(
+			WebKeys.CURRENT_URL, "/w/basic-web-content/-/document_library/");
+		mockHttpServletRequest.setAttribute(
+			WebKeys.THEME_DISPLAY,
+			_getThemeDisplay(
+				StringPool.BLANK, mockHttpServletRequest,
+				TestPropsValues.getUser()));
+
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			_layoutPageTemplateEntryService.addLayoutPageTemplateEntry(
 				null, _group.getGroupId(), 0,
@@ -141,25 +152,12 @@ public class DisplayPageLayoutTypeControllerTest {
 				RandomTestUtil.randomString(), 0,
 				WorkflowConstants.STATUS_DRAFT, _serviceContext);
 
-		Layout layout = _layoutLocalService.getLayout(
-			layoutPageTemplateEntry.getPlid());
-
-		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		ThemeDisplay themeDisplay = _getThemeDisplay(
-			StringPool.BLANK, mockHttpServletRequest,
-			TestPropsValues.getUser());
-
-		mockHttpServletRequest.setAttribute(
-			WebKeys.CURRENT_URL, "/w/basic-web-content/-/document_library/");
-		mockHttpServletRequest.setAttribute(
-			WebKeys.THEME_DISPLAY, themeDisplay);
-
 		Assert.assertEquals(
 			"/w/basic-web-content",
 			layoutTypeController.getFriendlyURL(
-				mockHttpServletRequest, layout));
+				mockHttpServletRequest,
+				_layoutLocalService.getLayout(
+					layoutPageTemplateEntry.getPlid())));
 	}
 
 	@Test
