@@ -67,7 +67,7 @@ public class PortalTransactionManager
 			connectionHolder.isSynchronizedWithTransaction()) {
 
 			throw new IllegalTransactionStateException(
-				"Found pre-bound JDBC Connection");
+				"Found prebound JDBC connection");
 		}
 
 		SessionImplementor sessionImplementor = null;
@@ -89,40 +89,34 @@ public class PortalTransactionManager
 
 			sessionImplementor = session.unwrap(SessionImplementor.class);
 
-			boolean isolationLevelNeeded = false;
+			if ((transactionDefinition.getIsolationLevel() !=
+					TransactionDefinition.ISOLATION_DEFAULT) ||
+				transactionDefinition.isReadOnly()) {
 
-			if (transactionDefinition.getIsolationLevel() !=
-					TransactionDefinition.ISOLATION_DEFAULT) {
-
-				isolationLevelNeeded = true;
-			}
-
-			if (isolationLevelNeeded || transactionDefinition.isReadOnly()) {
 				Connection connection = sessionImplementor.connection();
 
+				hibernateTransactionObject.markConnectionModified();
 				hibernateTransactionObject.setPreviousIsolationLevel(
 					DataSourceUtils.prepareConnectionForTransaction(
 						connection, transactionDefinition));
-
 				hibernateTransactionObject.setReadOnly(
 					transactionDefinition.isReadOnly());
-				hibernateTransactionObject.markConnectionModified();
 			}
 
 			if (transactionDefinition.isReadOnly()) {
 				if (hibernateTransactionObject.isNewSession()) {
-					sessionImplementor.setHibernateFlushMode(FlushMode.MANUAL);
 					sessionImplementor.setDefaultReadOnly(true);
+					sessionImplementor.setHibernateFlushMode(FlushMode.MANUAL);
 				}
 				else {
 					FlushMode flushMode =
 						sessionImplementor.getHibernateFlushMode();
 
 					if (FlushMode.MANUAL == flushMode) {
+						sessionHolder.setPreviousFlushMode(flushMode);
+
 						sessionImplementor.setHibernateFlushMode(
 							FlushMode.AUTO);
-
-						sessionHolder.setPreviousFlushMode(flushMode);
 					}
 				}
 			}
@@ -130,7 +124,7 @@ public class PortalTransactionManager
 			ConnectionHolder newConnectionHolder = new ConnectionHolder(
 				sessionImplementor::connection);
 
-			Transaction transaction;
+			Transaction transaction = null;
 
 			int timeout = determineTimeout(transactionDefinition);
 
@@ -190,7 +184,7 @@ public class PortalTransactionManager
 			}
 
 			throw new CannotCreateTransactionException(
-				"Unable to open Hibernate Session for transaction", throwable1);
+				"Unable to open Hibernate session for transaction", throwable1);
 		}
 	}
 
@@ -233,14 +227,14 @@ public class PortalTransactionManager
 			catch (HibernateException hibernateException) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
-						"Unable to access JDBC Connection of Hibernate Session",
+						"Unable to get JDBC connection from Hibernate session",
 						hibernateException);
 				}
 			}
 			catch (Throwable throwable) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
-						"Unable to reset JDBC Connection after transaction",
+						"Unable to reset JDBC connection after transaction",
 						throwable);
 				}
 			}
@@ -350,7 +344,7 @@ public class PortalTransactionManager
 		}
 		catch (TransactionException transactionException) {
 			throw new TransactionSystemException(
-				"Unable to rollback Hibernate transaction",
+				"Unable to roll back Hibernate transaction",
 				transactionException);
 		}
 		catch (HibernateException hibernateException) {
