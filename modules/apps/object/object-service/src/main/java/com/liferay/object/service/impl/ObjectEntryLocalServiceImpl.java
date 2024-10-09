@@ -1667,7 +1667,7 @@ public class ObjectEntryLocalServiceImpl
 			long objectDefinition2RootObjectDefinitionId =
 				objectDefinition2.getRootObjectDefinitionId();
 
-			_performActionableDynamicQuery(
+			_performActions(
 				objectDefinition1.getObjectDefinitionId(),
 				(ObjectEntry objectEntry) -> {
 					try {
@@ -1763,7 +1763,7 @@ public class ObjectEntryLocalServiceImpl
 			Indexer<ObjectEntry> indexer = IndexerRegistryUtil.getIndexer(
 				objectDefinition.getClassName());
 
-			_performActionableDynamicQuery(
+			_performActions(
 				objectDefinition.getObjectDefinitionId(),
 				(ObjectEntry objectEntry) -> indexer.reindex(objectEntry));
 		}
@@ -3985,7 +3985,7 @@ public class ObjectEntryLocalServiceImpl
 		return results;
 	}
 
-	private void _performActionableDynamicQuery(
+	private void _performActions(
 			long objectDefinitionId,
 			ActionableDynamicQuery.PerformActionMethod<?> performActionMethod)
 		throws PortalException {
