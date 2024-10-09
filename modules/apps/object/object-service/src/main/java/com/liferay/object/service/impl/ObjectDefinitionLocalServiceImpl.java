@@ -1866,11 +1866,7 @@ public class ObjectDefinitionLocalServiceImpl
 		}
 
 		if (modifiable && system) {
-			String prefix =
-				ObjectDefinitionConstants.
-					EXTERNAL_REFERENCE_CODE_PREFIX_SYSTEM_OBJECT_DEFINITION;
-
-			return StringUtil.toLowerCase(prefix) + pkObjectFieldName;
+			return "l_" + pkObjectFieldName;
 		}
 
 		return "c_" + pkObjectFieldName;
