@@ -134,7 +134,7 @@ String aggregationType = customFacetDisplayContext.getAggregationType();
 							%>
 
 							<c:if test="<%= customFacetDisplayContext.isShowInputRange() %>">
-								<c:if test='<%= aggregationType.equals("range") || aggregationType.equals("dateRange") %>'>
+								<c:if test='<%= aggregationType.equals("dateRange") || aggregationType.equals("range") %>'>
 									<li class="facet-value">
 										<div class="custom-checkbox custom-control">
 											<label class="facet-checkbox-label" for="<portlet:namespace /><%= customRangeBucketDisplayContext.getBucketText() %>">
