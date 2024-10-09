@@ -67,19 +67,16 @@ public class FieldResourceTest extends BaseFieldResourceTestCase {
 				objectDefinition1, objectDefinition2,
 				TestPropsValues.getUserId(),
 				ObjectRelationshipConstants.TYPE_MANY_TO_MANY);
-
 		ObjectRelationship manyToOneObjectRelationship1 =
 			ObjectRelationshipTestUtil.addObjectRelationship(
 				objectDefinition2, objectDefinition1,
 				TestPropsValues.getUserId(),
 				ObjectRelationshipConstants.TYPE_ONE_TO_MANY);
-
 		ObjectRelationship manyToOneObjectRelationship2 =
 			ObjectRelationshipTestUtil.addObjectRelationship(
 				objectDefinition2, objectDefinition1,
 				TestPropsValues.getUserId(),
 				ObjectRelationshipConstants.TYPE_ONE_TO_MANY);
-
 		ObjectRelationship oneToManyObjectRelationship =
 			ObjectRelationshipTestUtil.addObjectRelationship(
 				objectDefinition1, objectDefinition2,
