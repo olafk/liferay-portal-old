@@ -1865,11 +1865,7 @@ public class ObjectDefinitionLocalServiceImpl
 			return pkObjectFieldName;
 		}
 
-		if (modifiable && system) {
-			return "l_" + pkObjectFieldName;
-		}
-
-		return "c_" + pkObjectFieldName;
+		return pkObjectFieldName = "c_" + pkObjectFieldName;
 	}
 
 	private boolean _hasObjectField(
