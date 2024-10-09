@@ -128,7 +128,7 @@ public class NestedFacetProcessor
 			return _getDateRangeAggregation((DateRangeAggregation)aggregation);
 		}
 		else if (aggregation instanceof RangeAggregation) {
-			return _getRangeAggregationBuilder((RangeAggregation)aggregation);
+			return _getRangeAggregation((RangeAggregation)aggregation);
 		}
 
 		Class<?> clazz = aggregation.getClass();
@@ -167,7 +167,7 @@ public class NestedFacetProcessor
 	}
 
 	private org.opensearch.client.opensearch._types.aggregations.Aggregation
-		_getRangeAggregationBuilder(RangeAggregation rangeAggregation) {
+		_getRangeAggregation(RangeAggregation rangeAggregation) {
 
 		org.opensearch.client.opensearch._types.aggregations.RangeAggregation.
 			Builder builder = AggregationBuilders.range();
