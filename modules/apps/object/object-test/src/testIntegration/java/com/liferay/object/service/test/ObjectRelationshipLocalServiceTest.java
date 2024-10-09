@@ -116,6 +116,7 @@ public class ObjectRelationshipLocalServiceTest {
 	public void setUp() throws Exception {
 		_modifiableSystemObjectDefinition =
 			_addAndPublishModifiableSystemObjectDefinition();
+
 		_objectDefinition1 = _addAndPublishCustomObjectDefinition();
 		_objectDefinition2 = _addAndPublishCustomObjectDefinition();
 		_objectDefinitionTreeFactory = new ObjectDefinitionTreeFactory(
