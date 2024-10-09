@@ -135,8 +135,8 @@ public class NotificationsPortletTest {
 		UserNotificationDelivery userNotificationDelivery) {
 
 		return String.format(
-			"No user notification definition found for portlet %s, class " +
-				"name ID %d and notification type %d",
+			"No user notification definition found for class name ID %d, " +
+				"notification type %d, and portlet %s",
 			userNotificationDelivery.getPortletId(),
 			userNotificationDelivery.getClassNameId(),
 			userNotificationDelivery.getNotificationType());

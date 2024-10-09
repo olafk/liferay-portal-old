@@ -376,11 +376,11 @@ public class NotificationsPortlet extends MVCPortlet {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					String.format(
-						"No user notification definition found for portlet " +
-							"%s, class name ID %d and notification type %d",
-						userNotificationDelivery.getPortletId(),
+						"No user notification definition found for class " +
+							"name ID %d, notification type %d, and portlet %s",
 						userNotificationDelivery.getClassNameId(),
-						userNotificationDelivery.getNotificationType()));
+						userNotificationDelivery.getNotificationType(),
+						userNotificationDelivery.getPortletId()));
 			}
 
 			return;
