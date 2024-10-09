@@ -1524,9 +1524,9 @@ public class ObjectRelationshipLocalServiceImpl
 					"reference in a root context");
 		}
 
-		if ((objectRelationship != null) &&
-			(objectRelationship.getObjectRelationshipId() != 0) &&
-			objectDefinition1.isApproved() && objectDefinition2.isApproved()) {
+		if (objectDefinition1.isApproved() && objectDefinition2.isApproved() &&
+			(objectRelationship != null) &&
+			(objectRelationship.getObjectRelationshipId() != 0)) {
 
 			int relatedObjectEntriesCount =
 				_objectEntryLocalService.getOneToManyObjectEntriesCount(
