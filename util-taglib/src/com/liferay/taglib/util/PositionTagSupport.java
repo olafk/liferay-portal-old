@@ -64,37 +64,38 @@ public class PositionTagSupport extends BaseBodyTagSupport implements BodyTag {
 			position = _POSITION_INLINE;
 		}
 
-		if (Validator.isNull(position)) {
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)httpServletRequest.getAttribute(
-					WebKeys.THEME_DISPLAY);
+		if (Validator.isNotNull(position)) {
+			return position;
+		}
 
-			if (themeDisplay == null) {
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)httpServletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
+		if (themeDisplay == null) {
+			position = _POSITION_INLINE;
+		}
+		else {
+			if (themeDisplay.isIsolated() ||
+				themeDisplay.isLifecycleResource() ||
+				themeDisplay.isStateExclusive()) {
+
 				position = _POSITION_INLINE;
 			}
 			else {
-				if (themeDisplay.isIsolated() ||
-					themeDisplay.isLifecycleResource() ||
-					themeDisplay.isStateExclusive()) {
+				position = _POSITION_AUTO;
+			}
 
-					position = _POSITION_INLINE;
-				}
-				else {
-					position = _POSITION_AUTO;
-				}
+			PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-				PortletDisplay portletDisplay =
-					themeDisplay.getPortletDisplay();
+			String portletId = portletDisplay.getId();
 
-				String portletId = portletDisplay.getId();
+			if (Validator.isNotNull(portletId) &&
+				themeDisplay.isPortletEmbedded(
+					themeDisplay.getScopeGroupId(), themeDisplay.getLayout(),
+					portletId)) {
 
-				if (Validator.isNotNull(portletId) &&
-					themeDisplay.isPortletEmbedded(
-						themeDisplay.getScopeGroupId(),
-						themeDisplay.getLayout(), portletId)) {
-
-					position = _POSITION_INLINE;
-				}
+				position = _POSITION_INLINE;
 			}
 		}
 
