@@ -115,8 +115,7 @@ baseTest(
 		tag: '@LPD-38754',
 	},
 	async ({journalEditArticlePage, site}) => {
-		await journalEditArticlePage.journalPage.goto(site.friendlyUrlPath);
-		await journalEditArticlePage.journalPage.goToCreateArticle();
+		await journalEditArticlePage.goto({siteUrl: site.friendlyUrlPath});
 
 		const title = getRandomString();
 
