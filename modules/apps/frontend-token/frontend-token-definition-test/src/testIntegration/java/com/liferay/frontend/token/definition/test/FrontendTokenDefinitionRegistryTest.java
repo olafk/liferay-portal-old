@@ -78,13 +78,13 @@ public class FrontendTokenDefinitionRegistryTest {
 		_layoutSet = _layoutSetLocalService.fetchLayoutSet(
 			_group.getGroupId(), false);
 
-		_layoutSet.setThemeId(_TEST_LAYOUT_SET_THEME_ID);
+		_layoutSet.setThemeId(_THEME_ID_TEST_LAYOUT_SET);
 
 		User user = UserTestUtil.addUser();
 
 		_clientExtensionEntry =
 			_clientExtensionEntryLocalService.addClientExtensionEntry(
-				_CLIENT_EXTENSION_ENTRY_THEME_ID, user.getUserId(),
+				_THEME_ID_CLIENT_EXTENSION_ENTRY, user.getUserId(),
 				StringPool.BLANK,
 				HashMapBuilder.put(
 					LocaleUtil.getDefault(), RandomTestUtil.randomString()
@@ -117,14 +117,14 @@ public class FrontendTokenDefinitionRegistryTest {
 	@Test
 	public void testGetFrontendTokenDefinition() {
 		_assertFrontendTokenDefinition(
-			_CLIENT_EXTENSION_ENTRY_THEME_ID,
+			_THEME_ID_CLIENT_EXTENSION_ENTRY,
 			_frontendTokenDefinitionRegistry.getFrontendTokenDefinition(
 				_layoutSet));
 
 		_layoutSet.setLayoutSetId(RandomTestUtil.randomLong());
 
 		_assertFrontendTokenDefinition(
-			_TEST_LAYOUT_SET_THEME_ID,
+			_THEME_ID_TEST_LAYOUT_SET,
 			_frontendTokenDefinitionRegistry.getFrontendTokenDefinition(
 				_layoutSet));
 	}
@@ -140,13 +140,13 @@ public class FrontendTokenDefinitionRegistryTest {
 				frontendTokenDefinitions,
 				frontendTokenDefinition -> Objects.equals(
 					frontendTokenDefinition.getThemeId(),
-					_CLIENT_EXTENSION_ENTRY_THEME_ID)));
+					_THEME_ID_CLIENT_EXTENSION_ENTRY)));
 		Assert.assertTrue(
 			ListUtil.exists(
 				frontendTokenDefinitions,
 				frontendTokenDefinition -> Objects.equals(
 					frontendTokenDefinition.getThemeId(),
-					_TEST_LAYOUT_SET_THEME_ID)));
+					_THEME_ID_TEST_LAYOUT_SET)));
 	}
 
 	private void _assertFrontendTokenDefinition(
@@ -214,10 +214,10 @@ public class FrontendTokenDefinitionRegistryTest {
 			frontendTokenDefinition.getThemeId());
 	}
 
-	private static final String _CLIENT_EXTENSION_ENTRY_THEME_ID =
+	private static final String _THEME_ID_CLIENT_EXTENSION_ENTRY =
 		RandomTestUtil.randomString();
 
-	private static final String _TEST_LAYOUT_SET_THEME_ID =
+	private static final String _THEME_ID_TEST_LAYOUT_SET =
 		"testfrontendtokendefinition";
 
 	private ClientExtensionEntry _clientExtensionEntry;
