@@ -184,14 +184,14 @@ public class JournalArticleLocalServiceTest {
 	public void testAddArticleWithoutFriendlyURLWithTitleWithTrailingSlashes()
 		throws Exception {
 
+		Locale defaultLocale = _portal.getSiteDefaultLocale(
+			_group.getGroupId());
+
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext();
 
 		serviceContext.setCommand(Constants.ADD);
 		serviceContext.setLayoutFullURL("http://localhost");
-
-		Locale defaultLocale = _portal.getSiteDefaultLocale(
-			_group.getGroupId());
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
 			null, _group.getGroupId(),
