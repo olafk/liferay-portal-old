@@ -81,10 +81,10 @@ public class PersistentAuditMessageProcessor implements AuditMessageProcessor {
 
 		if (_batchProcessor == null) {
 			_batchProcessor = new BatchProcessor<>(
-				PersistentAuditMessageProcessor.class.getName(),
-				_auditEventManager::addAuditEvents,
 				_persistentAuditMessageProcessorConfiguration.flushInterval(),
-				_persistentAuditMessageProcessorConfiguration.bufferSize());
+				_persistentAuditMessageProcessorConfiguration.bufferSize(),
+				_auditEventManager::addAuditEvents,
+				PersistentAuditMessageProcessor.class.getName());
 		}
 		else {
 			_batchProcessor.configure(

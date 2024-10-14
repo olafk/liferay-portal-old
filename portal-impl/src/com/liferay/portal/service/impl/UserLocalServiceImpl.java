@@ -1472,7 +1472,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			});
 
 		_batchProcessor = new BatchProcessor<>(
-			UserLocalServiceImpl.class.getName(),
+			PropsValues.USERS_UPDATE_LAST_LOGIN_BATCH_INTERVAL,
+			PropsValues.USERS_UPDATE_LAST_LOGIN_BATCH_SIZE,
 			users -> {
 				Map<Long, User> usersMap = new HashMap<>();
 
@@ -1507,8 +1508,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 					_log.error(throwable);
 				}
 			},
-			PropsValues.USERS_UPDATE_LAST_LOGIN_BATCH_INTERVAL,
-			PropsValues.USERS_UPDATE_LAST_LOGIN_BATCH_SIZE);
+			UserLocalServiceImpl.class.getName());
 	}
 
 	/**

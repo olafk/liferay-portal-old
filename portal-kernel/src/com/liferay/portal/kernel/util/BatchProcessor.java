@@ -22,15 +22,15 @@ import java.util.function.Consumer;
 public class BatchProcessor<T> {
 
 	public BatchProcessor(
-		String name, Consumer<List<T>> flushConsumer, long flushInterval,
-		int batchSize) {
+		long batchInterval, int batchSize, Consumer<List<T>> consumer,
+		String name) {
 
-		_flushConsumer = flushConsumer;
+		_consumer = consumer;
 
 		_scheduledExecutorService = new ScheduledThreadPoolExecutor(
 			1, new NamedThreadFactory(name, Thread.NORM_PRIORITY, null));
 
-		configure(flushInterval, batchSize);
+		configure(batchInterval, batchSize);
 	}
 
 	public void add(T item) {
@@ -49,16 +49,16 @@ public class BatchProcessor<T> {
 		_flush();
 	}
 
-	public void configure(long flushInterval, int batchSize) {
+	public void configure(long batchInterval, int batchSize) {
 		synchronized (this) {
 			if (_scheduledFuture != null) {
 				_scheduledFuture.cancel(false);
 			}
 
-			if (flushInterval > 0) {
+			if (batchInterval > 0) {
 				_scheduledFuture =
 					_scheduledExecutorService.scheduleWithFixedDelay(
-						this::_flush, flushInterval, flushInterval,
+						this::_flush, batchInterval, batchInterval,
 						TimeUnit.MILLISECONDS);
 			}
 			else {
@@ -87,12 +87,12 @@ public class BatchProcessor<T> {
 				size = _queueSize.get();
 			}
 
-			_flushConsumer.accept(items);
+			_consumer.accept(items);
 		}
 	}
 
 	private volatile int _batchSize;
-	private final Consumer<List<T>> _flushConsumer;
+	private final Consumer<List<T>> _consumer;
 	private final Queue<T> _queue = new ConcurrentLinkedQueue<>();
 	private final AtomicInteger _queueSize = new AtomicInteger();
 	private final ScheduledExecutorService _scheduledExecutorService;
