@@ -7519,15 +7519,15 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			int[] results = preparedStatement.executeBatch();
 
 			for (int i = 0; i < results.length; i++) {
-				User deduplicatedUser = users.get(i);
+				User user = users.get(i);
 
 				if (results[i] == 1) {
 					EntityCacheUtil.putResult(
-						UserImpl.class, deduplicatedUser, true, false);
+						UserImpl.class, user, true, false);
 				}
 				else {
 					EntityCacheUtil.removeResult(
-						UserImpl.class, deduplicatedUser.getUserId());
+						UserImpl.class, user.getUserId());
 				}
 			}
 		}
