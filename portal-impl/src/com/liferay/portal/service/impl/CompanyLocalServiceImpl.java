@@ -2498,7 +2498,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 				_updateGroupLocales(
 					group, groupTypeSettingsUnicodeProperties, newLanguageIds);
 
-				return;
+				continue;
 			}
 
 			String[] groupLanguageIds = StringUtil.split(
