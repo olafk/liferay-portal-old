@@ -18,11 +18,11 @@ import {
 	goToAnalyticsCloudInstanceSettings,
 } from '../analytics-settings-web/utils/analytics-settings';
 import {blogsPagesTest} from '../blogs-web/fixtures/blogsPagesTest';
+import {contentDashboardPagesTest} from '../content-dashboard-web/fixtures/contentDashboardPagesTest';
 import {journalPagesTest} from '../journal-web/fixtures/journalPagesTest';
 import {JournalPage} from '../journal-web/pages/JournalPage';
 import {createDataSource} from '../osb-faro-web/utils/data-source';
 import {acceptsCookiesBanner} from '../osb-faro-web/utils/portal';
-import {contentDashboardPagesTest} from './fixtures/contentDashboardPagesTest';
 
 async function connectToAnalyticsCloudWithNoSiteSynced(page: Page) {
 	await createDataSource(page);
