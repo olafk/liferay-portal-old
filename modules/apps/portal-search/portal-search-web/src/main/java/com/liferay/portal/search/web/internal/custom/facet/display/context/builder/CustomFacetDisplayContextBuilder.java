@@ -342,7 +342,7 @@ public class CustomFacetDisplayContextBuilder {
 		JSONArray rangesJSONArray = _getRangesJSONArray();
 
 		if (rangesJSONArray == null) {
-			return null;
+			return Collections.emptyList();
 		}
 
 		List<BucketDisplayContext> bucketDisplayContexts = new ArrayList<>();
@@ -466,7 +466,7 @@ public class CustomFacetDisplayContextBuilder {
 	}
 
 	private TermCollector _getCustomRangeTermCollector(boolean selected) {
-		if (!selected) {
+		if ((_facet == null) || !selected) {
 			return null;
 		}
 
