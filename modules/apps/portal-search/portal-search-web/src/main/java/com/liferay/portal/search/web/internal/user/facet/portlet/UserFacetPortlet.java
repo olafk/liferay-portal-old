@@ -103,8 +103,6 @@ public class UserFacetPortlet extends MVCPortlet {
 		userSearchFacetDisplayContextBuilder.setFacet(
 			portletSharedSearchResponse.getFacet(
 				_getAggregationName(renderRequest)));
-		userSearchFacetDisplayContextBuilder.setLocale(
-			_getLocale(portletSharedSearchResponse, renderRequest));
 
 		UserFacetPortletPreferences userFacetPortletPreferences =
 			new UserFacetPortletPreferencesImpl(
@@ -115,6 +113,8 @@ public class UserFacetPortlet extends MVCPortlet {
 			userFacetPortletPreferences.isFrequenciesVisible());
 		userSearchFacetDisplayContextBuilder.setFrequencyThreshold(
 			userFacetPortletPreferences.getFrequencyThreshold());
+		userSearchFacetDisplayContextBuilder.setLocale(
+			_getLocale(portletSharedSearchResponse, renderRequest));
 		userSearchFacetDisplayContextBuilder.setMaxTerms(
 			userFacetPortletPreferences.getMaxTerms());
 		userSearchFacetDisplayContextBuilder.setOrder(

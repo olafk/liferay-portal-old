@@ -55,11 +55,11 @@ public class AssetTagsSearchFacetDisplayContextTest
 					getRenderRequest());
 
 		assetTagsSearchFacetDisplayContextBuilder.setDisplayStyle("cloud");
-		assetTagsSearchFacetDisplayContextBuilder.setLocale(
-			LocaleUtil.getDefault());
 		assetTagsSearchFacetDisplayContextBuilder.setFacet(facet);
 		assetTagsSearchFacetDisplayContextBuilder.setFrequenciesVisible(true);
 		assetTagsSearchFacetDisplayContextBuilder.setFrequencyThreshold(0);
+		assetTagsSearchFacetDisplayContextBuilder.setLocale(
+			LocaleUtil.getDefault());
 		assetTagsSearchFacetDisplayContextBuilder.setMaxTerms(0);
 		assetTagsSearchFacetDisplayContextBuilder.setOrder(order);
 		assetTagsSearchFacetDisplayContextBuilder.setParameterName(
