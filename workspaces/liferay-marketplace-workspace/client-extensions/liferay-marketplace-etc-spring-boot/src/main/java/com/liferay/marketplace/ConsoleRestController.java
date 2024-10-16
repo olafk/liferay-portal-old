@@ -89,7 +89,7 @@ public class ConsoleRestController extends BaseRestController {
 			_getCloudProvisioningJSONObject(
 				cloudProvisioningJSONArray, jsonObject.getLong("orderItemId"));
 
-		_verifyAvailability(cloudProvisioningJSONObject);
+		_checkAvailability(cloudProvisioningJSONObject);
 
 		String temporaryDeploymentId = _createTemporaryDeployment(
 			cloudProvisioningJSONArray, cloudProvisioningJSONObject, order,
@@ -241,7 +241,7 @@ public class ConsoleRestController extends BaseRestController {
 		return new JSONObject();
 	}
 
-	private void _verifyAvailability(JSONObject jsonObject) throws Exception {
+	private void _checkAvailability(JSONObject jsonObject) throws Exception {
 		if (jsonObject.getLong("shippedQuantity") >= jsonObject.getLong(
 				"quantity")) {
 
