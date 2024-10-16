@@ -125,14 +125,14 @@ public class CartDTOConverter implements DTOConverter<CommerceOrder, Cart> {
 							friendlyURLSeparatorProvider =
 								_friendlyURLSeparatorProviderSnapshot.get();
 
-						if (friendlyURLSeparatorProvider != null) {
-							return friendlyURLSeparatorProvider.
-								getFriendlyURLSeparator(
-									commerceOrder.getCompanyId(),
-									CommerceOrder.class.getName());
+						if (friendlyURLSeparatorProvider == null) {
+							return null;
 						}
 
-						return null;
+						return friendlyURLSeparatorProvider.
+							getFriendlyURLSeparator(
+								commerceOrder.getCompanyId(),
+								CommerceOrder.class.getName());
 					});
 				setId(commerceOrder::getCommerceOrderId);
 				setLastPriceUpdateDate(commerceOrder::getLastPriceUpdateDate);

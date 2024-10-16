@@ -102,20 +102,24 @@ public class PlacedOrderDTOConverter
 					commerceOrder::getExternalReferenceCode);
 				setFriendlyURLSeparator(
 					() -> {
-						if (FeatureFlagManagerUtil.isEnabled("COMMERCE-9410")) {
-							FriendlyURLSeparatorProvider
-								friendlyURLSeparatorProvider =
-									_friendlyURLSeparatorProvider.get();
+						if (!FeatureFlagManagerUtil.isEnabled(
+								"COMMERCE-9410")) {
 
-							if (friendlyURLSeparatorProvider != null) {
-								return friendlyURLSeparatorProvider.
-									getFriendlyURLSeparator(
-										commerceOrder.getCompanyId(),
-										CommerceOrder.class.getName());
-							}
+							return null;
 						}
 
-						return null;
+						FriendlyURLSeparatorProvider
+							friendlyURLSeparatorProvider =
+								_friendlyURLSeparatorProvider.get();
+
+						if (friendlyURLSeparatorProvider == null) {
+							return null;
+						}
+
+						return friendlyURLSeparatorProvider.
+							getFriendlyURLSeparator(
+								commerceOrder.getCompanyId(),
+								CommerceOrder.class.getName());
 					});
 				setId(commerceOrder::getCommerceOrderId);
 				setLastPriceUpdateDate(commerceOrder::getLastPriceUpdateDate);
