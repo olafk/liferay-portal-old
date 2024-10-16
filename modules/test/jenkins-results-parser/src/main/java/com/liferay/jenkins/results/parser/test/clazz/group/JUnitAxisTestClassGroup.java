@@ -25,16 +25,16 @@ public class JUnitAxisTestClassGroup extends AxisTestClassGroup {
 
 		_averageTotalTestTaskDuration = 0L;
 
-		Set<String> testTaskDurations = new HashSet<>();
+		Set<String> testTaskNames = new HashSet<>();
 
 		for (TestClass testClass : getTestClasses()) {
 			String testTaskName = testClass.getTestTaskName();
 
-			if (testTaskDurations.contains(testTaskName)) {
+			if (testTaskNames.contains(testTaskName)) {
 				continue;
 			}
 
-			testTaskDurations.add(testTaskName);
+			testTaskNames.add(testTaskName);
 
 			_averageTotalTestTaskDuration +=
 				testClass.getAverageTestTaskDuration();
