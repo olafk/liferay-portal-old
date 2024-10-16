@@ -38,7 +38,7 @@ renderResponse.setTitle(editClientExtensionEntryDisplayContext.getTitle());
 	</liferay-ui:error>
 
 	<liferay-frontend:edit-form-body>
-		<h3 class="mb-3"><%= editClientExtensionEntryDisplayContext.getTitle() %></h3>
+		<h3 class="mb-3"><%= HtmlUtil.escape(editClientExtensionEntryDisplayContext.getTitle()) %></h3>
 
 		<p class="text-secondary"><%= editClientExtensionEntryDisplayContext.getHelpLabel() %>
 			<liferay-learn:message
