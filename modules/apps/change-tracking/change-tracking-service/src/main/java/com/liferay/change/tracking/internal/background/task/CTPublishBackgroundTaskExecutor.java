@@ -138,10 +138,10 @@ public class CTPublishBackgroundTaskExecutor
 			}
 		}
 
+		Map<Long, CTServicePublisher<?>> ctServicePublishers = new HashMap<>();
+
 		List<CTEntry> ctEntries = _ctEntryLocalService.getCTCollectionCTEntries(
 			ctCollectionId);
-
-		Map<Long, CTServicePublisher<?>> ctServicePublishers = new HashMap<>();
 
 		for (CTEntry ctEntry : ctEntries) {
 			CTServicePublisher<?> ctServicePublisher =
