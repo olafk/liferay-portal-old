@@ -123,7 +123,7 @@ public class CartDTOConverter implements DTOConverter<CommerceOrder, Cart> {
 
 						FriendlyURLSeparatorProvider
 							friendlyURLSeparatorProvider =
-								_friendlyURLSeparatorProvider.get();
+								_friendlyURLSeparatorProviderSnapshot.get();
 
 						if (friendlyURLSeparatorProvider != null) {
 							return friendlyURLSeparatorProvider.
@@ -723,7 +723,7 @@ public class CartDTOConverter implements DTOConverter<CommerceOrder, Cart> {
 	}
 
 	private static final Snapshot<FriendlyURLSeparatorProvider>
-		_friendlyURLSeparatorProvider = new Snapshot<>(
+		_friendlyURLSeparatorProviderSnapshot = new Snapshot<>(
 			CartDTOConverter.class, FriendlyURLSeparatorProvider.class);
 
 	@Reference
