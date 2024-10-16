@@ -72,17 +72,17 @@ public class SemVerModulesBatchTestClassGroup
 
 	@Override
 	protected void setTestClasses() throws IOException {
-		PortalGitWorkingDirectory portalGitWorkingDirectory =
-			getPortalGitWorkingDirectory();
-
-		File portalModulesBaseDir = new File(
-			portalGitWorkingDirectory.getWorkingDirectory(), "modules");
+		Set<File> moduleDirs = new HashSet<>();
 
 		List<PathMatcher> excludesPathMatchers = getPathMatchers(
 			getExcludesJobProperties());
 		List<PathMatcher> includesPathMatchers = getIncludesPathMatchers();
 
-		Set<File> moduleDirs = new HashSet<>();
+		PortalGitWorkingDirectory portalGitWorkingDirectory =
+			getPortalGitWorkingDirectory();
+
+		File portalModulesBaseDir = new File(
+			portalGitWorkingDirectory.getWorkingDirectory(), "modules");
 
 		if (testRelevantChanges &&
 			!(includeStableTestSuite && isStableTestSuiteBatch())) {
