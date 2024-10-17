@@ -103,6 +103,39 @@ public class AddFragmentEntryLinkMVCActionCommandTest {
 		}
 	}
 
+	private FragmentEntry _getFragmentEntry(long groupId) throws Exception {
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext();
+
+		FragmentCollection fragmentCollection =
+			_fragmentCollectionLocalService.addFragmentCollection(
+				null, TestPropsValues.getUserId(), groupId,
+				StringUtil.randomString(), StringPool.BLANK, serviceContext);
+
+		return _fragmentEntryLocalService.addFragmentEntry(
+			null, TestPropsValues.getUserId(), groupId,
+			fragmentCollection.getFragmentCollectionId(),
+			StringUtil.randomString(), StringUtil.randomString(),
+			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
+			RandomTestUtil.randomString(), false, "{fieldSets: []}", null, 0,
+			false, FragmentConstants.TYPE_COMPONENT, null,
+			WorkflowConstants.STATUS_APPROVED, serviceContext);
+	}
+
+	private MockLiferayPortletActionRequest _getMockLiferayPortletActionRequest(
+			long groupId)
+		throws Exception {
+
+		MockLiferayPortletActionRequest mockLiferayPortletActionRequest =
+			ContentLayoutTestUtil.getMockLiferayPortletActionRequest(
+				_company, _group, _layout);
+
+		mockLiferayPortletActionRequest.addParameter(
+			"groupId", String.valueOf(groupId));
+
+		return mockLiferayPortletActionRequest;
+	}
+
 	private void _testAddFragmentEntryLink(FragmentEntry fragmentEntry)
 		throws Exception {
 
@@ -155,39 +188,6 @@ public class AddFragmentEntryLinkMVCActionCommandTest {
 			actualFragmentEntryLinks.toString(),
 			originalFragmentEntryLinks.size() + 1,
 			actualFragmentEntryLinks.size());
-	}
-
-	private FragmentEntry _getFragmentEntry(long groupId) throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
-		FragmentCollection fragmentCollection =
-			_fragmentCollectionLocalService.addFragmentCollection(
-				null, TestPropsValues.getUserId(), groupId,
-				StringUtil.randomString(), StringPool.BLANK, serviceContext);
-
-		return _fragmentEntryLocalService.addFragmentEntry(
-			null, TestPropsValues.getUserId(), groupId,
-			fragmentCollection.getFragmentCollectionId(),
-			StringUtil.randomString(), StringUtil.randomString(),
-			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
-			RandomTestUtil.randomString(), false, "{fieldSets: []}", null, 0,
-			false, FragmentConstants.TYPE_COMPONENT, null,
-			WorkflowConstants.STATUS_APPROVED, serviceContext);
-	}
-
-	private MockLiferayPortletActionRequest _getMockLiferayPortletActionRequest(
-			long groupId)
-		throws Exception {
-
-		MockLiferayPortletActionRequest mockLiferayPortletActionRequest =
-			ContentLayoutTestUtil.getMockLiferayPortletActionRequest(
-				_company, _group, _layout);
-
-		mockLiferayPortletActionRequest.addParameter(
-			"groupId", String.valueOf(groupId));
-
-		return mockLiferayPortletActionRequest;
 	}
 
 	private Company _company;
