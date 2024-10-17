@@ -531,46 +531,50 @@ public class LayoutStructure {
 				FormStyledLayoutStructureItem formStyledLayoutStructureItem =
 					(FormStyledLayoutStructureItem)parentLayoutStructureItem;
 
-				if (Objects.equals(
+				if (!Objects.equals(
 						formStyledLayoutStructureItem.getFormType(),
 						"multistep")) {
 
-					List<String> childrenItemIds =
-						parentLayoutStructureItem.getChildrenItemIds();
+					continue;
+				}
+
+				List<String> childrenItemIds =
+					parentLayoutStructureItem.getChildrenItemIds();
+
+				if (ListUtil.isEmpty(childrenItemIds)) {
+					throw new UnsupportedOperationException(
+						"Unable to copy items because form step does not " +
+							"have a form step container");
+				}
+
+				for (String childItemId : childrenItemIds) {
+					LayoutStructureItem layoutStructureItem =
+						_layoutStructureItems.get(childItemId);
+
+					if (!(layoutStructureItem instanceof
+							FormStepContainerStyledLayoutStructureItem)) {
+
+						continue;
+					}
+
+					FormStepContainerStyledLayoutStructureItem
+						formStepContainerStyledLayoutStructureItem =
+							(FormStepContainerStyledLayoutStructureItem)
+								layoutStructureItem;
+
+					childrenItemIds =
+						formStepContainerStyledLayoutStructureItem.
+							getChildrenItemIds();
 
 					if (ListUtil.isEmpty(childrenItemIds)) {
 						throw new UnsupportedOperationException(
 							"Unable to copy items because form step does not " +
-								"have a form step container");
+								"have any step items");
 					}
 
-					for (String childItemId : childrenItemIds) {
-						LayoutStructureItem layoutStructureItem =
-							_layoutStructureItems.get(childItemId);
+					currentParentItemId = childrenItemIds.get(0);
 
-						if (layoutStructureItem instanceof
-								FormStepContainerStyledLayoutStructureItem) {
-
-							FormStepContainerStyledLayoutStructureItem
-								formStepContainerStyledLayoutStructureItem =
-									(FormStepContainerStyledLayoutStructureItem)
-										layoutStructureItem;
-
-							childrenItemIds =
-								formStepContainerStyledLayoutStructureItem.
-									getChildrenItemIds();
-
-							if (ListUtil.isEmpty(childrenItemIds)) {
-								throw new UnsupportedOperationException(
-									"Unable to copy items because form step " +
-										"does not have any step items");
-							}
-
-							currentParentItemId = childrenItemIds.get(0);
-
-							break;
-						}
-					}
+					break;
 				}
 
 				position = 0;
