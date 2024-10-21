@@ -63,12 +63,11 @@ public class TemplateContextHelperTest {
 			new MockHttpServletRequest();
 
 		mockHttpServletRequest.setAttribute(
+			WebKeys.THEME_DISPLAY, new ThemeDisplay());
+		mockHttpServletRequest.setAttribute(
 			"com.liferay.portal.security.content.security.policy.internal." +
 				"ContentSecurityPolicyNonceManager#NONCE",
 			"TEST_NONCE");
-
-		mockHttpServletRequest.setAttribute(
-			WebKeys.THEME_DISPLAY, new ThemeDisplay());
 
 		templateContextHelper.prepare(contextObjects, mockHttpServletRequest);
 
