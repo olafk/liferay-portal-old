@@ -148,16 +148,6 @@ public class TermResourceTest extends BaseTermResourceTestCase {
 					Collections.singletonMap(LocaleUtil.US, shippingOptionName),
 					RandomTestUtil.nextDouble());
 
-		_commercePaymentMethodGroupRel =
-			_commercePaymentMethodGroupRelLocalService.
-				addCommercePaymentMethodGroupRel(
-					_user.getUserId(), _commerceChannel.getGroupId(),
-					Collections.singletonMap(
-						LocaleUtil.US, RandomTestUtil.randomString()),
-					Collections.singletonMap(
-						LocaleUtil.US, RandomTestUtil.randomString()),
-					true, null, "money-order", 1, null);
-
 		_commerceOrder = _commerceOrderLocalService.addCommerceOrder(
 			_user.getUserId(), _commerceChannel.getGroupId(),
 			_address.getAddressId(), _accountEntry.getAccountEntryId(),
@@ -177,6 +167,16 @@ public class TermResourceTest extends BaseTermResourceTestCase {
 
 		_commerceOrder = _commerceOrderLocalService.updateCommerceOrder(
 			_commerceOrder);
+
+		_commercePaymentMethodGroupRel =
+			_commercePaymentMethodGroupRelLocalService.
+				addCommercePaymentMethodGroupRel(
+					_user.getUserId(), _commerceChannel.getGroupId(),
+					Collections.singletonMap(
+						LocaleUtil.US, RandomTestUtil.randomString()),
+					Collections.singletonMap(
+						LocaleUtil.US, RandomTestUtil.randomString()),
+					true, null, "money-order", 1, null);
 	}
 
 	@Ignore
