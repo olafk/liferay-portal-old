@@ -671,10 +671,10 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 				PortalInstances.setCompanyInDeletionProcessWithSafeCloseable(
 					companyId)) {
 
+			preunregisterCompany(company);
+
 			_clearCompanyCache(companyId, true);
 			_clearVirtualHostCache(companyId);
-
-			preunregisterCompany(company);
 
 			TransactionCommitCallbackUtil.registerCallback(
 				() -> {
