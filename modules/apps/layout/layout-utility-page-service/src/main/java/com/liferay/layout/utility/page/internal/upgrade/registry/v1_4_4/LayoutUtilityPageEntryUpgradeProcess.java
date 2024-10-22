@@ -81,6 +81,7 @@ public class LayoutUtilityPageEntryUpgradeProcess extends UpgradeProcess {
 				}
 
 				preparedStatement1.executeBatch();
+
 				preparedStatement2.executeBatch();
 			}
 		}

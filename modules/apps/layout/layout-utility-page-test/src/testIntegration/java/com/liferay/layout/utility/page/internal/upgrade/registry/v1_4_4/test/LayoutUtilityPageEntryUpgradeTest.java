@@ -84,8 +84,8 @@ public class LayoutUtilityPageEntryUpgradeTest {
 		Layout layout = _layoutLocalService.fetchLayout(
 			layoutUtilityPageEntry.getPlid());
 
-		_setPrivateLayoutTypeContentLayout(layout);
-		_setPrivateLayoutTypeContentLayout(layout.fetchDraftLayout());
+		_updateLayout(layout);
+		_updateLayout(layout.fetchDraftLayout());
 
 		Layout sameLayoutIdLayout = _addSameLayoutIdLayout(layout);
 
@@ -141,7 +141,7 @@ public class LayoutUtilityPageEntryUpgradeTest {
 		_multiVMPool.clear();
 	}
 
-	private void _setPrivateLayoutTypeContentLayout(Layout layout) {
+	private void _updateLayout(Layout layout) {
 		layout.setPrivateLayout(true);
 		layout.setType(LayoutConstants.TYPE_CONTENT);
 
@@ -164,7 +164,6 @@ public class LayoutUtilityPageEntryUpgradeTest {
 
 		Assert.assertTrue(layout.isPrivateLayout());
 		Assert.assertEquals(LayoutConstants.TYPE_CONTENT, layout.getType());
-
 		Assert.assertTrue(
 			GetterUtil.getBoolean(
 				layout.getTypeSettingsProperty("privateLayout")));
