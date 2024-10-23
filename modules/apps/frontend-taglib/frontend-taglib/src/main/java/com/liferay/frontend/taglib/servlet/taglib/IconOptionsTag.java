@@ -102,56 +102,6 @@ public class IconOptionsTag extends IncludeTag {
 			_getPortletConfigurationIcons());
 	}
 
-	private UnsafeConsumer<DropdownItem, Exception> _getUnsafeConsumer(
-		PortletConfigurationIcon portletConfigurationIcon) {
-
-		return dropdownItem -> {
-			String url = portletConfigurationIcon.getURL(
-				_getPortletRequest(), _getPortletResponse());
-
-			if (portletConfigurationIcon.isUseDialog()) {
-				dropdownItem.setData(
-					HashMapBuilder.<String, Object>put(
-						"action", "openDialog"
-					).put(
-						"portletId", _getId()
-					).put(
-						"senna-off", "true"
-					).put(
-						"title",
-						portletConfigurationIcon.getMessage(
-							_getPortletRequest())
-					).put(
-						"url", url
-					).build());
-			}
-			else if (Validator.isNotNull(url)) {
-				if (_isForcePush(portletConfigurationIcon.getMethod(), url)) {
-					dropdownItem.setData(
-						HashMapBuilder.<String, Object>put(
-							"action", "send"
-						).put(
-							"senna-off", "true"
-						).put(
-							"url", url
-						).build());
-				}
-				else {
-					dropdownItem.setHref(url);
-				}
-			}
-			else {
-				dropdownItem.setData(
-					portletConfigurationIcon.getContext(_getPortletRequest()));
-			}
-
-			dropdownItem.setIcon(portletConfigurationIcon.getIconCssClass());
-			dropdownItem.setLabel(
-				portletConfigurationIcon.getMessage(_getPortletRequest()));
-			dropdownItem.setTarget(portletConfigurationIcon.getTarget());
-		};
-	}
-
 	private List<DropdownItem> _getDropdownItems() {
 		return new DropdownItemList() {
 			{
@@ -258,6 +208,56 @@ public class IconOptionsTag extends IncludeTag {
 
 		return (PortletResponse)httpServletRequest.getAttribute(
 			JavaConstants.JAVAX_PORTLET_RESPONSE);
+	}
+
+	private UnsafeConsumer<DropdownItem, Exception> _getUnsafeConsumer(
+		PortletConfigurationIcon portletConfigurationIcon) {
+
+		return dropdownItem -> {
+			String url = portletConfigurationIcon.getURL(
+				_getPortletRequest(), _getPortletResponse());
+
+			if (portletConfigurationIcon.isUseDialog()) {
+				dropdownItem.setData(
+					HashMapBuilder.<String, Object>put(
+						"action", "openDialog"
+					).put(
+						"portletId", _getId()
+					).put(
+						"senna-off", "true"
+					).put(
+						"title",
+						portletConfigurationIcon.getMessage(
+							_getPortletRequest())
+					).put(
+						"url", url
+					).build());
+			}
+			else if (Validator.isNotNull(url)) {
+				if (_isForcePush(portletConfigurationIcon.getMethod(), url)) {
+					dropdownItem.setData(
+						HashMapBuilder.<String, Object>put(
+							"action", "send"
+						).put(
+							"senna-off", "true"
+						).put(
+							"url", url
+						).build());
+				}
+				else {
+					dropdownItem.setHref(url);
+				}
+			}
+			else {
+				dropdownItem.setData(
+					portletConfigurationIcon.getContext(_getPortletRequest()));
+			}
+
+			dropdownItem.setIcon(portletConfigurationIcon.getIconCssClass());
+			dropdownItem.setLabel(
+				portletConfigurationIcon.getMessage(_getPortletRequest()));
+			dropdownItem.setTarget(portletConfigurationIcon.getTarget());
+		};
 	}
 
 	private boolean _isForcePush(String method, String url) {
