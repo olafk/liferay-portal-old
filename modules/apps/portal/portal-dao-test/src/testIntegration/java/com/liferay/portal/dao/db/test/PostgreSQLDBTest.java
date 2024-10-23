@@ -40,13 +40,13 @@ public class PostgreSQLDBTest extends DBTest {
 		List<IndexMetadata> indexMetadatas = db.getIndexMetadatas(
 			connection, TABLE_NAME_1, null, false);
 
-		_assertIndex(indexMetadatas);
+		_assertIndexMetadatas(indexMetadatas);
 
 		db.dropIndexes(connection, TABLE_NAME_1, null);
 
 		db.addIndexes(connection, indexMetadatas);
 
-		_assertIndex(
+		_assertIndexMetadatas(
 			db.getIndexMetadatas(connection, TABLE_NAME_1, null, false));
 
 		db.dropIndexes(connection, TABLE_NAME_1, null);
@@ -55,11 +55,11 @@ public class PostgreSQLDBTest extends DBTest {
 
 		db.runSQL(indexMetadata.getCreateSQL(null));
 
-		_assertIndex(
+		_assertIndexMetadatas(
 			db.getIndexMetadatas(connection, TABLE_NAME_1, null, false));
 	}
 
-	private void _assertIndex(List<IndexMetadata> indexMetadatas)
+	private void _assertIndexMetadatas(List<IndexMetadata> indexMetadatas)
 		throws Exception {
 
 		Assert.assertEquals(
