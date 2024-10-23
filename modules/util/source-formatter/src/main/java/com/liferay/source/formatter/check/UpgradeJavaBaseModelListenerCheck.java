@@ -169,7 +169,7 @@ public class UpgradeJavaBaseModelListenerCheck extends BaseUpgradeCheck {
 		Matcher matcher = _modelTypePattern.matcher(content);
 
 		if (!matcher.find()) {
-			throw new Exception("Cannot find model type");
+			throw new Exception("Unable to get model type");
 		}
 
 		return matcher.group(1);
