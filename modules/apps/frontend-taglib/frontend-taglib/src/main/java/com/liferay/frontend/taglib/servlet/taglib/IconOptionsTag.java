@@ -133,6 +133,31 @@ public class IconOptionsTag extends IncludeTag {
 		};
 	}
 
+	private String _getId() {
+		HttpServletRequest httpServletRequest = getRequest();
+
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)httpServletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
+		return portletDisplay.getId();
+	}
+
+	private List<PortletConfigurationIcon> _getPortletConfigurationIcons() {
+		if (_portletConfigurationIcons != null) {
+			return _portletConfigurationIcons;
+		}
+
+		_portletConfigurationIcons =
+			PortletConfigurationIconTracker.getPortletConfigurationIcons(
+				_getPortletId(), _getPortletRequest(),
+				PortletConfigurationIconComparator.INSTANCE);
+
+		return _portletConfigurationIcons;
+	}
+
 	private List<List<PortletConfigurationIcon>>
 		_getPortletConfigurationIconsList() {
 
@@ -157,31 +182,6 @@ public class IconOptionsTag extends IncludeTag {
 		}
 
 		return portletConfigurationIconsList;
-	}
-
-	private String _getId() {
-		HttpServletRequest httpServletRequest = getRequest();
-
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
-		return portletDisplay.getId();
-	}
-
-	private List<PortletConfigurationIcon> _getPortletConfigurationIcons() {
-		if (_portletConfigurationIcons != null) {
-			return _portletConfigurationIcons;
-		}
-
-		_portletConfigurationIcons =
-			PortletConfigurationIconTracker.getPortletConfigurationIcons(
-				_getPortletId(), _getPortletRequest(),
-				PortletConfigurationIconComparator.INSTANCE);
-
-		return _portletConfigurationIcons;
 	}
 
 	private String _getPortletId() {
