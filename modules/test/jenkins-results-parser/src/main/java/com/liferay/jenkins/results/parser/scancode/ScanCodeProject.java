@@ -105,12 +105,8 @@ public class ScanCodeProject {
 
 		if (!matcher.find()) {
 			throw new IllegalArgumentException(
-				"Invalid docker tag: " + dockerTag);
+				"Invalid Docker tag " + dockerTag);
 		}
-
-		String buildProfile = matcher.group("buildProfile");
-
-		String releaseVersion = matcher.group("releaseVersion");
 
 		JSONObject jsonObject = new JSONObject();
 
@@ -119,7 +115,10 @@ public class ScanCodeProject {
 		).put(
 			"input_urls", "docker://liferay/" + dockerTag
 		).put(
-			"labels", _getLabels("docker", buildProfile, releaseVersion)
+			"labels",
+			_getLabels(
+				"docker", matcher.group("buildProfile"),
+				matcher.group("releaseVersion"))
 		).put(
 			"name",
 			JenkinsResultsParserUtil.combine(
