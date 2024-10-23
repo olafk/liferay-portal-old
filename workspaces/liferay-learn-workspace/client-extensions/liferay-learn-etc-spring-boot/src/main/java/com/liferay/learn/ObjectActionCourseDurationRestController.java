@@ -36,6 +36,50 @@ public class ObjectActionCourseDurationRestController
 	public ResponseEntity<String> post(
 		@AuthenticationPrincipal Jwt jwt, @RequestBody String json) {
 
+		JSONObject responseJSONObject = new JSONObject(
+			get(
+				"Bearer " + jwt.getTokenValue(),
+				StringBundler.concat(
+					"/o/c/courses/scopes/", _siteGroupId,
+					"?fields=id,module.quizDurationMinutes,module.lesson",
+					"DurationMinutes&nestedFields=module&filter=module/id eq '",
+					_getModuleId(json), "'")));
+
+		JSONArray itemsJSONArray = responseJSONObject.getJSONArray("items");
+
+		JSONObject itemJSONObject = itemsJSONArray.getJSONObject(0);
+
+		patch(
+			"Bearer " + jwt.getTokenValue(),
+			new JSONObject(
+			).put(
+				"durationMinutes",
+				_getDurationMinutes(itemJSONObject.getJSONArray("module"))
+			).toString(),
+			"/o/c/courses/" + itemJSONObject.getLong("id"));
+
+		if (_log.isInfoEnabled()) {
+			_log.info("Updated course " + itemJSONObject.getLong("id"));
+		}
+
+		return new ResponseEntity<>(json, HttpStatus.OK);
+	}
+
+	private long _getDurationMinutes(JSONArray moduleJSONArray) {
+		long durationMinutes = 0;
+
+		for (int i = 0; i < moduleJSONArray.length(); i++) {
+			JSONObject moduleJSONObject = moduleJSONArray.getJSONObject(i);
+
+			durationMinutes += moduleJSONObject.getLong(
+				"lessonDurationMinutes");
+			durationMinutes += moduleJSONObject.getLong("quizDurationMinutes");
+		}
+
+		return durationMinutes;
+	}
+
+	private long _getModuleId(String json) {
 		JSONObject jsonObject = new JSONObject(json);
 
 		JSONObject objectEntryJSONObject = jsonObject.getJSONObject(
@@ -44,54 +88,11 @@ public class ObjectActionCourseDurationRestController
 		JSONObject valuesJSONObject = objectEntryJSONObject.getJSONObject(
 			"values");
 
-		long moduleId = 0;
-
 		if (valuesJSONObject.has("r_lesson_c_moduleId")) {
-			moduleId = valuesJSONObject.getLong("r_lesson_c_moduleId");
-		}
-		else {
-			moduleId = valuesJSONObject.getLong("r_quiz_c_moduleId");
+			return valuesJSONObject.getLong("r_lesson_c_moduleId");
 		}
 
-		JSONObject responseJSONObject = new JSONObject(
-			get(
-				"Bearer " + jwt.getTokenValue(),
-				StringBundler.concat(
-					"/o/c/courses/scopes/", _siteGroupId,
-					"?fields=id,module.quizDurationMinutes,module.lesson",
-					"DurationMinutes&nestedFields=module&filter=module/id eq '",
-					moduleId, "'")));
-
-		JSONArray itemsJSONArray = responseJSONObject.getJSONArray("items");
-
-		JSONObject firstItemJSONObject = itemsJSONArray.getJSONObject(0);
-
-		JSONArray moduleJSONArray = firstItemJSONObject.getJSONArray("module");
-
-		long courseDuration = 0;
-
-		for (int i = 0; i < moduleJSONArray.length(); i++) {
-			JSONObject moduleJSONObject = moduleJSONArray.getJSONObject(i);
-
-			courseDuration += moduleJSONObject.getLong("lessonDurationMinutes");
-			courseDuration += moduleJSONObject.getLong("quizDurationMinutes");
-		}
-
-		JSONObject payloadJSONObject = new JSONObject();
-
-		payloadJSONObject.put("durationMinutes", courseDuration);
-
-		patch(
-			"Bearer " + jwt.getTokenValue(), payloadJSONObject.toString(),
-			"/o/c/courses/" + firstItemJSONObject.getLong("id"));
-
-		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Updated duration for course: " +
-					firstItemJSONObject.getLong("id"));
-		}
-
-		return new ResponseEntity<>(json, HttpStatus.OK);
+		return valuesJSONObject.getLong("r_quiz_c_moduleId");
 	}
 
 	private static final Log _log = LogFactory.getLog(
