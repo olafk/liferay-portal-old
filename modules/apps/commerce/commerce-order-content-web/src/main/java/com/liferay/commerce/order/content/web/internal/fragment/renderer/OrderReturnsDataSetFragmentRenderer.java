@@ -170,13 +170,13 @@ public class OrderReturnsDataSetFragmentRenderer implements FragmentRenderer {
 	}
 
 	private String _getAPIURL(long commerceOrderId) {
-		String encodedFilter = URLCodec.encodeURL(
+		String filterString = URLCodec.encodeURL(
 			StringBundler.concat(
 				"'r_commerceOrderToCommerceReturns_commerceOrderId' eq '",
 				commerceOrderId, StringPool.APOSTROPHE),
 			true);
 
-		return "/o/commerce-returns?filter=" + encodedFilter;
+		return "/o/commerce-returns?filter=" + filterString;
 	}
 
 	private String _getConfigurationValue(
