@@ -61,19 +61,19 @@ public class SearchPortletUpgradeProcessTest {
 	public void testUpgrade() throws Exception {
 		String sql1 = StringBundler.concat(
 			"select count(*) from Layout where typeSettings like '%",
-			_DATE_FACET_PORTLET_KEY, "%'");
+			_PORTLET_ID, "%'");
 		String sql2 = StringBundler.concat(
 			"select count(*) from Portlet where portletId = '",
-			_DATE_FACET_PORTLET_KEY, "'");
+			_PORTLET_ID, "'");
 		String sql3 = StringBundler.concat(
 			"select count(*) from PortletPreferences where portletId like '",
-			_DATE_FACET_PORTLET_KEY, "%'");
+			_PORTLET_ID, "%'");
 		String sql4 = StringBundler.concat(
 			"select count(*) from ResourceAction where name = '",
-			_DATE_FACET_PORTLET_KEY, "'");
+			_PORTLET_ID, "'");
 		String sql5 = StringBundler.concat(
 			"select count(*) from ResourcePermission where name = '",
-			_DATE_FACET_PORTLET_KEY, "'");
+			_PORTLET_ID, "'");
 
 		Assert.assertEquals(sql1, 3, _count(sql1));
 		Assert.assertEquals(sql2, 1, _count(sql2));
@@ -96,7 +96,7 @@ public class SearchPortletUpgradeProcessTest {
 			UnicodePropertiesBuilder.put(
 				LayoutTypePortletConstants.COLUMN_PREFIX + 1,
 				StringBundler.concat(
-					_DATE_FACET_PORTLET_KEY, "_INSTANCE_",
+					_PORTLET_ID, "_INSTANCE_",
 					RandomTestUtil.randomString())
 			).buildString());
 
@@ -105,7 +105,7 @@ public class SearchPortletUpgradeProcessTest {
 			UnicodePropertiesBuilder.put(
 				LayoutTypePortletConstants.COLUMN_PREFIX + 1,
 				StringBundler.concat(
-					RandomTestUtil.randomString(), ",", _DATE_FACET_PORTLET_KEY,
+					RandomTestUtil.randomString(), ",", _PORTLET_ID,
 					"_INSTANCE_", RandomTestUtil.randomString())
 			).buildString());
 
@@ -114,7 +114,7 @@ public class SearchPortletUpgradeProcessTest {
 			UnicodePropertiesBuilder.put(
 				LayoutTypePortletConstants.COLUMN_PREFIX + 2,
 				StringBundler.concat(
-					RandomTestUtil.randomString(), ",", _DATE_FACET_PORTLET_KEY,
+					RandomTestUtil.randomString(), ",", _PORTLET_ID,
 					"_INSTANCE_", RandomTestUtil.randomString(), ",",
 					RandomTestUtil.randomString())
 			).buildString());
@@ -138,24 +138,24 @@ public class SearchPortletUpgradeProcessTest {
 		_db.runSQL(
 			StringBundler.concat(
 				"insert into Portlet (id_, portletId) values (",
-				RandomTestUtil.randomInt(), ", '", _DATE_FACET_PORTLET_KEY,
+				RandomTestUtil.randomInt(), ", '", _PORTLET_ID,
 				"')"));
 		_db.runSQL(
 			StringBundler.concat(
 				"insert into PortletPreferences (ctCollectionId, portletId, ",
 				"portletPreferencesId) values (", RandomTestUtil.randomInt(),
-				", '", _DATE_FACET_PORTLET_KEY, "', ",
+				", '", _PORTLET_ID, "', ",
 				RandomTestUtil.randomInt(), ")"));
 		_db.runSQL(
 			StringBundler.concat(
 				"insert into ResourceAction (",
-				"name, resourceActionId) values ('", _DATE_FACET_PORTLET_KEY,
+				"name, resourceActionId) values ('", _PORTLET_ID,
 				"', ", RandomTestUtil.randomInt(), ")"));
 		_db.runSQL(
 			StringBundler.concat(
 				"insert into ResourcePermission (",
 				"ctCollectionId, name, resourcePermissionId) values (",
-				RandomTestUtil.randomInt(), ", '", _DATE_FACET_PORTLET_KEY,
+				RandomTestUtil.randomInt(), ", '", _PORTLET_ID,
 				"', ", RandomTestUtil.randomInt(), ")"));
 	}
 
@@ -185,7 +185,7 @@ public class SearchPortletUpgradeProcessTest {
 		"com.liferay.portal.search.web.internal.upgrade.v2_0_2." +
 			"SearchPortletUpgradeProcess";
 
-	private static final String _DATE_FACET_PORTLET_KEY =
+	private static final String _PORTLET_ID =
 		"com_liferay_portal_search_web_date_facet_portlet_DateFacetPortlet";
 
 	private DB _db;
