@@ -183,12 +183,12 @@ renderResponse.setTitle(workflowTaskDisplayContext.getHeaderTitle(workflowTask))
 									<c:if test="<%= !workflowTaskDisplayContext.isReadOnly() %>">
 
 										<%
-										String viewTaskContentActionLabel = LanguageUtil.get(request, "view[action]");
+										String viewTaskContentAriaLabel = LanguageUtil.get(request, "view[action]");
 										%>
 
-										<span class="lfr-portal-tooltip" title="<%= viewTaskContentActionLabel %>">
+										<span class="lfr-portal-tooltip" title="<%= viewTaskContentAriaLabel %>">
 											<clay:link
-												aria-label="<%= viewTaskContentActionLabel %>"
+												aria-label="<%= viewTaskContentAriaLabel %>"
 												cssClass="btn btn-monospaced btn-outline-secondary lfr-icon-item taglib-icon"
 												href="<%= assetRenderer.isPreviewInContext() ? workflowHandler.getURLViewInContext(assetRenderer.getClassPK(), liferayPortletRequest, liferayPortletResponse, null) : viewFullContentURL.toString() %>"
 												icon="view"
@@ -201,12 +201,12 @@ renderResponse.setTitle(workflowTaskDisplayContext.getHeaderTitle(workflowTask))
 										<c:if test="<%= workflowTaskDisplayContext.hasViewDiffsPortletURL(workflowTask) %>">
 
 											<%
-											String diffsTaskContentsActionLabel = LanguageUtil.get(request, "diffs");
+											String diffsTaskContentsAriaLabel = LanguageUtil.get(request, "diffs");
 											%>
 
-											<span class="lfr-portal-tooltip" title="<%= diffsTaskContentsActionLabel %>">
+											<span class="lfr-portal-tooltip" title="<%= diffsTaskContentsAriaLabel %>">
 												<clay:link
-													aria-label="<%= diffsTaskContentsActionLabel %>"
+													aria-label="<%= diffsTaskContentsAriaLabel %>"
 													cssClass="btn btn-monospaced btn-outline-secondary lfr-icon-item taglib-icon"
 													href="<%= workflowTaskDisplayContext.getTaglibViewDiffsURL(workflowTask) %>"
 													icon="paste"
@@ -225,12 +225,12 @@ renderResponse.setTitle(workflowTaskDisplayContext.getHeaderTitle(workflowTask))
 											</portlet:renderURL>
 
 											<%
-											String viewUsagesTaskContentActionLabel = LanguageUtil.get(request, "view-usages");
+											String viewUsagesTaskContentAriaLabel = LanguageUtil.get(request, "view-usages");
 											%>
 
-											<span class="lfr-portal-tooltip" title="<%= viewUsagesTaskContentActionLabel %>">
+											<span class="lfr-portal-tooltip" title="<%= viewUsagesTaskContentAriaLabel %>">
 												<clay:link
-													aria-label="<%= viewUsagesTaskContentActionLabel %>"
+													aria-label="<%= viewUsagesTaskContentAriaLabel %>"
 													cssClass="btn btn-monospaced btn-outline-secondary lfr-icon-item taglib-icon"
 													href="<%= viewLayoutClassedModelUsagesURL %>"
 													icon="list"
@@ -246,12 +246,12 @@ renderResponse.setTitle(workflowTaskDisplayContext.getHeaderTitle(workflowTask))
 										<c:when test="<%= assetRenderer.hasEditPermission(permissionChecker) && workflowTaskDisplayContext.isShowEditURL(workflowTask) %>">
 
 											<%
-											String editTaskContentActionLabel = LanguageUtil.get(request, "edit");
+											String editTaskContentAriaLabel = LanguageUtil.get(request, "edit");
 											%>
 
-											<span class="lfr-portal-tooltip" title="<%= editTaskContentActionLabel %>">
+											<span class="lfr-portal-tooltip" title="<%= editTaskContentAriaLabel %>">
 												<clay:link
-													aria-label="<%= editTaskContentActionLabel %>"
+													aria-label="<%= editTaskContentAriaLabel %>"
 													cssClass="btn btn-monospaced btn-outline-secondary lfr-icon-item taglib-icon"
 													href="<%= workflowTaskDisplayContext.getTaglibEditURL(workflowTask) %>"
 													icon="pencil"
