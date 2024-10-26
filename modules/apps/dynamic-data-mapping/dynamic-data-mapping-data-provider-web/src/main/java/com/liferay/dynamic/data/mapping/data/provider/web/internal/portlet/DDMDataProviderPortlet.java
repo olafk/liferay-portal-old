@@ -68,15 +68,6 @@ public class DDMDataProviderPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		DDMDataProviderDisplayContext ddmDataProviderDisplayContext =
-			new DDMDataProviderDisplayContext(
-				renderRequest, renderResponse, _ddmDataProviderInstanceService,
-				_ddmDataProviderRegistry, _ddmFormRenderer,
-				_jsonDDMFormValuesDeserializer, _userLocalService);
-
-		renderRequest.setAttribute(
-			WebKeys.PORTLET_DISPLAY_CONTEXT, ddmDataProviderDisplayContext);
-
 		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
 			renderRequest);
 
@@ -93,6 +84,15 @@ public class DDMDataProviderPortlet extends MVCPortlet {
 			httpServletRequest.setAttribute(
 				CTTimelineKeys.CLASS_PK, dataProviderInstanceId);
 		}
+
+		DDMDataProviderDisplayContext ddmDataProviderDisplayContext =
+			new DDMDataProviderDisplayContext(
+				renderRequest, renderResponse, _ddmDataProviderInstanceService,
+				_ddmDataProviderRegistry, _ddmFormRenderer,
+				_jsonDDMFormValuesDeserializer, _userLocalService);
+
+		renderRequest.setAttribute(
+			WebKeys.PORTLET_DISPLAY_CONTEXT, ddmDataProviderDisplayContext);
 
 		super.render(renderRequest, renderResponse);
 	}
