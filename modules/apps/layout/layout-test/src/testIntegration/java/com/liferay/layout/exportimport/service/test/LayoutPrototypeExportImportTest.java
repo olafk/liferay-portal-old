@@ -50,7 +50,7 @@ public class LayoutPrototypeExportImportTest extends BaseExportImportTestCase {
 	}
 
 	@Test
-	public void testExportImportLayoutPrototype() throws Exception {
+	public void testExportImport() throws Exception {
 		group = _company.getGroup();
 
 		importedGroup = _company.getGroup();
