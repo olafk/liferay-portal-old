@@ -20,8 +20,7 @@ import javax.servlet.jsp.tagext.BodyTag;
 /**
  * @author Iván Zaera Avellón
  */
-public class ContentSecurityPolicyTag
-	extends BaseBodyTagSupport implements BodyTag {
+public class CSPTag extends BaseBodyTagSupport implements BodyTag {
 
 	@Override
 	public int doEndTag() throws JspException {
