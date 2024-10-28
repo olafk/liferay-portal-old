@@ -17,7 +17,7 @@
 				},
 				{
 					"defaultValue": true,
-					"label": "show-steps-titles",
+					"label": "show-step-titles",
 					"name": "showTitles",
 					"type": "checkbox"
 				}
