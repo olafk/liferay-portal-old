@@ -60,18 +60,6 @@ public class FaroAdminDisplayContext {
 			return Collections.emptyList();
 		}
 
-		String url = StringBundler.concat(
-			"submitForm(document.hrefFm, '",
-			HtmlUtil.escapeJS(
-				ActionURLBuilder.createActionURL(
-					_renderResponse
-				).setActionName(
-					"/faro_admin/disconnect_data_sources"
-				).setParameter(
-					"faroProjectId", faroProjectAdminDisplay.getFaroProjectId()
-				).buildString()),
-			"');");
-
 		return DropdownItemListBuilder.add(
 			dropdownItem -> {
 				dropdownItem.setDisabled(
@@ -84,7 +72,17 @@ public class FaroAdminDisplayContext {
 							"are-you-sure-you-want-to-disconnect-the-data-" +
 								"sources"),
 						"', onConfirm: (isConfirmed) => {if (isConfirmed) {",
-						url, " } else {self.focus();}}});"));
+						"submitForm(document.hrefFm, '",
+						HtmlUtil.escapeJS(
+							ActionURLBuilder.createActionURL(
+								_renderResponse
+							).setActionName(
+								"/faro_admin/disconnect_data_sources"
+							).setParameter(
+								"faroProjectId",
+								faroProjectAdminDisplay.getFaroProjectId()
+							).buildString()),
+						"');} else {self.focus();}}});"));
 				dropdownItem.setIcon("logout");
 				dropdownItem.setLabel(
 					LanguageUtil.get(
