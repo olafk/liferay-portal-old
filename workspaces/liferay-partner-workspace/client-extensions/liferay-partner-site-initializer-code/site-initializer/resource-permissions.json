@@ -1,9 +1,9 @@
 [
 	{
 		"actionIds": [
-			"VIEW",
+			"DELETE",
 			"UPDATE",
-			"DELETE"
+			"VIEW"
 		],
 		"primKey": "0",
 		"resourceName": "[$OBJECT_DEFINITION_CLASS_NAME:Activity$]",
