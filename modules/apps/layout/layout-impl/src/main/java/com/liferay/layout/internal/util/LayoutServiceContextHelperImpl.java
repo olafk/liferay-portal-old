@@ -753,6 +753,7 @@ public class LayoutServiceContextHelperImpl
 					LocaleUtil.fromLanguageId(_layout.getDefaultLanguageId()));
 
 				ColorScheme colorScheme = _layout.getColorScheme();
+
 				Theme theme = _layout.getTheme();
 
 				if (theme == null) {
