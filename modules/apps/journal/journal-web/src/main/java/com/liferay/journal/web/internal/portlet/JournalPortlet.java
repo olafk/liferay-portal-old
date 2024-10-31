@@ -283,6 +283,7 @@ public class JournalPortlet extends MVCPortlet {
 		try {
 			HttpServletRequest httpServletRequest =
 				_portal.getHttpServletRequest(renderRequest);
+
 			String path = getPath(renderRequest, renderResponse);
 
 			if (Objects.equals(path, "/edit_article.jsp") ||
