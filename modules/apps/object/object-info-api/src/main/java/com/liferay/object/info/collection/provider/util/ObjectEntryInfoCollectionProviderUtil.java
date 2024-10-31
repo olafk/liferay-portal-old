@@ -18,8 +18,8 @@ public class ObjectEntryInfoCollectionProviderUtil {
 	public static Pagination getPagination(
 		com.liferay.info.pagination.Pagination pagination) {
 
-		if ((pagination.getStart() == QueryUtil.ALL_POS) &&
-			(pagination.getEnd() == QueryUtil.ALL_POS)) {
+		if ((pagination.getEnd() == QueryUtil.ALL_POS) &&
+			(pagination.getStart() == QueryUtil.ALL_POS)) {
 
 			return Pagination.of(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 		}
