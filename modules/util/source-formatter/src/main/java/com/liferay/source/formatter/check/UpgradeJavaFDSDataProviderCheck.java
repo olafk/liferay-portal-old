@@ -35,8 +35,7 @@ public class UpgradeJavaFDSDataProviderCheck extends BaseUpgradeCheck {
 			javaClass.getImplementedClassNames();
 
 		if (implementedClassNames.contains("FDSDataProvider")) {
-			content = _updateProviderKey(content);
-
+			content = _updateFDSDataProviderKey(content);
 			content = _updateServiceClass(content);
 		}
 
@@ -182,7 +181,7 @@ public class UpgradeJavaFDSDataProviderCheck extends BaseUpgradeCheck {
 				parameterList.get(0)));
 	}
 
-	private String _updateProviderKey(String content) {
+	private String _updateFDSDataProviderKey(String content) {
 		if (content.contains("clay.data.provider.key")) {
 			return StringUtil.replace(
 				content, "clay.data.provider.key", "fds.data.provider.key");
