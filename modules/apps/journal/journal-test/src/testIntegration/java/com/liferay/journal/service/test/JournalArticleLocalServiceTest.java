@@ -171,7 +171,7 @@ public class JournalArticleLocalServiceTest {
 	}
 
 	@Test
-	public void testAddArticleWithEmptyDefaultLanguageFriendlyURLWithAnotherLanguageFriendlyURL()
+	public void testAddArticleWithEmptyDefaultLanguageIdFriendlyURLWithAnotherLanguageIdFriendlyURL()
 		throws Exception {
 
 		String content = DDMStructureTestUtil.getSampleStructuredContent();
