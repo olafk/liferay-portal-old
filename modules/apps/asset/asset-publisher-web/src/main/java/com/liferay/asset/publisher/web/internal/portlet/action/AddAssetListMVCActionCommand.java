@@ -74,7 +74,7 @@ public class AddAssetListMVCActionCommand extends BaseMVCActionCommand {
 
 			PortletPreferences portletPreferences =
 				PortletPreferencesFactoryUtil.getExistingPortletSetup(
-					themeDisplay.getLayout(), portletResource)
+					themeDisplay.getLayout(), portletResource);
 
 			AssetListEntry assetListEntry = _getAssetListEntry(
 				actionRequest, portletPreferences, themeDisplay);
