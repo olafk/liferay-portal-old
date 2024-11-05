@@ -364,9 +364,8 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 				_getSortedRelatedObjectEntries(
 					dataSetObjectDefinition, dataSetObjectEntry,
 					"creationActionsOrder",
-					(ObjectEntry objectEntry) ->
-						ActionType.getActionType(objectEntry) ==
-							ActionType.CREATION,
+					(ObjectEntry objectEntry) -> Objects.equals(
+						_getType(objectEntry), "creation"),
 					"dataSetToDataSetActions"),
 				(ObjectEntry objectEntry) -> {
 					Map<String, Object> properties =
@@ -797,8 +796,8 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 		return JSONUtil.toJSONArray(
 			_getSortedRelatedObjectEntries(
 				dataSetObjectDefinition, dataSetObjectEntry, "itemActionsOrder",
-				(ObjectEntry objectEntry) ->
-					ActionType.getActionType(objectEntry) == ActionType.ITEM,
+				(ObjectEntry objectEntry) -> Objects.equals(
+					_getType(objectEntry), "item"),
 				"dataSetToDataSetActions"),
 			(ObjectEntry objectEntry) -> {
 				Map<String, Object> properties = objectEntry.getProperties();
@@ -1080,6 +1079,12 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 			});
 	}
 
+	private String _getType(ObjectEntry objectEntry) {
+		Map<String, Object> properties = objectEntry.getProperties();
+
+		return GetterUtil.getString(properties.get("type"));
+	}
+
 	private JSONObject _getViewSchemaJSONObject(
 			Collection<ObjectEntry> fdsViewObjectEntries)
 		throws Exception {
@@ -1209,39 +1214,6 @@ public class FDSAdminFragmentRenderer implements FragmentRenderer {
 		}
 
 		private final List<Long> _ids;
-
-	}
-
-	private enum ActionType {
-
-		CREATION("creation"), ITEM("item");
-
-		public static ActionType getActionType(ObjectEntry objectEntry) {
-			Map<String, Object> properties = objectEntry.getProperties();
-
-			return ActionType.parse(String.valueOf(properties.get("type")));
-		}
-
-		public static ActionType parse(String type) {
-			for (ActionType actionType : values()) {
-				if (StringUtil.equalsIgnoreCase(type, actionType.name())) {
-					return actionType;
-				}
-			}
-
-			return null;
-		}
-
-		@Override
-		public String toString() {
-			return _string;
-		}
-
-		private ActionType(String string) {
-			_string = string;
-		}
-
-		private final String _string;
 
 	}
 
