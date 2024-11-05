@@ -75,7 +75,7 @@ function default_tear_down {
 }
 
 function deploy_client_extensions {
-	echo "deploy_client_extensions"
+	echo "Deploying client extensions."
 
 	local client_extensions_list_file=${1}
 
@@ -245,9 +245,7 @@ function get_client_extension_dir {
 	if [[ $(echo ${client_extension_dir} | wc -w | grep -o -E '[0-9]+') > 1 ]]
 	then
 		echo "Duplicate client extensions found for ${client_extension_name}:" >&2
-
 		echo "%s\n" ${client_extension_dir} >&2
-
 		echo "Replace \"${client_extension_name}\" in ${client_extensions_list_file} with one of the following:" >&2
 
 		for dir in ${client_extension_dir}
