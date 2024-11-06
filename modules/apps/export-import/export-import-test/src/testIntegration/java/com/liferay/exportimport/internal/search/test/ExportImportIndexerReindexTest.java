@@ -57,7 +57,7 @@ public class ExportImportIndexerReindexTest {
 	}
 
 	@Test
-	public void testReindexing() throws Exception {
+	public void testReindex() throws Exception {
 		Locale locale = LocaleUtil.US;
 
 		ExportImportConfiguration exportImportConfiguration =

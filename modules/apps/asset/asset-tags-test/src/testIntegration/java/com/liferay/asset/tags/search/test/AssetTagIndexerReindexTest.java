@@ -88,7 +88,7 @@ public class AssetTagIndexerReindexTest {
 	}
 
 	@Test
-	public void testReindexing() throws Exception {
+	public void testReindex() throws Exception {
 		AssetTag assetTag = _assetTagFixture.createAssetTag();
 
 		String searchTerm = StringUtil.toLowerCase(assetTag.getUserName());

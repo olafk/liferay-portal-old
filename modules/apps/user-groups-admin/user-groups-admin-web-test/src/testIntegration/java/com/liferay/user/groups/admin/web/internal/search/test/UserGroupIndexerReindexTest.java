@@ -71,7 +71,7 @@ public class UserGroupIndexerReindexTest {
 	}
 
 	@Test
-	public void testReindexing() throws Exception {
+	public void testReindex() throws Exception {
 		UserGroup userGroup = _userGroupFixture.createUserGroup();
 
 		String searchTerm = userGroup.getName();

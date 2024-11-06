@@ -74,7 +74,7 @@ public class BlogsEntryIndexerReindexTest {
 	}
 
 	@Test
-	public void testReindexing() throws Exception {
+	public void testReindex() throws Exception {
 		BlogsEntry blogsEntry = _blogsEntryFixture.addEntry(
 			RandomTestUtil.randomString());
 

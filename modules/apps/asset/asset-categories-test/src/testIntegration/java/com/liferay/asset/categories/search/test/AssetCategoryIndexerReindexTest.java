@@ -82,7 +82,7 @@ public class AssetCategoryIndexerReindexTest {
 	}
 
 	@Test
-	public void testReindexing() throws Exception {
+	public void testReindex() throws Exception {
 		Locale locale = LocaleUtil.US;
 
 		AssetCategory assetCategory =

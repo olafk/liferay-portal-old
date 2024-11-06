@@ -73,7 +73,7 @@ public class AssetVocabularyIndexerReindexTest {
 	}
 
 	@Test
-	public void testReindexing() throws Exception {
+	public void testReindex() throws Exception {
 		AssetVocabulary assetVocabulary =
 			_assetVocabularyFixture.createAssetVocabulary();
 
