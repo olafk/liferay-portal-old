@@ -5,7 +5,6 @@
 
 package com.liferay.ai.content.wizard;
 
-import com.liferay.client.extension.util.spring.boot.BaseRestController;
 import com.liferay.ai.content.wizard.interfaces.LiferayAssistant;
 import com.liferay.ai.content.wizard.models.AIContext;
 import com.liferay.ai.content.wizard.openai.OpenAIChatModelConfiguration;
@@ -16,6 +15,7 @@ import com.liferay.ai.content.wizard.tools.BlogTool;
 import com.liferay.ai.content.wizard.tools.CategoryTool;
 import com.liferay.ai.content.wizard.tools.KnowledgeBaseTool;
 import com.liferay.ai.content.wizard.tools.SiteTool;
+import com.liferay.client.extension.util.spring.boot.BaseRestController;
 
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
