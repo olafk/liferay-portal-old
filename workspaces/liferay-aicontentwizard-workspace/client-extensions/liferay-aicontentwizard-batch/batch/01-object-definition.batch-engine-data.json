@@ -17,7 +17,7 @@
 			"enableCategorization": true,
 			"enableComments": true,
 			"enableObjectEntryHistory": true,
-			"externalReferenceCode": "K9L6_AIWIZARDSETTINGS",
+			"externalReferenceCode": "K9L6_AI_CONTENT_WIZARDSETTINGS",
 			"label": {
 				"en_US": "AI Content Wizard Settings"
 			},
@@ -69,7 +69,7 @@
 					"label": {
 						"en_US": "Provider"
 					},
-					"listTypeDefinitionExternalReferenceCode": "K9L6_AIWIZARD_PROVIDERS",
+					"listTypeDefinitionExternalReferenceCode": "K9L6_AI_CONTENT_WIZARD_PROVIDERS",
 					"name": "provider",
 					"readOnly": "false",
 					"required": false,
@@ -86,7 +86,7 @@
 					"label": {
 						"en_US": "Model"
 					},
-					"listTypeDefinitionExternalReferenceCode": "K9L6_AIWIZARD_MODELS",
+					"listTypeDefinitionExternalReferenceCode": "K9L6_AI_CONTENT_WIZARD_MODELS",
 					"name": "model",
 					"readOnly": "false",
 					"required": false,
@@ -103,7 +103,7 @@
 					"label": {
 						"en_US": "Image Model"
 					},
-					"listTypeDefinitionExternalReferenceCode": "K9L6_AIWIZARD_MODELS",
+					"listTypeDefinitionExternalReferenceCode": "K9L6_AI_CONTENT_WIZARD_MODELS",
 					"name": "imageModel",
 					"readOnly": "false",
 					"required": false,
