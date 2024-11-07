@@ -87,18 +87,18 @@ public class ExpandoColumnUpgradeProcessTest {
 			).build());
 
 		try {
-			GroupResource.Builder groupBuilder = GroupResource.builder();
-			UserResource.Builder userBuilder = UserResource.builder();
+			GroupResource.Builder groupResourceBuilder = GroupResource.builder();
+			UserResource.Builder userResourceBuilder = UserResource.builder();
 
 			String languageId = UpgradeProcessUtil.getDefaultLanguageId(
 				TestPropsValues.getCompanyId());
 
-			GroupResource groupResource = groupBuilder.authentication(
+			GroupResource groupResource = groupResourceBuilder.authentication(
 				"test@liferay.com", PropsValues.DEFAULT_ADMIN_PASSWORD
 			).locale(
 				LocaleUtil.fromLanguageId(languageId)
 			).build();
-			UserResource userResource = userBuilder.authentication(
+			UserResource userResource = userResourceBuilder.authentication(
 				"test@liferay.com", PropsValues.DEFAULT_ADMIN_PASSWORD
 			).locale(
 				LocaleUtil.fromLanguageId(languageId)
