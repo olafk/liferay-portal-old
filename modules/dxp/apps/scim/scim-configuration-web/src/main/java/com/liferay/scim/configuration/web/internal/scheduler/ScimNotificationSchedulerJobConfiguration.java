@@ -78,11 +78,11 @@ public class ScimNotificationSchedulerJobConfiguration
 		Date accessTokenExpirationDate, long currentTimeMillis,
 		Date lastNotificationDate) {
 
-		long remainingAccessTokenTimeMillis =
-			accessTokenExpirationDate.getTime() - currentTimeMillis;
 		long lastNotificationValidThresholdMillis =
 			accessTokenExpirationDate.getTime() -
 				lastNotificationDate.getTime();
+		long remainingAccessTokenTimeMillis =
+			accessTokenExpirationDate.getTime() - currentTimeMillis;
 
 		if (_isSendNotification(
 				lastNotificationValidThresholdMillis, 30 * Time.DAY,
