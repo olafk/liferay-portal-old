@@ -54,24 +54,28 @@ public class ExpandoColumnUpgradeProcess extends UpgradeProcess {
 			companyId, _classNameLocalService.getClassNameId(className),
 			ExpandoTableConstants.DEFAULT_TABLE_NAME);
 
-		if (expandoTable != null) {
-			ExpandoColumn expandoColumn =
-				_expandoColumnLocalService.fetchColumn(
-					expandoTable.getTableId(), "scimClientId");
-
-			if (expandoColumn != null) {
-				UnicodeProperties unicodeProperties =
-					expandoColumn.getTypeSettingsProperties();
-
-				unicodeProperties.setProperty(
-					ExpandoColumnConstants.PROPERTY_HIDDEN,
-					String.valueOf(Boolean.TRUE));
-
-				expandoColumn.setTypeSettingsProperties(unicodeProperties);
-
-				_expandoColumnLocalService.updateExpandoColumn(expandoColumn);
-			}
+		if (expandoTable == null) {
+			return;
 		}
+
+		ExpandoColumn expandoColumn =
+			_expandoColumnLocalService.fetchColumn(
+				expandoTable.getTableId(), "scimClientId");
+
+		if (expandoColumn == null) {
+			return;
+		}
+
+		UnicodeProperties unicodeProperties =
+			expandoColumn.getTypeSettingsProperties();
+
+		unicodeProperties.setProperty(
+			ExpandoColumnConstants.PROPERTY_HIDDEN,
+			String.valueOf(Boolean.TRUE));
+
+		expandoColumn.setTypeSettingsProperties(unicodeProperties);
+
+		_expandoColumnLocalService.updateExpandoColumn(expandoColumn);
 	}
 
 	private final ClassNameLocalService _classNameLocalService;
