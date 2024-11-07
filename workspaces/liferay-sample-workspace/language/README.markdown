@@ -1,3 +1,5 @@
-Place your language keys into the `Language.properties` file and generate translations by running `../gradlew buildLang`.
+Put your language keys in `Language.properties`. Run `../gradlew buildLang` to generate translations.
 
-Translations marked with `(Automatic copy)` or referring to unavailable locales are ignored. Locales can be enabled via the UI or by setting the `locales.enabled` property in a `portal-ext.properties` file.
+Translations with `(Automatic copy)` are ignored. Translations for disabled locales are also ignored.
+
+Enable locales from the UI or by setting the property `locales.enabled` in `portal-ext.properties`.
