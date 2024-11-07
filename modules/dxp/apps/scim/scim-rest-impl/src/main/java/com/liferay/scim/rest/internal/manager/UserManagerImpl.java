@@ -884,7 +884,7 @@ public class UserManagerImpl implements UserManager {
 				String.valueOf(ExpandoColumnConstants.INDEX_TYPE_KEYWORD));
 			unicodeProperties.setProperty(
 				ExpandoColumnConstants.PROPERTY_HIDDEN,
-				String.valueOf(Boolean.TRUE));
+				Boolean.TRUE.toString());
 
 			expandoColumn.setTypeSettingsProperties(unicodeProperties);
 
