@@ -166,67 +166,61 @@ public class ExpandoColumnUpgradeProcessTest {
 	private com.liferay.scim.rest.client.dto.v1_0.User _randomUser()
 		throws Exception {
 
-		com.liferay.scim.rest.client.dto.v1_0.User user =
-			new com.liferay.scim.rest.client.dto.v1_0.User() {
-				{
-					active = true;
-					displayName = StringUtil.toLowerCase(
-						RandomTestUtil.randomString());
-					externalId = StringUtil.toLowerCase(
-						RandomTestUtil.randomString());
-					locale = StringUtil.toLowerCase(
-						RandomTestUtil.randomString());
-					nickName = StringUtil.toLowerCase(
-						RandomTestUtil.randomString());
-					password = StringUtil.toLowerCase(
-						RandomTestUtil.randomString());
-					preferredLanguage = StringUtil.toLowerCase(
-						RandomTestUtil.randomString());
-					profileUrl = StringUtil.toLowerCase(
-						RandomTestUtil.randomString());
-					timezone = StringUtil.toLowerCase(
-						RandomTestUtil.randomString());
-					title = StringUtil.toLowerCase(
-						RandomTestUtil.randomString());
-					userName = StringUtil.toLowerCase(
-						RandomTestUtil.randomString());
-					userType = StringUtil.toLowerCase(
-						RandomTestUtil.randomString());
-				}
-			};
+		String randomUserName = StringUtil.toLowerCase(
+			RandomTestUtil.randomString());
 
-		user.setEmails(
-			new MultiValuedAttribute[] {
-				new MultiValuedAttribute() {
-					{
-						primary = true;
-						type = "default";
-						value = user.getUserName() + "@liferay.com";
+		return new com.liferay.scim.rest.client.dto.v1_0.User() {
+			{
+				active = true;
+				displayName = StringUtil.toLowerCase(
+					RandomTestUtil.randomString());
+				emails = new MultiValuedAttribute[] {
+					new MultiValuedAttribute() {
+						{
+							primary = true;
+							type = "default";
+							value = randomUserName + "@liferay.com";
+						}
 					}
-				}
-			});
-		user.setName(
-			new Name() {
-				{
-					familyName = RandomTestUtil.randomString();
-					givenName = RandomTestUtil.randomString();
-					middleName = RandomTestUtil.randomString();
-				}
-			});
-		user.setSchemas(
-			new String[] {
-				"urn:ietf:params:scim:schemas:core:2.0:User",
-				"urn:ietf:params:scim:schemas:extension:liferay:2.0:User"
-			});
-		user.setUrn_ietf_params_scim_schemas_extension_liferay_2_0_User(
-			new UserSchemaExtension() {
-				{
-					birthday = DateUtils.truncate(new Date(), Calendar.DATE);
-					male = true;
-				}
-			});
-
-		return user;
+				};
+				externalId = StringUtil.toLowerCase(
+					RandomTestUtil.randomString());
+				locale = StringUtil.toLowerCase(RandomTestUtil.randomString());
+				name = new Name() {
+					{
+						familyName = RandomTestUtil.randomString();
+						givenName = RandomTestUtil.randomString();
+						middleName = RandomTestUtil.randomString();
+					}
+				};
+				nickName = StringUtil.toLowerCase(
+					RandomTestUtil.randomString());
+				password = StringUtil.toLowerCase(
+					RandomTestUtil.randomString());
+				preferredLanguage = StringUtil.toLowerCase(
+					RandomTestUtil.randomString());
+				profileUrl = StringUtil.toLowerCase(
+					RandomTestUtil.randomString());
+				schemas = new String[] {
+					"urn:ietf:params:scim:schemas:core:2.0:User",
+					"urn:ietf:params:scim:schemas:extension:liferay:2.0:User"
+				};
+				timezone = StringUtil.toLowerCase(
+					RandomTestUtil.randomString());
+				title = StringUtil.toLowerCase(RandomTestUtil.randomString());
+				urn_ietf_params_scim_schemas_extension_liferay_2_0_User =
+					new UserSchemaExtension() {
+						{
+							birthday = DateUtils.truncate(
+								new Date(), Calendar.DATE);
+							male = true;
+						}
+					};
+				userName = randomUserName;
+				userType = StringUtil.toLowerCase(
+					RandomTestUtil.randomString());
+			}
+		};
 	}
 
 	private void _runUpgrade() throws Exception {
