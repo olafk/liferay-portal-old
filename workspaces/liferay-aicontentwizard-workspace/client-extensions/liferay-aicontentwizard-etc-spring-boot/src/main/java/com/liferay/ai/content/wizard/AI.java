@@ -9,7 +9,7 @@ import com.liferay.ai.content.wizard.interfaces.LiferayAssistant;
 import com.liferay.ai.content.wizard.models.AIContext;
 import com.liferay.ai.content.wizard.openai.OpenAIChatModelConfiguration;
 import com.liferay.ai.content.wizard.openai.OpenAIImageModelConfiguration;
-import com.liferay.ai.content.wizard.services.LiferayService;
+import com.liferay.ai.content.wizard.service.LiferayService;
 import com.liferay.ai.content.wizard.tools.AccountTool;
 import com.liferay.ai.content.wizard.tools.BlogTool;
 import com.liferay.ai.content.wizard.tools.CategoryTool;

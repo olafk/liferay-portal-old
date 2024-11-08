@@ -6,7 +6,7 @@
 package com.liferay.ai.content.wizard.models;
 
 import com.liferay.ai.content.wizard.openai.OpenAIImageModelConfiguration;
-import com.liferay.ai.content.wizard.services.LiferayService;
+import com.liferay.ai.content.wizard.service.LiferayService;
 
 import org.springframework.stereotype.Component;
 

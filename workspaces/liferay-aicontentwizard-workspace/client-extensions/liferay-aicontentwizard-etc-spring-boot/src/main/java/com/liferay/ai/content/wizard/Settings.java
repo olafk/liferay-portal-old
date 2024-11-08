@@ -5,8 +5,8 @@
 
 package com.liferay.ai.content.wizard;
 
-import com.liferay.ai.content.wizard.services.LiferayService;
-import com.liferay.ai.content.wizard.services.WizardSettingService;
+import com.liferay.ai.content.wizard.service.LiferayService;
+import com.liferay.ai.content.wizard.service.WizardSettingService;
 import com.liferay.client.extension.util.spring.boot.BaseRestController;
 
 import org.json.JSONObject;

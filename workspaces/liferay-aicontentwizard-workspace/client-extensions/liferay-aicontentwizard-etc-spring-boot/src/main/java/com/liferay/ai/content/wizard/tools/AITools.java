@@ -7,7 +7,7 @@ package com.liferay.ai.content.wizard.tools;
 
 import com.liferay.ai.content.wizard.models.AIContext;
 import com.liferay.ai.content.wizard.openai.OpenAIImageModelConfiguration;
-import com.liferay.ai.content.wizard.services.LiferayService;
+import com.liferay.ai.content.wizard.service.LiferayService;
 
 /**
  * @author Keven Leone
