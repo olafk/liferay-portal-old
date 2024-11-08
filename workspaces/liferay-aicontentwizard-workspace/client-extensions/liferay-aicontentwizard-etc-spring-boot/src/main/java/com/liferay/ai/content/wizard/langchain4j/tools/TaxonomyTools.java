@@ -70,9 +70,15 @@ public class TaxonomyTools extends BaseTools {
 		for (TaxonomyCategoryDescriptions childTaxonomyCategoryDescriptions :
 				childTaxonomyCategoryDescriptionsArray) {
 
-			_taxonomyCategoryResource.postTaxonomyCategoryTaxonomyCategory(
-				parentTaxonomyCategoryId,
-				_toDTO(childTaxonomyCategoryDescriptions));
+			TaxonomyCategory childTaxonomyCategory =
+				_taxonomyCategoryResource.postTaxonomyCategoryTaxonomyCategory(
+					parentTaxonomyCategoryId,
+					_toDTO(childTaxonomyCategoryDescriptions));
+
+			_postTaxonomyCategoryTaxonomyCategory(
+				childTaxonomyCategoryDescriptions.
+					childTaxonomyCategoryDescriptionsArray,
+				childTaxonomyCategory.getId());
 		}
 	}
 
