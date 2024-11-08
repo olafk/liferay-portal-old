@@ -5,8 +5,6 @@
 
 package com.liferay.ai.content.wizard.schemas;
 
-import com.liferay.ai.content.wizard.enums.StructureKeys;
-
 import dev.langchain4j.model.output.structured.Description;
 
 import org.json.JSONObject;
@@ -40,5 +38,43 @@ public class PageStructure {
 
 	@Description("The only available components for the JSON structure")
 	public StructureKeys name;
+
+	public enum StructureKeys {
+
+		@Description(
+			"A small, darker rectangle with rounded corners, typically placed next to a paragraph or text."
+		)
+		button,
+		card,
+		@Description(
+			"A component located at the bottom of the page, usually containing links."
+		)
+		carousel,
+		@Description(
+			"A component containing an image (either square or circular), with a title beneath the image, a paragraph under the title, and a button after the paragraph. Multiple cards can appear in the same row."
+		)
+		footer,
+		@Description(
+			"Located at the top of the page, usually consisting of links, buttons, and sometimes an image."
+		)
+		header,
+		@Description(
+			"A block that spans the full width of the page, containing images and text."
+		)
+		heading,
+		@Description(
+			"A block of content with controls that allow users to navigate through it."
+		)
+		hero_banner,
+		@Description("A simple image component.")
+		image,
+		@Description("A component designed for displaying multiline text.")
+		paragraph,
+		@Description("A group of social media icons with links.")
+		social,
+		@Description("A video element.")
+		video
+
+	}
 
 }

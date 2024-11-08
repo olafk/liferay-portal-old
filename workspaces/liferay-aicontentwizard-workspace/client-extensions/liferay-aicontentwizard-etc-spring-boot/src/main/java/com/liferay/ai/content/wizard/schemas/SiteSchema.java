@@ -5,8 +5,6 @@
 
 package com.liferay.ai.content.wizard.schemas;
 
-import com.liferay.ai.content.wizard.enums.MembershipType;
-import com.liferay.ai.content.wizard.enums.TemplateKeys;
 import com.liferay.headless.site.client.dto.v1_0.Site;
 
 import dev.langchain4j.model.output.structured.Description;
@@ -96,6 +94,30 @@ public class SiteSchema {
 			).put(
 				"templateType", templateType
 			).toString());
+	}
+
+	public enum MembershipType {
+
+		@Description(
+			"Users can join and leave whenever they want. The site is visible to all users in the My Sites tab"
+		)
+		Open,
+		@Description(
+			"The site appears in the My Sites application, but users must request membership to join"
+		)
+		Private,
+		@Description(
+			"A site administrator must explicitly add users to the site. Private membership sites don’t appear in the My Sites app"
+		)
+		Restricted
+
+	}
+
+	public enum TemplateKeys {
+
+		BLANK, MASTERCLASS, MINIUM, MINIUM_FULL, RAYLIFE_AP, RAYLIFE_D2C,
+		SPEEDWELL, TEAM_EXTRANET, WELCOME
+
 	}
 
 	@Description(

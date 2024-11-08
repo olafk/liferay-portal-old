@@ -5,7 +5,6 @@
 
 package com.liferay.ai.content.wizard.schemas;
 
-import com.liferay.ai.content.wizard.enums.ViewableBy;
 import com.liferay.headless.delivery.client.dto.v1_0.KnowledgeBaseFolder;
 
 import dev.langchain4j.model.output.structured.Description;
@@ -51,5 +50,11 @@ public class KnowledgeBase {
 		"The Knowledge Base can be viewed by one of these options, consider anyone if not specified."
 	)
 	public ViewableBy viewableBy;
+
+	public enum ViewableBy {
+
+		Anyone, Members, Owner
+
+	}
 
 }
