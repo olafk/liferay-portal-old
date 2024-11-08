@@ -34,9 +34,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
@@ -184,11 +181,6 @@ public class LiferayService extends BaseService {
 			externalReferenceCode);
 	}
 
-	public void deleteContentWizardSetting(String id) {
-		delete(
-			_getAuthorization(), "", "/o/c/k9l6aicontentwizardsettings" + id);
-	}
-
 	public com.liferay.headless.admin.user.client.pagination.Page<Account>
 			getAccountsPage()
 		throws Exception {
@@ -202,31 +194,11 @@ public class LiferayService extends BaseService {
 			"");
 	}
 
-	public JSONObject getActiveWizardSetting() {
-		JSONObject jsonObject = new JSONObject(getContentWizardSettings());
-
-		JSONArray itemsJSONArray = jsonObject.getJSONArray("items");
-
-		for (int i = 0; i < itemsJSONArray.length(); i++) {
-			JSONObject settingJSONObject = itemsJSONArray.getJSONObject(i);
-
-			if (settingJSONObject.getBoolean("active")) {
-				return settingJSONObject;
-			}
-		}
-
-		return null;
-	}
-
 	public Page<BlogPosting> getBlogs(long siteId) throws Exception {
 		BlogPostingResource blogPostingResource = _getBlogPostingResource();
 
 		return blogPostingResource.getSiteBlogPostingsPage(
 			siteId, "", new ArrayList<String>(), "", Pagination.of(1, 20), "");
-	}
-
-	public String getContentWizardSettings() {
-		return get(_getAuthorization(), "/o/c/k9l6aicontentwizardsettings");
 	}
 
 	public String getKeywords() {
