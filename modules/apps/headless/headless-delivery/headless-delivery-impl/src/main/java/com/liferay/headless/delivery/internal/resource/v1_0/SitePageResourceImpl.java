@@ -305,7 +305,7 @@ public class SitePageResourceImpl extends BaseSitePageResourceImpl {
 
 			if (layout == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Could not find parent site page");
+					_log.warn("Unable to get parent layout");
 				}
 			}
 			else {
