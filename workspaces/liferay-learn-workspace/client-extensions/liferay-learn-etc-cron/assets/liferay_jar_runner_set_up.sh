@@ -56,7 +56,7 @@ function copy_examples {
 
 	rsync --include="*.zip" --include="*/" --exclude="*" --prune-empty-dirs --recursive ${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}/site/ /public_html
 
-	rsync --prune-empty-dirs --recursive --delete ${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}/site/examples /public_html
+	rsync --delete --prune-empty-dirs --recursive ${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}/site/examples /public_html
 }
 
 function copy_images {
@@ -65,7 +65,7 @@ function copy_images {
 	# Include must come before exclude.
 	#
 
-	rsync --prune-empty-dirs --recursive --delete ${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}/site/images /public_html
+	rsync --delete --prune-empty-dirs --recursive ${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}/site/images /public_html
 }
 
 function copy_reference_docs {
@@ -74,7 +74,7 @@ function copy_reference_docs {
 	# Include must come before exclude.
 	#
 
-	rsync --prune-empty-dirs --recursive --delete ${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}/site/reference /public_html
+	rsync --delete --prune-empty-dirs --recursive ${LIFERAY_LEARN_ETC_CRON_GIT_REPOSITORY_DIR}/site/reference /public_html
 }
 
 function copy_resources {
