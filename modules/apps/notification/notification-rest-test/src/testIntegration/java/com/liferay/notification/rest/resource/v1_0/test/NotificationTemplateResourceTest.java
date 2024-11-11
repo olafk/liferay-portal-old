@@ -101,16 +101,10 @@ public class NotificationTemplateResourceTest
 	public void testPostNotificationTemplate() throws Exception {
 		super.testPostNotificationTemplate();
 
-		JSONObject jsonObject = JSONUtil.put(
-			"from", RandomTestUtil.randomString()
-		).put(
-			"fromName", JSONUtil.put("en_US", RandomTestUtil.randomString())
-		);
-
 		// Notification template recipient type email
 
 		_testPostNotificationTemplate(
-			jsonObject.put(
+			JSONUtil.put(
 				"to", JSONUtil.put("en_US", RandomTestUtil.randomString())
 			).put(
 				"toType", NotificationRecipientConstants.TYPE_EMAIL
@@ -119,7 +113,7 @@ public class NotificationTemplateResourceTest
 		// Notification template recipient type role
 
 		_testPostNotificationTemplate(
-			jsonObject.put(
+			JSONUtil.put(
 				"to",
 				JSONUtil.putAll(
 					JSONUtil.put(
@@ -257,6 +251,12 @@ public class NotificationTemplateResourceTest
 
 	private void _testPostNotificationTemplate(JSONObject recipientJSONObject)
 		throws Exception {
+
+		recipientJSONObject.put(
+			"from", RandomTestUtil.randomString()
+		).put(
+			"fromName", JSONUtil.put("en_US", RandomTestUtil.randomString())
+		);
 
 		JSONObject notificationTemplateJSONObject = JSONUtil.put(
 			"editorType", NotificationTemplateConstants.EDITOR_TYPE_RICH_TEXT
