@@ -176,7 +176,6 @@ public class SetUpPaymentRestController extends BaseRestController {
 			JSONArray fundingSourceJSONArray =
 				httpServletRequestParameterMapJSONObject.getJSONArray(
 					"fundingSource");
-
 			JSONObject orderJSONObject = _getOrderJSONObject(
 				jwt, commercePaymentEntryJSONObject.getLong("classPK"));
 
