@@ -31,11 +31,11 @@ public class PlaywrightTestSelector extends BaseTestSelector {
 		validate();
 
 		JobProperty jobProperty = getJobProperty(
-			_PLAYWRIGHT_TEST_PROJECT, JobProperty.Type.MODULE_TEST_DIR);
+			"playwright.test.project", JobProperty.Type.MODULE_TEST_DIR);
 
 		if (jobProperty.getValue() == null) {
 			jobProperty = getJobProperty(
-				_PLAYWRIGHT_PROJECTS_INCLUDES,
+				"playwright.projects.includes",
 				JobProperty.Type.MODULE_TEST_DIR);
 		}
 
@@ -44,7 +44,7 @@ public class PlaywrightTestSelector extends BaseTestSelector {
 
 	public JobProperty getPlaywrightExcludesJobProperty() {
 		JobProperty excludesJobProperty = getJobProperty(
-			_PLAYWRIGHT_PROJECTS_EXCLUDES, JobProperty.Type.MODULE_TEST_DIR);
+			"playwright.projects.excludes", JobProperty.Type.MODULE_TEST_DIR);
 
 		if (excludesJobProperty.getValue() != null) {
 			return excludesJobProperty;
@@ -72,24 +72,20 @@ public class PlaywrightTestSelector extends BaseTestSelector {
 
 	@Override
 	public void validate() throws RelevantRuleConfigurationException {
-		if ((getProperty(_PLAYWRIGHT_PROJECTS_INCLUDES) == null) &&
-			(getProperty(_PLAYWRIGHT_TEST_PROJECT) == null)) {
+		if ((getProperty("playwright.projects.includes") == null) &&
+			(getProperty("playwright.test.project") == null)) {
 
 			StringBuilder sb = new StringBuilder();
 
 			sb.append("Unable to create batch ");
 			sb.append(getBatchName());
-			sb.append(" since ");
-			sb.append(_PLAYWRIGHT_PROJECTS_INCLUDES);
-			sb.append("[");
+			sb.append(" since playwright.projects.includes[");
 			sb.append(getRelevantRuleName());
 			sb.append("][");
 			sb.append(getTestSuiteName());
 			sb.append("][");
 			sb.append(getBatchName());
-			sb.append("] or ");
-			sb.append(_PLAYWRIGHT_TEST_PROJECT);
-			sb.append("[");
+			sb.append("] or playwright.test.project[");
 			sb.append(getRelevantRuleName());
 			sb.append("][");
 			sb.append(getTestSuiteName());
@@ -101,15 +97,6 @@ public class PlaywrightTestSelector extends BaseTestSelector {
 			throw new RelevantRuleConfigurationException(sb.toString());
 		}
 	}
-
-	private static final String _PLAYWRIGHT_PROJECTS_EXCLUDES =
-		"playwright.projects.excludes";
-
-	private static final String _PLAYWRIGHT_PROJECTS_INCLUDES =
-		"playwright.projects.includes";
-
-	private static final String _PLAYWRIGHT_TEST_PROJECT =
-		"playwright.test.project";
 
 	private final Set<JobProperty> _playwrightJobProperties = new HashSet<>();
 

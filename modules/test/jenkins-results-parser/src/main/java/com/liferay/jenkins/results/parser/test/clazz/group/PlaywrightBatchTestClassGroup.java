@@ -73,8 +73,7 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 		}
 
 		JobProperty playwrightProjectsExcludesJobProperty = getJobProperty(
-			PLAYWRIGHT_PROJECTS_EXCLUDES_PROPERTY_NAME, testSuiteName,
-			batchName);
+			"playwright.projects.excludes", testSuiteName, batchName);
 
 		String playwrightProjectsExcludesJobPropertyValue =
 			playwrightProjectsExcludesJobProperty.getValue();
@@ -124,6 +123,7 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 
 		if (excludesJobProperty != null) {
 			removeProjectNames(excludesJobProperty.getValue());
+
 			playwrightJobProperties.add(excludesJobProperty);
 		}
 
@@ -205,12 +205,12 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 
 			List<JobProperty> playwrightTestProjectJobProperties =
 				getJobProperties(
-					modifiedFile, PLAYWRIGHT_TEST_PROJECT_PROPERTY_NAME,
+					modifiedFile, "playwright.test.project",
 					JobProperty.Type.MODULE_TEST_DIR, null);
 
 			playwrightTestProjectJobProperties.addAll(
 				getJobProperties(
-					modifiedFile, PLAYWRIGHT_PROJECTS_INCLUDES_PROPERTY_NAME,
+					modifiedFile, "playwright.projects.includes",
 					JobProperty.Type.MODULE_TEST_DIR, null));
 
 			for (JobProperty playwrightTestProjectJobProperty :
@@ -229,7 +229,7 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 
 			List<JobProperty> playwrightExcludeProjectJobProperties =
 				getJobProperties(
-					modifiedFile, PLAYWRIGHT_PROJECTS_EXCLUDES_PROPERTY_NAME,
+					modifiedFile, "playwright.projects.excludes",
 					JobProperty.Type.MODULE_TEST_DIR, null);
 
 			for (JobProperty playwrightExcludeProjectJobProperty :
@@ -343,15 +343,6 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 				JenkinsResultsParserUtil.toDurationString(duration)));
 	}
 
-	protected static final String PLAYWRIGHT_PROJECTS_EXCLUDES_PROPERTY_NAME =
-		"playwright.projects.excludes";
-
-	protected static final String PLAYWRIGHT_PROJECTS_INCLUDES_PROPERTY_NAME =
-		"playwright.projects.includes";
-
-	protected static final String PLAYWRIGHT_TEST_PROJECT_PROPERTY_NAME =
-		"playwright.test.project";
-
 	private void _addProjectNames(String projectNames) {
 		projectNames = projectNames.trim();
 
@@ -413,10 +404,10 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 
 		_loadPlaywrightJSONObjects();
 
+		StringBuilder sb = new StringBuilder();
+
 		JSONObject configJSONObject = _playwrightJSONObject.getJSONObject(
 			"config");
-
-		StringBuilder sb = new StringBuilder();
 
 		JSONArray projectsJSONArray = configJSONObject.optJSONArray("projects");
 
@@ -435,7 +426,7 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 
 	private JobProperty _getPlaywrightProjectsIncludesJobProperty() {
 		JobProperty playwrightProjectsIncludesJobProperty = getJobProperty(
-			PLAYWRIGHT_TEST_PROJECT_PROPERTY_NAME, testSuiteName, batchName);
+			"playwright.test.project", testSuiteName, batchName);
 
 		String playwrightProjectsIncludesJobPropertyValue =
 			playwrightProjectsIncludesJobProperty.getValue();
@@ -447,8 +438,7 @@ public class PlaywrightBatchTestClassGroup extends BatchTestClassGroup {
 		}
 
 		playwrightProjectsIncludesJobProperty = getJobProperty(
-			PLAYWRIGHT_PROJECTS_INCLUDES_PROPERTY_NAME, testSuiteName,
-			batchName);
+			"playwright.projects.includes", testSuiteName, batchName);
 
 		playwrightProjectsIncludesJobPropertyValue =
 			playwrightProjectsIncludesJobProperty.getValue();
