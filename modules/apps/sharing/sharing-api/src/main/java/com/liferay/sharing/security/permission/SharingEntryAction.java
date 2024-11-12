@@ -68,11 +68,11 @@ public enum SharingEntryAction {
 		if (Objects.equals(ADD_DISCUSSION.getActionId(), actionId)) {
 			return ADD_DISCUSSION;
 		}
-		else if (Objects.equals(UPDATE.getActionId(), actionId)) {
-			return UPDATE;
-		}
 		else if (Objects.equals(DOWNLOAD.getActionId(), actionId)) {
 			return DOWNLOAD;
+		}
+		else if (Objects.equals(UPDATE.getActionId(), actionId)) {
+			return UPDATE;
 		}
 		else if (Objects.equals(VIEW.getActionId(), actionId)) {
 			return VIEW;
