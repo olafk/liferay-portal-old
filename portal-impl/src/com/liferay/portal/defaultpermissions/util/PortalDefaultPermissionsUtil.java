@@ -79,17 +79,17 @@ public class PortalDefaultPermissionsUtil {
 		if (portalDefaultPermissionsModelResource.
 				isAllowOverridePermissions()) {
 
-			_removeResourcePermission(
+			_removeResource(
 				auditedModel, companyId,
 				ResourceActionsUtil.getModelResourceGuestDefaultActions(
 					auditedModel.getModelClassName()),
 				defaultPermissions, RoleConstants.GUEST);
-			_removeResourcePermission(
+			_removeResource(
 				auditedModel, companyId,
 				ResourceActionsUtil.getModelResourceOwnerDefaultActions(
 					auditedModel.getModelClassName()),
 				defaultPermissions, RoleConstants.OWNER);
-			_removeResourcePermission(
+			_removeResource(
 				auditedModel, companyId,
 				ResourceActionsUtil.getModelResourceGroupDefaultActions(
 					auditedModel.getModelClassName()),
@@ -97,7 +97,7 @@ public class PortalDefaultPermissionsUtil {
 		}
 	}
 
-	private static void _removeResourcePermission(
+	private static void _removeResource(
 			AuditedModel auditedModel, long companyId,
 			List<String> defaultActions,
 			Map<String, String[]> defaultPermissions, String roleName)
