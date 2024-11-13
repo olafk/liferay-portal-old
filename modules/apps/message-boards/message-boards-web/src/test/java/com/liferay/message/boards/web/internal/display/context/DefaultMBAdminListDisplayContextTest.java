@@ -26,7 +26,7 @@ public class DefaultMBAdminListDisplayContextTest {
 		LiferayUnitTestRule.INSTANCE;
 
 	@Test
-	public void testEmptyResultsMessage() throws Exception {
+	public void testGetEmptyResultsMessage() throws Exception {
 		DefaultMBAdminListDisplayContext defaultMBAdminListDisplayContext =
 			new DefaultMBAdminListDisplayContext(
 				new MockHttpServletRequest(), new MockHttpServletResponse(), 0);
@@ -34,18 +34,14 @@ public class DefaultMBAdminListDisplayContextTest {
 		Assert.assertEquals(
 			"there-are-no-threads-or-categories",
 			defaultMBAdminListDisplayContext.getEmptyResultsMessage());
-	}
 
-	@Test
-	public void testEmptyResultsMessageOnSearch() throws Exception {
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
 
 		mockHttpServletRequest.setParameter("keywords", "test");
 
-		DefaultMBAdminListDisplayContext defaultMBAdminListDisplayContext =
-			new DefaultMBAdminListDisplayContext(
-				mockHttpServletRequest, new MockHttpServletResponse(), 0);
+		defaultMBAdminListDisplayContext = new DefaultMBAdminListDisplayContext(
+			mockHttpServletRequest, new MockHttpServletResponse(), 0);
 
 		Assert.assertEquals(
 			"there-are-no-threads",
