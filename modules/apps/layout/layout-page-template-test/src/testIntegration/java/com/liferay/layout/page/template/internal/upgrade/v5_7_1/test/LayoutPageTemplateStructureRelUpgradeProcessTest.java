@@ -71,13 +71,12 @@ public class LayoutPageTemplateStructureRelUpgradeProcessTest
 
 	@Before
 	public void setUp() throws Exception {
-		_objectDefinition =
-			ObjectDefinitionTestUtil.addCustomObjectDefinition();
-
 		_group = GroupTestUtil.addGroup();
 
 		_layout = LayoutTestUtil.addTypeContentLayout(_group);
 
+		_objectDefinition =
+			ObjectDefinitionTestUtil.addCustomObjectDefinition();
 		_segmentsExperienceId =
 			_segmentsExperienceLocalService.fetchDefaultSegmentsExperienceId(
 				_layout.getPlid());
