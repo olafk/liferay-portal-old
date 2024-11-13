@@ -90,7 +90,7 @@ public class PageTemplateResourceImpl extends BasePageTemplateResourceImpl {
 
 		return _addPageTemplate(
 			ResourceUtil.getGroupId(
-				_isCompanyGroupAllowed(pageTemplate), false,
+				_isTypeWidgetPageTemplate(pageTemplate), false,
 				contextCompany.getCompanyId(), siteExternalReferenceCode),
 			pageTemplate);
 	}
@@ -218,7 +218,7 @@ public class PageTemplateResourceImpl extends BasePageTemplateResourceImpl {
 		return serviceContext;
 	}
 
-	private boolean _isCompanyGroupAllowed(PageTemplate pageTemplate) {
+	private boolean _isTypeWidgetPageTemplate(PageTemplate pageTemplate) {
 		if (Objects.equals(
 				pageTemplate.getType(),
 				PageTemplate.Type.WIDGET_PAGE_TEMPLATE)) {
