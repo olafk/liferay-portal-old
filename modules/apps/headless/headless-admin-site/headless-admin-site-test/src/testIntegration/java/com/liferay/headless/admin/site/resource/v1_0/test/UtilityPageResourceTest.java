@@ -177,18 +177,16 @@ public class UtilityPageResourceTest extends BaseUtilityPageResourceTestCase {
 				randomUtilityPage());
 
 		_testPatchSiteSiteByExternalReferenceCodeUtilityPage(
-			Boolean.TRUE,
-			_getUtilityPage(
-				Boolean.TRUE, utilityPage.getExternalReferenceCode()));
-
-		_testPatchSiteSiteByExternalReferenceCodeUtilityPage(
-			Boolean.TRUE,
-			_getUtilityPage(null, utilityPage.getExternalReferenceCode()));
-
-		_testPatchSiteSiteByExternalReferenceCodeUtilityPage(
 			Boolean.FALSE,
 			_getUtilityPage(
 				Boolean.FALSE, utilityPage.getExternalReferenceCode()));
+		_testPatchSiteSiteByExternalReferenceCodeUtilityPage(
+			Boolean.TRUE,
+			_getUtilityPage(
+				Boolean.TRUE, utilityPage.getExternalReferenceCode()));
+		_testPatchSiteSiteByExternalReferenceCodeUtilityPage(
+			Boolean.TRUE,
+			_getUtilityPage(null, utilityPage.getExternalReferenceCode()));
 
 		try {
 			utilityPageResource.patchSiteSiteByExternalReferenceCodeUtilityPage(
