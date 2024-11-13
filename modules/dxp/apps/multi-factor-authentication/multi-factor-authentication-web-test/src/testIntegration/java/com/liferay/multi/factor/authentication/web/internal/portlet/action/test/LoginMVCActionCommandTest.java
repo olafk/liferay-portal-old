@@ -321,7 +321,7 @@ public class LoginMVCActionCommandTest {
 	@Inject
 	private UserLocalService _userLocalService;
 
-	private static class FalseHeadlessMFAChecker
+	private class FalseHeadlessMFAChecker
 		implements HeadlessMFAChecker {
 
 		@Override
@@ -333,7 +333,7 @@ public class LoginMVCActionCommandTest {
 
 	}
 
-	private static class TrueHeadlessMFAChecker
+	private class TrueHeadlessMFAChecker
 		implements HeadlessMFAChecker {
 
 		@Override
