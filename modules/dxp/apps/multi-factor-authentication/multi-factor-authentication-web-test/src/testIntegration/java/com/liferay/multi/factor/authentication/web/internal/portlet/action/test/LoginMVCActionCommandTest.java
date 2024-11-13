@@ -113,7 +113,7 @@ public class LoginMVCActionCommandTest {
 				BundleContext bundleContext = bundle.getBundleContext();
 
 				bundleContext.registerService(
-					HeadlessMFAChecker.class, new HeadlessMFATestCheckerFalse(),
+					HeadlessMFAChecker.class, new FalseHeadlessMFAChecker(),
 					MapUtil.singletonDictionary(
 						"companyId", _company.getCompanyId()));
 
@@ -132,7 +132,7 @@ public class LoginMVCActionCommandTest {
 				Assert.assertTrue(user2.isPasswordReset());
 
 				bundleContext.registerService(
-					HeadlessMFAChecker.class, new HeadlessMFATestCheckerTrue(),
+					HeadlessMFAChecker.class, new TrueHeadlessMFAChecker(),
 					MapUtil.singletonDictionary(
 						"companyId", _company.getCompanyId()));
 
@@ -287,11 +287,12 @@ public class LoginMVCActionCommandTest {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(_company);
+		themeDisplay.setLayout(LayoutTestUtil.addTypeContentLayout(_group));
 
 		LayoutSet layoutSet = _group.getPublicLayoutSet();
 
-		themeDisplay.setLayout(LayoutTestUtil.addTypeContentLayout(_group));
 		themeDisplay.setLookAndFeel(layoutSet.getTheme(), null);
+
 		themeDisplay.setPermissionChecker(
 			PermissionThreadLocal.getPermissionChecker());
 		themeDisplay.setRealUser(TestPropsValues.getUser());
@@ -322,7 +323,7 @@ public class LoginMVCActionCommandTest {
 	@Inject
 	private UserLocalService _userLocalService;
 
-	private static class HeadlessMFATestCheckerFalse
+	private static class FalseHeadlessMFAChecker
 		implements HeadlessMFAChecker {
 
 		@Override
@@ -334,7 +335,7 @@ public class LoginMVCActionCommandTest {
 
 	}
 
-	private static class HeadlessMFATestCheckerTrue
+	private static class TrueHeadlessMFAChecker
 		implements HeadlessMFAChecker {
 
 		@Override
