@@ -121,7 +121,7 @@ public class PageExperienceResourceImpl extends BasePageExperienceResourceImpl {
 			throw new UnsupportedOperationException();
 		}
 
-		return _addSegmentsExperience(
+		return _addPageExperience(
 			GroupUtil.getGroupId(
 				false, contextCompany.getCompanyId(),
 				siteExternalReferenceCode),
@@ -148,7 +148,7 @@ public class PageExperienceResourceImpl extends BasePageExperienceResourceImpl {
 					pageExperienceExternalReferenceCode, groupId);
 
 		if (segmentsExperience == null) {
-			return _addSegmentsExperience(groupId, pageExperience);
+			return _addPageExperience(groupId, pageExperience);
 		}
 
 		if ((pageExperience.getPriority() != null) &&
@@ -173,7 +173,7 @@ public class PageExperienceResourceImpl extends BasePageExperienceResourceImpl {
 				).build()));
 	}
 
-	private PageExperience _addSegmentsExperience(
+	private PageExperience _addPageExperience(
 			long groupId, PageExperience pageExperience)
 		throws Exception {
 
