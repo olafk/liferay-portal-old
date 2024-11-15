@@ -353,7 +353,6 @@ module.exports = {
 				'chalk': true,
 				'commander': true,
 				'electron-to-chromium': true,
-				'html-webpack-plugin': true,
 				'lodash': true,
 				'mini-css-extract-plugin': true,
 				'regenerate-unicode-properties': true,
@@ -800,7 +799,6 @@ module.exports = {
 			'youtube-web',
 		],
 		'allowed-non-global-dependencies': [
-			'@liferay/npm-scripts',
 			'@typescript-eslint/parser',
 			'@vscode/ripgrep',
 			'alloy-ui',
@@ -842,7 +840,6 @@ module.exports = {
 			'timers-browserify',
 			'typescript',
 			'unzipper',
-			'webpack',
 		],
 	},
 };

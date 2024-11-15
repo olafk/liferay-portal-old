@@ -9,8 +9,6 @@
 		"@clayui/modal": "3.122.0",
 		"graphiql": "1.4.7",
 		"graphql": "^15.0.0",
-		"html-webpack-plugin": "5.5.0",
-		"mini-css-extract-plugin": "2.6.1",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"swagger-ui-react": "^4.19.1"
