@@ -15,7 +15,6 @@ import com.liferay.object.rest.test.util.ObjectEntryTestUtil;
 import com.liferay.object.service.ObjectDefinitionLocalService;
 import com.liferay.object.test.util.ObjectDefinitionTestUtil;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -35,8 +34,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 import com.liferay.portal.util.PropsValues;
-
-import java.io.InputStream;
 
 import java.util.Collections;
 import java.util.zip.ZipInputStream;
@@ -140,50 +137,44 @@ public class ExportTaskResourceTest {
 	}
 
 	@Test
-	public void testPostExportTaskWithFiltering() throws Exception {
-		ObjectEntry objectEntry1 = ObjectEntryTestUtil.addObjectEntry(
-			_objectDefinition, _OBJECT_FIELD_NAME_TEXT, "TestObject1");
-
-		ObjectEntry objectEntry2 = ObjectEntryTestUtil.addObjectEntry(
-			_objectDefinition, _OBJECT_FIELD_NAME_TEXT, "TestObject2");
-
+	public void testPostExportTaskWithFilter() throws Exception {
 		ObjectEntryTestUtil.addObjectEntry(
 			_objectDefinition, _OBJECT_FIELD_NAME_TEXT, "Object3");
 
-		String encodedFilterString = URLCodec.encodeURL(
-			StringBundler.concat(
-				"contains(", _OBJECT_FIELD_NAME_TEXT, ", 'Test')"));
+		ObjectEntry objectEntry1 = ObjectEntryTestUtil.addObjectEntry(
+			_objectDefinition, _OBJECT_FIELD_NAME_TEXT, "TestObject1");
+		ObjectEntry objectEntry2 = ObjectEntryTestUtil.addObjectEntry(
+			_objectDefinition, _OBJECT_FIELD_NAME_TEXT, "TestObject2");
+
+		String filterString = "contains(" + _OBJECT_FIELD_NAME_TEXT + "'Test')";
 
 		JSONObject jsonObject = _postExportTask(
-			"COMPLETED", "filter=" + encodedFilterString, _objectDefinition);
+			"COMPLETED", "filter=" + URLCodec.encodeURL(filterString),
+			_objectDefinition);
 
 		Assert.assertEquals(2, jsonObject.getInt("processedItemsCount"));
 
-		InputStream inputStream = HTTPTestUtil.invokeToInputStream(
-			null,
-			StringBundler.concat(
-				"headless-batch-engine/v1.0/export-task",
-				"/by-external-reference-code/",
-				jsonObject.getString("externalReferenceCode"), "/content"),
-			Http.Method.GET);
-
-		ZipInputStream zipInputStream = new ZipInputStream(inputStream);
+		ZipInputStream zipInputStream = new ZipInputStream(
+			HTTPTestUtil.invokeToInputStream(
+				null,
+				StringBundler.concat(
+					"headless-batch-engine/v1.0/export-task",
+					"/by-external-reference-code/",
+					jsonObject.getString("externalReferenceCode"), "/content"),
+				Http.Method.GET));
 
 		zipInputStream.getNextEntry();
 
-		String responseJSONArrayString = StringUtil.read(zipInputStream);
-
-		JSONArray expectedJSONArray = JSONUtil.putAll(
-			JSONUtil.put(
-				"externalReferenceCode",
-				objectEntry1.getExternalReferenceCode()),
-			JSONUtil.put(
-				"externalReferenceCode",
-				objectEntry2.getExternalReferenceCode()));
-
 		JSONAssert.assertEquals(
-			expectedJSONArray.toString(), responseJSONArrayString,
-			JSONCompareMode.LENIENT);
+			JSONUtil.putAll(
+				JSONUtil.put(
+					"externalReferenceCode",
+					objectEntry1.getExternalReferenceCode()),
+				JSONUtil.put(
+					"externalReferenceCode",
+					objectEntry2.getExternalReferenceCode())
+			).toString(),
+			StringUtil.read(zipInputStream), JSONCompareMode.LENIENT);
 	}
 
 	private JSONObject _postExportTask(
@@ -191,18 +182,17 @@ public class ExportTaskResourceTest {
 			ObjectDefinition objectDefinition)
 		throws Exception {
 
-		String endpointString = StringBundler.concat(
+		String endpoint = StringBundler.concat(
 			"headless-batch-engine/v1.0/export-task",
 			"/com.liferay.object.rest.dto.v1_0.ObjectEntry/json?",
 			"taskItemDelegateName=", objectDefinition.getName());
 
 		if (queryParameters != null) {
-			endpointString = StringBundler.concat(
-				endpointString, "&", queryParameters);
+			endpoint = endpoint + "&" + queryParameters;
 		}
 
 		JSONObject jsonObject = HTTPTestUtil.invokeToJSONObject(
-			null, endpointString, Http.Method.POST);
+			null, endpoint, Http.Method.POST);
 
 		String actualExecuteStatus = null;
 
