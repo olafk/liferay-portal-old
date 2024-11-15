@@ -88,7 +88,7 @@ public class ExportTaskResourceTest {
 					"BatchEngineExportTaskExecutorImpl",
 				LoggerTestUtil.ERROR)) {
 
-			_postExportTask("COMPLETED", null, _objectDefinition);
+			_testPostExportTask("COMPLETED", null, _objectDefinition);
 
 			JSONObject companyJSONObject = HTTPTestUtil.invokeToJSONObject(
 				JSONUtil.put(
@@ -114,7 +114,7 @@ public class ExportTaskResourceTest {
 							_OBJECT_FIELD_NAME_TEXT)),
 					ObjectDefinitionConstants.SCOPE_COMPANY, user.getUserId());
 
-			_postExportTask("FAILED", null, objectDefinition2);
+			_testPostExportTask("FAILED", null, objectDefinition2);
 
 			HTTPTestUtil.customize(
 			).withBaseURL(
@@ -123,9 +123,9 @@ public class ExportTaskResourceTest {
 				"test@able.com", PropsValues.DEFAULT_ADMIN_PASSWORD
 			).apply(
 				() -> {
-					_postExportTask("COMPLETED", null, objectDefinition2);
+					_testPostExportTask("COMPLETED", null, objectDefinition2);
 
-					_postExportTask("FAILED", null, _objectDefinition);
+					_testPostExportTask("FAILED", null, _objectDefinition);
 				}
 			);
 		}
@@ -148,7 +148,7 @@ public class ExportTaskResourceTest {
 
 		String filterString = "contains(" + _OBJECT_FIELD_NAME_TEXT + "'Test')";
 
-		JSONObject jsonObject = _postExportTask(
+		JSONObject jsonObject = _testPostExportTask(
 			"COMPLETED", "filter=" + URLCodec.encodeURL(filterString),
 			_objectDefinition);
 
@@ -177,7 +177,7 @@ public class ExportTaskResourceTest {
 			StringUtil.read(zipInputStream), JSONCompareMode.LENIENT);
 	}
 
-	private JSONObject _postExportTask(
+	private JSONObject _testPostExportTask(
 			String expectedExecuteStatus, String queryParameters,
 			ObjectDefinition objectDefinition)
 		throws Exception {
