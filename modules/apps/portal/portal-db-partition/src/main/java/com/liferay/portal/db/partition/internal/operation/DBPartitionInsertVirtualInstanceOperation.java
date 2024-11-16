@@ -55,7 +55,7 @@ public class DBPartitionInsertVirtualInstanceOperation
 					dBPartitionInsertVirtualInstanceConfiguration.
 						partitionCompanyId();
 
-				if (_companyIdExistsBySQL(companyId)) {
+				if (_hasCompany(companyId)) {
 					_log.error(
 						StringBundler.concat(
 							"Virtual instance with company ID ", companyId,
@@ -74,7 +74,7 @@ public class DBPartitionInsertVirtualInstanceOperation
 			properties);
 	}
 
-	private boolean _companyIdExistsBySQL(long companyId) throws Exception {
+	private boolean _hasCompany(long companyId) throws Exception {
 		try (Connection connection = DataAccess.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(
 				"select companyId from Company where companyId = ?")) {
