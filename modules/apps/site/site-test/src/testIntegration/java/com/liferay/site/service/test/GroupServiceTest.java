@@ -1320,45 +1320,40 @@ public class GroupServiceTest {
 
 	@Test
 	public void testUpdateGroupWithDifferentDefaultLocale() throws Exception {
-		Group group = _groupLocalService.addGroup(
-			TestPropsValues.getUserId(), GroupConstants.DEFAULT_PARENT_GROUP_ID,
-			null, 0, GroupConstants.DEFAULT_LIVE_GROUP_ID,
-			HashMapBuilder.put(
-				LocaleUtil.SPAIN, "Spanish"
-			).put(
-				LocaleUtil.US, "English"
-			).build(),
-			null, GroupConstants.TYPE_SITE_OPEN, true,
-			GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null, true, true,
-			ServiceContextTestUtil.getServiceContext());
-
-		_testUpdateGroupWithDifferentDefaultLocale("Spanish", group);
-	}
-
-	@Test
-	public void testUpdateGroupWithDifferentDefaultLocaleAndCompanyTypeGroup()
-		throws Exception {
+		_testUpdateGroupWithDifferentDefaultLocale(
+			"Spanish",
+			_groupLocalService.addGroup(
+				TestPropsValues.getUserId(),
+				GroupConstants.DEFAULT_PARENT_GROUP_ID, null, 0,
+				GroupConstants.DEFAULT_LIVE_GROUP_ID,
+				HashMapBuilder.put(
+					LocaleUtil.SPAIN, "Spanish"
+				).put(
+					LocaleUtil.US, "English"
+				).build(),
+				null, GroupConstants.TYPE_SITE_OPEN, true,
+				GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null, true, true,
+				ServiceContextTestUtil.getServiceContext()));
 
 		long classPK = RandomTestUtil.nextLong();
 
-		Group group2 = _groupLocalService.addGroup(
-			TestPropsValues.getUserId(), GroupConstants.DEFAULT_PARENT_GROUP_ID,
-			Company.class.getName(), classPK,
-			GroupConstants.DEFAULT_LIVE_GROUP_ID,
-			HashMapBuilder.put(
-				LocaleUtil.getDefault(),
-				() -> {
-					Group group1 = GroupTestUtil.addGroup();
-
-					return group1.getName(LocaleUtil.getDefault());
-				}
-			).build(),
-			null, GroupConstants.TYPE_SITE_OPEN, true,
-			GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null, true, true,
-			ServiceContextTestUtil.getServiceContext());
-
 		_testUpdateGroupWithDifferentDefaultLocale(
-			String.valueOf(classPK), group2);
+			String.valueOf(classPK),
+			_groupLocalService.addGroup(
+				TestPropsValues.getUserId(),
+				GroupConstants.DEFAULT_PARENT_GROUP_ID, Company.class.getName(),
+				classPK, GroupConstants.DEFAULT_LIVE_GROUP_ID,
+				HashMapBuilder.put(
+					LocaleUtil.getDefault(),
+					() -> {
+						Group group1 = GroupTestUtil.addGroup();
+
+						return group1.getName(LocaleUtil.getDefault());
+					}
+				).build(),
+				null, GroupConstants.TYPE_SITE_OPEN, true,
+				GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null, true, true,
+				ServiceContextTestUtil.getServiceContext()));
 	}
 
 	@Test
@@ -1415,29 +1410,6 @@ public class GroupServiceTest {
 			_groupService.getGroupsCount(
 				TestPropsValues.getCompanyId(), parentGroupId, nameSearch,
 				true));
-	}
-
-	private void _testUpdateGroupWithDifferentDefaultLocale(
-			String expectedGroupKey, Group group)
-		throws Exception {
-
-		Locale defaultLocale = LocaleUtil.getDefault();
-
-		try {
-			LocaleUtil.setDefault(
-				LocaleUtil.SPAIN.getLanguage(), LocaleUtil.SPAIN.getCountry(),
-				LocaleUtil.SPAIN.getVariant());
-
-			group = _groupLocalService.updateGroup(
-				group.getGroupId(), group.getTypeSettings());
-
-			Assert.assertEquals(expectedGroupKey, group.getGroupKey());
-		}
-		finally {
-			LocaleUtil.setDefault(
-				defaultLocale.getLanguage(), defaultLocale.getCountry(),
-				defaultLocale.getVariant());
-		}
 	}
 
 	private Locale _getLocale() {
@@ -1518,6 +1490,29 @@ public class GroupServiceTest {
 			CompanyTestUtil.resetCompanyLocales(
 				TestPropsValues.getCompanyId(), availableLocales,
 				LocaleUtil.getDefault());
+		}
+	}
+
+	private void _testUpdateGroupWithDifferentDefaultLocale(
+			String expectedGroupKey, Group group)
+		throws Exception {
+
+		Locale defaultLocale = LocaleUtil.getDefault();
+
+		try {
+			LocaleUtil.setDefault(
+				LocaleUtil.SPAIN.getLanguage(), LocaleUtil.SPAIN.getCountry(),
+				LocaleUtil.SPAIN.getVariant());
+
+			group = _groupLocalService.updateGroup(
+				group.getGroupId(), group.getTypeSettings());
+
+			Assert.assertEquals(expectedGroupKey, group.getGroupKey());
+		}
+		finally {
+			LocaleUtil.setDefault(
+				defaultLocale.getLanguage(), defaultLocale.getCountry(),
+				defaultLocale.getVariant());
 		}
 	}
 
