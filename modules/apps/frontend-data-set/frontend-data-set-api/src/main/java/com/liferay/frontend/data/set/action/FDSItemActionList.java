@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface FDSItemActionList {
 
-	public List<FDSActionDropdownItem> getDropdownItems(
+	public List<FDSActionDropdownItem> getFDSActionDropdownItems(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse)
 		throws PortalException;
