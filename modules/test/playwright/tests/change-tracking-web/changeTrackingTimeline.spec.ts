@@ -287,6 +287,9 @@ test('LPD-25853 Timeline actions are not visible to user without permissions', a
 	const timelineActionsButton = page.locator('.publication-timeline button');
 
 	await expect(timelineActionsButton).toBeVisible({visible: false});
+
+	await performLogout(page);
+	await performLogin(page, 'test');
 });
 
 test('LPD-26155 Conflict warning is visible when content is edited in more than one publication', async ({
