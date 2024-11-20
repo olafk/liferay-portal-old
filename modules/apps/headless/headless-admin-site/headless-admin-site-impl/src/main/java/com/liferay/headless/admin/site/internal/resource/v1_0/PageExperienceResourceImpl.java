@@ -73,7 +73,7 @@ public class PageExperienceResourceImpl extends BasePageExperienceResourceImpl {
 			throw new UnsupportedOperationException();
 		}
 
-		return _toDTO(
+		return _toPageExperience(
 			_segmentsExperienceService.
 				getSegmentsExperienceByExternalReferenceCode(
 					pageExperienceExternalReferenceCode,
@@ -108,7 +108,7 @@ public class PageExperienceResourceImpl extends BasePageExperienceResourceImpl {
 				_segmentsExperienceService.getSegmentsExperiences(
 					layout.getGroupId(), layout.getPlid(), true,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null),
-				segmentsExperience -> _toDTO(segmentsExperience)));
+				segmentsExperience -> _toPageExperience(segmentsExperience)));
 	}
 
 	@Override
@@ -163,7 +163,7 @@ public class PageExperienceResourceImpl extends BasePageExperienceResourceImpl {
 					GetterUtil.getInteger(pageExperience.getPriority()));
 		}
 
-		return _toDTO(
+		return _toPageExperience(
 			_segmentsExperienceService.updateSegmentsExperience(
 				segmentsExperience.getSegmentsExperienceId(),
 				_getSegmentsEntryId(
@@ -224,7 +224,7 @@ public class PageExperienceResourceImpl extends BasePageExperienceResourceImpl {
 				groupId, draftLayout.getPlid(),
 				segmentsExperience.getSegmentsExperienceId(), data);
 
-		return _toDTO(segmentsExperience);
+		return _toPageExperience(segmentsExperience);
 	}
 
 	private long _getSegmentsEntryId(
@@ -245,7 +245,8 @@ public class PageExperienceResourceImpl extends BasePageExperienceResourceImpl {
 		return segmentsEntry.getSegmentsEntryId();
 	}
 
-	private PageExperience _toDTO(SegmentsExperience segmentsExperience)
+	private PageExperience _toPageExperience(
+			SegmentsExperience segmentsExperience)
 		throws Exception {
 
 		LayoutPageTemplateStructure layoutPageTemplateStructure =
