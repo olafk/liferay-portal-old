@@ -63,7 +63,6 @@ public class OpenSearchSpellCheckIndexWriterTest extends BaseIndexingTestCase {
 	public void tearDown() throws SearchException {
 		_openSearchSpellCheckIndexWriter.deleteDocuments(
 			_searchContext, SuggestionConstants.TYPE_QUERY_SUGGESTION);
-
 		_openSearchSpellCheckIndexWriter.deleteDocuments(
 			_searchContext, SuggestionConstants.TYPE_SPELL_CHECKER);
 	}

@@ -60,7 +60,6 @@ public class ElasticsearchSpellCheckIndexWriterTest
 	public void tearDown() throws SearchException {
 		_elasticsearchSpellCheckIndexWriter.deleteDocuments(
 			_searchContext, SuggestionConstants.TYPE_QUERY_SUGGESTION);
-
 		_elasticsearchSpellCheckIndexWriter.deleteDocuments(
 			_searchContext, SuggestionConstants.TYPE_SPELL_CHECKER);
 	}
