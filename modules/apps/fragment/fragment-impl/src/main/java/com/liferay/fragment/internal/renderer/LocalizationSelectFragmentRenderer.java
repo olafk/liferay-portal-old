@@ -140,8 +140,7 @@ public class LocalizationSelectFragmentRenderer implements FragmentRenderer {
 		try {
 			PrintWriter printWriter = httpServletResponse.getWriter();
 
-			printWriter.write("<div>");
-			printWriter.write("<span aria-hidden=\"true\" class=\"");
+			printWriter.write("<div><span aria-hidden=\"true\" class=\"");
 			printWriter.write("loading-animation\"></span>");
 
 			ComponentTag componentTag = new ComponentTag();
