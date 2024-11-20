@@ -115,15 +115,19 @@ public class ScanCodeProject {
 			JSONObject complianceAlertJSONObject =
 				complianceAlertsJSONObject.getJSONObject(key);
 
-			if (complianceAlertJSONObject.has(complianceAlertType.toString())) {
-				JSONArray complianceAlertTypeJSONArray =
-					complianceAlertJSONObject.getJSONArray(
-						complianceAlertType.toString());
+			if (!complianceAlertJSONObject.has(
+					complianceAlertType.toString())) {
 
-				_complianceAlertCountsMap.put(
-					key + "-" + complianceAlertType,
-					complianceAlertTypeJSONArray.length());
+				continue;
 			}
+
+			JSONArray complianceAlertTypeJSONArray =
+				complianceAlertJSONObject.getJSONArray(
+					complianceAlertType.toString());
+
+			_complianceAlertCountsMap.put(
+				key + "-" + complianceAlertType,
+				complianceAlertTypeJSONArray.length());
 		}
 	}
 
