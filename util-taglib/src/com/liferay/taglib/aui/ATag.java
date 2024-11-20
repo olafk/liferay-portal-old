@@ -49,6 +49,8 @@ public class ATag extends BaseATag implements BodyTag {
 
 	@Override
 	protected int processEndTag() throws Exception {
+		JspWriter jspWriter = pageContext.getOut();
+
 		BodyContent bodyContent = getBodyContent();
 
 		if (bodyContent != null) {
@@ -92,8 +94,6 @@ public class ATag extends BaseATag implements BodyTag {
 		else {
 			_charArrayWriter.write("</span>");
 		}
-
-		JspWriter jspWriter = pageContext.getOut();
 
 		jspWriter.write(
 			ContentSecurityPolicyHTMLRewriterUtil.rewriteInlineEventHandlers(
