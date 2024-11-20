@@ -197,7 +197,7 @@ public class ScanCodeProject {
 		return jsonObject;
 	}
 
-	public String getComplianceAlertsMessage(
+	public String getComplianceAlertMessage(
 		ComplianceAlertType complianceAlertType) {
 
 		StringBuilder sb = new StringBuilder();
@@ -226,8 +226,8 @@ public class ScanCodeProject {
 		return sb.toString();
 	}
 
-	public String getComplianceAlertsMessage(String complianceAlertTypeString) {
-		return getComplianceAlertsMessage(
+	public String getComplianceAlertMessage(String complianceAlertTypeString) {
+		return getComplianceAlertMessage(
 			ComplianceAlertType.valueOf(complianceAlertTypeString));
 	}
 
@@ -386,13 +386,13 @@ public class ScanCodeProject {
 			subject = ":red-alert: Release blocker :red-alert:";
 		}
 
-		String complianceAlertsMessage =
-			getComplianceAlertsMessage(ComplianceAlertType.ERROR) +
-				getComplianceAlertsMessage(ComplianceAlertType.WARNING);
+		String complianceAlertMessages =
+			getComplianceAlertMessage(ComplianceAlertType.ERROR) +
+				getComplianceAlertMessage(ComplianceAlertType.WARNING);
 
-		if (!JenkinsResultsParserUtil.isNullOrEmpty(complianceAlertsMessage)) {
+		if (!JenkinsResultsParserUtil.isNullOrEmpty(complianceAlertMessages)) {
 			sb.append("*Compliance alerts:* ");
-			sb.append(complianceAlertsMessage);
+			sb.append(complianceAlertMessages);
 			sb.append("\n");
 		}
 
