@@ -418,8 +418,8 @@ public class JspCompiler {
 	private void _initTLDMappings(
 		Options options, ServletContext servletContext) {
 
-		Map<String, TldResourcePath> tldResourcePaths = new HashMap<>();
 		Map<TldResourcePath, TaglibXml> taglibXmls = new HashMap<>();
+		Map<String, TldResourcePath> tldResourcePaths = new HashMap<>();
 
 		try {
 			for (Bundle bundle : _allParticipatingBundles) {
@@ -439,17 +439,19 @@ public class JspCompiler {
 				try {
 					URL url = servletContext.getResource(entry.getValue());
 
-					if (url != null) {
-						TldResourcePath tldResourcePath = new TldResourcePath(
-							url, entry.getValue());
-
-						tldResourcePaths.put(entry.getValue(), tldResourcePath);
-
-						TldParser tldParser = new TldParser(true, false, true);
-
-						taglibXmls.put(
-							tldResourcePath, tldParser.parse(tldResourcePath));
+					if (url == null) {
+						continue;
 					}
+
+					TldResourcePath tldResourcePath = new TldResourcePath(
+						url, entry.getValue());
+
+					tldResourcePaths.put(entry.getValue(), tldResourcePath);
+
+					TldParser tldParser = new TldParser(true, false, true);
+
+					taglibXmls.put(
+						tldResourcePath, tldParser.parse(tldResourcePath));
 				}
 				catch (Exception exception) {
 					_log.error(exception);
