@@ -320,17 +320,17 @@ public class ScanCodeProject {
 	}
 
 	public String getPipelineRunURL(String pipelineName) {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("curl ");
-		sb.append(_projectAPIURL);
-		sb.append(" --header ");
-		sb.append(_CONTENT_TYPE);
-		sb.append(" --header \"Authorization:Token ");
-		sb.append(_API_KEY);
-		sb.append("\" --request GET ");
-
 		try {
+			StringBuilder sb = new StringBuilder();
+
+			sb.append("curl ");
+			sb.append(_projectAPIURL);
+			sb.append(" --header ");
+			sb.append(_CONTENT_TYPE);
+			sb.append(" --header \"Authorization:Token ");
+			sb.append(_API_KEY);
+			sb.append("\" --request GET ");
+
 			Process process = JenkinsResultsParserUtil.executeBashCommands(
 				new String[] {sb.toString()});
 
