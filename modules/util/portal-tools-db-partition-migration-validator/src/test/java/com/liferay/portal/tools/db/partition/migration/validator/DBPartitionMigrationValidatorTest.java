@@ -194,15 +194,12 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 					System.getProperty(_COMPANIES_PROPERTY_NAME),
 					new TypeReference<List<Company>>() {
 					});
-
 				List<Long> companyIds = _deserializeObjectBase64(
 					System.getProperty(_COMPANY_IDS_PROPERTY_NAME),
 					new TypeReference<List<Long>>() {
 					});
-
 				boolean defaultPartition = Boolean.parseBoolean(
 					System.getProperty(_DEFAULT_PARTITION_PROPERTY_NAME));
-
 				String password = System.getProperty(_PASSWORD_PROPERTY_NAME);
 				String schemaName = System.getProperty(
 					_SCHEMA_NAME_PROPERTY_NAME);
@@ -223,7 +220,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 	}
 
 	private static <T> T _deserializeObjectBase64(
-			String string, TypeReference<T> type)
+			String string, TypeReference<T> TypeReference)
 		throws Exception {
 
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -234,7 +231,7 @@ public class DBPartitionMigrationValidatorTest extends BaseTestCase {
 				string
 			));
 
-		return objectMapper.readValue(decodedString, type);
+		return objectMapper.readValue(decodedString, TypeReference);
 	}
 
 	private static void _mockDatabase(

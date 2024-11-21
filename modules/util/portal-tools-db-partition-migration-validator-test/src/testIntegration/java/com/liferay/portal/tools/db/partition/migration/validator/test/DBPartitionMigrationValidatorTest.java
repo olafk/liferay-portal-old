@@ -177,7 +177,6 @@ public class DBPartitionMigrationValidatorTest extends BaseDBPartitionTestCase {
 			LiferayDatabase sourceLiferayDatabase = ReflectionTestUtil.invoke(
 				DBPartitionMigrationValidator.class, "_read",
 				new Class<?>[] {String.class}, sourceFileName);
-
 			LiferayDatabase targetLiferayDatabase = ReflectionTestUtil.invoke(
 				DBPartitionMigrationValidator.class, "_read",
 				new Class<?>[] {String.class}, targetFileName);
