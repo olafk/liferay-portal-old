@@ -60,7 +60,7 @@ public class PortalPreferencesLocalServiceTest {
 	}
 
 	@Test
-	public void testUpdateCompanyPreferences() throws Exception {
+	public void testUpdatePreferences() throws Exception {
 		long companyId = RandomTestUtil.randomLong();
 
 		ServiceRegistration<?> serviceRegistration = null;
