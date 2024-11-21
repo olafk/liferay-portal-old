@@ -53,7 +53,7 @@ public class JSPTaglibHelperUtil {
 				continue;
 			}
 
-			_parseTLD(url, servletContext, listenerClassNames);
+			_parseTLD(listenerClassNames, servletContext, url);
 		}
 
 		Collection<URL> urls = new ArrayList<>(
@@ -65,13 +65,13 @@ public class JSPTaglibHelperUtil {
 				"WEB-INF/", "*.tld", BundleWiring.LISTRESOURCES_RECURSE));
 
 		for (URL url : urls) {
-			_parseTLD(url, servletContext, listenerClassNames);
+			_parseTLD(listenerClassNames, servletContext, url);
 		}
 	}
 
 	private static void _parseTLD(
-		URL url, ServletContext servletContext,
-		List<String> listenerClassNames) {
+		List<String> listenerClassNames, ServletContext servletContext,
+		URL url) {
 
 		try (InputStream inputStream = url.openStream()) {
 			Document document = SAXReaderUtil.read(inputStream);
