@@ -94,7 +94,7 @@ public class AccountEntryOrganizationRelModelListenerTest {
 			_objectFieldLocalService.getObjectField(
 				objectRelationship.getObjectFieldId2());
 
-		AccountEntry accountEntry1 = _accountEntryLocalService.addAccountEntry(
+		AccountEntry accountEntry = _accountEntryLocalService.addAccountEntry(
 			TestPropsValues.getUserId(), 0L, RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), null, null, null,
 			RandomTestUtil.randomString(),
@@ -106,7 +106,7 @@ public class AccountEntryOrganizationRelModelListenerTest {
 			0, objectDefinition.getObjectDefinitionId(),
 			Collections.singletonMap(
 				relationshipObjectField.getName(),
-				accountEntry1.getAccountEntryId()));
+				accountEntry.getAccountEntryId()));
 
 		Organization organization = OrganizationTestUtil.addOrganization();
 
@@ -131,14 +131,14 @@ public class AccountEntryOrganizationRelModelListenerTest {
 
 			_accountEntryOrganizationRelLocalService.
 				addAccountEntryOrganizationRel(
-					accountEntry1.getAccountEntryId(),
+					accountEntry.getAccountEntryId(),
 					organization.getOrganizationId());
 
 			Assert.assertTrue(reindexed.get());
 
 			reindexed.set(false);
 
-			AccountEntry accountEntry2 =
+			accountEntry =
 				_accountEntryLocalService.addAccountEntry(
 					TestPropsValues.getUserId(), 0L,
 					RandomTestUtil.randomString(),
@@ -151,7 +151,7 @@ public class AccountEntryOrganizationRelModelListenerTest {
 			AccountEntryOrganizationRel accountEntryOrganizationRel =
 				_accountEntryOrganizationRelLocalService.
 					addAccountEntryOrganizationRel(
-						accountEntry2.getAccountEntryId(),
+						accountEntry.getAccountEntryId(),
 						organization.getOrganizationId());
 
 			Assert.assertFalse(reindexed.get());
