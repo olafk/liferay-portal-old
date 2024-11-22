@@ -53,11 +53,6 @@ public class DataSourceFactoryTest {
 		fileUtil.setFile(new FileImpl());
 
 		_tempDir = FileUtil.createTempFolder();
-
-		_dataSource = _dataSourceFactory.initDataSource(
-			"org.hsqldb.jdbc.JDBCDriver",
-			"jdbc:hsqldb:" + _tempDir.getAbsolutePath() + "/lportal;", "sa",
-			StringPool.BLANK, StringPool.BLANK);
 	}
 
 	@After
@@ -67,6 +62,10 @@ public class DataSourceFactoryTest {
 
 	@Test
 	public void testDestroyDataSource() throws Exception {
+		DataSource dataSource1 = _dataSourceFactory.initDataSource(
+			"org.hsqldb.jdbc.JDBCDriver",
+			"jdbc:hsqldb:" + _tempDir.getAbsolutePath() + "/lportal;", "sa",
+			StringPool.BLANK, StringPool.BLANK);
 
 		// Destroy JDNI data source
 
@@ -75,30 +74,30 @@ public class DataSourceFactoryTest {
 
 				@Override
 				public Object lookup(String name) {
-					return _dataSource;
+					return dataSource1;
 				}
 
 			});
 
-		DataSource dataSource = _dataSourceFactory.initDataSource(
+		DataSource dataSource2 = _dataSourceFactory.initDataSource(
 			StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
 			StringPool.BLANK, "jdbc/test");
 
-		try (Connection connection = dataSource.getConnection()) {
+		try (Connection connection = dataSource2.getConnection()) {
 			Assert.assertFalse(connection.isClosed());
 		}
 
-		_dataSourceFactory.destroyDataSource(dataSource);
+		_dataSourceFactory.destroyDataSource(dataSource2);
 
-		try (Connection connection = dataSource.getConnection()) {
+		try (Connection connection = dataSource2.getConnection()) {
 			Assert.assertFalse(connection.isClosed());
 		}
 
 		// Destroy other data source
 
-		_dataSourceFactory.destroyDataSource(_dataSource);
+		_dataSourceFactory.destroyDataSource(dataSource1);
 
-		try (Connection connection = _dataSource.getConnection()) {
+		try (Connection connection = dataSource1.getConnection()) {
 			Assert.fail();
 		}
 		catch (Exception exception) {
@@ -109,7 +108,6 @@ public class DataSourceFactoryTest {
 		}
 	}
 
-	private DataSource _dataSource;
 	private final DataSourceFactory _dataSourceFactory =
 		new DataSourceFactoryImpl();
 	private File _tempDir;
