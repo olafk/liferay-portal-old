@@ -441,6 +441,47 @@
 			<finder-column comparator="!=" name="status" />
 		</finder>
 	</entity>
+	<entity local-service="true" name="CPConfigurationListRel" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="CPConfigurationListRelId" primary="true" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="classNameId" type="long" />
+		<column name="classPK" type="long" />
+		<column name="CPConfigurationListId" type="long" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="createDate" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CPConfigurationListId" return-type="Collection">
+			<finder-column name="CPConfigurationListId" />
+		</finder>
+		<finder name="C_C" return-type="Collection">
+			<finder-column name="classNameId" />
+			<finder-column name="CPConfigurationListId" />
+		</finder>
+		<finder name="C_C_C" return-type="CPConfigurationListRel" unique="true">
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+			<finder-column name="CPConfigurationListId" />
+		</finder>
+	</entity>
 	<entity local-service="true" name="CPDefinition" remote-service="true" uuid="true">
 
 		<!-- PK fields -->
@@ -1499,6 +1540,7 @@
 		<exception>DuplicateCommerceChannelRel</exception>
 		<exception>DuplicateCPAttachmentFileEntry</exception>
 		<exception>DuplicateCPConfigurationList</exception>
+		<exception>DuplicateCPConfigurationListRel</exception>
 		<exception>DuplicateCPDefinitionOptionRelKey</exception>
 		<exception>DuplicateCPDefinitionOptionValueRelKey</exception>
 		<exception>DuplicateCPInstance</exception>
