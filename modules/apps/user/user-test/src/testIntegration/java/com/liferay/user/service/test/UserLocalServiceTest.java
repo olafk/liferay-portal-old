@@ -166,8 +166,11 @@ public class UserLocalServiceTest {
 
 		Assert.assertTrue(Validator.isNull(user.getPassword()));
 
+		String password = RandomTestUtil.randomString(
+			UniqueStringRandomizerBumper.INSTANCE);
+
 		user = _userLocalService.addUser(
-			0, TestPropsValues.getCompanyId(), false, "test", "test", false,
+			0, TestPropsValues.getCompanyId(), false, password, password, false,
 			RandomTestUtil.randomString(),
 			RandomTestUtil.randomString() + "@liferay.com", LocaleUtil.US,
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
