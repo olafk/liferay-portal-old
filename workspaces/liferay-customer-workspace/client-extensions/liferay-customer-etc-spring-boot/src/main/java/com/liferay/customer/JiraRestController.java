@@ -90,7 +90,7 @@ public class JiraRestController extends BaseRestController {
 
 			JSONObject jsonObject = _getIssueJSONObject(issueKey);
 
-			JSONObject responseJSONObject = _translateIssue(jsonObject);
+			JSONObject responseJSONObject = _transformIssue(jsonObject);
 
 			return new ResponseEntity<>(
 				responseJSONObject.toString(), HttpStatus.OK);
@@ -136,7 +136,7 @@ public class JiraRestController extends BaseRestController {
 			JSONObject jsonObject = _search(
 				sb.toString(), _securityVulnerabilitiesIssueFields);
 
-			JSONObject responseJSONObject = _translateSearchResults(jsonObject);
+			JSONObject responseJSONObject = _transformSearchResults(jsonObject);
 
 			return new ResponseEntity<>(
 				responseJSONObject.toString(), HttpStatus.OK);
@@ -274,17 +274,17 @@ public class JiraRestController extends BaseRestController {
 		return null;
 	}
 
-	private JSONObject _translateIssue(JSONObject issueJSONObject) {
+	private JSONObject _transformIssue(JSONObject issueJSONObject) {
 		return new JSONObject(
 		).put(
 			"fields",
-			_translateIssueFields(issueJSONObject.getJSONObject("fields"))
+			_transformIssueFields(issueJSONObject.getJSONObject("fields"))
 		).put(
 			"key", issueJSONObject.getString(_FIELD_ISSUE_KEY)
 		);
 	}
 
-	private JSONObject _translateIssueFields(JSONObject issueFieldsJSONObject) {
+	private JSONObject _transformIssueFields(JSONObject issueFieldsJSONObject) {
 		return new JSONObject(
 		).put(
 			"affectedVersionsDetails",
@@ -357,7 +357,7 @@ public class JiraRestController extends BaseRestController {
 		);
 	}
 
-	private JSONObject _translateSearchResults(JSONObject resultsJSONObject) {
+	private JSONObject _transformSearchResults(JSONObject resultsJSONObject) {
 		JSONArray jsonArray = new JSONArray();
 
 		JSONArray issuesJSONArray = resultsJSONObject.getJSONArray("issues");
@@ -365,7 +365,7 @@ public class JiraRestController extends BaseRestController {
 		for (int i = 0; i < issuesJSONArray.length(); i++) {
 			JSONObject issueJSONObject = issuesJSONArray.getJSONObject(i);
 
-			jsonArray.put(_translateIssue(issueJSONObject));
+			jsonArray.put(_transformIssue(issueJSONObject));
 		}
 
 		return new JSONObject(
