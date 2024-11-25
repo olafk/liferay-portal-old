@@ -41,22 +41,7 @@ public class ObjectFieldFDSFilterFactoryRegistryTest {
 					Mockito.mock(ObjectFieldFilterContributorRegistry.class),
 					objectFieldLocalService);
 
-		ObjectViewFilterColumn objectViewFilterColumn = Mockito.mock(
-			ObjectViewFilterColumn.class);
-
-		Mockito.when(
-			objectViewFilterColumn.getFilterType()
-		).thenReturn(
-			null
-		);
-
-		String objectFieldName = RandomTestUtil.randomString();
-
-		Mockito.when(
-			objectViewFilterColumn.getObjectFieldName()
-		).thenReturn(
-			objectFieldName
-		);
+		long objectDefinitionId = RandomTestUtil.randomLong();
 
 		ObjectField objectField = Mockito.mock(ObjectField.class);
 
@@ -66,13 +51,28 @@ public class ObjectFieldFDSFilterFactoryRegistryTest {
 			ObjectFieldConstants.BUSINESS_TYPE_MULTISELECT_PICKLIST
 		);
 
-		long objectDefinitionId = RandomTestUtil.randomLong();
+		String objectFieldName = RandomTestUtil.randomString();
 
 		Mockito.when(
 			objectFieldLocalService.getObjectField(
 				objectDefinitionId, objectFieldName)
 		).thenReturn(
 			objectField
+		);
+
+		ObjectViewFilterColumn objectViewFilterColumn = Mockito.mock(
+			ObjectViewFilterColumn.class);
+
+		Mockito.when(
+			objectViewFilterColumn.getFilterType()
+		).thenReturn(
+			null
+		);
+
+		Mockito.when(
+			objectViewFilterColumn.getObjectFieldName()
+		).thenReturn(
+			objectFieldName
 		);
 
 		Assert.assertNotNull(
