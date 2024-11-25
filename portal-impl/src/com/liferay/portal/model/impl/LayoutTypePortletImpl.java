@@ -377,7 +377,10 @@ public class LayoutTypePortletImpl
 
 		Layout layout = getLayout();
 
-		if (layout.isTypePortlet()) {
+		if (layout.isTypePanel()) {
+			columns.add("panelSelectedPortlets");
+		}
+		else if (layout.isTypePortlet()) {
 			if (Objects.equals(
 					layout.getType(),
 					LayoutConstants.TYPE_FULL_PAGE_APPLICATION)) {
@@ -391,9 +394,6 @@ public class LayoutTypePortletImpl
 
 				Collections.addAll(columns, getNestedColumns());
 			}
-		}
-		else if (layout.isTypePanel()) {
-			columns.add("panelSelectedPortlets");
 		}
 
 		return columns;
