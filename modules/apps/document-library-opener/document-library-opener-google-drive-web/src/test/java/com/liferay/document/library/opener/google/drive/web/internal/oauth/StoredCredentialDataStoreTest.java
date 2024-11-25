@@ -154,7 +154,7 @@ public class StoredCredentialDataStoreTest {
 	}
 
 	@Test
-	public void testGetNonexistentStoredCredential() throws Exception {
+	public void testGet() throws Exception {
 		_forEachDataStore(
 			dataStore -> Assert.assertNull(
 				dataStore.get(String.valueOf(RandomTestUtil.randomLong()))));

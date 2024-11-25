@@ -48,11 +48,11 @@ public class StoredCredentialDataStore implements DataStore<StoredCredential> {
 	public boolean containsValue(StoredCredential storedCredential)
 		throws IOException {
 
-		if (value == null) {
+		if (storedCredential == null) {
 			return false;
 		}
 
-		return StoredCredentialUtil.containsValue(_companyId, value);
+		return StoredCredentialUtil.containsValue(_companyId, storedCredential);
 	}
 
 	@Override
@@ -95,7 +95,7 @@ public class StoredCredentialDataStore implements DataStore<StoredCredential> {
 			String key, StoredCredential storedCredential)
 		throws IOException {
 
-		StoredCredentialUtil.add(_companyId, key, value);
+		StoredCredentialUtil.add(_companyId, key, storedCredential);
 
 		return this;
 	}

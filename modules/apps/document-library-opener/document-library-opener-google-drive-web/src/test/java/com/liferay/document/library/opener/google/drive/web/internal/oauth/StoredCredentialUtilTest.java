@@ -175,7 +175,7 @@ public class StoredCredentialUtilTest {
 	}
 
 	@Test
-	public void testGetNonexistentStoredCredential() {
+	public void testGet() {
 		Assert.assertNull(
 			StoredCredentialUtil.get(
 				RandomTestUtil.randomLong(),
