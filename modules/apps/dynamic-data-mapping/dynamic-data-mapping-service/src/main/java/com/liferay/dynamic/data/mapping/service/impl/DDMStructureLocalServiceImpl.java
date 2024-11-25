@@ -1682,10 +1682,9 @@ public class DDMStructureLocalServiceImpl
 		User user, DDMStructure structure, String version,
 		ServiceContext serviceContext) {
 
-		long structureVersionId = counterLocalService.increment();
-
 		DDMStructureVersion structureVersion =
-			_ddmStructureVersionPersistence.create(structureVersionId);
+			_ddmStructureVersionPersistence.create(
+				counterLocalService.increment());
 
 		structureVersion.setGroupId(structure.getGroupId());
 		structureVersion.setCompanyId(structure.getCompanyId());

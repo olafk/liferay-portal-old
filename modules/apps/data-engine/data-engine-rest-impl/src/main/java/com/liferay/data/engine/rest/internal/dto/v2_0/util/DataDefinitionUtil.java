@@ -80,10 +80,8 @@ public class DataDefinitionUtil {
 				setDescription(
 					() -> LocalizedValueUtil.toStringObjectMap(
 						ddmStructure.getDescriptionMap()));
-
 				setExternalReferenceCode(
 					ddmStructure::getExternalReferenceCode);
-
 				setId(ddmStructure::getStructureId);
 				setName(
 					() -> LocalizedValueUtil.toStringObjectMap(
