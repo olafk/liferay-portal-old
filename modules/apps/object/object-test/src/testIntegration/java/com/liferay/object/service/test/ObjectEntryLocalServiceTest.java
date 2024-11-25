@@ -2673,7 +2673,7 @@ public class ObjectEntryLocalServiceTest {
 	}
 
 	@Test
-	public void testGetPrimaryKeys() throws Exception {
+	public void testGetValuesList() throws Exception {
 		Sort[] sorts = {new Sort("id", false)};
 
 		List<Map<String, Serializable>> valuesList =
