@@ -25,6 +25,49 @@
 			"name": "P2S3Course",
 			"objectFields": [
 				{
+					"DBType": "Clob",
+					"businessType": "LongText",
+					"externalReferenceCode": "DESCRIPTION",
+					"indexed": true,
+					"indexedAsKeyword": false,
+					"indexedLanguageId": "en_US",
+					"label": {
+						"en_US": "Description"
+					},
+					"localized": true,
+					"name": "description",
+					"objectFieldSettings": [
+						{
+							"name": "showCounter",
+							"value": false
+						}
+					],
+					"readOnly": "false",
+					"required": false,
+					"state": false,
+					"type": "Clob",
+					"unique": false
+				},
+				{
+					"DBType": "String",
+					"businessType": "Picklist",
+					"externalReferenceCode": "EXPERTISE_LEVEL",
+					"indexed": true,
+					"indexedAsKeyword": false,
+					"indexedLanguageId": "en_US",
+					"label": {
+						"en_US": "Expertise Level"
+					},
+					"listTypeDefinitionExternalReferenceCode": "P2S3_EXPERTISE_LEVELS",
+					"localized": false,
+					"name": "expertiseLevel",
+					"readOnly": "false",
+					"required": true,
+					"state": false,
+					"type": "String",
+					"unique": false
+				},
+				{
 					"DBType": "Long",
 					"businessType": "Attachment",
 					"externalReferenceCode": "IMAGE",
@@ -54,85 +97,6 @@
 					"required": false,
 					"state": false,
 					"type": "Long",
-					"unique": false
-				},
-				{
-					"DBType": "Integer",
-					"businessType": "Integer",
-					"externalReferenceCode": "POSITION",
-					"indexed": true,
-					"indexedAsKeyword": false,
-					"label": {
-						"en_US": "Position"
-					},
-					"localized": false,
-					"name": "position",
-					"readOnly": "false",
-					"required": true,
-					"state": false,
-					"type": "Integer",
-					"unique": false
-				},
-				{
-					"DBType": "Clob",
-					"businessType": "LongText",
-					"externalReferenceCode": "DESCRIPTION",
-					"indexed": true,
-					"indexedAsKeyword": false,
-					"indexedLanguageId": "en_US",
-					"label": {
-						"en_US": "Description"
-					},
-					"localized": true,
-					"name": "description",
-					"objectFieldSettings": [
-						{
-							"name": "showCounter",
-							"value": false
-						}
-					],
-					"readOnly": "false",
-					"required": false,
-					"state": false,
-					"type": "Clob",
-					"unique": false
-				},
-				{
-					"DBType": "String",
-					"businessType": "MultiselectPicklist",
-					"externalReferenceCode": "PERSONA",
-					"indexed": true,
-					"indexedAsKeyword": false,
-					"indexedLanguageId": "en_US",
-					"label": {
-						"en_US": "Persona"
-					},
-					"listTypeDefinitionExternalReferenceCode": "P2S3_PERSONAS",
-					"localized": false,
-					"name": "persona",
-					"readOnly": "false",
-					"required": true,
-					"state": false,
-					"type": "String",
-					"unique": false
-				},
-				{
-					"DBType": "String",
-					"businessType": "Picklist",
-					"externalReferenceCode": "EXPERTISE_LEVEL",
-					"indexed": true,
-					"indexedAsKeyword": false,
-					"indexedLanguageId": "en_US",
-					"label": {
-						"en_US": "Expertise Level"
-					},
-					"listTypeDefinitionExternalReferenceCode": "P2S3_EXPERTISE_LEVELS",
-					"localized": false,
-					"name": "expertiseLevel",
-					"readOnly": "false",
-					"required": true,
-					"state": false,
-					"type": "String",
 					"unique": false
 				},
 				{
@@ -169,6 +133,42 @@
 					"required": true,
 					"state": false,
 					"type": "String",
+					"unique": false
+				},
+				{
+					"DBType": "String",
+					"businessType": "MultiselectPicklist",
+					"externalReferenceCode": "PERSONA",
+					"indexed": true,
+					"indexedAsKeyword": false,
+					"indexedLanguageId": "en_US",
+					"label": {
+						"en_US": "Persona"
+					},
+					"listTypeDefinitionExternalReferenceCode": "P2S3_PERSONAS",
+					"localized": false,
+					"name": "persona",
+					"readOnly": "false",
+					"required": true,
+					"state": false,
+					"type": "String",
+					"unique": false
+				},
+				{
+					"DBType": "Integer",
+					"businessType": "Integer",
+					"externalReferenceCode": "POSITION",
+					"indexed": true,
+					"indexedAsKeyword": false,
+					"label": {
+						"en_US": "Position"
+					},
+					"localized": false,
+					"name": "position",
+					"readOnly": "false",
+					"required": true,
+					"state": false,
+					"type": "Integer",
 					"unique": false
 				},
 				{
