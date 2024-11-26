@@ -26,7 +26,7 @@
 				{
 					"DBType": "Long",
 					"businessType": "Attachment",
-					"externalReferenceCode": "image",
+					"externalReferenceCode": "IMAGE",
 					"indexed": true,
 					"indexedAsKeyword": false,
 					"indexedLanguageId": "en_US",
@@ -58,7 +58,7 @@
 				{
 					"DBType": "String",
 					"businessType": "Text",
-					"externalReferenceCode": "name",
+					"externalReferenceCode": "NAME",
 					"indexed": true,
 					"indexedAsKeyword": false,
 					"indexedLanguageId": "en_US",
@@ -82,7 +82,7 @@
 				{
 					"DBType": "String",
 					"businessType": "Text",
-					"externalReferenceCode": "title",
+					"externalReferenceCode": "TITLE",
 					"indexed": true,
 					"indexedAsKeyword": false,
 					"indexedLanguageId": "en_US",
@@ -100,7 +100,7 @@
 				{
 					"DBType": "Integer",
 					"businessType": "Integer",
-					"externalReferenceCode": "year",
+					"externalReferenceCode": "YEAR",
 					"indexed": true,
 					"indexedAsKeyword": false,
 					"label": {
