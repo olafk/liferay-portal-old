@@ -1067,13 +1067,29 @@ public class AccountEntryLocalServiceTest {
 
 		String[] expectedDomains = {"update1.com", "update2.com"};
 
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext();
+
+		serviceContext.setExpandoBridgeAttributes(
+			HashMapBuilder.<String, Serializable>put(
+				() -> {
+					ExpandoColumn expandoColumn = ExpandoTestUtil.addColumn(
+						ExpandoTestUtil.addTable(
+							PortalUtil.getClassNameId(AccountEntry.class),
+							ExpandoTableConstants.DEFAULT_TABLE_NAME),
+						"customFieldName", ExpandoColumnConstants.STRING);
+
+					return expandoColumn.getName();
+				},
+				"customFieldValue"
+			).build());
+
 		accountEntry = _accountEntryLocalService.updateAccountEntry(
 			accountEntry.getAccountEntryId(),
 			accountEntry.getParentAccountEntryId(), accountEntry.getName(),
 			accountEntry.getDescription(), false, expectedDomains,
 			accountEntry.getEmailAddress(), null, accountEntry.getTaxIdNumber(),
-			accountEntry.getStatus(),
-			ServiceContextTestUtil.getServiceContext());
+			accountEntry.getStatus(), serviceContext);
 
 		Assert.assertArrayEquals(
 			expectedDomains, accountEntry.getDomainsArray());
@@ -1092,35 +1108,6 @@ public class AccountEntryLocalServiceTest {
 		_assertStatus(
 			accountEntry, WorkflowConstants.STATUS_APPROVED,
 			TestPropsValues.getUser());
-	}
-
-	@Test
-	public void testUpdateAccountEntryWithCustomFields() throws Exception {
-		AccountEntry accountEntry = AccountEntryTestUtil.addAccountEntry();
-
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
-		serviceContext.setExpandoBridgeAttributes(
-			HashMapBuilder.<String, Serializable>put(
-				() -> {
-					ExpandoColumn expandoColumn = ExpandoTestUtil.addColumn(
-						ExpandoTestUtil.addTable(
-							PortalUtil.getClassNameId(AccountEntry.class),
-							ExpandoTableConstants.DEFAULT_TABLE_NAME),
-						"customFieldName", ExpandoColumnConstants.STRING);
-
-					return expandoColumn.getName();
-				},
-				"customFieldValue"
-			).build());
-
-		_accountEntryLocalService.updateAccountEntry(
-			accountEntry.getAccountEntryId(),
-			accountEntry.getParentAccountEntryId(), accountEntry.getName(),
-			accountEntry.getDescription(), false, null,
-			accountEntry.getEmailAddress(), null, accountEntry.getTaxIdNumber(),
-			accountEntry.getStatus(), serviceContext);
 
 		accountEntry = _testAccountEntryModelListener.getModel();
 
