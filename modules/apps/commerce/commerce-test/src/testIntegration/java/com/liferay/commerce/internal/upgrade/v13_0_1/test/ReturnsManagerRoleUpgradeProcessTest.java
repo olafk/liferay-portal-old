@@ -68,16 +68,6 @@ public class ReturnsManagerRoleUpgradeProcessTest {
 		Assert.assertTrue(
 			ListUtil.exists(
 				_resourcePermissionLocalService.getRoles(
-					_group.getCompanyId(), CommercePortletKeys.COMMERCE_PAYMENT,
-					ResourceConstants.SCOPE_COMPANY,
-					String.valueOf(_group.getCompanyId()),
-					ActionKeys.ACCESS_IN_CONTROL_PANEL),
-				role -> StringUtil.equals(
-					role.getName(),
-					AccountRoleConstants.ROLE_NAME_RETURNS_MANAGER)));
-		Assert.assertTrue(
-			ListUtil.exists(
-				_resourcePermissionLocalService.getRoles(
 					_group.getCompanyId(), CommerceChannel.class.getName(),
 					ResourceConstants.SCOPE_COMPANY,
 					String.valueOf(_group.getCompanyId()), ActionKeys.UPDATE),
@@ -90,6 +80,16 @@ public class ReturnsManagerRoleUpgradeProcessTest {
 					_group.getCompanyId(), CommerceChannel.class.getName(),
 					ResourceConstants.SCOPE_COMPANY,
 					String.valueOf(_group.getCompanyId()), ActionKeys.VIEW),
+				role -> StringUtil.equals(
+					role.getName(),
+					AccountRoleConstants.ROLE_NAME_RETURNS_MANAGER)));
+		Assert.assertTrue(
+			ListUtil.exists(
+				_resourcePermissionLocalService.getRoles(
+					_group.getCompanyId(), CommercePortletKeys.COMMERCE_PAYMENT,
+					ResourceConstants.SCOPE_COMPANY,
+					String.valueOf(_group.getCompanyId()),
+					ActionKeys.ACCESS_IN_CONTROL_PANEL),
 				role -> StringUtil.equals(
 					role.getName(),
 					AccountRoleConstants.ROLE_NAME_RETURNS_MANAGER)));

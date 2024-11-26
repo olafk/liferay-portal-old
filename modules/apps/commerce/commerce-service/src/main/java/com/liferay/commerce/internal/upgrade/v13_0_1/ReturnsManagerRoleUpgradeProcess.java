@@ -56,19 +56,6 @@ public class ReturnsManagerRoleUpgradeProcess extends UpgradeProcess {
 
 		if (returnsManagerRole != null) {
 			if (!_resourcePermissionLocalService.hasResourcePermission(
-					companyId, CommercePortletKeys.COMMERCE_PAYMENT,
-					ResourceConstants.SCOPE_COMPANY, String.valueOf(companyId),
-					returnsManagerRole.getRoleId(),
-					ActionKeys.ACCESS_IN_CONTROL_PANEL)) {
-
-				_resourcePermissionLocalService.addResourcePermission(
-					companyId, CommercePortletKeys.COMMERCE_PAYMENT,
-					ResourceConstants.SCOPE_COMPANY, String.valueOf(companyId),
-					returnsManagerRole.getRoleId(),
-					ActionKeys.ACCESS_IN_CONTROL_PANEL);
-			}
-
-			if (!_resourcePermissionLocalService.hasResourcePermission(
 					companyId, CommerceChannel.class.getName(),
 					ResourceConstants.SCOPE_COMPANY, String.valueOf(companyId),
 					returnsManagerRole.getRoleId(), ActionKeys.UPDATE)) {
@@ -88,6 +75,19 @@ public class ReturnsManagerRoleUpgradeProcess extends UpgradeProcess {
 					companyId, CommerceChannel.class.getName(),
 					ResourceConstants.SCOPE_COMPANY, String.valueOf(companyId),
 					returnsManagerRole.getRoleId(), ActionKeys.VIEW);
+			}
+
+			if (!_resourcePermissionLocalService.hasResourcePermission(
+					companyId, CommercePortletKeys.COMMERCE_PAYMENT,
+					ResourceConstants.SCOPE_COMPANY, String.valueOf(companyId),
+					returnsManagerRole.getRoleId(),
+					ActionKeys.ACCESS_IN_CONTROL_PANEL)) {
+
+				_resourcePermissionLocalService.addResourcePermission(
+					companyId, CommercePortletKeys.COMMERCE_PAYMENT,
+					ResourceConstants.SCOPE_COMPANY, String.valueOf(companyId),
+					returnsManagerRole.getRoleId(),
+					ActionKeys.ACCESS_IN_CONTROL_PANEL);
 			}
 
 			if (!_resourcePermissionLocalService.hasResourcePermission(
