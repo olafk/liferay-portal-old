@@ -119,7 +119,7 @@
 				"en_US": "P2S3 Badges"
 			},
 			"portlet": true,
-			"restContextPath": "/o/c/badges",
+			"restContextPath": "/o/c/p2s3badges",
 			"scope": "site",
 			"status": {
 				"code": 0,
