@@ -5689,7 +5689,7 @@ public class DataFactory {
 		List<FragmentEntryLinkModel> fragmentEntryLinkModels =
 			new ArrayList<>();
 
-		String editValueFileContent = _readFile(
+		String editValueJSON = _readFile(
 			"fragment_component/fragment_component_heading_editValue.json");
 		String headingCss = _readFile(
 			_getFragmentComponentInputStream("heading", "css"));
@@ -5714,7 +5714,7 @@ public class DataFactory {
 			}
 			else {
 				editValue = StringUtil.replaceFirst(
-					editValueFileContent, "${collectionFieldId}",
+					editValueJSON, "${collectionFieldId}",
 					"ObjectField_" + objectFieldModel.getName());
 			}
 
