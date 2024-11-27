@@ -5373,7 +5373,7 @@ public class DataFactory {
 
 		String name = "Ticket";
 
-		String label = _getLabel(name);
+		String label = _getObjectLabel(name);
 
 		String uuid = SequentialUUID.generate();
 
@@ -5394,15 +5394,15 @@ public class DataFactory {
 			newObjectDefinitionModel(
 				_counter.get(), objectFolderId, _counter.get(),
 				CommerceOrder.class.getName(), "CommerceOrder", false, true,
-				false, _getLabel("Commerce Order"), false, "CommerceOrder",
+				false, _getObjectLabel("Commerce Order"), false, "CommerceOrder",
 				null, "commerceOrderId", "commerceOrderId",
-				_getPluralLabel("Commerce Orders"), false, true,
+				_getObjectPluralLabel("Commerce Orders"), false, true,
 				"L_COMMERCE_ORDER", SequentialUUID.generate()),
 			newObjectDefinitionModel(
 				_counter.get(), objectFolderId, _counter.get(),
 				User.class.getName(), "User_", false, true, false,
-				_getLabel("User"), false, "User", null, "userId", "userId",
-				_getPluralLabel("Users"), false, true, "L_USER",
+				_getObjectLabel("User"), false, "User", null, "userId", "userId",
+				_getObjectPluralLabel("Users"), false, true, "L_USER",
 				SequentialUUID.generate()));
 	}
 
@@ -5454,7 +5454,7 @@ public class DataFactory {
 		objectFieldModel.setDBTableName(dbTableName);
 		objectFieldModel.setDBType(dbType);
 		objectFieldModel.setIndexedAsKeyword(name.equals("id"));
-		objectFieldModel.setLabel(_getLabel(label));
+		objectFieldModel.setLabel(_getObjectLabel(label));
 		objectFieldModel.setName(name);
 		objectFieldModel.setReadOnly(String.valueOf(system));
 
@@ -5791,7 +5791,7 @@ public class DataFactory {
 		String name =
 			"ObjectRelationship" + _objectDefinitionId + objectDefinitionId2;
 
-		objectRelationshipModel.setLabel(_getLabel(name));
+		objectRelationshipModel.setLabel(_getObjectLabel(name));
 		objectRelationshipModel.setName(name);
 
 		objectRelationshipModel.setReverse(false);
@@ -8672,14 +8672,14 @@ public class DataFactory {
 				"/dependencies/", fragmentName, "/index.", suffix));
 	}
 
-	private String _getLabel(String label) {
+	private String _getObjectLabel(String label) {
 		return StringBundler.concat(
 			"<?xml version=\"1.0\" ?><root available-locales=\"en_US\" ",
 			"default-locale=\"en_US\"><Label language-id=\"en_US\">", label,
 			"</Label></root>");
 	}
 
-	private String _getPluralLabel(String label) {
+	private String _getObjectPluralLabel(String label) {
 		return StringBundler.concat(
 			"<?xml version=\"1.0\"?><root available-locales=\"en_US\" ",
 			"default-locale=\"en_US\"><PluralLabel language-id=\"en_US\">",
