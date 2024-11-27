@@ -1,8 +1,9 @@
 <#assign
 	dlFolderModel = dataFactory.newDLFolderModel()
 	listTypeDefinitionModel = dataFactory.newListTypeDefinitionModel()
-	listTypeEntryModels = dataFactory.newListTypeEntryModels(listTypeDefinitionModel.getListTypeDefinitionId())
 	objectDefinitionModel = dataFactory.newObjectDefinitionModel(objectFolderModel.getObjectFolderId())
+
+	listTypeEntryModels = dataFactory.newListTypeEntryModels(listTypeDefinitionModel.getListTypeDefinitionId())
 	objectFieldModels = dataFactory.newObjectFieldModels(objectDefinitionModel.getObjectDefinitionId(), objectDefinitionModel.getDBTableName(), listTypeDefinitionModel.getListTypeDefinitionId())
 />
 
