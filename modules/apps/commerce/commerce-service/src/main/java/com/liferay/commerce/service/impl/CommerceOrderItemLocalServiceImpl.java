@@ -1963,8 +1963,8 @@ public class CommerceOrderItemLocalServiceImpl
 			}
 
 			for (int i = 0; i < jsonArray1.length(); i++) {
-				JSONObject jsonObject1 = jsonArray1.getJSONObject(i);
 				JSONObject existingJSONObject = null;
+				JSONObject jsonObject1 = jsonArray1.getJSONObject(i);
 
 				for (int j = 0; j < jsonArray2.length(); j++) {
 					JSONObject jsonObject2 = jsonArray2.getJSONObject(j);
