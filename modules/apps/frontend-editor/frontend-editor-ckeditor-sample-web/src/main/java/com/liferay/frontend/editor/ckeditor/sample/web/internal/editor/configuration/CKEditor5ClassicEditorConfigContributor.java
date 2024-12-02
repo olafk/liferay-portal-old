@@ -37,7 +37,7 @@ public class CKEditor5ClassicEditorConfigContributor
 
 		jsonObject.put(
 			"placeholder",
-			"This placeholder is set from the EditorConfigContributor.");
+			"This placeholder is set from EditorConfigContributor.");
 	}
 
 }

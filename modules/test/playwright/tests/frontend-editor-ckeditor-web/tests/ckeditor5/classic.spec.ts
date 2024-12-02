@@ -37,7 +37,7 @@ test(
 
 		expect(
 			page.locator(
-				'p[data-placeholder="This placeholder is set from the EditorConfigContributor."]'
+				'p[data-placeholder="This placeholder is set from EditorConfigContributor."]'
 			)
 		).toBeAttached();
 	}
