@@ -99,8 +99,8 @@ public class UpdateStyleBookEntryPreviewMVCActionCommandTest {
 		_themeDisplay.setUser(TestPropsValues.getUser());
 	}
 
-	@Test(expected = NoSuchFileEntryException.class)
-	public void testInvalidStyleBookEntryPreview() throws Exception {
+	@Test
+	public void testUpdateStyleBookEntryPreview() throws Exception {
 		Class<?> clazz = getClass();
 
 		FileEntry fileEntry = PortletFileRepositoryUtil.addPortletFileEntry(
@@ -130,15 +130,19 @@ public class UpdateStyleBookEntryPreviewMVCActionCommandTest {
 				mockLiferayPortletActionRequest,
 				"styleBookEntryPreviewFileExtensionInvalid"));
 
-		PortletFileRepositoryUtil.getPortletFileEntry(
-			_group.getGroupId(), _repository.getDlFolderId(),
-			_getFileName(
-				fileEntry.getExtension(),
-				_styleBookEntry.getStyleBookEntryId()));
-	}
+		try {
+			PortletFileRepositoryUtil.getPortletFileEntry(
+				_group.getGroupId(), _repository.getDlFolderId(),
+				_getFileName(
+					fileEntry.getExtension(),
+					_styleBookEntry.getStyleBookEntryId()));
 
-	@Test(expected = NoSuchFileEntryException.class)
-	public void testUpdateStyleBookEntryPreview() throws Exception {
+			Assert.fail();
+		}
+		catch (NoSuchFileEntryException noSuchFileEntryException) {
+			Assert.assertNotNull(noSuchFileEntryException);
+		}
+
 		_testUpdateStyleBookEntryPreview("thumbnail1.png");
 
 		StyleBookEntry updatedStyleBookEntry =
@@ -155,7 +159,14 @@ public class UpdateStyleBookEntryPreviewMVCActionCommandTest {
 		Assert.assertNotEquals(
 			previewFileEntryId, updatedStyleBookEntry.getPreviewFileEntryId());
 
-		PortletFileRepositoryUtil.getPortletFileEntry(previewFileEntryId);
+		try {
+			PortletFileRepositoryUtil.getPortletFileEntry(previewFileEntryId);
+
+			Assert.fail();
+		}
+		catch (NoSuchFileEntryException noSuchFileEntryException) {
+			Assert.assertNotNull(noSuchFileEntryException);
+		}
 	}
 
 	private FileEntry _addFileEntry(String fileName) throws Exception {
