@@ -81,11 +81,11 @@ public class CETItemSelectorViewDescriptor
 			_cetItemSelectorCriterion.getType(),
 			Pagination.of(QueryUtil.ALL_POS, QueryUtil.ALL_POS), null);
 
-		Predicate<CET> filterPredicate = _getFilterPredicate(
+		Predicate<CET> predicate = _getPredicate(
 			_cetItemSelectorCriterion.getType());
 
-		if (filterPredicate != null) {
-			cets = ListUtil.filter(cets, filterPredicate);
+		if (predicate != null) {
+			cets = ListUtil.filter(cets, predicate);
 		}
 
 		searchContainer.setResultsAndTotal(cets);
@@ -103,7 +103,7 @@ public class CETItemSelectorViewDescriptor
 		return false;
 	}
 
-	private Predicate<CET> _getFilterPredicate(String type) {
+	private Predicate<CET> _getPredicate(String type) {
 		if (Objects.equals(
 				type, ClientExtensionEntryConstants.TYPE_GLOBAL_JS)) {
 
