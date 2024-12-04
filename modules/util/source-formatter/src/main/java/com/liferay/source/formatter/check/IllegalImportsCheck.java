@@ -205,42 +205,39 @@ public class IllegalImportsCheck extends BaseFileCheck {
 		SourceFormatterArgs sourceFormatterArgs =
 			sourceProcessor.getSourceFormatterArgs();
 
-		if (sourceFormatterArgs.isFormatCurrentBranch()) {
-			String currentBranchFileDiff = GitUtil.getCurrentBranchFileDiff(
-				sourceFormatterArgs.getBaseDirName(),
-				sourceFormatterArgs.getGitWorkingBranchName(), absolutePath);
+		String currentBranchFileDiff = GitUtil.getCurrentBranchFileDiff(
+			sourceFormatterArgs.getBaseDirName(),
+			sourceFormatterArgs.getGitWorkingBranchName(), absolutePath);
 
-			List<String> replacedTaglibs = getAttributeValues(
-				_REPLACED_TAGLIBS_KEY, absolutePath);
+		for (String line : StringUtil.splitLines(currentBranchFileDiff)) {
+			if (!line.startsWith(StringPool.PLUS)) {
+				continue;
+			}
 
-			for (String line : StringUtil.splitLines(currentBranchFileDiff)) {
-				if (!line.startsWith(StringPool.PLUS)) {
+			for (String replacedTaglib :
+					getAttributeValues(_REPLACED_TAGLIBS_KEY, absolutePath)) {
+
+				String[] replacedTaglibArray = StringUtil.split(
+					replacedTaglib, "->");
+
+				if (replacedTaglibArray.length != 2) {
 					continue;
 				}
 
-				for (String replacedTaglib : replacedTaglibs) {
-					String[] replacedTaglibArray = StringUtil.split(
-						replacedTaglib, "->");
+				if (line.contains(replacedTaglibArray[0])) {
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Use ", replacedTaglibArray[1], " instead of ",
+							replacedTaglibArray[0]));
 
-					if (replacedTaglibArray.length != 2) {
-						continue;
-					}
-
-					if (line.contains(replacedTaglibArray[0])) {
-						addMessage(
-							fileName,
-							StringBundler.concat(
-								"Use ", replacedTaglibArray[1], " instead of ",
-								replacedTaglibArray[0]));
-
-						break;
-					}
+					break;
 				}
 			}
-		}
 
-		if (content.contains("org.jsoup.")) {
-			addMessage(fileName, "Do not use org.jsoup, see LPD-42623");
+			if (content.contains("org.jsoup.")) {
+				addMessage(fileName, "Do not use org.jsoup, see LPD-42623");
+			}
 		}
 
 		return content;
