@@ -48,28 +48,26 @@ public class IfStatementCheck extends BaseFileCheck {
 					getLineNumber(content, matcher.start()));
 			}
 
-			if (!followingCode.startsWith("if (")) {
-				continue;
-			}
+			if (followingCode.startsWith("if (")) {
+				IfStatement ifStatement2 = _getIfStatement(
+					content, ifStatement1.getEnd());
 
-			IfStatement ifStatement2 = _getIfStatement(
-				content, ifStatement1.getEnd());
+				String newContent = _combineStatementsWithSameBodies(
+					content, ifStatement1, ifStatement2);
 
-			String newContent = _combineStatementsWithSameBodies(
-				content, ifStatement1, ifStatement2);
+				if (!content.equals(newContent)) {
+					if (getSourceProcessor() instanceof JSPSourceProcessor) {
+						addMessage(
+							fileName,
+							"Merge consecutive if-statements when executing " +
+								"identical code",
+							getLineNumber(content, matcher.start()));
 
-			if (!content.equals(newContent)) {
-				if (getSourceProcessor() instanceof JSPSourceProcessor) {
-					addMessage(
-						fileName,
-						"Merge consecutive if-statements when executing " +
-							"identical code",
-						getLineNumber(content, matcher.start()));
+						continue;
+					}
 
-					continue;
+					return newContent;
 				}
-
-				return newContent;
 			}
 		}
 
