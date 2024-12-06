@@ -694,14 +694,16 @@ public class PageSpecificationResourceTest
 				{
 					setDefinition(() -> new PageContainerDefinition());
 					setExternalReferenceCode(curExternalReferenceCode);
+					setPageElements(
+						() -> {
+							if (!RandomTestUtil.randomBoolean()) {
+								return null;
+							}
 
-					if (RandomTestUtil.randomBoolean()) {
-						setPageElements(
-							_getPageElements(
+							return _getPageElements(
 								RandomTestUtil.randomInt(1, 2),
-								curExternalReferenceCode));
-					}
-
+								curExternalReferenceCode);
+						});
 					setParentExternalReferenceCode(
 						() -> curParentExternalReferenceCode);
 					setType(() -> PageElement.Type.CONTAINER);
