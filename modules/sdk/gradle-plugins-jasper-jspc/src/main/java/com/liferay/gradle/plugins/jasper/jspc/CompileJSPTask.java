@@ -57,15 +57,15 @@ public class CompileJSPTask extends DefaultTask {
 
 			@Override
 			protected TldScanner newTldScanner(
-				JspCServletContext context, boolean namespaceAware,
+				JspCServletContext jspCServletContext, boolean namespaceAware,
 				boolean validate, boolean blockExternal) {
 
 				return new TldScanner(
-					context, namespaceAware, validate, blockExternal) {
+					jspCServletContext, namespaceAware, validate, blockExternal) {
 
 					@Override
 					public void scanJars() {
-						context.setAttribute(
+						jspCServletContext.setAttribute(
 							JarScanner.class.getName(),
 							new StandardJarScanner() {
 
