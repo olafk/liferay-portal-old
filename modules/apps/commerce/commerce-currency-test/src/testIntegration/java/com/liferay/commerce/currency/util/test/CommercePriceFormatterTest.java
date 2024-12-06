@@ -142,33 +142,25 @@ public class CommercePriceFormatterTest {
 
 		String expectedParsedPrice = "1234567.890";
 
-		String inputPrice1 = "1,234,567.890";
-		String inputPrice2 = "1.234.567,890";
-		String inputPrice3 = "1234567.890";
-		String inputPrice4 = "1234567,890";
-
-		String invalidPrice = "1,234,0";
-
 		Assert.assertEquals(
-			expectedParsedPrice,
-			_commercePriceFormatter.parse(null, inputPrice1, LocaleUtil.ITALY));
-
-		Assert.assertEquals(
-			expectedParsedPrice,
-			_commercePriceFormatter.parse(null, inputPrice2, LocaleUtil.ITALY));
-
-		Assert.assertEquals(
-			expectedParsedPrice,
-			_commercePriceFormatter.parse(null, inputPrice3, LocaleUtil.ITALY));
-
-		Assert.assertEquals(
-			expectedParsedPrice,
-			_commercePriceFormatter.parse(null, inputPrice4, LocaleUtil.ITALY));
-
-		Assert.assertNotEquals(
 			expectedParsedPrice,
 			_commercePriceFormatter.parse(
-				null, invalidPrice, LocaleUtil.ITALY));
+				null, "1,234,567.890", LocaleUtil.ITALY));
+		Assert.assertEquals(
+			expectedParsedPrice,
+			_commercePriceFormatter.parse(
+				null, "1.234.567,890", LocaleUtil.ITALY));
+		Assert.assertEquals(
+			expectedParsedPrice,
+			_commercePriceFormatter.parse(
+				null, "1234567,890", LocaleUtil.ITALY));
+		Assert.assertEquals(
+			expectedParsedPrice,
+			_commercePriceFormatter.parse(
+				null, "1234567.890", LocaleUtil.ITALY));
+		Assert.assertNotEquals(
+			expectedParsedPrice,
+			_commercePriceFormatter.parse(null, "1,234,0", LocaleUtil.ITALY));
 	}
 
 	private static final String _SYMBOLS = "€$¥£R$₹";

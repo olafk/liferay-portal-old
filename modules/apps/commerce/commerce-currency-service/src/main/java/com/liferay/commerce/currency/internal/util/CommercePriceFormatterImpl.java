@@ -242,8 +242,7 @@ public class CommercePriceFormatterImpl implements CommercePriceFormatter {
 	private void _validatePrice(String className, String price)
 		throws Exception {
 
-		if (Validator.isNull(className) ||
-			_hasCommaDecimalPattern(price) ||
+		if (Validator.isNull(className) || _hasCommaDecimalPattern(price) ||
 			_hasPeriodDecimalPattern(price)) {
 
 			return;
@@ -255,9 +254,7 @@ public class CommercePriceFormatterImpl implements CommercePriceFormatter {
 		else if (Objects.equals(className, CommerceOrder.class.getName())) {
 			throw new CommerceOrderPriceException();
 		}
-		else if (Objects.equals(
-					className, CommerceOrderItem.class.getName())) {
-
+		else if (Objects.equals(className, CommerceOrderItem.class.getName())) {
 			throw new CommerceOrderItemPriceException();
 		}
 		else if (Objects.equals(
@@ -276,8 +273,7 @@ public class CommercePriceFormatterImpl implements CommercePriceFormatter {
 			throw new CommercePriceModifierAmountException();
 		}
 		else if (Objects.equals(
-					className,
-					CommerceShippingFixedOption.class.getName())) {
+					className, CommerceShippingFixedOption.class.getName())) {
 
 			throw new CommerceShippingFixedOptionAmountException();
 		}
@@ -293,8 +289,7 @@ public class CommercePriceFormatterImpl implements CommercePriceFormatter {
 			throw new CommerceTierPriceEntryPriceException();
 		}
 		else if (Objects.equals(
-					className,
-					CPDefinitionOptionValueRel.class.getName())) {
+					className, CPDefinitionOptionValueRel.class.getName())) {
 
 			throw new CPDefinitionOptionValueRelPriceException();
 		}
