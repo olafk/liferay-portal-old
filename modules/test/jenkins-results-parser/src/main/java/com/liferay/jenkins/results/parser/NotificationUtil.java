@@ -124,7 +124,7 @@ public class NotificationUtil {
 
 				long attachmentFileSize = attachmentFile.length();
 
-				if (attachmentFileSize < _BYTES_MAX_SIZE_ATTACHMENT) {
+				if (attachmentFileSize < _MAX_ATTACHMENT_FILE_SIZE) {
 					attachmentBodyPart.setFileName(attachmentFile.getName());
 
 					multipart.addBodyPart(attachmentBodyPart);
@@ -236,7 +236,7 @@ public class NotificationUtil {
 		}
 	}
 
-	private static final long _BYTES_MAX_SIZE_ATTACHMENT = 1024 * 1024 * 10;
+	private static final long _MAX_ATTACHMENT_FILE_SIZE = 1024 * 1024 * 10;
 
 	static {
 		Thread thread = Thread.currentThread();
