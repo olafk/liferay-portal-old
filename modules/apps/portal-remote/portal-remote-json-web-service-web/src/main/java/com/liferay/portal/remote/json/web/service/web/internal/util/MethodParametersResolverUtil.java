@@ -63,12 +63,12 @@ public class MethodParametersResolverUtil {
 			Class<?> clazz, Method method)
 		throws PortalException {
 
-		String path = StringUtil.replace(
+		ClassLoader classLoader = clazz.getClassLoader();
+
+		String resourcePath = StringUtil.replace(
 			clazz.getName(), CharPool.PERIOD, CharPool.SLASH);
 
-		String resourcePath = path.concat(".class");
-
-		ClassLoader classLoader = clazz.getClassLoader();
+		resourcePath = resourcePath.concat(".class");
 
 		InputStream inputStream = classLoader.getResourceAsStream(resourcePath);
 
@@ -181,8 +181,8 @@ public class MethodParametersResolverUtil {
 
 		@Override
 		public void visitLocalVariable(
-			String name, String descriptor, String signature, Label start,
-			Label end, int index) {
+			String name, String descriptor, String signature, Label startLabel,
+			Label endLabel, int index) {
 
 			if ((!Modifier.isStatic(_method.getModifiers()) && (index == 0)) ||
 				(index >= _parameterCount)) {
