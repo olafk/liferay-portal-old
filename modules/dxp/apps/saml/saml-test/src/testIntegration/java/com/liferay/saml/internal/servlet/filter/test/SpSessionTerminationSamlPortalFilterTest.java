@@ -72,8 +72,6 @@ public class SpSessionTerminationSamlPortalFilterTest {
 			httpURLConnection.getInputStream();
 
 			Assert.assertNull(
-				"SamlSpSession was not deleted because the " +
-					"SpSessionTerminationSamlPortalFilter was not enabled",
 				SamlSpSessionLocalServiceUtil.fetchSamlSpSession(
 					samlSpSession.getSamlSpSessionId()));
 		}
