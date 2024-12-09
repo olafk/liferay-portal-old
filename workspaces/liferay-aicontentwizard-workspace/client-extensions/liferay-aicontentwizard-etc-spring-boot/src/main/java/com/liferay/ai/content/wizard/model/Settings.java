@@ -14,11 +14,6 @@ public class Settings {
 
 	public Settings(JSONObject jsonObject) {
 		apiKey = jsonObject.getString("apiKey");
-		imageModelName = jsonObject.getJSONObject(
-			"imageModel"
-		).getString(
-			"name"
-		);
 		modelName = jsonObject.getJSONObject(
 			"model"
 		).getString(
@@ -32,8 +27,6 @@ public class Settings {
 	}
 
 	public String apiKey;
-	public long id;
-	public String imageModelName;
 	public String modelName;
 	public String providerName;
 
