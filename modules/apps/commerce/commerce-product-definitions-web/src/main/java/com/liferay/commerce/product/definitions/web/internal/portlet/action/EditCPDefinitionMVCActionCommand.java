@@ -980,9 +980,9 @@ public class EditCPDefinitionMVCActionCommand extends BaseMVCActionCommand {
 			long cpDefinitionId = _cpDefinition.getCPDefinitionId();
 
 			_updateCPDefinitionInventory(_actionRequest, cpDefinitionId);
+			_updateMasterConfiguration(_actionRequest, cpDefinitionId);
 			_updateShippingInfo(_actionRequest, cpDefinitionId);
 			_updateTaxCategoryInfo(_actionRequest, cpDefinitionId);
-			_updateMasterConfiguration(_actionRequest, cpDefinitionId);
 
 			_updateCPDefinition(
 				_cpDefinition,
