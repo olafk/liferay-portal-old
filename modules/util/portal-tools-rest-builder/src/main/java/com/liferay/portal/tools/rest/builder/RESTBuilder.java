@@ -2127,6 +2127,7 @@ public class RESTBuilder {
 		}
 
 		Files.deleteIfExists(Paths.get("./openapitools.json"));
+
 		_deleteDir(Paths.get(outputPathString, ".openapi-generator"));
 	}
 
