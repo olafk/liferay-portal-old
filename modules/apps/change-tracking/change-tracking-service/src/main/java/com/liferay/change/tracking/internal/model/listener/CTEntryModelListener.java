@@ -70,8 +70,7 @@ public class CTEntryModelListener extends BaseModelListener<CTEntry> {
 						"modelClassNameId", ctEntry.getModelClassNameId()
 					).build());
 
-				_messageBus.sendMessage(
-					CTDestinationNames.CT_SCORE, message);
+				_messageBus.sendMessage(CTDestinationNames.CT_SCORE, message);
 
 				return null;
 			});
