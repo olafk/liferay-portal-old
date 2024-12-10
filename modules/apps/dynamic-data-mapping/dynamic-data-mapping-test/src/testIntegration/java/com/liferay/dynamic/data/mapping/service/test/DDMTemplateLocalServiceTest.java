@@ -218,9 +218,7 @@ public class DDMTemplateLocalServiceTest extends BaseDDMServiceTestCase {
 	}
 
 	@Test
-	public void testFetchDDMTemplateByExternalReferenceCodeIncludingAncestorTemplates()
-		throws Exception {
-
+	public void testFetchDDMTemplateByExternalReferenceCode() throws Exception {
 		Company company = _companyLocalService.getCompany(group.getCompanyId());
 
 		DDMTemplate template = _ddmTemplateLocalService.addTemplate(
@@ -238,7 +236,6 @@ public class DDMTemplateLocalServiceTest extends BaseDDMServiceTestCase {
 			_ddmTemplateLocalService.fetchDDMTemplateByExternalReferenceCode(
 				template.getExternalReferenceCode(), group.getGroupId(),
 				false));
-
 		Assert.assertNotNull(
 			_ddmTemplateLocalService.fetchDDMTemplateByExternalReferenceCode(
 				template.getExternalReferenceCode(), group.getGroupId(), true));
