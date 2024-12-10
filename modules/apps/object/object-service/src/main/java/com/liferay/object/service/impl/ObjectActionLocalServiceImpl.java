@@ -361,14 +361,10 @@ public class ObjectActionLocalServiceImpl
 		_validateExternalReferenceCode(
 			externalReferenceCode, objectAction.getObjectActionId(),
 			objectAction.getCompanyId(), objectAction.getObjectDefinitionId());
-
 		_validateActive(active, objectAction, objectDefinition);
-
 		_validateErrorMessage(errorMessageMap, objectActionTriggerKey);
-
 		_validateObjectActionExecutorKey(
 			objectActionExecutorKey, objectDefinition);
-
 		_validateParametersUnicodeProperties(
 			objectAction.getCompanyId(), objectAction.getUserId(),
 			conditionExpression, objectActionExecutorKey,
