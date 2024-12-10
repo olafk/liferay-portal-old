@@ -435,10 +435,10 @@ public class JiraRestController extends BaseRestController {
 			"publishingStatus");
 
 		if (publishingStatus.equals("Ready for Publishing")) {
-			LocalDateTime publishingDate = _parsePublishingDate(
+			LocalDateTime localDateTime = _parseLocalDateTime(
 				jwt, issueJSONObject);
 
-			if (publishingDate.isBefore(LocalDateTime.now())) {
+			if (localDateTime.isBefore(LocalDateTime.now())) {
 				return true;
 			}
 		}
@@ -446,25 +446,25 @@ public class JiraRestController extends BaseRestController {
 		return false;
 	}
 
-	private LocalDateTime _parsePublishingDate(
+	private LocalDateTime _parseLocalDateTime(
 		Jwt jwt, JSONObject issueJSONObject) {
 
 		JSONObject fieldsJSONObject = issueJSONObject.getJSONObject("fields");
 
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(
 			"yyyy-MM-dd'T'HH:mm:ss.SSSx");
 
 		if (_hasEarlyPublishAccess(jwt)) {
 			String publishingDate = fieldsJSONObject.optString(
 				"partnerPublishingDate");
 
-			return LocalDateTime.parse(publishingDate, formatter);
+			return LocalDateTime.parse(publishingDate, dateTimeFormatter);
 		}
 
 		String publishingDate = fieldsJSONObject.optString(
 			"customerPublishingDate");
 
-		return LocalDateTime.parse(publishingDate, formatter);
+		return LocalDateTime.parse(publishingDate, dateTimeFormatter);
 	}
 
 	private JSONObject _search(
