@@ -185,6 +185,7 @@ const SecurityVulnerabilitiesItem = () => {
 						</h5>
 
 						<div
+							className="sv-structured-data"
 							dangerouslySetInnerHTML={{
 								__html: jiraToHtml(
 									jiraIssue[JiraEnum.FIELDS]?.[
