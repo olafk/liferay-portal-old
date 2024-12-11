@@ -796,7 +796,6 @@ public class FriendlyURLServletTest {
 
 		testGetRedirect(
 			mockHttpServletRequest, _group.getFriendlyURL(), expectedRedirect);
-
 		testGetRedirect(
 			mockHttpServletRequest, getPath(_group, _layout), expectedRedirect);
 	}
