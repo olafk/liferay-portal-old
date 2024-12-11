@@ -345,9 +345,11 @@ public class ObjectFieldLocalServiceTest {
 					).build())));
 		AssertUtils.assertFailure(
 			ObjectFieldLocalizedException.class,
-			"Only Boolean,Date,DateTime,Decimal,Integer,LongInteger,LongText," +
-				"MultiselectPicklist,Picklist,PrecisionDecimal,RichText and " +
-					"Text business types support localization",
+			StringBundler.concat(
+				"Only Attachment,Boolean,Date,DateTime,Decimal,Integer,",
+				"LongInteger,LongText,MultiselectPicklist,Picklist,",
+				"PrecisionDecimal,RichText and Text business types support ",
+				"localization"),
 			() -> ObjectDefinitionTestUtil.addCustomObjectDefinition(
 				false,
 				Arrays.asList(
