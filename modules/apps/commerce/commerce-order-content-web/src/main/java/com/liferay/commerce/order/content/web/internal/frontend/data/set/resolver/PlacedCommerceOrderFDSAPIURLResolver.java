@@ -62,21 +62,20 @@ public class PlacedCommerceOrderFDSAPIURLResolver implements FDSAPIURLResolver {
 	private String _replacePlaceholders(
 		String baseURL, String externalReferenceCode) {
 
-		String[] placeholders = {
-			"{accountExternalReferenceCode}", "{accountId}",
-			"{channelExternalReferenceCode}", "{channelId}",
-			"{externalReferenceCode}"
-		};
-
-		String[] replacements = {
-			_accountEntry.getExternalReferenceCode(),
-			String.valueOf(_accountEntry.getAccountEntryId()),
-			_commerceChannel.getExternalReferenceCode(),
-			String.valueOf(_commerceChannel.getCommerceChannelId()),
-			externalReferenceCode
-		};
-
-		return StringUtil.replace(baseURL, placeholders, replacements);
+		return StringUtil.replace(
+			baseURL,
+			new String[] {
+				"{accountExternalReferenceCode}", "{accountId}",
+				"{channelExternalReferenceCode}", "{channelId}",
+				"{externalReferenceCode}"
+			},
+			new String[] {
+				_accountEntry.getExternalReferenceCode(),
+				String.valueOf(_accountEntry.getAccountEntryId()),
+				_commerceChannel.getExternalReferenceCode(),
+				String.valueOf(_commerceChannel.getCommerceChannelId()),
+				externalReferenceCode
+			});
 	}
 
 	private AccountEntry _accountEntry;

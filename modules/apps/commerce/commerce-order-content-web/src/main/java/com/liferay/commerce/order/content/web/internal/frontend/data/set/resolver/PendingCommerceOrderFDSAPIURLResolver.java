@@ -49,22 +49,21 @@ public class PendingCommerceOrderFDSAPIURLResolver
 				commerceContext.getCommerceChannelId());
 		CommerceOrder commerceOrder = commerceContext.getCommerceOrder();
 
-		String[] placeholders = {
-			"{accountExternalReferenceCode}", "{accountId}", "{cartId}",
-			"{channelExternalReferenceCode}", "{channelId}",
-			"{externalReferenceCode}"
-		};
-
-		String[] replacements = {
-			accountEntry.getExternalReferenceCode(),
-			String.valueOf(accountEntry.getAccountEntryId()),
-			String.valueOf(commerceOrder.getCommerceOrderId()),
-			commerceChannel.getExternalReferenceCode(),
-			String.valueOf(commerceContext.getCommerceChannelId()),
-			commerceOrder.getExternalReferenceCode()
-		};
-
-		return StringUtil.replace(baseURL, placeholders, replacements);
+		return StringUtil.replace(
+			baseURL,
+			new String[] {
+				"{accountExternalReferenceCode}", "{accountId}", "{cartId}",
+				"{channelExternalReferenceCode}", "{channelId}",
+				"{externalReferenceCode}"
+			},
+			new String[] {
+				accountEntry.getExternalReferenceCode(),
+				String.valueOf(accountEntry.getAccountEntryId()),
+				String.valueOf(commerceOrder.getCommerceOrderId()),
+				commerceChannel.getExternalReferenceCode(),
+				String.valueOf(commerceContext.getCommerceChannelId()),
+				commerceOrder.getExternalReferenceCode()
+			});
 	}
 
 	@Reference
