@@ -53,12 +53,14 @@ public class RecommendationNotificationHandlerTest {
 		_serviceContext = new ServiceContext();
 
 		_serviceContext.setLanguageId("en_US");
-
 		_serviceContext.setRequest(new MockHttpServletRequest());
 
 		ReflectionTestUtil.setFieldValue(
 			_recommendationNotificationHandler, "_jsonFactory",
 			new JSONFactoryImpl());
+		ReflectionTestUtil.setFieldValue(
+			_recommendationNotificationHandler, "_language",
+			LanguageUtil.getLanguage());
 
 		_portal = Mockito.mock(Portal.class);
 
@@ -72,10 +74,6 @@ public class RecommendationNotificationHandlerTest {
 
 		ReflectionTestUtil.setFieldValue(
 			_recommendationNotificationHandler, "_portal", _portal);
-
-		ReflectionTestUtil.setFieldValue(
-			_recommendationNotificationHandler, "_language",
-			LanguageUtil.getLanguage());
 	}
 
 	@Test
