@@ -275,11 +275,11 @@ public class FragmentEntryInputTemplateNodeContextHelperImpl
 			}
 		}
 
+		Map<Locale, String> valueI18n = new HashMap<>();
+
 		Map<String, String> infoFormParameterMap =
 			(Map<String, String>)SessionMessages.get(
 				httpServletRequest, "infoFormParameterMap");
-
-		Map<Locale, String> valueI18n = new HashMap<>();
 
 		if (infoFormParameterMap != null) {
 			label = infoFormParameterMap.get(infoField.getName() + "-label");
