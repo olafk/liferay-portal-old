@@ -3817,8 +3817,8 @@ public class ObjectEntryLocalServiceImpl
 						new HashMap<>(1);
 
 					_setColumn(
-						columnNames, index++, insertedLocalizedValue,
-						preparedStatement, column.getSQLType(),
+						column, columnNames, index++, insertedLocalizedValue,
+						objectField, preparedStatement,
 						_getLocalizedValue(
 							languageId,
 							(Map<String, Object>)values.get(
@@ -4020,8 +4020,10 @@ public class ObjectEntryLocalServiceImpl
 				}
 
 				_setColumn(
-					columnNames, dynamicObjectDefinitionTable, index++,
-					insertedValues, objectField, preparedStatement, values);
+					dynamicObjectDefinitionTable.getColumn(
+						objectField.getDBColumnName()),
+					columnNames, index++, insertedValues, objectField,
+					preparedStatement, values.get(objectField.getName()));
 			}
 
 			preparedStatement.executeUpdate();
@@ -4279,17 +4281,10 @@ public class ObjectEntryLocalServiceImpl
 	}
 
 	private void _setColumn(
-			List<String> columnNames,
-			DynamicObjectDefinitionTable dynamicObjectDefinitionTable,
-			int index, Map<String, Serializable> insertedValues,
-			ObjectField objectField, PreparedStatement preparedStatement,
-			Map<String, Serializable> values)
+			Column<?, ?> column, List<String> columnNames, int index,
+			Map<String, Serializable> insertedValues, ObjectField objectField,
+			PreparedStatement preparedStatement, Object value)
 		throws Exception {
-
-		Column<?, ?> column = dynamicObjectDefinitionTable.getColumn(
-			objectField.getDBColumnName());
-
-		Object value = values.get(objectField.getName());
 
 		if (objectField.compareBusinessType(
 				ObjectFieldConstants.BUSINESS_TYPE_ENCRYPTED)) {
@@ -4847,8 +4842,10 @@ public class ObjectEntryLocalServiceImpl
 				}
 
 				_setColumn(
-					columnNames, dynamicObjectDefinitionTable, index++,
-					insertedValues, objectField, preparedStatement, values);
+					dynamicObjectDefinitionTable.getColumn(
+						objectField.getDBColumnName()),
+					columnNames, index++, insertedValues, objectField,
+					preparedStatement, values.get(objectField.getName()));
 			}
 
 			_setColumn(
