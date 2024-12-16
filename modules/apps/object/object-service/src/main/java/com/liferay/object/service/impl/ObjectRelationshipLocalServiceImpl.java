@@ -1645,7 +1645,6 @@ public class ObjectRelationshipLocalServiceImpl
 							KEY_ON_AFTER_ROOT_UPDATE)) {
 
 				objectAction.setActive(false);
-
 				objectAction.setObjectActionTriggerKey(
 					ObjectActionTriggerConstants.KEY_ON_AFTER_UPDATE);
 
