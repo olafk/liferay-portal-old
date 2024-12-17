@@ -496,7 +496,7 @@ public class FragmentEntryInputTemplateNodeContextHelperTest {
 				true, ObjectDefinitionConstants.SCOPE_SITE,
 				ObjectDefinitionConstants.STORAGE_TYPE_DEFAULT, objectFields);
 
-		ObjectField objectField = ObjectFieldUtil.addCustomObjectField(
+		ObjectField myTextObjectField = ObjectFieldUtil.addCustomObjectField(
 			new TextObjectFieldBuilder(
 			).userId(
 				TestPropsValues.getUserId()
@@ -512,7 +512,8 @@ public class FragmentEntryInputTemplateNodeContextHelperTest {
 				objectDefinition.getObjectDefinitionId()
 			).build());
 
-		objectDefinition.setTitleObjectFieldId(objectField.getObjectFieldId());
+		objectDefinition.setTitleObjectFieldId(
+			myTextObjectField.getObjectFieldId());
 
 		objectDefinition = _objectDefinitionLocalService.updateObjectDefinition(
 			objectDefinition);
