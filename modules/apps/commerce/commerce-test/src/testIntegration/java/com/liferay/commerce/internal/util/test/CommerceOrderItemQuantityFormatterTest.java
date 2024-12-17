@@ -36,37 +36,35 @@ public class CommerceOrderItemQuantityFormatterTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testParseQuantityBigDecimal() throws Exception {
+	public void testParse() throws Exception {
 		String expectedParsedQuantity = "1234567.890";
 
-		_assertQuantity(
+		_assertEquals(
 			"1,234,567.890", expectedParsedQuantity, LocaleUtil.ITALY);
-		_assertQuantity(
+		_assertEquals(
 			"1.234.567,890", expectedParsedQuantity, LocaleUtil.ITALY);
-		_assertQuantity(
-			"1234567,890", expectedParsedQuantity, LocaleUtil.ITALY);
-		_assertQuantity(
-			"1234567.890", expectedParsedQuantity, LocaleUtil.ITALY);
+		_assertEquals("1234567,890", expectedParsedQuantity, LocaleUtil.ITALY);
+		_assertEquals("1234567.890", expectedParsedQuantity, LocaleUtil.ITALY);
 
 		Assert.assertNotEquals(
 			expectedParsedQuantity,
-			_commerceOrderItemQuantityFormatter.parse(
-				null, "1,234,0", LocaleUtil.ITALY
-			).toString());
+			String.valueOf(
+				_commerceOrderItemQuantityFormatter.parse(
+					null, "1,234,0", LocaleUtil.ITALY)));
 	}
 
 	@Rule
 	public FrutillaRule frutillaRule = new FrutillaRule();
 
-	private void _assertQuantity(
+	private void _assertEquals(
 			String actualQuantity, String expectedQuantity, Locale locale)
 		throws Exception {
 
 		Assert.assertEquals(
 			expectedQuantity,
-			_commerceOrderItemQuantityFormatter.parse(
-				null, actualQuantity, locale
-			).toString());
+			String.valueOf(
+				_commerceOrderItemQuantityFormatter.parse(
+					null, actualQuantity, locale)));
 	}
 
 	@Inject
