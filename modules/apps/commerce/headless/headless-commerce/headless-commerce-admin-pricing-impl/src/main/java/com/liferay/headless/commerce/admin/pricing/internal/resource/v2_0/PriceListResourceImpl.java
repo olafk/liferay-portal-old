@@ -227,10 +227,11 @@ public class PriceListResourceImpl extends BasePriceListResourceImpl {
 			_commerceCatalogService.getCommerceCatalog(
 				priceList.getCatalogId());
 
-		CommerceCurrency commerceCurrency = CommerceCurrencyUtil.getCommerceCurrency(
-			contextCompany.getCompanyId(), priceList.getCurrencyCode(),
-			priceList.getCurrencyExternalReferenceCode(),
-			priceList.getCurrencyId());
+		CommerceCurrency commerceCurrency =
+			CommerceCurrencyUtil.getCommerceCurrency(
+				contextCompany.getCompanyId(), priceList.getCurrencyCode(),
+				priceList.getCurrencyExternalReferenceCode(),
+				priceList.getCurrencyId());
 
 		ServiceContext serviceContext =
 			_serviceContextHelper.getServiceContext();
