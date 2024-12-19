@@ -220,6 +220,7 @@ public class CatalogResourceTest extends BaseCatalogResourceTestCase {
 		assertValid(postCatalog);
 	}
 
+	@Override
 	protected Catalog randomCatalog() throws Exception {
 		return new Catalog() {
 			{
