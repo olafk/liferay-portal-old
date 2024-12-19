@@ -65,6 +65,7 @@ public class UpgradeVersionTreeMapTest {
 
 		for (UpgradeStep upgradeStep : upgradeProcess.getUpgradeSteps()) {
 			upgradeProcesses[i] = (UpgradeProcess)upgradeStep;
+
 			i++;
 		}
 
@@ -78,13 +79,13 @@ public class UpgradeVersionTreeMapTest {
 		Assert.assertEquals(
 			upgradeVersionTreeMap.toString(), 1, upgradeVersionTreeMap.size());
 
-		List<UpgradeProcess> upgradeProcesList =
+		List<UpgradeProcess> upgradeProcessesList =
 			upgradeVersionTreeMap.firstEntry(
 			).getValue();
 
 		Assert.assertEquals(
-			upgradeProcesList.toString(), upgradeProcesses.length,
-			upgradeProcesList.size());
+			upgradeProcessesList.toString(), upgradeProcesses.length,
+			upgradeProcessesList.size());
 	}
 
 	private class MultiStepUpgrade extends DummyUpgradeProcess {
