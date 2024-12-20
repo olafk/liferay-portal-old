@@ -12,8 +12,8 @@ const CONFIG_FILES = [
 	'**/.stylelintrc.js',
 	'**/gulpfile.js',
 	'**/liferay-npm-bundler.config.js',
-	'**/npmscripts.config.js',
 	'**/node-scripts.config.js',
+	'**/npmscripts.config.js',
 ];
 
 const config = {

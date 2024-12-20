@@ -4,15 +4,16 @@
 		"node-scripts": "./bin.js"
 	},
 	"com.liferay": {
-		"sha256": "9bf6149fa1fa0bbb465cd16abbee6566905cc2e76548ce0284aaa13670189856"
+		"sha256": "2455b09e3623f0cd3b40d6d14b0722f5b539e3f3d0ef5ddc10d9fe37ee78dbf6"
 	},
 	"dependencies": {
 		"@babel/preset-env": "7.24.7",
 		"@babel/preset-react": "7.24.7",
+		"@babel/preset-typescript": "7.10.4",
 		"@liferay/jest-junit-reporter": "^1.2.0",
 		"@testing-library/dom": "^9.3.3",
 		"@testing-library/dom-8.11.1": "npm:@testing-library/dom@8.11.1",
-		"@testing-library/jest-dom": "^6.1.4",
+		"@testing-library/jest-dom": "4.2.4",
 		"@testing-library/jest-dom-4.2.4": "npm:@testing-library/jest-dom@4.2.4",
 		"@testing-library/react": "^14.0.0",
 		"@testing-library/react-12.1.2": "npm:@testing-library/react@12.1.2",

@@ -14,8 +14,6 @@ function getJestConfig({rootDir = '<rootDir>'}) {
 			// Testing dependencies
 
 			'^@testing-library/dom((\\/.*)?)$': '@testing-library/dom-8.11.1$1',
-			'^@testing-library/jest-dom((\\/.*)?)$':
-				'@testing-library/jest-dom-4.2.4$1',
 			'^@testing-library/react((\\/.*)?)$':
 				'@testing-library/react-12.1.2$1',
 			'^@testing-library/react-hooks((\\/.*)?)$':
