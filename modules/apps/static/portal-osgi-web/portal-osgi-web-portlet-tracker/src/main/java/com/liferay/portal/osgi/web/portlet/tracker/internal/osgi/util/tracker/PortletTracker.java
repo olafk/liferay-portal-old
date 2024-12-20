@@ -173,10 +173,9 @@ public class PortletTracker
 			_log.info("Adding " + serviceReference);
 		}
 
+		long companyId = CompanyThreadLocal.getNonsystemCompanyId();
 		String finalPortletName = portletName;
 		String finalPortletId = portletId;
-
-		long companyId = CompanyThreadLocal.getNonsystemCompanyId();
 
 		FutureTask<com.liferay.portal.kernel.model.Portlet> futureTask =
 			new FutureTask<>(
