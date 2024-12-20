@@ -172,9 +172,12 @@ public class WorkflowDefinitionLinkResourceTest
 				setExternalReferenceCode(
 					workflowDefinitionLink::getExternalReferenceCode);
 				setGroupExternalReferenceCode(
-					_groupLocalService.fetchGroup(
-						workflowDefinitionLink.getGroupId()
-					).getExternalReferenceCode());
+					() -> {
+						Group group = _groupLocalService.fetchGroup(
+							workflowDefinitionLink.getGroupId());
+
+						return group.getExternalReferenceCode();
+					});
 				setGroupId(workflowDefinitionLink::getGroupId);
 				setId(workflowDefinitionLink::getWorkflowDefinitionLinkId);
 				setWorkflowDefinitionName(
