@@ -834,7 +834,7 @@ public class ObjectRelationshipLocalServiceImpl
 			List<ObjectRelationship> objectRelationships =
 				objectRelationshipsMap.computeIfAbsent(
 					objectRelationship.getObjectDefinitionId1(),
-					key -> new ArrayList<>());
+					objectDefinitionId -> new ArrayList<>());
 
 			objectRelationships.add(objectRelationship);
 		}

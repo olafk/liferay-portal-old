@@ -213,7 +213,8 @@ public class ObjectLayoutLocalServiceImpl
 				_getObjectLayoutTabs(objectLayout));
 
 			List<ObjectLayout> objectLayouts = objectLayoutsMap.computeIfAbsent(
-				objectLayout.getObjectDefinitionId(), key -> new ArrayList<>());
+				objectLayout.getObjectDefinitionId(),
+				objectDefinitionId -> new ArrayList<>());
 
 			objectLayouts.add(objectLayout);
 		}

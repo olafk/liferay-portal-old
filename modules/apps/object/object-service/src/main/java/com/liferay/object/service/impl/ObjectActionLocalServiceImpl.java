@@ -340,7 +340,8 @@ public class ObjectActionLocalServiceImpl
 					companyId, active, objectActionTriggerKey)) {
 
 			List<ObjectAction> objectActions = objectActionsMap.computeIfAbsent(
-				objectAction.getObjectDefinitionId(), key -> new ArrayList<>());
+				objectAction.getObjectDefinitionId(),
+				objectDefinitionId -> new ArrayList<>());
 
 			objectActions.add(objectAction);
 		}

@@ -541,7 +541,8 @@ public class ObjectFieldLocalServiceImpl
 				objectFieldPersistence.findByCompanyId(companyId)) {
 
 			List<ObjectField> objectFields = objectFieldsMap.computeIfAbsent(
-				objectField.getObjectDefinitionId(), key -> new ArrayList<>());
+				objectField.getObjectDefinitionId(),
+				objectDefinitionId -> new ArrayList<>());
 
 			objectFields.add(objectField);
 		}
