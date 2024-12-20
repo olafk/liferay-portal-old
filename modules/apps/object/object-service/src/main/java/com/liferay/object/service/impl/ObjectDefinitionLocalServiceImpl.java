@@ -624,7 +624,7 @@ public class ObjectDefinitionLocalServiceImpl
 				CompanyThreadLocal.setCompanyIdWithSafeCloseable(
 					objectDefinition.getCompanyId())) {
 
-			_inactiveObjectDefinitionsServiceRegistrations.computeIfAbsent(
+			_inactiveServiceRegistrationsMap.computeIfAbsent(
 				objectDefinition.getObjectDefinitionId(),
 				objectDefinitionId ->
 					InactiveObjectDefinitionDeployerUtil.deploy(
@@ -927,7 +927,7 @@ public class ObjectDefinitionLocalServiceImpl
 
 				for (ObjectDefinition objectDefinition : objectDefinitions) {
 					if (!objectDefinition.isActive()) {
-						_inactiveObjectDefinitionsServiceRegistrations.put(
+						_inactiveServiceRegistrationsMap.put(
 							objectDefinition.getObjectDefinitionId(),
 							InactiveObjectDefinitionDeployerUtil.deploy(
 								_bundleContext, _objectEntryService,
@@ -2694,7 +2694,7 @@ public class ObjectDefinitionLocalServiceImpl
 	private GroupLocalService _groupLocalService;
 
 	private final Map<Long, List<ServiceRegistration<?>>>
-		_inactiveObjectDefinitionsServiceRegistrations =
+		_inactiveServiceRegistrationsMap =
 			new ConcurrentHashMap<>();
 
 	@Reference
