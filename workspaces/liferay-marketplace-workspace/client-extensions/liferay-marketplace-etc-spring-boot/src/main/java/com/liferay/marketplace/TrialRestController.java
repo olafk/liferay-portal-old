@@ -321,13 +321,13 @@ public class TrialRestController extends BaseRestController {
 	}
 
 	private String[] _getConsoleInviteEmailAddresses(JSONArray jsonArray) {
-		List<String> arrayList = new ArrayList<>();
+		List<String> list = new ArrayList<>();
 
 		for (int i = 0; i < jsonArray.length(); i++) {
-			arrayList.add(jsonArray.getString(i));
+			list.add(jsonArray.getString(i));
 		}
 
-		return arrayList.toArray(new String[0]);
+		return list.toArray(new String[0]);
 	}
 
 	private PortalInstanceResource _getPortalInstanceResource()
