@@ -160,7 +160,7 @@ public class DDMFormValuesExportImportContentProcessor
 				if (importedLayout != null) {
 					value.addString(
 						locale,
-						_toJSON(
+						toJSON(
 							importedLayout, locale,
 							jsonObject.getString("name")));
 
@@ -197,7 +197,7 @@ public class DDMFormValuesExportImportContentProcessor
 				if (importedLayout != null) {
 					value.addString(
 						locale,
-						_toJSON(
+						toJSON(
 							importedLayout, locale,
 							jsonObject.getString("name")));
 				}
@@ -224,7 +224,7 @@ public class DDMFormValuesExportImportContentProcessor
 			return layout;
 		}
 
-		private String _toJSON(Layout layout, Locale locale, String name)
+		protected String toJSON(Layout layout, Locale locale, String name)
 			throws PortalException {
 
 			return JSONUtil.put(
@@ -429,7 +429,7 @@ public class DDMFormValuesExportImportContentProcessor
 					continue;
 				}
 
-				value.addString(locale, _toJSON(importedFileEntry, type));
+				value.addString(locale, toJSON(importedFileEntry, type));
 			}
 		}
 
@@ -487,7 +487,7 @@ public class DDMFormValuesExportImportContentProcessor
 			return null;
 		}
 
-		private String _toJSON(FileEntry fileEntry, String type) {
+		protected String toJSON(FileEntry fileEntry, String type) {
 			return JSONUtil.put(
 				"classPK", fileEntry.getFileEntryId()
 			).put(
