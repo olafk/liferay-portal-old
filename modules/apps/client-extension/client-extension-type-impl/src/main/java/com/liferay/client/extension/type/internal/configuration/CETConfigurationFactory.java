@@ -64,11 +64,11 @@ public class CETConfigurationFactory {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Activate client extension ", externalReferenceCode,
+					"Activating client extension ", externalReferenceCode,
 					"with properties:\n", MapUtil.toString(properties)));
 		}
 		else if (_log.isInfoEnabled()) {
-			_log.info("Activate client extension " + externalReferenceCode);
+			_log.info("Activating client extension " + externalReferenceCode);
 		}
 
 		ConfigurationFactoryUtil.executeAsCompany(
@@ -78,8 +78,9 @@ public class CETConfigurationFactory {
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							StringBundler.concat(
-								"Adding CET for company ", companyId, " and ",
-								"client extension ", externalReferenceCode));
+								"Adding CET for client extension ",
+								externalReferenceCode, " and company ",
+								companyId));
 					}
 
 					_cet = _cetManager.addCET(
@@ -94,9 +95,9 @@ public class CETConfigurationFactory {
 						if (_log.isInfoEnabled()) {
 							_log.info(
 								StringBundler.concat(
-									"Adding control panel theme CSS relation ",
-									"for company ", companyId, " and client ",
-									"extension ", externalReferenceCode));
+									"Adding client extension relations for ",
+									"client extension ", externalReferenceCode,
+									" and company ", companyId));
 						}
 
 						_addControlPanelThemeCSSClientExtensionEntryRel(
@@ -106,8 +107,8 @@ public class CETConfigurationFactory {
 				catch (Exception exception) {
 					_log.error(
 						StringBundler.concat(
-							"Unable to activate CET for company ", companyId,
-							" and client extension ", externalReferenceCode),
+							"Unable to add CET for client extension ",
+							externalReferenceCode, " and company ", companyId),
 						exception);
 
 					throw exception;
@@ -120,9 +121,7 @@ public class CETConfigurationFactory {
 		String externalReferenceCode = _getExternalReferenceCode(_properties);
 
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Notified from OSGi about deactivation of client extension " +
-					externalReferenceCode);
+			_log.info("Deactivating client extension " + externalReferenceCode);
 		}
 
 		ConfigurationFactoryUtil.executeAsCompany(
@@ -132,8 +131,9 @@ public class CETConfigurationFactory {
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							StringBundler.concat(
-								"Deleting CET for company ", companyId, " and ",
-								"client extension ", externalReferenceCode));
+								"Deleting CET for client extension ",
+								externalReferenceCode, " and company ",
+								companyId));
 					}
 
 					_cetManager.deleteCET(_cet);
@@ -141,9 +141,9 @@ public class CETConfigurationFactory {
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							StringBundler.concat(
-								"Deleting client extension relations (if any) ",
-								"for company ", companyId, " and client ",
-								"extension ", externalReferenceCode));
+								"Deleting client extension relations for ",
+								"client extension ", externalReferenceCode,
+								" and company ", companyId));
 					}
 
 					_clientExtensionEntryRelLocalService.
@@ -153,8 +153,8 @@ public class CETConfigurationFactory {
 				catch (Exception exception) {
 					_log.error(
 						StringBundler.concat(
-							"Unable to deactivate CET for company ", companyId,
-							" and client extension ", externalReferenceCode),
+							"Unable to delete CET for client extension ",
+							externalReferenceCode, " and company ", companyId),
 						exception);
 
 					throw exception;
@@ -166,23 +166,19 @@ public class CETConfigurationFactory {
 
 	@Modified
 	protected void modified(Map<String, Object> properties) throws Exception {
-		String externalReferenceCode = _getExternalReferenceCode(properties);
+		_properties = properties;
 
-		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Notified from OSGi about modification of client extension " +
-					externalReferenceCode);
-		}
+		String externalReferenceCode = _getExternalReferenceCode(properties);
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Properties for modified client extension ",
-					externalReferenceCode, ":\n",
-					MapUtil.toString(properties)));
+					"Modifying client extension ", externalReferenceCode,
+					"with properties:\n", MapUtil.toString(properties)));
 		}
-
-		_properties = properties;
+		else if (_log.isInfoEnabled()) {
+			_log.info("Modifying client extension " + externalReferenceCode);
+		}
 
 		ConfigurationFactoryUtil.executeAsCompany(
 			_companyLocalService, properties,
@@ -191,8 +187,9 @@ public class CETConfigurationFactory {
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							StringBundler.concat(
-								"Deleting CET for company ", companyId, " and ",
-								"client extension ", externalReferenceCode));
+								"Deleting CET for client extension ",
+								externalReferenceCode, " and company ",
+								companyId));
 					}
 
 					_cetManager.deleteCET(_cet);
@@ -200,8 +197,9 @@ public class CETConfigurationFactory {
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							StringBundler.concat(
-								"Adding CET for company ", companyId, " and ",
-								"client extension ", externalReferenceCode));
+								"Adding CET for client extension ",
+								externalReferenceCode, " and company ",
+								companyId));
 					}
 
 					_cet = _cetManager.addCET(
@@ -216,10 +214,9 @@ public class CETConfigurationFactory {
 						if (_log.isInfoEnabled()) {
 							_log.info(
 								StringBundler.concat(
-									"Deleting client extension relations (if ",
-									"any) for company ", companyId, " and ",
-									"client extension ",
-									externalReferenceCode));
+									"Deleting client extension relations for ",
+									"client extension ", externalReferenceCode,
+									" and company ", companyId));
 						}
 
 						_clientExtensionEntryRelLocalService.
@@ -229,9 +226,9 @@ public class CETConfigurationFactory {
 						if (_log.isInfoEnabled()) {
 							_log.info(
 								StringBundler.concat(
-									"Adding control panel theme CSS relation ",
-									"for company ", companyId, " and client ",
-									"extension ", externalReferenceCode));
+									"Adding client extension relations for ",
+									"client extension ", externalReferenceCode,
+									" and company ", companyId));
 						}
 
 						_addControlPanelThemeCSSClientExtensionEntryRel(
@@ -241,8 +238,8 @@ public class CETConfigurationFactory {
 				catch (Exception exception) {
 					_log.error(
 						StringBundler.concat(
-							"Unable to modify CET for company ", companyId,
-							" and client extension ", externalReferenceCode),
+							"Unable to update CET for client extension ",
+							externalReferenceCode, " and company ", companyId),
 						exception);
 
 					throw exception;
