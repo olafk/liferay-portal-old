@@ -267,7 +267,7 @@ public class SettingsLocatorHelperTest extends BaseSettingsLocatorTestCase {
 				new Class<?>[] {Class.class},
 				TestRequiredConfiguration.class)) {
 
-			// Configuration with non required key
+			// Configuration with key
 
 			Assert.assertNull(
 				configurationBeanSettings.get(
@@ -302,7 +302,7 @@ public class SettingsLocatorHelperTest extends BaseSettingsLocatorTestCase {
 				settings.getValue(
 					SettingsLocatorTestConstants.TEST_REQUIRED_KEY, null));
 
-			// Configuration with non required key with existing configuration
+			// Existing configuration with key
 
 			saveConfiguration(
 				SettingsLocatorTestConstants.TEST_REQUIRED_CONFIGURATION_PID,
@@ -320,7 +320,7 @@ public class SettingsLocatorHelperTest extends BaseSettingsLocatorTestCase {
 				settings.getValue(
 					SettingsLocatorTestConstants.TEST_REQUIRED_KEY, null));
 
-			// Configuration with required key with existing configuration
+			// Existing configuration with required key
 
 			systemValue = saveConfiguration(
 				SettingsLocatorTestConstants.TEST_REQUIRED_CONFIGURATION_PID,
