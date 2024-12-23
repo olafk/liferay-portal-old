@@ -13,7 +13,6 @@ const CONFIG_FILES = [
 	'**/gulpfile.js',
 	'**/liferay-npm-bundler.config.js',
 	'**/node-scripts.config.js',
-	'**/npmscripts.config.js',
 ];
 
 const config = {
