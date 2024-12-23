@@ -88,17 +88,17 @@ public class CETConfigurationFactory {
 							CETConfiguration.class, properties),
 						companyId, externalReferenceCode);
 
+					if (_log.isInfoEnabled()) {
+						_log.info(
+							StringBundler.concat(
+								"Adding client extension relations for client ",
+								"extension ", externalReferenceCode,
+								" and company ", companyId));
+					}
+
 					if (Objects.equals(
 							_cet.getType(),
 							ClientExtensionEntryConstants.TYPE_THEME_CSS)) {
-
-						if (_log.isInfoEnabled()) {
-							_log.info(
-								StringBundler.concat(
-									"Adding client extension relations for ",
-									"client extension ", externalReferenceCode,
-									" and company ", companyId));
-						}
 
 						_addControlPanelThemeCSSClientExtensionEntryRel(
 							companyId);
@@ -219,17 +219,17 @@ public class CETConfigurationFactory {
 						deleteClientExtensionEntryRels(
 							companyId, _cet.getExternalReferenceCode());
 
+					if (_log.isInfoEnabled()) {
+						_log.info(
+							StringBundler.concat(
+								"Adding client extension relations for client ",
+								"extension ", externalReferenceCode,
+								" and company ", companyId));
+					}
+
 					if (Objects.equals(
 							_cet.getType(),
 							ClientExtensionEntryConstants.TYPE_THEME_CSS)) {
-
-						if (_log.isInfoEnabled()) {
-							_log.info(
-								StringBundler.concat(
-									"Adding client extension relations for ",
-									"client extension ", externalReferenceCode,
-									" and company ", companyId));
-						}
 
 						_addControlPanelThemeCSSClientExtensionEntryRel(
 							companyId);
