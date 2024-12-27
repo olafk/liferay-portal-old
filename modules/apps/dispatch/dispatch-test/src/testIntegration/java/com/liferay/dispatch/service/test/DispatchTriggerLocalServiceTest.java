@@ -507,22 +507,22 @@ public class DispatchTriggerLocalServiceTest {
 			cronExpression, _getExpectedCalendar(futureCalendar, startCalendar),
 			startCalendar);
 
-		// Past start date before the cron expression
-
-		startCalendar = (Calendar)calendar.clone();
-
-		startCalendar.add(Calendar.DAY_OF_MONTH, -1);
-
-		_testUpdateDispatchTriggerWithCronExpressions(
-			cronExpression, _getExpectedCalendar(futureCalendar, startCalendar),
-			startCalendar);
-
 		// Past start Date after the cron expression
 
 		startCalendar = (Calendar)calendar.clone();
 
 		startCalendar.add(Calendar.DAY_OF_MONTH, -1);
 		startCalendar.add(Calendar.HOUR_OF_DAY, 14);
+
+		_testUpdateDispatchTriggerWithCronExpressions(
+			cronExpression, _getExpectedCalendar(futureCalendar, startCalendar),
+			startCalendar);
+
+		// Past start date before the cron expression
+
+		startCalendar = (Calendar)calendar.clone();
+
+		startCalendar.add(Calendar.DAY_OF_MONTH, -1);
 
 		_testUpdateDispatchTriggerWithCronExpressions(
 			cronExpression, _getExpectedCalendar(futureCalendar, startCalendar),
