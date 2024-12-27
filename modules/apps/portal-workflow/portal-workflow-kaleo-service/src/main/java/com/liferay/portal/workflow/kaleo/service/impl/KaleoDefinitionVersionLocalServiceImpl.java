@@ -442,6 +442,25 @@ public class KaleoDefinitionVersionLocalServiceImpl
 
 		SearchSearchRequest searchSearchRequest = new SearchSearchRequest();
 
+		TermsAggregation termsAggregation = _aggregations.terms(
+			"processDefinitionLatestVersions",
+			Field.getSortableFieldName(Field.NAME));
+
+		termsAggregation.setSize(10000);
+
+		TopHitsAggregation topHitsAggregation = _aggregations.topHits(
+			"topHits");
+
+		topHitsAggregation.addSortFields(
+			_sorts.field(
+				Field.getSortableFieldName(Field.VERSION), SortOrder.DESC));
+
+		topHitsAggregation.setSize(1);
+
+		termsAggregation.addChildrenAggregations(topHitsAggregation);
+
+		searchSearchRequest.addAggregation(termsAggregation);
+
 		searchSearchRequest.setIndexNames(
 			_indexNameBuilder.getIndexName(companyId));
 
@@ -482,25 +501,6 @@ public class KaleoDefinitionVersionLocalServiceImpl
 		}
 
 		searchSearchRequest.setQuery(booleanQuery);
-
-		TermsAggregation termsAggregation = _aggregations.terms(
-			"processDefinitionLatestVersions",
-			Field.getSortableFieldName(Field.NAME));
-
-		termsAggregation.setSize(10000);
-
-		TopHitsAggregation topHitsAggregation = _aggregations.topHits(
-			"topHits");
-
-		topHitsAggregation.addSortFields(
-			_sorts.field(
-				Field.getSortableFieldName(Field.VERSION), SortOrder.DESC));
-
-		topHitsAggregation.setSize(1);
-
-		termsAggregation.addChildrenAggregations(topHitsAggregation);
-
-		searchSearchRequest.addAggregation(termsAggregation);
 
 		SearchSearchResponse searchSearchResponse =
 			_searchRequestExecutor.executeSearchRequest(searchSearchRequest);
