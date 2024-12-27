@@ -445,22 +445,22 @@ public class KaleoDefinitionVersionLocalServiceImpl
 		searchSearchRequest.setIndexNames(
 			_indexNameBuilder.getIndexName(companyId));
 
-		BooleanQuery mustBooleanQuery = _queries.booleanQuery();
+		BooleanQuery booleanQuery = _queries.booleanQuery();
 
-		mustBooleanQuery.addMustQueryClauses(
+		booleanQuery.addMustQueryClauses(
 			_queries.term(Field.COMPANY_ID, companyId),
 			_queries.term(
 				Field.ENTRY_CLASS_NAME, KaleoDefinitionVersion.class.getName()),
 			_queries.term("scope", WorkflowDefinitionConstants.SCOPE_ALL));
 
 		if (Validator.isNotNull(keywords)) {
-			BooleanQuery shouldBooleanQuery = _queries.booleanQuery();
+			BooleanQuery keywordsBooleanQuery = _queries.booleanQuery();
 
 			keywords =
 				StringPool.STAR + StringUtil.toLowerCase(keywords) +
 					StringPool.STAR;
 
-			shouldBooleanQuery.addShouldQueryClauses(
+			keywordsBooleanQuery.addShouldQueryClauses(
 				_queries.wildcard(Field.DESCRIPTION, keywords),
 				_queries.wildcard(Field.NAME, keywords));
 
@@ -469,19 +469,19 @@ public class KaleoDefinitionVersionLocalServiceImpl
 					new String[] {Field.TITLE}, new SearchContext());
 
 			for (String localizedFieldName : localizedFieldNames) {
-				shouldBooleanQuery.addShouldQueryClauses(
+				keywordsBooleanQuery.addShouldQueryClauses(
 					_queries.wildcard(localizedFieldName, keywords));
 			}
 
-			mustBooleanQuery.addMustQueryClauses(shouldBooleanQuery);
+			booleanQuery.addMustQueryClauses(keywordsBooleanQuery);
 		}
 
 		if (status != WorkflowConstants.STATUS_ANY) {
-			mustBooleanQuery.addMustQueryClauses(
+			booleanQuery.addMustQueryClauses(
 				_queries.term(Field.STATUS, status));
 		}
 
-		searchSearchRequest.setQuery(mustBooleanQuery);
+		searchSearchRequest.setQuery(booleanQuery);
 
 		TermsAggregation termsAggregation = _aggregations.terms(
 			"processDefinitionLatestVersions",
