@@ -359,7 +359,7 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 		ExecutorService executorService =
 			SystemExecutorServiceUtil.getExecutorService();
 
-		Future<Future<?>> future = executorService.submit(
+		Future<Future<?>> future1 = executorService.submit(
 			() -> {
 				DBInitUtil.init();
 
@@ -392,9 +392,9 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 
 		ModuleFrameworkUtil.initFramework();
 
-		Future<?> innerFuture = future.get();
+		Future<?> future2 = future1.get();
 
-		innerFuture.get();
+		future2.get();
 
 		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
 
