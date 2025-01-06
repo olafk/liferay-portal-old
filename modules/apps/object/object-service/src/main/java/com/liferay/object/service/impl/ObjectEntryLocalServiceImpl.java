@@ -3016,14 +3016,14 @@ public class ObjectEntryLocalServiceImpl
 				}
 			).and(
 				() -> {
-					if (objectDefinition1.getObjectDefinitionId() ==
+					if (objectDefinition1.getObjectDefinitionId() !=
 							objectDefinition2.getObjectDefinitionId()) {
 
-						return dynamicObjectDefinitionTablePrimaryKeyColumn.neq(
-							primaryKey);
+						return null;
 					}
 
-					return null;
+					return dynamicObjectDefinitionTablePrimaryKeyColumn.neq(
+						primaryKey);
 				}
 			).and(
 				ObjectEntrySearchUtil.getRelatedModelsPredicate(
