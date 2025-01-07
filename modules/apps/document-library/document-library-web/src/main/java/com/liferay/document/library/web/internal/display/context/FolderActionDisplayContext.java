@@ -76,7 +76,6 @@ public class FolderActionDisplayContext {
 		_httpServletRequest = httpServletRequest;
 
 		_dlRequestHelper = new DLRequestHelper(httpServletRequest);
-
 		_themeDisplay = (ThemeDisplay)httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 	}
