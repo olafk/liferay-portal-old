@@ -210,8 +210,6 @@ public class AssetPublisherDisplayContextTest {
 			new TestMockLiferayPortletRenderRequest(
 				new MockHttpServletRequest());
 
-		String path = "/view.jsp";
-
 		com.liferay.portal.kernel.model.Portlet portlet =
 			_portletLocalService.getPortletById(
 				AssetPublisherPortletKeys.ASSET_PUBLISHER);
@@ -222,6 +220,8 @@ public class AssetPublisherDisplayContextTest {
 
 		mockLiferayPortletRenderRequest.setAttribute(
 			JavaConstants.JAVAX_PORTLET_CONFIG, liferayPortletConfig);
+
+		String path = "/view.jsp";
 
 		mockLiferayPortletRenderRequest.setAttribute(
 			MVCRenderConstants.
