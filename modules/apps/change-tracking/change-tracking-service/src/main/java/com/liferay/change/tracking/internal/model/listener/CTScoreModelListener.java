@@ -36,37 +36,38 @@ public class CTScoreModelListener extends BaseModelListener<CTScore> {
 	public void onAfterUpdate(CTScore originalCTScore, CTScore ctScore)
 		throws ModelListenerException {
 
-		if (originalCTScore.getScore() != ctScore.getScore()) {
-			long ctCollectionId = ctScore.getCtCollectionId();
+		if (originalCTScore.getScore() == ctScore.getScore()) {
+			return;
+		}
 
-			try {
-				CTCollection ctCollection =
-					_ctCollectionLocalService.getCTCollection(ctCollectionId);
+		long ctCollectionId = ctScore.getCtCollectionId();
 
-				Set<Long> userIds = SetUtil.fromArray(
-					_ctUserNotificationHelper.getPublicationRoleUserIds(
-						ctCollection, true, PublicationRoleConstants.NAME_ADMIN,
-						PublicationRoleConstants.NAME_PUBLISHER));
+		try {
+			CTCollection ctCollection =
+				_ctCollectionLocalService.getCTCollection(ctCollectionId);
 
-				_ctUserNotificationHelper.sendUserNotificationEvents(
-					ctCollection,
-					JSONUtil.put(
-						"ctCollectionId", ctCollectionId
-					).put(
-						"notificationType",
-						UserNotificationDefinition.
-							NOTIFICATION_TYPE_UPDATE_ENTRY
-					).put(
-						"originalScore", originalCTScore.getScore()
-					).put(
-						"score", ctScore.getScore()
-					),
-					ArrayUtil.toLongArray(userIds));
-			}
-			catch (PortalException portalException) {
-				_log.error(
-					"Unable to send user notification events", portalException);
-			}
+			Set<Long> userIds = SetUtil.fromArray(
+				_ctUserNotificationHelper.getPublicationRoleUserIds(
+					ctCollection, true, PublicationRoleConstants.NAME_ADMIN,
+					PublicationRoleConstants.NAME_PUBLISHER));
+
+			_ctUserNotificationHelper.sendUserNotificationEvents(
+				ctCollection,
+				JSONUtil.put(
+					"ctCollectionId", ctCollectionId
+				).put(
+					"notificationType",
+					UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY
+				).put(
+					"originalScore", originalCTScore.getScore()
+				).put(
+					"score", ctScore.getScore()
+				),
+				ArrayUtil.toLongArray(userIds));
+		}
+		catch (PortalException portalException) {
+			_log.error(
+				"Unable to send user notification events", portalException);
 		}
 	}
 
