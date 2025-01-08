@@ -72,6 +72,8 @@ public class OpenIdConnectTokenRequestUtilTest {
 		_refreshToken = Mockito.mock(RefreshToken.class);
 		_tokenRequestParameters = "{}";
 
+		HTTPRequest httpRequest = Mockito.mock(HTTPRequest.class);
+
 		HTTPResponse httpResponse = Mockito.mock(HTTPResponse.class);
 
 		new MockServerClient(
@@ -92,8 +94,6 @@ public class OpenIdConnectTokenRequestUtilTest {
 				200
 			)
 		);
-
-		HTTPRequest httpRequest = Mockito.mock(HTTPRequest.class);
 
 		Mockito.when(
 			httpRequest.send()
