@@ -393,12 +393,10 @@ public class ObjectDefinitionResourceTest
 			ObjectActionExecutorConstants.KEY_ADD_OBJECT_ENTRY);
 		objectAction.setObjectActionTriggerKey(
 			ObjectActionTriggerConstants.KEY_ON_AFTER_ADD);
-
-		String externalReferenceCode = RandomTestUtil.randomString();
-
 		objectAction.setParameters(
 			HashMapBuilder.put(
-				"objectDefinitionExternalReferenceCode", externalReferenceCode
+				"objectDefinitionExternalReferenceCode",
+				RandomTestUtil.randomString()
 			).put(
 				"predefinedValues",
 				JSONUtil.putAll(

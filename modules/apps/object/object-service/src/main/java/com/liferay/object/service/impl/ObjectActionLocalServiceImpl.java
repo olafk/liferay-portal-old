@@ -805,7 +805,7 @@ public class ObjectActionLocalServiceImpl
 				objectActionExecutorKey,
 				ObjectActionExecutorConstants.KEY_UPDATE_OBJECT_ENTRY)) {
 
-			ObjectDefinition objectDefinition;
+			ObjectDefinition objectDefinition = null;
 
 			String objectDefinitionExternalReferenceCode = GetterUtil.getString(
 				parametersUnicodeProperties.remove(
