@@ -82,19 +82,18 @@ public class CPConfigurationListQualifiersDisplayContext
 	public String getActiveAccountEligibility() throws PortalException {
 		long cpConfigurationListId = getCPConfigurationListId();
 
-		long cpConfigurationListRelsCount =
+		long count =
 			_cpConfigurationListRelService.getCPConfigurationListRelsCount(
 				AccountEntry.class.getName(), cpConfigurationListId);
 
-		if (cpConfigurationListRelsCount > 0) {
+		if (count > 0) {
 			return "accounts";
 		}
 
-		cpConfigurationListRelsCount =
-			_cpConfigurationListRelService.getCPConfigurationListRelsCount(
-				AccountGroup.class.getName(), cpConfigurationListId);
+		count = _cpConfigurationListRelService.getCPConfigurationListRelsCount(
+			AccountGroup.class.getName(), cpConfigurationListId);
 
-		if (cpConfigurationListRelsCount > 0) {
+		if (count > 0) {
 			return "accountGroups";
 		}
 
