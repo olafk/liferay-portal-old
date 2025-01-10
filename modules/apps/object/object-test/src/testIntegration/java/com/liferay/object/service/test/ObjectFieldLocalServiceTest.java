@@ -2619,20 +2619,20 @@ public class ObjectFieldLocalServiceTest {
 			ObjectDefinitionTestUtil.addCustomObjectDefinition(
 				false, Collections.emptyList());
 
-		for (Map.Entry<String, String> readOnlyObjectFieldDbType :
-				_readOnlyObjectFieldDbTypes.entrySet()) {
+		for (Map.Entry<String, String> readOnlyObjectFieldDBType :
+				_readOnlyObjectFieldDBTypes.entrySet()) {
 
 			_assertReadOnlyTrue(
 				_objectFieldLocalService.getObjectField(
 					objectDefinition1.getObjectDefinitionId(),
-					readOnlyObjectFieldDbType.getKey()));
+					readOnlyObjectFieldDBType.getKey()));
 
 			ObjectField objectField = _objectFieldLocalService.getObjectField(
 				objectDefinition1.getObjectDefinitionId(),
-				readOnlyObjectFieldDbType.getKey());
+				readOnlyObjectFieldDBType.getKey());
 
 			Assert.assertEquals(
-				readOnlyObjectFieldDbType.getValue(), objectField.getDBType());
+				readOnlyObjectFieldDBType.getValue(), objectField.getDBType());
 		}
 
 		_assertReadOnlyFalse(
@@ -2830,7 +2830,7 @@ public class ObjectFieldLocalServiceTest {
 	@Inject
 	private ObjectRelationshipLocalService _objectRelationshipLocalService;
 
-	private final Map<String, String> _readOnlyObjectFieldDbTypes =
+	private final Map<String, String> _readOnlyObjectFieldDBTypes =
 		HashMapBuilder.put(
 			"createDate", ObjectFieldConstants.DB_TYPE_DATE
 		).put(
