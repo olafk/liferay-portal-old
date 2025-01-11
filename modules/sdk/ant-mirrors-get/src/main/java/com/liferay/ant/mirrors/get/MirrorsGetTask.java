@@ -251,7 +251,7 @@ public class MirrorsGetTask extends Task {
 			targetFile.delete();
 
 			throw new IOException(
-				targetFile.getAbsolutePath() + " is an invalid Tar Gz file");
+				targetFile.getAbsolutePath() + " is an invalid TAR GZ file");
 		}
 
 		if (_isZipFileName(targetFile.getName()) && !_isZipFile(targetFile)) {
