@@ -61,10 +61,13 @@ public class AssetInfoEditURLProviderTest {
 			WebKeys.THEME_DISPLAY, _getThemeDisplay());
 
 		String backURL = "http://localhost:8080/test";
-		String backURLTitle = "Go to test page";
 
 		mockHttpServletRequest.setParameter("backURL", backURL);
+
+		String backURLTitle = "Go to test page";
+
 		mockHttpServletRequest.setParameter("backURLTitle", backURLTitle);
+
 		mockHttpServletRequest.setParameter(
 			"redirect", "http://localhost:8080/redirect");
 
