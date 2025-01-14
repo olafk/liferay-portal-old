@@ -48,7 +48,7 @@ public class MarketplaceUtil {
 		options.setMethod(Http.Method.POST);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-			new String(HttpUtil.URLtoByteArray(options)));
+			HttpUtil.URLtoString(options));
 
 		long accessTokenExpirationTime =
 			System.currentTimeMillis() +
