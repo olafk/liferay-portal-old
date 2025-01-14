@@ -97,9 +97,8 @@ public class ObjectActionExamResultSynchronizationRestController
 				StringBundler.concat(
 					lxcDXPServerProtocol, "://", lxcDXPMainDomain,
 					"/o/c/p2s3examresultsynchronizations/scopes/", _siteGroupId,
-					"?fields=dateCreated",
-					"&filter=synchronizationStatus eq 'Successful'&pageSize=1",
-					"&sort=dateCreated:desc")));
+					"?fields=dateCreated&filter=synchronizationStatus eq ",
+					"'Successful'&pageSize=1&sort=dateCreated:desc")));
 
 		JSONArray itemsJSONArray = responseJSONObject.getJSONArray("items");
 
