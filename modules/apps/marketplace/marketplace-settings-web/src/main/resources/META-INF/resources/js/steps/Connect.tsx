@@ -93,7 +93,7 @@ export default function Connect({
 
 						<p>
 							{Liferay.Language.get(
-								'your-liferay-dxp-platform-is-connected-to-the-marketplace'
+								'your-liferay-instance-is-connected-to-the-marketplace'
 							)}
 						</p>
 					</>
