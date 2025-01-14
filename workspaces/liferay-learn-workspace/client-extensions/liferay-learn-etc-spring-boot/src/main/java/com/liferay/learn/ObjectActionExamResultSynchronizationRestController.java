@@ -169,30 +169,28 @@ public class ObjectActionExamResultSynchronizationRestController
 	}
 
 	private int _importExamResults(Jwt jwt, OffsetDateTime offsetDateTime) {
-		JSONObject jsonObject = new JSONObject();
-
-		jsonObject.put(
-			"endDate",
-			offsetDateTime.plusDays(
-				7
-			).format(
-				DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss")
-			)
-		).put(
-			"requestType", "GET TRANSCRIPTS BY DATE RANGE"
-		).put(
-			"returnFormat", "JSON"
-		).put(
-			"securityToken", _webassessorSecurityToken
-		).put(
-			"startDate",
-			offsetDateTime.format(
-				DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss"))
-		);
-
 		JSONArray responseJSONArray = new JSONArray(
 			post(
-				null, jsonObject.toString(),
+				null,
+				new JSONObject(
+				).put(
+					"endDate",
+					offsetDateTime.plusDays(
+						7
+					).format(
+						DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss")
+					)
+				).put(
+					"requestType", "GET TRANSCRIPTS BY DATE RANGE"
+				).put(
+					"returnFormat", "JSON"
+				).put(
+					"securityToken", _webassessorSecurityToken
+				).put(
+					"startDate",
+					offsetDateTime.format(
+						DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss"))
+				).toString(),
 				"https://webassessor.com/WebAssessorWebServices/jaxrs" +
 					"/wawebservices/processRequest"));
 
@@ -220,18 +218,16 @@ public class ObjectActionExamResultSynchronizationRestController
 		Long classPK, int examResultAmount, long executionTime, Jwt jwt,
 		String synchronizationStatus) {
 
-		JSONObject jsonObject = new JSONObject();
-
-		jsonObject.put(
-			"examResultAmount", examResultAmount
-		).put(
-			"executionTime", executionTime
-		).put(
-			"synchronizationStatus", synchronizationStatus
-		);
-
 		patch(
-			"Bearer " + jwt.getTokenValue(), jsonObject.toString(),
+			"Bearer " + jwt.getTokenValue(),
+			new JSONObject(
+			).put(
+				"examResultAmount", examResultAmount
+			).put(
+				"executionTime", executionTime
+			).put(
+				"synchronizationStatus", synchronizationStatus
+			).toString(),
 			StringBundler.concat(
 				lxcDXPServerProtocol, "://", lxcDXPMainDomain,
 				"/o/c/p2s3examresultsynchronizations/", classPK));
