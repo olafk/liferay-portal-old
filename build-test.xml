@@ -7834,9 +7834,8 @@ ${docker.start.error}</fail>
 
 			<get-host-git-dir />
 
-			<get-java-jdk-bundle-version test.batch.name="${test.batch.name}" />
-
 			<get-java-jdk-bundle-type test.batch.name="${test.batch.name}" />
+			<get-java-jdk-bundle-version test.batch.name="${test.batch.name}" />
 
 			<get-java-jdk-home type="${java.jdk.bundle.type}" version="${java.jdk.bundle.version}" />
 
