@@ -7870,34 +7870,34 @@ ${docker.start.error}</fail>
 								if (configJSONObject.has("Env")) {
 									JSONArray envJSONArray = configJSONObject.getJSONArray("Env");
 
-									String javaHomeString = null;
-									String pathString = null;
+									String javaHome = null;
+									String path = null;
 
 									for (int i = 0; i < envJSONArray.length(); i++) {
-										String envString = envJSONArray.getString(i);
+										String env = envJSONArray.getString(i);
 
-										if (envString.contains("JAVA_HOME")) {
-											javaHomeString = envString.replace("JAVA_HOME=", "");
+										if (env.contains("JAVA_HOME")) {
+											javaHome = env.replace("JAVA_HOME=", "");
 
 											continue;
 										}
 
-										if (envString.contains("PATH")) {
-											pathString = envString.replace("PATH=", "");
+										if (env.contains("PATH")) {
+											path = env.replace("PATH=", "");
 										}
 									}
 
-									String javaJDKHomeString = project.getProperty("java.jdk.home");
+									String javaJDKHome = project.getProperty("java.jdk.home");
 
-									if (!JenkinsResultsParserUtil.isNullOrEmpty(pathString) &&
-										!JenkinsResultsParserUtil.isNullOrEmpty(javaJDKHomeString) &&
-										!javaHomeString.equals(javaJDKHomeString)) {
+									if (!JenkinsResultsParserUtil.isNullOrEmpty(path) &&
+										!JenkinsResultsParserUtil.isNullOrEmpty(javaJDKHome) &&
+										!javaHome.equals(javaJDKHome)) {
 
-										pathString = javaJDKHomeString + "/bin:" + pathString;
+										path = javaJDKHome + "/bin:" + path;
 
 										project.setProperty(
 											"docker.java.run.options",
-											" -e PATH=" + pathString + " -e JAVA_HOME=" + javaJDKHomeString);
+											" -e PATH=" + path + " -e JAVA_HOME=" + javaJDKHome);
 									}
 								}
 							}
