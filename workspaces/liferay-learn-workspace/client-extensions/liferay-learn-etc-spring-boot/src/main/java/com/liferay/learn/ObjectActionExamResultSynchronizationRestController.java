@@ -112,9 +112,8 @@ public class ObjectActionExamResultSynchronizationRestController
 	}
 
 	private String _getPayload(JSONObject responseJSONObject) {
-		JSONObject jsonObject = new JSONObject();
-
-		jsonObject.put(
+		return new JSONObject(
+		).put(
 			"date",
 			OffsetDateTime.parse(
 				responseJSONObject.getString("date")
@@ -163,9 +162,7 @@ public class ObjectActionExamResultSynchronizationRestController
 			).getString(
 				"testName"
 			)
-		);
-
-		return jsonObject.toString();
+		).toString();
 	}
 
 	private int _importExamResults(Jwt jwt, OffsetDateTime offsetDateTime) {
