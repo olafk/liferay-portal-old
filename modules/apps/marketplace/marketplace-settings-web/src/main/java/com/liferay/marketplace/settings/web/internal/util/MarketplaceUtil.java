@@ -17,7 +17,6 @@ import com.liferay.portal.util.PropsValues;
 
 import java.net.URLEncoder;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.portlet.PortletPreferences;
@@ -32,7 +31,7 @@ public class MarketplaceUtil {
 			String refreshToken, String serviceURL, String settings)
 		throws Exception {
 
-		HashMap<String, String> hashMapBuilder = HashMapBuilder.put(
+		Map<String, String> map = HashMapBuilder.put(
 			"client_id", PropsValues.MARKETPLACE_CLIENT_ID
 		).put(
 			"code", code
@@ -46,16 +45,16 @@ public class MarketplaceUtil {
 		).build();
 
 		if (refreshToken != null) {
-			hashMapBuilder.put("grant_type", "refresh_token");
-			hashMapBuilder.put("refresh_token", refreshToken);
+			map.put("grant_type", "refresh_token");
+			map.put("refresh_token", refreshToken);
 
-			hashMapBuilder.remove("code_verifier");
+			map.remove("code_verifier");
 		}
 
 		Http.Options options = new Http.Options();
 
 		options.setBody(
-			_toFormEncodedString(hashMapBuilder),
+			_toFormEncodedString(map),
 			ContentTypes.APPLICATION_X_WWW_FORM_URLENCODED, StringPool.UTF8);
 
 		options.setLocation(PropsValues.MARKETPLACE_URL + "/o/oauth2/token");
