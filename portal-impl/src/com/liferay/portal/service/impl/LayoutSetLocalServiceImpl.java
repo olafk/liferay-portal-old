@@ -632,7 +632,7 @@ public class LayoutSetLocalServiceImpl extends LayoutSetLocalServiceBaseImpl {
 	protected void validateSettings(
 			UnicodeProperties oldSettingsUnicodeProperties,
 			UnicodeProperties newSettingsUnicodeProperties)
-		throws LayoutSetJavaScriptException {
+		throws PortalException {
 
 		boolean enableJavaScript =
 			PropsValues.
