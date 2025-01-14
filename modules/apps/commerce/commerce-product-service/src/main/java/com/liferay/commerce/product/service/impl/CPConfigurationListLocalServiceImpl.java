@@ -126,7 +126,6 @@ public class CPConfigurationListLocalServiceImpl
 			Indexer<CPConfigurationEntry> cpConfigurationEntryIndexer =
 				IndexerRegistryUtil.nullSafeGetIndexer(
 					CPConfigurationEntry.class);
-
 			Indexer<CPDefinition> cpDefinitionIndexer =
 				IndexerRegistryUtil.nullSafeGetIndexer(CPDefinition.class);
 
