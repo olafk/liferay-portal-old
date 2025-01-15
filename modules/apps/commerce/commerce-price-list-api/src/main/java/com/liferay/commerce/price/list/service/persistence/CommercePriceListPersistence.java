@@ -941,7 +941,7 @@ public interface CommercePriceListPersistence
 	 * @return the matching commerce price list
 	 * @throws NoSuchPriceListException if a matching commerce price list could not be found
 	 */
-	public CommercePriceList findByG_CatalogBasePriceList(
+	public CommercePriceList findByG_CBPL(
 			long groupId, boolean catalogBasePriceList)
 		throws NoSuchPriceListException;
 
@@ -952,7 +952,7 @@ public interface CommercePriceListPersistence
 	 * @param catalogBasePriceList the catalog base price list
 	 * @return the matching commerce price list, or <code>null</code> if a matching commerce price list could not be found
 	 */
-	public CommercePriceList fetchByG_CatalogBasePriceList(
+	public CommercePriceList fetchByG_CBPL(
 		long groupId, boolean catalogBasePriceList);
 
 	/**
@@ -963,7 +963,7 @@ public interface CommercePriceListPersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the matching commerce price list, or <code>null</code> if a matching commerce price list could not be found
 	 */
-	public CommercePriceList fetchByG_CatalogBasePriceList(
+	public CommercePriceList fetchByG_CBPL(
 		long groupId, boolean catalogBasePriceList, boolean useFinderCache);
 
 	/**
@@ -973,7 +973,7 @@ public interface CommercePriceListPersistence
 	 * @param catalogBasePriceList the catalog base price list
 	 * @return the commerce price list that was removed
 	 */
-	public CommercePriceList removeByG_CatalogBasePriceList(
+	public CommercePriceList removeByG_CBPL(
 			long groupId, boolean catalogBasePriceList)
 		throws NoSuchPriceListException;
 
@@ -984,8 +984,7 @@ public interface CommercePriceListPersistence
 	 * @param catalogBasePriceList the catalog base price list
 	 * @return the number of matching commerce price lists
 	 */
-	public int countByG_CatalogBasePriceList(
-		long groupId, boolean catalogBasePriceList);
+	public int countByG_CBPL(long groupId, boolean catalogBasePriceList);
 
 	/**
 	 * Returns all the commerce price lists where companyId = &#63; and commerceCurrencyCode = &#63;.

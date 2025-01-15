@@ -335,12 +335,11 @@ public class CommercePriceListPersistenceTest {
 	}
 
 	@Test
-	public void testCountByG_CatalogBasePriceList() throws Exception {
-		_persistence.countByG_CatalogBasePriceList(
+	public void testCountByG_CBPL() throws Exception {
+		_persistence.countByG_CBPL(
 			RandomTestUtil.nextLong(), RandomTestUtil.randomBoolean());
 
-		_persistence.countByG_CatalogBasePriceList(
-			0L, RandomTestUtil.randomBoolean());
+		_persistence.countByG_CBPL(0L, RandomTestUtil.randomBoolean());
 	}
 
 	@Test

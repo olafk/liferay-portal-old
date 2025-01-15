@@ -3647,7 +3647,7 @@ public class CommercePriceListPersistenceImpl
 	private static final String _FINDER_COLUMN_G_C_COMPANYID_2 =
 		"commercePriceList.companyId = ?";
 
-	private FinderPath _finderPathFetchByG_CatalogBasePriceList;
+	private FinderPath _finderPathFetchByG_CBPL;
 
 	/**
 	 * Returns the commerce price list where groupId = &#63; and catalogBasePriceList = &#63; or throws a <code>NoSuchPriceListException</code> if it could not be found.
@@ -3658,11 +3658,11 @@ public class CommercePriceListPersistenceImpl
 	 * @throws NoSuchPriceListException if a matching commerce price list could not be found
 	 */
 	@Override
-	public CommercePriceList findByG_CatalogBasePriceList(
+	public CommercePriceList findByG_CBPL(
 			long groupId, boolean catalogBasePriceList)
 		throws NoSuchPriceListException {
 
-		CommercePriceList commercePriceList = fetchByG_CatalogBasePriceList(
+		CommercePriceList commercePriceList = fetchByG_CBPL(
 			groupId, catalogBasePriceList);
 
 		if (commercePriceList == null) {
@@ -3696,11 +3696,10 @@ public class CommercePriceListPersistenceImpl
 	 * @return the matching commerce price list, or <code>null</code> if a matching commerce price list could not be found
 	 */
 	@Override
-	public CommercePriceList fetchByG_CatalogBasePriceList(
+	public CommercePriceList fetchByG_CBPL(
 		long groupId, boolean catalogBasePriceList) {
 
-		return fetchByG_CatalogBasePriceList(
-			groupId, catalogBasePriceList, true);
+		return fetchByG_CBPL(groupId, catalogBasePriceList, true);
 	}
 
 	/**
@@ -3712,7 +3711,7 @@ public class CommercePriceListPersistenceImpl
 	 * @return the matching commerce price list, or <code>null</code> if a matching commerce price list could not be found
 	 */
 	@Override
-	public CommercePriceList fetchByG_CatalogBasePriceList(
+	public CommercePriceList fetchByG_CBPL(
 		long groupId, boolean catalogBasePriceList, boolean useFinderCache) {
 
 		try (SafeCloseable safeCloseable =
@@ -3729,7 +3728,7 @@ public class CommercePriceListPersistenceImpl
 
 			if (useFinderCache) {
 				result = finderCache.getResult(
-					_finderPathFetchByG_CatalogBasePriceList, finderArgs, this);
+					_finderPathFetchByG_CBPL, finderArgs, this);
 			}
 
 			if (result instanceof CommercePriceList) {
@@ -3748,10 +3747,9 @@ public class CommercePriceListPersistenceImpl
 
 				sb.append(_SQL_SELECT_COMMERCEPRICELIST_WHERE);
 
-				sb.append(_FINDER_COLUMN_G_CATALOGBASEPRICELIST_GROUPID_2);
+				sb.append(_FINDER_COLUMN_G_CBPL_GROUPID_2);
 
-				sb.append(
-					_FINDER_COLUMN_G_CATALOGBASEPRICELIST_CATALOGBASEPRICELIST_2);
+				sb.append(_FINDER_COLUMN_G_CBPL_CATALOGBASEPRICELIST_2);
 
 				String sql = sb.toString();
 
@@ -3773,8 +3771,7 @@ public class CommercePriceListPersistenceImpl
 					if (list.isEmpty()) {
 						if (useFinderCache) {
 							finderCache.putResult(
-								_finderPathFetchByG_CatalogBasePriceList,
-								finderArgs, list);
+								_finderPathFetchByG_CBPL, finderArgs, list);
 						}
 					}
 					else {
@@ -3789,7 +3786,7 @@ public class CommercePriceListPersistenceImpl
 								}
 
 								_log.warn(
-									"CommercePriceListPersistenceImpl.fetchByG_CatalogBasePriceList(long, boolean, boolean) with parameters (" +
+									"CommercePriceListPersistenceImpl.fetchByG_CBPL(long, boolean, boolean) with parameters (" +
 										StringUtil.merge(finderArgs) +
 											") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
 							}
@@ -3827,11 +3824,11 @@ public class CommercePriceListPersistenceImpl
 	 * @return the commerce price list that was removed
 	 */
 	@Override
-	public CommercePriceList removeByG_CatalogBasePriceList(
+	public CommercePriceList removeByG_CBPL(
 			long groupId, boolean catalogBasePriceList)
 		throws NoSuchPriceListException {
 
-		CommercePriceList commercePriceList = findByG_CatalogBasePriceList(
+		CommercePriceList commercePriceList = findByG_CBPL(
 			groupId, catalogBasePriceList);
 
 		return remove(commercePriceList);
@@ -3845,10 +3842,8 @@ public class CommercePriceListPersistenceImpl
 	 * @return the number of matching commerce price lists
 	 */
 	@Override
-	public int countByG_CatalogBasePriceList(
-		long groupId, boolean catalogBasePriceList) {
-
-		CommercePriceList commercePriceList = fetchByG_CatalogBasePriceList(
+	public int countByG_CBPL(long groupId, boolean catalogBasePriceList) {
+		CommercePriceList commercePriceList = fetchByG_CBPL(
 			groupId, catalogBasePriceList);
 
 		if (commercePriceList == null) {
@@ -3858,13 +3853,11 @@ public class CommercePriceListPersistenceImpl
 		return 1;
 	}
 
-	private static final String
-		_FINDER_COLUMN_G_CATALOGBASEPRICELIST_GROUPID_2 =
-			"commercePriceList.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_G_CBPL_GROUPID_2 =
+		"commercePriceList.groupId = ? AND ";
 
-	private static final String
-		_FINDER_COLUMN_G_CATALOGBASEPRICELIST_CATALOGBASEPRICELIST_2 =
-			"commercePriceList.catalogBasePriceList = ?";
+	private static final String _FINDER_COLUMN_G_CBPL_CATALOGBASEPRICELIST_2 =
+		"commercePriceList.catalogBasePriceList = ?";
 
 	private FinderPath _finderPathWithPaginationFindByC_C;
 	private FinderPath _finderPathWithoutPaginationFindByC_C;
@@ -12279,7 +12272,7 @@ public class CommercePriceListPersistenceImpl
 				commercePriceList);
 
 			finderCache.putResult(
-				_finderPathFetchByG_CatalogBasePriceList,
+				_finderPathFetchByG_CBPL,
 				new Object[] {
 					commercePriceList.getGroupId(),
 					commercePriceList.isCatalogBasePriceList()
@@ -12410,8 +12403,7 @@ public class CommercePriceListPersistenceImpl
 			};
 
 			finderCache.putResult(
-				_finderPathFetchByG_CatalogBasePriceList, args,
-				commercePriceListModelImpl);
+				_finderPathFetchByG_CBPL, args, commercePriceListModelImpl);
 
 			args = new Object[] {
 				commercePriceListModelImpl.getGroupId(),
@@ -13338,8 +13330,8 @@ public class CommercePriceListPersistenceImpl
 			new String[] {Long.class.getName(), Long.class.getName()},
 			new String[] {"groupId", "companyId"}, false);
 
-		_finderPathFetchByG_CatalogBasePriceList = new FinderPath(
-			FINDER_CLASS_NAME_ENTITY, "fetchByG_CatalogBasePriceList",
+		_finderPathFetchByG_CBPL = new FinderPath(
+			FINDER_CLASS_NAME_ENTITY, "fetchByG_CBPL",
 			new String[] {Long.class.getName(), Boolean.class.getName()},
 			new String[] {"groupId", "catalogBasePriceList"}, true);
 
