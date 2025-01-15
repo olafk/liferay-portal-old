@@ -133,16 +133,10 @@ public class ForgotPasswordMVCActionCommandTest {
 	private void _createUser(boolean ldapUser, boolean lockout)
 		throws Exception {
 
-		long ldapServerId = -1;
-
-		if (ldapUser) {
-			ldapServerId = 1;
-		}
-
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext();
 
-		serviceContext.setAttribute("ldapServerId", ldapServerId);
+		serviceContext.setAttribute("ldapServerId", ldapUser ? 1 : -1);
 
 		_user = UserTestUtil.addUser(
 			TestPropsValues.getCompanyId(), TestPropsValues.getUserId(),
