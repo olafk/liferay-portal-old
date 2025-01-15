@@ -27,8 +27,7 @@ import org.osgi.service.component.annotations.Component;
 )
 @Provider
 public class DefaultUtilityPageExceptionMapper
-	extends BaseExceptionMapper
-		<DefaultLayoutUtilityPageEntryException> {
+	extends BaseExceptionMapper<DefaultLayoutUtilityPageEntryException> {
 
 	@Override
 	protected Problem getProblem(

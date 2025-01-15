@@ -10,8 +10,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 /**
  * @author Brian Wing Shun Chan
  */
-public class DefaultLayoutUtilityPageEntryException
-	extends PortalException {
+public class DefaultLayoutUtilityPageEntryException extends PortalException {
 
 	public DefaultLayoutUtilityPageEntryException() {
 	}
