@@ -247,7 +247,9 @@ public class CTScoreLocalServiceImpl extends CTScoreLocalServiceBaseImpl {
 			});
 	}
 
-	private void _sendNotification(CTScore originalCTScore, CTScore ctScore) {
+	private void _sendUserNotificationEvents(
+		CTScore ctScore, CTScore originalCTScore) {
+
 		String originalSizeClassification =
 			originalCTScore.getSizeClassification();
 		String sizeClassification = ctScore.getSizeClassification();
@@ -341,7 +343,7 @@ public class CTScoreLocalServiceImpl extends CTScoreLocalServiceBaseImpl {
 
 		ctScore.resetOriginalValues();
 
-		_sendNotification(originalCTScore, ctScore);
+		_sendUserNotificationEvents(ctScore, originalCTScore);
 
 		return ctScore;
 	}
