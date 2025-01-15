@@ -245,7 +245,22 @@ public class DDMFormInstanceRecordLocalServiceImpl
 			DDMFormInstanceRecord ddmFormInstanceRecord)
 		throws PortalException {
 
-		_processFormInstanceReportEvent(ddmFormInstanceRecord);
+		DDMFormInstanceRecordVersion ddmFormInstanceRecordVersion =
+			ddmFormInstanceRecord.getLatestFormInstanceRecordVersion();
+
+		if (ddmFormInstanceRecordVersion.getStatus() ==
+				WorkflowConstants.STATUS_APPROVED) {
+
+			DDMFormInstanceReport ddmFormInstanceReport =
+				_ddmFormInstanceReportLocalService.
+					getFormInstanceReportByFormInstanceId(
+						ddmFormInstanceRecord.getFormInstanceId());
+
+			_ddmFormInstanceReportLocalService.processFormInstanceReportEvent(
+				ddmFormInstanceReport.getFormInstanceReportId(),
+				ddmFormInstanceRecordVersion.getFormInstanceRecordVersionId(),
+				DDMFormInstanceReportConstants.EVENT_DELETE_RECORD_VERSION);
+		}
 
 		return _deleteFormInstanceRecord(ddmFormInstanceRecord);
 	}
@@ -893,30 +908,6 @@ public class DDMFormInstanceRecordLocalServiceImpl
 			latestExpandoBridge.getAttributes();
 
 		return lastAttributes.equals(latestAttributes);
-	}
-
-	private void _processFormInstanceReportEvent(
-			DDMFormInstanceRecord ddmFormInstanceRecord)
-		throws PortalException {
-
-		DDMFormInstanceRecordVersion ddmFormInstanceRecordVersion =
-			ddmFormInstanceRecord.getLatestFormInstanceRecordVersion();
-
-		if (ddmFormInstanceRecordVersion.getStatus() !=
-				WorkflowConstants.STATUS_APPROVED) {
-
-			return;
-		}
-
-		DDMFormInstanceReport ddmFormInstanceReport =
-			_ddmFormInstanceReportLocalService.
-				getFormInstanceReportByFormInstanceId(
-					ddmFormInstanceRecord.getFormInstanceId());
-
-		_ddmFormInstanceReportLocalService.processFormInstanceReportEvent(
-			ddmFormInstanceReport.getFormInstanceReportId(),
-			ddmFormInstanceRecordVersion.getFormInstanceRecordVersionId(),
-			DDMFormInstanceReportConstants.EVENT_DELETE_RECORD_VERSION);
 	}
 
 	private void _updateAsset(
