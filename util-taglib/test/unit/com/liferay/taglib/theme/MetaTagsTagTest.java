@@ -126,12 +126,6 @@ public class MetaTagsTagTest {
 
 	@Test
 	public void testMetaTagsTagRobots() throws Exception {
-		String robots = RandomTestUtil.randomString();
-
-		_testRobotsMetaTagsTag(robots, robots, null, null);
-		_testRobotsMetaTagsTag(
-			robots, RandomTestUtil.randomString(), robots, null);
-
 		_testRobotsMetaTagsTag(null, null, null, null);
 
 		String pageRobotsRequestAttribute = "noindex, nofollow";
@@ -139,6 +133,12 @@ public class MetaTagsTagTest {
 		_testRobotsMetaTagsTag(
 			pageRobotsRequestAttribute, RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), pageRobotsRequestAttribute);
+
+		String robots = RandomTestUtil.randomString();
+
+		_testRobotsMetaTagsTag(
+			robots, RandomTestUtil.randomString(), robots, null);
+		_testRobotsMetaTagsTag(robots, robots, null, null);
 	}
 
 	private ListMergeable<String> _getListMergeable(String value) {
