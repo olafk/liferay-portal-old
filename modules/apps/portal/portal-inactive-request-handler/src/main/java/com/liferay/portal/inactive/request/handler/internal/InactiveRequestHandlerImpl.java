@@ -51,13 +51,6 @@ public class InactiveRequestHandlerImpl implements InactiveRequestHandler {
 			return;
 		}
 
-		render(httpServletRequest, httpServletResponse, messageKey);
-	}
-
-	public void render(
-		HttpServletRequest httpServletRequest,
-		HttpServletResponse httpServletResponse, String messageKey) {
-
 		try {
 			RequestDispatcher requestDispatcher =
 				_servletContext.getRequestDispatcher("/inactive.jsp");
