@@ -129,7 +129,7 @@ public class ContentLayoutTypeControllerTest {
 		throws Exception {
 
 		try {
-			_includeDraftLayoutContent(
+			_includeLayoutContent(
 				ActionKeys.PREVIEW_DRAFT, _layout, Constants.EDIT);
 
 			Assert.fail();
@@ -141,14 +141,14 @@ public class ContentLayoutTypeControllerTest {
 		}
 
 		Assert.assertFalse(
-			_includeDraftLayoutContent(
+			_includeLayoutContent(
 				ActionKeys.PREVIEW_DRAFT, _layout, Constants.PREVIEW));
 		Assert.assertFalse(
-			_includeDraftLayoutContent(
+			_includeLayoutContent(
 				ActionKeys.UPDATE, _layout, Constants.PREVIEW));
 
 		try {
-			_includeDraftLayoutContent(
+			_includeLayoutContent(
 				ActionKeys.VIEW, _layout, Constants.PREVIEW);
 
 			Assert.fail();
@@ -287,7 +287,7 @@ public class ContentLayoutTypeControllerTest {
 		Layout layout = _addTypePageTemplateEntryLayout();
 
 		try {
-			_includeDraftLayoutContent(
+			_includeLayoutContent(
 				ActionKeys.PREVIEW_DRAFT, layout, Constants.EDIT);
 
 			Assert.fail();
@@ -299,7 +299,7 @@ public class ContentLayoutTypeControllerTest {
 		}
 
 		try {
-			_includeDraftLayoutContent(
+			_includeLayoutContent(
 				ActionKeys.PREVIEW_DRAFT, layout, Constants.PREVIEW);
 
 			Assert.fail();
@@ -311,11 +311,11 @@ public class ContentLayoutTypeControllerTest {
 		}
 
 		Assert.assertFalse(
-			_includeDraftLayoutContent(
+			_includeLayoutContent(
 				ActionKeys.UPDATE, layout, Constants.PREVIEW));
 
 		try {
-			_includeDraftLayoutContent(
+			_includeLayoutContent(
 				ActionKeys.VIEW, layout, Constants.PREVIEW);
 
 			Assert.fail();
@@ -480,7 +480,7 @@ public class ContentLayoutTypeControllerTest {
 		return user;
 	}
 
-	private boolean _includeDraftLayoutContent(
+	private boolean _includeLayoutContent(
 			String actionId, Layout layout, String layoutMode)
 		throws Exception {
 
