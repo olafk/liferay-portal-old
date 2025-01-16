@@ -89,11 +89,9 @@ public class UtilityLayoutTypeControllerTest {
 	}
 
 	@Test
-	public void testUtilityLayoutTypeControllerDraftPreviewPermission()
-		throws Exception {
-
+	public void testIncludeLayoutContent() throws Exception {
 		try {
-			_includeDraftLayoutContent(
+			_includeLayoutContent(
 				ActionKeys.PREVIEW_DRAFT, Constants.PREVIEW);
 
 			Assert.fail();
@@ -105,10 +103,10 @@ public class UtilityLayoutTypeControllerTest {
 		}
 
 		Assert.assertFalse(
-			_includeDraftLayoutContent(ActionKeys.UPDATE, Constants.PREVIEW));
+			_includeLayoutContent(ActionKeys.UPDATE, Constants.PREVIEW));
 
 		try {
-			_includeDraftLayoutContent(ActionKeys.VIEW, Constants.PREVIEW);
+			_includeLayoutContent(ActionKeys.VIEW, Constants.PREVIEW);
 
 			Assert.fail();
 		}
@@ -189,7 +187,7 @@ public class UtilityLayoutTypeControllerTest {
 		return user;
 	}
 
-	private boolean _includeDraftLayoutContent(
+	private boolean _includeLayoutContent(
 			String actionId, String layoutMode)
 		throws Exception {
 
