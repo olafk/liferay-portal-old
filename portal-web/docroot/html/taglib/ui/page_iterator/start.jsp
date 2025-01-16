@@ -525,7 +525,6 @@ NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
 </aui:script>
 
 <aui:script senna="temporary" type="text/javascript">
-
 	var pageIterator = document.getElementById('<%= namespace + id %>');
 
 	if (pageIterator) {
