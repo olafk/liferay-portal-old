@@ -134,14 +134,14 @@ export default function Connect({
 					{Liferay.Language.get('connect')}
 				</ClayButton>
 			}
-			title={Liferay.Language.get('connect-marketplace')}
+			title={Liferay.Language.get('connect-to-the-marketplace')}
 		>
 			<h5 className="my-2">{Liferay.Language.get('do-you-need-help')}</h5>
 
 			<LearnResourcesContext.Provider value={learnResources}>
 				<LearnMessage
 					resource="marketplace-settings-web"
-					resourceKey="connecting-liferay-dxp-to-marketplace"
+					resourceKey="connect"
 				/>
 			</LearnResourcesContext.Provider>
 		</Container>
