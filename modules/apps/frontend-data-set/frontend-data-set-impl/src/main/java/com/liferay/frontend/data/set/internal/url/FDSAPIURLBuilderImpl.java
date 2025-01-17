@@ -65,11 +65,9 @@ public class FDSAPIURLBuilderImpl implements FDSAPIURLBuilder {
 			3 + (_queryStringItems.size() * 2));
 
 		sb.append("/o");
-
 		sb.append(
 			StringUtil.replaceLast(
 				_restApplication, "/v1.0", StringPool.BLANK));
-
 		sb.append(_restEndpoint);
 
 		_appendParameters(sb);
