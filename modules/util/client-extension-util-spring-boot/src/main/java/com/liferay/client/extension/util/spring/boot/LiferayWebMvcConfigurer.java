@@ -31,11 +31,11 @@ public class LiferayWebMvcConfigurer implements WebMvcConfigurer {
 		).allowedMethods(
 			"DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"
 		).allowedOrigins(
-			_getAllowedOrigins().toArray(new String[0])
+			_getAllowedOrigins()
 		);
 	}
 
-	private List<String> _getAllowedOrigins() {
+	private String[] _getAllowedOrigins() {
 		List<String> allowedOrigins = new ArrayList<>();
 
 		for (String lxcDXPDomain : _lxcDXPDomains.split("\\s*[,\n]\\s*")) {
@@ -43,7 +43,7 @@ public class LiferayWebMvcConfigurer implements WebMvcConfigurer {
 			allowedOrigins.add("https://" + lxcDXPDomain);
 		}
 
-		return allowedOrigins;
+		return allowedOrigins.toArray(new String[0]);
 	}
 
 	@Value("${com.liferay.lxc.dxp.domains}")
