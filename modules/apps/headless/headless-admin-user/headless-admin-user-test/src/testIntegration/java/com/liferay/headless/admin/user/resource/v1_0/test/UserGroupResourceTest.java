@@ -103,7 +103,7 @@ public class UserGroupResourceTest extends BaseUserGroupResourceTestCase {
 	public void testGetUserGroupsPage() throws Exception {
 		super.testGetUserGroupsPage();
 
-		_testGetUserGroupsPageWithFilters();
+		_testGetUserGroupsPageWithFilter();
 	}
 
 	@Override
