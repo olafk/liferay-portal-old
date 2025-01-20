@@ -48,9 +48,7 @@ jarPatched {
 	archiveFileName = jar.archiveFileName
 	destinationDirectory = jar.destinationDirectory
 	duplicatesStrategy = "exclude"
-
 	from copyPatchOriginalLibClasses
-
 	mustRunAfter compileJava
 	mustRunAfter generatePomFileForMavenPublication
 	mustRunAfter processResources
@@ -70,6 +68,5 @@ patch {
 	}
 
 	fileNames "org/springframework/orm/hibernate3/SpringSessionSynchronization.java"
-
 	originalLibModuleName = "spring-orm"
 }
