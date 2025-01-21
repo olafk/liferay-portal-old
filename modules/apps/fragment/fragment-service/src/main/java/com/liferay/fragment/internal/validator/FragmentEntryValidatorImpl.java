@@ -280,8 +280,8 @@ public class FragmentEntryValidatorImpl implements FragmentEntryValidator {
 							dependencyFieldJSONObject.getString("type"))) {
 
 						throw new FragmentEntryConfigurationException(
-							"Dependency field should be checkbox, select, or " +
-								"text");
+							"Dependency field type should be checkbox, " +
+								"select, or text");
 					}
 				}
 			}
