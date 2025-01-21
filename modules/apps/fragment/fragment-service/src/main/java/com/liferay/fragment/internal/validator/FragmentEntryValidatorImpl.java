@@ -226,11 +226,8 @@ public class FragmentEntryValidatorImpl implements FragmentEntryValidator {
 		JSONArray fieldSetsJSONArray = configurationJSONObject.getJSONArray(
 			"fieldSets");
 
-		for (int fieldSetIndex = 0; fieldSetIndex < fieldSetsJSONArray.length();
-			 fieldSetIndex++) {
-
-			JSONObject fieldSetJSONObject = fieldSetsJSONArray.getJSONObject(
-				fieldSetIndex);
+		for (int i = 0; i < fieldSetsJSONArray.length(); i++) {
+			JSONObject fieldSetJSONObject = fieldSetsJSONArray.getJSONObject(i);
 
 			JSONArray fieldsJSONArray = fieldSetJSONObject.getJSONArray(
 				"fields");
@@ -238,11 +235,8 @@ public class FragmentEntryValidatorImpl implements FragmentEntryValidator {
 			Map<String, JSONObject> fieldJSONObjects = new HashMap<>(
 				fieldsJSONArray.length());
 
-			for (int fieldIndex = 0; fieldIndex < fieldsJSONArray.length();
-				 fieldIndex++) {
-
-				JSONObject fieldJSONObject = fieldsJSONArray.getJSONObject(
-					fieldIndex);
+			for (int j = 0; j < fieldsJSONArray.length(); j++) {
+				JSONObject fieldJSONObject = fieldsJSONArray.getJSONObject(j);
 
 				String fieldName = fieldJSONObject.getString("name");
 
