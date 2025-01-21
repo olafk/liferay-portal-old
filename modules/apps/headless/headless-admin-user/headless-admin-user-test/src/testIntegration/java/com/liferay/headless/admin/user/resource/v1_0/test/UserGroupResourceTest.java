@@ -410,7 +410,6 @@ public class UserGroupResourceTest extends BaseUserGroupResourceTestCase {
 					Objects.equals(permission.getRoleName(), role.getName()) &&
 					(permission.getActionIds().length == 1) &&
 					Objects.equals(permission.getActionIds()[0], "DELETE")));
-		Assert.assertNotNull(getUserGroup.getUserAccountBriefs());
 		Assert.assertTrue(
 			ArrayUtil.exists(
 				getUserGroup.getUserAccountBriefs(),
