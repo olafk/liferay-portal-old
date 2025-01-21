@@ -481,8 +481,8 @@ public class FragmentEntryValidatorImplTest {
 		expectedException.expect(FragmentEntryConfigurationException.class);
 		expectedException.expectMessage(
 			new StringContains(
-				"Dependency field cannot depend on field field3 that does " +
-					"not exist"));
+				"Dependency field cannot depend on field \"field3\" that " +
+					"does not exist"));
 
 		_fragmentEntryValidatorImpl.validateConfiguration(
 			_read(
@@ -497,7 +497,7 @@ public class FragmentEntryValidatorImplTest {
 		expectedException.expect(FragmentEntryConfigurationException.class);
 		expectedException.expectMessage(
 			new StringContains(
-				"Dependency field should be checkbox, text or select"));
+				"Dependency field type should be checkbox, select, or text"));
 
 		_fragmentEntryValidatorImpl.validateConfiguration(
 			_read(
