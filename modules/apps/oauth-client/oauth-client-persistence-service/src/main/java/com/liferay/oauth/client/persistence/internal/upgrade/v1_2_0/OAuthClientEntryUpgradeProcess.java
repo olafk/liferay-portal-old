@@ -47,11 +47,10 @@ public class OAuthClientEntryUpgradeProcess extends UpgradeProcess {
 				continue;
 			}
 
-			String openIdConnectClientId = GetterUtil.getString(
-				properties.get("openIdConnectClientId"));
-
 			long discoveryEndPointCacheInMillis = GetterUtil.getLong(
 				properties.get("discoveryEndPointCacheInMillis"));
+			String openIdConnectClientId = GetterUtil.getString(
+				properties.get("openIdConnectClientId"));
 
 			try (PreparedStatement preparedStatement =
 					connection.prepareStatement(
