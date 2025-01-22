@@ -671,6 +671,14 @@ public class DLExportImportPortletPreferencesProcessorTest {
 			StringPool.POUND, classPK);
 	}
 
+	private String _getRepositoryExternalReferenceCode(Repository repository) {
+		if (repository == null) {
+			return StringPool.BLANK;
+		}
+
+		return repository.getExternalReferenceCode();
+	}
+
 	private TestReaderWriter _getTestReaderWriter() {
 		TestReaderWriter testReaderWriter = new TestReaderWriter();
 
@@ -685,22 +693,17 @@ public class DLExportImportPortletPreferencesProcessorTest {
 		return testReaderWriter;
 	}
 
-	private String _getRepositoryExternalReferenceCode(Repository repository) {
-		if (repository == null) {
-			return StringPool.BLANK;
-		}
-
-		return repository.getExternalReferenceCode();
-	}
-
 	private void _setPortletPreferences(FileEntry fileEntry) throws Exception {
 		_setPortletPreferences(_getPortletPreferencesValues(fileEntry));
 	}
 
-	private void _setPortletPreferences(Map<String, String> portletPreferencesValues)
+	private void _setPortletPreferences(
+			Map<String, String> portletPreferencesValues)
 		throws Exception {
 
-		for (Map.Entry<String, String> entry : portletPreferencesValues.entrySet()) {
+		for (Map.Entry<String, String> entry :
+				portletPreferencesValues.entrySet()) {
+
 			_portletPreferences.setValue(entry.getKey(), entry.getValue());
 		}
 
@@ -708,8 +711,8 @@ public class DLExportImportPortletPreferencesProcessorTest {
 	}
 
 	private void _testExportImport(FileEntry fileEntry) throws Exception {
-		Map<String, String> portletPreferencesValues = _getPortletPreferencesValues(
-			fileEntry);
+		Map<String, String> portletPreferencesValues =
+			_getPortletPreferencesValues(fileEntry);
 
 		_setPortletPreferences(portletPreferencesValues);
 
