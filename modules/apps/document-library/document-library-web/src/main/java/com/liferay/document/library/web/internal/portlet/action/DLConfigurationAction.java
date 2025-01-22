@@ -121,7 +121,7 @@ public class DLConfigurationAction
 		portletPreferences.setValue(
 			"rootFolderExternalReferenceCode", rootFolderExternalReferenceCode);
 
-		Group selectedGroup;
+		Group selectedGroup = null;
 		String selectedRepositoryExternalReferenceCode = StringPool.BLANK;
 
 		Repository selectedRepository = _repositoryLocalService.fetchRepository(
@@ -133,7 +133,6 @@ public class DLConfigurationAction
 		else {
 			selectedGroup = _groupLocalService.getGroup(
 				selectedRepository.getGroupId());
-
 			selectedRepositoryExternalReferenceCode =
 				selectedRepository.getExternalReferenceCode();
 		}
@@ -141,7 +140,6 @@ public class DLConfigurationAction
 		portletPreferences.setValue(
 			"selectedGroupExternalReferenceCode",
 			selectedGroup.getExternalReferenceCode());
-
 		portletPreferences.setValue(
 			"selectedRepositoryExternalReferenceCode",
 			selectedRepositoryExternalReferenceCode);

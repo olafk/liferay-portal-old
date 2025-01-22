@@ -275,7 +275,7 @@ public class DLExportImportPortletPreferencesProcessorTest {
 	}
 
 	@Test
-	public void testExportImportCustomPreference() throws Exception {
+	public void testExportImportCustomPortletPreference() throws Exception {
 		FileEntry fileEntry = DLAppTestUtil.addFileEntry(_group.getGroupId());
 
 		_portletPreferences.setValue(
@@ -480,13 +480,11 @@ public class DLExportImportPortletPreferencesProcessorTest {
 			primaryKeys.contains(
 				_getPrimaryKey(
 					DLFileEntry.class.getName(), fileEntry.getFileEntryId())));
-
 		Assert.assertTrue(
 			primaryKeys.toString(),
 			primaryKeys.contains(
 				_getPrimaryKey(
 					DLFolder.class.getName(), fileEntry.getFolderId())));
-
 		Assert.assertTrue(
 			primaryKeys.toString(),
 			primaryKeys.contains(
@@ -511,7 +509,6 @@ public class DLExportImportPortletPreferencesProcessorTest {
 			primaryKeys.contains(
 				_getPrimaryKey(
 					DLFileEntry.class.getName(), fileEntry.getFileEntryId())));
-
 		Assert.assertTrue(
 			primaryKeys.toString(),
 			primaryKeys.contains(

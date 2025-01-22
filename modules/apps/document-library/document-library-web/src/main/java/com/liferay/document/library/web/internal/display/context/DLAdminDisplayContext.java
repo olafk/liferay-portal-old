@@ -349,8 +349,7 @@ public class DLAdminDisplayContext {
 			repositoryId = folder.getRepositoryId();
 		}
 		else {
-			repositoryId =
-				_getSelectedRepositoryIdFromPortletInstanceSettings();
+			repositoryId = _getSelectedRepositoryId();
 		}
 
 		if (repositoryId == 0) {
@@ -415,8 +414,7 @@ public class DLAdminDisplayContext {
 			return _selectedRepositoryId;
 		}
 
-		long repositoryId =
-			_getSelectedRepositoryIdFromPortletInstanceSettings();
+		long repositoryId = _getSelectedRepositoryId();
 
 		if (repositoryId != 0) {
 			_selectedRepositoryId = repositoryId;
@@ -1130,7 +1128,7 @@ public class DLAdminDisplayContext {
 		return searchContainer;
 	}
 
-	private long _getSelectedRepositoryIdFromPortletInstanceSettings() {
+	private long _getSelectedRepositoryId() {
 		String selectedGroupExternalReferenceCode =
 			_dlPortletInstanceSettings.getSelectedGroupExternalReferenceCode();
 

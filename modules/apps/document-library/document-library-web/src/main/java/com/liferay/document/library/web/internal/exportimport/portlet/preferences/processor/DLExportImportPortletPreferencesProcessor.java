@@ -102,7 +102,7 @@ public class DLExportImportPortletPreferencesProcessor
 			return portletPreferences;
 		}
 
-		// Root folder ERC is set, only export that
+		// Root folder external reference code is set, only export that
 
 		String rootFolderExternalReferenceCode = portletPreferences.getValue(
 			_PREFERENCE_KEY_ROOT_FOLDER_EXTERNAL_REFERENCE_CODE, null);
@@ -172,7 +172,8 @@ public class DLExportImportPortletPreferencesProcessor
 			}
 		}
 
-		// Root folder ERC is not set, we need to export everything
+		// Root folder external reference code is not set, we need to export
+		// everything
 
 		try {
 			portletDataContext.addPortletPermissions(DLConstants.RESOURCE_NAME);
@@ -334,12 +335,10 @@ public class DLExportImportPortletPreferencesProcessor
 					_PREFERENCE_KEY_ROOT_FOLDER_EXTERNAL_REFERENCE_CODE,
 					stagingPreferencesMappingJSONObject.getString(
 						_PREFERENCE_KEY_ROOT_FOLDER_EXTERNAL_REFERENCE_CODE));
-
 				portletPreferences.setValue(
 					_PREFERENCE_KEY_SELECTED_GROUP_EXTERNAL_REFERENCE_CODE,
 					stagingPreferencesMappingJSONObject.getString(
 						_PREFERENCE_KEY_SELECTED_GROUP_EXTERNAL_REFERENCE_CODE));
-
 				portletPreferences.setValue(
 					_PREFERENCE_KEY_SELECTED_REPOSITORY_EXTERNAL_REFERENCE_CODE,
 					stagingPreferencesMappingJSONObject.getString(
@@ -352,7 +351,7 @@ public class DLExportImportPortletPreferencesProcessor
 			}
 		}
 
-		// Root folder ERC is set, only import that
+		// Root folder external reference code is set, only import that
 
 		String rootFolderExternalReferenceCode = portletPreferences.getValue(
 			_PREFERENCE_KEY_ROOT_FOLDER_EXTERNAL_REFERENCE_CODE, null);
@@ -568,8 +567,9 @@ public class DLExportImportPortletPreferencesProcessor
 				_log.warn(
 					StringBundler.concat(
 						"Portlet ", portletDataContext.getPortletId(),
-						" refers to an invalid root folder ERC ",
-						folderExternalReferenceCode, " with group ERC ",
+						" refers to an invalid root folder external ",
+						"reference code ", folderExternalReferenceCode,
+						" with group external reference code ",
 						groupExternalReferenceCode),
 					portalException);
 			}
