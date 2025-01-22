@@ -439,7 +439,6 @@ public class AddFragmentEntryLinksMVCActionCommandTest {
 				mockLiferayPortletActionRequest, exception);
 
 			Assert.assertEquals(jsonObject.toString(), 1, jsonObject.length());
-
 			Assert.assertEquals(
 				_language.get(
 					_portal.getSiteDefaultLocale(_group),
@@ -461,7 +460,6 @@ public class AddFragmentEntryLinksMVCActionCommandTest {
 		MockLiferayPortletActionRequest mockLiferayPortletActionRequest =
 			_getMockLiferayPortletActionRequest(
 				fragmentCompositionKey, parentItemId, user);
-
 		MockLiferayPortletActionResponse mockLiferayPortletActionResponse =
 			new MockLiferayPortletActionResponse();
 
