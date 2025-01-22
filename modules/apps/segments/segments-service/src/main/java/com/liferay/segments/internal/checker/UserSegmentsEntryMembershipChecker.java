@@ -113,7 +113,7 @@ public class UserSegmentsEntryMembershipChecker {
 			parsedFilterString, userAttributes);
 
 		return StringBundler.concat(
-			"def evaluate() { return", parsedFilterString, "}");
+			"def evaluate() {return ", parsedFilterString, "}");
 	}
 
 	private static String _processContainsOperations(
