@@ -18,7 +18,7 @@ const ProjectErrorMessage = () => (
 				</div>
 
 				<p className="cp-project-error-message-title mt-4">
-					{i18n.translate('you-dont-have-access-to-this-project')}
+					{i18n.translate('you-do-not-have-access-to-this-project')}
 				</p>
 			</div>
 
