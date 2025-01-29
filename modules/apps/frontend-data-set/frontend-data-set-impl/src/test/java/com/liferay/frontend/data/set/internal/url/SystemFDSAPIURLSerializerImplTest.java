@@ -141,7 +141,7 @@ public class SystemFDSAPIURLSerializerImplTest {
 		// No resolver, URL with parameters
 
 		systemFDSEntryServiceRegistration1 = _registerSystemFDSEntry(
-			"fdsName", "/app", "/endpoint", "schema", "param=3");
+			"param=3", "fdsName", "/app", "/endpoint", "schema");
 
 		Assert.assertEquals(
 			"/o/app/endpoint?param=3",
@@ -153,7 +153,7 @@ public class SystemFDSAPIURLSerializerImplTest {
 		// Resolver with interpolation
 
 		systemFDSEntryServiceRegistration1 = _registerSystemFDSEntry(
-			"fdsName", "/app", "/endpoint/{foo}", "schema", "{foo}=3");
+			"{foo}=3", "fdsName", "/app", "/endpoint/{foo}", "schema");
 
 		fdsAPIURLServiceRegistration =
 			_registerFDSAPIURLResolver(
@@ -228,12 +228,12 @@ public class SystemFDSAPIURLSerializerImplTest {
 		String restSchema) {
 
 		return _registerSystemFDSEntry(
-			fdsName, restApplication, restEndpoint, restSchema, null);
+			null, fdsName, restApplication, restEndpoint, restSchema);
 	}
 
 	private ServiceRegistration<SystemFDSEntry> _registerSystemFDSEntry(
-		String fdsName, String restApplication, String restEndpoint,
-		String restSchema, String additionalURLParameters) {
+		String additionalURLParameters, String fdsName, String restApplication, String restEndpoint,
+		String restSchema) {
 
 		return _bundleContext.registerService(
 			SystemFDSEntry.class,
