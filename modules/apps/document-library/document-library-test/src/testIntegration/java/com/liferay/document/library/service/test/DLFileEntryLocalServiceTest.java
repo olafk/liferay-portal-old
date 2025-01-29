@@ -1184,7 +1184,7 @@ public class DLFileEntryLocalServiceTest {
 	}
 
 	@Test
-	public void testExpireFileVersionKeepsLatestVersion() throws Exception {
+	public void testExpireFileEntryKeepsVersion() throws Exception {
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
 				new ConfigurationTemporarySwapper(
 					DLConfiguration.class.getName(),
