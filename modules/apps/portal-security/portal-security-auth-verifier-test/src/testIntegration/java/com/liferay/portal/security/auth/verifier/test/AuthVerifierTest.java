@@ -75,32 +75,32 @@ public class AuthVerifierTest {
 		_bundleContext = bundle.getBundleContext();
 
 		_registerServletContextHelper(
-			"auth-verifier-guest-allowed-false-test",
 			HashMapDictionaryBuilder.<String, Object>put(
 				JaxrsWhiteboardConstants.JAX_RS_NAME, "guest-no-allowed"
 			).put(
 				"auth-verifier-guest-allowed-test-servlet-context-helper", true
 			).put(
 				"auth.verifier.guest.allowed", false
-			).build());
+			).build(),
+			"auth-verifier-guest-allowed-false-test");
 
 		_registerServletContextHelper(
-			"auth-verifier-guest-allowed-true-test",
 			HashMapDictionaryBuilder.<String, Object>put(
 				JaxrsWhiteboardConstants.JAX_RS_NAME, "guest-allowed"
 			).put(
 				"auth-verifier-guest-allowed-test-servlet-context-helper", true
 			).put(
 				"auth.verifier.guest.allowed", true
-			).build());
+			).build(),
+			"auth-verifier-guest-allowed-true-test");
 
 		_registerServletContextHelper(
-			"auth-verifier-guest-allowed-default-test",
 			HashMapDictionaryBuilder.<String, Object>put(
 				JaxrsWhiteboardConstants.JAX_RS_NAME, "guest-default"
 			).put(
 				"auth-verifier-guest-allowed-test-servlet-context-helper", true
-			).build());
+			).build(),
+			"auth-verifier-guest-allowed-default-test");
 
 		_registerServlet(
 			HashMapDictionaryBuilder.<String, Object>put(
@@ -116,28 +116,28 @@ public class AuthVerifierTest {
 			GuestAllowedHttpServlet::new);
 
 		_registerServletContextHelper(
-			"auth-verifier-filter-tracker-enabled-test",
 			HashMapDictionaryBuilder.<String, Object>put(
 				JaxrsWhiteboardConstants.JAX_RS_NAME, "filter-enabled"
 			).put(
 				"auth-verifier-tracker-test-servlet-context-helper", true
 			).put(
 				"auth.verifier.guest.allowed", true
-			).build());
+			).build(),
+			"auth-verifier-filter-tracker-enabled-test");
 
 		_registerServletContextHelper(
-			"auth-verifier-filter-tracker-disabled-test",
 			HashMapDictionaryBuilder.<String, Object>put(
 				"auth-verifier-tracker-test-servlet-context-helper", true
 			).put(
 				"liferay.auth.verifier", false
-			).build());
+			).build(),
+			"auth-verifier-filter-tracker-disabled-test");
 
 		_registerServletContextHelper(
-			"auth-verifier-filter-tracker-default-test",
 			HashMapDictionaryBuilder.<String, Object>put(
 				"auth-verifier-tracker-test-servlet-context-helper", true
-			).build());
+			).build(),
+			"auth-verifier-filter-tracker-default-test");
 
 		_registerServlet(
 			HashMapDictionaryBuilder.<String, Object>put(
@@ -153,12 +153,12 @@ public class AuthVerifierTest {
 			RemoteUserHttpServlet::new);
 
 		_registerServletContextHelper(
-			"auth-verifier-filter-tracker-remote-access-test",
 			HashMapDictionaryBuilder.<String, Object>put(
 				JaxrsWhiteboardConstants.JAX_RS_NAME, "filter-enabled"
 			).put(
 				"auth-verifier-tracker-test-servlet-context-helper", true
-			).build());
+			).build(),
+			"auth-verifier-filter-tracker-remote-access-test");
 
 		_registerServlet(
 			HashMapDictionaryBuilder.<String, Object>put(
@@ -174,7 +174,6 @@ public class AuthVerifierTest {
 			RemoteAccessHttpServlet::new);
 
 		_registerServletContextHelper(
-			"auth-verifier-filter-override-matched-test",
 			HashMapDictionaryBuilder.<String, Object>put(
 				JaxrsWhiteboardConstants.JAX_RS_NAME,
 				"auth-verifier-filter-override-matched"
@@ -186,10 +185,10 @@ public class AuthVerifierTest {
 				"*"
 			).put(
 				"auth.verifier.guest.allowed", true
-			).build());
+			).build(),
+			"auth-verifier-filter-override-matched-test");
 
 		_registerServletContextHelper(
-			"auth-verifier-filter-override-not-matched-test",
 			HashMapDictionaryBuilder.<String, Object>put(
 				JaxrsWhiteboardConstants.JAX_RS_NAME,
 				"auth-verifier-filter-override-not-matched"
@@ -201,10 +200,10 @@ public class AuthVerifierTest {
 				"/wrongPath"
 			).put(
 				"auth.verifier.guest.allowed", true
-			).build());
+			).build(),
+			"auth-verifier-filter-override-not-matched-test");
 
 		_registerServletContextHelper(
-			"auth-verifier-filter-override-missing-test",
 			HashMapDictionaryBuilder.<String, Object>put(
 				JaxrsWhiteboardConstants.JAX_RS_NAME,
 				"auth-verifier-filter-override-missing"
@@ -212,7 +211,8 @@ public class AuthVerifierTest {
 				"auth-verifier-matched-test-auth-verifier-filter-helper", true
 			).put(
 				"auth.verifier.guest.allowed", true
-			).build());
+			).build(),
+			"auth-verifier-filter-override-missing-test");
 
 		_registerServlet(
 			HashMapDictionaryBuilder.<String, Object>put(
@@ -500,7 +500,7 @@ public class AuthVerifierTest {
 	}
 
 	private static void _registerServletContextHelper(
-		String servletContextName, Dictionary<String, Object> properties) {
+		Dictionary<String, Object> properties, String servletContextName) {
 
 		properties.put(
 			HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_NAME,
