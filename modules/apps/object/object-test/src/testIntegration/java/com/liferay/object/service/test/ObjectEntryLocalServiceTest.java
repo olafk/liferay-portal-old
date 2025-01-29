@@ -482,7 +482,6 @@ public class ObjectEntryLocalServiceTest {
 		_objectDefinitionLocalService.deleteObjectDefinition(_objectDefinition);
 	}
 
-	@FeatureFlags("LPD-43542")
 	@Test
 	public void testAddAndUpdateObjectEntryWithObjectValidationRule()
 		throws Exception {
@@ -1698,7 +1697,7 @@ public class ObjectEntryLocalServiceTest {
 		_objectFieldLocalService.deleteObjectField(objectField2);
 	}
 
-	@FeatureFlags({"LPD-32050", "LPD-43542"})
+	@FeatureFlags("LPD-32050")
 	@Test
 	public void testAddObjectEntryWithFormulaObjectFieldAndObjectRelationship()
 		throws Exception {
