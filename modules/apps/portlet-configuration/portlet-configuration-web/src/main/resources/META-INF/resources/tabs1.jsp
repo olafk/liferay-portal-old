@@ -8,10 +8,11 @@
 <%@ include file="/init.jsp" %>
 
 <%
-PortletConfigurationDisplayContext portletConfigurationDisplayContext = new PortletConfigurationDisplayContext(request, renderResponse);
-
 PortalUtil.addPortletBreadcrumbEntry(request, PortalUtil.getPortletTitle(renderResponse), null);
 PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "configuration"), null);
+
+PortletConfigurationDisplayContext portletConfigurationDisplayContext = new PortletConfigurationDisplayContext(request, renderResponse);
+
 PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, portletConfigurationDisplayContext.getTabs1()), currentURL);
 
 List<NavigationItem> navigationItems = portletConfigurationDisplayContext.getNavigationItems();
