@@ -465,8 +465,6 @@ public class CTCollectionLocalServiceImpl
 
 					String primaryKeyName = iterator.next();
 
-					List<Long> entryValue = entry.getValue();
-
 					StringBundler sb = new StringBundler();
 
 					sb.append("delete from ");
@@ -479,7 +477,7 @@ public class CTCollectionLocalServiceImpl
 
 					int i = 0;
 
-					for (long modelClassPK : entryValue) {
+					for (long modelClassPK : entry.getValue()) {
 						if (i == _BATCH_SIZE) {
 							sb.setStringAt(")", sb.index() - 1);
 							sb.append(" or ");
