@@ -87,9 +87,9 @@ public class EditOpenGraphMVCActionCommandTest {
 				ServiceContextTestUtil.getServiceContext(
 					_group, TestPropsValues.getUserId()));
 
-		String property = RandomTestUtil.randomString();
 		Map<Locale, String> contentMap = Collections.singletonMap(
 			LocaleUtil.getSiteDefault(), RandomTestUtil.randomString());
+		String property = RandomTestUtil.randomString();
 
 		_layoutSEOEntryLocalService.updateCustomMetaTags(
 			TestPropsValues.getUserId(), _layout.getGroupId(), false,
