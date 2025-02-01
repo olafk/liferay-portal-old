@@ -101,6 +101,9 @@ public class ObjectEntryFolderLocalServiceImpl
 		ObjectEntryFolder objectEntryFolder) {
 
 		try {
+
+			// Object entries
+
 			ActionableDynamicQuery actionableDynamicQuery =
 				_objectEntryLocalService.getActionableDynamicQuery();
 
@@ -121,7 +124,35 @@ public class ObjectEntryFolderLocalServiceImpl
 					_objectEntryLocalService.deleteObjectEntry(objectEntry));
 			actionableDynamicQuery.performActions();
 
-			_deleteObjectEntryFolders(objectEntryFolder);
+			// Object entry folders
+
+			actionableDynamicQuery =
+				objectEntryFolderLocalService.getActionableDynamicQuery();
+
+			actionableDynamicQuery.setAddCriteriaMethod(
+				dynamicQuery -> {
+					dynamicQuery.add(
+						RestrictionsFactoryUtil.eq(
+							"groupId", objectEntryFolder.getGroupId()));
+					dynamicQuery.add(
+						RestrictionsFactoryUtil.eq(
+							"companyId", objectEntryFolder.getCompanyId()));
+					dynamicQuery.add(
+						RestrictionsFactoryUtil.like(
+							"treePath", objectEntryFolder.getTreePath() + "%"));
+				});
+			actionableDynamicQuery.setPerformActionMethod(
+				(ObjectEntryFolder descendantObjectEntryFolder) ->
+					_resourceLocalService.deleteResource(
+						descendantObjectEntryFolder.getCompanyId(),
+						ObjectEntryFolder.class.getName(),
+						ResourceConstants.SCOPE_INDIVIDUAL,
+						descendantObjectEntryFolder.getObjectEntryFolderId()));
+			actionableDynamicQuery.performActions();
+
+			objectEntryFolderPersistence.removeByG_C_LikeT(
+				objectEntryFolder.getGroupId(), objectEntryFolder.getCompanyId(),
+				objectEntryFolder.getTreePath() + "%");
 
 			return objectEntryFolder;
 		}
@@ -177,38 +208,6 @@ public class ObjectEntryFolderLocalServiceImpl
 				objectEntryFolder.getObjectEntryFolderId(),
 				serviceContext.getModelPermissions());
 		}
-	}
-
-	private void _deleteObjectEntryFolders(ObjectEntryFolder objectEntryFolder)
-		throws PortalException {
-
-		ActionableDynamicQuery actionableDynamicQuery =
-			objectEntryFolderLocalService.getActionableDynamicQuery();
-
-		actionableDynamicQuery.setAddCriteriaMethod(
-			dynamicQuery -> {
-				dynamicQuery.add(
-					RestrictionsFactoryUtil.eq(
-						"groupId", objectEntryFolder.getGroupId()));
-				dynamicQuery.add(
-					RestrictionsFactoryUtil.eq(
-						"companyId", objectEntryFolder.getCompanyId()));
-				dynamicQuery.add(
-					RestrictionsFactoryUtil.like(
-						"treePath", objectEntryFolder.getTreePath() + "%"));
-			});
-		actionableDynamicQuery.setPerformActionMethod(
-			(ObjectEntryFolder descendantObjectEntryFolder) ->
-				_resourceLocalService.deleteResource(
-					descendantObjectEntryFolder.getCompanyId(),
-					ObjectEntryFolder.class.getName(),
-					ResourceConstants.SCOPE_INDIVIDUAL,
-					descendantObjectEntryFolder.getObjectEntryFolderId()));
-		actionableDynamicQuery.performActions();
-
-		objectEntryFolderPersistence.removeByG_C_LikeT(
-			objectEntryFolder.getGroupId(), objectEntryFolder.getCompanyId(),
-			objectEntryFolder.getTreePath() + "%");
 	}
 
 	private Map<Locale, String> _getLabelMap(
