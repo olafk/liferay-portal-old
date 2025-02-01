@@ -177,9 +177,35 @@ public class LoginActionTest {
 
 			siteInitializer.initialize(groupId);
 
-			Layout layout = _addTypeContentLayout();
+			ServiceContext serviceContext =
+				ServiceContextTestUtil.getServiceContext(
+					_group, TestPropsValues.getUserId());
 
-			_removeGuestViewPermission(layout);
+			Layout layout = _layoutLocalService.addLayout(
+				null, TestPropsValues.getUserId(), _group.getGroupId(), false,
+				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
+				RandomTestUtil.randomString(), StringPool.BLANK,
+				StringPool.BLANK, LayoutConstants.TYPE_CONTENT, false,
+				StringPool.BLANK, serviceContext);
+
+			Layout draftLayout = layout.fetchDraftLayout();
+
+			Assert.assertNotNull(draftLayout);
+
+			ContentLayoutTestUtil.publishLayout(draftLayout, layout);
+
+			layout = _layoutLocalService.getLayout(layout.getPlid());
+
+			Assert.assertTrue(layout.isPublished());
+
+			Role guestRole = _roleLocalService.getRole(
+				layout.getCompanyId(), RoleConstants.GUEST);
+
+			_resourcePermissionLocalService.removeResourcePermission(
+				layout.getCompanyId(), Layout.class.getName(),
+				ResourceConstants.SCOPE_INDIVIDUAL,
+				String.valueOf(layout.getPlid()), guestRole.getRoleId(),
+				ActionKeys.VIEW);
 
 			UserTestUtil.setUser(
 				_userLocalService.getGuestUser(TestPropsValues.getCompanyId()));
@@ -201,31 +227,6 @@ public class LoginActionTest {
 				StringUtil.contains(
 					url.getQuery(), "p_p_state=normal", StringPool.BLANK));
 		}
-	}
-
-	private Layout _addTypeContentLayout() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(
-				_group, TestPropsValues.getUserId());
-
-		Layout layout = _layoutLocalService.addLayout(
-			null, TestPropsValues.getUserId(), _group.getGroupId(), false,
-			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
-			RandomTestUtil.randomString(), StringPool.BLANK, StringPool.BLANK,
-			LayoutConstants.TYPE_CONTENT, false, StringPool.BLANK,
-			serviceContext);
-
-		Layout draftLayout = layout.fetchDraftLayout();
-
-		Assert.assertNotNull(draftLayout);
-
-		ContentLayoutTestUtil.publishLayout(draftLayout, layout);
-
-		layout = _layoutLocalService.getLayout(layout.getPlid());
-
-		Assert.assertTrue(layout.isPublished());
-
-		return layout;
 	}
 
 	private HttpURLConnection _getHttpURLConnection() throws Exception {
@@ -251,17 +252,6 @@ public class LoginActionTest {
 		httpURLConnection.setRequestMethod("GET");
 
 		return httpURLConnection;
-	}
-
-	private void _removeGuestViewPermission(Layout layout) throws Exception {
-		Role guestRole = _roleLocalService.getRole(
-			layout.getCompanyId(), RoleConstants.GUEST);
-
-		_resourcePermissionLocalService.removeResourcePermission(
-			layout.getCompanyId(), Layout.class.getName(),
-			ResourceConstants.SCOPE_INDIVIDUAL,
-			String.valueOf(layout.getPlid()), guestRole.getRoleId(),
-			ActionKeys.VIEW);
 	}
 
 	@DeleteAfterTestRun
