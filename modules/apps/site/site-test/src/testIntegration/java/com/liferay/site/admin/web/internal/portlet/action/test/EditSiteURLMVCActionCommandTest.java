@@ -14,6 +14,7 @@ import com.liferay.portal.kernel.test.portlet.MockLiferayPortletActionResponse;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.Sync;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -58,7 +59,7 @@ public class EditSiteURLMVCActionCommandTest {
 		mockLiferayPortletActionRequest.addParameter(
 			"liveGroupId", String.valueOf(_group.getGroupId()));
 
-		String groupFriendlyURL = "/testfriendlyurl";
+		String groupFriendlyURL = "/" + RandomTestUtil.randomString();
 
 		mockLiferayPortletActionRequest.addParameter(
 			"groupFriendlyURL", groupFriendlyURL);
@@ -77,22 +78,20 @@ public class EditSiteURLMVCActionCommandTest {
 		String redirect = (String)mockLiferayPortletActionRequest.getAttribute(
 			WebKeys.REDIRECT);
 
-		Assert.assertTrue(redirect.contains(themeDisplay.getPortalURL()));
 		Assert.assertTrue(redirect.contains(groupFriendlyURL));
+		Assert.assertTrue(redirect.contains(themeDisplay.getPortalURL()));
 	}
 
 	private ThemeDisplay _getThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
-		themeDisplay.setPortalURL(_VIRTUAL_HOSTNAME);
+		themeDisplay.setPortalURL("test.com");
 		themeDisplay.setScopeGroupId(_group.getGroupId());
 		themeDisplay.setSiteGroupId(_group.getGroupId());
 		themeDisplay.setUser(TestPropsValues.getUser());
 
 		return themeDisplay;
 	}
-
-	private static final String _VIRTUAL_HOSTNAME = "test.com";
 
 	private Group _group;
 
