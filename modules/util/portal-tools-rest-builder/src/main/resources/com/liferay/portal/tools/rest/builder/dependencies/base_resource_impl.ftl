@@ -184,8 +184,8 @@ public abstract class Base${schemaName}ResourceImpl
 
 			<#if configYAML.application??>
 				/**
-				* ${freeMarkerTool.getRESTMethodJavadoc(configYAML, javaMethodSignature, openAPIYAML)}
-				*/
+				 * ${freeMarkerTool.getRESTMethodJavadoc(configYAML, javaMethodSignature, openAPIYAML)}
+				 */
 			</#if>
 			@Override
 			${freeMarkerTool.getResourceMethodAnnotations(javaMethodSignature)}
@@ -203,7 +203,7 @@ public abstract class Base${schemaName}ResourceImpl
 
 							<#sep>, </#sep>
 						</#list>
-						);
+					);
 
 					<#if javaMethodSignature.returnType?contains("Page<")>
 						<#if properties?keys?seq_contains("permissions")>
@@ -211,14 +211,15 @@ public abstract class Base${schemaName}ResourceImpl
 								${schemaVarName}.setPermissions(
 									() -> NestedFieldsSupplier.supply("permissions", nestedField -> {
 										Page<Permission> permissionPage = get${schemaName}PermissionsPage(
-										<#if properties?keys?seq_contains("id")>
-											${schemaVarName}.getId()
-										<#elseif properties?keys?seq_contains(schemaVarName + "Id")>
-											${schemaVarName}.get${schemaVarName}Id()
-										<#else>
-											${schemaVarName}Id
-										</#if>
-										, null);
+											<#if properties?keys?seq_contains("id")>
+												${schemaVarName}.getId()
+											<#elseif properties?keys?seq_contains(schemaVarName + "Id")>
+												${schemaVarName}.get${schemaVarName}Id()
+											<#else>
+												${schemaVarName}Id
+											</#if>
+
+											, null);
 
 										Collection<Permission> permissions = permissionPage.getItems();
 
@@ -233,14 +234,15 @@ public abstract class Base${schemaName}ResourceImpl
 							${httpMethod}${schemaName}.setPermissions(
 								() -> NestedFieldsSupplier.supply("permissions", nestedField -> {
 										Page<Permission> permissionPage = get${schemaName}PermissionsPage(
-										<#if properties?keys?seq_contains("id")>
-											${httpMethod}${schemaName}.getId()
-										<#elseif properties?keys?seq_contains(schemaVarName + "Id")>
-											${httpMethod}${schemaName}.get${schemaVarName}Id()
-										<#else>
-											${schemaVarName}Id
-										</#if>
-										, null);
+											<#if properties?keys?seq_contains("id")>
+												${httpMethod}${schemaName}.getId()
+											<#elseif properties?keys?seq_contains(schemaVarName + "Id")>
+												${httpMethod}${schemaName}.get${schemaVarName}Id()
+											<#else>
+												${schemaVarName}Id
+											</#if>
+
+											, null);
 
 										Collection<Permission> permissions = permissionPage.getItems();
 
@@ -293,8 +295,8 @@ public abstract class Base${schemaName}ResourceImpl
 
 		<#if configYAML.application??>
 			/**
-			* ${freeMarkerTool.getRESTMethodJavadoc(configYAML, javaMethodSignature, openAPIYAML)}
-			*/
+			 * ${freeMarkerTool.getRESTMethodJavadoc(configYAML, javaMethodSignature, openAPIYAML)}
+			 */
 		</#if>
 		@Override
 		${freeMarkerTool.getResourceMethodAnnotations(javaMethodSignature)}
@@ -1279,8 +1281,8 @@ public abstract class Base${schemaName}ResourceImpl
 		}
 
 		/**
-	 	* @see com.liferay.portal.vulcan.permission.PermissionUtil#getPermissions(long, List, long, String, String[])
-	  	*/
+	 	 * @see com.liferay.portal.vulcan.permission.PermissionUtil#getPermissions(long, List, long, String, String[])
+	  	 */
 		private Collection<Permission> _getPermissions(long companyId, List<ResourceAction> resourceActions, long resourceId, String resourceName, String[] roleNames) throws Exception {
 			Map<String, Permission> permissions = new HashMap<>();
 
