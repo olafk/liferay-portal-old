@@ -1575,6 +1575,7 @@ public class RESTBuilder {
 				if (x == -1) {
 					x = yamlString.indexOf(
 						" " + javaMethodSignature.getPath() + ":");
+
 					x = x + 1;
 				}
 
