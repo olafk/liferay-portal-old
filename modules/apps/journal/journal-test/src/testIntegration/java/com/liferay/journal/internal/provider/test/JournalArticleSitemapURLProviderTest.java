@@ -235,7 +235,7 @@ public class JournalArticleSitemapURLProviderTest {
 	}
 
 	@Test
-	public void testJournalArticleSitemapWithADisabledLanguage()
+	public void testJournalArticleSitemapWithADisabledLanguageId()
 		throws Exception {
 
 		Element rootElement = _getRootElement();
