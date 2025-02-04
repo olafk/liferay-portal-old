@@ -133,7 +133,6 @@ public class MiniCartTag extends IncludeTag {
 			}
 
 			_requestQuoteEnabled = _isRequestQuoteEnabled();
-
 			_siteDefaultURL = _getSiteDefaultURL(themeDisplay);
 		}
 		catch (PortalException portalException) {
