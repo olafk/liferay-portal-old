@@ -177,27 +177,27 @@ public class EditAssetVocabularyMVCActionCommand extends BaseMVCActionCommand {
 			}
 		}
 
+		AssetVocabularySettingsHelper assetVocabularySettingsHelper = null;
+
 		long vocabularyId = ParamUtil.getLong(actionRequest, "vocabularyId");
 
 		AssetVocabulary assetVocabulary =
 			_assetVocabularyService.fetchVocabulary(vocabularyId);
 
-		AssetVocabularySettingsHelper vocabularySettingsHelper = null;
-
 		if (assetVocabulary != null) {
-			vocabularySettingsHelper = new AssetVocabularySettingsHelper(
+			assetVocabularySettingsHelper = new AssetVocabularySettingsHelper(
 				assetVocabulary.getSettings());
 		}
 		else {
-			vocabularySettingsHelper = new AssetVocabularySettingsHelper();
+			assetVocabularySettingsHelper = new AssetVocabularySettingsHelper();
 		}
 
-		vocabularySettingsHelper.setClassNameIdsAndClassTypePKs(
+		assetVocabularySettingsHelper.setClassNameIdsAndClassTypePKs(
 			classNameIds, classTypePKs, depotRequireds, requireds);
-		vocabularySettingsHelper.setMultiValued(
+		assetVocabularySettingsHelper.setMultiValued(
 			ParamUtil.getBoolean(actionRequest, "multiValued"));
 
-		return vocabularySettingsHelper.toString();
+		return assetVocabularySettingsHelper.toString();
 	}
 
 	@Reference
