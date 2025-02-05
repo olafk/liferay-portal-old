@@ -1754,6 +1754,9 @@ public class DLFileEntryLocalServiceTest {
 
 	@Test
 	public void testUpdateFileEntryVersionNumberIncrease() throws Exception {
+
+		// Major version increment
+
 		DLFileEntry dlFileEntry = DLFileEntryLocalServiceUtil.addFileEntry(
 			null, TestPropsValues.getUserId(), _group.getGroupId(),
 			_group.getGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
@@ -1765,8 +1768,6 @@ public class DLFileEntryLocalServiceTest {
 				_group.getGroupId(), TestPropsValues.getUserId()));
 
 		Assert.assertNotNull("1.0", dlFileEntry.getVersion());
-
-		// Major version increment
 
 		dlFileEntry = DLFileEntryLocalServiceUtil.updateFileEntry(
 			TestPropsValues.getUserId(), dlFileEntry.getFileEntryId(),
