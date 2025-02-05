@@ -81,7 +81,7 @@ const CollectionItemWithControls = React.forwardRef(({children, item}, ref) => {
 								<div className="c-mb-4 c-mx-4 d-flex flex-column page-editor__no-fragments-state">
 									<img
 										className="c-mb-3 page-editor__no-fragments-state__image"
-										src={`${config.imagesPath}/collection-item-empty-state.svg`}
+										src={`${config.imagesPath}/collection_item_empty_state.svg`}
 									/>
 
 									<p className="d-flex flex-column page-editor__no-fragments-state__message">
