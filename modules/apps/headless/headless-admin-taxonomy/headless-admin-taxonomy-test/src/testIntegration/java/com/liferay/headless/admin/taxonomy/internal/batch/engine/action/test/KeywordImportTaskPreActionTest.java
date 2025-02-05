@@ -47,9 +47,7 @@ public class KeywordImportTaskPreActionTest {
 	@Before
 	public void setUp() throws Exception {
 		_localGroup = GroupTestUtil.addGroup();
-
 		_targetGroup = GroupTestUtil.addGroup();
-
 		_user = UserTestUtil.addUser();
 	}
 
@@ -57,12 +55,12 @@ public class KeywordImportTaskPreActionTest {
 	public void testImportWithInsertAndKeepCreator() throws Exception {
 		AssetTag assetTag = _getAssetTag(_user.getUserId());
 
-		String jsonString = ExportImportTaskResourceTestUtil.executeExportTask(
+		String json = ExportImportTaskResourceTestUtil.executeExportTask(
 			Keyword.class.getName(), _localGroup.getGroupId());
 
 		ExportImportTaskResourceTestUtil.executeImportTask(
 			Keyword.class.getName(), "INSERT", _targetGroup.getGroupId(),
-			"KEEP_CREATOR", jsonString);
+			"KEEP_CREATOR", json);
 
 		_assertAssetTag(
 			assetTag.getExternalReferenceCode(), _targetGroup.getGroupId(),
@@ -75,14 +73,14 @@ public class KeywordImportTaskPreActionTest {
 
 		AssetTag assetTag = _getAssetTag(_user.getUserId());
 
-		String jsonString = ExportImportTaskResourceTestUtil.executeExportTask(
+		String json = ExportImportTaskResourceTestUtil.executeExportTask(
 			Keyword.class.getName(), _localGroup.getGroupId());
 
 		_userLocalService.deleteUser(_user);
 
 		ExportImportTaskResourceTestUtil.executeImportTask(
 			Keyword.class.getName(), "INSERT", _targetGroup.getGroupId(),
-			"KEEP_CREATOR", jsonString);
+			"KEEP_CREATOR", json);
 
 		_assertAssetTag(
 			assetTag.getExternalReferenceCode(), _targetGroup.getGroupId(),
@@ -93,12 +91,12 @@ public class KeywordImportTaskPreActionTest {
 	public void testImportWithInsertAndOverwriteCreator() throws Exception {
 		AssetTag assetTag = _getAssetTag(_user.getUserId());
 
-		String jsonString = ExportImportTaskResourceTestUtil.executeExportTask(
+		String json = ExportImportTaskResourceTestUtil.executeExportTask(
 			Keyword.class.getName(), _localGroup.getGroupId());
 
 		ExportImportTaskResourceTestUtil.executeImportTask(
 			Keyword.class.getName(), "INSERT", _targetGroup.getGroupId(),
-			"OVERWRITE_CREATOR", jsonString);
+			"OVERWRITE_CREATOR", json);
 
 		_assertAssetTag(
 			assetTag.getExternalReferenceCode(), _targetGroup.getGroupId(),
@@ -109,14 +107,14 @@ public class KeywordImportTaskPreActionTest {
 	public void testImportWithUpsertAndKeepCreator() throws Exception {
 		AssetTag assetTag = _getAssetTag(_user.getUserId());
 
-		String jsonString = ExportImportTaskResourceTestUtil.executeExportTask(
+		String json = ExportImportTaskResourceTestUtil.executeExportTask(
 			Keyword.class.getName(), _localGroup.getGroupId());
 
 		_assetTagLocalService.deleteTag(assetTag);
 
 		ExportImportTaskResourceTestUtil.executeImportTask(
 			Keyword.class.getName(), "UPSERT", _localGroup.getGroupId(),
-			"KEEP_CREATOR", jsonString);
+			"KEEP_CREATOR", json);
 
 		_assertAssetTag(
 			assetTag.getExternalReferenceCode(), _localGroup.getGroupId(),
@@ -127,7 +125,7 @@ public class KeywordImportTaskPreActionTest {
 	public void testImportWithUpsertAndOverwriteCreator() throws Exception {
 		AssetTag assetTag = _getAssetTag(_user.getUserId());
 
-		String jsonString = ExportImportTaskResourceTestUtil.executeExportTask(
+		String json = ExportImportTaskResourceTestUtil.executeExportTask(
 			Keyword.class.getName(), _localGroup.getGroupId());
 
 		_assetTagLocalService.deleteTag(assetTag);
@@ -136,7 +134,7 @@ public class KeywordImportTaskPreActionTest {
 
 		ExportImportTaskResourceTestUtil.executeImportTask(
 			Keyword.class.getName(), "UPSERT", _localGroup.getGroupId(),
-			"OVERWRITE_CREATOR", jsonString);
+			"OVERWRITE_CREATOR", json);
 
 		_assertAssetTag(
 			assetTag.getExternalReferenceCode(), _localGroup.getGroupId(),
