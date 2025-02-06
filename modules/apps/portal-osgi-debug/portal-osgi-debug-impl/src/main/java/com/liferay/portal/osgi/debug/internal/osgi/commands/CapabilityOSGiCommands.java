@@ -53,7 +53,7 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 			_collectCapabilities(capabilities, bundle, namespace);
 		}
 
-		_printCapabilities(capabilities);
+		_print(capabilities);
 	}
 
 	public void listCap(String... namespaces) {
@@ -72,7 +72,7 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 			}
 		}
 
-		_printCapabilities(capabilities);
+		_print(capabilities);
 	}
 
 	@Activate
@@ -116,7 +116,7 @@ public class CapabilityOSGiCommands implements OSGiCommands {
 		}
 	}
 
-	private void _printCapabilities(
+	private void _print(
 		Map<String, Map.Entry<Set<BundleCapability>, Set<BundleRequirement>>>
 			capabilities) {
 
