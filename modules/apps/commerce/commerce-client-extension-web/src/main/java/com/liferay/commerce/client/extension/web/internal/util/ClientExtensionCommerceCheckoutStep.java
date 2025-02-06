@@ -109,10 +109,10 @@ public class ClientExtensionCommerceCheckoutStep
 			(CommerceOrder)httpServletRequest.getAttribute(
 				CommerceCheckoutWebKeys.COMMERCE_ORDER);
 
-		User currentUser = _userService.getCurrentUser();
-
 		JSONObject jsonObject = JSONUtil.put(
 			"commerceOrderId", commerceOrder.getCommerceOrderId());
+
+		User currentUser = _userService.getCurrentUser();
 
 		try {
 			String status = new String(
