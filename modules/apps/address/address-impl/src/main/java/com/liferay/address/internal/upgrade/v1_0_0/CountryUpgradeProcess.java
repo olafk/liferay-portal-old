@@ -238,9 +238,7 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 
 			_companyAvailableLocales = LanguageUtil.getCompanyAvailableLocales(
 				_company.getCompanyId());
-
 			_companyDate = new Date(System.currentTimeMillis());
-
 			_companyGuestUser = _company.getGuestUser();
 
 			if (_log.isDebugEnabled()) {
@@ -252,7 +250,7 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 			JSONArray countriesJSONArray = _getJSONArray(
 				"com/liferay/address/dependencies/countries.json");
 
-			try (PreparedStatement countryPreparedStatement =
+			try (PreparedStatement preparedStatement1 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
 						StringBundler.concat(
@@ -264,14 +262,14 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 							"subjectToVAT, zipRequired, lastPublishDate) ",
 							"values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
 							"?, ?, ?, ?, ? , ?, ?, ?)"));
-				PreparedStatement countryLocalizationPreparedStatement =
+				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
 						StringBundler.concat(
 							"insert into CountryLocalization (mvccVersion, ",
 							"countryLocalizationId, companyId, countryId, ",
 							"languageId, title) values (?, ?, ?, ?, ?, ?)"));
-				PreparedStatement regionPreparedStatement =
+				PreparedStatement preparedStatement3 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
 						StringBundler.concat(
@@ -281,7 +279,7 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 							"active_, name, position, regionCode, ",
 							"lastPublishDate) values (?, ?, ?, ?, ?, ?, ?, ?, ",
 							"?, ?, ?, ?, ?, ?, ?)"));
-				PreparedStatement regionLocalizationPreparedStatement =
+				PreparedStatement preparedStatement4 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
 						StringBundler.concat(
@@ -289,12 +287,10 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 							"regionLocalizationId, companyId, regionId, ",
 							"languageId, title) values (?, ?, ?, ?, ?, ?)"))) {
 
-				_countryPreparedStatement = countryPreparedStatement;
-				_countryLocalizationPreparedStatement =
-					countryLocalizationPreparedStatement;
-				_regionPreparedStatement = regionPreparedStatement;
-				_regionLocalizationPreparedStatement =
-					regionLocalizationPreparedStatement;
+				_preparedStatement1 = preparedStatement1;
+				_preparedStatement2 = preparedStatement2;
+				_preparedStatement3 = preparedStatement3;
+				_preparedStatement4 = preparedStatement4;
 
 				for (int i = 0; i < countriesJSONArray.length(); i++) {
 					JSONObject countryJSONObject =
@@ -303,13 +299,13 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 					_addCountry(countryJSONObject);
 				}
 
-				_countryPreparedStatement.executeBatch();
+				_preparedStatement1.executeBatch();
 
-				_countryLocalizationPreparedStatement.executeBatch();
+				_preparedStatement2.executeBatch();
 
-				_regionPreparedStatement.executeBatch();
+				_preparedStatement3.executeBatch();
 
-				_regionLocalizationPreparedStatement.executeBatch();
+				_preparedStatement4.executeBatch();
 			}
 		}
 
@@ -318,56 +314,53 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 
 			long countryId = increment();
 
-			_countryPreparedStatement.setLong(1, 0L);
-			_countryPreparedStatement.setString(2, PortalUUIDUtil.generate());
-			_countryPreparedStatement.setString(
+			_preparedStatement1.setLong(1, 0L);
+			_preparedStatement1.setString(2, PortalUUIDUtil.generate());
+			_preparedStatement1.setString(
 				3,
 				UpgradeProcessUtil.getDefaultLanguageId(
 					_company.getCompanyId()));
-			_countryPreparedStatement.setLong(4, countryId);
-			_countryPreparedStatement.setLong(5, _company.getCompanyId());
-			_countryPreparedStatement.setLong(6, _companyGuestUser.getUserId());
-			_countryPreparedStatement.setString(
-				7, _companyGuestUser.getFullName());
-			_countryPreparedStatement.setDate(8, _companyDate);
-			_countryPreparedStatement.setDate(9, _companyDate);
-			_countryPreparedStatement.setString(
+			_preparedStatement1.setLong(4, countryId);
+			_preparedStatement1.setLong(5, _company.getCompanyId());
+			_preparedStatement1.setLong(6, _companyGuestUser.getUserId());
+			_preparedStatement1.setString(7, _companyGuestUser.getFullName());
+			_preparedStatement1.setDate(8, _companyDate);
+			_preparedStatement1.setDate(9, _companyDate);
+			_preparedStatement1.setString(
 				10, countryJSONObject.getString("a2"));
-			_countryPreparedStatement.setString(
+			_preparedStatement1.setString(
 				11, countryJSONObject.getString("a3"));
-			_countryPreparedStatement.setBoolean(12, true);
-			_countryPreparedStatement.setBoolean(13, true);
-			_countryPreparedStatement.setBoolean(14, false);
-			_countryPreparedStatement.setString(
+			_preparedStatement1.setBoolean(12, true);
+			_preparedStatement1.setBoolean(13, true);
+			_preparedStatement1.setBoolean(14, false);
+			_preparedStatement1.setString(
 				15, countryJSONObject.getString("idd"));
-			_countryPreparedStatement.setString(
+			_preparedStatement1.setString(
 				16, countryJSONObject.getString("name"));
-			_countryPreparedStatement.setString(
+			_preparedStatement1.setString(
 				17, countryJSONObject.getString("number"));
-			_countryPreparedStatement.setDouble(18, 0.0);
-			_countryPreparedStatement.setBoolean(19, true);
-			_countryPreparedStatement.setBoolean(20, false);
-			_countryPreparedStatement.setBoolean(
+			_preparedStatement1.setDouble(18, 0.0);
+			_preparedStatement1.setBoolean(19, true);
+			_preparedStatement1.setBoolean(20, false);
+			_preparedStatement1.setBoolean(
 				21, countryJSONObject.getBoolean("zipRequired"));
-			_countryPreparedStatement.setDate(22, _companyDate);
+			_preparedStatement1.setDate(22, _companyDate);
 
-			_countryPreparedStatement.addBatch();
+			_preparedStatement1.addBatch();
 
 			for (Locale locale : _companyAvailableLocales) {
-				_countryLocalizationPreparedStatement.setLong(1, 0L);
-				_countryLocalizationPreparedStatement.setLong(
+				_preparedStatement2.setLong(1, 0L);
+				_preparedStatement2.setLong(
 					2, _countryLocalizationCounter.incrementAndGet());
-				_countryLocalizationPreparedStatement.setLong(
-					3, _company.getCompanyId());
-				_countryLocalizationPreparedStatement.setLong(4, countryId);
-				_countryLocalizationPreparedStatement.setString(
-					5, _getLanguageId(locale));
-				_countryLocalizationPreparedStatement.setString(
+				_preparedStatement2.setLong(3, _company.getCompanyId());
+				_preparedStatement2.setLong(4, countryId);
+				_preparedStatement2.setString(5, _getLanguageId(locale));
+				_preparedStatement2.setString(
 					6,
 					_getLocalizedName(
 						locale, countryJSONObject.getString("name")));
 
-				_countryLocalizationPreparedStatement.addBatch();
+				_preparedStatement2.addBatch();
 			}
 
 			_processCountryRegions(
@@ -380,29 +373,28 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 			long regionId = _regionCounter.incrementAndGet();
 			String regionName = regionJSONObject.getString("name");
 
-			_regionPreparedStatement.setLong(1, 0L);
-			_regionPreparedStatement.setString(2, PortalUUIDUtil.generate());
-			_regionPreparedStatement.setString(
+			_preparedStatement3.setLong(1, 0L);
+			_preparedStatement3.setString(2, PortalUUIDUtil.generate());
+			_preparedStatement3.setString(
 				3,
 				UpgradeProcessUtil.getDefaultLanguageId(
 					_company.getCompanyId()));
-			_regionPreparedStatement.setLong(4, regionId);
-			_regionPreparedStatement.setLong(5, _company.getCompanyId());
-			_regionPreparedStatement.setLong(6, _companyGuestUser.getUserId());
-			_regionPreparedStatement.setString(
-				7, _companyGuestUser.getFullName());
-			_regionPreparedStatement.setDate(8, _companyDate);
-			_regionPreparedStatement.setDate(9, _companyDate);
-			_regionPreparedStatement.setLong(10, countryId);
-			_regionPreparedStatement.setBoolean(11, true);
-			_regionPreparedStatement.setString(
+			_preparedStatement3.setLong(4, regionId);
+			_preparedStatement3.setLong(5, _company.getCompanyId());
+			_preparedStatement3.setLong(6, _companyGuestUser.getUserId());
+			_preparedStatement3.setString(7, _companyGuestUser.getFullName());
+			_preparedStatement3.setDate(8, _companyDate);
+			_preparedStatement3.setDate(9, _companyDate);
+			_preparedStatement3.setLong(10, countryId);
+			_preparedStatement3.setBoolean(11, true);
+			_preparedStatement3.setString(
 				12, regionJSONObject.getString("name"));
-			_regionPreparedStatement.setDouble(13, 0.0);
-			_regionPreparedStatement.setString(
+			_preparedStatement3.setDouble(13, 0.0);
+			_preparedStatement3.setString(
 				14, regionJSONObject.getString("regionCode"));
-			_regionPreparedStatement.setDate(15, _companyDate);
+			_preparedStatement3.setDate(15, _companyDate);
 
-			_regionPreparedStatement.addBatch();
+			_preparedStatement3.addBatch();
 
 			JSONObject localizationsJSONObject = regionJSONObject.getJSONObject(
 				"localizations");
@@ -421,18 +413,15 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 			}
 
 			for (Map.Entry<String, String> entryMap : titleMap.entrySet()) {
-				_regionLocalizationPreparedStatement.setLong(1, 0L);
-				_regionLocalizationPreparedStatement.setLong(
+				_preparedStatement4.setLong(1, 0L);
+				_preparedStatement4.setLong(
 					2, _regionLocalizationCounter.incrementAndGet());
-				_regionLocalizationPreparedStatement.setLong(
-					3, _company.getCompanyId());
-				_regionLocalizationPreparedStatement.setLong(4, regionId);
-				_regionLocalizationPreparedStatement.setString(
-					5, entryMap.getKey());
-				_regionLocalizationPreparedStatement.setString(
-					6, entryMap.getValue());
+				_preparedStatement4.setLong(3, _company.getCompanyId());
+				_preparedStatement4.setLong(4, regionId);
+				_preparedStatement4.setString(5, entryMap.getKey());
+				_preparedStatement4.setString(6, entryMap.getValue());
 
-				_regionLocalizationPreparedStatement.addBatch();
+				_preparedStatement4.addBatch();
 			}
 		}
 
@@ -505,11 +494,11 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 		private Set<Locale> _companyAvailableLocales;
 		private Date _companyDate;
 		private User _companyGuestUser;
-		private PreparedStatement _countryLocalizationPreparedStatement;
-		private PreparedStatement _countryPreparedStatement;
 		private final Map<Locale, String> _localesLanguageIds = new HashMap<>();
-		private PreparedStatement _regionLocalizationPreparedStatement;
-		private PreparedStatement _regionPreparedStatement;
+		private PreparedStatement _preparedStatement1;
+		private PreparedStatement _preparedStatement2;
+		private PreparedStatement _preparedStatement3;
+		private PreparedStatement _preparedStatement4;
 
 	}
 
