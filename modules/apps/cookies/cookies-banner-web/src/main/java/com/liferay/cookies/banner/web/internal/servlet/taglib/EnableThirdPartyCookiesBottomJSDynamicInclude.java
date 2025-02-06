@@ -42,11 +42,11 @@ public class EnableThirdPartyCookiesBottomJSDynamicInclude
 			HttpServletResponse httpServletResponse, String key)
 		throws IOException {
 
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
 		try {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)httpServletRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
+
 			CookiesPreferenceHandlingConfiguration
 				cookiesPreferenceHandlingConfiguration =
 					_cookiesConfigurationProvider.
