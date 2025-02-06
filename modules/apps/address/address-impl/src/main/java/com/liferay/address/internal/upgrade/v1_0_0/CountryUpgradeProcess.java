@@ -228,9 +228,9 @@ public class CountryUpgradeProcess extends UpgradeProcess {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						StringBundler.concat(
-							"Skipping country initialization. Countries are ",
-							"already initialized for company ",
-							_company.getCompanyId(), "."));
+							"Skipping country initialization because ",
+							"countries were already initialized for company ",
+							_company.getCompanyId()));
 				}
 
 				return;
