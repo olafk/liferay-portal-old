@@ -3,10 +3,11 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-import i18n from '~/utils/I18n';
+import {MouseEventHandler} from 'react';
 import {Button} from '~/components';
-import Layout from '~/components/FormLayout';
-import {PRODUCT_TYPES} from '~/features/project/utils/constants/productTypes';
+import FormLayout from '~/components/FormLayout';
+import {PRODUCT_TYPES} from '~/features/project/utils/constants';
+import i18n from '~/utils/I18n';
 
 const successTexts = {
 	[PRODUCT_TYPES.analyticsCloud]: {
@@ -29,9 +30,16 @@ const successTexts = {
 	},
 };
 
-const SuccessCloud = ({handlePage, productType}) => {
+const SuccessCloud = ({
+	handlePage,
+	productType,
+}: {
+	handlePage: MouseEventHandler<HTMLButtonElement>;
+	productType: string;
+}) => {
 	return (
-		<Layout
+		<FormLayout
+			className=""
 			footerProps={{
 				middleButton: (
 					<Button displayType="primary" onClick={handlePage}>
@@ -43,11 +51,12 @@ const SuccessCloud = ({handlePage, productType}) => {
 				helper: successTexts[productType].helper,
 				title: successTexts[productType].title,
 			}}
+			headerSkeleton={null}
 		>
 			<div className="container font-weight-bold pl-6 pr-6 pt-9 text-center">
 				{successTexts[productType].paragraph}
 			</div>
-		</Layout>
+		</FormLayout>
 	);
 };
 

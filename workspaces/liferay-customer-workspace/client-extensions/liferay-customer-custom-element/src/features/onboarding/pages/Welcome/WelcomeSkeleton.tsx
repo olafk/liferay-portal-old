@@ -4,24 +4,27 @@
  */
 
 import {Skeleton} from '~/components';
-import Layout from '~/components/FormLayout';
+import FormLayout from '~/components/FormLayout';
 
 const WelcomeSkeleton = () => {
 	return (
-		<Layout
+		<FormLayout
 			className="align-items-center d-flex flex-column pt-5 px-6"
 			footerProps={{
-				middleButton: <Skeleton.Rounded height={48} width={110} />,
+				middleButton: (
+					<Skeleton height={48} shape="rounded" width={110} />
+				),
 			}}
+			headerProps={{title: ''}}
 			headerSkeleton={
 				<div className="p-4">
 					<Skeleton className="mb-4" height={8} width={105} />
 
-					<Skeleton height={16} width={425} />
+					<Skeleton align="left" height={16} width={425} />
 				</div>
 			}
 		>
-			<Skeleton.Square height={200} width={320} />
+			<Skeleton height={200} shape="square" width={320} />
 
 			<Skeleton
 				align="center"
@@ -30,7 +33,7 @@ const WelcomeSkeleton = () => {
 				height={8}
 				width={400}
 			/>
-		</Layout>
+		</FormLayout>
 	);
 };
 export default WelcomeSkeleton;

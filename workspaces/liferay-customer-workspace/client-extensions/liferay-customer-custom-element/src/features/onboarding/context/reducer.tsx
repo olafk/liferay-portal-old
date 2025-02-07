@@ -3,6 +3,10 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
+import IAccountSubscriptionGroup from '~/interfaces/accountSubscriptionGroup';
+import IProject from '~/interfaces/project';
+import IUserAccount from '~/interfaces/userAccount';
+
 export const actionTypes = {
 	CHANGE_STEP: 'CHANGE_STEP',
 	UPDATE_ANALYTICS_CLOUD_ACTIVATION_SUBMITTED_STATUS:
@@ -16,53 +20,65 @@ export const actionTypes = {
 	UPDATE_USER_ACCOUNT: 'UPDATE_USER_ACCOUNT',
 };
 
-const reducer = (state, action) => {
+export type ActionPayload =
+	| string
+	| IProject
+	| IUserAccount
+	| IAccountSubscriptionGroup[]
+	| boolean
+	| undefined;
+
+export interface IOnboardingAction {
+	payload: ActionPayload;
+	type: keyof typeof actionTypes;
+}
+
+export interface IOnboardingState {
+	analyticsCloudActivationSubmittedStatus: boolean | undefined;
+	dxpCloudActivationSubmittedStatus: boolean | undefined;
+	liferayExperienceCloudActivationSubmittedStatus: boolean | undefined;
+	project: IProject | undefined;
+	step: number;
+	subscriptionGroups: IAccountSubscriptionGroup[] | undefined;
+	userAccount: IUserAccount | undefined;
+}
+
+const reducer = (
+	state: IOnboardingState,
+	action: IOnboardingAction
+): IOnboardingState => {
 	switch (action.type) {
-		case actionTypes.CHANGE_STEP: {
+		case actionTypes.CHANGE_STEP:
+			return {...state, step: action.payload as unknown as number};
+		case actionTypes.UPDATE_PROJECT:
+			return {...state, project: action.payload as IProject};
+		case actionTypes.UPDATE_USER_ACCOUNT:
+			return {...state, userAccount: action.payload as IUserAccount};
+		case actionTypes.UPDATE_SUBSCRIPTION_GROUPS:
 			return {
 				...state,
-				step: action.payload,
+				subscriptionGroups:
+					action.payload as IAccountSubscriptionGroup[],
 			};
-		}
-		case actionTypes.UPDATE_PROJECT: {
+		case actionTypes.UPDATE_DXP_CLOUD_ACTIVATION_SUBMITTED_STATUS:
 			return {
 				...state,
-				project: action.payload,
+				dxpCloudActivationSubmittedStatus: action.payload as boolean,
 			};
-		}
-		case actionTypes.UPDATE_USER_ACCOUNT: {
+		case actionTypes.UPDATE_LIFERAY_EXPERIENCE_CLOUD_ACTIVATION_SUBMITTED_STATUS:
 			return {
 				...state,
-				userAccount: action.payload,
+				liferayExperienceCloudActivationSubmittedStatus:
+					action.payload as boolean,
 			};
-		}
-		case actionTypes.UPDATE_SUBSCRIPTION_GROUPS: {
+		case actionTypes.UPDATE_ANALYTICS_CLOUD_ACTIVATION_SUBMITTED_STATUS:
 			return {
 				...state,
-				subscriptionGroups: action.payload,
+				analyticsCloudActivationSubmittedStatus:
+					action.payload as boolean,
 			};
-		}
-		case actionTypes.UPDATE_DXP_CLOUD_ACTIVATION_SUBMITTED_STATUS: {
-			return {
-				...state,
-				dxpCloudActivationSubmittedStatus: action.payload,
-			};
-		}
-		case actionTypes.UPDATE_LIFERAY_EXPERIENCE_CLOUD_ACTIVATION_SUBMITTED_STATUS: {
-			return {
-				...state,
-				liferayExperienceCloudActivationSubmittedStatus: action.payload,
-			};
-		}
-		case actionTypes.UPDATE_ANALYTICS_CLOUD_ACTIVATION_SUBMITTED_STATUS: {
-			return {
-				...state,
-				analyticsCloudActivationSubmittedStatus: action.payload,
-			};
-		}
-		default: {
+		default:
 			return state;
-		}
 	}
 };
 

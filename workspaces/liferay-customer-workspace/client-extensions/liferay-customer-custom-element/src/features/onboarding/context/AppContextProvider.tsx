@@ -5,6 +5,9 @@
 
 import {createContext, useContext, useEffect, useReducer} from 'react';
 import {useAppPropertiesContext} from '~/contexts/AppPropertiesContext';
+import IAccountBrief from '~/interfaces/accountBrief';
+import IOrganizationBrief from '~/interfaces/organizationBrief';
+import IProject from '~/interfaces/project';
 import {Liferay} from '~/services/liferay';
 import {
 	addAccountFlag,
@@ -18,17 +21,36 @@ import {
 import {ROLE_TYPES, ROUTE_TYPES} from '~/utils/constants';
 import {getAccountKey} from '~/utils/getAccountKey';
 import {isValidPage} from '~/utils/page.validation';
+
 import {ONBOARDING_STEP_TYPES} from '../utils/constants';
-import reducer, {actionTypes} from './reducer';
+import reducer, {
+	IOnboardingAction,
+	IOnboardingState,
+	actionTypes,
+} from './reducer';
 
-const AppContext = createContext();
-
-const AppContextProvider = ({children}) => {
-	const {client} = useAppPropertiesContext();
-	const [state, dispatch] = useReducer(reducer, {
+const AppContext = createContext<
+	[IOnboardingState, React.Dispatch<IOnboardingAction>]
+>([
+	{
 		analyticsCloudActivationSubmittedStatus: undefined,
 		dxpCloudActivationSubmittedStatus: undefined,
-		koroneikiAccount: {},
+		liferayExperienceCloudActivationSubmittedStatus: undefined,
+		project: undefined,
+		step: 0,
+		subscriptionGroups: undefined,
+		userAccount: undefined,
+	},
+	() => {},
+]);
+
+const AppContextProvider = ({children}: {children: React.ReactNode}) => {
+	const {client} = useAppPropertiesContext();
+	const [state, dispatch] = useReducer<
+		React.Reducer<IOnboardingState, IOnboardingAction>
+	>(reducer, {
+		analyticsCloudActivationSubmittedStatus: undefined,
+		dxpCloudActivationSubmittedStatus: undefined,
 		liferayExperienceCloudActivationSubmittedStatus: undefined,
 		project: undefined,
 		step: ONBOARDING_STEP_TYPES.welcome,
@@ -37,7 +59,7 @@ const AppContextProvider = ({children}) => {
 	});
 
 	useEffect(() => {
-		const getUser = async (projectExternalReferenceCode) => {
+		const getUser = async (projectExternalReferenceCode: string) => {
 			const {data} = await client.query({
 				query: getUserAccount,
 				variables: {
@@ -46,30 +68,48 @@ const AppContextProvider = ({children}) => {
 			});
 
 			if (data) {
-				const isAccountAdministrator = Boolean(data.userAccount?.accountBriefs
-					?.find(
-						({externalReferenceCode}) =>
-							externalReferenceCode ===
-							projectExternalReferenceCode
-					)
-					?.roleBriefs?.find(
-						({name}) => name === ROLE_TYPES.admin.key
-					));
+				const isAccountAdministrator = Boolean(
+					data.userAccount?.accountBriefs
+						?.find(
+							({
+								externalReferenceCode,
+							}: {
+								externalReferenceCode: string;
+							}) =>
+								externalReferenceCode ===
+								projectExternalReferenceCode
+						)
+						?.roleBriefs?.find(
+							({name}: {name: string}) =>
+								name === ROLE_TYPES.admin.key
+						)
+				);
 
-				const isAccountProvisioning = Boolean(data.userAccount?.accountBriefs
-					?.find(
-						({externalReferenceCode}) =>
-							externalReferenceCode ===
-							projectExternalReferenceCode
-					)
-					?.roleBriefs?.find(({name}) => name === 'Provisioning'));
+				const isAccountProvisioning = Boolean(
+					data.userAccount?.accountBriefs
+						?.find(
+							({
+								externalReferenceCode,
+							}: {
+								externalReferenceCode: string;
+							}) =>
+								externalReferenceCode ===
+								projectExternalReferenceCode
+						)
+						?.roleBriefs?.find(
+							({name}: {name: string}) => name === 'Provisioning'
+						)
+				);
 
-				const isOmniAdmin = Boolean(data.userAccount?.roleBriefs?.find(
-					({name}) => name === 'Administrator'
-				));	
+				const isOmniAdmin = Boolean(
+					data.userAccount?.roleBriefs?.find(
+						({name}: {name: string}) => name === 'Administrator'
+					)
+				);
 
 				const isStaff = data.userAccount?.organizationBriefs?.some(
-					(organization) => organization.name === 'Liferay Staff'
+					(organization: IOrganizationBrief) =>
+						organization.name === 'Liferay Staff'
 				);
 
 				const userAccount = {
@@ -77,19 +117,24 @@ const AppContextProvider = ({children}) => {
 					isAccountAdmin: isAccountAdministrator,
 					isOmniAdmin,
 					isProvisioning: isAccountProvisioning,
-					isStaff
+					isStaff,
 				};
 
-				dispatch({
+				const action: IOnboardingAction = {
 					payload: userAccount,
-					type: actionTypes.UPDATE_USER_ACCOUNT,
-				});
+					type: actionTypes.UPDATE_USER_ACCOUNT as keyof typeof actionTypes,
+				};
+
+				dispatch(action);
 
 				return userAccount;
 			}
 		};
 
-		const getProject = async (externalReferenceCode, accountBrief) => {
+		const getProject = async (
+			externalReferenceCode: string,
+			accountBrief: IAccountBrief
+		): Promise<IProject | undefined> => {
 			const {data: projects} = await client.query({
 				query: getKoroneikiAccounts,
 				variables: {
@@ -98,18 +143,26 @@ const AppContextProvider = ({children}) => {
 			});
 
 			if (projects) {
-				dispatch({
-					payload: {
-						...projects.c.koroneikiAccounts.items[0],
-						id: accountBrief.id,
-						name: accountBrief.name,
-					},
-					type: actionTypes.UPDATE_PROJECT,
-				});
+				const project = {
+					...projects.c?.koroneikiAccounts?.items[0],
+					id: accountBrief.id,
+					name: accountBrief.name,
+				} as IProject;
+
+				const action: IOnboardingAction = {
+					payload: project,
+					type: actionTypes.UPDATE_PROJECT as keyof typeof actionTypes,
+				};
+
+				dispatch(action);
+
+				return project;
 			}
+
+			return undefined;
 		};
 
-		const getSubscriptionGroups = async (accountKey) => {
+		const getSubscriptionGroups = async (accountKey: string) => {
 			const {data} = await client.query({
 				query: getAccountSubscriptionGroups,
 				variables: {
@@ -119,14 +172,16 @@ const AppContextProvider = ({children}) => {
 
 			if (data) {
 				const items = data.c?.accountSubscriptionGroups?.items;
-				dispatch({
+				const action: IOnboardingAction = {
 					payload: items,
-					type: actionTypes.UPDATE_SUBSCRIPTION_GROUPS,
-				});
+					type: actionTypes.UPDATE_SUBSCRIPTION_GROUPS as keyof typeof actionTypes,
+				};
+
+				dispatch(action);
 			}
 		};
 
-		const getDXPCloudActivationStatus = async (accountKey) => {
+		const getDXPCloudActivationStatus = async (accountKey: string) => {
 			const {data} = await client.query({
 				query: getDXPCloudEnvironment,
 				variables: {
@@ -136,17 +191,22 @@ const AppContextProvider = ({children}) => {
 			});
 
 			if (data) {
-				const status = Boolean(data.c?.dXPCloudEnvironments?.items?.length);
+				const status = Boolean(
+					data.c?.dXPCloudEnvironments?.items?.length
+				);
 
-				dispatch({
+				const action: IOnboardingAction = {
 					payload: status,
-					type:
-						actionTypes.UPDATE_DXP_CLOUD_ACTIVATION_SUBMITTED_STATUS,
-				});
+					type: actionTypes.UPDATE_DXP_CLOUD_ACTIVATION_SUBMITTED_STATUS as keyof typeof actionTypes,
+				};
+
+				dispatch(action);
 			}
 		};
 
-		const getAnalyticsCloudActivationStatus = async (accountKey) => {
+		const getAnalyticsCloudActivationStatus = async (
+			accountKey: string
+		) => {
 			const {data} = await client.query({
 				query: getAnalyticsCloudWorkspace,
 				variables: {
@@ -156,19 +216,21 @@ const AppContextProvider = ({children}) => {
 			});
 
 			if (data) {
-				const status = Boolean(data.c?.analyticsCloudWorkspaces?.items
-					?.length);
+				const status = Boolean(
+					data.c?.analyticsCloudWorkspaces?.items?.length
+				);
 
-				dispatch({
+				const action: IOnboardingAction = {
 					payload: status,
-					type:
-						actionTypes.UPDATE_ANALYTICS_CLOUD_ACTIVATION_SUBMITTED_STATUS,
-				});
+					type: actionTypes.UPDATE_ANALYTICS_CLOUD_ACTIVATION_SUBMITTED_STATUS as keyof typeof actionTypes,
+				};
+
+				dispatch(action);
 			}
 		};
 
 		const getLiferayExperienceCloudActivationStatus = async (
-			accountKey
+			accountKey: string
 		) => {
 			const {data} = await client.query({
 				query: getLiferayExperienceCloudEnvironments,
@@ -178,14 +240,16 @@ const AppContextProvider = ({children}) => {
 			});
 
 			if (data) {
-				const status = Boolean(data.c?.liferayExperienceCloudEnvironments
-					?.items?.length);
+				const status = Boolean(
+					data.c?.liferayExperienceCloudEnvironments?.items?.length
+				);
 
-				dispatch({
+				const action: IOnboardingAction = {
 					payload: status,
-					type:
-						actionTypes.UPDATE_LIFERAY_EXPERIENCE_CLOUD_ACTIVATION_SUBMITTED_STATUS,
-				});
+					type: actionTypes.UPDATE_LIFERAY_EXPERIENCE_CLOUD_ACTIVATION_SUBMITTED_STATUS as keyof typeof actionTypes,
+				};
+
+				dispatch(action);
 			}
 		};
 
@@ -207,7 +271,7 @@ const AppContextProvider = ({children}) => {
 
 			if (user && isValid) {
 				const accountBrief = user.accountBriefs?.find(
-					(accountBrief) =>
+					(accountBrief: IAccountBrief) =>
 						accountBrief.externalReferenceCode ===
 						projectExternalReferenceCode
 				);

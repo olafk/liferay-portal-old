@@ -3,20 +3,21 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-import i18n from '~/utils/I18n';
-import {Button} from '~/components';
-import Layout from '~/components/FormLayout';
 import {IntroOnboarding} from '~/assets';
-import {useOnboarding} from '../../context';
-import {actionTypes} from '../../context/reducer';
+import {Button} from '~/components';
+import FormLayout from '~/components/FormLayout';
 import {ONBOARDING_STEP_TYPES} from '~/features/onboarding/utils/constants';
+import i18n from '~/utils/I18n';
+
+import {useOnboarding} from '../../context';
+import {ActionPayload, actionTypes} from '../../context/reducer';
 import WelcomeSkeleton from './WelcomeSkeleton';
 
 const Welcome = () => {
 	const [, dispatch] = useOnboarding();
 
 	return (
-		<Layout
+		<FormLayout
 			className="align-items-center d-flex flex-column pt-6 px-6"
 			footerProps={{
 				middleButton: (
@@ -24,8 +25,9 @@ const Welcome = () => {
 						displayType="primary"
 						onClick={() =>
 							dispatch({
-								payload: ONBOARDING_STEP_TYPES.invites,
-								type: actionTypes.CHANGE_STEP,
+								payload:
+									ONBOARDING_STEP_TYPES.invites as unknown as ActionPayload,
+								type: actionTypes.CHANGE_STEP as keyof typeof actionTypes,
 							})
 						}
 					>
@@ -38,19 +40,14 @@ const Welcome = () => {
 				title: i18n.translate('let-s-set-up-your-project'),
 			}}
 		>
-			<IntroOnboarding
-				className="mb-4 pb-1"
-				draggable={false}
-				height={237}
-				width={331}
-			/>
+			<IntroOnboarding className="mb-4 pb-1" height={237} width={331} />
 
 			<p className="mb-0 px-1 text-center text-neutral-8">
 				{i18n.translate(
 					'we-ll-start-by-adding-any-team-members-to-your-project-and-complete-your-product-activation'
 				)}
 			</p>
-		</Layout>
+		</FormLayout>
 	);
 };
 
