@@ -7,7 +7,6 @@ package com.liferay.frontend.data.set.internal.serializer;
 
 import com.liferay.frontend.data.set.internal.url.FDSAPIURLResolverRegistryImpl;
 import com.liferay.frontend.data.set.model.FDSActionDropdownItem;
-import com.liferay.frontend.data.set.serializer.FDSSerializer;
 import com.liferay.frontend.data.set.url.FDSAPIURLResolver;
 import com.liferay.frontend.data.set.url.FDSAPIURLResolverRegistry;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
@@ -104,7 +103,8 @@ public class CustomFDSSerializerTest {
 
 		Assert.assertEquals(
 			"/o/app/endpoint/bar",
-			_fdsSerializer.serializeAPIURL("fdsName", _httpServletRequest));
+			_customFDSSerializer.serializeAPIURL(
+				"fdsName", _httpServletRequest));
 
 		serviceRegistration.unregister();
 
@@ -120,10 +120,12 @@ public class CustomFDSSerializerTest {
 
 		Assert.assertEquals(
 			"/o/app1/endpoint/bar",
-			_fdsSerializer.serializeAPIURL("fdsName1", _httpServletRequest));
+			_customFDSSerializer.serializeAPIURL(
+				"fdsName1", _httpServletRequest));
 		Assert.assertEquals(
 			"/o/app2/endpoint/{foo}",
-			_fdsSerializer.serializeAPIURL("fdsName2", _httpServletRequest));
+			_customFDSSerializer.serializeAPIURL(
+				"fdsName2", _httpServletRequest));
 
 		serviceRegistration.unregister();
 
@@ -139,10 +141,12 @@ public class CustomFDSSerializerTest {
 
 		Assert.assertEquals(
 			"/o/app/endpoint/bar",
-			_fdsSerializer.serializeAPIURL("fdsName1", _httpServletRequest));
+			_customFDSSerializer.serializeAPIURL(
+				"fdsName1", _httpServletRequest));
 		Assert.assertEquals(
 			"/o/app/endpoint/bar",
-			_fdsSerializer.serializeAPIURL("fdsName2", _httpServletRequest));
+			_customFDSSerializer.serializeAPIURL(
+				"fdsName2", _httpServletRequest));
 
 		serviceRegistration.unregister();
 
@@ -156,7 +160,8 @@ public class CustomFDSSerializerTest {
 
 		Assert.assertEquals(
 			"/o/app/endpoint?nestedFields=creator",
-			_fdsSerializer.serializeAPIURL("fdsName", _httpServletRequest));
+			_customFDSSerializer.serializeAPIURL(
+				"fdsName", _httpServletRequest));
 
 		_resetFDSSerializer();
 
@@ -166,7 +171,7 @@ public class CustomFDSSerializerTest {
 			"fdsName", new String[] {"creator.name", "status.id"}, "/app",
 			"/endpoint", "schema");
 
-		String url = _fdsSerializer.serializeAPIURL(
+		String url = _customFDSSerializer.serializeAPIURL(
 			"fdsName", _httpServletRequest);
 
 		Assert.assertTrue(url.startsWith("/o/app/endpoint?"));
@@ -188,7 +193,8 @@ public class CustomFDSSerializerTest {
 			new String[] {"creator.name", "status.id", "relation.creator.name"},
 			"/app", "/endpoint", "schema");
 
-		url = _fdsSerializer.serializeAPIURL("fdsName", _httpServletRequest);
+		url = _customFDSSerializer.serializeAPIURL(
+			"fdsName", _httpServletRequest);
 
 		Assert.assertTrue(url.startsWith("/o/app/endpoint?"));
 
@@ -215,7 +221,7 @@ public class CustomFDSSerializerTest {
 			"fdsName1", new String[] {"New 1.1", "New 1.2"});
 		_mockSerializeCreationMenu("fdsName2", new String[] {"New 2"});
 
-		CreationMenu creationMenu1 = _fdsSerializer.serializeCreationMenu(
+		CreationMenu creationMenu1 = _customFDSSerializer.serializeCreationMenu(
 			"fdsName1", _httpServletRequest);
 
 		Assert.assertEquals(2, _getPrimaryItemsSize(creationMenu1));
@@ -223,7 +229,7 @@ public class CustomFDSSerializerTest {
 		Assert.assertTrue(_containsTitle(creationMenu1, "New 1.1"));
 		Assert.assertTrue(_containsTitle(creationMenu1, "New 1.2"));
 
-		CreationMenu creationMenu2 = _fdsSerializer.serializeCreationMenu(
+		CreationMenu creationMenu2 = _customFDSSerializer.serializeCreationMenu(
 			"fdsName2", _httpServletRequest);
 
 		Assert.assertEquals(1, _getPrimaryItemsSize(creationMenu2));
@@ -238,7 +244,7 @@ public class CustomFDSSerializerTest {
 		_mockSerializeCreationMenu("fdsName", null);
 
 		Assert.assertTrue(
-			_fdsSerializer.serializeCreationMenu(
+			_customFDSSerializer.serializeCreationMenu(
 				"fdsName", _httpServletRequest
 			).isEmpty());
 
@@ -262,7 +268,7 @@ public class CustomFDSSerializerTest {
 		_mockSerializeItemsActions("fdsName2", new String[] {"New 2"});
 
 		List<FDSActionDropdownItem> fdsActionDropdownItems1 =
-			_fdsSerializer.serializeItemsActions(
+			_customFDSSerializer.serializeItemsActions(
 				"fdsName1", _httpServletRequest);
 
 		Assert.assertFalse(_containsLabel(fdsActionDropdownItems1, "New 2"));
@@ -271,7 +277,7 @@ public class CustomFDSSerializerTest {
 		Assert.assertTrue(fdsActionDropdownItems1.size() == 2);
 
 		List<FDSActionDropdownItem> fdsActionDropdownItems2 =
-			_fdsSerializer.serializeItemsActions(
+			_customFDSSerializer.serializeItemsActions(
 				"fdsName2", _httpServletRequest);
 
 		Assert.assertFalse(_containsLabel(fdsActionDropdownItems2, "New 1.1"));
@@ -286,7 +292,7 @@ public class CustomFDSSerializerTest {
 		_mockSerializeItemsActions("fdsName", null);
 
 		Assert.assertTrue(
-			_fdsSerializer.serializeItemsActions(
+			_customFDSSerializer.serializeItemsActions(
 				"fdsName", _httpServletRequest
 			).isEmpty());
 
@@ -378,21 +384,16 @@ public class CustomFDSSerializerTest {
 		String restEndpoint, String restSchema) {
 
 		Mockito.when(
-			_fdsSerializer.serializeAPIURL(fdsName, _httpServletRequest)
+			_customFDSSerializer.serializeAPIURL(fdsName, _httpServletRequest)
 		).thenCallRealMethod();
 
-		BaseFDSSerializer baseAPIURLFDSSerializer =
-			(BaseFDSSerializer)_fdsSerializer;
-
 		Mockito.when(
-			baseAPIURLFDSSerializer.createFDSAPIURLBuilder(
+			_customFDSSerializer.createFDSAPIURLBuilder(
 				_httpServletRequest, restApplication, restEndpoint, restSchema)
 		).thenCallRealMethod();
 
-		BaseFDSSerializer baseFDSSerializer = (BaseFDSSerializer)_fdsSerializer;
-
 		Mockito.when(
-			baseFDSSerializer.getDataSetObjectEntryProperties(
+			_customFDSSerializer.getDataSetObjectEntryProperties(
 				fdsName, _httpServletRequest)
 		).thenReturn(
 			HashMapBuilder.put(
@@ -406,7 +407,7 @@ public class CustomFDSSerializerTest {
 
 		if (ArrayUtil.isEmpty(fieldNames)) {
 			Mockito.when(
-				baseFDSSerializer.getSortedRelatedObjectEntries(
+				_customFDSSerializer.getSortedRelatedObjectEntries(
 					fdsName, "tableSectionsOrder", _httpServletRequest, null,
 					"dataSetToDataSetTableSections")
 			).thenReturn(
@@ -430,7 +431,7 @@ public class CustomFDSSerializerTest {
 		}
 
 		Mockito.when(
-			baseFDSSerializer.getSortedRelatedObjectEntries(
+			_customFDSSerializer.getSortedRelatedObjectEntries(
 				fdsName, "tableSectionsOrder", _httpServletRequest, null,
 				"dataSetToDataSetTableSections")
 		).thenReturn(
@@ -440,14 +441,13 @@ public class CustomFDSSerializerTest {
 
 	private void _mockSerializeCreationMenu(String fdsName, String[] titles) {
 		Mockito.when(
-			_fdsSerializer.serializeCreationMenu(fdsName, _httpServletRequest)
+			_customFDSSerializer.serializeCreationMenu(
+				fdsName, _httpServletRequest)
 		).thenCallRealMethod();
-
-		BaseFDSSerializer baseFDSSerializer = (BaseFDSSerializer)_fdsSerializer;
 
 		if (ArrayUtil.isEmpty(titles)) {
 			Mockito.when(
-				baseFDSSerializer.getSortedRelatedObjectEntries(
+				_customFDSSerializer.getSortedRelatedObjectEntries(
 					Mockito.eq(fdsName), Mockito.eq("creationActionsOrder"),
 					Mockito.eq(_httpServletRequest), Mockito.any(),
 					Mockito.eq("dataSetToDataSetActions"))
@@ -472,7 +472,7 @@ public class CustomFDSSerializerTest {
 		}
 
 		Mockito.when(
-			baseFDSSerializer.getSortedRelatedObjectEntries(
+			_customFDSSerializer.getSortedRelatedObjectEntries(
 				Mockito.eq(fdsName), Mockito.eq("creationActionsOrder"),
 				Mockito.eq(_httpServletRequest), Mockito.any(),
 				Mockito.eq("dataSetToDataSetActions"))
@@ -483,14 +483,13 @@ public class CustomFDSSerializerTest {
 
 	private void _mockSerializeItemsActions(String fdsName, String[] labels) {
 		Mockito.when(
-			_fdsSerializer.serializeItemsActions(fdsName, _httpServletRequest)
+			_customFDSSerializer.serializeItemsActions(
+				fdsName, _httpServletRequest)
 		).thenCallRealMethod();
-
-		BaseFDSSerializer baseFDSSerializer = (BaseFDSSerializer)_fdsSerializer;
 
 		if (ArrayUtil.isEmpty(labels)) {
 			Mockito.when(
-				baseFDSSerializer.getSortedRelatedObjectEntries(
+				_customFDSSerializer.getSortedRelatedObjectEntries(
 					Mockito.eq(fdsName), Mockito.eq("itemActionsOrder"),
 					Mockito.eq(_httpServletRequest), Mockito.any(),
 					Mockito.eq("dataSetToDataSetActions"))
@@ -515,7 +514,7 @@ public class CustomFDSSerializerTest {
 		}
 
 		Mockito.when(
-			baseFDSSerializer.getSortedRelatedObjectEntries(
+			_customFDSSerializer.getSortedRelatedObjectEntries(
 				Mockito.eq(fdsName), Mockito.eq("itemActionsOrder"),
 				Mockito.eq(_httpServletRequest), Mockito.any(),
 				Mockito.eq("dataSetToDataSetActions"))
@@ -552,17 +551,17 @@ public class CustomFDSSerializerTest {
 	}
 
 	private void _resetFDSSerializer() {
-		_fdsSerializer = Mockito.mock(CustomFDSSerializer.class);
+		_customFDSSerializer = Mockito.mock(CustomFDSSerializer.class);
 
 		ReflectionTestUtil.setFieldValue(
-			_fdsSerializer, "fdsAPIURLResolverRegistry",
+			_customFDSSerializer, "fdsAPIURLResolverRegistry",
 			_fdsAPIURLResolverRegistry);
 	}
 
 	private void _testSerializeCreationMenu(String fdsName, String[] titles) {
 		_mockSerializeCreationMenu(fdsName, titles);
 
-		CreationMenu creationMenu = _fdsSerializer.serializeCreationMenu(
+		CreationMenu creationMenu = _customFDSSerializer.serializeCreationMenu(
 			fdsName, _httpServletRequest);
 
 		for (String title : titles) {
@@ -576,7 +575,8 @@ public class CustomFDSSerializerTest {
 		_mockSerializeItemsActions(fdsName, labels);
 
 		List<FDSActionDropdownItem> fdsActionDropdownItems =
-			_fdsSerializer.serializeItemsActions(fdsName, _httpServletRequest);
+			_customFDSSerializer.serializeItemsActions(
+				fdsName, _httpServletRequest);
 
 		for (String label : labels) {
 			Assert.assertTrue(_containsLabel(fdsActionDropdownItems, label));
@@ -589,9 +589,9 @@ public class CustomFDSSerializerTest {
 		CustomFDSSerializerTest.class);
 
 	private static BundleContext _bundleContext;
+	private static CustomFDSSerializer _customFDSSerializer;
 	private static final FDSAPIURLResolverRegistry _fdsAPIURLResolverRegistry =
 		new FDSAPIURLResolverRegistryImpl();
-	private static FDSSerializer _fdsSerializer;
 	private static final HttpServletRequest _httpServletRequest = Mockito.mock(
 		HttpServletRequest.class);
 	private static ServiceTrackerMap
