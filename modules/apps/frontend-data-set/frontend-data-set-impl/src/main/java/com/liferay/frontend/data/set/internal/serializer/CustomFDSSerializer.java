@@ -45,10 +45,9 @@ public class CustomFDSSerializer
 		Map<String, Object> properties = getDataSetObjectEntryProperties(
 			fdsName, httpServletRequest);
 
-		Set<ObjectEntry> dataSetTableSectionObjectEntries =
-			getSortedRelatedObjectEntries(
-				fdsName, "tableSectionsOrder", httpServletRequest,
-				(Predicate)null, "dataSetToDataSetTableSections");
+		Set<ObjectEntry> objectEntries = getSortedRelatedObjectEntries(
+			fdsName, "tableSectionsOrder", httpServletRequest, (Predicate)null,
+			"dataSetToDataSetTableSections");
 
 		FDSAPIURLBuilder fdsAPIURLBuilder = createFDSAPIURLBuilder(
 			httpServletRequest,
@@ -56,14 +55,14 @@ public class CustomFDSSerializer
 			String.valueOf(properties.get("restEndpoint")),
 			String.valueOf(properties.get("restSchema")));
 
-		if (dataSetTableSectionObjectEntries == null) {
+		if (objectEntries == null) {
 			return fdsAPIURLBuilder.build();
 		}
 
 		String nestedFields = StringPool.BLANK;
 		int nestedFieldsDepth = 1;
 
-		for (ObjectEntry objectEntry : dataSetTableSectionObjectEntries) {
+		for (ObjectEntry objectEntry : objectEntries) {
 			Map<String, Object> objectEntryProperties =
 				objectEntry.getProperties();
 
