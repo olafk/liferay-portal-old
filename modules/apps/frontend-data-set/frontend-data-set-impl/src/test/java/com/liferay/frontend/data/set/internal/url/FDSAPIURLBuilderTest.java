@@ -91,13 +91,13 @@ public class FDSAPIURLBuilderTest {
 				new String[] {"bar"});
 		ServiceRegistration<FDSAPIURLResolver> serviceRegistration2 =
 			_registerFDSAPIURLResolver(
-				"/app", "schema2", new String[] {"{foo}"},
+				"/app1", "schema2", new String[] {"{foo}"},
 				new String[] {"bar"});
 
 		Assert.assertEquals(
-			"/o/app/{foo}/endpoint",
+			"/o/app1/{foo}/endpoint",
 			new FDSAPIURLBuilder(
-				_fdsAPIURLResolverRegistry, _httpServletRequest, "/app",
+				_fdsAPIURLResolverRegistry, _httpServletRequest, "/app1",
 				"/{foo}/endpoint", "schema"
 			).build());
 
