@@ -93,11 +93,10 @@ public class HttpInvokerTest {
 
 		method.setAccessible(true);
 
-		byte[] binaryContent = (byte[])method.invoke(
+		byte[] bytes = (byte[])method.invoke(
 			httpInvoker, Mockito.mock(HttpURLConnection.class));
 
-		Assert.assertEquals(
-			Arrays.toString(binaryContent), 0, binaryContent.length);
+		Assert.assertEquals(Arrays.toString(bytes), 0, bytes.length);
 	}
 
 	private void _testPathReplacement(String specialCharacter) {
