@@ -205,6 +205,7 @@ public class SystemFDSSerializerTest {
 					"frontend.data.set.name",
 					ServiceTrackerCustomizerFactory.
 						<FDSBulkActions>serviceWrapper(_bundleContext));
+
 		FDSBulkActionsRegistry fdsBulkActionsRegistry =
 			new FDSBulkActionsRegistryImpl();
 

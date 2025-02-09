@@ -68,15 +68,15 @@ public class CustomFDSSerializer
 		Map<String, Object> properties = getDataSetObjectEntryProperties(
 			fdsName, httpServletRequest);
 
-		Set<ObjectEntry> objectEntries = getSortedRelatedObjectEntries(
-			fdsName, "tableSectionsOrder", httpServletRequest, (Predicate)null,
-			"dataSetToDataSetTableSections");
-
 		FDSAPIURLBuilder fdsAPIURLBuilder = createFDSAPIURLBuilder(
 			httpServletRequest,
 			String.valueOf(properties.get("restApplication")),
 			String.valueOf(properties.get("restEndpoint")),
 			String.valueOf(properties.get("restSchema")));
+
+		Set<ObjectEntry> objectEntries = getSortedRelatedObjectEntries(
+			fdsName, "tableSectionsOrder", httpServletRequest, (Predicate)null,
+			"dataSetToDataSetTableSections");
 
 		if (objectEntries == null) {
 			return fdsAPIURLBuilder.build();
