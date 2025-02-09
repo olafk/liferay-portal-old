@@ -106,7 +106,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testBuildSimple() throws Exception {
+	public void testConstructor() throws Exception {
 		Assert.assertEquals(
 			"/o/app/endpoint",
 			new FDSAPIURLBuilder(
@@ -116,7 +116,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testBuildSimpleWithParametersAsKeyValue() throws Exception {
+	public void testAddParameter() throws Exception {
 		Assert.assertEquals(
 			"/o/app/endpoint?param1=value1&param2=value2",
 			new FDSAPIURLBuilder(
@@ -130,7 +130,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testBuildSimpleWithParametersAsKeyValueAndAsString()
+	public void testAddParameterAndAddQueryString()
 		throws Exception {
 
 		Assert.assertEquals(
@@ -151,7 +151,7 @@ public class FDSAPIURLBuilderTest {
 	}
 
 	@Test
-	public void testBuildSimpleWithParametersAsString() throws Exception {
+	public void testAddQueryString() throws Exception {
 		Assert.assertEquals(
 			"/o/app/endpoint?param1=value1&param2=value2",
 			new FDSAPIURLBuilder(
