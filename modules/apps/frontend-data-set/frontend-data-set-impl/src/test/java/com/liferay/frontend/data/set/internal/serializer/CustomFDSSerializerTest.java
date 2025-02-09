@@ -15,13 +15,13 @@ import com.liferay.object.rest.dto.v1_0.ObjectEntry;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerCustomizerFactory;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.module.util.SystemBundleUtil;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -30,7 +30,6 @@ import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
 import java.net.URLDecoder;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -383,10 +382,6 @@ public class CustomFDSSerializerTest {
 		String restEndpoint, String restSchema) {
 
 		Mockito.when(
-			_customFDSSerializer.serializeAPIURL(fdsName, _httpServletRequest)
-		).thenCallRealMethod();
-
-		Mockito.when(
 			_customFDSSerializer.createFDSAPIURLBuilder(
 				_httpServletRequest, restApplication, restEndpoint, restSchema)
 		).thenCallRealMethod();
@@ -404,30 +399,22 @@ public class CustomFDSSerializerTest {
 			).build()
 		);
 
-		if (ArrayUtil.isEmpty(fieldNames)) {
-			Mockito.when(
-				_customFDSSerializer.getSortedRelatedObjectEntries(
-					fdsName, _httpServletRequest, null, "tableSectionsOrder",
-					"dataSetToDataSetTableSections")
-			).thenReturn(
-				Collections.emptyList()
-			);
+		Mockito.when(
+			_customFDSSerializer.serializeAPIURL(fdsName, _httpServletRequest)
+		).thenCallRealMethod();
 
-			return;
-		}
+		List<ObjectEntry> objectEntries = TransformUtil.transformToList(
+			fieldNames,
+			fieldName -> {
+				ObjectEntry objectEntry = new ObjectEntry();
 
-		List<ObjectEntry> objectEntries = new ArrayList<>();
+				objectEntry.setProperties(
+					HashMapBuilder.put(
+						"fieldName", (Object)fieldName
+					).build());
 
-		for (String fieldName : fieldNames) {
-			ObjectEntry objectEntry = new ObjectEntry();
-
-			objectEntry.setProperties(
-				HashMapBuilder.put(
-					"fieldName", (Object)fieldName
-				).build());
-
-			objectEntries.add(objectEntry);
-		}
+				return objectEntry;
+			});
 
 		Mockito.when(
 			_customFDSSerializer.getSortedRelatedObjectEntries(
@@ -444,31 +431,18 @@ public class CustomFDSSerializerTest {
 				fdsName, _httpServletRequest)
 		).thenCallRealMethod();
 
-		if (ArrayUtil.isEmpty(titles)) {
-			Mockito.when(
-				_customFDSSerializer.getSortedRelatedObjectEntries(
-					Mockito.eq(fdsName), Mockito.eq(_httpServletRequest),
-					Mockito.any(), Mockito.eq("creationActionsOrder"),
-					Mockito.eq("dataSetToDataSetActions"))
-			).thenReturn(
-				Collections.emptyList()
-			);
+		List<ObjectEntry> objectEntries = TransformUtil.transformToList(
+			titles,
+			title -> {
+				ObjectEntry objectEntry = new ObjectEntry();
 
-			return;
-		}
+				objectEntry.setProperties(
+					HashMapBuilder.put(
+						"title", (Object)title
+					).build());
 
-		List<ObjectEntry> objectEntries = new ArrayList<>();
-
-		for (String title : titles) {
-			ObjectEntry objectEntry = new ObjectEntry();
-
-			objectEntry.setProperties(
-				HashMapBuilder.put(
-					"title", (Object)title
-				).build());
-
-			objectEntries.add(objectEntry);
-		}
+				return objectEntry;
+			});
 
 		Mockito.when(
 			_customFDSSerializer.getSortedRelatedObjectEntries(
@@ -486,31 +460,18 @@ public class CustomFDSSerializerTest {
 				fdsName, _httpServletRequest)
 		).thenCallRealMethod();
 
-		if (ArrayUtil.isEmpty(labels)) {
-			Mockito.when(
-				_customFDSSerializer.getSortedRelatedObjectEntries(
-					Mockito.eq(fdsName), Mockito.eq(_httpServletRequest),
-					Mockito.any(), Mockito.eq("itemActionsOrder"),
-					Mockito.eq("dataSetToDataSetActions"))
-			).thenReturn(
-				Collections.emptyList()
-			);
+		List<ObjectEntry> objectEntries = TransformUtil.transformToList(
+			labels,
+			label -> {
+				ObjectEntry objectEntry = new ObjectEntry();
 
-			return;
-		}
+				objectEntry.setProperties(
+					HashMapBuilder.put(
+						"label", (Object)label
+					).build());
 
-		List<ObjectEntry> objectEntries = new ArrayList<>();
-
-		for (String label : labels) {
-			ObjectEntry objectEntry = new ObjectEntry();
-
-			objectEntry.setProperties(
-				HashMapBuilder.put(
-					"label", (Object)label
-				).build());
-
-			objectEntries.add(objectEntry);
-		}
+				return objectEntry;
+			});
 
 		Mockito.when(
 			_customFDSSerializer.getSortedRelatedObjectEntries(
