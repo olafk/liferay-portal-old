@@ -83,7 +83,7 @@ public class HttpInvokerTest {
 	}
 
 	@Test
-	public void testReadResponseWithNullInputStream() throws Exception {
+	public void testReadResponse() throws Exception {
 		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
 
 		Class<?> clazz = httpInvoker.getClass();
