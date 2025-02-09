@@ -87,18 +87,18 @@ public class FDSAPIURLBuilderTest {
 	public void testBuildWithTwoResolvers() throws Exception {
 		ServiceRegistration<FDSAPIURLResolver> serviceRegistration1 =
 			_registerFDSAPIURLResolver(
-				"/app2", "schema", new String[] {"{foo}"},
+				"/app1", "schema1", new String[] {"{foo}"},
 				new String[] {"bar"});
 		ServiceRegistration<FDSAPIURLResolver> serviceRegistration2 =
 			_registerFDSAPIURLResolver(
-				"/app1", "schema2", new String[] {"{foo}"},
+				"/app2", "schema2", new String[] {"{foo}"},
 				new String[] {"bar"});
 
 		Assert.assertEquals(
-			"/o/app1/{foo}/endpoint",
+			"/o/app2/{foo}/endpoint",
 			new FDSAPIURLBuilder(
-				_fdsAPIURLResolverRegistry, _httpServletRequest, "/app1",
-				"/{foo}/endpoint", "schema"
+				_fdsAPIURLResolverRegistry, _httpServletRequest, "/app2",
+				"/{foo}/endpoint", "schema1"
 			).build());
 
 		serviceRegistration1.unregister();
