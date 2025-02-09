@@ -220,8 +220,7 @@ public class CustomFDSSerializer
 		String externalReferenceCode, HttpServletRequest httpServletRequest) {
 
 		ObjectEntry objectEntry = _getObjectEntry(
-			_getDataSetObjectDefinition(httpServletRequest),
-			externalReferenceCode);
+			externalReferenceCode, _getObjectDefinition(httpServletRequest));
 
 		if (objectEntry != null) {
 			return objectEntry.getProperties();
@@ -238,16 +237,16 @@ public class CustomFDSSerializer
 
 		List<ObjectEntry> objectEntries = new ArrayList<>();
 
-		ObjectDefinition dataSetObjectDefinition = _getDataSetObjectDefinition(
+		ObjectDefinition objectDefinition = _getObjectDefinition(
 			httpServletRequest);
 
-		ObjectEntry dataSetObjectEntry = _getObjectEntry(
-			dataSetObjectDefinition, externalReferenceCode);
+		ObjectEntry objectEntry = _getObjectEntry(
+			externalReferenceCode, objectDefinition);
 
 		for (String relationshipName : relationshipNames) {
 			objectEntries.addAll(
 				_getRelatedObjectEntries(
-					dataSetObjectDefinition, dataSetObjectEntry, predicate,
+					objectDefinition, objectEntry, predicate,
 					relationshipName));
 		}
 
@@ -256,7 +255,7 @@ public class CustomFDSSerializer
 				ListUtil.toList(
 					ListUtil.fromString(
 						MapUtil.getString(
-							dataSetObjectEntry.getProperties(),
+							objectEntry.getProperties(),
 							dataSetObjectEntryComparatorIdsPropertyKey),
 						StringPool.COMMA),
 					GetterUtil::getLong)));
@@ -264,16 +263,15 @@ public class CustomFDSSerializer
 		return objectEntries;
 	}
 
-	private ObjectDefinition _getDataSetObjectDefinition(
+	private ObjectDefinition _getObjectDefinition(
 		HttpServletRequest httpServletRequest) {
 
-		return _dataSetObjectDefinitionLocalService.fetchObjectDefinition(
+		return _objectDefinitionLocalService.fetchObjectDefinition(
 			_portal.getCompanyId(httpServletRequest), "DataSet");
 	}
 
 	private ObjectEntry _getObjectEntry(
-		ObjectDefinition dataSetObjectDefinition,
-		String externalReferenceCode) {
+		String externalReferenceCode, ObjectDefinition objectDefinition) {
 
 		ObjectEntry objectEntry = null;
 
@@ -285,12 +283,12 @@ public class CustomFDSSerializer
 		DefaultObjectEntryManager defaultObjectEntryManager =
 			DefaultObjectEntryManagerProvider.provide(
 				_dataSetObjectEntryManagerRegistry.getObjectEntryManager(
-					dataSetObjectDefinition.getStorageType()));
+					objectDefinition.getStorageType()));
 
 		try {
 			objectEntry = defaultObjectEntryManager.getObjectEntry(
-				dataSetObjectDefinition.getCompanyId(), dtoConverterContext,
-				externalReferenceCode, dataSetObjectDefinition, null);
+				objectDefinition.getCompanyId(), dtoConverterContext,
+				externalReferenceCode, objectDefinition, null);
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
@@ -305,9 +303,8 @@ public class CustomFDSSerializer
 	}
 
 	private Collection<ObjectEntry> _getRelatedObjectEntries(
-		ObjectDefinition dataSetObjectDefinition,
-		ObjectEntry dataSetObjectEntry, Predicate<ObjectEntry> predicate,
-		String relationshipName) {
+		ObjectDefinition objectDefinition, ObjectEntry objectEntry,
+		Predicate<ObjectEntry> predicate, String relationshipName) {
 
 		Collection<ObjectEntry> objectEntries = null;
 
@@ -319,20 +316,20 @@ public class CustomFDSSerializer
 		DefaultObjectEntryManager defaultObjectEntryManager =
 			DefaultObjectEntryManagerProvider.provide(
 				_dataSetObjectEntryManagerRegistry.getObjectEntryManager(
-					dataSetObjectDefinition.getStorageType()));
+					objectDefinition.getStorageType()));
 
 		try {
 			Page<ObjectEntry> relatedObjectEntriesPage =
 				defaultObjectEntryManager.getObjectEntryRelatedObjectEntries(
-					dtoConverterContext, dataSetObjectDefinition,
-					dataSetObjectEntry.getId(), relationshipName,
+					dtoConverterContext, objectDefinition, objectEntry.getId(),
+					relationshipName,
 					Pagination.of(QueryUtil.ALL_POS, QueryUtil.ALL_POS));
 
 			objectEntries = relatedObjectEntriesPage.getItems();
 
 			if (predicate != null) {
 				objectEntries.removeIf(
-					objectEntry -> !predicate.test(objectEntry));
+					currentObjectEntry -> !predicate.test(currentObjectEntry));
 			}
 		}
 		catch (Exception exception) {
@@ -357,10 +354,10 @@ public class CustomFDSSerializer
 		CustomFDSSerializer.class);
 
 	@Reference
-	private ObjectDefinitionLocalService _dataSetObjectDefinitionLocalService;
+	private ObjectEntryManagerRegistry _dataSetObjectEntryManagerRegistry;
 
 	@Reference
-	private ObjectEntryManagerRegistry _dataSetObjectEntryManagerRegistry;
+	private ObjectDefinitionLocalService _objectDefinitionLocalService;
 
 	@Reference
 	private Portal _portal;
