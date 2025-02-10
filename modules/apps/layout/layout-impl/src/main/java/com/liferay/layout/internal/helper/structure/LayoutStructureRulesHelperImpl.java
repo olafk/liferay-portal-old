@@ -259,13 +259,6 @@ public class LayoutStructureRulesHelperImpl
 			value = optionsJSONObject.get("value");
 		}
 
-		if (Objects.equals(conditionJSONObject.getString("type"), "user")) {
-			return _evaluateUserTypeCondition(
-				conditionJSONObject.getString("field"),
-				layoutStructureRulesContext, negated,
-				GetterUtil.getLong(value));
-		}
-
 		if (Objects.equals(conditionJSONObject.getString("type"), "form")) {
 			if (negated) {
 				return !Objects.equals(
@@ -276,6 +269,13 @@ public class LayoutStructureRulesHelperImpl
 			return Objects.equals(
 				fieldValuesMap.get(conditionJSONObject.getString("field")),
 				value);
+		}
+
+		if (Objects.equals(conditionJSONObject.getString("type"), "user")) {
+			return _evaluateUserTypeCondition(
+				conditionJSONObject.getString("field"),
+				layoutStructureRulesContext, negated,
+				GetterUtil.getLong(value));
 		}
 
 		return false;
