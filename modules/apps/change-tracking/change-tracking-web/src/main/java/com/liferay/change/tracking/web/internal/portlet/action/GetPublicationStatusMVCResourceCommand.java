@@ -65,8 +65,8 @@ public class GetPublicationStatusMVCResourceCommand
 
 		String displayType = "danger";
 		String label = _language.get(httpServletRequest, "failed");
-		boolean published = false;
 		int percentage = -1;
+		boolean published = false;
 
 		if (ctProcess == null) {
 			_writeJSON(
