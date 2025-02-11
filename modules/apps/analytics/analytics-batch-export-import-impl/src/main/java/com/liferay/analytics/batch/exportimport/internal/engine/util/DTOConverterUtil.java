@@ -5,6 +5,7 @@
 
 package com.liferay.analytics.batch.exportimport.internal.engine.util;
 
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.concurrent.SystemExecutorServiceUtil;
 import com.liferay.portal.vulcan.dto.converter.DTOConverter;
 
@@ -32,13 +33,7 @@ public class DTOConverterUtil {
 			futures.add(executorService.submit(() -> dtoConverter.toDTO(e)));
 		}
 
-		List<D> dtos = new ArrayList<>();
-
-		for (Future<D> future : futures) {
-			dtos.add(future.get());
-		}
-
-		return dtos;
+		return TransformUtil.transform(futures, future -> future.get());
 	}
 
 }
