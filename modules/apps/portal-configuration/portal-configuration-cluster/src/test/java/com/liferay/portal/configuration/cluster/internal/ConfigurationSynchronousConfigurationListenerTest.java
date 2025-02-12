@@ -10,6 +10,7 @@ import com.liferay.portal.configuration.persistence.ReloadablePersistenceManager
 import com.liferay.portal.kernel.module.service.Snapshot;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
@@ -85,8 +86,8 @@ public class ConfigurationSynchronousConfigurationListenerTest {
 				public Configuration[] answer(InvocationOnMock invocationOnMock)
 					throws Throwable {
 
-					Assert.assertEquals(
-						Long.valueOf(1L), CompanyThreadLocal.getCompanyId());
+					Assert.assertTrue(
+						_COMPANY_ID == CompanyThreadLocal.getCompanyId());
 
 					return null;
 				}
@@ -96,8 +97,8 @@ public class ConfigurationSynchronousConfigurationListenerTest {
 
 		ReflectionTestUtil.invoke(
 			_configurationSynchronousConfigurationListener, "_onNotify",
-			new Class<?>[] {long.class, String.class, int.class}, 1L, "test",
-			ConfigurationEvent.CM_UPDATED);
+			new Class<?>[] {long.class, String.class, int.class}, _COMPANY_ID,
+			RandomTestUtil.randomString(), ConfigurationEvent.CM_UPDATED);
 	}
 
 	@Test
@@ -244,10 +245,12 @@ public class ConfigurationSynchronousConfigurationListenerTest {
 		ReflectionTestUtil.invoke(
 			_configurationSynchronousConfigurationListener,
 			"_reloadConfiguration", new Class<?>[] {String.class, int.class},
-			"test", configuratonEventType);
+			RandomTestUtil.randomString(), configuratonEventType);
 
 		unsafeConsumer.accept(configuration);
 	}
+
+	private static final long _COMPANY_ID = RandomTestUtil.randomLong();
 
 	@Mock
 	private ConfigurationAdmin _configurationAdmin;
