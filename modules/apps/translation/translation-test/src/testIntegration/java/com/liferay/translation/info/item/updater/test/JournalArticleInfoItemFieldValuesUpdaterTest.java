@@ -88,12 +88,11 @@ public class JournalArticleInfoItemFieldValuesUpdaterTest {
 
 	@Before
 	public void setUp() throws Exception {
+		_company = _companyLocalService.getCompany(
+			TestPropsValues.getCompanyId());
 		_group = GroupTestUtil.addGroup();
 
 		User user = TestPropsValues.getUser();
-
-		_company = _companyLocalService.getCompany(
-			TestPropsValues.getCompanyId());
 
 		_serviceContext = ServiceContextTestUtil.getServiceContext(
 			_group, user.getUserId());
@@ -107,14 +106,14 @@ public class JournalArticleInfoItemFieldValuesUpdaterTest {
 	}
 
 	@Test
-	public void testUpdateJournalArticleAfterUserDeletion() throws Exception {
+	public void testUpdateJournalArticleWithDeletedUser() throws Exception {
 		User user = UserTestUtil.addCompanyAdminUser(_company);
 
-		ServiceContext userServiceContext =
+		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), user.getUserId());
 
-		ServiceContextThreadLocal.pushServiceContext(userServiceContext);
+		ServiceContextThreadLocal.pushServiceContext(serviceContext);
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
 			_group.getGroupId(), 0,
@@ -128,7 +127,7 @@ public class JournalArticleInfoItemFieldValuesUpdaterTest {
 			HashMapBuilder.put(
 				LocaleUtil.US, "<p>This is the content</p>"
 			).build(),
-			LocaleUtil.getSiteDefault(), false, true, userServiceContext);
+			LocaleUtil.getSiteDefault(), false, true, serviceContext);
 
 		InfoItemFieldValues infoItemFieldValues =
 			_xliffTranslationInfoItemFieldValuesImporter.
@@ -147,7 +146,6 @@ public class JournalArticleInfoItemFieldValuesUpdaterTest {
 
 		Assert.assertEquals(
 			TestPropsValues.getUserId(), journalArticle.getStatusByUserId());
-
 		Assert.assertEquals(
 			"Este es el titulo", journalArticle.getTitle(LocaleUtil.SPAIN));
 	}
