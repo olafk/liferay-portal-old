@@ -78,6 +78,9 @@ public class DefaultDLEditFileEntryDisplayContextTest {
 	private DefaultDLEditFileEntryDisplayContext
 		_getDefaultDLEditFileEntryDisplayContext() {
 
+		MockHttpServletRequest mockHttpServletRequest =
+			new MockHttpServletRequest();
+
 		ThemeDisplay themeDisplay = Mockito.mock(ThemeDisplay.class);
 
 		Mockito.when(
@@ -85,9 +88,6 @@ public class DefaultDLEditFileEntryDisplayContextTest {
 		).thenReturn(
 			123456L
 		);
-
-		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
 
 		mockHttpServletRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, themeDisplay);
