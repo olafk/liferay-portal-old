@@ -6,7 +6,7 @@
 package com.liferay.dispatch.constants;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class DispatchScreenNavigationConstants {
 

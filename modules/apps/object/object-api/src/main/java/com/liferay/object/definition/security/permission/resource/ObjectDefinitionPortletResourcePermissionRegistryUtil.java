@@ -13,7 +13,7 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class ObjectDefinitionPortletResourcePermissionRegistryUtil {
 

@@ -9,7 +9,7 @@ import com.liferay.portal.kernel.editor.Editor;
 import com.liferay.portal.kernel.servlet.PortalWebResourceConstants;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public abstract class BaseAlloyEditor implements Editor {
 

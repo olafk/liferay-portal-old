@@ -14,7 +14,7 @@ import java.util.Locale;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public abstract class BaseAccountEntryScreenNavigationCategory
 	implements ScreenNavigationCategory {

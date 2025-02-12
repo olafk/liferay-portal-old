@@ -20,7 +20,7 @@ import com.liferay.portal.test.rule.Inject;
 import org.junit.Before;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public abstract class BaseFriendlyURLFormatUpgradeProcessTestCase {
 

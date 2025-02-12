@@ -22,7 +22,7 @@ import com.liferay.portal.model.adapter.util.ModelAdapterUtil;
 import java.util.List;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class StagedLayoutSetStagedModelRepositoryUtil {
 

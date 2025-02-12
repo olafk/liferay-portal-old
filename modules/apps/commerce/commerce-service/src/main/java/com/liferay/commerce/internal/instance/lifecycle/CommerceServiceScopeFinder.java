@@ -18,7 +18,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 @Component(
 	property = {"osgi.jaxrs.name=Liferay.Commerce", "sap.scope.finder=true"},

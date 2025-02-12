@@ -11,7 +11,7 @@ import com.liferay.petra.string.StringPool;
 import java.util.UUID;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class JSLoaderModulesUtil {
 

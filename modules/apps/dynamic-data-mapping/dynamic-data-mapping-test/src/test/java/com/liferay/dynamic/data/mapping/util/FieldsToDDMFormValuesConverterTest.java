@@ -97,7 +97,7 @@ public class FieldsToDDMFormValuesConverterTest extends BaseDDMTestCase {
 
 		Field nameField = createField(
 			ddmStructure.getStructureId(), "Name",
-			createValuesList("Paul", "Joe"), createValuesList("Paulo", "Joao"));
+			createValuesList("Paul", "Joe"), createValuesList("Paulo", "João"));
 
 		Field phoneField = createField(
 			ddmStructure.getStructureId(), "Phone",
@@ -106,8 +106,8 @@ public class FieldsToDDMFormValuesConverterTest extends BaseDDMTestCase {
 				"Joe's Phone 2", "Joe's Phone 3"),
 			createValuesList(
 				"Telefone de Paulo 1", "Telefone de Paulo 2",
-				"Telefone de Joao 1", "Telefone de Joao 2",
-				"Telefone de Joao 3"));
+				"Telefone de João 1", "Telefone de João 2",
+				"Telefone de João 3"));
 
 		Field fieldsDisplayField = createFieldsDisplayField(
 			ddmStructure.getStructureId(),
@@ -147,7 +147,7 @@ public class FieldsToDDMFormValuesConverterTest extends BaseDDMTestCase {
 
 		DDMFormFieldValue joeDDMFormFieldValue = ddmFormFieldValues.get(1);
 
-		testDDMFormFieldValue("rght", "Joe", "Joao", joeDDMFormFieldValue);
+		testDDMFormFieldValue("rght", "Joe", "João", joeDDMFormFieldValue);
 
 		List<DDMFormFieldValue> joeNestedDDMFormFieldValues =
 			joeDDMFormFieldValue.getNestedDDMFormFieldValues();
@@ -157,13 +157,13 @@ public class FieldsToDDMFormValuesConverterTest extends BaseDDMTestCase {
 			joeNestedDDMFormFieldValues.size());
 
 		testDDMFormFieldValue(
-			"latb", "Joe's Phone 1", "Telefone de Joao 1",
+			"latb", "Joe's Phone 1", "Telefone de João 1",
 			joeNestedDDMFormFieldValues.get(0));
 		testDDMFormFieldValue(
-			"jewp", "Joe's Phone 2", "Telefone de Joao 2",
+			"jewp", "Joe's Phone 2", "Telefone de João 2",
 			joeNestedDDMFormFieldValues.get(1));
 		testDDMFormFieldValue(
-			"mkar", "Joe's Phone 3", "Telefone de Joao 3",
+			"mkar", "Joe's Phone 3", "Telefone de João 3",
 			joeNestedDDMFormFieldValues.get(2));
 	}
 

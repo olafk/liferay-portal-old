@@ -17,7 +17,7 @@ import java.security.UnrecoverableKeyException;
 import org.opensaml.security.credential.UsageType;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class KeyStoreUtil {
 

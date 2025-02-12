@@ -3,7 +3,7 @@
 <root available-locales="en_US,pt_BR" default-locale="en_US" version="1.0">
 	<dynamic-element index-type="keyword" instance-id="hKlUdDWA" name="name" type="text">
 		<dynamic-content language-id="en_US"><![CDATA[Joe Bloggs]]></dynamic-content>
-		<dynamic-content language-id="pt_BR"><![CDATA[Joao da Silva]]></dynamic-content>
+		<dynamic-content language-id="pt_BR"><![CDATA[João da Silva]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element field-reference="[$FIELD_SET_NAME$]" index-type="" instance-id="Ws4ltySg" name="[$FIELD_SET_NAME$]" type="fieldset">
 		<dynamic-element index-type="keyword" instance-id="V8zPgbYz" name="birthday" type="date">

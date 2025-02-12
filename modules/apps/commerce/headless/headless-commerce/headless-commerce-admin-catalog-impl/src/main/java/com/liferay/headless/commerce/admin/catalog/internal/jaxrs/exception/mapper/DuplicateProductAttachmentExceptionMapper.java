@@ -16,7 +16,7 @@ import javax.ws.rs.ext.Provider;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Joao Cordeiro
+ * @author João Cordeiro
  */
 @Component(
 	property = {

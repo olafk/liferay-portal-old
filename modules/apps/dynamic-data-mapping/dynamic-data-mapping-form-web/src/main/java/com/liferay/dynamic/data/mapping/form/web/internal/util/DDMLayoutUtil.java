@@ -11,7 +11,7 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class DDMLayoutUtil {
 

@@ -10,7 +10,7 @@ import com.liferay.portal.kernel.search.Query;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 @Component(
 	property = "search.engine.impl=Solr", service = LuceneQueryConverter.class

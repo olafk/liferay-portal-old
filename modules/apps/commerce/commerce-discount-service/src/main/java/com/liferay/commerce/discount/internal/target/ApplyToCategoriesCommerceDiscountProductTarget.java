@@ -25,7 +25,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 @Component(service = CommerceDiscountProductTarget.class)
 public class ApplyToCategoriesCommerceDiscountProductTarget

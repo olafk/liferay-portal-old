@@ -24,7 +24,7 @@ import org.apache.lucene.search.Query;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public abstract class BaseQueryVisitor implements QueryVisitor<Query> {
 

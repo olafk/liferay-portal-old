@@ -40,7 +40,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public abstract class BaseAccountRoleDefinePermissionsScreenNavigationEntry
 	extends BaseAccountRoleDefinePermissionsScreenNavigationCategory

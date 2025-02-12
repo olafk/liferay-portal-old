@@ -52,7 +52,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @author Joao Cordeiro
+ * @author João Cordeiro
  */
 @RunWith(Arquillian.class)
 public class CommerceShipmentServiceTest {

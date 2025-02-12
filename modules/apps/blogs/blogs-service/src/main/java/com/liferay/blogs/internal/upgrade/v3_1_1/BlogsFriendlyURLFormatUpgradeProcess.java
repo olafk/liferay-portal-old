@@ -18,7 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class BlogsFriendlyURLFormatUpgradeProcess extends UpgradeProcess {
 

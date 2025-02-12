@@ -12,7 +12,7 @@ import com.liferay.portal.kernel.servlet.PortalWebResourceConstants;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 @Component(
 	property = {

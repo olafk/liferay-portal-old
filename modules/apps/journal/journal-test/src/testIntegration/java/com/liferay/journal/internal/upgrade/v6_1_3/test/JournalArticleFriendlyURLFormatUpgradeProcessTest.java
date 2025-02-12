@@ -35,7 +35,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 @RunWith(Arquillian.class)
 public class JournalArticleFriendlyURLFormatUpgradeProcessTest

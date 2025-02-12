@@ -30,7 +30,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 @RunWith(Arquillian.class)
 public class FindEntryStrutsActionTest {

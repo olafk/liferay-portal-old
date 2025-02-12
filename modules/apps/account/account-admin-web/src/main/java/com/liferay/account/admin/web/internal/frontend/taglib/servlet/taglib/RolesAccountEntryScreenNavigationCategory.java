@@ -11,7 +11,7 @@ import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 @Component(
 	property = "screen.navigation.category.order:Integer=60",

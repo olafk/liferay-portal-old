@@ -15,7 +15,7 @@ import javax.ws.rs.ext.ExceptionMapper;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Joao Cordeiro
+ * @author João Cordeiro
  */
 @Component(
 	property = {

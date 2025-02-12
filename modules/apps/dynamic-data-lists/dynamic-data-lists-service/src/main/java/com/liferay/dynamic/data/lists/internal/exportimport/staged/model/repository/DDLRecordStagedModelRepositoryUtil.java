@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import java.util.Objects;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class DDLRecordStagedModelRepositoryUtil {
 

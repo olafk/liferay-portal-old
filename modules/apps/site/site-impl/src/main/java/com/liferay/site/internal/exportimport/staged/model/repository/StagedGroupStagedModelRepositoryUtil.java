@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class StagedGroupStagedModelRepositoryUtil {
 

@@ -6,7 +6,7 @@
 package com.liferay.osgi.util.osgi.commands;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public interface OSGiCommands {
 }

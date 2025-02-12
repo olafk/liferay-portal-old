@@ -339,7 +339,7 @@ public class JournalTransformerTest {
 				null, false, "${name.getData()}", null, Constants.VIEW));
 
 		Assert.assertEquals(
-			"Joao da Silva",
+			"João da Silva",
 			_transformMethod.invoke(
 				_journalTransformer, _journalArticle, null, _journalHelper,
 				LocaleUtil.toLanguageId(LocaleUtil.BRAZIL),

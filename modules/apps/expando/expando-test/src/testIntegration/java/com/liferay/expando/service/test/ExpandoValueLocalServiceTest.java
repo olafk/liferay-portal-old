@@ -472,7 +472,7 @@ public class ExpandoValueLocalServiceTest {
 		Map<Locale, String[]> dataMap = HashMapBuilder.put(
 			_enLocale, new String[] {"Hello, Joe", "Hi, Joe"}
 		).put(
-			_ptLocale, new String[] {"Ola, Joao", "Oi, Joao"}
+			_ptLocale, new String[] {"Ola, João", "Oi, João"}
 		).build();
 
 		long classPK = _counterLocalService.increment();

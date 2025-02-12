@@ -10,7 +10,7 @@ import com.liferay.frontend.editor.ckeditor.web.internal.constants.CKEditorConst
 import com.liferay.portal.kernel.servlet.PortalWebResourceConstants;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public abstract class BaseCKEditorRenderer implements EditorRenderer {
 

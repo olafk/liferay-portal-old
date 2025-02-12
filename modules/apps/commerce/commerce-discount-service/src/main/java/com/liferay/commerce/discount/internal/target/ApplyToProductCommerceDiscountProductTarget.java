@@ -13,7 +13,7 @@ import com.liferay.portal.kernel.search.filter.TermFilter;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 @Component(service = CommerceDiscountProductTarget.class)
 public class ApplyToProductCommerceDiscountProductTarget

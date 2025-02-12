@@ -10,7 +10,7 @@ import com.liferay.frontend.editor.EditorRenderer;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 @Component(
 	property = "name=" + CKEditorClassicEditor.EDITOR_NAME,

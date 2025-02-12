@@ -6,7 +6,7 @@
 package com.liferay.headless.admin.address.internal.dto.v1_0.converter.constants;
 
 /**
- * @author Joao Victor
+ * @author João Victor
  */
 public class DTOConverterConstants {
 

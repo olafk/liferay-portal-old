@@ -6,7 +6,7 @@
 package com.liferay.commerce.punchout.web.internal.constants;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class CommerceChannelPunchOutScreenNavigationConstants {
 

@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.search.filter.Filter;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public abstract class BaseCommerceDiscountProductTarget
 	implements CommerceDiscountProductTarget {

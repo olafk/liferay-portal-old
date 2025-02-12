@@ -11,7 +11,7 @@ import com.liferay.dynamic.data.mapping.util.DDMTemplatePermissionSupport;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 @Component(
 	property = "model.class.name=com.liferay.dynamic.data.lists.model.DDLRecordSet",

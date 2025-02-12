@@ -9,7 +9,7 @@ import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.vulcan.dto.converter.DTOConverter;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class DTOConverterUtil {
 

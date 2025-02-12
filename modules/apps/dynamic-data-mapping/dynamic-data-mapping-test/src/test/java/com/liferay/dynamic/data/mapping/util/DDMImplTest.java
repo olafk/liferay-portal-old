@@ -336,14 +336,14 @@ public class DDMImplTest extends BaseDDMTestCase {
 
 		Field existingNameField = createField(
 			ddmStructure.getStructureId(), "Name",
-			createValuesList("Paul", "Joe"), createValuesList("Paulo", "Joao"));
+			createValuesList("Paul", "Joe"), createValuesList("Paulo", "João"));
 
 		Field existingPhoneField = createField(
 			ddmStructure.getStructureId(), "Phone",
 			createValuesList("Paul's Phone 1", "Paul's Phone 2", "Joe's Phone"),
 			createValuesList(
 				"Telefone de Paulo 1", "Telefone de Paulo 2",
-				"Telefone de Joao"));
+				"Telefone de João"));
 
 		Field existingFieldsDisplayField = createFieldsDisplayField(
 			ddmStructure.getStructureId(),
@@ -384,7 +384,7 @@ public class DDMImplTest extends BaseDDMTestCase {
 			actualNameField.getValues(LocaleUtil.US), "Paul Smith",
 			"Joe William", "Charlie Parker");
 		testValues(
-			actualNameField.getValues(LocaleUtil.BRAZIL), "Paulo", "Joao",
+			actualNameField.getValues(LocaleUtil.BRAZIL), "Paulo", "João",
 			"Charlie Parker");
 
 		Field actualPhoneField = actualFields.get("Phone");
@@ -397,7 +397,7 @@ public class DDMImplTest extends BaseDDMTestCase {
 			"Charlie Parker phone");
 		testValues(
 			actualPhoneField.getValues(LocaleUtil.BRAZIL),
-			"Telefone de Paulo 1", "Telefone de Joao", "Joe William Phone 2",
+			"Telefone de Paulo 1", "Telefone de João", "Joe William Phone 2",
 			"Charlie Parker phone");
 	}
 
@@ -489,7 +489,7 @@ public class DDMImplTest extends BaseDDMTestCase {
 
 		Field newLocalizedField = createBRField(
 			ddmStructure.getStructureId(), "Localizable",
-			createValuesList("Joao"));
+			createValuesList("João"));
 
 		Field newFieldsDisplayField = createFieldsDisplayField(
 			ddmStructure.getStructureId(), "Localizable_INSTANCE_ovho");

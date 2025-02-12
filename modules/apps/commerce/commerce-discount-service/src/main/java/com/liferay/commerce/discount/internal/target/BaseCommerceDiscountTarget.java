@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public abstract class BaseCommerceDiscountTarget
 	implements CommerceDiscountTarget {

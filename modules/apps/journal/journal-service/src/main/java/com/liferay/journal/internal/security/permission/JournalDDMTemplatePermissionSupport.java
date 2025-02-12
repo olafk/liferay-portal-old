@@ -11,7 +11,7 @@ import com.liferay.journal.constants.JournalConstants;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 @Component(
 	property = "model.class.name=com.liferay.journal.model.JournalArticle",

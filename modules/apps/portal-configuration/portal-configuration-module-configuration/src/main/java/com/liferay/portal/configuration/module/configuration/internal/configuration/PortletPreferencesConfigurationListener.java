@@ -14,7 +14,7 @@ import org.osgi.service.cm.ConfigurationListener;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 @Component(service = ConfigurationListener.class)
 public class PortletPreferencesConfigurationListener

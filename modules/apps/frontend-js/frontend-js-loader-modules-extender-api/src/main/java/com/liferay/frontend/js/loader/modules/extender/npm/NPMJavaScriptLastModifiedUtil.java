@@ -8,7 +8,7 @@ package com.liferay.frontend.js.loader.modules.extender.npm;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class NPMJavaScriptLastModifiedUtil {
 

@@ -757,7 +757,7 @@ public class DDMFormValuesValidatorTest {
 
 		LocalizedValue localizedValue = new LocalizedValue(LocaleUtil.US);
 
-		localizedValue.addString(LocaleUtil.BRAZIL, "Joao");
+		localizedValue.addString(LocaleUtil.BRAZIL, "João");
 		localizedValue.addString(LocaleUtil.US, "Joe");
 
 		ddmFormValues.addDDMFormFieldValue(

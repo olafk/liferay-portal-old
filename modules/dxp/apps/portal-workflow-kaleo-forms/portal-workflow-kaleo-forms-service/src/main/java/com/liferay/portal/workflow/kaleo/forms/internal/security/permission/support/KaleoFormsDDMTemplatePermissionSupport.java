@@ -11,7 +11,7 @@ import com.liferay.portal.workflow.kaleo.forms.constants.KaleoFormsConstants;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 @Component(
 	property = "model.class.name=com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess",

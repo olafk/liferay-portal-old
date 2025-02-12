@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class ReleaseManagerUtil {
 

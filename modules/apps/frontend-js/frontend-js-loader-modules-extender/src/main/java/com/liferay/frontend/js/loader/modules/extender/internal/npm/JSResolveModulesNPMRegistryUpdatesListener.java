@@ -11,7 +11,7 @@ import com.liferay.frontend.js.loader.modules.extender.npm.NPMRegistryUpdatesLis
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 @Component(service = NPMRegistryUpdatesListener.class)
 public class JSResolveModulesNPMRegistryUpdatesListener

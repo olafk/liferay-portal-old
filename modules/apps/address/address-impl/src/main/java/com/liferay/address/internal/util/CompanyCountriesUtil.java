@@ -41,7 +41,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class CompanyCountriesUtil {
 

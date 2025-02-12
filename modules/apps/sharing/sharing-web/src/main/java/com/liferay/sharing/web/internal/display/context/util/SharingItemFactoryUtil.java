@@ -11,7 +11,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class SharingItemFactoryUtil {
 

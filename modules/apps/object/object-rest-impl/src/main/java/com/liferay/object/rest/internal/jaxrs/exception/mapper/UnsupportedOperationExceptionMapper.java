@@ -11,7 +11,7 @@ import com.liferay.portal.vulcan.jaxrs.exception.mapper.Problem;
 import javax.ws.rs.ext.Provider;
 
 /**
- * @author Joao Pedro Carvalho Malta
+ * @author João Pedro Carvalho Malta
  */
 @Provider
 public class UnsupportedOperationExceptionMapper

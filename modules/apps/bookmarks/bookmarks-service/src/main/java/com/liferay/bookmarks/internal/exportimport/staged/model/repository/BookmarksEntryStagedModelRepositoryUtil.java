@@ -13,7 +13,7 @@ import com.liferay.portal.kernel.module.service.Snapshot;
 import com.liferay.portal.kernel.service.ServiceContext;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class BookmarksEntryStagedModelRepositoryUtil {
 

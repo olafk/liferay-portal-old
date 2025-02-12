@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class IndexFactoryCompanyIdRegistryUtil {
 

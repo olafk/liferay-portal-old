@@ -6,7 +6,7 @@
 package com.liferay.commerce.product.type.grouped.web.internal.constants;
 
 /**
- * @author Joao Victor Alves
+ * @author João Victor Alves
  */
 public class CPTypeGroupedScreenNavigationConstants {
 
