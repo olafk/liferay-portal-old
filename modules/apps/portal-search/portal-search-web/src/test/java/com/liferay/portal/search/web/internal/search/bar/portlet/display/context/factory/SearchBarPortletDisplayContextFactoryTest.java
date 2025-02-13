@@ -620,18 +620,6 @@ public class SearchBarPortletDisplayContextFactoryTest {
 		);
 
 		Mockito.when(
-			_themeDisplay.getScopeGroupId()
-		).thenReturn(
-			_SCOPE_GROUP_ID
-		);
-
-		Mockito.when(
-			_themeDisplay.getUser()
-		).thenReturn(
-			_user
-		);
-
-		Mockito.when(
 			_portletDisplay.getPortletResource()
 		).thenReturn(
 			"test"
@@ -647,6 +635,18 @@ public class SearchBarPortletDisplayContextFactoryTest {
 			_themeDisplay.getPortletDisplay()
 		).thenReturn(
 			_portletDisplay
+		);
+
+		Mockito.when(
+			_themeDisplay.getScopeGroupId()
+		).thenReturn(
+			_SCOPE_GROUP_ID
+		);
+
+		Mockito.when(
+			_themeDisplay.getUser()
+		).thenReturn(
+			_user
 		);
 
 		_configurationProviderUtilMockedStatic.when(

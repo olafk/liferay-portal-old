@@ -368,9 +368,7 @@ public class SearchBarPortletDisplayContextFactory {
 			user = themeDisplay.getUser();
 		}
 
-		List<UserGroup> userGroupList = user.getUserGroups();
-
-		for (UserGroup userGroup : userGroupList) {
+		for (UserGroup userGroup : user.getUserGroups()) {
 			try {
 				layout = fetchLayoutByFriendlyURL(
 					userGroup.getGroupId(), _slashify(destinationString));
