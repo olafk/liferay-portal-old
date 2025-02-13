@@ -133,49 +133,48 @@ public class UserSegmentsCriteriaContributorTest {
 	public void setUp() throws Exception {
 		_expandoTable = ExpandoTestUtil.addTable(
 			PortalUtil.getClassNameId(User.class), "CUSTOM_FIELDS");
-
 		_group = GroupTestUtil.addGroup();
 
 		_organization = OrganizationTestUtil.addOrganization(true);
-		_role1 = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
-		_role2 = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
-		_userGroup = UserGroupTestUtil.addUserGroup();
-
-		_roleLocalService.addGroupRole(
-			_organization.getGroupId(), _role1.getRoleId());
-		_roleLocalService.addGroupRole(
-			_userGroup.getGroupId(), _role2.getRoleId());
-
 		_user = UserTestUtil.addUser();
 
 		_organizationLocalService.addUserOrganization(
 			_user.getUserId(), _organization.getOrganizationId());
+
+		_role1 = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
+
+		_roleLocalService.addGroupRole(
+			_organization.getGroupId(), _role1.getRoleId());
+
+		_role2 = RoleTestUtil.addRole(RoleConstants.TYPE_REGULAR);
+		_userGroup = UserGroupTestUtil.addUserGroup();
+
+		_roleLocalService.addGroupRole(
+			_userGroup.getGroupId(), _role2.getRoleId());
 		_userGroupLocalService.addUserUserGroup(
 			_user.getUserId(), _userGroup.getUserGroupId());
 	}
 
 	@Test
 	public void testContribute() throws Exception {
-		Criteria criteria = new Criteria();
-
 		SegmentsCriteriaContributor segmentsCriteriaContributor =
 			_getSegmentsCriteriaContributor();
 
-		long roleId1 = _role1.getRoleId();
-		long roleId2 = _role2.getRoleId();
+		Criteria criteria = new Criteria();
 
 		segmentsCriteriaContributor.contribute(
 			criteria,
 			StringBundler.concat(
-				"(roleIds eq '", roleId1, "' or roleIds eq '", roleId2, "')"),
+				"(roleIds eq '", _role1.getRoleId(), "' or roleIds eq '",
+				_role2.getRoleId(), "')"),
 			Criteria.Conjunction.AND);
 
 		Assert.assertEquals(
 			StringBundler.concat(
-				"((roleIds eq '", roleId1, "' or organizationIds eq '",
-				_organization.getOrganizationId(), "') or (roleIds eq '",
-				roleId2, "' or userGroupIds eq '", _userGroup.getUserGroupId(),
-				"'))"),
+				"((roleIds eq '", _role1.getRoleId(),
+				"' or organizationIds eq '", _organization.getOrganizationId(),
+				"') or (roleIds eq '", _role2.getRoleId(),
+				"' or userGroupIds eq '", _userGroup.getUserGroupId(), "'))"),
 			criteria.getFilterString(Criteria.Type.MODEL));
 	}
 
