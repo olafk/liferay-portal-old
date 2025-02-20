@@ -343,7 +343,7 @@ test('can see corresponding elements at instance level', async ({
 		.getByTestId('creationMenuNewButton')
 		.nth(1)
 		.click();
-		
+
 	await expect(
 		companyExportImportPage.page.getByText('Comments, Ratings')
 	).not.toBeVisible();
@@ -359,7 +359,7 @@ test('can see corresponding elements at instance level', async ({
 	).not.toBeVisible();
 
 	await expect(
-		companyExportImportPage.page.getByRole('link', { name: 'Refresh Counts' })
+		companyExportImportPage.page.getByRole('link', {name: 'Refresh Counts'})
 	).not.toBeVisible();
 });
 
