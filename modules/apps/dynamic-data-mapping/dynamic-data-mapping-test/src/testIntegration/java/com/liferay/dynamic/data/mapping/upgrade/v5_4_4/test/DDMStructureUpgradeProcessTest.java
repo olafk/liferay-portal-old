@@ -83,8 +83,8 @@ public class DDMStructureUpgradeProcessTest {
 			LogEntry logEntry = logEntries.get(0);
 
 			Assert.assertEquals(
-				"Unable to normalize form rules for structure ID " +
-					ddmStructure.getStructureId(),
+				"Unable to normalize form rules for dynamic data mapping " +
+					"structure ID " + ddmStructure.getStructureId(),
 				logEntry.getMessage());
 		}
 	}

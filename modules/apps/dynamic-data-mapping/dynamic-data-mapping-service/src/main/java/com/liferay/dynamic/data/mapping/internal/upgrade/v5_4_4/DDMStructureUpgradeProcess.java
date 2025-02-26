@@ -139,8 +139,9 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 					}
 					catch (Exception exception) {
 						String message =
-							"Unable to normalize form rules for structure ID " +
-								resultSet.getLong("structureId");
+							"Unable to normalize form rules for dynamic data " +
+								"mapping structure ID " +
+									resultSet.getLong("structureId");
 
 						if (_log.isDebugEnabled()) {
 							_log.debug(message, exception);
