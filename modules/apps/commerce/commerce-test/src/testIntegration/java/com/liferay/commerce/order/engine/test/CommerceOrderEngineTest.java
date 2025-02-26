@@ -1171,9 +1171,6 @@ public class CommerceOrderEngineTest {
 	@Rule
 	public FrutillaRule frutillaRule = new FrutillaRule();
 
-	private Company _company;
-	private User _user;
-
 	private AccountEntry _accountEntry;
 
 	@DeleteAfterTestRun
@@ -1208,6 +1205,7 @@ public class CommerceOrderEngineTest {
 	@Inject
 	private CommerceShipmentLocalService _commerceShipmentLocalService;
 
+	private Company _company;
 	private Group _group;
 	private String _originalName;
 	private PermissionChecker _originalPermissionChecker;
@@ -1216,5 +1214,6 @@ public class CommerceOrderEngineTest {
 	private ServiceComponentRuntime _serviceComponentRuntime;
 
 	private ServiceContext _serviceContext;
+	private User _user;
 
 }
