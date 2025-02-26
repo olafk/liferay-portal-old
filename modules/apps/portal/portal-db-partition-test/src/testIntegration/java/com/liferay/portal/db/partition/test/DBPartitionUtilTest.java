@@ -329,21 +329,18 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 			extractDBPartitions();
 
 			for (long companyId : COMPANY_IDS) {
-				List<String> views = viewNames.get(companyId);
-
 				String extractedPartitionName = getExtractedPartitionName(
 					companyId);
+				List<String> views = viewNames.get(companyId);
 
 				Assert.assertEquals(
 					tablesCount.get(companyId) + views.size(),
 					_getTablesCount(extractedPartitionName));
 
-				Assert.assertEquals(0, _getViewsCount(extractedPartitionName));
-
 				Assert.assertEquals(
 					(int)tablesCount.get(companyId),
 					_getTablesCount(getPartitionName(companyId)));
-
+				Assert.assertEquals(0, _getViewsCount(extractedPartitionName));
 				Assert.assertEquals(
 					views.size(), _getViewsCount(getPartitionName(companyId)));
 

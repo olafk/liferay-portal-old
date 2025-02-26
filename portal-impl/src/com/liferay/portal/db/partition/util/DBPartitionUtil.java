@@ -460,9 +460,7 @@ public class DBPartitionUtil {
 
 		Connection connection = CurrentConnectionUtil.getConnection(
 			InfrastructureUtil.getDataSource());
-
 		List<String> quartzTableNames = new ArrayList<>();
-
 		String sourcePartitionName = getPartitionName(fromCompanyId);
 		String targetPartitionName = getPartitionName(toCompanyId);
 

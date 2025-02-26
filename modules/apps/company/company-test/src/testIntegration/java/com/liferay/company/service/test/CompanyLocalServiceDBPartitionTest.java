@@ -665,7 +665,6 @@ public class CompanyLocalServiceDBPartitionTest
 			Assert.assertTrue(
 				ArrayUtil.contains(
 					_getCompanyIdsBySQL(), company.getCompanyId()));
-
 			Assert.assertTrue(
 				exists(getExtractedPartitionName(company.getCompanyId())));
 
@@ -725,15 +724,15 @@ public class CompanyLocalServiceDBPartitionTest
 			Assert.fail();
 		}
 		catch (Exception exception) {
-			Assert.assertFalse(
-				exists(getExtractedPartitionName(company.getCompanyId())));
+			Assert.assertTrue(
+				ArrayUtil.contains(
+					_getCompanyIdsBySQL(), company.getCompanyId()));
 			Assert.assertEquals(
 				tablesCount, _getTablesCount(company.getCompanyId()));
 			Assert.assertEquals(
 				viewsCount, _getViewsCount(company.getCompanyId()));
-			Assert.assertTrue(
-				ArrayUtil.contains(
-					_getCompanyIdsBySQL(), company.getCompanyId()));
+			Assert.assertFalse(
+				exists(getExtractedPartitionName(company.getCompanyId())));
 		}
 		finally {
 			db.runSQL(
