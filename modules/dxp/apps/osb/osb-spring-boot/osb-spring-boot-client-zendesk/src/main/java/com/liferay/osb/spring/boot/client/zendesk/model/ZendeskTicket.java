@@ -21,10 +21,10 @@ public class ZendeskTicket {
 	public static final String STATUS_CLOSED = "closed";
 
 	public ZendeskTicket(JSONObject jsonObject, String zendeskURL) {
+		Map<Long, String> customFields = new HashMap<>();
+
 		JSONArray customFieldsJSONArray = jsonObject.getJSONArray(
 			"custom_fields");
-
-		Map<Long, String> customFields = new HashMap<>();
 
 		if (customFieldsJSONArray != null) {
 			for (int i = 0; i < customFieldsJSONArray.length(); i++) {
@@ -43,9 +43,9 @@ public class ZendeskTicket {
 		_status = jsonObject.getString("status");
 		_subject = jsonObject.getString("subject");
 
-		JSONArray tagsJSONArray = jsonObject.getJSONArray("tags");
-
 		Set<String> tags = new HashSet<>();
+
+		JSONArray tagsJSONArray = jsonObject.getJSONArray("tags");
 
 		if (tagsJSONArray != null) {
 			for (int i = 0; i < tagsJSONArray.length(); i++) {
