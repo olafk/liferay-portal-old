@@ -186,8 +186,8 @@ public class BatchEngineExportTaskExecutorImpl
 
 		try (BatchEngineExportTaskItemWriter batchEngineExportTaskItemWriter =
 				_getBatchEngineExportTaskItemWriter(
-					batchEngineExportTask, parameters,
-					unsyncByteArrayOutputStream, settings)) {
+					batchEngineExportTask, parameters, settings,
+					unsyncByteArrayOutputStream)) {
 
 			oldNestedFieldsContext =
 				NestedFieldsContextThreadLocal.getNestedFieldsContext();
@@ -268,9 +268,8 @@ public class BatchEngineExportTaskExecutorImpl
 
 	private BatchEngineExportTaskItemWriter _getBatchEngineExportTaskItemWriter(
 			BatchEngineExportTask batchEngineExportTask,
-			Map<String, Serializable> parameters,
-			UnsyncByteArrayOutputStream unsyncByteArrayOutputStream,
-			Settings settings)
+			Map<String, Serializable> parameters, Settings settings,
+			UnsyncByteArrayOutputStream unsyncByteArrayOutputStream)
 		throws Exception {
 
 		BatchEngineExportTaskItemWriterBuilder
