@@ -262,7 +262,7 @@ public class LayoutSetPrototypePropagationTest
 
 	@Test
 	@TestInfo("LPD-50062")
-	public void testLayoutPropagationWhitFragmentEntries() throws Exception {
+	public void testLayoutPropagationWithFragmentEntries() throws Exception {
 		setLinkEnabled(true);
 
 		Layout layout1 = _addLayout(_layoutSetPrototypeGroup.getGroupId());
