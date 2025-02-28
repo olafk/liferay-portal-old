@@ -685,21 +685,21 @@ public class CustomFDSSerializerTest extends BaseFDSSerializerTestCase {
 		// Different pagination
 
 		_mockSerializePagination(
-			FDS_NAMES[0], DEFAULTS_ITEMS_PER_PAGE[0],
-			LISTS_OF_ITEMS_PER_PAGE[0]);
+			FDS_NAMES[0], DEFAULT_ITEMS_PER_PAGE_ARRAY[0],
+			LIST_OF_ITEMS_PER_PAGE_ARRAY[0]);
 
 		_mockSerializePagination(
-			FDS_NAMES[1], DEFAULTS_ITEMS_PER_PAGE[1],
-			LISTS_OF_ITEMS_PER_PAGE[1]);
+			FDS_NAMES[1], DEFAULT_ITEMS_PER_PAGE_ARRAY[1],
+			LIST_OF_ITEMS_PER_PAGE_ARRAY[1]);
 
 		JSONAssert.assertEquals(
 			JSONUtil.put(
 				"deltas",
 				() -> JSONUtil.toJSONArray(
-					ListUtil.fromArray(LISTS_OF_ITEMS_PER_PAGE[0]),
+					ListUtil.fromArray(LIST_OF_ITEMS_PER_PAGE_ARRAY[0]),
 					itemsPerPage -> JSONUtil.put("label", itemsPerPage))
 			).put(
-				"initialDelta", DEFAULTS_ITEMS_PER_PAGE[0]
+				"initialDelta", DEFAULT_ITEMS_PER_PAGE_ARRAY[0]
 			).toString(),
 			_customFDSSerializer.serializePagination(
 				FDS_NAMES[0], httpServletRequest
@@ -710,10 +710,10 @@ public class CustomFDSSerializerTest extends BaseFDSSerializerTestCase {
 			JSONUtil.put(
 				"deltas",
 				() -> JSONUtil.toJSONArray(
-					ListUtil.fromArray(LISTS_OF_ITEMS_PER_PAGE[1]),
+					ListUtil.fromArray(LIST_OF_ITEMS_PER_PAGE_ARRAY[1]),
 					itemsPerPage -> JSONUtil.put("label", itemsPerPage))
 			).put(
-				"initialDelta", DEFAULTS_ITEMS_PER_PAGE[1]
+				"initialDelta", DEFAULT_ITEMS_PER_PAGE_ARRAY[1]
 			).toString(),
 			_customFDSSerializer.serializePagination(
 				FDS_NAMES[1], httpServletRequest
@@ -725,11 +725,11 @@ public class CustomFDSSerializerTest extends BaseFDSSerializerTestCase {
 		// Shared pagination
 
 		_mockSerializePagination(
-			FDS_NAMES[0], DEFAULTS_ITEMS_PER_PAGE[0],
-			LISTS_OF_ITEMS_PER_PAGE[0]);
+			FDS_NAMES[0], DEFAULT_ITEMS_PER_PAGE_ARRAY[0],
+			LIST_OF_ITEMS_PER_PAGE_ARRAY[0]);
 		_mockSerializePagination(
-			FDS_NAMES[1], DEFAULTS_ITEMS_PER_PAGE[0],
-			LISTS_OF_ITEMS_PER_PAGE[0]);
+			FDS_NAMES[1], DEFAULT_ITEMS_PER_PAGE_ARRAY[0],
+			LIST_OF_ITEMS_PER_PAGE_ARRAY[0]);
 
 		JSONAssert.assertEquals(
 			_customFDSSerializer.serializePagination(
@@ -744,14 +744,14 @@ public class CustomFDSSerializerTest extends BaseFDSSerializerTestCase {
 
 		// Wrong pagination
 
-		_mockSerializePagination(FDS_NAMES[0], 0, LISTS_OF_ITEMS_PER_PAGE[2]);
+		_mockSerializePagination(FDS_NAMES[0], 0, LIST_OF_ITEMS_PER_PAGE_ARRAY[2]);
 		_mockSerializePagination(FDS_NAMES[1], -1, null);
 
 		JSONAssert.assertEquals(
 			JSONUtil.put(
 				"deltas",
 				() -> JSONUtil.toJSONArray(
-					ListUtil.fromArray(LISTS_OF_ITEMS_PER_PAGE[3]),
+					ListUtil.fromArray(LIST_OF_ITEMS_PER_PAGE_ARRAY[3]),
 					itemsPerPage -> JSONUtil.put("label", itemsPerPage))
 			).put(
 				"initialDelta", PropsValues.SEARCH_CONTAINER_PAGE_DEFAULT_DELTA

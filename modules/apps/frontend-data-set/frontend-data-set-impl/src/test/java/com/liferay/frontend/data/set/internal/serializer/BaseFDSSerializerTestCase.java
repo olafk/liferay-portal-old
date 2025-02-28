@@ -98,7 +98,7 @@ public abstract class BaseFDSSerializerTestCase {
 	protected static final String[] CONTENT_RENDERERS =
 		RandomTestUtil.randomStrings(2);
 
-	protected static final int[] DEFAULTS_ITEMS_PER_PAGE = {
+	protected static final int[] DEFAULT_ITEMS_PER_PAGE_ARRAY = {
 		RandomTestUtil.randomInt(), RandomTestUtil.randomInt()
 	};
 
@@ -122,7 +122,7 @@ public abstract class BaseFDSSerializerTestCase {
 
 	protected static final String LINK = RandomTestUtil.randomString();
 
-	protected static final int[][] LISTS_OF_ITEMS_PER_PAGE = {
+	protected static final int[][] LIST_OF_ITEMS_PER_PAGE_ARRAY = {
 		{RandomTestUtil.randomInt(), RandomTestUtil.randomInt()},
 		{
 			RandomTestUtil.randomInt(), RandomTestUtil.randomInt(),

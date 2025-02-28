@@ -904,23 +904,23 @@ public class SystemFDSSerializerTest extends BaseFDSSerializerTestCase {
 				SystemFDSEntryFactory.create(
 					FDS_NAMES[0]
 				).withPagination(
-					DEFAULTS_ITEMS_PER_PAGE[0], LISTS_OF_ITEMS_PER_PAGE[0]
+					DEFAULT_ITEMS_PER_PAGE_ARRAY[0], LIST_OF_ITEMS_PER_PAGE_ARRAY[0]
 				)),
 			_registerSystemFDSEntry(
 				SystemFDSEntryFactory.create(
 					FDS_NAMES[1]
 				).withPagination(
-					DEFAULTS_ITEMS_PER_PAGE[1], LISTS_OF_ITEMS_PER_PAGE[1]
+					DEFAULT_ITEMS_PER_PAGE_ARRAY[1], LIST_OF_ITEMS_PER_PAGE_ARRAY[1]
 				)));
 
 		JSONAssert.assertEquals(
 			JSONUtil.put(
 				"deltas",
 				() -> JSONUtil.toJSONArray(
-					ListUtil.fromArray(LISTS_OF_ITEMS_PER_PAGE[0]),
+					ListUtil.fromArray(LIST_OF_ITEMS_PER_PAGE_ARRAY[0]),
 					itemsPerPage -> JSONUtil.put("label", itemsPerPage))
 			).put(
-				"initialDelta", DEFAULTS_ITEMS_PER_PAGE[0]
+				"initialDelta", DEFAULT_ITEMS_PER_PAGE_ARRAY[0]
 			).toString(),
 			_systemFDSSerializer.serializePagination(
 				FDS_NAMES[0], httpServletRequest
@@ -931,10 +931,10 @@ public class SystemFDSSerializerTest extends BaseFDSSerializerTestCase {
 			JSONUtil.put(
 				"deltas",
 				() -> JSONUtil.toJSONArray(
-					ListUtil.fromArray(LISTS_OF_ITEMS_PER_PAGE[1]),
+					ListUtil.fromArray(LIST_OF_ITEMS_PER_PAGE_ARRAY[1]),
 					itemsPerPage -> JSONUtil.put("label", itemsPerPage))
 			).put(
-				"initialDelta", DEFAULTS_ITEMS_PER_PAGE[1]
+				"initialDelta", DEFAULT_ITEMS_PER_PAGE_ARRAY[1]
 			).toString(),
 			_systemFDSSerializer.serializePagination(
 				FDS_NAMES[1], httpServletRequest
@@ -950,13 +950,13 @@ public class SystemFDSSerializerTest extends BaseFDSSerializerTestCase {
 				SystemFDSEntryFactory.create(
 					FDS_NAMES[0]
 				).withPagination(
-					DEFAULTS_ITEMS_PER_PAGE[0], LISTS_OF_ITEMS_PER_PAGE[0]
+					DEFAULT_ITEMS_PER_PAGE_ARRAY[0], LIST_OF_ITEMS_PER_PAGE_ARRAY[0]
 				)),
 			_registerSystemFDSEntry(
 				SystemFDSEntryFactory.create(
 					FDS_NAMES[1]
 				).withPagination(
-					DEFAULTS_ITEMS_PER_PAGE[0], LISTS_OF_ITEMS_PER_PAGE[0]
+					DEFAULT_ITEMS_PER_PAGE_ARRAY[0], LIST_OF_ITEMS_PER_PAGE_ARRAY[0]
 				)));
 
 		JSONAssert.assertEquals(
@@ -977,7 +977,7 @@ public class SystemFDSSerializerTest extends BaseFDSSerializerTestCase {
 				SystemFDSEntryFactory.create(
 					FDS_NAMES[0]
 				).withPagination(
-					0, LISTS_OF_ITEMS_PER_PAGE[2]
+					0, LIST_OF_ITEMS_PER_PAGE_ARRAY[2]
 				)),
 			_registerSystemFDSEntry(
 				SystemFDSEntryFactory.create(
@@ -990,7 +990,7 @@ public class SystemFDSSerializerTest extends BaseFDSSerializerTestCase {
 			JSONUtil.put(
 				"deltas",
 				() -> JSONUtil.toJSONArray(
-					ListUtil.fromArray(LISTS_OF_ITEMS_PER_PAGE[3]),
+					ListUtil.fromArray(LIST_OF_ITEMS_PER_PAGE_ARRAY[3]),
 					itemsPerPage -> JSONUtil.put("label", itemsPerPage))
 			).put(
 				"initialDelta", PropsValues.SEARCH_CONTAINER_PAGE_DEFAULT_DELTA
