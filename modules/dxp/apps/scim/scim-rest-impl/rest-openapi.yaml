@@ -108,11 +108,11 @@ components:
                     description:
                         The value that should be updated.
                     oneOf:
+                        - type: array
                         - type: boolean
                         - type: integer
                         - type: number
                         - type: string
-                        - type: array
             type: object
         PatchOp:
             properties:
