@@ -43,14 +43,14 @@ public class FDSRendererImpl implements FDSRenderer {
 		HttpServletResponse httpServletResponse, boolean inline,
 		String propsTransformer, Writer writer) {
 
-		FDSSerializer fdsSerializer = _getFDSSerializer(
-			fdsName, httpServletRequest);
-
 		Map<String, Object> props = new HashMap<>();
 
 		if (baseProps != null) {
 			props.putAll(baseProps);
 		}
+
+		FDSSerializer fdsSerializer = _getFDSSerializer(
+			fdsName, httpServletRequest);
 
 		if (fdsSerializer == null) {
 			if (_log.isDebugEnabled()) {
