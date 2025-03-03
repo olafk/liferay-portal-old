@@ -2,7 +2,7 @@
 	{
 		"active": true,
 		"description": {
-			"en_US": "Designates that the order is an add-on"
+			"en_US": "Designates that the order is an add-on."
 		},
 		"displayOrder": 0,
 		"externalReferenceCode": "ADDONS",
