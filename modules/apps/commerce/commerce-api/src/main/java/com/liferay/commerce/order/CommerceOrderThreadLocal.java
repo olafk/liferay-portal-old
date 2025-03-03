@@ -37,8 +37,7 @@ public class CommerceOrderThreadLocal {
 			() -> Boolean.FALSE);
 	private static final ThreadLocal<Boolean> _skipValidateAccountLimit =
 		new CentralizedThreadLocal<>(
-			CommerceReturnThreadLocal.class +
-				"._skipValidateAccountLimit",
+			CommerceReturnThreadLocal.class + "._skipValidateAccountLimit",
 			() -> Boolean.FALSE);
 
 }
