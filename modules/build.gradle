@@ -957,6 +957,8 @@ gradle.taskGraph.whenReady {
 @CacheableTransform
 protected abstract class BaseJakartaTransformerTransformAction implements TransformAction<Parameters> {
 
+	public static final String ARTIFACT_TYPE = "jakarta-transformed-jar"
+
 	public interface Parameters extends TransformParameters {
 
 		@CompileClasspath
@@ -964,12 +966,6 @@ protected abstract class BaseJakartaTransformerTransformAction implements Transf
 		public ConfigurableFileCollection getExcludesFileCollection()
 
 	}
-
-	public static final String ARTIFACT_TYPE = "jakarta-transformed-jar"
-
-	protected static Logger logger
-	protected static ClassLoader classLoader
-	protected static File propertiesFile
 
 	@org.gradle.api.tasks.Classpath
 	@InputArtifact
@@ -1011,6 +1007,10 @@ protected abstract class BaseJakartaTransformerTransformAction implements Transf
 
 		logger.lifecycle("Jakarta: TRANSFORMING artifact: {} -> {}", inputJarFile, outputJarFile)
 	}
+
+	protected static Logger logger
+	protected static ClassLoader classLoader
+	protected static File propertiesFile
 
 }
 
