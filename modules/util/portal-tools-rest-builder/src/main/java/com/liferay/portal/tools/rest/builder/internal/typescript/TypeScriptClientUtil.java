@@ -595,7 +595,7 @@ public class TypeScriptClientUtil {
 		return "any";
 	}
 
-	private static Collection<Map<String, Object>> _getParameterDatas(
+	private static List<Map<String, Object>> _getParameterDatas(
 		Operation operation, Set<String> imports) {
 
 		List<Map<String, Object>> parameterDatas = new ArrayList<>();
