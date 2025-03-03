@@ -231,22 +231,26 @@ public class TypeScriptClientUtil {
 
 				imports.add(parentClass);
 
-				for (Schema additionalSchema : schema.getAllOfSchemas()) {
-					if (additionalSchema.getPropertySchemas() != null) {
-						Map<String, Schema> propertySchemas =
-							additionalSchema.getPropertySchemas();
-
-						propertySchemas.forEach(
-							(name, propertySchema) -> properties.add(
-								HashMapBuilder.<String, Object>put(
-									"name",
-									StringUtil.replace(
-										name, '-', StringPool.UNDERLINE)
-								).put(
-									"type",
-									_getDataType(propertySchema, imports)
-								).build()));
+				for (Schema curSchema : schema.getAllOfSchemas()) {
+					if (curSchema.getPropertySchemas() == null) {
+						continue;
 					}
+
+					// TODO Rename "type" to "dataType"
+
+					Map<String, Schema> propertySchemas =
+						curSchema.getPropertySchemas();
+
+					propertySchemas.forEach(
+						(name, propertySchema) -> properties.add(
+							HashMapBuilder.<String, Object>put(
+								"name",
+								StringUtil.replace(
+									name, '-', CharPool.UNDERLINE)
+							).put(
+								"type",
+								_getDataType(propertySchema, imports)
+							).build()));
 				}
 			}
 		}
