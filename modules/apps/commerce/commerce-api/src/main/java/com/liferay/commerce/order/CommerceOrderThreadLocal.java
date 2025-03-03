@@ -17,28 +17,28 @@ public class CommerceOrderThreadLocal {
 		return _deleteInProcess.get();
 	}
 
-	public static boolean isSkipValidateAccountOrdersLimit() {
-		return _skipValidateAccountOrdersLimit.get();
+	public static boolean isSkipValidateAccountLimit() {
+		return _skipValidateAccountLimit.get();
 	}
 
 	public static void setDeleteInProcess(boolean deleteInProcess) {
 		_deleteInProcess.set(deleteInProcess);
 	}
 
-	public static void setSkipValidateAccountOrdersLimit(
-		boolean skipValidateAccountOrdersLimit) {
+	public static void setSkipValidateAccountLimit(
+		boolean skipValidateAccountLimit) {
 
-		_skipValidateAccountOrdersLimit.set(skipValidateAccountOrdersLimit);
+		_skipValidateAccountLimit.set(skipValidateAccountLimit);
 	}
 
 	private static final ThreadLocal<Boolean> _deleteInProcess =
 		new CentralizedThreadLocal<>(
 			CommerceOrderThreadLocal.class + "._deleteInProcess",
 			() -> Boolean.FALSE);
-	private static final ThreadLocal<Boolean> _skipValidateAccountOrdersLimit =
+	private static final ThreadLocal<Boolean> _skipValidateAccountLimit =
 		new CentralizedThreadLocal<>(
 			CommerceReturnThreadLocal.class +
-				"._skipValidateAccountOrdersLimit",
+				"._skipValidateAccountLimit",
 			() -> Boolean.FALSE);
 
 }

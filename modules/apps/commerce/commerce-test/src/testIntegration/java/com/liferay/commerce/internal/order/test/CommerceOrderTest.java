@@ -989,7 +989,7 @@ public class CommerceOrderTest {
 	}
 
 	@Test
-	public void testSkipValidateAccountOrdersLimit() throws Exception {
+	public void testSkipValidateAccountLimit() throws Exception {
 		Settings settings = FallbackKeysSettingsUtil.getSettings(
 			new GroupServiceSettingsLocator(
 				_commerceChannel.getGroupId(),
@@ -1031,11 +1031,11 @@ public class CommerceOrderTest {
 				commerceChannelGroupId, accountEntry.getAccountEntryId(),
 				StringPool.BLANK));
 
-		boolean skipValidateAccountOrdersLimit =
-			CommerceOrderThreadLocal.isSkipValidateAccountOrdersLimit();
+		boolean skipValidateAccountLimit =
+			CommerceOrderThreadLocal.isSkipValidateAccountLimit();
 
 		try {
-			CommerceOrderThreadLocal.setSkipValidateAccountOrdersLimit(true);
+			CommerceOrderThreadLocal.setSkipValidateAccountLimit(true);
 
 			_commerceOrderLocalService.addCommerceOrder(
 				_user.getUserId(), commerceChannelGroupId,
@@ -1049,13 +1049,13 @@ public class CommerceOrderTest {
 					StringPool.BLANK));
 
 			Assert.assertFalse(
-				CommerceOrderThreadLocal.isSkipValidateAccountOrdersLimit());
+				CommerceOrderThreadLocal.isSkipValidateAccountLimit());
 
 			_accountEntries.add(accountEntry);
 		}
 		finally {
-			CommerceOrderThreadLocal.setSkipValidateAccountOrdersLimit(
-				skipValidateAccountOrdersLimit);
+			CommerceOrderThreadLocal.setSkipValidateAccountLimit(
+				skipValidateAccountLimit);
 		}
 	}
 

@@ -2785,7 +2785,7 @@ public class CommerceOrderLocalServiceImpl
 			long commerceChannelGroupId, long commerceAccountId)
 		throws PortalException {
 
-		if (CommerceOrderThreadLocal.isSkipValidateAccountOrdersLimit()) {
+		if (CommerceOrderThreadLocal.isSkipValidateAccountLimit()) {
 			return;
 		}
 

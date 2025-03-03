@@ -53,11 +53,11 @@ public class CommerceOrderImporterTypeUtil {
 			UserLocalService userLocalService)
 		throws Exception {
 
-		boolean skipValidateAccountOrdersLimit =
-			CommerceOrderThreadLocal.isSkipValidateAccountOrdersLimit();
+		boolean skipValidateAccountLimit =
+			CommerceOrderThreadLocal.isSkipValidateAccountLimit();
 
 		try {
-			CommerceOrderThreadLocal.setSkipValidateAccountOrdersLimit(true);
+			CommerceOrderThreadLocal.setSkipValidateAccountLimit(true);
 
 			CommerceOrder tempCommerceOrder =
 				commerceOrderService.addCommerceOrder(
@@ -159,8 +159,8 @@ public class CommerceOrderImporterTypeUtil {
 			return ListUtil.fromArray(commerceOrderImporterItemImpls);
 		}
 		finally {
-			CommerceOrderThreadLocal.setSkipValidateAccountOrdersLimit(
-				skipValidateAccountOrdersLimit);
+			CommerceOrderThreadLocal.setSkipValidateAccountLimit(
+				skipValidateAccountLimit);
 		}
 	}
 
