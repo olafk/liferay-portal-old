@@ -214,6 +214,55 @@ public class TypeScriptClientUtil {
 			"([ \\t]+)schemas:", "$1schemas:\n$1$1" + schemaYAMLString);
 	}
 
+	private static Map<String, Map<String, Object>> _buildAPIContexts(
+		ConfigYAML configYAML, OpenAPIYAML openAPIYAML) {
+
+		Map<String, PathItem> pathItems = openAPIYAML.getPathItems();
+
+		Map<String, List<Map<String, Object>>> operationDatasMap =
+			new HashMap<>();
+
+		Map<String, Set<String>> tagImports = new HashMap<>();
+
+		for (Map.Entry<String, PathItem> entry : pathItems.entrySet()) {
+			for (Operation operation :
+					OpenAPIParserUtil.getOperations(entry.getValue())) {
+
+				List<String> tags = operation.getTags();
+
+				List<Map<String, Object>> operationDatas =
+					operationDatasMap.computeIfAbsent(
+						tags.get(0), k -> new ArrayList<>());
+
+				operationDatas.add(
+					_buildOperationData(
+						configYAML,
+						tagImports.computeIfAbsent(
+							tags.get(0), k -> new HashSet<>()),
+						openAPIYAML, operation, entry.getKey()));
+			}
+		}
+
+		Map<String, Map<String, Object>> tagAPIContexts = new HashMap<>();
+
+		for (Map.Entry<String, List<Map<String, Object>>> entry :
+				operationDatasMap.entrySet()) {
+
+			tagAPIContexts.put(
+				entry.getKey(),
+				HashMapBuilder.<String, Object>put(
+					"classname", entry.getKey() + "Api"
+				).put(
+					"imports",
+					tagImports.getOrDefault(entry.getKey(), new HashSet<>())
+				).put(
+					"operationsData", entry.getValue()
+				).build());
+		}
+
+		return tagAPIContexts;
+	}
+
 	private static Map<String, Object> _buildModelContext(
 		String modelName, Schema schema) {
 
@@ -389,55 +438,6 @@ public class TypeScriptClientUtil {
 				return null;
 			}
 		).build();
-	}
-
-	private static Map<String, Map<String, Object>> _buildAPIContexts(
-		ConfigYAML configYAML, OpenAPIYAML openAPIYAML) {
-
-		Map<String, PathItem> pathItems = openAPIYAML.getPathItems();
-
-		Map<String, List<Map<String, Object>>> operationDatasMap =
-			new HashMap<>();
-
-		Map<String, Set<String>> tagImports = new HashMap<>();
-
-		for (Map.Entry<String, PathItem> entry : pathItems.entrySet()) {
-			for (Operation operation :
-					OpenAPIParserUtil.getOperations(entry.getValue())) {
-
-				List<String> tags = operation.getTags();
-
-				List<Map<String, Object>> operationDatas =
-					operationDatasMap.computeIfAbsent(
-						tags.get(0), k -> new ArrayList<>());
-
-				operationDatas.add(
-					_buildOperationData(
-						configYAML,
-						tagImports.computeIfAbsent(
-							tags.get(0), k -> new HashSet<>()),
-						openAPIYAML, operation, entry.getKey()));
-			}
-		}
-
-		Map<String, Map<String, Object>> tagAPIContexts = new HashMap<>();
-
-		for (Map.Entry<String, List<Map<String, Object>>> entry :
-				operationDatasMap.entrySet()) {
-
-			tagAPIContexts.put(
-				entry.getKey(),
-				HashMapBuilder.<String, Object>put(
-					"classname", entry.getKey() + "Api"
-				).put(
-					"imports",
-					tagImports.getOrDefault(entry.getKey(), new HashSet<>())
-				).put(
-					"operationsData", entry.getValue()
-				).build());
-		}
-
-		return tagAPIContexts;
 	}
 
 	private static void _createBuildGradleFile(
