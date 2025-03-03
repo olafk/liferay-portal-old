@@ -1950,14 +1950,27 @@ test.describe('Form Localization', () => {
 				`/web${site.friendlyUrlPath}${layout.friendlyUrlPath}`
 			);
 
-			await page
-				.getByLabel('Long Integer', {exact: true})
-				.fill('11111111111');
-			await page.getByLabel('Integer', {exact: true}).fill('1111');
-			await page
-				.getByLabel('Precision Decimal', {exact: true})
-				.fill('111.11');
-			await page.getByLabel('Decimal', {exact: true}).fill('1111.22222');
+			const decimalInput = page.getByRole('spinbutton', {
+				exact: true,
+				name: 'Decimal',
+			});
+			const integerInput = page.getByRole('spinbutton', {
+				exact: true,
+				name: 'Integer',
+			});
+			const longIntegerInput = page.getByRole('spinbutton', {
+				exact: true,
+				name: 'Long Integer',
+			});
+			const precisionDecimalInput = page.getByRole('spinbutton', {
+				exact: true,
+				name: 'Precision Decimal',
+			});
+
+			await decimalInput.fill('1111.22222');
+			await integerInput.fill('1111');
+			await longIntegerInput.fill('11111111111');
+			await precisionDecimalInput.fill('111.11');
 
 			await clickAndExpectToBeVisible({
 				autoClick: true,
@@ -1969,14 +1982,10 @@ test.describe('Form Localization', () => {
 				),
 			});
 
-			await page
-				.getByLabel('Long Integer', {exact: true})
-				.fill('22222222222');
-			await page.getByLabel('Integer', {exact: true}).fill('2222');
-			await page
-				.getByLabel('Precision Decimal', {exact: true})
-				.fill('222.22');
-			await page.getByLabel('Decimal', {exact: true}).fill('2222.33333');
+			await decimalInput.fill('2222.33333');
+			await integerInput.fill('2222');
+			await longIntegerInput.fill('22222222222');
+			await precisionDecimalInput.fill('222.22');
 
 			await page.getByRole('button', {name: 'Submit'}).click();
 
@@ -2556,17 +2565,18 @@ test.describe('Form Localization', () => {
 
 			// Fill the form in spanish
 
-			await fillAndClickOutside(
-				page,
-				page.getByLabel('Date', {exact: true}),
-				'1970-01-01'
-			);
+			const dateInput = page.getByRole('textbox', {
+				exact: true,
+				name: 'Date',
+			});
+			const dateTimeInput = page.getByRole('textbox', {
+				exact: true,
+				name: 'Date Time',
+			});
 
-			await fillAndClickOutside(
-				page,
-				page.getByLabel('Date Time', {exact: true}),
-				'1971-01-01T00:00'
-			);
+			await fillAndClickOutside(page, dateInput, '1970-01-01');
+
+			await fillAndClickOutside(page, dateTimeInput, '1971-01-01T00:00');
 
 			await clickAndExpectToBeVisible({
 				autoClick: true,
@@ -2578,16 +2588,9 @@ test.describe('Form Localization', () => {
 				),
 			});
 
-			await fillAndClickOutside(
-				page,
-				page.getByLabel('Date', {exact: true}),
-				'1970-01-02'
-			);
-			await fillAndClickOutside(
-				page,
-				page.getByLabel('Date Time', {exact: true}),
-				'1971-01-02T01:01'
-			);
+			await fillAndClickOutside(page, dateInput, '1970-01-02');
+
+			await fillAndClickOutside(page, dateTimeInput, '1971-01-02T01:01');
 
 			// Submit the form
 
@@ -3518,6 +3521,48 @@ test.describe('Form Localization', () => {
 							],
 							required: false,
 						},
+						{
+							DBType: ObjectField.DBTypeEnum.Integer,
+							businessType: ObjectField.BusinessTypeEnum.Integer,
+							externalReferenceCode: 'idealTemperatureERC',
+							indexed: true,
+							indexedAsKeyword: false,
+							indexedLanguageId: '',
+							label: {
+								en_US: 'Ideal Temperature (ºC)',
+							},
+							localized: false,
+							name: 'idealTemperature',
+							required: false,
+						},
+						{
+							DBType: ObjectField.DBTypeEnum.DateTime,
+							externalReferenceCode: 'lastWateringERC',
+							indexed: true,
+							indexedAsKeyword: false,
+							label: {
+								en_US: 'Last Watering',
+							},
+							localized: false,
+							name: 'lastWatering',
+							objectFieldSettings: [
+								{
+									name: 'timeStorage',
+									value: {},
+								},
+							],
+						},
+						{
+							DBType: ObjectField.DBTypeEnum.Date,
+							externalReferenceCode: 'plantingDateERC',
+							indexed: true,
+							indexedAsKeyword: false,
+							label: {
+								en_US: 'Planting Date',
+							},
+							localized: false,
+							name: 'plantingDate',
+						},
 					],
 					pluralLabel: {
 						en_US: 'Plants',
@@ -3608,6 +3653,20 @@ test.describe('Form Localization', () => {
 				)
 			).toBeVisible();
 
+			await expect(
+				page.getByLabel(
+					'Ideal Temperature (ºC) field cannot be localized'
+				)
+			).toBeVisible();
+
+			await expect(
+				page.getByLabel('Last Watering field cannot be localized')
+			).toBeVisible();
+
+			await expect(
+				page.getByLabel('Planting Date field cannot be localized')
+			).toBeVisible();
+
 			// Check that unlocalized fields are disabled
 
 			await expect(
@@ -3653,6 +3712,18 @@ test.describe('Form Localization', () => {
 
 			await expect(page.getByText('Select File')).toBeDisabled();
 
+			await expect(
+				page.getByRole('spinbutton', {name: 'Ideal Temperature (ºC)'})
+			).toBeDisabled();
+
+			await expect(
+				page.getByRole('textbox', {name: 'Last Watering'})
+			).toBeDisabled();
+
+			await expect(
+				page.getByRole('textbox', {name: 'Planting Date'})
+			).toBeDisabled();
+
 			// Check that the read only labels are not visibles
 
 			const checkboxReadOnlyLabel = page
@@ -3679,12 +3750,27 @@ test.describe('Form Localization', () => {
 				.getByText('Files from Document Library')
 				.getByText('(Read Only)');
 
+			const numericReadOnlyLabel = page
+				.getByText('Ideal Temperature (ºC)')
+				.getByText('(Read Only)');
+
+			const dateReadOnlyLabel = page
+				.getByText('Planting Date')
+				.getByText('(Read Only)');
+
+			const dateTimeReadOnlyLabel = page
+				.getByText('Last Watering')
+				.getByText('(Read Only)');
+
 			await expect(checkboxReadOnlyLabel).not.toBeVisible();
 			await expect(inputTextReadOnlyLabel).not.toBeVisible();
 			await expect(textareaReadOnlyLabel).not.toBeVisible();
 			await expect(selectReadOnlyLabel).not.toBeVisible();
 			await expect(multiSelectReadOnlyLabel).not.toBeVisible();
 			await expect(uploadFileReadOnlyLabel).not.toBeVisible();
+			await expect(numericReadOnlyLabel).not.toBeVisible();
+			await expect(dateReadOnlyLabel).not.toBeVisible();
+			await expect(dateTimeReadOnlyLabel).not.toBeVisible();
 
 			// Go to edit mode and change unlocalized field configuration to read only
 
@@ -3728,7 +3814,7 @@ test.describe('Form Localization', () => {
 
 			await expect(
 				page.getByLabel('field is not localizable message')
-			).toHaveCount(7);
+			).toHaveCount(10);
 
 			await expect(checkboxReadOnlyLabel).toBeVisible();
 			await expect(inputTextReadOnlyLabel).toBeVisible();
@@ -3736,6 +3822,9 @@ test.describe('Form Localization', () => {
 			await expect(selectReadOnlyLabel).toBeVisible();
 			await expect(multiSelectReadOnlyLabel).toBeVisible();
 			await expect(uploadFileReadOnlyLabel).toBeVisible();
+			await expect(numericReadOnlyLabel).toBeVisible();
+			await expect(dateReadOnlyLabel).toBeVisible();
+			await expect(dateTimeReadOnlyLabel).toBeVisible();
 
 			await expect(page.getByLabel('Country')).toHaveAttribute(
 				'readonly'
@@ -3765,6 +3854,18 @@ test.describe('Form Localization', () => {
 			await expect(secondMultiSelectOption).not.toBeChecked();
 
 			await expect(page.getByText('No file selected')).toHaveAttribute(
+				'readonly'
+			);
+
+			await expect(
+				page.getByLabel('Ideal Temperature (ºC)')
+			).toHaveAttribute('readonly');
+
+			await expect(page.getByLabel('Last Watering')).toHaveAttribute(
+				'readonly'
+			);
+
+			await expect(page.getByLabel('Planting Date')).toHaveAttribute(
 				'readonly'
 			);
 		}
