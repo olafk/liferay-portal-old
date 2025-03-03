@@ -222,7 +222,7 @@ public class TypeScriptClientUtil {
 		Map<String, List<Map<String, Object>>> operationDatasMap =
 			new HashMap<>();
 
-		Map<String, Set<String>> tagImports = new HashMap<>();
+		Map<String, Set<String>> importsMap = new HashMap<>();
 
 		for (Map.Entry<String, PathItem> entry : pathItems.entrySet()) {
 			for (Operation operation :
@@ -237,7 +237,7 @@ public class TypeScriptClientUtil {
 				operationDatas.add(
 					_buildOperationData(
 						configYAML,
-						tagImports.computeIfAbsent(
+						importsMap.computeIfAbsent(
 							tags.get(0), k -> new HashSet<>()),
 						openAPIYAML, operation, entry.getKey()));
 			}
@@ -254,7 +254,7 @@ public class TypeScriptClientUtil {
 					"classname", entry.getKey() + "Api"
 				).put(
 					"imports",
-					tagImports.getOrDefault(entry.getKey(), new HashSet<>())
+					importsMap.getOrDefault(entry.getKey(), new HashSet<>())
 				).put(
 					"operationsData", entry.getValue()
 				).build());
