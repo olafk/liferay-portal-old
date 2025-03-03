@@ -59,7 +59,7 @@ boolean ldapAuthEnabled = ldapAuthConfiguration.enabled();
 							<liferay-ui:message key="ldap-server-id" />
 						</th>
 						<th class="table-header">
-							<liferay-ui:message key="ldap-server-name" />
+							<liferay-ui:message key="name" />
 						</th>
 						<th class="table-header"></th>
 					</tr>

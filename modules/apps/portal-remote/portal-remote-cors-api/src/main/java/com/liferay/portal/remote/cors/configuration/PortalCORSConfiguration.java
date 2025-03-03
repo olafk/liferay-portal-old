@@ -29,7 +29,7 @@ public interface PortalCORSConfiguration {
 
 	@Meta.AD(
 		description = "portal-cors-name-description", id = "configuration.name",
-		name = "portal-cors-name", required = false
+		name = "name", required = false
 	)
 	public String name();
 
