@@ -126,7 +126,7 @@ public class StyleBookEntryItemSelectorViewDescriptor
 		return _selLayout;
 	}
 
-	private List<StyleBookEntry> _getStyleBookEntries() {
+	private List<StyleBookEntry> _getStyleBookEntries() throws PortalException {
 		StyleBookEntry styleFromThemeStyleBookEntry =
 			StyleBookEntryLocalServiceUtil.create();
 

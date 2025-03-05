@@ -1867,7 +1867,7 @@ public class ContentPageEditorDisplayContext {
 				itemSelectorCriterion));
 	}
 
-	private List<Map<String, Object>> _getStyleBooks() {
+	private List<Map<String, Object>> _getStyleBooks() throws Exception {
 		ArrayList<Map<String, Object>> styleBooks = new ArrayList<>();
 
 		List<StyleBookEntry> styleBookEntries = new ArrayList<>();

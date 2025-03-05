@@ -68,7 +68,9 @@ public class FrontendTokenDefinitionRegistryImpl
 	implements FrontendTokenDefinitionRegistry {
 
 	@Override
-	public FrontendTokenDefinition getFrontendTokenDefinition(Layout layout) {
+	public FrontendTokenDefinition getFrontendTokenDefinition(Layout layout)
+		throws PortalException {
+
 		String cetExternalReferenceCode = _getCETExternalReferenceCode(
 			layout.getClassNameId(), layout.getClassPK());
 
@@ -78,20 +80,15 @@ public class FrontendTokenDefinitionRegistryImpl
 		}
 
 		if (layout.getMasterLayoutPlid() > 0) {
-			try {
-				Layout masterLayout = _layoutLocalService.getLayout(
-					layout.getMasterLayoutPlid());
+			Layout masterLayout = _layoutLocalService.getLayout(
+				layout.getMasterLayoutPlid());
 
-				cetExternalReferenceCode = _getCETExternalReferenceCode(
-					masterLayout.getClassNameId(), masterLayout.getClassPK());
+			cetExternalReferenceCode = _getCETExternalReferenceCode(
+				masterLayout.getClassNameId(), masterLayout.getClassPK());
 
-				if (cetExternalReferenceCode != null) {
-					return _getThemeCSSCETFrontendTokenDefinition(
-						masterLayout.getCompanyId(), cetExternalReferenceCode);
-				}
-			}
-			catch (PortalException portalException) {
-				throw new RuntimeException(portalException);
+			if (cetExternalReferenceCode != null) {
+				return _getThemeCSSCETFrontendTokenDefinition(
+					masterLayout.getCompanyId(), cetExternalReferenceCode);
 			}
 		}
 
@@ -106,14 +103,9 @@ public class FrontendTokenDefinitionRegistryImpl
 				layoutSet.getCompanyId(), cetExternalReferenceCode);
 		}
 
-		try {
-			Theme theme = layout.getTheme();
+		Theme theme = layout.getTheme();
 
-			return _getBundleFrontendTokenDefinition(theme.getThemeId());
-		}
-		catch (PortalException portalException) {
-			throw new RuntimeException(portalException);
-		}
+		return _getBundleFrontendTokenDefinition(theme.getThemeId());
 	}
 
 	public FrontendTokenDefinition getFrontendTokenDefinition(
