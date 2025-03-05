@@ -739,7 +739,7 @@ public abstract class BatchTestClassGroup extends BaseTestClassGroup {
 	}
 
 	protected long getTargetAxisDuration() {
-		if (ignoreTargetAxisDuration()) {
+		if (_isIgnoreTargetAxisDuration()) {
 			return 0;
 		}
 
@@ -797,7 +797,7 @@ public abstract class BatchTestClassGroup extends BaseTestClassGroup {
 		return false;
 	}
 
-	protected boolean ignoreTargetAxisDuration() {
+	private boolean _isIgnoreTargetAxisDuration() {
 		JobProperty jobProperty = getJobProperty(
 			"test.batch.ignore.target.axis.duration");
 
