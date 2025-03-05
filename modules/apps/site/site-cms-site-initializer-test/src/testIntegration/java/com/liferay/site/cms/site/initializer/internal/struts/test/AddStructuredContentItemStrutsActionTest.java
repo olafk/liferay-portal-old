@@ -94,7 +94,7 @@ public class AddStructuredContentItemStrutsActionTest {
 
 	@Test
 	@TestInfo("LPD-50664")
-	public void testAddStructureContentItemStrutsAction() throws Exception {
+	public void testExecute() throws Exception {
 		List<ObjectEntry> objectEntries =
 			_objectEntryLocalService.getObjectEntries(
 				_group.getGroupId(), _objectDefinition.getObjectDefinitionId(),
