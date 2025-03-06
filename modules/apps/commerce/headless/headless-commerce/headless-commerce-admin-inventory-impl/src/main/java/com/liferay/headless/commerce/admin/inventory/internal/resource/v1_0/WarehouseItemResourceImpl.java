@@ -159,36 +159,38 @@ public class WarehouseItemResourceImpl extends BaseWarehouseItemResourceImpl {
 
 	@Override
 	public Page<WarehouseItem> getWarehouseItemsUpdatedPage(
-			Date end, Date start, Pagination pagination)
+			Date endDate, Date startDate, Pagination pagination)
 		throws Exception {
 
-		if ((start != null) && (end != null) && (start.compareTo(end) > 0)) {
+		if ((startDate != null) && (endDate != null) &&
+			(startDate.compareTo(endDate) > 0)) {
+
 			throw new CommerceInventoryInvalidDateException(
 				"End date should be after start date");
 		}
 
-		if ((start == null) && (end == null)) {
-			end = new Date();
+		if ((startDate == null) && (endDate == null)) {
+			endDate = new Date();
 		}
 
-		if (start == null) {
-			start = _addDaysToDate(end, -_DEFAULT_INCREMENT_DAYS);
+		if (startDate == null) {
+			startDate = _addDaysToDate(endDate, -_DEFAULT_INCREMENT_DAYS);
 		}
 
-		if (end == null) {
-			end = _addDaysToDate(start, _DEFAULT_INCREMENT_DAYS);
+		if (endDate == null) {
+			endDate = _addDaysToDate(startDate, _DEFAULT_INCREMENT_DAYS);
 		}
 
 		List<CommerceInventoryWarehouseItem> commerceInventoryWarehouseItems =
 			_commerceInventoryWarehouseItemService.
 				getCommerceInventoryWarehouseItemsCountByModifiedDate(
-					contextCompany.getCompanyId(), start, end,
+					contextCompany.getCompanyId(), startDate, endDate,
 					pagination.getStartPosition(), pagination.getEndPosition());
 
 		int totalCount =
 			_commerceInventoryWarehouseItemService.
 				getCommerceInventoryWarehouseItemsCountByModifiedDate(
-					contextCompany.getCompanyId(), start, end);
+					contextCompany.getCompanyId(), startDate, endDate);
 
 		return Page.of(
 			_toWarehouseItems(commerceInventoryWarehouseItems), pagination,
@@ -404,13 +406,13 @@ public class WarehouseItemResourceImpl extends BaseWarehouseItemResourceImpl {
 	}
 
 	private Date _addDaysToDate(Date date, int increment) {
-		Calendar cal = Calendar.getInstance();
+		Calendar calendar = Calendar.getInstance();
 
-		cal.setTime(date);
+		calendar.setTime(date);
 
-		cal.add(Calendar.DATE, increment);
+		calendar.add(Calendar.DATE, increment);
 
-		return cal.getTime();
+		return calendar.getTime();
 	}
 
 	private WarehouseItem _toWarehouseItem(
