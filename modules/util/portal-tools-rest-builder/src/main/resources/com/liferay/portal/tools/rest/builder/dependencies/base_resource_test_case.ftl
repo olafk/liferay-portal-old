@@ -3877,7 +3877,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 	private static final com.liferay.portal.kernel.log.Log _log = LogFactoryUtil.getLog(Base${schemaName}ResourceTestCase.class);
 
 	private static DateFormat _dateFormat;
-	private static com.liferay.portal.kernel.model.User _user;
+
+	private com.liferay.portal.kernel.model.User _user;
 
 	@Inject
 	private ${configYAML.apiPackagePath}.resource.${escapedVersion}.${schemaName}Resource _${schemaVarName}Resource;
