@@ -39,7 +39,7 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
+import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -58,7 +58,7 @@ import java.lang.reflect.Method;
 
 import java.net.URI;
 
-import java.text.DateFormat;
+import java.text.Format;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -109,7 +109,7 @@ public abstract class BaseProductSpecificationResourceTestCase {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		_dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
+		_format = FastDateFormatFactoryUtil.getSimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 	}
 
@@ -123,11 +123,13 @@ public abstract class BaseProductSpecificationResourceTestCase {
 
 		_productSpecificationResource.setContextCompany(testCompany);
 
-		_user = UserTestUtil.getAdminUser(testCompany.getCompanyId());
+		_testCompanyAdminUser = UserTestUtil.getAdminUser(
+			testCompany.getCompanyId());
 
 		productSpecificationResource = ProductSpecificationResource.builder(
 		).authentication(
-			_user.getEmailAddress(), PropsValues.DEFAULT_ADMIN_PASSWORD
+			_testCompanyAdminUser.getEmailAddress(),
+			PropsValues.DEFAULT_ADMIN_PASSWORD
 		).endpoint(
 			testCompany.getVirtualHostname(), 8080, "http"
 		).locale(
@@ -745,7 +747,7 @@ public abstract class BaseProductSpecificationResourceTestCase {
 	protected com.liferay.portal.kernel.model.User
 		testVulcanCRUDItemDelegate_getUser() {
 
-		return _user;
+		return _testCompanyAdminUser;
 	}
 
 	protected ProductSpecification
@@ -2519,8 +2521,9 @@ public abstract class BaseProductSpecificationResourceTestCase {
 	private static final com.liferay.portal.kernel.log.Log _log =
 		LogFactoryUtil.getLog(BaseProductSpecificationResourceTestCase.class);
 
-	private static DateFormat _dateFormat;
-	private static com.liferay.portal.kernel.model.User _user;
+	private static Format _format;
+
+	private com.liferay.portal.kernel.model.User _testCompanyAdminUser;
 
 	@Inject
 	private com.liferay.headless.commerce.admin.catalog.resource.v1_0.
