@@ -75,10 +75,10 @@ public class SXPParameterDataCreatorTest {
 		_group = GroupTestUtil.addGroup();
 		_user = TestPropsValues.getUser();
 
+		Class<?> clazz = getClass();
+
 		_serviceContext = ServiceContextTestUtil.getServiceContext(
 			_group, _user.getUserId());
-
-		Class<?> clazz = getClass();
 
 		_sxpBlueprint = _sxpBlueprintLocalService.addSXPBlueprint(
 			null, _user.getUserId(),

@@ -164,29 +164,31 @@ public class SXPBlueprintSearchRequestEnhancerImpl
 		QueryConfiguration queryConfiguration =
 			configuration.getQueryConfiguration();
 
-		if ((queryConfiguration != null) &&
-			(queryConfiguration.getQueryEntries() != null)) {
+		if ((queryConfiguration == null) ||
+			(queryConfiguration.getQueryEntries() == null)) {
 
-			for (QueryEntry queryEntry : queryConfiguration.getQueryEntries()) {
-				Clause[] clauses = queryEntry.getClauses();
+			return;
+		}
 
-				if (clauses != null) {
-					for (Clause clause : clauses) {
-						String query = StringUtil.replace(
-							String.valueOf(clause.getQuery()),
-							new String[] {
-								"&#34;", "&#36;", "&#91;", "&#92;", "&#93;",
-								"&#8725;"
-							},
-							new String[] {"\\\"", "$", "[", "\\\\", "]", "/"});
+		for (QueryEntry queryEntry : queryConfiguration.getQueryEntries()) {
+			Clause[] clauses = queryEntry.getClauses();
 
-						clause.setQuery(
-							() -> _jsonFactory.createJSONObject(query));
-					}
-
-					queryEntry.setClauses(() -> clauses);
-				}
+			if (clauses == null) {
+				continue;
 			}
+
+			for (Clause clause : clauses) {
+				String query = StringUtil.replace(
+					String.valueOf(clause.getQuery()),
+					new String[] {
+						"&#34;", "&#36;", "&#91;", "&#92;", "&#93;", "&#8725;"
+					},
+					new String[] {"\\\"", "$", "[", "\\\\", "]", "/"});
+
+				clause.setQuery(() -> _jsonFactory.createJSONObject(query));
+			}
+
+			queryEntry.setClauses(() -> clauses);
 		}
 	}
 
