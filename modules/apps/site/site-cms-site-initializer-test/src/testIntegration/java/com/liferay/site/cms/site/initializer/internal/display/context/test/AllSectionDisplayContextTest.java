@@ -81,7 +81,7 @@ public class AllSectionDisplayContextTest
 			objectFolderLocalService.fetchObjectFolderByExternalReferenceCode(
 				"L_CMS_CONTENT_STRUCTURES", TestPropsValues.getCompanyId());
 
-		ObjectDefinition contentStructuresOObjectDefinition =
+		ObjectDefinition contentStructuresObjectDefinition =
 			addCustomObjectDefinition(
 				contentStructuresObjectFolder.getObjectFolderId(), true, true,
 				ObjectDefinitionConstants.SCOPE_SITE,
@@ -101,8 +101,8 @@ public class AllSectionDisplayContextTest
 			getHref(fileTypesObjectDefinition));
 
 		expectedResultMap.put(
-			contentStructuresOObjectDefinition.getLabel(LocaleUtil.US),
-			getHref(contentStructuresOObjectDefinition));
+			contentStructuresObjectDefinition.getLabel(LocaleUtil.US),
+			getHref(contentStructuresObjectDefinition));
 
 		addCustomObjectDefinition(
 			ObjectEntryFolderConstants.PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT,
