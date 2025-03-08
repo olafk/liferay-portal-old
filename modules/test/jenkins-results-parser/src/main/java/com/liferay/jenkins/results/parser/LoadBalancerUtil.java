@@ -78,7 +78,6 @@ public class LoadBalancerUtil {
 		}
 
 		List<String> goodClockList = _getGoodClockList(properties, verbose);
-
 		List<String> whitelist = _getWhitelist(jobName, properties, verbose);
 
 		for (JenkinsMaster jenkinsMaster : allJenkinsMasters) {
@@ -160,7 +159,6 @@ public class LoadBalancerUtil {
 				}
 
 				String blacklistString = properties.getProperty("blacklist");
-
 				String jobName = properties.getProperty("job.name");
 
 				Integer minimumRAM = JenkinsMaster.getSlaveRAMMinimumDefault();
