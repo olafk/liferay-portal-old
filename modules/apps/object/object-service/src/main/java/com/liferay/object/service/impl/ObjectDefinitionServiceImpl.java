@@ -191,7 +191,7 @@ public class ObjectDefinitionServiceImpl
 		boolean enableObjectEntryDraft, String scope, int status, int start,
 		int end) {
 
-		return objectDefinitionPersistence.filterFindByC_O_A_E_S_S(
+		return objectDefinitionPersistence.filterFindByC_OFI_A_E_S_S(
 			companyId, objectFolderIds, active, enableObjectEntryDraft, scope,
 			status, start, end);
 	}
