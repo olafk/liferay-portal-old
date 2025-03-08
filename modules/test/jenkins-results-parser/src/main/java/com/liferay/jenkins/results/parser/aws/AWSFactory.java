@@ -78,7 +78,7 @@ public class AWSFactory {
 		}
 		catch (IOException ioException) {
 			throw new RuntimeException(
-				"Unable to load groovy script", ioException);
+				"Unable to load Groovy script", ioException);
 		}
 
 		try {
