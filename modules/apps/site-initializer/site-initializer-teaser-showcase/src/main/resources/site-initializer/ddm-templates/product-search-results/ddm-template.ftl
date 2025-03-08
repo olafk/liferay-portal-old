@@ -31,17 +31,17 @@
 			<#list entries as curCPCatalogEntry>
 				<#assign
 					commerceContext = renderRequest.getAttribute("COMMERCE_CONTEXT")
+					friendlyURL = cpContentHelper.getFriendlyURL(curCPCatalogEntry, themeDisplay)
+					productId = curCPCatalogEntry.getCProductId()
+					productName = curCPCatalogEntry.getName()
 
 					accountEntryId = commerceContext.getAccountEntry().getAccountEntryId()
 					channelId = commerceContext.getCommerceChannelId()
-					productId = curCPCatalogEntry.getCProductId()
 
 					defaultImageURL = cpContentHelper.getDefaultImageFileURL(accountEntryId, curCPCatalogEntry.getCPDefinitionId())
 					productDetail = restClient.get("/headless-commerce-delivery-catalog/v1.0/channels/${channelId}/products/${productId}?accountId=${accountEntryId}&nestedFields=productSpecifications,categories")
 
-					friendlyURL = cpContentHelper.getFriendlyURL(curCPCatalogEntry, themeDisplay)
 					productCategories = productDetail.categories
-					productName = curCPCatalogEntry.getName()
 					productSpecifications = productDetail.productSpecifications
 				/>
 
