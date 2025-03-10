@@ -80,14 +80,13 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 
 		CPDefinition cpDefinition = _cpInstance.getCPDefinition();
 
-		_commerceBasePriceListPriceEntry = _addCommercePriceEntryToPriceList(
+		_commerceBasePriceListPriceEntry = _addCommercePriceEntry(
 			CommercePriceListLocalServiceUtil.
 				fetchCatalogBaseCommercePriceListByType(
 					_cpInstance.getGroupId(), "price-list"),
 			_cpInstance, cpDefinition.getCProductId(), BigDecimal.TEN,
 			cpInstanceUnitOfMeasure.getKey());
-
-		_commerceBasePromotionPriceEntry = _addCommercePriceEntryToPriceList(
+		_commerceBasePromotionPriceEntry = _addCommercePriceEntry(
 			CommercePriceListLocalServiceUtil.
 				fetchCatalogBaseCommercePriceListByType(
 					_cpInstance.getGroupId(), "promotion"),
@@ -146,7 +145,7 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 		return _addSku();
 	}
 
-	private CommercePriceEntry _addCommercePriceEntryToPriceList(
+	private CommercePriceEntry _addCommercePriceEntry(
 			CommercePriceList commercePriceList, CPInstance cpInstance,
 			long cProductId, BigDecimal price, String uomKey)
 		throws Exception {
@@ -218,13 +217,12 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 				_cpInstance.getSku());
 
 		CommercePriceEntry commerceBasePriceListPriceEntry1 =
-			_updateUOMCommercePriceEntry(
+			_updateCommercePriceEntry(
 				BigDecimal.valueOf(25),
 				CommercePriceListConstants.TYPE_PRICE_LIST,
 				cpInstanceUnitOfMeasure1.getKey());
-
 		CommercePriceEntry commerceBasePromoPriceListPriceEntry1 =
-			_updateUOMCommercePriceEntry(
+			_updateCommercePriceEntry(
 				BigDecimal.valueOf(15),
 				CommercePriceListConstants.TYPE_PROMOTION,
 				cpInstanceUnitOfMeasure1.getKey());
@@ -236,48 +234,54 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 				_cpInstance.getSku());
 
 		CommercePriceEntry commerceBasePriceListPriceEntry2 =
-			_updateUOMCommercePriceEntry(
+			_updateCommercePriceEntry(
 				BigDecimal.valueOf(20),
 				CommercePriceListConstants.TYPE_PRICE_LIST,
 				cpInstanceUnitOfMeasure2.getKey());
-
 		CommercePriceEntry commerceBasePromoPriceListPriceEntry2 =
-			_updateUOMCommercePriceEntry(
+			_updateCommercePriceEntry(
 				BigDecimal.valueOf(10),
 				CommercePriceListConstants.TYPE_PROMOTION,
 				cpInstanceUnitOfMeasure2.getKey());
 
-		Sku sku1 = skuResource.getPriceEntryIdSku(
-			commerceBasePriceListPriceEntry1.getCommercePriceEntryId());
-		Sku sku2 = skuResource.getPriceEntryIdSku(
-			commerceBasePriceListPriceEntry2.getCommercePriceEntryId());
-
 		BigDecimal expectedSkuBasePrice1 =
 			commerceBasePriceListPriceEntry1.getPrice();
-		BigDecimal expectedSkuBasePrice2 =
-			commerceBasePriceListPriceEntry2.getPrice();
+
+		Sku sku1 = skuResource.getPriceEntryIdSku(
+			commerceBasePriceListPriceEntry1.getCommercePriceEntryId());
+
 		BigDecimal skuBasePrice1 = BigDecimal.valueOf(sku1.getBasePrice());
-		BigDecimal skuBasePrice2 = BigDecimal.valueOf(sku2.getBasePrice());
 
 		Assert.assertEquals(
 			expectedSkuBasePrice1.stripTrailingZeros(),
 			skuBasePrice1.stripTrailingZeros());
+
+		BigDecimal expectedSkuBasePrice2 =
+			commerceBasePriceListPriceEntry2.getPrice();
+
+		Sku sku2 = skuResource.getPriceEntryIdSku(
+			commerceBasePriceListPriceEntry2.getCommercePriceEntryId());
+
+		BigDecimal skuBasePrice2 = BigDecimal.valueOf(sku2.getBasePrice());
+
 		Assert.assertEquals(
 			expectedSkuBasePrice2.stripTrailingZeros(),
 			skuBasePrice2.stripTrailingZeros());
 
 		BigDecimal expectedSkuBasePromoPrice1 =
 			commerceBasePromoPriceListPriceEntry1.getPrice();
-		BigDecimal expectedSkuBasePromoPrice2 =
-			commerceBasePromoPriceListPriceEntry2.getPrice();
 		BigDecimal skuBasePromoPrice1 = BigDecimal.valueOf(
 			sku1.getBasePromoPrice());
-		BigDecimal skuBasePromoPrice2 = BigDecimal.valueOf(
-			sku2.getBasePromoPrice());
 
 		Assert.assertEquals(
 			expectedSkuBasePromoPrice1.stripTrailingZeros(),
 			skuBasePromoPrice1.stripTrailingZeros());
+
+		BigDecimal expectedSkuBasePromoPrice2 =
+			commerceBasePromoPriceListPriceEntry2.getPrice();
+		BigDecimal skuBasePromoPrice2 = BigDecimal.valueOf(
+			sku2.getBasePromoPrice());
+
 		Assert.assertEquals(
 			expectedSkuBasePromoPrice2.stripTrailingZeros(),
 			skuBasePromoPrice2.stripTrailingZeros());
@@ -312,7 +316,7 @@ public class SkuResourceTest extends BaseSkuResourceTestCase {
 			skuBasePromoPrice2.stripTrailingZeros());
 	}
 
-	private CommercePriceEntry _updateUOMCommercePriceEntry(
+	private CommercePriceEntry _updateCommercePriceEntry(
 		BigDecimal price, String priceListType, String uomKey) {
 
 		CommercePriceEntry commerceBasePriceListPriceEntry =
