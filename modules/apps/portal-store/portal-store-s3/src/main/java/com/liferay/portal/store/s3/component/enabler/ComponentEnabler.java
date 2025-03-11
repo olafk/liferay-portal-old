@@ -7,6 +7,7 @@ package com.liferay.portal.store.s3.component.enabler;
 
 import com.liferay.document.library.kernel.store.Store;
 import com.liferay.osgi.util.ComponentUtil;
+import com.liferay.portal.store.s3.IBMS3Store;
 import com.liferay.portal.store.s3.S3Store;
 import com.liferay.portal.store.s3.scheduler.AbortedMultipartUploadCleanerSchedulerJobConfiguration;
 import com.liferay.portal.util.PropsValues;
@@ -28,10 +29,17 @@ public class ComponentEnabler {
 		if (Objects.equals(
 				PropsValues.DL_STORE_IMPL, S3Store.class.getName())) {
 
+			componentContext.enableComponent(S3Store.class.getName());
+
 			ComponentUtil.enableComponents(
 				Store.class, "(store.type=" + PropsValues.DL_STORE_IMPL + ")",
 				componentContext,
 				AbortedMultipartUploadCleanerSchedulerJobConfiguration.class);
+		}
+		else if (Objects.equals(
+				PropsValues.DL_STORE_IMPL, IBMS3Store.class.getName())) {
+
+			componentContext.enableComponent(IBMS3Store.class.getName());
 		}
 	}
 
