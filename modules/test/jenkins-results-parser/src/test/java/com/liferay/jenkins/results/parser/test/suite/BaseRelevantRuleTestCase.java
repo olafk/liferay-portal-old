@@ -54,31 +54,27 @@ public abstract class BaseRelevantRuleTestCase {
 		String upstreamBranchName = "master";
 		String repositoryName = "liferay-portal";
 
-		PortalGitWorkingDirectory portalGitWorkingDirectory =
-			(PortalGitWorkingDirectory)
-				GitWorkingDirectoryFactory.newGitWorkingDirectory(
-					upstreamBranchName, getPortalDir(null), repositoryName);
-
-		JSONObject jsonObject = new JSONObject();
-
-		jsonObject.put(
-			"build_profile", "DXP"
-		).put(
-			"git_repository_dir", "liferay-portal"
-		).put(
-			"job_name", "test-portal-acceptance-pullrequest("
-		).put(
-			"test_suite_name", "relevant"
-		).put(
-			"upstream_branch_name", "master"
-		);
-
 		_portalAcceptancePullRequestJob =
 			(PortalAcceptancePullRequestJob)JobFactory.newJob(
 				Job.BuildProfile.DXP,
-				"test-portal-acceptance-pullrequest(master)", jsonObject,
-				portalGitWorkingDirectory, upstreamBranchName, null,
-				repositoryName, "relevant", upstreamBranchName);
+				"test-portal-acceptance-pullrequest(master)",
+				new JSONObject(
+				).put(
+					"build_profile", "DXP"
+				).put(
+					"git_repository_dir", "liferay-portal"
+				).put(
+					"job_name", "test-portal-acceptance-pullrequest("
+				).put(
+					"test_suite_name", "relevant"
+				).put(
+					"upstream_branch_name", "master"
+				),
+				(PortalGitWorkingDirectory)
+					GitWorkingDirectoryFactory.newGitWorkingDirectory(
+						upstreamBranchName, getPortalDir(null), repositoryName),
+				upstreamBranchName, null, repositoryName, "relevant",
+				upstreamBranchName);
 
 		List<File> jobPropertiesFiles =
 			_portalAcceptancePullRequestJob.getJobPropertiesFiles();

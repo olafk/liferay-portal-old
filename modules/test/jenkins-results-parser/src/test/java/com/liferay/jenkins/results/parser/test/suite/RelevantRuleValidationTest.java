@@ -18,25 +18,20 @@ public class RelevantRuleValidationTest {
 
 	@Test
 	public void testValidate() throws IOException {
-		String repositoryName = "liferay-portal";
-		String upstreamBranchName = "master";
-
-		JSONObject jsonObject = new JSONObject();
-
-		jsonObject.put(
-			"build_profile", "DXP"
-		).put(
-			"git_repository_dir", "liferay-portal"
-		).put(
-			"job_name", "test-portal-acceptance-pullrequest("
-		).put(
-			"test_suite_name", "relevant"
-		).put(
-			"upstream_branch_name", "master"
-		);
-
 		RelevantRuleValidation.validate(
-			repositoryName, upstreamBranchName, jsonObject);
+			"liferay-portal", "master",
+			new JSONObject(
+			).put(
+				"build_profile", "DXP"
+			).put(
+				"git_repository_dir", "liferay-portal"
+			).put(
+				"job_name", "test-portal-acceptance-pullrequest("
+			).put(
+				"test_suite_name", "relevant"
+			).put(
+				"upstream_branch_name", "master"
+			));
 	}
 
 }
