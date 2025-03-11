@@ -51,8 +51,8 @@ public class DBSchemaImporter {
 
 		try {
 			System.out.println(
-				"This tool is a Beta feature. It is experimental and not " +
-					"supported");
+				"This tool is a beta feature. It is experimental and not " +
+					"supported.");
 
 			ConnectionConfigUtil.setBatchSize(
 				commandLine.getOptionValue("jdbc-batch-size"));
@@ -134,7 +134,7 @@ public class DBSchemaImporter {
 		new HelpFormatter(
 		).printHelp(
 			"Liferay Portal Tools Database Schema Importer. This tool is a " +
-				"Beta feature. It is expiremental and not supported.",
+				"beta feature. It is expiremental and not supported.",
 			options
 		);
 
