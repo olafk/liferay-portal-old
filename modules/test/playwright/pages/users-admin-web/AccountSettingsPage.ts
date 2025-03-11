@@ -9,11 +9,16 @@ import {waitForAlert} from '../../utils/waitForAlert';
 
 export class AccountSettingsPage {
 	readonly accountSettingsMenuItem: Locator;
+	readonly currentPasswordInput: Locator;
 	private readonly displayMenuItem: Locator;
 	readonly languageSelect: Locator;
 	readonly multiFactorAuthentitacionNavigationItem: Locator;
+	readonly newPasswordInput: Locator;
 	readonly page: Page;
+	readonly passwordErrorMessage: (message: string) => Locator;
+	readonly passwordMenuItem: Locator;
 	private readonly preferencesNavigationItem: Locator;
+	readonly reenterPasswordInput: Locator;
 	readonly rolesMenuItem: Locator;
 	readonly saveButton: Locator;
 	private readonly timeZoneSelect: Locator;
@@ -24,6 +29,7 @@ export class AccountSettingsPage {
 		this.accountSettingsMenuItem = page.getByRole('menuitem', {
 			name: 'Account Settings',
 		});
+		this.currentPasswordInput = page.getByLabel('Current Password');
 		this.displayMenuItem = page.getByRole('link', {
 			name: 'Display Settings',
 		});
@@ -34,10 +40,16 @@ export class AccountSettingsPage {
 				hasText: 'Multi-Factor Authentication',
 			}
 		);
+		this.newPasswordInput = page.getByLabel('New Password');
 		this.page = page;
+		this.passwordErrorMessage = (message: string) => {
+			return page.getByText(message);
+		};
+		this.passwordMenuItem = page.getByRole('link', {name: 'Password'});
 		this.preferencesNavigationItem = page.locator('.nav-link', {
 			hasText: 'Preferences',
 		});
+		this.reenterPasswordInput = page.getByLabel('Reenter Password');
 		this.rolesMenuItem = page.getByRole('link', {
 			name: 'Roles',
 		});

@@ -7,6 +7,7 @@ import {expect, mergeTests} from '@playwright/test';
 import {createReadStream} from 'fs';
 import path from 'path';
 
+import {accountSettingsPagesTest} from '../../fixtures/accountSettingsPagesTest';
 import {apiHelpersTest} from '../../fixtures/apiHelpersTest';
 import {dataApiHelpersTest} from '../../fixtures/dataApiHelpersTest';
 import {loginTest} from '../../fixtures/loginTest';
@@ -21,6 +22,7 @@ import performLogin, {
 import {waitForAlert} from '../../utils/waitForAlert';
 
 export const test = mergeTests(
+	accountSettingsPagesTest,
 	apiHelpersTest,
 	dataApiHelpersTest,
 	loginTest(),
@@ -1209,5 +1211,192 @@ test(
 
 		await expect(editUserPage.tagInput(tags[0].name)).toBeVisible();
 		await expect(editUserPage.tagInput(tags[1].name)).toBeVisible();
+	}
+);
+
+test(
+	'Can search users in organizations',
+	{tag: '@LPD-50958'},
+	async ({apiHelpers, usersAndOrganizationsPage}) => {
+		const organization =
+			await apiHelpers.headlessAdminUser.postOrganization();
+
+		const userAccount =
+			await apiHelpers.headlessAdminUser.postUserAccount();
+
+		await apiHelpers.headlessAdminUser.assignUserToOrganizationByEmailAddress(
+			organization.id,
+			userAccount.emailAddress
+		);
+
+		apiHelpers.data.push({
+			id: `${organization.id}_${userAccount.emailAddress}`,
+			type: 'organizationUserAccountAssociation',
+		});
+
+		await usersAndOrganizationsPage.goToOrganizations();
+		await (
+			await usersAndOrganizationsPage.organizationsTableRowLink(
+				organization.name
+			)
+		).click();
+
+		await expect(
+			usersAndOrganizationsPage.organizationUsersTable
+		).toBeVisible();
+
+		await usersAndOrganizationsPage.usersSearchBar.fill(userAccount.name);
+		await usersAndOrganizationsPage.usersSearchBarButton.click();
+
+		await expect(
+			(
+				await usersAndOrganizationsPage.organizationUsersTableRow(
+					1,
+					userAccount.name,
+					true
+				)
+			).row
+		).toBeVisible();
+
+		await usersAndOrganizationsPage.usersSearchBar.fill('test');
+		await usersAndOrganizationsPage.usersSearchBarButton.click();
+
+		await expect(usersAndOrganizationsPage.noResultsMessage).toBeVisible();
+	}
+);
+
+test(
+	'Can assign multiple users to an organization',
+	{tag: '@LPD-50958'},
+	async ({apiHelpers, page, usersAndOrganizationsPage}) => {
+		const userAccounts: TUserAccount[] = [];
+
+		for (let i = 0; i < 5; i++) {
+			const user = await apiHelpers.headlessAdminUser.postUserAccount();
+			userAccounts.push(user);
+		}
+
+		const organization =
+			await apiHelpers.headlessAdminUser.postOrganization();
+
+		await usersAndOrganizationsPage.goToOrganizations();
+
+		await (
+			await usersAndOrganizationsPage.organizationActionsMenu(
+				organization.name
+			)
+		).click();
+		await usersAndOrganizationsPage.assignUsersMenuItem.click();
+
+		for (const user of userAccounts) {
+			await (
+				await usersAndOrganizationsPage.assignUsersCheckbox(user.name)
+			).check();
+		}
+
+		await usersAndOrganizationsPage.assignUsersDoneButton.click();
+
+		await waitForAlert(page);
+
+		for (const user of userAccounts) {
+			apiHelpers.data.push({
+				id: `${organization.id}_${user.emailAddress}`,
+				type: 'organizationUserAccountAssociation',
+			});
+
+			await expect(
+				(
+					await usersAndOrganizationsPage.organizationUsersTableRow(
+						1,
+						user.name,
+						true
+					)
+				).row
+			).toBeVisible();
+		}
+	}
+);
+
+test(
+	'Can change user password',
+	{tag: '@LPD-50958'},
+	async ({accountSettingsPage, apiHelpers, page}) => {
+		const user = await apiHelpers.headlessAdminUser.postUserAccount();
+
+		userData[user.alternateName] = {
+			name: user.givenName,
+			password: 'test',
+			surname: user.familyName,
+		};
+
+		await performLogout(page);
+		await performLoginViaApi(page, user.alternateName);
+
+		await accountSettingsPage.goToAccountSettings();
+		await accountSettingsPage.passwordMenuItem.click();
+		await accountSettingsPage.currentPasswordInput.fill('test');
+
+		const newPassword = getRandomString();
+
+		await accountSettingsPage.newPasswordInput.fill(newPassword);
+		await accountSettingsPage.reenterPasswordInput.fill(newPassword);
+		await accountSettingsPage.saveButton.click();
+
+		await waitForAlert(page);
+
+		userData[user.alternateName] = {
+			name: user.givenName,
+			password: newPassword,
+			surname: user.familyName,
+		};
+
+		await performLogout(page);
+		await performLoginViaApi(page, user.alternateName);
+
+		await expect(accountSettingsPage.userPersonalMenuButton).toBeVisible();
+	}
+);
+
+test(
+	'Change user password invalid',
+	{tag: '@LPD-50958'},
+	async ({accountSettingsPage, apiHelpers, page}) => {
+		const user = await apiHelpers.headlessAdminUser.postUserAccount();
+
+		userData[user.alternateName] = {
+			name: user.givenName,
+			password: 'test',
+			surname: user.familyName,
+		};
+
+		await performLogout(page);
+		await performLoginViaApi(page, user.alternateName);
+
+		await accountSettingsPage.goToAccountSettings();
+		await accountSettingsPage.passwordMenuItem.click();
+
+		await accountSettingsPage.newPasswordInput.fill('password');
+		await accountSettingsPage.reenterPasswordInput.fill('password');
+		await accountSettingsPage.saveButton.click();
+
+		await expect(
+			accountSettingsPage.passwordErrorMessage(
+				'The Current Password field is required.'
+			)
+		).toBeVisible();
+
+		await accountSettingsPage.currentPasswordInput.fill(getRandomString());
+		await accountSettingsPage.saveButton.click();
+
+		await expect(
+			accountSettingsPage.passwordErrorMessage(
+				'Error:The password you entered for the current password does not match your current password. Please try again.'
+			)
+		).toBeVisible();
+
+		await performLogout(page);
+		await performLoginViaApi(page, user.alternateName);
+
+		await expect(accountSettingsPage.userPersonalMenuButton).toBeVisible();
 	}
 );

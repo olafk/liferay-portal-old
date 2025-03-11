@@ -82,6 +82,7 @@ export class UsersAndOrganizationsPage {
 	readonly myOrganizationsUserAndOrgsTableRowLink: (
 		organizationName: string
 	) => Promise<Locator>;
+	readonly noResultsMessage: Locator;
 	readonly noUsersMessage: Locator;
 	readonly organizationActionsMenu: (
 		organizationName: string
@@ -263,6 +264,9 @@ export class UsersAndOrganizationsPage {
 				`Cannot locate organization row with name ${organizationName}`
 			);
 		};
+		this.noResultsMessage = page.getByText('No results were found.', {
+			exact: true,
+		});
 		this.noUsersMessage = page.getByText('No users were found');
 		this.optionsMenu = page
 			.getByTestId('headerOptions')
