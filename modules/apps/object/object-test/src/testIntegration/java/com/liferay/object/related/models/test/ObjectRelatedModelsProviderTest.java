@@ -556,7 +556,7 @@ public class ObjectRelatedModelsProviderTest {
 		_testObjectEntry1toMObjectUnrelatedModelsProviderImpl(
 			company.getCompanyId());
 
-		_companyLocalService.deleteCompany(company.getCompanyId());
+		_companyLocalService.deleteCompany(company);
 	}
 
 	@Test
