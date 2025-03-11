@@ -98,7 +98,7 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.security.permission.ResourceActions;
-import com.liferay.portal.kernel.service.ClassNameLocalServiceUtil;
+import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.ResourceActionLocalService;
 import com.liferay.portal.kernel.service.ResourcePermissionLocalService;
@@ -1909,11 +1909,11 @@ public class ObjectDefinitionLocalServiceTest {
 			TestPropsValues.getUserId(),
 			objectDefinition.getObjectDefinitionId());
 
-		ClassName className = ClassNameLocalServiceUtil.getClassName(
+		ClassName className = _classNameLocalService.getClassName(
 			objectDefinition.getClassName());
 
 		Assert.assertNotNull(
-			ClassNameLocalServiceUtil.fetchByClassNameId(
+			_classNameLocalService.fetchByClassNameId(
 				className.getClassNameId()));
 
 		_objectDefinitionLocalService.updateRootObjectDefinitionId(
@@ -1923,7 +1923,7 @@ public class ObjectDefinitionLocalServiceTest {
 			objectDefinition.getObjectDefinitionId());
 
 		Assert.assertNull(
-			ClassNameLocalServiceUtil.fetchByClassNameId(
+			_classNameLocalService.fetchByClassNameId(
 				className.getClassNameId()));
 
 		// Database table
@@ -3975,6 +3975,9 @@ public class ObjectDefinitionLocalServiceTest {
 
 	@Inject
 	private static ObjectFolderLocalService _objectFolderLocalService;
+
+	@Inject
+	private ClassNameLocalService _classNameLocalService;
 
 	@Inject
 	private CompanyLocalService _companyLocalService;
