@@ -10,6 +10,7 @@ import com.liferay.object.entry.folder.util.ObjectEntryFolderThreadLocal;
 import com.liferay.object.exception.DuplicateObjectEntryFolderExternalReferenceCodeException;
 import com.liferay.object.exception.ObjectEntryFolderNameException;
 import com.liferay.object.exception.ObjectEntryFolderScopeException;
+import com.liferay.object.exception.RequiredObjectEntryFolderException;
 import com.liferay.object.model.ObjectEntry;
 import com.liferay.object.model.ObjectEntryFolder;
 import com.liferay.object.service.ObjectEntryLocalService;
@@ -130,8 +131,8 @@ public class ObjectEntryFolderLocalServiceImpl
 				ObjectEntryFolderConstants.
 					EXTERNAL_REFERENCE_CODE_PREFIX_SYSTEM_OBJECT_ENTRY_FOLDER)) {
 
-			throw new PortalException(
-				"Object entry folder " +
+			throw new RequiredObjectEntryFolderException(
+				"System object entry folder " +
 					objectEntryFolder.getExternalReferenceCode() +
 						" cannot be deleted");
 		}

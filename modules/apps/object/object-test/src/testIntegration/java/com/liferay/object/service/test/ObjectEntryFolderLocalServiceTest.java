@@ -13,6 +13,7 @@ import com.liferay.object.entry.folder.util.ObjectEntryFolderThreadLocal;
 import com.liferay.object.exception.DuplicateObjectEntryFolderExternalReferenceCodeException;
 import com.liferay.object.exception.ObjectEntryFolderNameException;
 import com.liferay.object.exception.ObjectEntryFolderScopeException;
+import com.liferay.object.exception.RequiredObjectEntryFolderException;
 import com.liferay.object.field.util.ObjectFieldUtil;
 import com.liferay.object.model.ObjectDefinition;
 import com.liferay.object.model.ObjectEntry;
@@ -22,7 +23,6 @@ import com.liferay.object.service.ObjectEntryFolderLocalService;
 import com.liferay.object.service.ObjectEntryLocalService;
 import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.AssertUtils;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
@@ -192,8 +192,8 @@ public class ObjectEntryFolderLocalServiceTest {
 					StringUtil.randomString();
 
 		AssertUtils.assertFailure(
-			PortalException.class,
-			"Object entry folder " + externalReferenceCode +
+			RequiredObjectEntryFolderException.class,
+			"System object entry folder " + externalReferenceCode +
 				" cannot be deleted",
 			() -> {
 				ObjectEntryFolder systemObjectEntryFolder =
