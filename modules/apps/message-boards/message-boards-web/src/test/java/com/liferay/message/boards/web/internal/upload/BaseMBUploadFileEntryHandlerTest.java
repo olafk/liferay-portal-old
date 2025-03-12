@@ -55,14 +55,6 @@ public class BaseMBUploadFileEntryHandlerTest {
 
 	@Test(expected = FileMimeTypeException.class)
 	public void testUploadValidatesFileMimeType() throws Exception {
-		ThemeDisplay themeDisplay = Mockito.mock(ThemeDisplay.class);
-
-		Mockito.when(
-			_uploadPortletRequest.getAttribute(WebKeys.THEME_DISPLAY)
-		).thenReturn(
-			themeDisplay
-		);
-
 		Mockito.doThrow(
 			FileMimeTypeException.class
 		).when(
@@ -71,14 +63,22 @@ public class BaseMBUploadFileEntryHandlerTest {
 			Mockito.anyLong(), Mockito.anyString()
 		);
 
+		TestMBUploadFileEntryHandler testMBUploadFileEntryHandler =
+			new TestMBUploadFileEntryHandler(_dlValidator, _mbMessageService);
+
+		ThemeDisplay themeDisplay = Mockito.mock(ThemeDisplay.class);
+
+		Mockito.when(
+			_uploadPortletRequest.getAttribute(WebKeys.THEME_DISPLAY)
+		).thenReturn(
+			themeDisplay
+		);
+
 		Mockito.when(
 			_uploadPortletRequest.getContentType(Mockito.anyString())
 		).thenReturn(
 			RandomTestUtil.randomString()
 		);
-
-		TestMBUploadFileEntryHandler testMBUploadFileEntryHandler =
-			new TestMBUploadFileEntryHandler(_dlValidator, _mbMessageService);
 
 		testMBUploadFileEntryHandler.upload(_uploadPortletRequest);
 	}
