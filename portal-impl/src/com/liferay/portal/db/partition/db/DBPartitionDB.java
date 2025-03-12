@@ -27,7 +27,7 @@ public interface DBPartitionDB {
 		throws SQLException {
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				"SELECT 1 FROM information_schema.schemata WHERE schema_name " +
+				"select 1 from information_schema.schemata where schema_name " +
 					"= ?")) {
 
 			preparedStatement.setString(1, partitionName);
