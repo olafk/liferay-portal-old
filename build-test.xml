@@ -8876,26 +8876,33 @@ war.path=${app.server.portal.dir}/</echo>
 				<![CDATA[
 					#!/bin/bash
 
-					FILE_FRESH="${selenium.output.dir.name}/fresh-@{fresh.db.schema}.sql"
-					FILE_UPGRADED="${selenium.output.dir.name}/upgraded-@{upgraded.db.schema}.sql"
+					function main {
+						grep -i "CREATE TABLE" "${selenium.output.dir.name}/fresh-@{fresh.db.schema}.sql" | awk '{print $3}' | tr -d '`' > ${selenium.output.dir.name}/tables-fresh.txt
 
-					grep -i "CREATE TABLE" "$FILE_FRESH" | awk '{print $3}' | tr -d '`' > ${selenium.output.dir.name}/tables-fresh.txt
-					grep -i "CREATE TABLE" "$FILE_UPGRADED" | awk '{print $3}' | tr -d '`' > ${selenium.output.dir.name}/tables-upgraded.txt
+						local upgraded_sql_file="${selenium.output.dir.name}/upgraded-@{upgraded.db.schema}.sql"
 
-					grep -Fxvf ${selenium.output.dir.name}/tables-fresh.txt ${selenium.output.dir.name}/tables-upgraded.txt > ${selenium.output.dir.name}/tables-to-remove.txt
+						grep -i "CREATE TABLE" "${upgraded_sql_file}" | awk '{print $3}' | tr -d '`' > ${selenium.output.dir.name}/tables-upgraded.txt
 
-					# Remove SQL statements for tables that are only present in the upgraded file
-					while read -r table; do
-						sed -i "/^CREATE TABLE \`$table\`/,/ENDCREATE/d" "$FILE_UPGRADED"
-						sed -i "/^CREATE TABLE public.$table/,/^);/d" "$FILE_UPGRADED"
-						sed -i "/^CREATE INDEX.*$TABLE/d" "$FILE_UPGRADED"
-						sed -i "/^CREATE UNIQUE INDEX.*$TABLE/d" "$FILE_UPGRADED"
-						sed -i "/^ALTER TABLE ONLY public\.$table/,/^);/d" "$FILE_UPGRADED"
-						sed -i "/^CREATE RULE update_$table/,/);$/d" "$FILE_UPGRADED"
-						sed -i "/^CREATE RULE delete_$table/,/);$/d" "$FILE_UPGRADED"
-					done < ${selenium.output.dir.name}/tables-to-remove.txt
+						grep -Fxvf ${selenium.output.dir.name}/tables-fresh.txt ${selenium.output.dir.name}/tables-upgraded.txt > ${selenium.output.dir.name}/tables-to-remove.txt
 
-					diff -y -B -W250 ${selenium.output.dir.name}/upgraded-@{upgraded.db.schema}.sql ${selenium.output.dir.name}/fresh-@{fresh.db.schema}.sql | expand | grep -E -C5 '^.{123} [|><]( |$)' || true
+						#
+						# Remove SQL statements for tables that are only present in the upgraded SQL file
+						#
+
+						while read -r table; do
+							sed -i "/^CREATE TABLE \`$table\`/,/ENDCREATE/d" "${upgraded_sql_file}"
+							sed -i "/^CREATE TABLE public.$table/,/^);/d" "${upgraded_sql_file}"
+							sed -i "/^CREATE INDEX.*$TABLE/d" "${upgraded_sql_file}"
+							sed -i "/^CREATE UNIQUE INDEX.*$TABLE/d" "${upgraded_sql_file}"
+							sed -i "/^ALTER TABLE ONLY public\.$table/,/^);/d" "${upgraded_sql_file}"
+							sed -i "/^CREATE RULE update_$table/,/);$/d" "${upgraded_sql_file}"
+							sed -i "/^CREATE RULE delete_$table/,/);$/d" "${upgraded_sql_file}"
+						done < ${selenium.output.dir.name}/tables-to-remove.txt
+
+						diff -y -B -W250 ${selenium.output.dir.name}/upgraded-@{upgraded.db.schema}.sql ${selenium.output.dir.name}/fresh-@{fresh.db.schema}.sql | expand | grep -E -C5 '^.{123} [|><]( |$)' || true
+					}
+
+					main
 				]]>
 			</echo>
 
@@ -8916,7 +8923,7 @@ war.path=${app.server.portal.dir}/</echo>
 				</not>
 				<then>
 					<echo file="${selenium.output.dir.name}/@{upgraded.db.schema}-@{fresh.db.schema}-validate-db-schemas.txt">
-						Upgraded and fresh schemas differ in the following elements: ${line.separator}${database.changes.master}
+						Fresh and upgraded schemas differ: ${line.separator}${database.changes.master}
 					</echo>
 				</then>
 				<else>
