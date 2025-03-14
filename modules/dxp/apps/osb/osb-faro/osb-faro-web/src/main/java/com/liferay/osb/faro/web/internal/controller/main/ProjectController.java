@@ -633,7 +633,7 @@ public class ProjectController extends BaseFaroController {
 
 		List<FaroProject> faroProjects = new ArrayList<>();
 
-		if (Validator.isNotNull(groupId)) {
+		if (groupId != null) {
 			faroProjects.add(
 				_faroProjectLocalService.fetchFaroProjectByGroupId(groupId));
 		}
@@ -1247,9 +1247,9 @@ public class ProjectController extends BaseFaroController {
 
 		date = new Date(date.getTime() / Time.DAY * Time.DAY);
 
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
 		Calendar calendar1 = Calendar.getInstance();
+
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 		Date startDate = dateFormat.parse(startDateString);
 

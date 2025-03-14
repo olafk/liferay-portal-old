@@ -151,13 +151,12 @@ public class UpdateFaroProjectSubscriptionsMessageListener
 				JSONObject jsonObject = _jsonFactory.createJSONObject(
 					faroProject.getSubscription());
 
+				faroSubscriptionDisplay.setCounts(
+					faroProject, _cerebroEngineClient, _contactsEngineClient);
 				faroSubscriptionDisplay.setIndividualsCounts(
 					jsonObject.getString("individualsCounts"));
 				faroSubscriptionDisplay.setPageViewsCounts(
 					jsonObject.getString("pageViewsCounts"));
-
-				faroSubscriptionDisplay.setCounts(
-					faroProject, _cerebroEngineClient, _contactsEngineClient);
 
 				faroProject.setSubscription(
 					JSONUtil.writeValueAsString(faroSubscriptionDisplay));
