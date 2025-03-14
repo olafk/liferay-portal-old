@@ -90,8 +90,7 @@ public class AssetVocabularyGroupRelLocalServiceImpl
 		throws PortalException {
 
 		if (ArrayUtil.isEmpty(groupIds)) {
-			throw new AssetVocabularyGroupRelGroupIdException(
-				"Group IDs cannot be empty");
+			throw new AssetVocabularyGroupRelGroupIdException();
 		}
 
 		assetVocabularyGroupRelPersistence.removeByVocabularyId(vocabularyId);
