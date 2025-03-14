@@ -6,7 +6,7 @@
 package com.liferay.asset.categories.service.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.asset.kernel.exception.InvalidAssetVocabularyGroupRelException;
+import com.liferay.asset.kernel.exception.AssetVocabularyGroupRelGroupIdException;
 import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.model.AssetVocabularyGroupRel;
 import com.liferay.asset.kernel.service.AssetVocabularyGroupRelLocalService;
@@ -174,7 +174,7 @@ public class AssetVocabularyGroupRelLocalServiceTest {
 			group2.getGroupId());
 	}
 
-	@Test(expected = InvalidAssetVocabularyGroupRelException.class)
+	@Test(expected = AssetVocabularyGroupRelGroupIdException.class)
 	public void testSetAssetVocabularyGroupRelsWithEmptyGroupIds()
 		throws Exception {
 

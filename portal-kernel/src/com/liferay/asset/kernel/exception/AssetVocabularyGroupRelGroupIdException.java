@@ -10,22 +10,22 @@ import com.liferay.portal.kernel.exception.PortalException;
 /**
  * @author Brian Wing Shun Chan
  */
-public class InvalidAssetVocabularyGroupRelException extends PortalException {
+public class AssetVocabularyGroupRelGroupIdException extends PortalException {
 
-	public InvalidAssetVocabularyGroupRelException() {
+	public AssetVocabularyGroupRelGroupIdException() {
 	}
 
-	public InvalidAssetVocabularyGroupRelException(String msg) {
+	public AssetVocabularyGroupRelGroupIdException(String msg) {
 		super(msg);
 	}
 
-	public InvalidAssetVocabularyGroupRelException(
+	public AssetVocabularyGroupRelGroupIdException(
 		String msg, Throwable throwable) {
 
 		super(msg, throwable);
 	}
 
-	public InvalidAssetVocabularyGroupRelException(Throwable throwable) {
+	public AssetVocabularyGroupRelGroupIdException(Throwable throwable) {
 		super(throwable);
 	}
 

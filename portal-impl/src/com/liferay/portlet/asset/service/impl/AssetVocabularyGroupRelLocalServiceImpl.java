@@ -5,7 +5,7 @@
 
 package com.liferay.portlet.asset.service.impl;
 
-import com.liferay.asset.kernel.exception.InvalidAssetVocabularyGroupRelException;
+import com.liferay.asset.kernel.exception.AssetVocabularyGroupRelGroupIdException;
 import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.model.AssetVocabularyGroupRel;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -90,7 +90,7 @@ public class AssetVocabularyGroupRelLocalServiceImpl
 		throws PortalException {
 
 		if (ArrayUtil.isEmpty(groupIds)) {
-			throw new InvalidAssetVocabularyGroupRelException(
+			throw new AssetVocabularyGroupRelGroupIdException(
 				"Group IDs cannot be empty");
 		}
 

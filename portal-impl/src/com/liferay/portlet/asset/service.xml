@@ -315,6 +315,7 @@
 		<exception>AssetCategoryName</exception>
 		<exception>AssetTag</exception>
 		<exception>AssetTagName</exception>
+		<exception>AssetVocabularyGroupRelGroupId</exception>
 		<exception>CategoryName</exception>
 		<exception>CategoryPropertyKey</exception>
 		<exception>CategoryPropertyValue</exception>
@@ -326,7 +327,6 @@
 		<exception>DuplicateVocabulary</exception>
 		<exception>DuplicateVocabularyExternalReferenceCode</exception>
 		<exception>InvalidAssetCategory</exception>
-		<exception>InvalidAssetVocabularyGroupRel</exception>
 		<exception>VocabularyName</exception>
 	</exceptions>
 </service-builder>
