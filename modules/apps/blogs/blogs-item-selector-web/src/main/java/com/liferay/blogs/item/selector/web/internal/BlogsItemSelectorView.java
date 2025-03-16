@@ -5,8 +5,8 @@
 
 package com.liferay.blogs.item.selector.web.internal;
 
+import com.liferay.blogs.item.selector.BlogsItemSelectorCriterion;
 import com.liferay.blogs.item.selector.constants.BlogsItemSelectorViewConstants;
-import com.liferay.blogs.item.selector.criterion.BlogsItemSelectorCriterion;
 import com.liferay.blogs.item.selector.web.internal.constants.BlogsItemSelectorWebKeys;
 import com.liferay.blogs.item.selector.web.internal.display.context.BlogsItemSelectorViewDisplayContext;
 import com.liferay.blogs.service.BlogsEntryLocalService;

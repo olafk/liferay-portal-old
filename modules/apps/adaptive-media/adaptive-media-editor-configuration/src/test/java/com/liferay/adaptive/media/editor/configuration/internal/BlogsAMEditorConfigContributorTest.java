@@ -5,7 +5,7 @@
 
 package com.liferay.adaptive.media.editor.configuration.internal;
 
-import com.liferay.blogs.item.selector.criterion.BlogsItemSelectorCriterion;
+import com.liferay.blogs.item.selector.BlogsItemSelectorCriterion;
 import com.liferay.item.selector.ItemSelectorCriterion;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
