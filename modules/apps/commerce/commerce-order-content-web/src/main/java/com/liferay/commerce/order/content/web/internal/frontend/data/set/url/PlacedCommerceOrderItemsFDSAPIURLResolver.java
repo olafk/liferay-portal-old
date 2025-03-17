@@ -46,10 +46,10 @@ public class PlacedCommerceOrderItemsFDSAPIURLResolver
 
 		return StringUtil.replace(
 			baseURL,
-			new String[] {"{placedOrderId}", "{externalReferenceCode}"},
+			new String[] {"{externalReferenceCode}", "{placedOrderId}"},
 			new String[] {
-				String.valueOf(commerceOrder.getCommerceOrderId()),
-				String.valueOf(commerceOrder.getExternalReferenceCode())
+				String.valueOf(commerceOrder.getExternalReferenceCode()),
+				String.valueOf(commerceOrder.getCommerceOrderId())
 			});
 	}
 

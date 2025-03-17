@@ -39,8 +39,6 @@ public class PendingCommerceOrderItemsFDSAPIURLResolverTest {
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 
-		_mockHttpServletRequest = new MockHttpServletRequest();
-
 		Mockito.when(
 			_commerceOrder.getCommerceOrderId()
 		).thenReturn(
@@ -65,18 +63,18 @@ public class PendingCommerceOrderItemsFDSAPIURLResolverTest {
 	public void testResolve() {
 		Assert.assertEquals(
 			_pendingCommerceOrderItemsFDSAPIURLResolver.resolve(
-				"/v1.0/carts/{cartId}/items", _mockHttpServletRequest),
-			StringBundler.concat(
-				"/v1.0/carts/", _commerceOrder.getCommerceOrderId(), "/items"));
-
-		Assert.assertEquals(
-			_pendingCommerceOrderItemsFDSAPIURLResolver.resolve(
 				"/v1.0/carts/by-externalReferenceCode/{externalReferenceCode}" +
 					"/items",
 				_mockHttpServletRequest),
 			StringBundler.concat(
 				"/v1.0/carts/by-externalReferenceCode/",
 				_commerceOrder.getExternalReferenceCode(), "/items"));
+		Assert.assertEquals(
+			_pendingCommerceOrderItemsFDSAPIURLResolver.resolve(
+				"/v1.0/carts/{cartId}/items", _mockHttpServletRequest),
+			StringBundler.concat(
+				"/v1.0/carts/", _commerceOrder.getCommerceOrderId(), "/items"));
+
 	}
 
 	private static final MockedStatic<CommerceOrderInfoItemUtil>
@@ -86,7 +84,8 @@ public class PendingCommerceOrderItemsFDSAPIURLResolverTest {
 	@Mock
 	private CommerceOrder _commerceOrder;
 
-	private MockHttpServletRequest _mockHttpServletRequest;
+	private MockHttpServletRequest _mockHttpServletRequest =
+		new MockHttpServletRequest();
 
 	@InjectMocks
 	private PendingCommerceOrderItemsFDSAPIURLResolver

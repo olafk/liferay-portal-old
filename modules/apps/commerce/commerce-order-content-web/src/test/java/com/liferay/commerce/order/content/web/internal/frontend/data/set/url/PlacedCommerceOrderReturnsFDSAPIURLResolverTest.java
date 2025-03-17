@@ -42,8 +42,6 @@ public class PlacedCommerceOrderReturnsFDSAPIURLResolverTest {
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 
-		_mockHttpServletRequest = new MockHttpServletRequest();
-
 		Mockito.when(
 			_commerceOrder.getCommerceOrderId()
 		).thenReturn(
@@ -79,7 +77,8 @@ public class PlacedCommerceOrderReturnsFDSAPIURLResolverTest {
 	@Mock
 	private CommerceOrder _commerceOrder;
 
-	private MockHttpServletRequest _mockHttpServletRequest;
+	private MockHttpServletRequest _mockHttpServletRequest =
+		new MockHttpServletRequest();
 
 	@InjectMocks
 	private PlacedCommerceOrderReturnsFDSAPIURLResolver
