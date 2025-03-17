@@ -84,11 +84,11 @@ public class CommerceTaxCategoryMappingServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static CommerceTaxCategoryMapping updateCommerceTaxCategoryMapping(
+	public static CommerceTaxCategoryMapping updateExternalReferenceCode(
 			long commerceTaxCategoryMappingId, String externalReferenceCode)
 		throws PortalException {
 
-		return getService().updateCommerceTaxCategoryMapping(
+		return getService().updateExternalReferenceCode(
 			commerceTaxCategoryMappingId, externalReferenceCode);
 	}
 

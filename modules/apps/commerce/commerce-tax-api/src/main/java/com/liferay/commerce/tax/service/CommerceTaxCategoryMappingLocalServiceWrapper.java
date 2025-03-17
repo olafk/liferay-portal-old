@@ -501,12 +501,12 @@ public class CommerceTaxCategoryMappingLocalServiceWrapper
 
 	@Override
 	public com.liferay.commerce.tax.model.CommerceTaxCategoryMapping
-			updateCommerceTaxCategoryMapping(
+			updateExternalReferenceCode(
 				long commerceTaxCategoryMappingId, String externalReferenceCode)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _commerceTaxCategoryMappingLocalService.
-			updateCommerceTaxCategoryMapping(
+			updateExternalReferenceCode(
 				commerceTaxCategoryMappingId, externalReferenceCode);
 	}
 

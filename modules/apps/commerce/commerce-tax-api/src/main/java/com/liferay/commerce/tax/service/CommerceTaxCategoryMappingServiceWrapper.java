@@ -94,13 +94,12 @@ public class CommerceTaxCategoryMappingServiceWrapper
 
 	@Override
 	public com.liferay.commerce.tax.model.CommerceTaxCategoryMapping
-			updateCommerceTaxCategoryMapping(
+			updateExternalReferenceCode(
 				long commerceTaxCategoryMappingId, String externalReferenceCode)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _commerceTaxCategoryMappingService.
-			updateCommerceTaxCategoryMapping(
-				commerceTaxCategoryMappingId, externalReferenceCode);
+		return _commerceTaxCategoryMappingService.updateExternalReferenceCode(
+			commerceTaxCategoryMappingId, externalReferenceCode);
 	}
 
 	@Override

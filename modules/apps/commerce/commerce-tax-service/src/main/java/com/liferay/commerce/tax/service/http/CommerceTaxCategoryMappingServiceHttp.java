@@ -259,7 +259,7 @@ public class CommerceTaxCategoryMappingServiceHttp {
 	}
 
 	public static com.liferay.commerce.tax.model.CommerceTaxCategoryMapping
-			updateCommerceTaxCategoryMapping(
+			updateExternalReferenceCode(
 				HttpPrincipal httpPrincipal, long commerceTaxCategoryMappingId,
 				String externalReferenceCode)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -267,8 +267,8 @@ public class CommerceTaxCategoryMappingServiceHttp {
 		try {
 			MethodKey methodKey = new MethodKey(
 				CommerceTaxCategoryMappingServiceUtil.class,
-				"updateCommerceTaxCategoryMapping",
-				_updateCommerceTaxCategoryMappingParameterTypes5);
+				"updateExternalReferenceCode",
+				_updateExternalReferenceCodeParameterTypes5);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, commerceTaxCategoryMappingId, externalReferenceCode);
@@ -327,7 +327,7 @@ public class CommerceTaxCategoryMappingServiceHttp {
 			com.liferay.portal.kernel.util.OrderByComparator.class
 		};
 	private static final Class<?>[]
-		_updateCommerceTaxCategoryMappingParameterTypes5 = new Class[] {
+		_updateExternalReferenceCodeParameterTypes5 = new Class[] {
 			long.class, String.class
 		};
 

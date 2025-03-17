@@ -75,7 +75,7 @@ public interface CommerceTaxCategoryMappingService extends BaseService {
 	 */
 	public String getOSGiServiceIdentifier();
 
-	public CommerceTaxCategoryMapping updateCommerceTaxCategoryMapping(
+	public CommerceTaxCategoryMapping updateExternalReferenceCode(
 			long commerceTaxCategoryMappingId, String externalReferenceCode)
 		throws PortalException;
 

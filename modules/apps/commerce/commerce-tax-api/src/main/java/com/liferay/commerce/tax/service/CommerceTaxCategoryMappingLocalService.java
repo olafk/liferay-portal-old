@@ -355,7 +355,7 @@ public interface CommerceTaxCategoryMappingLocalService
 	public CommerceTaxCategoryMapping updateCommerceTaxCategoryMapping(
 		CommerceTaxCategoryMapping commerceTaxCategoryMapping);
 
-	public CommerceTaxCategoryMapping updateCommerceTaxCategoryMapping(
+	public CommerceTaxCategoryMapping updateExternalReferenceCode(
 			long commerceTaxCategoryMappingId, String externalReferenceCode)
 		throws PortalException;
 
