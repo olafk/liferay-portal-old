@@ -678,27 +678,24 @@ public class AccountGroupResourceTest extends BaseAccountGroupResourceTestCase {
 				accountBrief2.getExternalReferenceCode(),
 				TestPropsValues.getCompanyId());
 
-		Assert.assertEquals(
-			accountBrief2.getName(), serviceBuilderAccountEntry3.getName());
-		Assert.assertEquals(
-			WorkflowConstants.STATUS_INCOMPLETE,
-			serviceBuilderAccountEntry3.getStatus());
-		Assert.assertEquals(
-			accountBrief2.getType(), serviceBuilderAccountEntry3.getType());
 		Assert.assertTrue(
 			ListUtil.exists(
 				serviceBuilderAccountGroupRels,
 				serviceBuilderAccountGroupRel ->
 					serviceBuilderAccountGroupRel.getClassPK() ==
 						serviceBuilderAccountEntry3.getAccountEntryId()));
+		Assert.assertEquals(
+			accountBrief2.getName(), serviceBuilderAccountEntry3.getName());
+		Assert.assertEquals(
+			accountBrief2.getType(), serviceBuilderAccountEntry3.getType());
+		Assert.assertEquals(
+			WorkflowConstants.STATUS_INCOMPLETE,
+			serviceBuilderAccountEntry3.getStatus());
 
 		Role serviceBuilderRole2 =
 			_roleLocalService.fetchRoleByExternalReferenceCode(
 				permission1.getRoleExternalReferenceCode(),
 				TestPropsValues.getCompanyId());
-
-		Assert.assertEquals(
-			serviceBuilderRole1.getRoleId(), serviceBuilderRole2.getRoleId());
 
 		List<com.liferay.portal.vulcan.permission.Permission> permissions =
 			ListUtil.fromCollection(
@@ -723,19 +720,14 @@ public class AccountGroupResourceTest extends BaseAccountGroupResourceTestCase {
 							   permission.getRoleExternalReferenceCode());
 				}));
 
+		Assert.assertEquals(
+			serviceBuilderRole1.getRoleId(), serviceBuilderRole2.getRoleId());
+
 		Role serviceBuilderRole3 =
 			_roleLocalService.fetchRoleByExternalReferenceCode(
 				permission2.getRoleExternalReferenceCode(),
 				TestPropsValues.getCompanyId());
 
-		Assert.assertEquals(
-			permission2.getRoleName(), serviceBuilderRole3.getName());
-		Assert.assertEquals(
-			WorkflowConstants.STATUS_INCOMPLETE,
-			serviceBuilderRole3.getStatus());
-		Assert.assertEquals(
-			RoleConstants.getLabelType(permission2.getRoleType()),
-			serviceBuilderRole3.getType());
 		Assert.assertTrue(
 			ListUtil.exists(
 				permissions,
@@ -748,6 +740,14 @@ public class AccountGroupResourceTest extends BaseAccountGroupResourceTestCase {
 							   serviceBuilderRole3.getExternalReferenceCode(),
 							   permission.getRoleExternalReferenceCode());
 				}));
+		Assert.assertEquals(
+			permission2.getRoleName(), serviceBuilderRole3.getName());
+		Assert.assertEquals(
+			RoleConstants.getLabelType(permission2.getRoleType()),
+			serviceBuilderRole3.getType());
+		Assert.assertEquals(
+			WorkflowConstants.STATUS_INCOMPLETE,
+			serviceBuilderRole3.getStatus());
 	}
 
 	private void _testPutAccountGroupByExternalReferenceWithoutName()
