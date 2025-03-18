@@ -6895,7 +6895,7 @@ information. Make sure to commit in all format-javadoc results.
 						<equals arg1="${js.unit.failure.count}" arg2="0" />
 					</not>
 					<then>
-						<fail message="${js.unit.failure.count} JS unit tests have failed." />
+						<fail message="${js.unit.failure.count} JS unit tests failed." />
 					</then>
 				</if>
 			</test-action>
