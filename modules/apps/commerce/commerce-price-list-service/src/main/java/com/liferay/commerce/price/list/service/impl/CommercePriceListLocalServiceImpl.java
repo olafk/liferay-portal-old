@@ -1609,27 +1609,30 @@ public class CommercePriceListLocalServiceImpl
 					CommercePriceListChannelRelId.isNull());
 		}
 
-		joinStep = joinStep.leftJoinOn(
-			CommerceChannelRelTable.INSTANCE,
-			CommerceChannelRelTable.INSTANCE.commerceChannelId.eq(
-				commerceChannelId
-			).and(
-				CommerceChannelRelTable.INSTANCE.classNameId.eq(
-					_classNameLocalService.getClassNameId(
-						CommerceCurrency.class.getName()))
-			));
+		if (commerceChannelId != null) {
+			joinStep = joinStep.leftJoinOn(
+				CommerceChannelRelTable.INSTANCE,
+				CommerceChannelRelTable.INSTANCE.commerceChannelId.eq(
+					commerceChannelId
+				).and(
+					CommerceChannelRelTable.INSTANCE.classNameId.eq(
+						_classNameLocalService.getClassNameId(
+							CommerceCurrency.class.getName()))
+				));
 
-		joinStep = joinStep.leftJoinOn(
-			CommerceCurrencyTable.INSTANCE,
-			CommerceCurrencyTable.INSTANCE.commerceCurrencyId.eq(
-				CommerceChannelRelTable.INSTANCE.classPK));
+			joinStep = joinStep.leftJoinOn(
+				CommerceCurrencyTable.INSTANCE,
+				CommerceCurrencyTable.INSTANCE.commerceCurrencyId.eq(
+					CommerceChannelRelTable.INSTANCE.classPK));
 
-		predicate = predicate.and(
-			CommerceCurrencyTable.INSTANCE.code.eq(
-				CommercePriceListTable.INSTANCE.commerceCurrencyCode
-			).or(
-				CommerceChannelRelTable.INSTANCE.commerceChannelRelId.isNull()
-			).withParentheses());
+			predicate = predicate.and(
+				CommerceCurrencyTable.INSTANCE.code.eq(
+					CommercePriceListTable.INSTANCE.commerceCurrencyCode
+				).or(
+					CommerceChannelRelTable.INSTANCE.commerceChannelRelId.
+						isNull()
+				).withParentheses());
+		}
 
 		if (!Validator.isBlank(currencyCode)) {
 			predicate = predicate.and(
