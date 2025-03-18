@@ -21,6 +21,6 @@ public class MarketplaceActionKeys {
 	public static final String PURCHASE_AND_INSTALL_PAID_APPS =
 		"PURCHASE_AND_INSTALL_PAID_APPS";
 
-	public static final String VIEW_MARKETPLACE_APPS = "VIEW_MARKETPLACE_APPS";
+	public static final String VIEW_APPS = "VIEW_APPS";
 
 }
