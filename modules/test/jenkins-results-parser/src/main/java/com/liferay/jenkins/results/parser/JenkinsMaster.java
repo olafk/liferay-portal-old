@@ -881,22 +881,24 @@ public class JenkinsMaster implements JenkinsNode<JenkinsMaster> {
 				JSONArray assignedLabelsJSONArray =
 					computerJSONObject.optJSONArray("assignedLabels");
 
-				if (assignedLabelsJSONArray != null) {
-					for (int j = 0; j < assignedLabelsJSONArray.length(); j++) {
-						JSONObject assignedLabelJSONObject =
-							assignedLabelsJSONArray.getJSONObject(j);
+				if (assignedLabelsJSONArray == null) {
+					continue;
+				}
 
-						String assignedLabelName =
-							assignedLabelJSONObject.optString("name");
+				for (int j = 0; j < assignedLabelsJSONArray.length(); j++) {
+					JSONObject assignedLabelJSONObject =
+						assignedLabelsJSONArray.getJSONObject(j);
 
-						if (JenkinsResultsParserUtil.isNullOrEmpty(
-								assignedLabelName)) {
+					String assignedLabelName =
+						assignedLabelJSONObject.optString("name");
 
-							continue;
-						}
+					if (JenkinsResultsParserUtil.isNullOrEmpty(
+							assignedLabelName)) {
 
-						_assignedLabels.add(assignedLabelName);
+						continue;
 					}
+
+					_assignedLabels.add(assignedLabelName);
 				}
 
 				continue;
