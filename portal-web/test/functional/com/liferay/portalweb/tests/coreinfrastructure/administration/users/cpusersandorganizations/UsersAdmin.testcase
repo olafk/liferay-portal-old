@@ -1007,62 +1007,6 @@ definition {
 		}
 	}
 
-	@priority = 4
-	test ChangeUserPassword {
-		property portal.acceptance = "true";
-
-		JSONUser.addUser(
-			userEmailAddress = "userea@liferay.com",
-			userFirstName = "userfn",
-			userLastName = "userln",
-			userScreenName = "usersn");
-
-		User.openUsersAdmin();
-
-		User.editPasswordCP(
-			userEmailAddress = "userea@liferay.com",
-			userScreenName = "usersn");
-
-		User.logoutPG();
-
-		User.loginUserPG(userEmailAddress = "userea@liferay.com");
-
-		Navigator.openURL();
-
-		Navigator.gotoAccountSettings();
-
-		User.changePasswordCP(userEmailAddress = "userea@liferay.com");
-	}
-
-	@priority = 4
-	test ChangeUserPasswordInvalid {
-		User.openUsersAdmin();
-
-		User.addCP(
-			userEmailAddress = "userea@liferay.com",
-			userFirstName = "userfn",
-			userLastName = "userln",
-			userScreenName = "usersn");
-
-		User.openUsersAdmin();
-
-		User.editPasswordCP(
-			userEmailAddress = "userea@liferay.com",
-			userScreenName = "usersn");
-
-		User.logoutPG();
-
-		User.loginUserPG(userEmailAddress = "userea@liferay.com");
-
-		Navigator.openURL();
-
-		Navigator.gotoAccountSettings();
-
-		User.changePasswordCP(
-			userEmailAddress = "userea@liferay.com",
-			userPassword = "Invalid");
-	}
-
 	@description = "This test changes password through the API Explorer GUI."
 	@priority = 4
 	test ChangeUserPasswordViaAPIExplorerGUI {

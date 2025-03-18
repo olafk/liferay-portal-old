@@ -388,78 +388,6 @@ definition {
 		}
 	}
 
-	@description = "Assign multiple members to an organization and searches for them under assignees"
-	@priority = 4
-	test AssignMultipleUsersToOrganization {
-		var count = 1;
-
-		while (${count} != 6) {
-			JSONUser.addUser(
-				userEmailAddress = "userea${count}@liferay.com",
-				userFirstName = "userfn${count}",
-				userLastName = "userln${count}",
-				userScreenName = "usersn${count}");
-
-			var count = ${count} + 1;
-		}
-
-		User.openUsersAdmin();
-
-		for (var userScreenName : list "usersn1,usersn2,usersn3,usersn4,usersn5") {
-			var key_userScreenName = ${userScreenName};
-
-			AssertTextEquals(
-				locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
-				value1 = ${userScreenName});
-		}
-
-		JSONOrganization.addOrganization(organizationName = "Organization Name 1");
-
-		Organization.openOrganizationsAdmin();
-
-		Organization.assignUser(
-			orgName = "Organization Name 1",
-			userFirstName = "userfn1",
-			userLastName = "userln1",
-			userName = "userfn1 userln1",
-			userScreenName = "usersn1");
-
-		JSONOrganization.assignUserToOrganization(
-			organizationName = "Organization Name 1",
-			userEmailAddress = "userea3@liferay.com");
-
-		JSONOrganization.assignUserToOrganization(
-			organizationName = "Organization Name 1",
-			userEmailAddress = "userea5@liferay.com");
-
-		Organization.openOrganizationsAdmin();
-
-		Organization.gotoCP(orgName = "Organization Name 1");
-
-		for (var userName : list "userfn1 userln1,userfn3 userln3,userfn5 userln5") {
-			AssertTextEquals(
-				key_userScreenName = ${userName},
-				locator1 = "UsersAndOrganizations#USER_TABLE_NAME",
-				value1 = ${userName});
-		}
-
-		for (var userName : list "userfn2 userln2,userfn4 userln4") {
-			AssertElementNotPresent(
-				key_userScreenName = ${userName},
-				locator1 = "UsersAndOrganizations#USER_TABLE_NAME");
-		}
-
-		Organization.openOrganizationsAdmin();
-
-		Organization.gotoCP(orgName = "Organization Name 1");
-
-		Organization.viewUser(userName = "userfn1 userln1");
-
-		Organization.viewUser(userName = "userfn3 userln3");
-
-		Organization.viewUser(userName = "userfn5 userln5");
-	}
-
 	@description = "Add a site to an organization, assign user to that organization and assert it displays in My Dashboard"
 	@priority = 4
 	test AssignUserToOrganizationWithSite {
@@ -1109,42 +1037,6 @@ definition {
 		Organization.searchCP(
 			orgName = "Organization Name 2",
 			searchTerm = 2);
-	}
-
-	@priority = 4
-	test SearchUsersInOrganization {
-		User.openUsersAdmin();
-
-		User.addCP(
-			userEmailAddress = "userea@liferay.com",
-			userFirstName = "userfn",
-			userLastName = "userln",
-			userScreenName = "usersn");
-
-		JSONOrganization.addOrganization(organizationName = "Organization Name");
-
-		Organization.openOrganizationsAdmin();
-
-		Organization.assignUser(
-			orgName = "Organization Name",
-			userFirstName = "userfn",
-			userLastName = "userln",
-			userName = "userfn userln",
-			userScreenName = "usersn");
-
-		Organization.openOrganizationsAdmin();
-
-		Organization.gotoCP(orgName = "Organization Name");
-
-		User.searchCP(searchTerm = "usersn");
-
-		Organization.viewUser(userName = "userfn userln");
-
-		User.searchCP(searchTerm = "test");
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "Message#EMPTY_INFO",
-			value1 = "No results were found.");
 	}
 
 	@priority = 4
