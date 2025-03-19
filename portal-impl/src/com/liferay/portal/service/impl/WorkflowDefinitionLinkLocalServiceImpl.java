@@ -86,7 +86,7 @@ public class WorkflowDefinitionLinkLocalServiceImpl
 	public WorkflowDefinitionLink fetchDefaultWorkflowDefinitionLink(
 		long companyId, String className) {
 
-		return _fetchWorkflowDefinitionLink_G_C_C_C_T(
+		return _fetchByG_C_C_C_T(
 			WorkflowConstants.DEFAULT_GROUP_ID, companyId,
 			_classNameLocalService.getClassNameId(className), 0, 0);
 	}
@@ -105,20 +105,18 @@ public class WorkflowDefinitionLinkLocalServiceImpl
 		long companyId, long groupId, String className, long classPK,
 		long typePK, boolean strict) {
 
-		WorkflowDefinitionLink workflowDefinitionLink =
-			_fetchWorkflowDefinitionLink_G_C_C_C_T(
-				StagingUtil.getLiveGroupId(groupId), companyId,
-				_classNameLocalService.getClassNameId(className), classPK,
-				typePK);
+		WorkflowDefinitionLink workflowDefinitionLink = _fetchByG_C_C_C_T(
+			StagingUtil.getLiveGroupId(groupId), companyId,
+			_classNameLocalService.getClassNameId(className), classPK, typePK);
 
 		if (!strict && (workflowDefinitionLink == null)) {
-			workflowDefinitionLink = _fetchWorkflowDefinitionLink_G_C_C_C_T(
+			workflowDefinitionLink = _fetchByG_C_C_C_T(
 				PortalUtil.getSiteGroupId(groupId), companyId,
 				_classNameLocalService.getClassNameId(className), classPK,
 				typePK);
 
 			if (workflowDefinitionLink == null) {
-				workflowDefinitionLink = _fetchWorkflowDefinitionLink_G_C_C_C_T(
+				workflowDefinitionLink = _fetchByG_C_C_C_T(
 					WorkflowConstants.DEFAULT_GROUP_ID, companyId,
 					_classNameLocalService.getClassNameId(className), classPK,
 					typePK);
@@ -333,11 +331,9 @@ public class WorkflowDefinitionLinkLocalServiceImpl
 
 		User user = _userPersistence.findByPrimaryKey(userId);
 
-		WorkflowDefinitionLink workflowDefinitionLink =
-			_fetchWorkflowDefinitionLink_G_C_C_C_T(
-				StagingUtil.getLiveGroupId(groupId), companyId,
-				_classNameLocalService.getClassNameId(className), classPK,
-				typePK);
+		WorkflowDefinitionLink workflowDefinitionLink = _fetchByG_C_C_C_T(
+			StagingUtil.getLiveGroupId(groupId), companyId,
+			_classNameLocalService.getClassNameId(className), classPK, typePK);
 
 		if (workflowDefinitionLink == null) {
 			workflowDefinitionLink = addWorkflowDefinitionLink(
@@ -413,7 +409,7 @@ public class WorkflowDefinitionLinkLocalServiceImpl
 		}
 	}
 
-	private WorkflowDefinitionLink _fetchWorkflowDefinitionLink_G_C_C_C_T(
+	private WorkflowDefinitionLink _fetchByG_C_C_C_T(
 		long groupId, long companyId, long classNameId, long classPK,
 		long typePK) {
 
@@ -428,9 +424,9 @@ public class WorkflowDefinitionLinkLocalServiceImpl
 		if (workflowDefinitionLinks.size() > 1) {
 			_log.error(
 				StringBundler.concat(
-					"Duplicate workflow definition links exist with groupId ",
-					groupId, ", companyId ", companyId, ", classNameId ",
-					classNameId, ", classPK ", classPK, ", and typePK ",
+					"Duplicate workflow definition links exist with group ID ",
+					groupId, ", company ID ", companyId, ", class name ID ",
+					classNameId, ", class PK ", classPK, ", and type PK ",
 					typePK));
 		}
 
