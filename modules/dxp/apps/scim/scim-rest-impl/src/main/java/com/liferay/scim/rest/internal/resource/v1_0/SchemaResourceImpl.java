@@ -11,8 +11,6 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.util.URLUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.scim.rest.internal.util.ScimUtil;
@@ -93,11 +91,8 @@ public class SchemaResourceImpl extends BaseSchemaResourceImpl {
 
 	private SCIMResponse _getSCIMResponse(String id) {
 		try {
-			ServiceContext serviceContext =
-				ServiceContextThreadLocal.getServiceContext();
-
 			ScimUtil.getScimClientOAuth2ApplicationConfiguration(
-				serviceContext.getCompanyId(), _configurationAdmin);
+				contextCompany.getCompanyId(), _configurationAdmin);
 
 			if (Validator.isNull(id)) {
 				return new SCIMResponse(

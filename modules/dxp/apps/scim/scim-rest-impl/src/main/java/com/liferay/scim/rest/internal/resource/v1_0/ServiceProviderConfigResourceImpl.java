@@ -9,8 +9,6 @@ import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.util.URLUtil;
 import com.liferay.scim.rest.internal.util.ScimUtil;
 import com.liferay.scim.rest.resource.v1_0.ServiceProviderConfigResource;
@@ -48,11 +46,8 @@ public class ServiceProviderConfigResourceImpl
 
 	private SCIMResponse _getSCIMResponse() throws Exception {
 		try {
-			ServiceContext serviceContext =
-				ServiceContextThreadLocal.getServiceContext();
-
 			ScimUtil.getScimClientOAuth2ApplicationConfiguration(
-				serviceContext.getCompanyId(), _configurationAdmin);
+				contextCompany.getCompanyId(), _configurationAdmin);
 
 			return new SCIMResponse(
 				ResponseCodeConstants.CODE_OK, _read(),
