@@ -14,6 +14,7 @@ export const {
 	EventHandler,
 	PortletBase,
 	STATUS_CODE,
+	Session,
 	addParams,
 	cancelDebounce,
 	checkConsent,

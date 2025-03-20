@@ -20,6 +20,7 @@ import {
 } from './component.es';
 import debounce, {cancelDebounce} from './debounce/debounce.es';
 import delegate from './delegate/delegate.es';
+import Session from './session';
 
 import './dom_task_runner';
 
@@ -370,6 +371,7 @@ Liferay.__INTERNALS = {
 	EventHandler,
 	PortletBase,
 	STATUS_CODE,
+	Session,
 	addParams,
 	cancelDebounce,
 	checkConsent,
