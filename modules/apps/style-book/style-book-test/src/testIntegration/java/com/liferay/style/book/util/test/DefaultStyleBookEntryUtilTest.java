@@ -75,7 +75,7 @@ public class DefaultStyleBookEntryUtilTest {
 	public void testGetStyleBookEntryNameWithDefaultStyleBookEntryAndWithMasterLayoutWithoutStyleBookEntry()
 		throws Exception {
 
-		Layout layoutWithMasterLayout = _getLayoutWithMasterLayout();
+		Layout masterLayoutLayout = _getMasterLayoutLayout();
 
 		_styleBookEntryLocalService.addStyleBookEntry(
 			RandomTestUtil.randomString(), TestPropsValues.getUserId(),
@@ -85,7 +85,7 @@ public class DefaultStyleBookEntryUtilTest {
 		Assert.assertEquals(
 			"styles-by-default",
 			DefaultStyleBookEntryUtil.getStyleBookEntryName(
-				layoutWithMasterLayout, null, null));
+				masterLayoutLayout, null, null));
 	}
 
 	@Test
@@ -95,17 +95,17 @@ public class DefaultStyleBookEntryUtilTest {
 		Assert.assertEquals(
 			"styles-from-theme",
 			DefaultStyleBookEntryUtil.getStyleBookEntryName(
-				_getLayoutWithMasterLayout(), null, null));
+				_getMasterLayoutLayout(), null, null));
 	}
 
 	@Test
 	public void testGetStyleBookEntryNameWithMasterLayoutWithStyleBookEntry()
 		throws Exception {
 
-		Layout layoutWithMasterLayout = _getLayoutWithMasterLayout();
+		Layout masterLayoutLayout = _getMasterLayoutLayout();
 
 		Layout masterPageTemplateLayout = _layoutLocalService.getLayout(
-			layoutWithMasterLayout.getMasterLayoutPlid());
+			masterLayoutLayout.getMasterLayoutPlid());
 
 		StyleBookEntry styleBookEntry =
 			_styleBookEntryLocalService.addStyleBookEntry(
@@ -121,7 +121,7 @@ public class DefaultStyleBookEntryUtilTest {
 		Assert.assertEquals(
 			"styles-from-master",
 			DefaultStyleBookEntryUtil.getStyleBookEntryName(
-				layoutWithMasterLayout, null, null));
+				masterLayoutLayout, null, null));
 	}
 
 	@FeatureFlags(enable = false, value = "LPD-30204")
@@ -157,8 +157,8 @@ public class DefaultStyleBookEntryUtilTest {
 				_layout, null, styleBookEntry));
 	}
 
-	private Layout _getLayoutWithMasterLayout() throws Exception {
-		Layout layoutWithMasterLayout = LayoutTestUtil.addTypeContentLayout(
+	private Layout _getMasterLayoutLayout() throws Exception {
+		Layout masterLayoutLayout = LayoutTestUtil.addTypeContentLayout(
 			_group);
 
 		LayoutPageTemplateEntry masterLayoutPageTemplateEntry =
@@ -169,10 +169,10 @@ public class DefaultStyleBookEntryUtilTest {
 				WorkflowConstants.STATUS_APPROVED,
 				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
-		layoutWithMasterLayout.setMasterLayoutPlid(
+		masterLayoutLayout.setMasterLayoutPlid(
 			masterLayoutPageTemplateEntry.getPlid());
 
-		return _layoutLocalService.updateLayout(layoutWithMasterLayout);
+		return _layoutLocalService.updateLayout(masterLayoutLayout);
 	}
 
 	private static final String _THEME_ID = RandomTestUtil.randomString();
