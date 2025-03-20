@@ -71,15 +71,6 @@ public class ObjectEntryFolderModelDocumentContributorTest {
 			RandomTestUtil.randomString(), new ServiceContext());
 	}
 
-	private Document _contribute(ObjectEntryFolder objectEntryFolder) {
-		Document document = new DocumentImpl();
-
-		_objectEntryFolderModelDocumentContributor.contribute(
-			document, objectEntryFolder);
-
-		return document;
-	}
-
 	private void _testContribute(
 			String cmsSection,
 			String parentObjectEntryFolderExternalReferenceCode)
@@ -92,7 +83,10 @@ public class ObjectEntryFolderModelDocumentContributorTest {
 		ObjectEntryFolder objectEntryFolder = _addObjectEntryFolder(
 			null, parentObjectEntryFolder.getObjectEntryFolderId());
 
-		Document document = _contribute(objectEntryFolder);
+		Document document = new DocumentImpl();
+
+		_objectEntryFolderModelDocumentContributor.contribute(
+			document, objectEntryFolder);
 
 		Assert.assertEquals(
 			String.valueOf(objectEntryFolder.getObjectEntryFolderId()),
