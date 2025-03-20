@@ -6,11 +6,12 @@
 package com.liferay.headless.asset.library.internal.resource.v1_0;
 
 import com.liferay.depot.constants.DepotActionKeys;
+import com.liferay.depot.model.DepotAppCustomization;
 import com.liferay.depot.model.DepotEntry;
+import com.liferay.depot.service.DepotAppCustomizationLocalService;
 import com.liferay.depot.service.DepotEntryService;
 import com.liferay.headless.asset.library.dto.v1_0.AssetLibrary;
 import com.liferay.headless.asset.library.dto.v1_0.Settings;
-import com.liferay.headless.asset.library.internal.util.DepotEntryManagerUtil;
 import com.liferay.headless.asset.library.resource.v1_0.AssetLibraryResource;
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.feature.flag.FeatureFlagManagerUtil;
@@ -37,6 +38,8 @@ import com.liferay.portal.vulcan.util.SearchUtil;
 
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
@@ -172,9 +175,9 @@ public class AssetLibraryResourceImpl extends BaseAssetLibraryResourceImpl {
 				LocalizedMapUtil.getLocalizedMap(
 					contextAcceptLanguage.getPreferredLocale(), description,
 					descriptionMap),
-				_getDepotCustomizationMap(
-					group.getExternalReferenceCode(),
-					contextCompany.getCompanyId()),
+				_getDepotAppCustomizationMap(
+					contextCompany.getCompanyId(),
+					group.getExternalReferenceCode()),
 				unicodeProperties, _getServiceContext()));
 	}
 
@@ -223,16 +226,78 @@ public class AssetLibraryResourceImpl extends BaseAssetLibraryResourceImpl {
 
 		return _toAssetLibrary(
 			_addOrUpdateDepotEntry(
-				externalReferenceCode,
-				LocalizedMapUtil.getLocalizedMap(
-					contextAcceptLanguage.getPreferredLocale(),
-					assetLibrary.getName(), assetLibrary.getName_i18n()),
 				LocalizedMapUtil.getLocalizedMap(
 					contextAcceptLanguage.getPreferredLocale(),
 					assetLibrary.getDescription(),
 					assetLibrary.getDescription_i18n()),
-				_toUnicodeProperties(assetLibrary.getSettings()),
-				_getServiceContext()));
+				externalReferenceCode,
+				LocalizedMapUtil.getLocalizedMap(
+					contextAcceptLanguage.getPreferredLocale(),
+					assetLibrary.getName(), assetLibrary.getName_i18n()),
+				_getServiceContext(),
+				_toUnicodeProperties(assetLibrary.getSettings())));
+	}
+
+	private DepotEntry _addOrUpdateDepotEntry(
+			Map<Locale, String> descriptionMap, String externalReferenceCode,
+			Map<Locale, String> nameMap, ServiceContext serviceContext,
+			UnicodeProperties unicodeProperties)
+		throws Exception {
+
+		DepotEntry depotEntry = null;
+
+		Group group = _groupLocalService.fetchGroupByExternalReferenceCode(
+			externalReferenceCode, serviceContext.getCompanyId());
+
+		if (group != null) {
+			depotEntry = _depotEntryService.getGroupDepotEntry(
+				group.getGroupId());
+
+			depotEntry = _depotEntryService.updateDepotEntry(
+				depotEntry.getDepotEntryId(), nameMap, descriptionMap,
+				_getDepotAppCustomizationMap(
+					depotEntry.getCompanyId(), externalReferenceCode),
+				unicodeProperties, serviceContext);
+		}
+		else {
+			depotEntry = _depotEntryService.addDepotEntry(
+				nameMap, descriptionMap, serviceContext);
+		}
+
+		group = depotEntry.getGroup();
+
+		group.setExternalReferenceCode(externalReferenceCode);
+
+		_groupLocalService.updateGroup(group);
+
+		return depotEntry;
+	}
+
+	private Map<String, Boolean> _getDepotAppCustomizationMap(
+			long companyId, String externalReferenceCode)
+		throws Exception {
+
+		Map<String, Boolean> depotAppCustomizationMap = new HashMap<>();
+
+		Group group = _groupLocalService.fetchGroupByExternalReferenceCode(
+			externalReferenceCode, companyId);
+
+		if (group != null) {
+			DepotEntry depotEntry = _depotEntryService.getGroupDepotEntry(
+				group.getGroupId());
+
+			for (DepotAppCustomization depotAppCustomization :
+					_depotAppCustomizationLocalService.
+						getDepotAppCustomizations(
+							depotEntry.getDepotEntryId())) {
+
+				depotAppCustomizationMap.put(
+					depotAppCustomization.getPortletId(),
+					depotAppCustomization.isEnabled());
+			}
+		}
+
+		return depotAppCustomizationMap;
 	}
 
 	private long _getGroupIdByExternalReferenceCode(
@@ -340,6 +405,10 @@ public class AssetLibraryResourceImpl extends BaseAssetLibraryResourceImpl {
 	private DTOConverter<DepotEntry, AssetLibrary> _assetLibraryDTOConverter;
 
 	@Reference
+	private DepotAppCustomizationLocalService
+		_depotAppCustomizationLocalService;
+
+	@Reference
 	private DepotEntryService _depotEntryService;
 
 	@Reference
@@ -347,67 +416,5 @@ public class AssetLibraryResourceImpl extends BaseAssetLibraryResourceImpl {
 
 	@Reference
 	private GroupLocalService _groupLocalService;
-
-	public DepotEntry _addOrUpdateDepotEntry(
-			String externalReferenceCode, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap,
-			UnicodeProperties unicodeProperties, ServiceContext serviceContext)
-		throws Exception {
-
-		DepotEntry depotEntry = null;
-
-		Group group = GroupLocalServiceUtil.fetchGroupByExternalReferenceCode(
-			externalReferenceCode, serviceContext.getCompanyId());
-
-		if (group != null) {
-			depotEntry = DepotEntryServiceUtil.getGroupDepotEntry(
-				group.getGroupId());
-
-			depotEntry = DepotEntryServiceUtil.updateDepotEntry(
-				depotEntry.getDepotEntryId(), nameMap, descriptionMap,
-				getDepotCustomizationMap(
-					externalReferenceCode, depotEntry.getCompanyId()),
-				unicodeProperties, serviceContext);
-		}
-		else {
-			depotEntry = DepotEntryServiceUtil.addDepotEntry(
-				nameMap, descriptionMap, serviceContext);
-		}
-
-		group = depotEntry.getGroup();
-
-		group.setExternalReferenceCode(externalReferenceCode);
-
-		GroupLocalServiceUtil.updateGroup(group);
-
-		return depotEntry;
-	}
-
-	public Map<String, Boolean> _getDepotCustomizationMap(
-			String externalReferenceCode, long companyId)
-		throws Exception {
-
-		Map<String, Boolean> depotAppCustomizationMap = new HashMap<>();
-
-		Group group = GroupLocalServiceUtil.fetchGroupByExternalReferenceCode(
-			externalReferenceCode, companyId);
-
-		if (group != null) {
-			DepotEntry depotEntry = DepotEntryServiceUtil.getGroupDepotEntry(
-				group.getGroupId());
-
-			for (DepotAppCustomization depotAppCustomization :
-					DepotAppCustomizationLocalServiceUtil.
-						getDepotAppCustomizations(
-							depotEntry.getDepotEntryId())) {
-
-				depotAppCustomizationMap.put(
-					depotAppCustomization.getPortletId(),
-					depotAppCustomization.isEnabled());
-			}
-		}
-
-		return depotAppCustomizationMap;
-	}
 
 }
