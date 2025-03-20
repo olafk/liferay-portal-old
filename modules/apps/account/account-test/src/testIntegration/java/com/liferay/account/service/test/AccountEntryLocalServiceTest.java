@@ -267,10 +267,10 @@ public class AccountEntryLocalServiceTest {
 				).build(),
 				false);
 
-			ServiceContext serviceContext =
-				ServiceContextTestUtil.getServiceContext();
 			String customFieldName = "A" + RandomTestUtil.randomString();
 			String customFieldValue = RandomTestUtil.randomString();
+			ServiceContext serviceContext =
+				ServiceContextTestUtil.getServiceContext();
 
 			serviceContext.setExpandoBridgeAttributes(
 				HashMapBuilder.<String, Serializable>put(
@@ -328,8 +328,8 @@ public class AccountEntryLocalServiceTest {
 				).build(),
 				false);
 
-			serviceContext = ServiceContextTestUtil.getServiceContext();
 			customFieldValue = RandomTestUtil.randomString();
+			serviceContext = ServiceContextTestUtil.getServiceContext();
 
 			serviceContext.setExpandoBridgeAttributes(
 				HashMapBuilder.<String, Serializable>put(
