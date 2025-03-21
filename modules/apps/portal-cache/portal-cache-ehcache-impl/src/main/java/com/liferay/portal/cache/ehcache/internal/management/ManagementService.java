@@ -89,10 +89,10 @@ public class ManagementService implements CacheManagerListener {
 			Configuration configuration =
 				_cacheManager.getRuntimeConfiguration();
 
-			Map<String, CacheConfiguration<?, ?>> cacheConfigurationsMap =
+			Map<String, CacheConfiguration<?, ?>> cacheConfigurations =
 				configuration.getCacheConfigurations();
 
-			cacheConfigurationsMap.forEach(
+			cacheConfigurations.forEach(
 				(cacheName, cacheConfiguration) -> _registerCache(
 					cacheName,
 					_cacheManager.getCache(
@@ -102,11 +102,11 @@ public class ManagementService implements CacheManagerListener {
 	}
 
 	@Override
-	public void stateTransition(Status from, Status to) {
-		if (to == Status.UNINITIALIZED) {
+	public void stateTransition(Status fromStatus, Status toStatus) {
+		if (toStatus == Status.UNINITIALIZED) {
 			dispose();
 		}
-		else if (to == Status.AVAILABLE) {
+		else if (toStatus == Status.AVAILABLE) {
 			init();
 		}
 	}
