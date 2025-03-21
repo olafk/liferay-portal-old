@@ -46,13 +46,13 @@ public abstract class BaseEhcachePortalCache<K extends Serializable, V>
 		_portalCacheName = ehcachePortalCacheConfiguration.getPortalCacheName();
 		_serializable =
 			ehcachePortalCacheConfiguration.isRequireSerialization();
+
 		_log = LogFactoryUtil.getLog(
 			PortalCacheCacheEventListener.class.getName() + StringPool.PERIOD +
 				_portalCacheName);
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public List<K> getKeys() {
 		Cache<?, ?> cache = getEhcache();
 
@@ -190,7 +190,6 @@ public abstract class BaseEhcachePortalCache<K extends Serializable, V>
 	protected final Class<?> keyType;
 	protected final Class<?> valueType;
 
-	@SuppressWarnings("unchecked")
 	private V _getValue(Object value) {
 		if (value == null) {
 			return null;

@@ -519,7 +519,6 @@ public abstract class BaseEhcachePortalCacheManager<K extends Serializable, V>
 
 		PortalCacheManagerConfiguration portalCacheManagerConfiguration =
 			configurationObjectValuePair.getValue();
-
 		PortalCacheManagerConfiguration extPortalCacheManagerConfiguration =
 			extConfigurationObjectValuePair.getValue();
 

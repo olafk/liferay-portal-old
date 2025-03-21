@@ -130,7 +130,6 @@ public class PortalCacheCacheEventListener<K extends Serializable, V>
 			_getTimeToLive(newValue));
 	}
 
-	@SuppressWarnings("unchecked")
 	private K _getKey(Object key) {
 		if (_requireSerialization) {
 			return SerializableObjectWrapper.unwrap(key);
@@ -151,7 +150,6 @@ public class PortalCacheCacheEventListener<K extends Serializable, V>
 		return (int)duration.getSeconds();
 	}
 
-	@SuppressWarnings("unchecked")
 	private V _getValue(Object value) {
 		EhcacheValue ehcacheValue = (EhcacheValue)value;
 

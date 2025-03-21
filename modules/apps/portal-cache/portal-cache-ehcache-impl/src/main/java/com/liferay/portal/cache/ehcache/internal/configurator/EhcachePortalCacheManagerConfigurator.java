@@ -207,7 +207,6 @@ public class EhcachePortalCacheManagerConfigurator {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	private Configuration _replaceExpiryPolicy(
 		XmlConfiguration xmlConfiguration) {
 

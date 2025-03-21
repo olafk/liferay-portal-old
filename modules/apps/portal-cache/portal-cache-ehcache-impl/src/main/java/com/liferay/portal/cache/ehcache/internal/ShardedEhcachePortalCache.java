@@ -16,7 +16,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.ehcache.Cache;
 import org.ehcache.CacheManager;
-import org.ehcache.config.CacheConfiguration;
 import org.ehcache.config.CacheRuntimeConfiguration;
 import org.ehcache.config.FluentCacheConfigurationBuilder;
 import org.ehcache.event.EventFiring;
@@ -52,24 +51,21 @@ public class ShardedEhcachePortalCache<K extends Serializable, V>
 						shardedPortalCacheName, keyType, valueType);
 
 					if (cache == null) {
-						Cache<?, ?> mainCache = _cacheManager.getCache(
+						cache = _cacheManager.getCache(
 							getPortalCacheName(), keyType, valueType);
 
-						if (mainCache != null) {
+						if (cache != null) {
 							CacheRuntimeConfiguration<?, ?>
 								cacheRuntimeConfiguration =
-									mainCache.getRuntimeConfiguration();
+									cache.getRuntimeConfiguration();
 
 							FluentCacheConfigurationBuilder<?, ?, ?>
 								fluentCacheConfigurationBuilder =
 									cacheRuntimeConfiguration.derive();
 
-							CacheConfiguration<?, ?> clonedCacheConfiguration =
-								fluentCacheConfigurationBuilder.build();
-
 							_cacheManager.createCache(
 								shardedPortalCacheName,
-								clonedCacheConfiguration);
+								fluentCacheConfigurationBuilder.build());
 						}
 						else {
 							BaseEhcachePortalCacheManager<?, ?>
