@@ -7,6 +7,7 @@ package com.liferay.portal.model.adapter.util;
 
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.petra.function.transform.TransformUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.adapter.builder.ModelAdapterBuilder;
@@ -16,7 +17,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.framework.BundleContext;
@@ -30,26 +30,18 @@ public class ModelAdapterUtil {
 		List<T> adapteeModels, Class<T> adapteeModelClass,
 		Class<V> adaptedModelClass) {
 
-		List<V> adaptedModels = new ArrayList<>();
-
-		for (T adapteeModel : adapteeModels) {
-			adaptedModels.add(
-				adapt(adapteeModel, adapteeModelClass, adaptedModelClass));
-		}
-
-		return adaptedModels;
+		return TransformUtil.transform(
+			adapteeModels,
+			adapteeModel -> adapt(
+				adapteeModel, adapteeModelClass, adaptedModelClass));
 	}
 
 	public static <T, V> List<V> adapt(
 		List<T> adapteeModels, Class<V> adaptedModelClass) {
 
-		List<V> adaptedModels = new ArrayList<>();
-
-		for (T adapteeModel : adapteeModels) {
-			adaptedModels.add(adapt(adapteeModel, adaptedModelClass));
-		}
-
-		return adaptedModels;
+		return TransformUtil.transform(
+			adapteeModels,
+			adapteeModel -> adapt(adapteeModel, adaptedModelClass));
 	}
 
 	public static <T, V> V adapt(
