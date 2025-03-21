@@ -4,6 +4,7 @@
  */
 
 import {ClayInput} from '@clayui/form';
+import {useFormState} from 'data-engine-js-components-web';
 import React, {useEffect, useState} from 'react';
 
 import FieldBase from '../FieldBase/ReactFieldBase.es';
@@ -36,6 +37,7 @@ const LocalizableText = ({
 	fieldName,
 	id,
 	label,
+	localizedObjectField,
 	name,
 	onFieldBlurred,
 	onFieldChanged = () => {},
@@ -73,45 +75,50 @@ const LocalizableText = ({
 		: predefinedValue;
 
 	useEffect(() => {
-		const translationManager = Liferay.component('translationManager');
+		let locale = editingLocale;
 
-		if (!translationManager) {
-			return;
+		if (!localizedObjectField) {
+			const translationManager = Liferay.component('translationManager');
+
+			if (!translationManager) {
+				return;
+			}
+
+			const newAvailableLocales =
+				translationManager.get('availableLocales');
+
+			const {availableLocales} = {
+				...transformAvailableLocales(
+					[...newAvailableLocales],
+					defaultLocale,
+					currentValue
+				),
+			};
+
+			locale = transformEditingLocale({
+				defaultLocale,
+				editingLocale: newAvailableLocales.get(
+					translationManager.get('editingLocale')
+				),
+				value: currentValue,
+			});
+
+			setCurrentAvailableLocales(availableLocales);
 		}
 
-		const newAvailableLocales = translationManager.get('availableLocales');
-
-		const {availableLocales} = {
-			...transformAvailableLocales(
-				[...newAvailableLocales],
-				defaultLocale,
-				currentValue
-			),
-		};
-
-		const newEditingLocale = transformEditingLocale({
-			defaultLocale,
-			editingLocale: newAvailableLocales.get(
-				translationManager.get('editingLocale')
-			),
-			value: currentValue,
-		});
-
-		setCurrentAvailableLocales(availableLocales);
-
-		setCurrentEditingLocale(newEditingLocale);
+		setCurrentEditingLocale(locale);
 
 		setCurrentInternalValue(
 			getEditingValue({
 				defaultLocale,
-				editingLocale: newEditingLocale,
+				editingLocale: locale,
 				fieldName,
 				value: currentValue,
 			})
 		);
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [defaultLocale, fieldName]);
+	}, [defaultLocale, editingLocale, fieldName]);
 
 	return (
 		<ClayInput.Group>
@@ -165,8 +172,11 @@ const LocalizableText = ({
 				shrink
 			>
 				<LocalesDropdown
-					availableLocales={currentAvailableLocales}
-					editingLocale={currentEditingLocale}
+					availableLocales={
+						localizedObjectField
+							? availableLocales
+							: currentAvailableLocales
+					}
 					fieldName={fieldName}
 					onLanguageClicked={(localeId) => {
 						const newEditingLocale = currentAvailableLocales.find(
@@ -188,6 +198,7 @@ const LocalizableText = ({
 							})
 						);
 					}}
+					value={convertValueToJSON(value)}
 				/>
 			</ClayInput.GroupItem>
 		</ClayInput.Group>
@@ -202,6 +213,7 @@ const Main = ({
 	fieldName,
 	id,
 	label,
+	localizedObjectField,
 	name,
 	onBlur,
 	onChange,
@@ -212,37 +224,54 @@ const Main = ({
 	readOnly,
 	value = {},
 	...otherProps
-}) => (
-	<FieldBase
-		{...otherProps}
-		id={id}
-		label={label}
-		name={name}
-		readOnly={readOnly}
-	>
-		<LocalizableText
-			{...transformAvailableLocalesAndValue({
-				availableLocales,
-				defaultLocale,
-				value,
-			})}
-			defaultLocale={defaultLocale}
-			displayStyle={displayStyle}
-			editingLocale={editingLocale}
-			fieldName={fieldName}
+}) => {
+	const {defaultLanguageId, editingLanguageId} = useFormState();
+
+	return (
+		<FieldBase
+			{...otherProps}
 			id={id}
 			label={label}
 			name={name}
-			onFieldBlurred={onBlur}
-			onFieldChanged={({event, value}) => onChange(event, value)}
-			onFieldFocused={onFocus}
-			placeholder={placeholder}
-			placeholdersSubmitLabel={placeholdersSubmitLabel}
-			predefinedValue={predefinedValue}
 			readOnly={readOnly}
-		/>
-	</FieldBase>
-);
+		>
+			<LocalizableText
+				{...transformAvailableLocalesAndValue({
+					availableLocales,
+					defaultLocale,
+					value,
+				})}
+				defaultLocale={
+					localizedObjectField
+						? availableLocales.find(
+								({localeId}) => localeId === defaultLanguageId
+							)
+						: defaultLocale
+				}
+				displayStyle={displayStyle}
+				editingLocale={
+					localizedObjectField
+						? availableLocales.find(
+								({localeId}) => localeId === editingLanguageId
+							)
+						: editingLocale
+				}
+				fieldName={fieldName}
+				id={id}
+				label={label}
+				localizedObjectField={localizedObjectField}
+				name={name}
+				onFieldBlurred={onBlur}
+				onFieldChanged={({event, value}) => onChange(event, value)}
+				onFieldFocused={onFocus}
+				placeholder={placeholder}
+				placeholdersSubmitLabel={placeholdersSubmitLabel}
+				predefinedValue={predefinedValue}
+				readOnly={readOnly}
+			/>
+		</FieldBase>
+	);
+};
 
 Main.displayName = 'LocalizableText';
 
