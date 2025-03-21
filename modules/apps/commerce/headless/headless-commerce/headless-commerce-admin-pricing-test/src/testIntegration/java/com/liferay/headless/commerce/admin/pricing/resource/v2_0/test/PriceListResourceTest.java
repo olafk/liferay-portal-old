@@ -59,14 +59,14 @@ public class PriceListResourceTest extends BasePriceListResourceTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
+		_commerceCurrency = CommerceCurrencyTestUtil.addCommerceCurrency(
+			testGroup.getCompanyId());
+
 		_user = UserTestUtil.addUser(testCompany);
 
 		_serviceContext = ServiceContextTestUtil.getServiceContext(
 			testCompany.getCompanyId(), testGroup.getGroupId(),
 			_user.getUserId());
-
-		_commerceCurrency = CommerceCurrencyTestUtil.addCommerceCurrency(
-			testGroup.getCompanyId());
 
 		_accountEntry = _accountEntryLocalService.addAccountEntry(
 			_user.getUserId(), 0, RandomTestUtil.randomString(),
@@ -274,7 +274,6 @@ public class PriceListResourceTest extends BasePriceListResourceTestCase {
 
 	private void _testPostPriceListWithSamePriceListAccount() throws Exception {
 		User omniadminUser = UserTestUtil.addOmniadminUser();
-
 		String password = RandomTestUtil.randomString();
 
 		_userLocalService.updatePassword(
@@ -298,7 +297,6 @@ public class PriceListResourceTest extends BasePriceListResourceTestCase {
 			testPostPriceList_addPriceList(
 				priceList
 			).getId());
-
 		PriceList actualPriceList = priceListResource.getPriceList(
 			testPostPriceList_addPriceList(
 				priceList
@@ -309,12 +307,13 @@ public class PriceListResourceTest extends BasePriceListResourceTestCase {
 		PriceListAccount[] expectedPriceListAccounts =
 			expectedPriceList.getPriceListAccounts();
 
-		PriceListAccount[] actualPriceListAccounts =
-			actualPriceList.getPriceListAccounts();
-
 		Assert.assertEquals(
 			Arrays.toString(expectedPriceListAccounts), 1,
 			expectedPriceListAccounts.length);
+
+		PriceListAccount[] actualPriceListAccounts =
+			actualPriceList.getPriceListAccounts();
+
 		Assert.assertEquals(
 			Arrays.toString(actualPriceListAccounts), 1,
 			actualPriceListAccounts.length);
