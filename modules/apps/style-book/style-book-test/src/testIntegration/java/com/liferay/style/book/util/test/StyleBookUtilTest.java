@@ -71,7 +71,6 @@ public class StyleBookUtilTest {
 	@Test
 	public void testGetThemeName() {
 		Locale locale = LocaleUtil.US;
-
 		FrontendTokenDefinition frontendTokenDefinition =
 			_frontendTokenDefinitionRegistry.getFrontendTokenDefinition(
 				_layout);
