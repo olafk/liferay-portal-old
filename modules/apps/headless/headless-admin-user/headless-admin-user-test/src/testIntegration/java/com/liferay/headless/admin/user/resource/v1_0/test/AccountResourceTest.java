@@ -1069,7 +1069,7 @@ public class AccountResourceTest extends BaseAccountResourceTestCase {
 		return true;
 	}
 
-	private Object _getCustomFieldValueData(Account account, String name)
+	private Object _getCustomFieldCustomValueData(Account account, String name)
 		throws Exception {
 
 		for (CustomField customField : account.getCustomFields()) {
@@ -1319,37 +1319,37 @@ public class AccountResourceTest extends BaseAccountResourceTestCase {
 		Assert.assertEquals(
 			Arrays.toString(new double[] {0.0}),
 			Arrays.toString(
-				(Object[])_getCustomFieldValueData(
+				(Object[])_getCustomFieldCustomValueData(
 					actualAccount, doubleArrayExpandoColumn1.getName())));
 
 		Assert.assertEquals(
 			Arrays.toString(new double[] {randomDouble}),
 			Arrays.toString(
-				(Object[])_getCustomFieldValueData(
+				(Object[])_getCustomFieldCustomValueData(
 					actualAccount, doubleArrayExpandoColumn2.getName())));
 
 		Assert.assertEquals(
 			Arrays.toString(new long[] {0}),
 			Arrays.toString(
-				(Object[])_getCustomFieldValueData(
+				(Object[])_getCustomFieldCustomValueData(
 					actualAccount, longArrayExpandoColumn1.getName())));
 
 		Assert.assertEquals(
 			Arrays.toString(new long[] {randomLong}),
 			Arrays.toString(
-				(Object[])_getCustomFieldValueData(
+				(Object[])_getCustomFieldCustomValueData(
 					actualAccount, longArrayExpandoColumn2.getName())));
 
 		Assert.assertEquals(
 			Arrays.toString(new String[] {"false"}),
 			Arrays.toString(
-				(Object[])_getCustomFieldValueData(
+				(Object[])_getCustomFieldCustomValueData(
 					actualAccount, stringArrayExpandoColumn1.getName())));
 
 		Assert.assertEquals(
 			Arrays.toString(new String[] {randomString}),
 			Arrays.toString(
-				(Object[])_getCustomFieldValueData(
+				(Object[])_getCustomFieldCustomValueData(
 					actualAccount, stringArrayExpandoColumn2.getName())));
 	}
 
