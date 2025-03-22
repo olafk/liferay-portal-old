@@ -229,15 +229,10 @@ public class ObjectEntryFolderResourceImpl
 			throw new UnsupportedOperationException();
 		}
 
-		Long parentObjectEntryFolderId =
-			objectEntryFolder.getParentObjectEntryFolderId();
-
-		if (parentObjectEntryFolderId == null) {
-			parentObjectEntryFolderId = 0L;
-		}
-
 		return _addObjectEntryFolder(
-			GetterUtil.getLong(scopeKey), parentObjectEntryFolderId,
+			GetterUtil.getLong(scopeKey),
+			GetterUtil.getLong(
+				objectEntryFolder.getParentObjectEntryFolderId()),
 			objectEntryFolder);
 	}
 
@@ -252,12 +247,8 @@ public class ObjectEntryFolderResourceImpl
 			throw new UnsupportedOperationException();
 		}
 
-		Long parentObjectEntryFolderId =
-			objectEntryFolder.getParentObjectEntryFolderId();
-
-		if (parentObjectEntryFolderId == null) {
-			parentObjectEntryFolderId = 0L;
-		}
+		long parentObjectEntryFolderId = GetterUtil.getLong(
+			objectEntryFolder.getParentObjectEntryFolderId());
 
 		com.liferay.object.model.ObjectEntryFolder persistedObjectEntryFolder =
 			null;
@@ -292,13 +283,9 @@ public class ObjectEntryFolderResourceImpl
 	}
 
 	private ObjectEntryFolder _addObjectEntryFolder(
-			Long siteId, Long parentObjectEntryFolderId,
+			long siteId, long parentObjectEntryFolderId,
 			ObjectEntryFolder objectEntryFolder)
 		throws Exception {
-
-		if (parentObjectEntryFolderId == null) {
-			parentObjectEntryFolderId = 0L;
-		}
 
 		return _toObjectEntryFolder(
 			_objectEntryFolderService.addObjectEntryFolder(
