@@ -1219,6 +1219,8 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 						resourcePermission);
 				}
 
+				// Indexer
+
 				long companyId = group.getCompanyId();
 				long[] userIds = getUserPrimaryKeys(group.getGroupId());
 

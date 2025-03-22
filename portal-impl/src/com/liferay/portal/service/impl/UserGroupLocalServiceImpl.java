@@ -111,8 +111,8 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 		}
 
 		try {
-			reindexUsers(userGroupId);
 			reindexUserGroup(getUserGroup(userGroupId));
+			reindexUsers(userGroupId);
 		}
 		catch (PortalException portalException) {
 			throw new SystemException(portalException);
@@ -136,8 +136,8 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 		}
 
 		try {
-			reindexUsers(userGroup);
 			reindexUserGroup(userGroup);
+			reindexUsers(userGroup);
 		}
 		catch (PortalException portalException) {
 			throw new SystemException(portalException);
@@ -164,11 +164,11 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 		}
 
 		try {
-			reindexUsers(userGroups);
-
 			for (UserGroup userGroup : userGroups) {
 				reindexUserGroup(userGroup);
 			}
+
+			reindexUsers(userGroups);
 		}
 		catch (PortalException portalException) {
 			throw new SystemException(portalException);
@@ -193,11 +193,11 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 		}
 
 		try {
-			reindexUsers(userGroupIds);
-
 			for (long userGroupId : userGroupIds) {
 				reindexUserGroup(getUserGroup(userGroupId));
 			}
+
+			reindexUsers(userGroupIds);
 		}
 		catch (PortalException portalException) {
 			throw new SystemException(portalException);
@@ -974,14 +974,14 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 
 		_userPersistence.setUserGroups(userId, userGroupIds);
 
+		for (long userGroupId : userGroupIds) {
+			reindexUserGroup(getUserGroup(userGroupId));
+		}
+
 		Indexer<User> indexer = IndexerRegistryUtil.nullSafeGetIndexer(
 			User.class);
 
 		indexer.reindex(_userLocalService.fetchUser(userId));
-
-		for (long userGroupId : userGroupIds) {
-			reindexUserGroup(getUserGroup(userGroupId));
-		}
 	}
 
 	/**
@@ -1004,11 +1004,11 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 		_groupPersistence.removeUserGroups(groupId, userGroupIds);
 
 		try {
-			reindexUsers(userGroupIds);
-
 			for (long userGroupId : userGroupIds) {
 				reindexUserGroup(getUserGroup(userGroupId));
 			}
+
+			reindexUsers(userGroupIds);
 		}
 		catch (PortalException portalException) {
 			throw new SystemException(portalException);

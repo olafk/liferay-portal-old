@@ -56,7 +56,6 @@ public class UserGroupResourceImpl extends BaseUserGroupResourceImpl {
 		}
 
 		Group group = _getGroup(assetLibraryExternalReferenceCode);
-
 		com.liferay.portal.kernel.model.UserGroup userGroup =
 			_userGroupService.getUserGroupByExternalReferenceCode(
 				userGroupExternalReferenceCode, contextCompany.getCompanyId());
@@ -90,7 +89,6 @@ public class UserGroupResourceImpl extends BaseUserGroupResourceImpl {
 		}
 
 		Group group = _getGroup(assetLibraryExternalReferenceCode);
-
 		com.liferay.portal.kernel.model.UserGroup userGroup =
 			_userGroupService.getUserGroupByExternalReferenceCode(
 				userGroupExternalReferenceCode, contextCompany.getCompanyId());
@@ -183,7 +181,7 @@ public class UserGroupResourceImpl extends BaseUserGroupResourceImpl {
 				assetLibraryId, userGroupId)) {
 
 			throw new NoSuchUserGroupException(
-				"No user group exists with ID " + userGroupId);
+				"No user group exists with user group ID " + userGroupId);
 		}
 	}
 
