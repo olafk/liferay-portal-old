@@ -161,16 +161,13 @@ public class ObjectRelationshipLocalServiceImpl
 
 		String objectFieldName = objectField.getName();
 
-		String relationshipName =
-			objectFieldName.split(StringPool.UNDERLINE)[1];
-
 		return _addObjectRelationship(
 			externalReferenceCode, user,
 			_objectDefinitionPersistence.findByPrimaryKey(objectDefinitionId1),
 			_objectDefinitionPersistence.findByPrimaryKey(objectDefinitionId2),
 			0, ObjectRelationshipConstants.DELETION_TYPE_PREVENT, false,
 			LocalizedMapUtil.getLocalizedMap(externalReferenceCode),
-			relationshipName, false, false,
+			objectFieldName.split(StringPool.UNDERLINE)[1], false, false,
 			ObjectRelationshipConstants.TYPE_ONE_TO_MANY, objectField);
 	}
 
