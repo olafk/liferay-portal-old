@@ -737,7 +737,9 @@ public class ObjectEntryResourceImpl extends BaseObjectEntryResourceImpl {
 			objectEntryManager.validateObjectEntry(
 				_getDTOConverterContext(null), _objectDefinition,
 				validationRequest.getValues(),
-				Arrays.asList(validationRequest.getObjectValidationRuleERCs()),
+				Arrays.asList(
+					validationRequest.
+						getObjectValidationRuleExternalReferenceCodes()),
 				scopeKey);
 		}
 		catch (ObjectValidationRuleEngineException
@@ -753,7 +755,7 @@ public class ObjectEntryResourceImpl extends BaseObjectEntryResourceImpl {
 								objectValidationRuleResult::getErrorMessage);
 							setObjectFieldName(
 								objectValidationRuleResult::getObjectFieldName);
-							setObjectValidationRuleERC(
+							setObjectValidationRuleExternalReferenceCode(
 								objectValidationRuleResult::getValidationKey);
 						}
 					},
