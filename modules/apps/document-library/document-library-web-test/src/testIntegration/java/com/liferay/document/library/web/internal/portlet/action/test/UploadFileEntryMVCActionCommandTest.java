@@ -188,9 +188,6 @@ public class UploadFileEntryMVCActionCommandTest {
 	private MockHttpServletRequest _getMockHttpServletRequest()
 		throws Exception {
 
-		_uploadHandler = ReflectionTestUtil.getFieldValue(
-			_mvcActionCommand, "_uploadHandler");
-
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
 
