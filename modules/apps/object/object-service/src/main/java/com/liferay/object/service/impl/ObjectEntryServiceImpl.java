@@ -432,7 +432,7 @@ public class ObjectEntryServiceImpl extends ObjectEntryServiceBaseImpl {
 	}
 
 	@Override
-	public void validateObjectEntry(
+	public void validate(
 			long groupId, ObjectEntry objectEntry,
 			List<String> objectValidationRuleExternalReferenceCodes)
 		throws PortalException {

@@ -882,7 +882,7 @@ public class DefaultObjectEntryManagerImpl
 				dtoConverterContext.getLocale(), objectDefinition, objectEntry,
 				scopeKey, serviceContext));
 
-		_objectEntryService.validateObjectEntry(
+		_objectEntryService.validate(
 			getGroupId(objectDefinition, scopeKey), serviceBuilderObjectEntry,
 			objectValidationRuleExternalReferenceCodes);
 	}
