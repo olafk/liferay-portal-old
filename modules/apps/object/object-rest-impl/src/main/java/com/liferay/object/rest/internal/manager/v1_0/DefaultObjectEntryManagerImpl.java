@@ -866,7 +866,7 @@ public class DefaultObjectEntryManagerImpl
 	public void validateObjectEntry(
 			DTOConverterContext dtoConverterContext,
 			ObjectDefinition objectDefinition, ObjectEntry objectEntry,
-			List<String> objectValidationRulesERC, String scopeKey)
+			List<String> objectValidationRuleExternalReferenceCodes, String scopeKey)
 		throws Exception {
 
 		com.liferay.object.model.ObjectEntry serviceBuilderObjectEntry =
@@ -884,7 +884,7 @@ public class DefaultObjectEntryManagerImpl
 
 		_objectEntryService.validateObjectEntry(
 			getGroupId(objectDefinition, scopeKey), serviceBuilderObjectEntry,
-			objectValidationRulesERC);
+			objectValidationRuleExternalReferenceCodes);
 	}
 
 	private Map<String, String> _addAction(
