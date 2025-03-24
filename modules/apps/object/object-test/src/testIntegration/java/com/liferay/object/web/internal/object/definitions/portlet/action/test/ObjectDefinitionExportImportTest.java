@@ -215,8 +215,8 @@ public class ObjectDefinitionExportImportTest extends BaseExportImportTestCase {
 		ObjectRelationship objectRelationship =
 			_objectRelationshipLocalService.
 				getObjectRelationshipByExternalReferenceCode(
-					objectRelationshipExternalReferenceCode, user.getCompanyId(),
-					accountObjectDefinition.getId());
+					objectRelationshipExternalReferenceCode,
+					user.getCompanyId(), accountObjectDefinition.getId());
 
 		Assert.assertEquals(
 			objectRelationship.getName(),
