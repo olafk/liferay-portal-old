@@ -15533,26 +15533,26 @@ public class ObjectEntryResourceTest {
 			ObjectField objectField)
 		throws Exception {
 
-		String error1 = RandomTestUtil.randomString();
+		String errorMessage1 = RandomTestUtil.randomString();
 
 		ObjectValidationRule objectValidationRule =
 			_objectValidationRuleLocalService.addObjectValidationRule(
 				StringUtil.randomString(), TestPropsValues.getUserId(),
 				objectDefinition.getObjectDefinitionId(), true,
 				ObjectValidationRuleConstants.ENGINE_TYPE_DDM,
-				LocalizedMapUtil.getLocalizedMap(error1),
+				LocalizedMapUtil.getLocalizedMap(errorMessage1),
 				LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
 				ObjectValidationRuleConstants.OUTPUT_TYPE_FULL_VALIDATION,
 				objectField.getName() + " == \"foo\"", false,
 				Collections.emptyList());
 
-		String error2 = RandomTestUtil.randomString();
+		String errorMessage2 = RandomTestUtil.randomString();
 
 		_objectValidationRuleLocalService.addObjectValidationRule(
 			StringUtil.randomString(), TestPropsValues.getUserId(),
 			objectDefinition.getObjectDefinitionId(), true,
 			ObjectValidationRuleConstants.ENGINE_TYPE_DDM,
-			LocalizedMapUtil.getLocalizedMap(error2),
+			LocalizedMapUtil.getLocalizedMap(errorMessage2),
 			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
 			ObjectValidationRuleConstants.OUTPUT_TYPE_PARTIAL_VALIDATION,
 			"NOT(isInteger(" + objectField.getName() + "))", false,
@@ -15609,7 +15609,7 @@ public class ObjectEntryResourceTest {
 					objectValidationRule.getExternalReferenceCode()));
 
 			Assert.assertEquals(
-				error1,
+				errorMessage1,
 				validationResponse.getValidationErrors()[0].getErrorMessage());
 
 			validationResponse = _validate(
@@ -15631,13 +15631,11 @@ public class ObjectEntryResourceTest {
 					).build()));
 
 			Assert.assertEquals(
-				error1,
+				errorMessage1,
 				validationResponse.getValidationErrors()[0].getErrorMessage());
-
 			Assert.assertEquals(
-				error2,
+				errorMessage2,
 				validationResponse.getValidationErrors()[1].getErrorMessage());
-
 			Assert.assertEquals(
 				objectField.getName(),
 				validationResponse.getValidationErrors()[1].
