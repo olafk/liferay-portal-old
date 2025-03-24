@@ -554,7 +554,7 @@ public class DBPartitionTest extends BaseDBPartitionTestCase {
 						unsupportedOperationException) {
 
 				Assert.assertEquals(
-					"Unsupported SQL query",
+					"Unsupported SQL: " + databasePartitionSchemaNamePrefixSQL,
 					unsupportedOperationException.getMessage());
 			}
 		}

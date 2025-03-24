@@ -1606,7 +1606,7 @@ public class DBPartitionUtil {
 						}
 
 						throw new UnsupportedOperationException(
-							"Unsupported SQL query");
+							"Unsupported SQL: " + sql);
 					}
 				}
 

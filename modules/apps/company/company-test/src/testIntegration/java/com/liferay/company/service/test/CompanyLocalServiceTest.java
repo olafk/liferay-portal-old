@@ -190,7 +190,6 @@ public class CompanyLocalServiceTest {
 
 		_dbPartitionDB = ReflectionTestUtil.getFieldValue(
 			DBPartitionUtil.class, "_dbPartitionDB");
-
 		_safeCloseable = CompanyThreadLocal.setCompanyIdWithSafeCloseable(
 			PortalInstancePool.getDefaultCompanyId());
 	}
