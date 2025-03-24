@@ -13303,7 +13303,7 @@ public class ObjectEntryResourceTest {
 		return URLCodec.encodeURL(string);
 	}
 
-	private ValidationResponse _executeValidate(
+	private ValidationResponse _validate(
 			String scopeKey, ObjectEntryResource objectEntryResource,
 			ValidationRequest validationRequest)
 		throws Exception {
@@ -15603,7 +15603,7 @@ public class ObjectEntryResourceTest {
 					" must have ADD_OBJECT_ENTRY permission for ",
 					objectDefinition.getResourceName(), " ",
 					(scopeKey != null) ? scopeKey : ""),
-				() -> _executeValidate(
+				() -> _validate(
 					scopeKey, objectEntryResource,
 					_getValidationRequest(
 						HashMapBuilder.<String, Object>put(
@@ -15613,7 +15613,7 @@ public class ObjectEntryResourceTest {
 
 			_setUpPermissionThreadLocal(TestPropsValues.getUser());
 
-			ValidationResponse validationResponse = _executeValidate(
+			ValidationResponse validationResponse = _validate(
 				scopeKey, objectEntryResource,
 				_getValidationRequest(
 					HashMapBuilder.<String, Object>put(
@@ -15625,7 +15625,7 @@ public class ObjectEntryResourceTest {
 				error1,
 				validationResponse.getValidationErrors()[0].getErrorMessage());
 
-			validationResponse = _executeValidate(
+			validationResponse = _validate(
 				scopeKey, objectEntryResource,
 				_getValidationRequest(
 					HashMapBuilder.<String, Object>put(
@@ -15636,7 +15636,7 @@ public class ObjectEntryResourceTest {
 			Assert.assertTrue(
 				ArrayUtil.isEmpty(validationResponse.getValidationErrors()));
 
-			validationResponse = _executeValidate(
+			validationResponse = _validate(
 				scopeKey, objectEntryResource,
 				_getValidationRequest(
 					HashMapBuilder.<String, Object>put(
