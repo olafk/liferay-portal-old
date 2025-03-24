@@ -84,8 +84,6 @@ public class UploadFileEntryMVCActionCommandTest {
 		_group = _groupLocalService.getGroup(
 			_company.getCompanyId(), GroupConstants.CONTROL_PANEL);
 
-		_user = UserTestUtil.addUser();
-
 		_uploadHandler = ReflectionTestUtil.getFieldValue(
 			_mvcActionCommand, "_uploadHandler");
 
@@ -111,6 +109,8 @@ public class UploadFileEntryMVCActionCommandTest {
 							new HashMap<>()),
 						null, RandomTestUtil.randomString());
 				}));
+
+		_user = UserTestUtil.addUser();
 	}
 
 	@After
