@@ -31,14 +31,14 @@ public class GroupModelListener extends BaseModelListener<Group> {
 	@Override
 	public void onAfterRemove(Group group) throws ModelListenerException {
 		try {
-			_clean(group);
+			_onAfterRemove(group);
 		}
 		catch (Exception exception) {
 			throw new ModelListenerException(exception);
 		}
 	}
 
-	private void _clean(Group group) throws Exception {
+	private void _onAfterRemove(Group group) throws Exception {
 		String filterString = StringBundler.concat(
 			StringPool.OPEN_PARENTHESIS,
 			ExtendedObjectClassDefinition.Scope.GROUP.getPropertyKey(),
