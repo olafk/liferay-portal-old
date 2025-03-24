@@ -429,23 +429,23 @@ public class ObjectValidationRuleLocalServiceImpl
 	@Override
 	@Transactional(readOnly = true)
 	public void validate(
-			ObjectEntry objectEntry, List<String> objectValidationRulesERC,
+			ObjectEntry objectEntry, List<String> externalReferenceCodes,
 			long userId)
 		throws PortalException {
 
 		List<ObjectValidationRule> objectValidationRules;
 
-		if (ListUtil.isEmpty(objectValidationRulesERC)) {
+		if (ListUtil.isEmpty(externalReferenceCodes)) {
 			objectValidationRules =
 				objectValidationRuleLocalService.getObjectValidationRules(
 					objectEntry.getObjectDefinitionId());
 		}
 		else {
 			objectValidationRules = TransformUtil.transform(
-				objectValidationRulesERC,
-				objectValidationRuleExternalReferenceCode ->
+				externalReferenceCodes,
+				externalReferenceCode ->
 					objectValidationRuleLocalService.fetchObjectValidationRule(
-						objectValidationRuleExternalReferenceCode,
+						externalReferenceCode,
 						objectEntry.getObjectDefinitionId()));
 		}
 

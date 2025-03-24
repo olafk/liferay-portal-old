@@ -434,7 +434,7 @@ public class ObjectEntryServiceImpl extends ObjectEntryServiceBaseImpl {
 	@Override
 	public void validateObjectEntry(
 			long groupId, ObjectEntry objectEntry,
-			List<String> objectValidationRulesERC)
+			List<String> externalReferenceCodes)
 		throws PortalException {
 
 		_checkAddObjectEntryPortletResourcePermission(
@@ -442,7 +442,7 @@ public class ObjectEntryServiceImpl extends ObjectEntryServiceBaseImpl {
 			objectEntry.getValues());
 
 		_objectValidationRuleLocalService.validate(
-			objectEntry, objectValidationRulesERC, getUserId());
+			objectEntry, externalReferenceCodes, getUserId());
 	}
 
 	@Activate
