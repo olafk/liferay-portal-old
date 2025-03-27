@@ -51,6 +51,7 @@ import com.liferay.object.exception.ObjectDefinitionScopeException;
 import com.liferay.object.exception.ObjectEntryDefaultLanguageIdException;
 import com.liferay.object.exception.ObjectEntryFolderScopeException;
 import com.liferay.object.exception.ObjectEntryStatusException;
+import com.liferay.object.exception.ObjectEntryValidationException;
 import com.liferay.object.exception.ObjectEntryValuesException;
 import com.liferay.object.exception.ObjectRelationshipDeletionTypeException;
 import com.liferay.object.exception.ObjectValidationRuleEngineException;
@@ -1953,7 +1954,7 @@ public class ObjectEntryLocalServiceImpl
 		return _addObjectEntryVersion(objectDefinition, objectEntry);
 	}
 
-	public List<ValidationError> validate(
+	public void validate(
 			long groupId, ObjectEntry objectEntry,
 			List<String> objectValidationRuleExternalReferenceCodes,
 			ServiceContext serviceContext, long userId)
@@ -1991,7 +1992,9 @@ public class ObjectEntryLocalServiceImpl
 				objectEntryValuesException -> new ValidationError(
 					objectEntryValuesException.getMessage())));
 
-		return validationErrors;
+		if (ListUtil.isNotEmpty(validationErrors)) {
+			throw new ObjectEntryValidationException(validationErrors);
+		}
 	}
 
 	@Activate
