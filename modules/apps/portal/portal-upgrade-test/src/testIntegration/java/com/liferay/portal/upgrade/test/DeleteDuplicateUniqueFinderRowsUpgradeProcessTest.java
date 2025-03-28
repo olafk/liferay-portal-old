@@ -62,22 +62,13 @@ public class DeleteDuplicateUniqueFinderRowsUpgradeProcessTest {
 						"column3 VARCHAR(75) null)"));
 
 				_db.runSQL(
+					"insert into TestTable values (1, [$TRUE$], 2, '3')");
+				_db.runSQL(
 					"insert into TestTable values (2, [$TRUE$], 2, '3')");
 				_db.runSQL(
-					StringBundler.concat(
-						"insert into TestTable values (",
-						_NEW_DUPLICATE_ROW_PRIMARY_KEY_VALUE,
-						", [$TRUE$], 2, '3')"));
+					"insert into TestTable values (3, [$TRUE$], 2, '3')");
 				_db.runSQL(
-					StringBundler.concat(
-						"insert into TestTable values (",
-						_NONDUPLICATE_ROW_PRIMARY_KEY_VALUE,
-						", [$FALSE$], 2, '3')"));
-				_db.runSQL(
-					StringBundler.concat(
-						"insert into TestTable values (",
-						_OLD_DUPLICATE_ROW_PRIMARY_KEY_VALUE,
-						", [$TRUE$], 2, '3')"));
+					"insert into TestTable values (4, [$FALSE$], 2, '3')");
 			});
 	}
 
@@ -103,7 +94,7 @@ public class DeleteDuplicateUniqueFinderRowsUpgradeProcessTest {
 			upgradeProcess.upgrade();
 		}
 
-		_assert(true, _OLD_DUPLICATE_ROW_PRIMARY_KEY_VALUE);
+		_assert(true, 1L);
 	}
 
 	@Test
@@ -123,7 +114,7 @@ public class DeleteDuplicateUniqueFinderRowsUpgradeProcessTest {
 			upgradeProcess.upgrade();
 		}
 
-		_assert(true, _NEW_DUPLICATE_ROW_PRIMARY_KEY_VALUE);
+		_assert(true, 3L);
 	}
 
 	private void _assert(
@@ -166,18 +157,10 @@ public class DeleteDuplicateUniqueFinderRowsUpgradeProcessTest {
 						primaryKeyValues.size());
 					Assert.assertTrue(
 						primaryKeyValues.contains(uniqueRowPrimaryKeyValue));
-					Assert.assertTrue(
-						primaryKeyValues.contains(
-							_NONDUPLICATE_ROW_PRIMARY_KEY_VALUE));
+					Assert.assertTrue(primaryKeyValues.contains(4));
 				}
 			});
 	}
-
-	private static final long _NEW_DUPLICATE_ROW_PRIMARY_KEY_VALUE = 3;
-
-	private static final long _NONDUPLICATE_ROW_PRIMARY_KEY_VALUE = 4;
-
-	private static final long _OLD_DUPLICATE_ROW_PRIMARY_KEY_VALUE = 1;
 
 	@Inject
 	private static CompanyLocalService _companyLocalService;
