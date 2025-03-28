@@ -6,6 +6,7 @@
 --%>
 
 <%@ include file="/fragment/renderer/order_summary/init.jsp" %>
+
 <c:choose>
 	<c:when test="<%= commerceOrderId == 0 %>">
 		<span class="order-summary-label"><%= HtmlUtil.escape(fieldLabel) %></span>

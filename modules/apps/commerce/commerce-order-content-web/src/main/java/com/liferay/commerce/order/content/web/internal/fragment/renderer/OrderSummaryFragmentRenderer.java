@@ -104,6 +104,20 @@ public class OrderSummaryFragmentRenderer implements FragmentRenderer {
 				_servletContext.getRequestDispatcher(
 					"/fragment/renderer/order_summary/page.jsp");
 
+			long commerceOrderId = 0;
+
+			CommerceOrder commerceOrder =
+				CommerceOrderInfoItemUtil.getCommerceOrder(
+					_commerceOrderService, httpServletRequest);
+
+			if (commerceOrder != null) {
+				commerceOrderId = commerceOrder.getCommerceOrderId();
+			}
+
+			httpServletRequest.setAttribute(
+				"liferay-commerce:order-summary:commerceOrderId",
+				commerceOrderId);
+
 			FragmentEntryLink fragmentEntryLink =
 				fragmentRendererContext.getFragmentEntryLink();
 
@@ -117,31 +131,6 @@ public class OrderSummaryFragmentRenderer implements FragmentRenderer {
 				"liferay-commerce:order-summary:fieldLabel",
 				_getFieldLabel(fragmentEntryLink));
 
-			httpServletRequest.setAttribute(
-				"liferay-commerce:order-summary:label",
-				_language.get(
-					themeDisplay.getLocale(),
-					_getConfigurationValue(
-						fragmentRendererContext,
-						fragmentRendererContext.getFragmentEntryLink(),
-						"label")));
-
-			long commerceOrderId = 0;
-			boolean open = false;
-
-			CommerceOrder commerceOrder =
-				CommerceOrderInfoItemUtil.getCommerceOrder(
-					_commerceOrderService, httpServletRequest);
-
-			if (commerceOrder != null) {
-				commerceOrderId = commerceOrder.getCommerceOrderId();
-				open = commerceOrder.isOpen();
-			}
-
-			httpServletRequest.setAttribute(
-				"liferay-commerce:order-summary:commerceOrderId",
-				commerceOrderId);
-
 			if (commerceOrder != null) {
 				httpServletRequest.setAttribute(
 					"liferay-commerce:order-summary:fieldValue",
@@ -150,7 +139,16 @@ public class OrderSummaryFragmentRenderer implements FragmentRenderer {
 			}
 
 			httpServletRequest.setAttribute(
-				"liferay-commerce:order-summary:open", open);
+				"liferay-commerce:order-summary:label",
+				_language.get(
+					themeDisplay.getLocale(),
+					_getConfigurationValue(
+						fragmentRendererContext,
+						fragmentRendererContext.getFragmentEntryLink(),
+						"label")));
+			httpServletRequest.setAttribute(
+				"liferay-commerce:order-summary:open",
+				(commerceOrder != null) ? commerceOrder.isOpen() : false);
 
 			requestDispatcher.include(httpServletRequest, httpServletResponse);
 		}
