@@ -204,7 +204,7 @@ public class ImportSystemDataSetMVCResourceCommand
 			HttpServletRequest httpServletRequest, ObjectEntry objectEntry)
 		throws Exception {
 
-		ObjectDefinition dataSetCardsSectionObjectDefinition =
+		ObjectDefinition objectDefinition =
 			_objectDefinitionLocalService.
 				fetchObjectDefinitionByExternalReferenceCode(
 					"L_DATA_SET_CARDS_SECTION",
@@ -226,7 +226,7 @@ public class ImportSystemDataSetMVCResourceCommand
 			}
 
 			_objectEntryService.addObjectEntry(
-				0, dataSetCardsSectionObjectDefinition.getObjectDefinitionId(),
+				0, objectDefinition.getObjectDefinitionId(),
 				ObjectEntryFolderConstants.
 					PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT,
 				null,
