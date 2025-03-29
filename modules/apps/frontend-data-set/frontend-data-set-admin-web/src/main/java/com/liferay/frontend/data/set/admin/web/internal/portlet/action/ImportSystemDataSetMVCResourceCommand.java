@@ -359,9 +359,6 @@ public class ImportSystemDataSetMVCResourceCommand
 						if (fdsTableSchemaField.
 								isContentRendererClientExtension()) {
 
-							/* it is not possible to get client extension ERC from module URL
-							 univocally, so this CX will have to be configured from DSM */
-
 							return null;
 						}
 
@@ -369,9 +366,6 @@ public class ImportSystemDataSetMVCResourceCommand
 							fdsTableSchemaField.getContentRenderer();
 
 						if (Validator.isNotNull(contentRenderer)) {
-
-							// for actionLinkRenderer there is no actionId
-
 							return contentRenderer;
 						}
 
@@ -391,10 +385,6 @@ public class ImportSystemDataSetMVCResourceCommand
 				).put(
 					"sortable", fdsTableSchemaField.isSortable()
 				).put(
-
-							// we don't have the type (mandatory).
-							// Not easy to guess, we'll need to inform it.
-
 					"type", "string"
 				);
 
