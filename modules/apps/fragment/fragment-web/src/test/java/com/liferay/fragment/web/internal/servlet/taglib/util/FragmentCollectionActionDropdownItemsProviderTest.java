@@ -38,6 +38,7 @@ public class FragmentCollectionActionDropdownItemsProviderTest
 	@Test
 	public void testGetActionDropdowns() {
 		setUpFragmentPermission(true);
+
 		_setUpFragmentCollection(false);
 
 		FragmentCollectionActionDropdownItemsProvider
@@ -55,6 +56,7 @@ public class FragmentCollectionActionDropdownItemsProviderTest
 	@Test
 	public void testGetActionDropdownsForMarketplaceFragmentCollection() {
 		setUpFragmentPermission(true);
+
 		_setUpFragmentCollection(true);
 
 		FragmentCollectionActionDropdownItemsProvider
