@@ -340,17 +340,17 @@ public class ImportSystemDataSetMVCResourceCommand
 					() -> {
 						String label = fdsTableSchemaField.getLabel();
 
-						if (!fdsTableSchemaField.isLocalizeLabel()) {
-							return HashMapBuilder.put(
-								objectDefinition.getDefaultLanguageId(), label
-							).put(
-								LocaleUtil.toLanguageId(
-									_portal.getLocale(httpServletRequest)),
-								label
-							).build();
+						if (fdsTableSchemaField.isLocalizeLabel()) {
+							return _getI18nMap(label);
 						}
 
-						return _getI18nMap(label);
+						return HashMapBuilder.put(
+							objectDefinition.getDefaultLanguageId(), label
+						).put(
+							LocaleUtil.toLanguageId(
+								_portal.getLocale(httpServletRequest)),
+							label
+						).build();
 					}
 				).put(
 					"r_dataSetToDataSetTableSections_l_dataSetId",
