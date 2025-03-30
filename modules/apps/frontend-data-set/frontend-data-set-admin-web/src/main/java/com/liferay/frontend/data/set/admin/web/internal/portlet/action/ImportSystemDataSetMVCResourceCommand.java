@@ -555,11 +555,11 @@ public class ImportSystemDataSetMVCResourceCommand
 					"type", fdsFilter.getType()
 				).build();
 
-			String filterObjectDefinitionERC = StringPool.BLANK;
+			String externalReferenceCode = StringPool.BLANK;
 			String filterFDSEntryRelationshipName = StringPool.BLANK;
 
 			if (fdsFilter instanceof BaseDateRangeFDSFilter) {
-				filterObjectDefinitionERC = "L_DATA_SET_DATE_FILTER";
+				externalReferenceCode = "L_DATA_SET_DATE_FILTER";
 
 				filterFDSEntryRelationshipName =
 					"r_dataSetToDataSetDateFilters_l_dataSetId";
@@ -573,7 +573,7 @@ public class ImportSystemDataSetMVCResourceCommand
 				values.put("type", fdsFilter.getEntityFieldType());
 			}
 			else if (fdsFilter instanceof BaseSelectionFDSFilter) {
-				filterObjectDefinitionERC = "L_DATA_SET_SELECTION_FILTER";
+				externalReferenceCode = "L_DATA_SET_SELECTION_FILTER";
 
 				filterFDSEntryRelationshipName =
 					"r_dataSetToDataSetSelectionFilters_l_dataSetId";
@@ -584,7 +584,7 @@ public class ImportSystemDataSetMVCResourceCommand
 				BaseClientExtensionFDSFilter clientExtensionFDSFilter =
 					(BaseClientExtensionFDSFilter)fdsFilter;
 
-				filterObjectDefinitionERC =
+				externalReferenceCode =
 					"L_DATA_SET_CLIENT_EXTENSION_FILTER";
 
 				filterFDSEntryRelationshipName =
@@ -601,7 +601,7 @@ public class ImportSystemDataSetMVCResourceCommand
 			ObjectDefinition filterObjectDefinition =
 				_objectDefinitionLocalService.
 					fetchObjectDefinitionByExternalReferenceCode(
-						filterObjectDefinitionERC,
+						externalReferenceCode,
 						_portal.getCompanyId(httpServletRequest));
 
 			_objectEntryService.addObjectEntry(
