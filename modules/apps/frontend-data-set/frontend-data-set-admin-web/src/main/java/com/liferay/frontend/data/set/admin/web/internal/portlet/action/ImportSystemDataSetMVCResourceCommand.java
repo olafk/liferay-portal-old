@@ -594,14 +594,14 @@ public class ImportSystemDataSetMVCResourceCommand
 					objectEntry.getObjectEntryId());
 			}
 
-			ObjectDefinition filterObjectDefinition =
+			ObjectDefinition objectDefinition =
 				_objectDefinitionLocalService.
 					fetchObjectDefinitionByExternalReferenceCode(
 						externalReferenceCode,
 						_portal.getCompanyId(httpServletRequest));
 
 			_objectEntryService.addObjectEntry(
-				0, filterObjectDefinition.getObjectDefinitionId(),
+				0, objectDefinition.getObjectDefinitionId(),
 				ObjectEntryFolderConstants.
 					PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT,
 				null, values, new ServiceContext());
