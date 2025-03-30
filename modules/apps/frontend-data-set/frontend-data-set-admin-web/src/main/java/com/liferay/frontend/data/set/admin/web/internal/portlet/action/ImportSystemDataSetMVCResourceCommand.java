@@ -556,47 +556,46 @@ public class ImportSystemDataSetMVCResourceCommand
 				).build();
 
 			String externalReferenceCode = StringPool.BLANK;
-			String filterFDSEntryRelationshipName = StringPool.BLANK;
 
 			if (fdsFilter instanceof BaseDateRangeFDSFilter) {
 				externalReferenceCode = "L_DATA_SET_DATE_FILTER";
-
-				filterFDSEntryRelationshipName =
-					"r_dataSetToDataSetDateFilters_l_dataSetId";
 
 				JSONObject jsonObject = JSONUtil.put(
 					"preloadedData", fdsFilter.getPreloadedData());
 
 				values.put("from", jsonObject.getString("from"));
-				values.put("to", jsonObject.getString("to"));
 
+				values.put(
+					"r_dataSetToDataSetDateFilters_l_dataSetId",
+					objectEntry.getObjectEntryId());
+				values.put("to", jsonObject.getString("to"));
 				values.put("type", fdsFilter.getEntityFieldType());
 			}
 			else if (fdsFilter instanceof BaseSelectionFDSFilter) {
 				externalReferenceCode = "L_DATA_SET_SELECTION_FILTER";
 
-				filterFDSEntryRelationshipName =
-					"r_dataSetToDataSetSelectionFilters_l_dataSetId";
-
 				values.put("sourceType", FDSEntryItemImportPolicy.ITEM_PROXY);
+				values.put(
+					"r_dataSetToDataSetSelectionFilters_l_dataSetId",
+					objectEntry.getObjectEntryId());
 			}
 			else if (fdsFilter instanceof BaseClientExtensionFDSFilter) {
+				externalReferenceCode = "L_DATA_SET_CLIENT_EXTENSION_FILTER";
+
 				BaseClientExtensionFDSFilter clientExtensionFDSFilter =
 					(BaseClientExtensionFDSFilter)fdsFilter;
-
-				externalReferenceCode =
-					"L_DATA_SET_CLIENT_EXTENSION_FILTER";
-
-				filterFDSEntryRelationshipName =
-					"r_dataSetToDataSetClientExtensionFilters_l_dataSetId";
 
 				values.put(
 					"clientExtensionEntryERC",
 					clientExtensionFDSFilter.getCETExternalReferenceCode());
-			}
 
-			values.put(
-				filterFDSEntryRelationshipName, objectEntry.getObjectEntryId());
+				values.put(
+					"r_dataSetToDataSetClientExtensionFilters_l_dataSetId",
+					objectEntry.getObjectEntryId());
+			}
+			else {
+				values.put(StringPool.BLANK, objectEntry.getObjectEntryId());
+			}
 
 			ObjectDefinition filterObjectDefinition =
 				_objectDefinitionLocalService.
