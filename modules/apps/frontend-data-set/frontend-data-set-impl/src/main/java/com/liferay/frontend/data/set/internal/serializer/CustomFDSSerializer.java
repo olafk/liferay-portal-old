@@ -951,13 +951,11 @@ public class CustomFDSSerializer
 					"r_dataSetToDataSetSelectionFilters_l_dataSetERC"),
 				httpServletRequest);
 
-			if (!JSONUtil.isEmpty(jsonArray)) {
-				for (int i = 0; i < jsonArray.length(); i++) {
-					JSONObject jsonObject = jsonArray.getJSONObject(i);
+			for (int i = 0; i < jsonArray.length(); i++) {
+				JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-					if (Objects.equals(fieldName, jsonObject.getString("id"))) {
-						return jsonObject;
-					}
+				if (Objects.equals(fieldName, jsonObject.getString("id"))) {
+					return jsonObject;
 				}
 			}
 		}
