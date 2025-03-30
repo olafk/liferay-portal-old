@@ -544,7 +544,7 @@ public class ImportSystemDataSetMVCResourceCommand
 		throws Exception {
 
 		for (FDSFilter fdsFilter : fdsFilters) {
-			HashMapBuilder.HashMapWrapper<String, Serializable> values =
+			Map<String, Serializable> values =
 				HashMapBuilder.<String, Serializable>put(
 					"entityFieldType", fdsFilter.getEntityFieldType()
 				).put(
@@ -553,7 +553,7 @@ public class ImportSystemDataSetMVCResourceCommand
 					"label_i18n", _buildLocaleMap(fdsFilter.getLabel())
 				).put(
 					"type", fdsFilter.getType()
-				);
+				).build();
 
 			String filterObjectDefinitionERC = StringPool.BLANK;
 			String filterFDSEntryRelationshipName = StringPool.BLANK;
@@ -567,13 +567,10 @@ public class ImportSystemDataSetMVCResourceCommand
 				JSONObject jsonObject = JSONUtil.put(
 					"preloadedData", fdsFilter.getPreloadedData());
 
-				values.put(
-					"from", jsonObject.getString("from")
-				).put(
-					"to", jsonObject.getString("to")
-				).put(
-					"type", fdsFilter.getEntityFieldType()
-				);
+				values.put("from", jsonObject.getString("from"));
+				values.put("to", jsonObject.getString("to"));
+
+				values.put("type", fdsFilter.getEntityFieldType());
 			}
 			else if (fdsFilter instanceof BaseSelectionFDSFilter) {
 				filterObjectDefinitionERC = "L_DATA_SET_SELECTION_FILTER";
@@ -611,7 +608,7 @@ public class ImportSystemDataSetMVCResourceCommand
 				0, filterObjectDefinition.getObjectDefinitionId(),
 				ObjectEntryFolderConstants.
 					PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT,
-				null, values.build(), new ServiceContext());
+				null, values, new ServiceContext());
 		}
 	}
 
