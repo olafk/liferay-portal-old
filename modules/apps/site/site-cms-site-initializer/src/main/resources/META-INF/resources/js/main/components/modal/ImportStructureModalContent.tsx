@@ -56,7 +56,7 @@ export default function ImportStructureModalContent({
 
 			openToast({
 				message: Liferay.Language.get(
-					'the-structure-has-been-successfully-imported-and-overwritten'
+					'the-structure-was-successfully-imported-and-the-existing-structure-was-overwritten'
 				),
 				type: 'success',
 			});
