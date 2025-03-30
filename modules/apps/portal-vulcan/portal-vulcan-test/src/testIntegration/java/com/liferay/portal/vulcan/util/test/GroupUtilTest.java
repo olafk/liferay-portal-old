@@ -59,10 +59,9 @@ public class GroupUtilTest {
 			depotEntryGroup.getGroupKey(),
 			GroupUtil.getAssetLibraryKey(depotEntryGroup));
 
-		Group siteGroup = _groupLocalService.getGroup(
-			TestPropsValues.getGroupId());
-
-		Assert.assertNull(GroupUtil.getAssetLibraryKey(siteGroup));
+		Assert.assertNull(
+			GroupUtil.getAssetLibraryKey(
+				_groupLocalService.getGroup(TestPropsValues.getGroupId())));
 	}
 
 	@Test
@@ -80,7 +79,7 @@ public class GroupUtilTest {
 
 	@FeatureFlags("LPD-17564")
 	@Test
-	public void testGetDepotGroupIdWithFeatureFlag() throws Exception {
+	public void testGetDepotGroupIdWithFF() throws Exception {
 		_testGetDepotGroupId();
 
 		Group depotEntryGroup = _depotEntry.getGroup();
@@ -95,20 +94,17 @@ public class GroupUtilTest {
 
 	@Test
 	public void testGetGroupId() throws Exception {
-		Group siteGroup = _groupLocalService.getGroup(
-			TestPropsValues.getGroupId());
+		Group group = _groupLocalService.getGroup(TestPropsValues.getGroupId());
 
 		Assert.assertEquals(
-			Long.valueOf(siteGroup.getGroupId()),
+			Long.valueOf(group.getGroupId()),
 			GroupUtil.getGroupId(
-				siteGroup.getCompanyId(), siteGroup.getGroupKey(),
+				group.getCompanyId(), group.getGroupKey(), _groupLocalService));
+		Assert.assertEquals(
+			Long.valueOf(group.getGroupId()),
+			GroupUtil.getGroupId(
+				group.getCompanyId(), String.valueOf(group.getGroupId()),
 				_groupLocalService));
-
-		Assert.assertEquals(
-			Long.valueOf(siteGroup.getGroupId()),
-			GroupUtil.getGroupId(
-				siteGroup.getCompanyId(),
-				String.valueOf(siteGroup.getGroupId()), _groupLocalService));
 	}
 
 	@Test
@@ -116,24 +112,21 @@ public class GroupUtilTest {
 		Assert.assertNull(
 			GroupUtil.getSiteExternalReferenceCode(_depotEntry.getGroup()));
 
-		Group siteGroup = _groupLocalService.getGroup(
-			TestPropsValues.getGroupId());
+		Group group = _groupLocalService.getGroup(TestPropsValues.getGroupId());
 
 		Assert.assertEquals(
-			siteGroup.getExternalReferenceCode(),
-			GroupUtil.getSiteExternalReferenceCode(siteGroup));
+			group.getExternalReferenceCode(),
+			GroupUtil.getSiteExternalReferenceCode(group));
 	}
 
 	@Test
 	public void testGetSiteId() throws Exception {
 		Assert.assertNull(GroupUtil.getSiteId(_depotEntry.getGroup()));
 
-		Group siteGroup = _groupLocalService.getGroup(
-			TestPropsValues.getGroupId());
+		Group group = _groupLocalService.getGroup(TestPropsValues.getGroupId());
 
 		Assert.assertEquals(
-			Long.valueOf(siteGroup.getGroupId()),
-			GroupUtil.getSiteId(siteGroup));
+			Long.valueOf(group.getGroupId()), GroupUtil.getSiteId(group));
 	}
 
 	private void _testGetDepotGroupId() throws Exception {
@@ -142,15 +135,14 @@ public class GroupUtilTest {
 		Assert.assertEquals(
 			Long.valueOf(depotEntryGroup.getGroupId()),
 			GroupUtil.getDepotGroupId(
-				depotEntryGroup.getGroupKey(), depotEntryGroup.getCompanyId(),
-				_depotEntryLocalService, _groupLocalService));
-
-		Assert.assertEquals(
-			Long.valueOf(depotEntryGroup.getGroupId()),
-			GroupUtil.getDepotGroupId(
 				String.valueOf(_depotEntry.getDepotEntryId()),
 				depotEntryGroup.getCompanyId(), _depotEntryLocalService,
 				_groupLocalService));
+		Assert.assertEquals(
+			Long.valueOf(depotEntryGroup.getGroupId()),
+			GroupUtil.getDepotGroupId(
+				depotEntryGroup.getGroupKey(), depotEntryGroup.getCompanyId(),
+				_depotEntryLocalService, _groupLocalService));
 	}
 
 	private DepotEntry _depotEntry;
