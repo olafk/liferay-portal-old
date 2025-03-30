@@ -780,46 +780,9 @@ public class ImportSystemDataSetMVCResourceCommand
 					"L_DATA_SET_SORT",
 					_portal.getCompanyId(httpServletRequest));
 
-		if (fdsSorts.getFDSEntryItemImportPolicy() !=
+		if (fdsSorts.getFDSEntryItemImportPolicy() ==
 				FDSEntryItemImportPolicy.GROUP_PROXY) {
 
-			for (FDSSortItem fdsSortItem : fdsSortItems) {
-				_objectEntryService.addObjectEntry(
-					0, objectDefinition.getObjectDefinitionId(),
-					ObjectEntryFolderConstants.
-						PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT,
-					null,
-					HashMapBuilder.<String, Serializable>put(
-						"default",
-						() -> _getOptionalValue(fdsSortItem.get("active"))
-					).put(
-						"fieldName",
-						() -> _getOptionalValue(fdsSortItem.get("key"))
-					).put(
-						"label_i18n",
-						() -> _getLocalizeableValue(
-							objectDefinition.getDefaultLanguageId(),
-							_getOptionalValue(fdsSortItem.get("label")))
-					).put(
-						"orderType",
-						() -> {
-							if (fdsSorts.getFDSEntryItemImportPolicy() ==
-									FDSEntryItemImportPolicy.DETACHED) {
-
-								return _getOptionalValue(
-									fdsSortItem.get("direction"));
-							}
-
-							return FDSEntryItemImportPolicy.ITEM_PROXY;
-						}
-					).put(
-						"r_dataSetToDataSetSorts_l_dataSetId",
-						objectEntry.getObjectEntryId()
-					).build(),
-					new ServiceContext());
-			}
-		}
-		else {
 			_objectEntryService.addObjectEntry(
 				0, objectDefinition.getObjectDefinitionId(),
 				ObjectEntryFolderConstants.
@@ -840,11 +803,49 @@ public class ImportSystemDataSetMVCResourceCommand
 					objectEntry.getObjectEntryId()
 				).build(),
 				new ServiceContext());
+
+			return;
+		}
+
+		for (FDSSortItem fdsSortItem : fdsSortItems) {
+			_objectEntryService.addObjectEntry(
+				0, objectDefinition.getObjectDefinitionId(),
+				ObjectEntryFolderConstants.
+					PARENT_OBJECT_ENTRY_FOLDER_ID_DEFAULT,
+				null,
+				HashMapBuilder.<String, Serializable>put(
+					"default",
+					() -> _getOptionalValue(fdsSortItem.get("active"))
+				).put(
+					"fieldName",
+					() -> _getOptionalValue(fdsSortItem.get("key"))
+				).put(
+					"label_i18n",
+					() -> _getLocalizeableValue(
+						objectDefinition.getDefaultLanguageId(),
+						_getOptionalValue(fdsSortItem.get("label")))
+				).put(
+					"orderType",
+					() -> {
+						if (fdsSorts.getFDSEntryItemImportPolicy() ==
+								FDSEntryItemImportPolicy.DETACHED) {
+
+							return _getOptionalValue(
+								fdsSortItem.get("direction"));
+						}
+
+						return FDSEntryItemImportPolicy.ITEM_PROXY;
+					}
+				).put(
+					"r_dataSetToDataSetSorts_l_dataSetId",
+					objectEntry.getObjectEntryId()
+				).build(),
+				new ServiceContext());
 		}
 	}
 
 	private Map<String, String> _getI18nMap(String key) {
-		hMap<String, String> labels = new HashMap<>();
+		Map<String, String> labels = new HashMap<>();
 
 		for (Locale locale : LanguageUtil.getAvailableLocales()) {
 			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
