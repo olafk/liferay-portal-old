@@ -817,8 +817,7 @@ public class ImportSystemDataSetMVCResourceCommand
 					"default",
 					() -> _getOptionalValue(fdsSortItem.get("active"))
 				).put(
-					"fieldName",
-					() -> _getOptionalValue(fdsSortItem.get("key"))
+					"fieldName", () -> _getOptionalValue(fdsSortItem.get("key"))
 				).put(
 					"label_i18n",
 					() -> _getLocalizeableValue(
