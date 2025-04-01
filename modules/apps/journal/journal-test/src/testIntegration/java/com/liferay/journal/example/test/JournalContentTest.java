@@ -232,10 +232,6 @@ public class JournalContentTest {
 	}
 
 	private void _testClearCache(Locale[] locales) throws Exception {
-		String englishLanguageId = LocaleUtil.toLanguageId(
-			LocaleUtil.getSiteDefault());
-		String spanishLanguageId = LocaleUtil.toLanguageId(LocaleUtil.SPAIN);
-
 		String englishContent = RandomTestUtil.randomString();
 		String spanishContent = RandomTestUtil.randomString();
 
@@ -254,10 +250,15 @@ public class JournalContentTest {
 		String articleId = _journalArticle.getArticleId();
 		String ddmTemplateKey = _journalArticle.getDDMTemplateKey();
 
+		String englishLanguageId = LocaleUtil.toLanguageId(
+			LocaleUtil.getSiteDefault());
+
 		JournalArticleDisplay englishArticleDisplay1 =
 			_journalContent.getDisplay(
 				groupId, articleId, Constants.VIEW, englishLanguageId,
 				_portletRequestModel);
+
+		String spanishLanguageId = LocaleUtil.toLanguageId(LocaleUtil.SPAIN);
 
 		JournalArticleDisplay spanishArticleDisplay1 =
 			_journalContent.getDisplay(
