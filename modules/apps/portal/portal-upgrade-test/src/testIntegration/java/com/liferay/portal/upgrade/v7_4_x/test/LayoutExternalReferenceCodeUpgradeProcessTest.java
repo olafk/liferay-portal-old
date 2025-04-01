@@ -105,7 +105,7 @@ public class LayoutExternalReferenceCodeUpgradeProcessTest
 		return null;
 	}
 
-	private static final String _UUID = "uuid";
+	private static final String _UUID = RandomTestUtil.randomString();
 
 	@Inject
 	private LayoutLocalService _layoutLocalService;
