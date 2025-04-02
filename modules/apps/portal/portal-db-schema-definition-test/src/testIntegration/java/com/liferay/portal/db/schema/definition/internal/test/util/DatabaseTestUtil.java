@@ -81,13 +81,11 @@ public class DatabaseTestUtil {
 	public static String getSchemaURL(String schemaName) {
 		String jdbcURL = PropsValues.JDBC_DEFAULT_URL;
 
-		int index = jdbcURL.indexOf("?");
-
-		if (index == -1) {
-			return jdbcURL + "?currentSchema=" + schemaName;
+		if (jdbcURL.contains("?")) {
+			return jdbcURL + "&currentSchema=" + schemaName;
 		}
 
-		return jdbcURL + "&currentSchema=" + schemaName;
+		return jdbcURL + "?currentSchema=" + schemaName;
 	}
 
 	public static List<String> getTableColumnNames(DataSource dataSource)
