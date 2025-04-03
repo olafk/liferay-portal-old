@@ -83,13 +83,13 @@ public class JournalFolderLocalServiceTest {
 		List<Long> folderIds = Arrays.asList(
 			parentJournalFolder.getFolderId(), journalFolder.getFolderId());
 
-		_assertFoldersAndArticlesCount(
+		_testGetFoldersAndArticlesCount(
 			1, folderIds, _group.getGroupId(),
 			WorkflowConstants.STATUS_APPROVED);
-		_assertFoldersAndArticlesCount(
+		_testGetFoldersAndArticlesCount(
 			1, folderIds, _group.getGroupId(),
 			WorkflowConstants.STATUS_EXPIRED);
-		_assertFoldersAndArticlesCount(
+		_testGetFoldersAndArticlesCount(
 			1, folderIds, _group.getGroupId(),
 			WorkflowConstants.STATUS_IN_TRASH);
 	}
@@ -185,7 +185,7 @@ public class JournalFolderLocalServiceTest {
 			RandomTestUtil.randomString());
 	}
 
-	private void _assertFoldersAndArticlesCount(
+	private void _testGetFoldersAndArticlesCount(
 		long expectedCount, List<Long> folderIds, long groupId, int status) {
 
 		Assert.assertEquals(
