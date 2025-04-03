@@ -327,17 +327,16 @@ public class ObjectEntryLocalServiceImpl
 
 		_contributeValues(groupId, objectDefinition, userId, values);
 
+		Map<ObjectField, DLFileEntry> dlFileEntries = new HashMap<>();
 		long objectEntryId = counterLocalService.increment();
 		User user = _userLocalService.getUser(userId);
 
-		Map<ObjectField, DLFileEntry> tempDLFileEntries = new HashMap<>();
-
 		_validateValues(
-			tempDLFileEntries, null, user.isGuestUser(), groupId,
+			dlFileEntries, null, user.isGuestUser(), groupId,
 			objectDefinition, serviceContext, userId, null, values);
 
 		_addDLFileEntries(
-			objectDefinition, objectEntryId, serviceContext, tempDLFileEntries,
+			objectDefinition, objectEntryId, serviceContext, dlFileEntries,
 			userId, values);
 
 		Map<String, Serializable> insertedValues = new HashMap<>();
@@ -443,7 +442,7 @@ public class ObjectEntryLocalServiceImpl
 				clearObjectEntryIdsMap);
 		}
 
-		_deleteTempFileEntries(tempDLFileEntries);
+		_deleteTempFileEntries(dlFileEntries);
 
 		return _addObjectEntryVersion(objectDefinition, objectEntry);
 	}
@@ -481,23 +480,22 @@ public class ObjectEntryLocalServiceImpl
 			Map<String, Serializable> values, ServiceContext serviceContext)
 		throws PortalException {
 
+		Map<ObjectField, DLFileEntry> dlFileEntries = new HashMap<>();
 		User user = _userLocalService.getUser(userId);
 
-		Map<ObjectField, DLFileEntry> tempDLFileEntries = new HashMap<>();
-
 		_validateValues(
-			tempDLFileEntries, null, user.isGuestUser(), 0, objectDefinition,
+			dlFileEntries, null, user.isGuestUser(), 0, objectDefinition,
 			serviceContext, userId, null, values);
 
 		_addDLFileEntries(
-			objectDefinition, primaryKey, serviceContext, tempDLFileEntries,
+			objectDefinition, primaryKey, serviceContext, dlFileEntries,
 			userId, values);
 
 		insertIntoOrUpdateExtensionTable(
 			userId, objectDefinition.getObjectDefinitionId(), primaryKey,
 			values);
 
-		_deleteTempFileEntries(tempDLFileEntries);
+		_deleteTempFileEntries(dlFileEntries);
 	}
 
 	@Override
@@ -1662,15 +1660,15 @@ public class ObjectEntryLocalServiceImpl
 		_contributeValues(
 			objectEntry.getGroupId(), objectDefinition, userId, values);
 
-		Map<ObjectField, DLFileEntry> tempDLFileEntries = new HashMap<>();
+		Map<ObjectField, DLFileEntry> dlFileEntries = new HashMap<>();
 
 		_validateValues(
-			tempDLFileEntries, objectEntry, user.isGuestUser(),
+			dlFileEntries, objectEntry, user.isGuestUser(),
 			objectEntry.getGroupId(), objectDefinition, serviceContext, userId,
 			null, values);
 
 		_addDLFileEntries(
-			objectDefinition, objectEntryId, serviceContext, tempDLFileEntries,
+			objectDefinition, objectEntryId, serviceContext, dlFileEntries,
 			userId, values);
 
 		int workflowAction = serviceContext.getWorkflowAction();
@@ -1752,7 +1750,7 @@ public class ObjectEntryLocalServiceImpl
 			objectEntry, originalObjectEntry, serviceContext.getLanguageId(),
 			user);
 
-		_deleteTempFileEntries(tempDLFileEntries);
+		_deleteTempFileEntries(dlFileEntries);
 
 		if (objectEntry.isPending() || originalObjectEntry.isDraft()) {
 			_updateLatestObjectEntryVersion(objectDefinition, objectEntry);
@@ -2040,12 +2038,12 @@ public class ObjectEntryLocalServiceImpl
 	private void _addDLFileEntries(
 			ObjectDefinition objectDefinition, long objectEntryId,
 			ServiceContext serviceContext,
-			Map<ObjectField, DLFileEntry> tempDLFileEntries, long userId,
+			Map<ObjectField, DLFileEntry> dlFileEntries, long userId,
 			Map<String, Serializable> values)
 		throws PortalException {
 
 		for (Map.Entry<ObjectField, DLFileEntry> entry :
-				tempDLFileEntries.entrySet()) {
+				dlFileEntries.entrySet()) {
 
 			_addDLFileEntry(
 				entry.getValue(), objectDefinition, objectEntryId,
@@ -5783,7 +5781,7 @@ public class ObjectEntryLocalServiceImpl
 	}
 
 	private void _validateValues(
-			Map<ObjectField, DLFileEntry> tempDLFileEntries,
+			Map<ObjectField, DLFileEntry> dlFileEntries,
 			ObjectEntry existingObjectEntry, boolean guestUser, long groupId,
 			ObjectDefinition objectDefinition, ObjectField objectField,
 			ServiceContext serviceContext, long userId,
@@ -5827,7 +5825,7 @@ public class ObjectEntryLocalServiceImpl
 					}
 				}
 
-				tempDLFileEntries.put(objectField, dlFileEntry);
+				dlFileEntries.put(objectField, dlFileEntry);
 
 				return;
 			}
@@ -6026,7 +6024,7 @@ public class ObjectEntryLocalServiceImpl
 	}
 
 	private void _validateValues(
-			Map<ObjectField, DLFileEntry> tempDLFileEntries,
+			Map<ObjectField, DLFileEntry> dlFileEntries,
 			ObjectEntry existingObjectEntry, boolean guestUser, long groupId,
 			ObjectDefinition objectDefinition, ServiceContext serviceContext,
 			long userId, List<ValidationError> validationErrors,
@@ -6042,7 +6040,7 @@ public class ObjectEntryLocalServiceImpl
 				values.containsKey(objectField.getName())) {
 
 				_validateValues(
-					tempDLFileEntries, existingObjectEntry, guestUser, groupId,
+					dlFileEntries, existingObjectEntry, guestUser, groupId,
 					objectDefinition, objectField, serviceContext, userId,
 					validationErrors, values.get(objectField.getName()),
 					StringPool.BLANK);
@@ -6058,7 +6056,7 @@ public class ObjectEntryLocalServiceImpl
 
 			for (Map.Entry<String, String> entry : localizedValues.entrySet()) {
 				_validateValues(
-					tempDLFileEntries, existingObjectEntry, guestUser, groupId,
+					dlFileEntries, existingObjectEntry, guestUser, groupId,
 					objectDefinition, objectField, serviceContext, userId,
 					validationErrors, entry.getValue(), entry.getKey());
 			}
