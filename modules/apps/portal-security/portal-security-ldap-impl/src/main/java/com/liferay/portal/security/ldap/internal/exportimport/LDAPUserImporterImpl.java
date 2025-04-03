@@ -949,28 +949,26 @@ public class LDAPUserImporterImpl implements LDAPUserImporter {
 		ExpandoColumn expandoColumn = _expandoColumnLocalService.fetchColumn(
 			expandoTable.getTableId(), "ldapServerId");
 
-		if (expandoColumn == null) {
-			expandoColumn = _expandoColumnLocalService.addColumn(
-				expandoTable.getTableId(), "ldapServerId",
-				ExpandoColumnConstants.LONG);
-
-			UnicodeProperties unicodeProperties =
-				expandoColumn.getTypeSettingsProperties();
-
-			unicodeProperties.setProperty(
-				ExpandoColumnConstants.INDEX_TYPE,
-				String.valueOf(ExpandoColumnConstants.INDEX_TYPE_KEYWORD));
-			unicodeProperties.setProperty(
-				ExpandoColumnConstants.PROPERTY_HIDDEN,
-				Boolean.TRUE.toString());
-
-			expandoColumn.setTypeSettingsProperties(unicodeProperties);
-
-			expandoColumn = _expandoColumnLocalService.updateExpandoColumn(
-				expandoColumn);
+		if (expandoColumn != null) {
+			return expandoColumn;
 		}
 
-		return expandoColumn;
+		expandoColumn = _expandoColumnLocalService.addColumn(
+			expandoTable.getTableId(), "ldapServerId",
+			ExpandoColumnConstants.LONG);
+
+		UnicodeProperties unicodeProperties =
+			expandoColumn.getTypeSettingsProperties();
+
+		unicodeProperties.setProperty(
+			ExpandoColumnConstants.INDEX_TYPE,
+			String.valueOf(ExpandoColumnConstants.INDEX_TYPE_KEYWORD));
+		unicodeProperties.setProperty(
+			ExpandoColumnConstants.PROPERTY_HIDDEN, Boolean.TRUE.toString());
+
+		expandoColumn.setTypeSettingsProperties(unicodeProperties);
+
+		return _expandoColumnLocalService.updateExpandoColumn(expandoColumn);
 	}
 
 	private Attribute _getUsers(
