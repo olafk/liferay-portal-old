@@ -5,6 +5,7 @@
 
 package com.liferay.object.rest.internal.resource.v1_0;
 
+import com.liferay.object.exception.ObjectEntryValidationException;
 import com.liferay.object.model.ObjectDefinition;
 import com.liferay.object.model.ObjectRelationship;
 import com.liferay.object.rest.dto.v1_0.ObjectEntry;
@@ -43,7 +44,6 @@ import java.io.Serializable;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.NotSupportedException;
@@ -802,39 +802,44 @@ public class ObjectEntryResourceImpl extends BaseObjectEntryResourceImpl {
 			String scopeKey, ValidationRequest validationRequest)
 		throws Exception {
 
-		ObjectEntryManager objectEntryManager =
-			_objectEntryManagerRegistry.getObjectEntryManager(
-				_objectDefinition.getStorageType());
+		DefaultObjectEntryManager defaultObjectEntryManager =
+			DefaultObjectEntryManagerProvider.provide(
+				_objectEntryManagerRegistry.getObjectEntryManager(
+					_objectDefinition.getStorageType()));
 
-		List<com.liferay.object.entry.validation.ValidationError>
-			serviceBuilderValidationErrors =
-				objectEntryManager.validateObjectEntry(
-					_getDTOConverterContext(null), _objectDefinition,
-					validationRequest.getValues(),
-					Arrays.asList(
-						validationRequest.
-							getObjectValidationRuleExternalReferenceCodes()),
-					scopeKey);
+		try {
+			defaultObjectEntryManager.validateObjectEntry(
+				_getDTOConverterContext(null), _objectDefinition,
+				validationRequest.getValues(),
+				Arrays.asList(
+					validationRequest.
+						getObjectValidationRuleExternalReferenceCodes()),
+				scopeKey);
+		}
+		catch (ObjectEntryValidationException objectEntryValidationException) {
+			return new ValidationResponse() {
+				{
+					setValidationErrors(
+						() -> transformToArray(
+							objectEntryValidationException.
+								getValidationErrors(),
+							validationError -> new ValidationError() {
+								{
+									setErrorMessage(
+										validationError::getErrorMessage);
+									setObjectFieldName(
+										validationError::getObjectFieldName);
+									setObjectValidationRuleExternalReferenceCode(
+										validationError::
+											getObjectValidationRuleExternalReferenceCode);
+								}
+							},
+							ValidationError.class));
+				}
+			};
+		}
 
-		return new ValidationResponse() {
-			{
-				setValidationErrors(
-					() -> transformToArray(
-						serviceBuilderValidationErrors,
-						validationError -> new ValidationError() {
-							{
-								setErrorMessage(
-									validationError::getErrorMessage);
-								setObjectFieldName(
-									validationError::getObjectFieldName);
-								setObjectValidationRuleExternalReferenceCode(
-									validationError::
-										getObjectValidationRuleExternalReferenceCode);
-							}
-						},
-						ValidationError.class));
-			}
-		};
+		return new ValidationResponse();
 	}
 
 	private final DTOConverterRegistry _dtoConverterRegistry;

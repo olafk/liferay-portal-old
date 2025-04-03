@@ -16,6 +16,8 @@ import com.liferay.portal.vulcan.dto.converter.DTOConverterContext;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
+import java.util.List;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
@@ -147,6 +149,13 @@ public interface DefaultObjectEntryManager extends ObjectEntryManager {
 			DTOConverterContext dtoConverterContext,
 			ObjectDefinition objectDefinition, long objectEntryId,
 			ObjectEntry objectEntry)
+		throws Exception;
+
+	public void validateObjectEntry(
+			DTOConverterContext dtoConverterContext,
+			ObjectDefinition objectDefinition, ObjectEntry objectEntry,
+			List<String> objectValidationRuleExternalReferenceCodes,
+			String scopeKey)
 		throws Exception;
 
 }

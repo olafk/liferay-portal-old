@@ -15,9 +15,7 @@ import com.liferay.object.constants.ObjectFieldConstants;
 import com.liferay.object.constants.ObjectFieldSettingConstants;
 import com.liferay.object.constants.ObjectRelationshipConstants;
 import com.liferay.object.entry.util.ObjectEntryDTOConverterUtil;
-import com.liferay.object.entry.validation.ValidationError;
 import com.liferay.object.exception.NoSuchObjectEntryException;
-import com.liferay.object.exception.ObjectEntryValidationException;
 import com.liferay.object.field.attachment.AttachmentManager;
 import com.liferay.object.field.business.type.ObjectFieldBusinessType;
 import com.liferay.object.field.business.type.ObjectFieldBusinessTypeRegistry;
@@ -930,7 +928,7 @@ public class DefaultObjectEntryManagerImpl
 	}
 
 	@Override
-	public List<ValidationError> validateObjectEntry(
+	public void validateObjectEntry(
 			DTOConverterContext dtoConverterContext,
 			ObjectDefinition objectDefinition, ObjectEntry objectEntry,
 			List<String> objectValidationRuleExternalReferenceCodes,
@@ -949,19 +947,11 @@ public class DefaultObjectEntryManagerImpl
 				_createServiceContext(
 					dtoConverterContext, objectDefinition, objectEntry)));
 
-		try {
-			_objectEntryService.validate(
-				getGroupId(objectDefinition, scopeKey),
-				serviceBuilderObjectEntry,
-				objectValidationRuleExternalReferenceCodes,
-				_createServiceContext(
-					dtoConverterContext, objectDefinition, objectEntry));
-		}
-		catch (ObjectEntryValidationException objectEntryValidationException) {
-			return objectEntryValidationException.getValidationErrors();
-		}
-
-		return Collections.emptyList();
+		_objectEntryService.validate(
+			getGroupId(objectDefinition, scopeKey), serviceBuilderObjectEntry,
+			objectValidationRuleExternalReferenceCodes,
+			_createServiceContext(
+				dtoConverterContext, objectDefinition, objectEntry));
 	}
 
 	private Map<String, String> _addAction(

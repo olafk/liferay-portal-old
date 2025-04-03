@@ -5,7 +5,6 @@
 
 package com.liferay.object.exception;
 
-import com.liferay.object.entry.validation.ValidationError;
 import com.liferay.portal.kernel.exception.PortalException;
 
 import java.util.List;
@@ -15,16 +14,48 @@ import java.util.List;
  */
 public class ObjectEntryValidationException extends PortalException {
 
-	public ObjectEntryValidationException(
-		List<ValidationError> validationErrors) {
-
-		_validationErrors = validationErrors;
-	}
-
 	public List<ValidationError> getValidationErrors() {
 		return _validationErrors;
 	}
 
-	private final List<ValidationError> _validationErrors;
+	public void setValidationErrors(List<ValidationError> validationErrors) {
+		_validationErrors = validationErrors;
+	}
+
+	public static class ValidationError {
+
+		public ValidationError(String errorMessage) {
+			_errorMessage = errorMessage;
+		}
+
+		public ValidationError(
+			String errorMessage, String objectFieldName,
+			String objectValidationRuleExternalReferenceCode) {
+
+			_errorMessage = errorMessage;
+			_objectFieldName = objectFieldName;
+			_objectValidationRuleExternalReferenceCode =
+				objectValidationRuleExternalReferenceCode;
+		}
+
+		public String getErrorMessage() {
+			return _errorMessage;
+		}
+
+		public String getObjectFieldName() {
+			return _objectFieldName;
+		}
+
+		public String getObjectValidationRuleExternalReferenceCode() {
+			return _objectValidationRuleExternalReferenceCode;
+		}
+
+		private final String _errorMessage;
+		private String _objectFieldName;
+		private String _objectValidationRuleExternalReferenceCode;
+
+	}
+
+	private List<ValidationError> _validationErrors;
 
 }

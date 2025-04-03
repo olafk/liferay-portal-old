@@ -5,7 +5,6 @@
 
 package com.liferay.object.rest.manager.v1_0;
 
-import com.liferay.object.entry.validation.ValidationError;
 import com.liferay.object.model.ObjectDefinition;
 import com.liferay.object.rest.dto.v1_0.ObjectEntry;
 import com.liferay.object.rest.manager.v1_0.util.ObjectEntryManagerUtil;
@@ -15,8 +14,6 @@ import com.liferay.portal.vulcan.dto.converter.DTOConverterContext;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -76,15 +73,5 @@ public interface ObjectEntryManager {
 			String externalReferenceCode, ObjectDefinition objectDefinition,
 			ObjectEntry objectEntry, String scopeKey)
 		throws Exception;
-
-	public default List<ValidationError> validateObjectEntry(
-			DTOConverterContext dtoConverterContext,
-			ObjectDefinition objectDefinition, ObjectEntry objectEntry,
-			List<String> objectValidationRuleExternalReferenceCodes,
-			String scopeKey)
-		throws Exception {
-
-		return Collections.emptyList();
-	}
 
 }
