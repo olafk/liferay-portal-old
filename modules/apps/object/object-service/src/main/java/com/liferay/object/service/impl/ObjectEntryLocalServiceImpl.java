@@ -332,8 +332,8 @@ public class ObjectEntryLocalServiceImpl
 		User user = _userLocalService.getUser(userId);
 
 		_validateValues(
-			dlFileEntries, null, user.isGuestUser(), groupId,
-			objectDefinition, serviceContext, userId, null, values);
+			dlFileEntries, null, user.isGuestUser(), groupId, objectDefinition,
+			serviceContext, userId, null, values);
 
 		_addDLFileEntries(
 			dlFileEntries, objectDefinition, objectEntryId, serviceContext,
@@ -488,8 +488,8 @@ public class ObjectEntryLocalServiceImpl
 			serviceContext, userId, null, values);
 
 		_addDLFileEntries(
-			dlFileEntries, objectDefinition, primaryKey, serviceContext,
-			userId, values);
+			dlFileEntries, objectDefinition, primaryKey, serviceContext, userId,
+			values);
 
 		insertIntoOrUpdateExtensionTable(
 			userId, objectDefinition.getObjectDefinitionId(), primaryKey,
@@ -2563,7 +2563,9 @@ public class ObjectEntryLocalServiceImpl
 			Map<ObjectField, DLFileEntry> dlFileEntries)
 		throws PortalException {
 
-		for (Map.Entry<ObjectField, DLFileEntry> entry : dlFileEntries.entrySet()) {
+		for (Map.Entry<ObjectField, DLFileEntry> entry :
+				dlFileEntries.entrySet()) {
+
 			DLFileEntry dlFileEntry = entry.getValue();
 
 			TempFileEntryUtil.deleteTempFileEntry(dlFileEntry.getFileEntryId());
