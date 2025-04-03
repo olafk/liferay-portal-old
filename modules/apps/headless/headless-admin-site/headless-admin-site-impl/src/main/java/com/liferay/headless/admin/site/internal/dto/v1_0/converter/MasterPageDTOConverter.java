@@ -123,10 +123,10 @@ public class MasterPageDTOConverter
 			ItemExternalReference.class);
 	}
 
-	private Scope _getScope(long curGroupId, long scopeGroupId)
+	private Scope _getScope(long groupId, long scopeGroupId)
 		throws Exception {
 
-		if (curGroupId == scopeGroupId) {
+		if (groupId == scopeGroupId) {
 			return null;
 		}
 
