@@ -11,7 +11,7 @@ function execute_command {
 
 	if [ $? -ne 0 ]
 	then
-		echo "Command failed with exit status $?"
+		echo "Command \"${@}\" failed with exit code $?."
 	fi
 }
 
