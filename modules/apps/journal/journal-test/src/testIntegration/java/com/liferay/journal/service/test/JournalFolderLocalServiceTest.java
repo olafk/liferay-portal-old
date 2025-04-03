@@ -185,6 +185,13 @@ public class JournalFolderLocalServiceTest {
 			RandomTestUtil.randomString());
 	}
 
+	private void _assertJournalFolder(JournalFolder journalFolder, User user) {
+		Assert.assertEquals(
+			journalFolder.getStatusByUserId(), user.getUserId());
+		Assert.assertEquals(
+			journalFolder.getStatusByUserName(), user.getFullName());
+	}
+
 	private void _testGetFoldersAndArticlesCount(
 		long expectedCount, List<Long> folderIds, long groupId, int status) {
 
@@ -192,15 +199,6 @@ public class JournalFolderLocalServiceTest {
 			expectedCount,
 			_journalFolderLocalService.getFoldersAndArticlesCount(
 				groupId, folderIds, status));
-	}
-
-	private void _assertJournalFolder(
-		JournalFolder journalFolder, User user) {
-
-		Assert.assertEquals(
-			journalFolder.getStatusByUserId(), user.getUserId());
-		Assert.assertEquals(
-			journalFolder.getStatusByUserName(), user.getFullName());
 	}
 
 	@Inject
