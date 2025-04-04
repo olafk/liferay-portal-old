@@ -94,21 +94,19 @@ public class CalculateTaxRestController extends BaseRestController {
 			HttpStatus.OK);
 	}
 
-	private Calculation _createCalculation(
-			JSONObject commerceTaxCalculateRequestJSONObject)
+	private Calculation _createCalculation(JSONObject jsonObject)
 		throws Exception {
 
 		CalculationCreateParams params = CalculationCreateParams.builder(
 		).addLineItem(
-			_getLineItem(commerceTaxCalculateRequestJSONObject)
+			_getLineItem(jsonObject)
 		).setCurrency(
-			commerceTaxCalculateRequestJSONObject.getString("currencyCode")
+			jsonObject.getString("currencyCode")
 		).setCustomerDetails(
 			CalculationCreateParams.CustomerDetails.builder(
 			).setAddress(
 				_getCustomerDetailsAddress(
-					commerceTaxCalculateRequestJSONObject.getJSONObject(
-						"shippingAddress"))
+					jsonObject.getJSONObject("shippingAddress"))
 			).setAddressSource(
 				CalculationCreateParams.CustomerDetails.AddressSource.SHIPPING
 			).build()
@@ -118,42 +116,40 @@ public class CalculateTaxRestController extends BaseRestController {
 	}
 
 	private CalculationCreateParams.CustomerDetails.Address
-		_getCustomerDetailsAddress(JSONObject shippingAddressJSONObject) {
+		_getCustomerDetailsAddress(JSONObject jsonObject) {
 
 		return CalculationCreateParams.CustomerDetails.Address.builder(
 		).setCity(
-			shippingAddressJSONObject.getString("city")
+			jsonObject.getString("city")
 		).setCountry(
-			shippingAddressJSONObject.getString("countryISOCode")
+			jsonObject.getString("countryISOCode")
 		).setLine1(
-			shippingAddressJSONObject.getString("street1")
+			jsonObject.getString("street1")
 		).setPostalCode(
-			shippingAddressJSONObject.getString("zip")
+			jsonObject.getString("zip")
 		).setState(
-			shippingAddressJSONObject.getString("regionISOCode")
+			jsonObject.getString("regionISOCode")
 		).build();
 	}
 
 	private CalculationCreateParams.LineItem _getLineItem(
-		JSONObject commerceTaxCalculateRequestJSONObject) {
+		JSONObject jsonObject) {
 
 		return CalculationCreateParams.LineItem.builder(
 		).setAmount(
-			commerceTaxCalculateRequestJSONObject.getLong("price")
+			jsonObject.getLong("price")
 		).setReference(
 			"L1"
 		).setTaxBehavior(
 			CalculationCreateParams.LineItem.TaxBehavior.EXCLUSIVE
 		).setTaxCode(
-			_getTaxCode(commerceTaxCalculateRequestJSONObject)
+			_getTaxCode(jsonObject)
 		).build();
 	}
 
-	private String _getTaxCode(
-		JSONObject commerceTaxCalculateRequestJSONObject) {
-
-		if (commerceTaxCalculateRequestJSONObject.has("taxCode")) {
-			return commerceTaxCalculateRequestJSONObject.getString("taxCode");
+	private String _getTaxCode(JSONObject jsonObject) {
+		if (jsonObject.has("taxCode")) {
+			return jsonObject.getString("taxCode");
 		}
 
 		return null;
