@@ -380,7 +380,8 @@ private void _createYarnTasks() {
 			yarnTask = tasks.create(name: "updateYarnBinariesCache" + _camelCase(yarnLockFile.parentFile.name), type: Copy) {
 				exclude {
 					FileTreeElement fileTreeElement ->
-					return Files.isSymbolicLink(fileTreeElement.file.toPath())
+
+					Files.isSymbolicLink(fileTreeElement.file.toPath())
 				}
 
 				from nodeModulesCacheDir
