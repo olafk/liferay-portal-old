@@ -119,7 +119,7 @@ public class LayoutUtil {
 				Boolean.FALSE.toString());
 		}
 
-		long masterLayoutPlid = 0L;
+		long masterLayoutPlid = 0;
 
 		if ((settings != null) &&
 			(settings.getMasterPageItemExternalReference() != null)) {
