@@ -118,8 +118,7 @@ public class LiferayJWTBearerAuthenticationHandler
 			if (tokenEndpointAuthMethod.equals("client_secret_jwt")) {
 				String clientSecret = client.getClientSecret();
 
-				byte[] bytes = clientSecret.getBytes(
-					StandardCharsets.UTF_8);
+				byte[] bytes = clientSecret.getBytes(StandardCharsets.UTF_8);
 
 				try {
 					Base64.Decoder decoder = Base64.getDecoder();
@@ -135,8 +134,7 @@ public class LiferayJWTBearerAuthenticationHandler
 
 					Base64.Encoder encoder = Base64.getEncoder();
 
-					clientSecret = new String(
-						encoder.encode(bytes), "UTF-8");
+					clientSecret = new String(encoder.encode(bytes), "UTF-8");
 				}
 
 				return new HmacJwsSignatureVerifier(clientSecret);
