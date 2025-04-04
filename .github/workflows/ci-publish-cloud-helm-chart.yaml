@@ -10,8 +10,7 @@ jobs:
         steps:
             -   name: Checkout code
                 uses: actions/checkout@v4
-            - id: calculate-chart-version
-                name: Calculate chart version
+            -   name: Calculate chart version
                 run: |
                     LATEST_CHART_TAG=$(git describe --tags --match="helm-chart-*" HEAD)
                     PUBLISH_VERSION=${LATEST_CHART_TAG#"helm-"}
