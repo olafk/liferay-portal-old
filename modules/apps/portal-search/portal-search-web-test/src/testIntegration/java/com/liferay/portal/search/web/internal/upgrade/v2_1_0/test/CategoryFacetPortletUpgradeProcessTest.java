@@ -52,6 +52,12 @@ public class CategoryFacetPortletUpgradeProcessTest {
 	public void testUpgrade() throws Exception {
 		_group = GroupTestUtil.addGroup();
 
+		Layout layout = LayoutTestUtil.addTypePortletLayout(_group);
+
+		String portletId =
+			"com_liferay_portal_search_web_category_facet_portlet_" +
+				"CategoryFacetPortlet";
+
 		_assetVocabulary1 = _assetVocabularyLocalService.addVocabulary(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			RandomTestUtil.randomString(),
@@ -67,11 +73,6 @@ public class CategoryFacetPortletUpgradeProcessTest {
 			_assetVocabulary1.getVocabularyId() + "," +
 				_assetVocabulary2.getVocabularyId(),
 			"</value></preference></portlet-preferences>");
-
-		Layout layout = LayoutTestUtil.addTypePortletLayout(_group);
-		String portletId =
-			"com_liferay_portal_search_web_category_facet_portlet_" +
-				"CategoryFacetPortlet";
 
 		_portletPreferences =
 			_portletPreferencesLocalService.addPortletPreferences(
