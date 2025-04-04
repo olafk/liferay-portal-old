@@ -55,7 +55,6 @@ public class CommerceChannelRelTableReferenceDefinitionTest
 			CommerceChannelConstants.CHANNEL_TYPE_SITE, null,
 			RandomTestUtil.randomString(),
 			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
-
 		_inactiveCommerceInventoryWarehouse =
 			CommerceInventoryTestUtil.addCommerceInventoryWarehouse(
 				false,
