@@ -187,11 +187,7 @@ public class LayoutStructureRulesHelperImpl
 			}
 		}
 
-		if (Objects.equals(layoutStructureRule.getConditionType(), "any")) {
-			return false;
-		}
-
-		return true;
+		return !Objects.equals(layoutStructureRule.getConditionType(), "any");
 	}
 
 	private boolean _evaluateUserTypeCondition(

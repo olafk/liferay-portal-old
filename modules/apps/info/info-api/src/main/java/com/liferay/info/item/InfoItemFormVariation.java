@@ -46,11 +46,7 @@ public class InfoItemFormVariation {
 		InfoItemFormVariation infoItemFormVariation =
 			(InfoItemFormVariation)object;
 
-		if (Objects.equals(_key, infoItemFormVariation._key)) {
-			return true;
-		}
-
-		return false;
+		return Objects.equals(_key, infoItemFormVariation._key);
 	}
 
 	public String getExternalReferenceCode() {
