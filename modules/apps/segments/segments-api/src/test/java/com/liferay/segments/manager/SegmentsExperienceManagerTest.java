@@ -38,6 +38,12 @@ public class SegmentsExperienceManagerTest {
 
 	@Test
 	public void testGetSegmentsExperienceId() {
+		Mockito.verify(
+			_segmentsExperienceLocalService
+		).fetchDefaultSegmentsExperienceId(
+			Mockito.anyLong()
+		);
+
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
 
@@ -45,12 +51,6 @@ public class SegmentsExperienceManagerTest {
 
 		_segmentsExperienceManager.getSegmentsExperienceId(
 			mockHttpServletRequest);
-
-		Mockito.verify(
-			_segmentsExperienceLocalService
-		).fetchDefaultSegmentsExperienceId(
-			Mockito.anyLong()
-		);
 	}
 
 	@Mock
