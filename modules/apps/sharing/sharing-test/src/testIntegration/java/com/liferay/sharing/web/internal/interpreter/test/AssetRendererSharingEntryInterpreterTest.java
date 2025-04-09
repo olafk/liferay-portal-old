@@ -74,15 +74,14 @@ public class AssetRendererSharingEntryInterpreterTest {
 	@Test
 	public void testGetTitle() throws Exception {
 		ObjectDefinition objectDefinition = _getObjectDefinition();
-
 		User user = UserTestUtil.addUser();
 
 		try {
+			String title = RandomTestUtil.randomString();
+
 			ServiceContext serviceContext =
 				ServiceContextTestUtil.getServiceContext(
 					_group.getGroupId(), TestPropsValues.getUserId());
-
-			String title = RandomTestUtil.randomString();
 
 			ObjectEntry objectEntry = _objectEntryLocalService.addObjectEntry(
 				TestPropsValues.getUserId(), _group.getGroupId(),
