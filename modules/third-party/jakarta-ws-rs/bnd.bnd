@@ -1,5 +1,5 @@
 Bundle-SymbolicName: jakarta.ws.rs
-Bundle-Version: 3.1.0.LIFERAY-PATCHED-1
+Bundle-Version: 3.1.0.LIFERAY-PATCHED-2
 Export-Package: jakarta.ws.rs.*
 Require-Capability: \
 	osgi.serviceloader;\
