@@ -19,7 +19,7 @@ import {useAppPropertiesContext} from '~/contexts/AppPropertiesContext';
 import {useCustomerPortal} from '~/features/project/context';
 import useGetBusinessEventTypesList from '~/features/project/pages/Project/BusinessEvents/hooks/useGetBusinessEventTypesList';
 import useGetGMTTimeZonesList from '~/features/project/pages/Project/BusinessEvents/hooks/useGetGMTTimeZonesList';
-import useGetVersionOfLiferaySoftwareList from '~/features/project/pages/Project/BusinessEvents/hooks/useGetVersionOfLiferaySoftwareList';
+import useGetLiferayVersions from '~/features/project/pages/Project/BusinessEvents/hooks/useGetLiferayVersions';
 import {Liferay} from '~/services/liferay';
 import {updateBusinessEvent} from '~/services/liferay/graphql/queries';
 import i18n from '~/utils/I18n';
@@ -61,7 +61,8 @@ const BusinessEventsItemEditPage: React.FC<IProps> = ({
 	const [baseButtonDisabled, setBaseButtonDisabled] = useState<boolean>(true);
 	const [reason, setReason] = useState('');
 
-	const {businessEventTypesList} = useGetBusinessEventTypesList();
+	const {businessEventTypesList, loading: loadingBusinessEventTypesList} =
+		useGetBusinessEventTypesList();
 
 	const emptyOption = useMemo(
 		() => ({
@@ -72,11 +73,8 @@ const BusinessEventsItemEditPage: React.FC<IProps> = ({
 		[]
 	);
 
-	const {gmtTimeZonesList} = useGetGMTTimeZonesList();
-
-	const [gmtTimeZonesOptions, setGMTTimeZonesOptions] = useState<IOption[]>(
-		[]
-	);
+	const {gmtTimeZonesList, loading: loadingGMTTimeZonesList} =
+		useGetGMTTimeZonesList();
 
 	const {hasAllEventsPermissions} = useHasAllEventsPermissions();
 
@@ -99,7 +97,9 @@ const BusinessEventsItemEditPage: React.FC<IProps> = ({
 
 	const {isSaasOnly} = useIsSaasOnly(subscriptionGroups);
 
-	const {loading, tickets} = useAccountTickets(project?.accountKey || '');
+	const {loading: loadingTickets, tickets} = useAccountTickets(
+		project?.accountKey || ''
+	);
 
 	const navigate = useNavigate();
 
@@ -114,17 +114,14 @@ const BusinessEventsItemEditPage: React.FC<IProps> = ({
 		false
 	);
 
-	const {versionOfLiferaySoftwareList} = useGetVersionOfLiferaySoftwareList();
+	const {
+		dxpMinorVersionsAndPortalMajorVersions,
+		loading: loadingLiferayVersions,
+	} = useGetLiferayVersions();
 
-	const [
-		currentVersionOfLiferaySoftwareOptions,
-		setCurrentVersionOfLiferaySoftwareOptions,
-	] = useState<IOption[]>([]);
-
-	const [
-		newVersionOfLiferaySoftwareOptions,
-		setNewVersionOfLiferaySoftwareOptions,
-	] = useState<IOption[]>([]);
+	const [newLiferayVersionOptions, setNewLiferayVersionOptions] = useState<
+		IOption[]
+	>([]);
 
 	const [ticketOptions, setTicketOptions] = useState<ITicket[]>([]);
 
@@ -215,6 +212,12 @@ const BusinessEventsItemEditPage: React.FC<IProps> = ({
 		}
 	};
 
+	const loading =
+		loadingBusinessEventTypesList ||
+		loadingGMTTimeZonesList ||
+		loadingLiferayVersions ||
+		loadingTickets;
+
 	useEffect(() => {
 		if (hasImpactingEvents === 'yes') {
 			const selectedTickets = ticketOptions
@@ -230,57 +233,6 @@ const BusinessEventsItemEditPage: React.FC<IProps> = ({
 			setFieldValue('businessEvent.associatedTickets', '[]');
 		}
 	}, [hasImpactingEvents, setFieldValue, ticketOptions]);
-
-	useEffect(() => {
-		if (currentVersionOfLiferaySoftwareOptions.length) {
-			setFieldValue(
-				'businessEvent.currentLiferayVersion.name',
-				currentVersionOfLiferaySoftwareOptions.filter(
-					(version) =>
-						version.value ===
-						businessEvent.currentLiferayVersion?.key
-				)[0].label
-			);
-		}
-	}, [
-		businessEvent.currentLiferayVersion?.key,
-		currentVersionOfLiferaySoftwareOptions,
-		setFieldValue,
-	]);
-
-	useEffect(() => {
-		if (businessEventTypesList.length) {
-			setFieldValue(
-				'businessEvent.eventType.name',
-				businessEventTypesList.filter(
-					(type) => type.value === businessEvent.eventType?.key
-				)[0].label
-			);
-		}
-	}, [businessEvent.eventType?.key, businessEventTypesList, setFieldValue]);
-
-	useEffect(() => {
-		if (newVersionOfLiferaySoftwareOptions.length) {
-			const filteredOption = newVersionOfLiferaySoftwareOptions.filter(
-				(version) =>
-					version.value === businessEvent.newLiferayVersion?.key
-			)[0];
-
-			if (filteredOption) {
-				setFieldValue(
-					'businessEvent.newLiferayVersion.name',
-					filteredOption.label
-				);
-			}
-			else {
-				setFieldValue('businessEvent.newLiferayVersion.key', '');
-			}
-		}
-	}, [
-		businessEvent.newLiferayVersion?.key,
-		newVersionOfLiferaySoftwareOptions,
-		setFieldValue,
-	]);
 
 	useEffect(() => {
 		setFieldValue(
@@ -331,33 +283,13 @@ const BusinessEventsItemEditPage: React.FC<IProps> = ({
 		originalBusinessEvent.newLiferayVersion,
 		setFieldValue,
 	]);
-
 	useEffect(() => {
-		if (gmtTimeZonesList?.length) {
-			setGMTTimeZonesOptions([
-				{...emptyOption, disabled: false},
-				...gmtTimeZonesList,
-			]);
-		}
-	}, [emptyOption, gmtTimeZonesList]);
-
-	useEffect(() => {
-		if (versionOfLiferaySoftwareList?.length) {
-			setCurrentVersionOfLiferaySoftwareOptions([
-				emptyOption,
-				...versionOfLiferaySoftwareList,
-			]);
-		}
-	}, [emptyOption, versionOfLiferaySoftwareList]);
-
-	useEffect(() => {
-		if (currentVersionOfLiferaySoftwareOptions?.length) {
-			setNewVersionOfLiferaySoftwareOptions([
-				emptyOption,
-				...currentVersionOfLiferaySoftwareOptions.filter(
+		if (dxpMinorVersionsAndPortalMajorVersions?.length) {
+			setNewLiferayVersionOptions([
+				...dxpMinorVersionsAndPortalMajorVersions.filter(
 					(version, index, versions) => {
 						return (
-							index >=
+							index <
 							versions.findIndex((version) => {
 								return (
 									version.value ===
@@ -371,7 +303,7 @@ const BusinessEventsItemEditPage: React.FC<IProps> = ({
 		}
 	}, [
 		businessEvent.currentLiferayVersion?.key,
-		currentVersionOfLiferaySoftwareOptions,
+		dxpMinorVersionsAndPortalMajorVersions,
 		emptyOption,
 	]);
 
@@ -584,9 +516,10 @@ const BusinessEventsItemEditPage: React.FC<IProps> = ({
 													'your-current-liferay-version'
 												)}
 												name="businessEvent.currentLiferayVersion.key"
-												options={
-													currentVersionOfLiferaySoftwareOptions
-												}
+												options={[
+													emptyOption,
+													...dxpMinorVersionsAndPortalMajorVersions,
+												]}
 												required
 											/>
 										</div>
@@ -602,9 +535,10 @@ const BusinessEventsItemEditPage: React.FC<IProps> = ({
 													'new-version'
 												)}
 												name="businessEvent.newLiferayVersion.key"
-												options={
-													newVersionOfLiferaySoftwareOptions
-												}
+												options={[
+													emptyOption,
+													...newLiferayVersionOptions,
+												]}
 												required
 											/>
 										</div>
@@ -664,9 +598,7 @@ const BusinessEventsItemEditPage: React.FC<IProps> = ({
 														'time-zone'
 													)}
 													name="businessEvent.timeZone.key"
-													options={
-														gmtTimeZonesOptions
-													}
+													options={gmtTimeZonesList}
 												/>
 											</ClayInput.GroupItem>
 
