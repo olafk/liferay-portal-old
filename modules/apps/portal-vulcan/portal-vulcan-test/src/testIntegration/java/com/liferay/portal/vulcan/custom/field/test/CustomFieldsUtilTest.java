@@ -80,9 +80,6 @@ public class CustomFieldsUtilTest {
 		_expandoTable = ExpandoTestUtil.addTable(
 			_classNameLocalService.getClassNameId(_clazz), "CUSTOM_FIELDS");
 
-		_user = UserTestUtil.addCompanyAdminUser(
-			_companyLocalService.fetchCompany(TestPropsValues.getCompanyId()));
-
 		_expandoColumn1 = _addExpandoColumn(
 			null, null, _expandoTable, ExpandoColumnConstants.BOOLEAN);
 		_expandoColumn2 = _addExpandoColumn(
@@ -186,6 +183,9 @@ public class CustomFieldsUtilTest {
 			ExpandoColumnConstants.STRING_ARRAY_LOCALIZED);
 		_expandoColumn27 = _addExpandoColumn(
 			null, null, _expandoTable, ExpandoColumnConstants.STRING_LOCALIZED);
+
+		_user = UserTestUtil.addCompanyAdminUser(
+			_companyLocalService.fetchCompany(TestPropsValues.getCompanyId()));
 	}
 
 	@Test
