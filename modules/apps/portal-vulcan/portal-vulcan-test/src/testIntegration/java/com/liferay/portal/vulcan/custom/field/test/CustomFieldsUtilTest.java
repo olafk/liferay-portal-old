@@ -1202,9 +1202,6 @@ public class CustomFieldsUtilTest {
 				TestPropsValues.getCompanyId(), LocaleUtil.getDefault()),
 			LocaleUtil.getDefault());
 
-		Assert.assertEquals(
-			map.toString(), _initialExpandoColumnsCount + 27, map.size());
-
 		Assert.assertTrue((boolean)map.get(_expandoColumn1.getName()));
 		Assert.assertArrayEquals(
 			new boolean[] {true},
@@ -1282,6 +1279,8 @@ public class CustomFieldsUtilTest {
 				_ptLocale, randomString
 			).build(),
 			(Map)map.get(_expandoColumn27.getName()));
+		Assert.assertEquals(
+			map.toString(), _initialExpandoColumnsCount + 27, map.size());
 	}
 
 	@Test
@@ -1292,9 +1291,6 @@ public class CustomFieldsUtilTest {
 				true, _clazz.getName(), RandomTestUtil.randomLong(),
 				TestPropsValues.getCompanyId(), LocaleUtil.getDefault()),
 			LocaleUtil.getDefault());
-
-		Assert.assertEquals(
-			map.toString(), _initialExpandoColumnsCount + 27, map.size());
 
 		Assert.assertFalse((boolean)map.get(_expandoColumn1.getName()));
 		Assert.assertArrayEquals(
@@ -1347,6 +1343,8 @@ public class CustomFieldsUtilTest {
 			new HashMap<>(), map.get(_expandoColumn26.getName()));
 		Assert.assertEquals(
 			new HashMap<>(), map.get(_expandoColumn27.getName()));
+		Assert.assertEquals(
+			map.toString(), _initialExpandoColumnsCount + 27, map.size());
 	}
 
 	private ExpandoColumn _addExpandoColumn(
