@@ -663,15 +663,15 @@ public class RESTBuilder {
 	}
 
 	private void _createClientFile(
-			Map<String, Object> context, String escapedVersion, String name,
-			String path, String schemaName)
+			Map<String, Object> context, String escapedVersion,
+			String javaDirName, String javaFileName, String templateName)
 		throws Exception {
 
 		File file = new File(
 			StringBundler.concat(
 				_configYAML.getClientDir(), "/",
 				StringUtil.replace(_configYAML.getApiPackagePath(), '.', '/'),
-				"/client/", path, "/", escapedVersion, "/", schemaName,
+				"/client/", javaDirName, "/", escapedVersion, "/", javaFileName,
 				".java"));
 
 		_files.add(file);
@@ -679,7 +679,7 @@ public class RESTBuilder {
 		FileUtil.write(
 			file,
 			FreeMarkerUtil.processTemplate(
-				_copyrightFile, FileUtil.getCopyrightYear(file), name,
+				_copyrightFile, FileUtil.getCopyrightYear(file), templateName,
 				context));
 	}
 
