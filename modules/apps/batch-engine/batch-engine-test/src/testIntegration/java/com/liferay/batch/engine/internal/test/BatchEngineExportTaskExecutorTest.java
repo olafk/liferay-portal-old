@@ -690,34 +690,34 @@ public class BatchEngineExportTaskExecutorTest
 
 		rowIterator.next();
 
-		List<Object[]> rowValues1 = new ArrayList<>();
+		List<Object[]> rowValues = new ArrayList<>();
 
 		while (rowIterator.hasNext()) {
 			Row row = rowIterator.next();
 
-			List<Object> rowValues2 = new ArrayList<>();
+			List<Object> values = new ArrayList<>();
 
 			for (Cell cell : row) {
 				if (CellType.BOOLEAN == cell.getCellType()) {
-					rowValues2.add(cell.getBooleanCellValue());
+					values.add(cell.getBooleanCellValue());
 				}
 				else if (CellType.NUMERIC == cell.getCellType()) {
 					if (DateUtil.isCellDateFormatted(cell)) {
-						rowValues2.add(cell.getDateCellValue());
+						values.add(cell.getDateCellValue());
 					}
 					else {
-						rowValues2.add(cell.getNumericCellValue());
+						values.add(cell.getNumericCellValue());
 					}
 				}
 				else {
-					rowValues2.add(cell.getStringCellValue());
+					values.add(cell.getStringCellValue());
 				}
 			}
 
-			rowValues1.add(filterFunction.apply(rowValues2.toArray()));
+			rowValues.add(filterFunction.apply(values.toArray()));
 		}
 
-		_assertExportedValues(blogsEntries, fieldNames, rowValues1);
+		_assertExportedValues(blogsEntries, fieldNames, rowValues);
 	}
 
 	private static final String
