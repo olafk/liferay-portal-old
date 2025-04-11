@@ -96,20 +96,20 @@ public class CustomFieldsUtilTest {
 
 		_expandoColumn6 = _addExpandoColumn(
 			new double[] {
-				_DOUBLE_VALUE, RandomTestUtil.randomDouble(),
+				_DATA_DOUBLE, RandomTestUtil.randomDouble(),
 				RandomTestUtil.randomDouble()
 			},
 			null, _expandoTable, ExpandoColumnConstants.DOUBLE_ARRAY);
 		_expandoColumn7 = _addExpandoColumn(
 			new double[] {
-				_DOUBLE_VALUE, RandomTestUtil.randomDouble(),
+				_DATA_DOUBLE, RandomTestUtil.randomDouble(),
 				RandomTestUtil.randomDouble()
 			},
 			ExpandoColumnConstants.PROPERTY_DISPLAY_TYPE_RADIO, _expandoTable,
 			ExpandoColumnConstants.DOUBLE_ARRAY);
 		_expandoColumn8 = _addExpandoColumn(
 			new double[] {
-				_DOUBLE_VALUE, RandomTestUtil.randomDouble(),
+				_DATA_DOUBLE, RandomTestUtil.randomDouble(),
 				RandomTestUtil.randomDouble()
 			},
 			ExpandoColumnConstants.PROPERTY_DISPLAY_TYPE_SELECTION_LIST,
@@ -130,20 +130,20 @@ public class CustomFieldsUtilTest {
 
 		_expandoColumn15 = _addExpandoColumn(
 			new long[] {
-				_LONG_VALUE, RandomTestUtil.randomLong(),
+				_DATA_LONG, RandomTestUtil.randomLong(),
 				RandomTestUtil.randomLong()
 			},
 			null, _expandoTable, ExpandoColumnConstants.LONG_ARRAY);
 		_expandoColumn16 = _addExpandoColumn(
 			new long[] {
-				_LONG_VALUE, RandomTestUtil.randomLong(),
+				_DATA_LONG, RandomTestUtil.randomLong(),
 				RandomTestUtil.randomLong()
 			},
 			ExpandoColumnConstants.PROPERTY_DISPLAY_TYPE_RADIO, _expandoTable,
 			ExpandoColumnConstants.LONG_ARRAY);
 		_expandoColumn17 = _addExpandoColumn(
 			new long[] {
-				_LONG_VALUE, RandomTestUtil.randomLong(),
+				_DATA_LONG, RandomTestUtil.randomLong(),
 				RandomTestUtil.randomLong()
 			},
 			ExpandoColumnConstants.PROPERTY_DISPLAY_TYPE_SELECTION_LIST,
@@ -162,20 +162,20 @@ public class CustomFieldsUtilTest {
 
 		_expandoColumn23 = _addExpandoColumn(
 			new String[] {
-				_STRING_VALUE, RandomTestUtil.randomString(),
+				_DATA_STRING, RandomTestUtil.randomString(),
 				RandomTestUtil.randomString()
 			},
 			null, _expandoTable, ExpandoColumnConstants.STRING_ARRAY);
 		_expandoColumn24 = _addExpandoColumn(
 			new String[] {
-				_STRING_VALUE, RandomTestUtil.randomString(),
+				_DATA_STRING, RandomTestUtil.randomString(),
 				RandomTestUtil.randomString()
 			},
 			ExpandoColumnConstants.PROPERTY_DISPLAY_TYPE_RADIO, _expandoTable,
 			ExpandoColumnConstants.STRING_ARRAY);
 		_expandoColumn25 = _addExpandoColumn(
 			new String[] {
-				_STRING_VALUE, RandomTestUtil.randomString(),
+				_DATA_STRING, RandomTestUtil.randomString(),
 				RandomTestUtil.randomString()
 			},
 			ExpandoColumnConstants.PROPERTY_DISPLAY_TYPE_SELECTION_LIST,
@@ -206,16 +206,16 @@ public class CustomFieldsUtilTest {
 
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn5, _user.getPrimaryKey(),
-			_DOUBLE_VALUE);
+			_DATA_DOUBLE);
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn6, _user.getPrimaryKey(),
-			new double[] {_DOUBLE_VALUE});
+			new double[] {_DATA_DOUBLE});
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn7, _user.getPrimaryKey(),
-			new double[] {_DOUBLE_VALUE});
+			new double[] {_DATA_DOUBLE});
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn8, _user.getPrimaryKey(),
-			new double[] {_DOUBLE_VALUE});
+			new double[] {_DATA_DOUBLE});
 
 		float randomFloat = RandomTestUtil.randomFloat();
 
@@ -245,17 +245,16 @@ public class CustomFieldsUtilTest {
 			new int[] {randomInt});
 
 		ExpandoTestUtil.addValue(
-			_expandoTable, _expandoColumn14, _user.getPrimaryKey(),
-			_LONG_VALUE);
+			_expandoTable, _expandoColumn14, _user.getPrimaryKey(), _DATA_LONG);
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn15, _user.getPrimaryKey(),
-			new long[] {_LONG_VALUE});
+			new long[] {_DATA_LONG});
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn16, _user.getPrimaryKey(),
-			new long[] {_LONG_VALUE});
+			new long[] {_DATA_LONG});
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn17, _user.getPrimaryKey(),
-			new long[] {_LONG_VALUE});
+			new long[] {_DATA_LONG});
 
 		Number randomNumber = RandomTestUtil.randomInt();
 
@@ -278,23 +277,23 @@ public class CustomFieldsUtilTest {
 
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn22, _user.getPrimaryKey(),
-			_STRING_VALUE);
+			_DATA_STRING);
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn23, _user.getPrimaryKey(),
-			new String[] {_STRING_VALUE});
+			new String[] {_DATA_STRING});
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn24, _user.getPrimaryKey(),
-			new String[] {_STRING_VALUE});
+			new String[] {_DATA_STRING});
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn25, _user.getPrimaryKey(),
-			new String[] {_STRING_VALUE});
+			new String[] {_DATA_STRING});
 
 		String randomString = RandomTestUtil.randomString();
 
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn26, _user.getPrimaryKey(),
 			HashMapBuilder.put(
-				_enLocale, new String[] {_STRING_VALUE}
+				_enLocale, new String[] {_DATA_STRING}
 			).put(
 				_frLocale, new String[] {randomString}
 			).put(
@@ -303,7 +302,7 @@ public class CustomFieldsUtilTest {
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn27, _user.getPrimaryKey(),
 			HashMapBuilder.put(
-				_enLocale, _STRING_VALUE
+				_enLocale, _DATA_STRING
 			).put(
 				_frLocale, randomString
 			).put(
@@ -371,7 +370,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = _DOUBLE_VALUE;
+							data = _DATA_DOUBLE;
 						}
 					};
 					dataType = "Decimal";
@@ -384,7 +383,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = new double[] {_DOUBLE_VALUE};
+							data = new double[] {_DATA_DOUBLE};
 						}
 					};
 					dataType = "Decimal";
@@ -397,7 +396,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = new double[] {_DOUBLE_VALUE};
+							data = new double[] {_DATA_DOUBLE};
 						}
 					};
 					dataType = "Decimal";
@@ -410,7 +409,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = new double[] {_DOUBLE_VALUE};
+							data = new double[] {_DATA_DOUBLE};
 						}
 					};
 					dataType = "Decimal";
@@ -493,7 +492,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = _LONG_VALUE;
+							data = _DATA_LONG;
 						}
 					};
 					dataType = "Integer";
@@ -506,7 +505,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = new long[] {_LONG_VALUE};
+							data = new long[] {_DATA_LONG};
 						}
 					};
 					dataType = "Integer";
@@ -519,7 +518,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = new long[] {_LONG_VALUE};
+							data = new long[] {_DATA_LONG};
 						}
 					};
 					dataType = "Integer";
@@ -532,7 +531,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = new long[] {_LONG_VALUE};
+							data = new long[] {_DATA_LONG};
 						}
 					};
 					dataType = "Integer";
@@ -599,7 +598,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = _STRING_VALUE;
+							data = _DATA_STRING;
 						}
 					};
 					dataType = "Text";
@@ -612,7 +611,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = new String[] {_STRING_VALUE};
+							data = new String[] {_DATA_STRING};
 						}
 					};
 					dataType = "Text";
@@ -625,7 +624,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = new String[] {_STRING_VALUE};
+							data = new String[] {_DATA_STRING};
 						}
 					};
 					dataType = "Text";
@@ -638,7 +637,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = new String[] {_STRING_VALUE};
+							data = new String[] {_DATA_STRING};
 						}
 					};
 					dataType = "Text";
@@ -652,7 +651,7 @@ public class CustomFieldsUtilTest {
 					customValue = new CustomValue() {
 						{
 							data = HashMapBuilder.put(
-								_enLocale, new String[] {_STRING_VALUE}
+								_enLocale, new String[] {_DATA_STRING}
 							).put(
 								_frLocale, new String[] {randomString}
 							).put(
@@ -670,9 +669,9 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = _STRING_VALUE;
+							data = _DATA_STRING;
 							data_i18n = HashMapBuilder.put(
-								"en-US", _STRING_VALUE
+								"en-US", _DATA_STRING
 							).put(
 								"fr-FR", randomString
 							).put(
@@ -789,7 +788,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = new double[] {_DOUBLE_VALUE};
+							data = new double[] {_DATA_DOUBLE};
 						}
 					};
 					dataType = "Decimal";
@@ -911,7 +910,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = new long[] {_LONG_VALUE};
+							data = new long[] {_DATA_LONG};
 						}
 					};
 					dataType = "Integer";
@@ -1015,7 +1014,7 @@ public class CustomFieldsUtilTest {
 				{
 					customValue = new CustomValue() {
 						{
-							data = new String[] {_STRING_VALUE};
+							data = new String[] {_DATA_STRING};
 						}
 					};
 					dataType = "Text";
@@ -1092,16 +1091,16 @@ public class CustomFieldsUtilTest {
 
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn5, _user.getPrimaryKey(),
-			_DOUBLE_VALUE);
+			_DATA_DOUBLE);
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn6, _user.getPrimaryKey(),
-			new double[] {_DOUBLE_VALUE});
+			new double[] {_DATA_DOUBLE});
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn7, _user.getPrimaryKey(),
-			new double[] {_DOUBLE_VALUE});
+			new double[] {_DATA_DOUBLE});
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn8, _user.getPrimaryKey(),
-			new double[] {_DOUBLE_VALUE});
+			new double[] {_DATA_DOUBLE});
 
 		float randomFloat = RandomTestUtil.randomFloat();
 
@@ -1133,17 +1132,16 @@ public class CustomFieldsUtilTest {
 			new int[] {randomInt});
 
 		ExpandoTestUtil.addValue(
-			_expandoTable, _expandoColumn14, _user.getPrimaryKey(),
-			_LONG_VALUE);
+			_expandoTable, _expandoColumn14, _user.getPrimaryKey(), _DATA_LONG);
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn15, _user.getPrimaryKey(),
-			new long[] {_LONG_VALUE});
+			new long[] {_DATA_LONG});
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn16, _user.getPrimaryKey(),
-			new long[] {_LONG_VALUE});
+			new long[] {_DATA_LONG});
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn17, _user.getPrimaryKey(),
-			new long[] {_LONG_VALUE});
+			new long[] {_DATA_LONG});
 
 		Number randomNumber = RandomTestUtil.randomInt();
 
@@ -1166,23 +1164,23 @@ public class CustomFieldsUtilTest {
 
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn22, _user.getPrimaryKey(),
-			_STRING_VALUE);
+			_DATA_STRING);
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn23, _user.getPrimaryKey(),
-			new String[] {_STRING_VALUE});
+			new String[] {_DATA_STRING});
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn24, _user.getPrimaryKey(),
-			new String[] {_STRING_VALUE});
+			new String[] {_DATA_STRING});
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn25, _user.getPrimaryKey(),
-			new String[] {_STRING_VALUE});
+			new String[] {_DATA_STRING});
 
 		String randomString = RandomTestUtil.randomString();
 
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn26, _user.getPrimaryKey(),
 			HashMapBuilder.put(
-				_enLocale, new String[] {_STRING_VALUE}
+				_enLocale, new String[] {_DATA_STRING}
 			).put(
 				_frLocale, new String[] {randomString}
 			).put(
@@ -1191,7 +1189,7 @@ public class CustomFieldsUtilTest {
 		ExpandoTestUtil.addValue(
 			_expandoTable, _expandoColumn27, _user.getPrimaryKey(),
 			HashMapBuilder.put(
-				_enLocale, _STRING_VALUE
+				_enLocale, _DATA_STRING
 			).put(
 				_frLocale, randomString
 			).put(
@@ -1218,15 +1216,15 @@ public class CustomFieldsUtilTest {
 		Assert.assertArrayEquals(
 			new Date[] {randomDate},
 			(Date[])map.get(_expandoColumn4.getName()));
-		Assert.assertEquals(_DOUBLE_VALUE, map.get(_expandoColumn5.getName()));
+		Assert.assertEquals(_DATA_DOUBLE, map.get(_expandoColumn5.getName()));
 		Assert.assertArrayEquals(
-			new double[] {_DOUBLE_VALUE},
+			new double[] {_DATA_DOUBLE},
 			(double[])map.get(_expandoColumn6.getName()), 0);
 		Assert.assertArrayEquals(
-			new double[] {_DOUBLE_VALUE},
+			new double[] {_DATA_DOUBLE},
 			(double[])map.get(_expandoColumn7.getName()), 0);
 		Assert.assertArrayEquals(
-			new double[] {_DOUBLE_VALUE},
+			new double[] {_DATA_DOUBLE},
 			(double[])map.get(_expandoColumn8.getName()), 0);
 		Assert.assertEquals(randomFloat, map.get(_expandoColumn9.getName()));
 		Assert.assertArrayEquals(
@@ -1237,15 +1235,15 @@ public class CustomFieldsUtilTest {
 		Assert.assertEquals(randomInt, map.get(_expandoColumn12.getName()));
 		Assert.assertArrayEquals(
 			new int[] {randomInt}, (int[])map.get(_expandoColumn13.getName()));
-		Assert.assertEquals(_LONG_VALUE, map.get(_expandoColumn14.getName()));
+		Assert.assertEquals(_DATA_LONG, map.get(_expandoColumn14.getName()));
 		Assert.assertArrayEquals(
-			new long[] {_LONG_VALUE},
+			new long[] {_DATA_LONG},
 			(long[])map.get(_expandoColumn15.getName()));
 		Assert.assertArrayEquals(
-			new long[] {_LONG_VALUE},
+			new long[] {_DATA_LONG},
 			(long[])map.get(_expandoColumn16.getName()));
 		Assert.assertArrayEquals(
-			new long[] {_LONG_VALUE},
+			new long[] {_DATA_LONG},
 			(long[])map.get(_expandoColumn17.getName()));
 		Assert.assertEquals(
 			new BigDecimal(randomNumber.intValue()),
@@ -1257,19 +1255,19 @@ public class CustomFieldsUtilTest {
 		Assert.assertArrayEquals(
 			new short[] {randomShort},
 			(short[])map.get(_expandoColumn21.getName()));
-		Assert.assertEquals(_STRING_VALUE, map.get(_expandoColumn22.getName()));
+		Assert.assertEquals(_DATA_STRING, map.get(_expandoColumn22.getName()));
 		Assert.assertArrayEquals(
-			new String[] {_STRING_VALUE},
+			new String[] {_DATA_STRING},
 			(String[])map.get(_expandoColumn23.getName()));
 		Assert.assertArrayEquals(
-			new String[] {_STRING_VALUE},
+			new String[] {_DATA_STRING},
 			(String[])map.get(_expandoColumn24.getName()));
 		Assert.assertArrayEquals(
-			new String[] {_STRING_VALUE},
+			new String[] {_DATA_STRING},
 			(String[])map.get(_expandoColumn25.getName()));
 		AssertUtils.assertEquals(
 			HashMapBuilder.put(
-				_enLocale, new String[] {_STRING_VALUE}
+				_enLocale, new String[] {_DATA_STRING}
 			).put(
 				_frLocale, new String[] {randomString}
 			).put(
@@ -1278,7 +1276,7 @@ public class CustomFieldsUtilTest {
 			(Map)map.get(_expandoColumn26.getName()));
 		AssertUtils.assertEquals(
 			HashMapBuilder.put(
-				_enLocale, _STRING_VALUE
+				_enLocale, _DATA_STRING
 			).put(
 				_frLocale, randomString
 			).put(
@@ -1313,7 +1311,7 @@ public class CustomFieldsUtilTest {
 			new double[] {0.0}, (double[])map.get(_expandoColumn7.getName()),
 			0);
 		Assert.assertArrayEquals(
-			new double[] {_DOUBLE_VALUE},
+			new double[] {_DATA_DOUBLE},
 			(double[])map.get(_expandoColumn8.getName()), 0);
 		Assert.assertEquals((float)0.0, map.get(_expandoColumn9.getName()));
 		Assert.assertArrayEquals(
@@ -1328,7 +1326,7 @@ public class CustomFieldsUtilTest {
 		Assert.assertArrayEquals(
 			new long[] {0L}, (long[])map.get(_expandoColumn16.getName()));
 		Assert.assertArrayEquals(
-			new long[] {_LONG_VALUE},
+			new long[] {_DATA_LONG},
 			(long[])map.get(_expandoColumn17.getName()));
 		Assert.assertEquals(0, map.get(_expandoColumn18.getName()));
 		Assert.assertArrayEquals(
@@ -1344,7 +1342,7 @@ public class CustomFieldsUtilTest {
 			new String[] {"false"},
 			(String[])map.get(_expandoColumn24.getName()));
 		Assert.assertArrayEquals(
-			new String[] {_STRING_VALUE},
+			new String[] {_DATA_STRING},
 			(String[])map.get(_expandoColumn25.getName()));
 		Assert.assertEquals(
 			new HashMap<>(), map.get(_expandoColumn26.getName()));
@@ -1434,11 +1432,11 @@ public class CustomFieldsUtilTest {
 		throw new NoSuchValueException();
 	}
 
-	private static final double _DOUBLE_VALUE = RandomTestUtil.randomDouble();
+	private static final double _DATA_DOUBLE = RandomTestUtil.randomDouble();
 
-	private static final long _LONG_VALUE = RandomTestUtil.randomLong();
+	private static final long _DATA_LONG = RandomTestUtil.randomLong();
 
-	private static final String _STRING_VALUE = RandomTestUtil.randomString();
+	private static final String _DATA_STRING = RandomTestUtil.randomString();
 
 	private static final DateFormat _dateFormat = new SimpleDateFormat(
 		"yyyy-MM-dd'T'HH:mm:ss'Z'");
