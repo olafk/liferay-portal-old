@@ -72,12 +72,6 @@ public class CustomFieldsUtilTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_clazz = User.class;
-
-		_enLocale = LocaleUtil.fromLanguageId("en_US");
-		_frLocale = LocaleUtil.fromLanguageId("fr_FR");
-		_ptLocale = LocaleUtil.fromLanguageId("pt_BR");
-
 		_initialExpandoColumnsCount =
 			_expandoColumnLocalService.getColumnsCount(
 				TestPropsValues.getCompanyId(),
@@ -1211,7 +1205,8 @@ public class CustomFieldsUtilTest {
 				TestPropsValues.getCompanyId(), LocaleUtil.getDefault()),
 			LocaleUtil.getDefault());
 
-		Assert.assertEquals(map.toString(), _initialExpandoColumnsCount + 27, map.size());
+		Assert.assertEquals(
+			map.toString(), _initialExpandoColumnsCount + 27, map.size());
 
 		Assert.assertTrue((boolean)map.get(_expandoColumn1.getName()));
 		Assert.assertArrayEquals(
@@ -1301,7 +1296,8 @@ public class CustomFieldsUtilTest {
 				TestPropsValues.getCompanyId(), LocaleUtil.getDefault()),
 			LocaleUtil.getDefault());
 
-		Assert.assertEquals(map.toString(), _initialExpandoColumnsCount + 27, map.size());
+		Assert.assertEquals(
+			map.toString(), _initialExpandoColumnsCount + 27, map.size());
 
 		Assert.assertFalse((boolean)map.get(_expandoColumn1.getName()));
 		Assert.assertArrayEquals(
@@ -1450,12 +1446,12 @@ public class CustomFieldsUtilTest {
 	@Inject
 	private ClassNameLocalService _classNameLocalService;
 
-	private Class<?> _clazz;
+	private final Class<?> _clazz = User.class;
 
 	@Inject
 	private CompanyLocalService _companyLocalService;
 
-	private Locale _enLocale;
+	private final Locale _enLocale = LocaleUtil.fromLanguageId("en_US");
 	private ExpandoColumn _expandoColumn1;
 	private ExpandoColumn _expandoColumn2;
 	private ExpandoColumn _expandoColumn3;
@@ -1490,9 +1486,9 @@ public class CustomFieldsUtilTest {
 	@DeleteAfterTestRun
 	private ExpandoTable _expandoTable;
 
-	private Locale _frLocale;
+	private final Locale _frLocale = LocaleUtil.fromLanguageId("fr_FR");
 	private int _initialExpandoColumnsCount;
-	private Locale _ptLocale;
+	private final Locale _ptLocale = LocaleUtil.fromLanguageId("pt_BR");
 
 	@DeleteAfterTestRun
 	private User _user;
