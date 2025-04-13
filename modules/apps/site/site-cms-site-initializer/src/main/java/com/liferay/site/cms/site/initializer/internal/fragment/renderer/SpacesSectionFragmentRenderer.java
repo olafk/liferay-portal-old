@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -80,15 +79,43 @@ public class SpacesSectionFragmentRenderer extends BaseSectionFragmentRenderer {
 				(ThemeDisplay)httpServletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
 
-			ObjectValuePair<JSONArray, Long> assetLibrariesObjectValuePair =
-				_getAssetLibrariesObjectValuePair(themeDisplay);
+			JSONArray assetLibrariesJSONArray = _jsonFactory.createJSONArray();
+			long assetLibrariesCount = 0;
+
+			try {
+				AssetLibraryResource.Builder builder =
+					_assetLibraryResourceFactory.create();
+
+				AssetLibraryResource assetLibraryResource = builder.user(
+					themeDisplay.getUser()
+				).build();
+
+				Page<AssetLibrary> page =
+					assetLibraryResource.getAssetLibrariesPage(
+						null, null, null, Pagination.of(1, 5), null);
+
+				assetLibrariesJSONArray = JSONUtil.toJSONArray(
+					page.getItems(),
+					assetLibrary -> JSONUtil.put(
+						"id", assetLibrary.getId()
+					).put(
+						"name", assetLibrary.getName()
+					).put(
+						"url",
+						themeDisplay.getPathFriendlyURLPublic() +
+							"/cms/asset-library/" + assetLibrary.getId()
+					));
+				assetLibrariesCount = page.getTotalCount();
+			}
+			catch (Exception exception) {
+				_log.error(exception);
+			}
 
 			componentTag.setProps(
 				HashMapBuilder.<String, Object>put(
-					"assetLibraries", assetLibrariesObjectValuePair.getKey()
+					"assetLibraries", assetLibrariesJSONArray
 				).put(
-					"assetLibrariesCount",
-					assetLibrariesObjectValuePair.getValue()
+					"assetLibrariesCount", assetLibrariesCount
 				).put(
 					"showAddButton",
 					_portletResourcePermission.contains(
@@ -107,42 +134,6 @@ public class SpacesSectionFragmentRenderer extends BaseSectionFragmentRenderer {
 		}
 		catch (Exception exception) {
 			throw new RuntimeException(exception);
-		}
-	}
-
-	private ObjectValuePair<JSONArray, Long> _getAssetLibrariesObjectValuePair(
-		ThemeDisplay themeDisplay) {
-
-		try {
-			AssetLibraryResource.Builder builder =
-				_assetLibraryResourceFactory.create();
-
-			AssetLibraryResource assetLibraryResource = builder.user(
-				themeDisplay.getUser()
-			).build();
-
-			Page<AssetLibrary> assetLibrariesPage =
-				assetLibraryResource.getAssetLibrariesPage(
-					null, null, null, Pagination.of(1, 5), null);
-
-			return new ObjectValuePair<>(
-				JSONUtil.toJSONArray(
-					assetLibrariesPage.getItems(),
-					assetLibrary -> JSONUtil.put(
-						"id", assetLibrary.getId()
-					).put(
-						"name", assetLibrary.getName()
-					).put(
-						"url",
-						themeDisplay.getPathFriendlyURLPublic() +
-							"/cms/asset-library/" + assetLibrary.getId()
-					)),
-				assetLibrariesPage.getTotalCount());
-		}
-		catch (Exception exception) {
-			_log.error(exception);
-
-			return new ObjectValuePair<>(_jsonFactory.createJSONArray(), 0L);
 		}
 	}
 
