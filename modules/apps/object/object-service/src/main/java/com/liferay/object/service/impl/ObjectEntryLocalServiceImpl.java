@@ -487,7 +487,7 @@ public class ObjectEntryLocalServiceImpl
 			_getExtensionDynamicObjectDefinitionTable(
 				objectDefinition.getObjectDefinitionId());
 
-		int count = _countByPrimaryKey(
+		int count = _count(
 			dynamicObjectDefinitionTable, primaryKey);
 
 		String defaultLanguageId = _language.getLanguageId(
@@ -1563,7 +1563,7 @@ public class ObjectEntryLocalServiceImpl
 		DynamicObjectDefinitionTable dynamicObjectDefinitionTable =
 			_getExtensionDynamicObjectDefinitionTable(objectDefinitionId);
 
-		int count = _countByPrimaryKey(
+		int count = _count(
 			dynamicObjectDefinitionTable, primaryKey);
 
 		String defaultLanguageId = _language.getLanguageId(
@@ -2441,7 +2441,7 @@ public class ObjectEntryLocalServiceImpl
 		}
 	}
 
-	private int _countByPrimaryKey(
+	private int _count(
 			DynamicObjectDefinitionTable dynamicObjectDefinitionTable,
 			long primaryKey)
 		throws PortalException {
