@@ -73,34 +73,26 @@ public class LiferayGlobalObjectPreAUIDynamicIncludeTest {
 		ReflectionTestUtil.setFieldValue(
 			liferayGlobalObjectPreAUIDynamicInclude, "_authToken",
 			_mockAuthToken());
-
 		ReflectionTestUtil.setFieldValue(
 			liferayGlobalObjectPreAUIDynamicInclude, "_fastDateFormatFactory",
 			_mockFastDateFormatFactory());
-
 		ReflectionTestUtil.setFieldValue(
 			liferayGlobalObjectPreAUIDynamicInclude, "_featureFlagManager",
 			_mockFeatureFlagManager());
-
 		ReflectionTestUtil.setFieldValue(
 			liferayGlobalObjectPreAUIDynamicInclude, "_language",
 			_mockLanguage());
-
 		ReflectionTestUtil.setFieldValue(
 			liferayGlobalObjectPreAUIDynamicInclude, "_layoutSEOLinkManager",
 			_mockLayoutSEOLinkManager());
-
 		ReflectionTestUtil.setFieldValue(
 			liferayGlobalObjectPreAUIDynamicInclude, "_portal", _mockPortal());
-
 		ReflectionTestUtil.setFieldValue(
 			liferayGlobalObjectPreAUIDynamicInclude, "_prefsProps",
 			Mockito.mock(PrefsProps.class));
-
 		ReflectionTestUtil.setFieldValue(
 			liferayGlobalObjectPreAUIDynamicInclude, "_staging",
 			_mockStaging());
-
 		ReflectionTestUtil.setFieldValue(
 			liferayGlobalObjectPreAUIDynamicInclude,
 			"_uploadServletRequestConfigurationProvider",
@@ -119,11 +111,11 @@ public class LiferayGlobalObjectPreAUIDynamicIncludeTest {
 			StringPool.BLANK);
 
 		Assert.assertEquals(
-			_loadTemplate("liferay_test.js.tpl"),
+			_read("liferay_test.js.tpl"),
 			StringUtil.trim(mockHttpServletResponse.getContentAsString()));
 	}
 
-	private String _loadTemplate(String name) throws Exception {
+	private String _read(String name) throws Exception {
 		try (InputStream inputStream =
 				LiferayGlobalObjectPreAUIDynamicIncludeTest.class.
 					getResourceAsStream("dependencies/" + name)) {

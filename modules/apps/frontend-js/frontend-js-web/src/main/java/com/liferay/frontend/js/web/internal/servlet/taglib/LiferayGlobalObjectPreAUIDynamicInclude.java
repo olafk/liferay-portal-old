@@ -141,7 +141,7 @@ public class LiferayGlobalObjectPreAUIDynamicInclude
 			"/html/common/themes/top_js.jspf#resources");
 	}
 
-	private static String _loadTemplate(String name) {
+	private static String _read(String name) {
 		try (InputStream inputStream =
 				LiferayGlobalObjectPreAUIDynamicInclude.class.
 					getResourceAsStream("dependencies/" + name)) {
@@ -738,8 +738,8 @@ public class LiferayGlobalObjectPreAUIDynamicInclude
 		new ConcurrentHashMap<>();
 
 	static {
-		_TPL_LANGUAGE_JS = _loadTemplate("language.js.tpl");
-		_TPL_LIFERAY_JS = _loadTemplate("liferay.js.tpl");
+		_TPL_LANGUAGE_JS = _read("language.js.tpl");
+		_TPL_LIFERAY_JS = _read("liferay.js.tpl");
 	}
 
 	@Reference
