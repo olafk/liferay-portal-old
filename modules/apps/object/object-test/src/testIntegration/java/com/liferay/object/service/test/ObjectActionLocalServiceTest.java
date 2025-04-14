@@ -2151,12 +2151,12 @@ public class ObjectActionLocalServiceTest {
 	public void testExecuteObjectActionWithUnmodifiableSystemObjectDefinition()
 		throws Exception {
 
-		ObjectDefinition accountObjectDefinition =
+		ObjectDefinition accountEntryObjectDefinition =
 			_objectDefinitionLocalService.fetchObjectDefinitionByClassName(
 				TestPropsValues.getCompanyId(), AccountEntry.class.getName());
 
 		ObjectAction objectAction = _addObjectAction(
-			accountObjectDefinition.getObjectDefinitionId(),
+			accountEntryObjectDefinition.getObjectDefinitionId(),
 			ObjectActionExecutorConstants.KEY_WEBHOOK,
 			ObjectActionTriggerConstants.KEY_ON_AFTER_UPDATE,
 			UnicodePropertiesBuilder.put(
