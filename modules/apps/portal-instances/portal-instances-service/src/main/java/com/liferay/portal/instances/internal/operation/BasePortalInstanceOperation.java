@@ -73,26 +73,27 @@ public abstract class BasePortalInstanceOperation {
 			Configuration configuration = configurationAdmin.getConfiguration(
 				pid, StringPool.QUESTION);
 
-			if (configuration != null) {
-				Dictionary<String, Object> properties =
-					configuration.getProperties();
-
-				if ((properties != null) &&
-					Validator.isNotNull(
-						properties.get(
-							FileInstallConstants.
-								FELIX_FILE_INSTALL_FILENAME))) {
-
-					Files.deleteIfExists(
-						Paths.get(
-							PropsValues.MODULE_FRAMEWORK_CONFIGS_DIR,
-							pid.concat(".config")));
-
-					return;
-				}
-
-				configuration.delete();
+			if (configuration == null) {
+				return;
 			}
+
+			Dictionary<String, Object> properties =
+				configuration.getProperties();
+
+			if ((properties != null) &&
+				Validator.isNotNull(
+					properties.get(
+						FileInstallConstants.FELIX_FILE_INSTALL_FILENAME))) {
+
+				Files.deleteIfExists(
+					Paths.get(
+						PropsValues.MODULE_FRAMEWORK_CONFIGS_DIR,
+						pid.concat(".config")));
+
+				return;
+			}
+
+			configuration.delete();
 		}
 		catch (IOException ioException) {
 			_log.error(ioException);
