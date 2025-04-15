@@ -55,11 +55,11 @@ public class CPDefinitionLinkUpgradeProcessTest {
 
 	@Test
 	public void testUpgrade() throws Exception {
-		Map<Locale, String> nameMap = _getLocalizedMapWithNull();
+		Map<Locale, String> nameMap = _getLocalizedMap();
 
 		nameMap.put(LocaleUtil.JAPAN, null);
 
-		Map<Locale, String> descriptionMap = _getLocalizedMapWithNull();
+		Map<Locale, String> descriptionMap = _getLocalizedMap();
 
 		descriptionMap.put(LocaleUtil.JAPAN, null);
 
@@ -118,24 +118,22 @@ public class CPDefinitionLinkUpgradeProcessTest {
 		Assert.assertEquals(
 			assetEntry.getTitle(),
 			LocalizationUtil.getXml(
-				_getI18nMapWithBlank(nameMap.get(LocaleUtil.US)),
+				_getI18nMap(nameMap.get(LocaleUtil.US)),
 				cpDefinition.getDefaultLanguageId(), "Name"));
 		Assert.assertEquals(
 			assetEntry.getDescription(),
 			LocalizationUtil.getXml(
-				_getI18nMapWithBlank(descriptionMap.get(LocaleUtil.US)),
+				_getI18nMap(descriptionMap.get(LocaleUtil.US)),
 				cpDefinition.getDefaultLanguageId(), "Description"));
 	}
 
-	private Map<String, String> _getI18nMapWithBlank(
-		String previousRandomValue) {
-
+	private Map<String, String> _getI18nMap(String value) {
 		return HashMapBuilder.put(
-			LanguageUtil.getLanguageId(LocaleUtil.US), previousRandomValue
+			LanguageUtil.getLanguageId(LocaleUtil.US), value
 		).build();
 	}
 
-	private Map<Locale, String> _getLocalizedMapWithNull() {
+	private Map<Locale, String> _getLocalizedMap() {
 		return HashMapBuilder.put(
 			LocaleUtil.JAPAN, RandomTestUtil.randomString()
 		).put(
