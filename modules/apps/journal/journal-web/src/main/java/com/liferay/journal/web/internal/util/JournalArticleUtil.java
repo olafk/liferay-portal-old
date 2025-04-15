@@ -195,6 +195,15 @@ public class JournalArticleUtil {
 			displayDateHour += 12;
 		}
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		User user = themeDisplay.getUser();
+
+		Date displayDate = portal.getDate(
+			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
+			displayDateMinute, user.getTimeZone(), null);
+
 		int expirationDateMonth = ParamUtil.getInteger(
 			uploadPortletRequest, "expirationDateMonth");
 		int expirationDateDay = ParamUtil.getInteger(
@@ -293,15 +302,6 @@ public class JournalArticleUtil {
 		serviceContext.setAttribute(
 			"updateAutoTags",
 			ParamUtil.getBoolean(portletRequest, "updateAutoTags"));
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		User user = themeDisplay.getUser();
-
-		Date displayDate = portal.getDate(
-			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
-			displayDateMinute, user.getTimeZone(), null);
 
 		JournalArticle article = null;
 
