@@ -345,7 +345,7 @@ public class BuildDatabaseUtil {
 			JenkinsResultsParserUtil.getCanonicalPath(buildDatabaseFile);
 
 		File buildDatabaseSHAFile = new File(
-			parentDir, BuildDatabase.SHA_FILE_NAME_BUILD_DATABASE);
+			parentDir, BuildDatabase.FILE_NAME_BUILD_DATABASE_JSON_SHA);
 
 		String buildDatabaseSHAFilePath =
 			JenkinsResultsParserUtil.getCanonicalPath(buildDatabaseSHAFile);
@@ -422,7 +422,7 @@ public class BuildDatabaseUtil {
 
 				CloudBucketUtil.copyS3File(
 					buildDatabaseSHAFilePath,
-					path + "/" + BuildDatabase.SHA_FILE_NAME_BUILD_DATABASE);
+					path + "/" + BuildDatabase.FILE_NAME_BUILD_DATABASE_JSON_SHA);
 			}
 
 		};
