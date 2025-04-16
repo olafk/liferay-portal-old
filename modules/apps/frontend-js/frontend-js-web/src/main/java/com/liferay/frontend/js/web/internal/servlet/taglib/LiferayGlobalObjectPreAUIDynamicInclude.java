@@ -663,14 +663,8 @@ public class LiferayGlobalObjectPreAUIDynamicInclude
 			"openSimpleInputModal");
 		_renderStub("frontend-js-components-web", "openToast", sb, "openToast");
 
-		sb.append("Window: {\n");
-		sb.append("_map: {},\n");
-		sb.append("getById(id) {\n");
-		sb.append("return this._map[id];\n");
-		sb.append("},\n");
-		sb.append("},\n");
-
-		sb.append("},\n");
+		sb.append("Window: {\n_map: {},\ngetById(id) {\nreturn this._map[id];");
+		sb.append("\n},\n},\n},\n");
 	}
 
 	private void _renderMethod(
