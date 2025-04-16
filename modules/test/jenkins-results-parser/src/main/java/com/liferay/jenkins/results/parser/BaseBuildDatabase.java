@@ -490,7 +490,7 @@ public abstract class BaseBuildDatabase implements BuildDatabase {
 						"Unable to upload ",
 						JenkinsResultsParserUtil.getCanonicalPath(
 							_buildDatabaseFile),
-						" to ", path, " : ", super.getRetryMessage(retryCount));
+						" to ", path, ": ", super.getRetryMessage(retryCount));
 				}
 
 			};
