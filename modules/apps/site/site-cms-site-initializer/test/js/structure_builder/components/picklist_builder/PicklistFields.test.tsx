@@ -65,7 +65,7 @@ describe('PicklistFields', () => {
 
 		expect(
 			screen.queryByText(
-				'picklists-are-shared-resources-so-changes-to-a-picklist-affect-all-structures-that-use-it'
+				'picklists-are-shared-resources,-so-changes-to-a-picklist-affect-all-structures-that-use-it'
 			)
 		).not.toBeInTheDocument();
 	});
@@ -75,7 +75,7 @@ describe('PicklistFields', () => {
 
 		expect(
 			screen.queryByText(
-				'picklists-are-shared-resources-so-changes-to-a-picklist-affect-all-structures-that-use-it'
+				'picklists-are-shared-resources,-so-changes-to-a-picklist-affect-all-structures-that-use-it'
 			)
 		).toBeInTheDocument();
 	});

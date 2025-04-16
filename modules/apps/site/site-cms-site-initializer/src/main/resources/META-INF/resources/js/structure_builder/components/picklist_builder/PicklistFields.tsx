@@ -46,7 +46,7 @@ export default function PicklistFields({
 				>
 					<span className="mr-1">
 						{Liferay.Language.get(
-							'picklists-are-shared-resources-so-changes-to-a-picklist-affect-all-structures-that-use-it'
+							'picklists-are-shared-resources,-so-changes-to-a-picklist-affect-all-structures-that-use-it'
 						)}
 					</span>
 
