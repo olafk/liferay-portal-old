@@ -8,6 +8,7 @@ package com.liferay.client.extension.internal.instance.lifecycle;
 import com.liferay.client.extension.type.configuration.CETConfiguration;
 import com.liferay.client.extension.type.manager.CETManager;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.petra.string.StringUtil;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.instance.lifecycle.BasePortalInstanceLifecycleListener;
@@ -35,18 +36,6 @@ public class ClientExtensionAllCompaniesPortalInstanceLifecycleListener
 
 	@Override
 	public void portalInstanceRegistered(Company company) throws Exception {
-		if (Objects.equals(company.getDefaultWebId(), company.getWebId())) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Skipping because company is the default company");
-			}
-
-			return;
-		}
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("Checking for company " + company.getWebId());
-		}
-
 		List<String> externalReferenceCodes = StringUtil.split(
 			PropsUtil.get(
 				"client.extension.all.companies.external.reference.codes"));
@@ -54,10 +43,29 @@ public class ClientExtensionAllCompaniesPortalInstanceLifecycleListener
 		if (ListUtil.isEmpty(externalReferenceCodes)) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Skipping because no external reference codes were found");
+					"Skipping because no external reference codes were " +
+						"specified");
 			}
 
 			return;
+		}
+
+		if (Objects.equals(company.getDefaultWebId(), company.getWebId())) {
+			if (_log.isDebugEnabled()) {
+				_log.debug("Skipping default company " + company.getWebId());
+			}
+
+			return;
+		}
+
+		if (_log.isDebugEnabled()) {
+			_log.debug(
+				StringBundler.concat(
+					"Add client extensions ",
+					StringUtil.merge(
+						externalReferenceCodes, StringPool.COMMA_AND_SPACE),
+					" for the default company ", company.getDefaultWebId(),
+					" to company ", company.getWebId()));
 		}
 
 		for (String externalReferenceCode : externalReferenceCodes) {
