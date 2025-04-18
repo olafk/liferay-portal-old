@@ -173,10 +173,10 @@ public class GenerateReportsControllerBuildRunner
 
 			String reportName = report.toString();
 
-			for (Map.Entry<String, JSONObject> buildJSONObjectEntry :
+			for (Map.Entry<String, JSONObject> entry :
 					buildJSONObjectsMap.entrySet()) {
 
-				JSONObject buildJSONObject = buildJSONObjectEntry.getValue();
+				JSONObject buildJSONObject = entry.getValue();
 
 				String buildDescription = buildJSONObject.optString(
 					"description", "");
