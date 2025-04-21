@@ -108,7 +108,7 @@ public class DLFileEntryCTTest {
 	}
 
 	@Test
-	public void testDuplicateFileEntry() throws Exception {
+	public void testAddFileEntry() throws Exception {
 		String fileName = RandomTestUtil.randomString();
 		String title = RandomTestUtil.randomString();
 
