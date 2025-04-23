@@ -85,10 +85,10 @@ public class BlogsViewEntriesDisplayContextTest {
 		List<BlogsEntry> blogsEntries = new ArrayList<>();
 
 		for (int i = 0; i < SearchContainer.DEFAULT_DELTA; i++) {
-			blogsEntries.add(_addBlogEntry("alpha_" + i));
+			blogsEntries.add(_addBlogsEntry("alpha_" + i));
 		}
 
-		_addBlogEntry("alpha_" + SearchContainer.DEFAULT_DELTA);
+		_addBlogsEntry("alpha_" + SearchContainer.DEFAULT_DELTA);
 
 		_assertSearchContainer(
 			_getSearchContainer(_getMockHttpServletRequest()), blogsEntries);
@@ -96,7 +96,7 @@ public class BlogsViewEntriesDisplayContextTest {
 
 	@Test
 	public void testGetSearchContainerByComment() throws Exception {
-		BlogsEntry blogsEntry = _addBlogEntry(RandomTestUtil.randomString());
+		BlogsEntry blogsEntry = _addBlogsEntry(RandomTestUtil.randomString());
 
 		String commentBody = RandomTestUtil.randomString();
 
@@ -114,9 +114,9 @@ public class BlogsViewEntriesDisplayContextTest {
 
 	@Test
 	public void testGetSearchContainerByContent() throws Exception {
-		BlogsEntry blogsEntry = _addBlogEntry(RandomTestUtil.randomString());
+		BlogsEntry blogsEntry = _addBlogsEntry(RandomTestUtil.randomString());
 
-		_addBlogEntry(RandomTestUtil.randomString());
+		_addBlogsEntry(RandomTestUtil.randomString());
 
 		_assertSearchContainer(
 			_getSearchContainer(
@@ -133,10 +133,10 @@ public class BlogsViewEntriesDisplayContextTest {
 
 		AssetCategory assetCategory = _addAssetCategory(assetVocabulary);
 
-		BlogsEntry blogsEntry = _addBlogEntry(
+		BlogsEntry blogsEntry = _addBlogsEntry(
 			new long[] {assetCategory.getCategoryId()});
 
-		_addBlogEntry(RandomTestUtil.randomString());
+		_addBlogsEntry(RandomTestUtil.randomString());
 
 		_assertSearchContainer(
 			_getSearchContainer(
@@ -151,10 +151,10 @@ public class BlogsViewEntriesDisplayContextTest {
 
 		AssetCategory assetCategory = _addAssetCategory(assetVocabulary);
 
-		BlogsEntry blogsEntry = _addBlogEntry(
+		BlogsEntry blogsEntry = _addBlogsEntry(
 			new long[] {assetCategory.getCategoryId()});
 
-		_addBlogEntry(RandomTestUtil.randomString());
+		_addBlogsEntry(RandomTestUtil.randomString());
 
 		_assertSearchContainer(
 			_getSearchContainer(
@@ -164,9 +164,9 @@ public class BlogsViewEntriesDisplayContextTest {
 
 	@Test
 	public void testGetSearchContainerByTitle() throws Exception {
-		BlogsEntry blogsEntry = _addBlogEntry(RandomTestUtil.randomString());
+		BlogsEntry blogsEntry = _addBlogsEntry(RandomTestUtil.randomString());
 
-		_addBlogEntry(RandomTestUtil.randomString());
+		_addBlogsEntry(RandomTestUtil.randomString());
 
 		_assertSearchContainer(
 			_getSearchContainer(
@@ -176,11 +176,11 @@ public class BlogsViewEntriesDisplayContextTest {
 
 	@Test
 	public void testGetSearchContainerOrderByDisplayDate() throws Exception {
-		BlogsEntry blogsEntry1 = _addBlogEntry(
+		BlogsEntry blogsEntry1 = _addBlogsEntry(
 			RandomTestUtil.randomString(), 2000);
-		BlogsEntry blogsEntry2 = _addBlogEntry(
+		BlogsEntry blogsEntry2 = _addBlogsEntry(
 			RandomTestUtil.randomString(), 2001);
-		BlogsEntry blogsEntry3 = _addBlogEntry(
+		BlogsEntry blogsEntry3 = _addBlogsEntry(
 			RandomTestUtil.randomString(), 1999);
 
 		_assertSearchContainer(
@@ -217,39 +217,39 @@ public class BlogsViewEntriesDisplayContextTest {
 			null, null, visibilityTypePublic, new ServiceContext());
 	}
 
-	private BlogsEntry _addBlogEntry(long[] assetCategoryIds) throws Exception {
+	private BlogsEntry _addBlogsEntry(long[] assetCategoryIds) throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
 
 		serviceContext.setAssetCategoryIds(assetCategoryIds);
 
-		return _addBlogEntry(RandomTestUtil.randomString(), serviceContext);
+		return _addBlogsEntry(RandomTestUtil.randomString(), serviceContext);
 	}
 
-	private BlogsEntry _addBlogEntry(String title) throws Exception {
-		return _addBlogEntry(
+	private BlogsEntry _addBlogsEntry(String title) throws Exception {
+		return _addBlogsEntry(
 			title,
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}
 
-	private BlogsEntry _addBlogEntry(String title, int displayYear)
+	private BlogsEntry _addBlogsEntry(String title, int displayYear)
 		throws Exception {
 
-		return _addBlogEntry(
+		return _addBlogsEntry(
 			title, RandomTestUtil.randomString(), displayYear,
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}
 
-	private BlogsEntry _addBlogEntry(
+	private BlogsEntry _addBlogsEntry(
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		return _addBlogEntry(
+		return _addBlogsEntry(
 			title, RandomTestUtil.randomString(), serviceContext);
 	}
 
-	private BlogsEntry _addBlogEntry(
+	private BlogsEntry _addBlogsEntry(
 			String title, String content, int displayYear,
 			ServiceContext serviceContext)
 		throws Exception {
@@ -260,11 +260,11 @@ public class BlogsViewEntriesDisplayContextTest {
 			RandomTestUtil.randomString(), null, null, serviceContext);
 	}
 
-	private BlogsEntry _addBlogEntry(
+	private BlogsEntry _addBlogsEntry(
 			String title, String content, ServiceContext serviceContext)
 		throws Exception {
 
-		return _addBlogEntry(title, content, 1990, serviceContext);
+		return _addBlogsEntry(title, content, 1990, serviceContext);
 	}
 
 	private void _assertSearchContainer(
