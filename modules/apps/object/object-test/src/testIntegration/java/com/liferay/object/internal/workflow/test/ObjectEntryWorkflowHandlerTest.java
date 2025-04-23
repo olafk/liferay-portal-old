@@ -75,9 +75,7 @@ public class ObjectEntryWorkflowHandlerTest {
 	}
 
 	@Test
-	public void testDeleteObjectEntryFolderDeletesWorkflowDefinitionLink()
-		throws PortalException {
-
+	public void testDeleteObjectEntryFolder() throws PortalException {
 		_objectEntryFolder = _updateObjectEntryFolderSingleApprover(
 			_serviceContext);
 
@@ -104,7 +102,7 @@ public class ObjectEntryWorkflowHandlerTest {
 	}
 
 	@Test
-	public void testWorkflowApprovesObjectEntry() throws PortalException {
+	public void testGetStatusApproved() throws PortalException {
 		ObjectEntry objectEntry1 = _addObjectEntry(
 			_objectEntryFolder.getObjectEntryFolderId());
 
@@ -130,7 +128,7 @@ public class ObjectEntryWorkflowHandlerTest {
 	}
 
 	@Test
-	public void testWorkflowRejectsObjectEntry() throws PortalException {
+	public void testGetStatusDenied() throws PortalException {
 		_objectEntryFolder = _updateObjectEntryFolderSingleApprover(
 			_serviceContext);
 
