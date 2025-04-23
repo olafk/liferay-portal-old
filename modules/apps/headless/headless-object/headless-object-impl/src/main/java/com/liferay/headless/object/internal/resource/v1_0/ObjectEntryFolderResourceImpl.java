@@ -237,7 +237,7 @@ public class ObjectEntryFolderResourceImpl
 
 		return _addObjectEntryFolder(
 			groupId,
-			_getParentObjectEntryFolderId(false, objectEntryFolder, groupId),
+			_getParentObjectEntryFolderId(false, groupId, objectEntryFolder),
 			objectEntryFolder);
 	}
 
@@ -262,14 +262,14 @@ public class ObjectEntryFolderResourceImpl
 		if (persistedObjectEntryFolder == null) {
 			return _addObjectEntryFolder(
 				groupId,
-				_getParentObjectEntryFolderId(true, objectEntryFolder, groupId),
+				_getParentObjectEntryFolderId(true, groupId, objectEntryFolder),
 				objectEntryFolder);
 		}
 
 		return _toObjectEntryFolder(
 			_objectEntryFolderService.updateObjectEntryFolder(
 				persistedObjectEntryFolder.getObjectEntryFolderId(),
-				_getParentObjectEntryFolderId(true, objectEntryFolder, groupId),
+				_getParentObjectEntryFolderId(true, groupId, objectEntryFolder),
 				LocalizedMapUtil.getLocalizedMap(
 					contextAcceptLanguage.getPreferredLocale(),
 					objectEntryFolder.getLabel(),
@@ -316,8 +316,8 @@ public class ObjectEntryFolderResourceImpl
 	}
 
 	private long _getParentObjectEntryFolderId(
-			boolean addObjectEntryFolder, ObjectEntryFolder objectEntryFolder,
-			long groupId)
+			boolean addObjectEntryFolder, long groupId,
+			ObjectEntryFolder objectEntryFolder)
 		throws Exception {
 
 		String parentObjectEntryFolderExternalReferenceCode =
@@ -390,7 +390,7 @@ public class ObjectEntryFolderResourceImpl
 		}
 
 		long parentObjectEntryFolderId = _getParentObjectEntryFolderId(
-			false, objectEntryFolder, persistedObjectEntryFolder.getGroupId());
+			false, persistedObjectEntryFolder.getGroupId(), objectEntryFolder);
 
 		if (parentObjectEntryFolderId ==
 				ObjectEntryFolderConstants.
