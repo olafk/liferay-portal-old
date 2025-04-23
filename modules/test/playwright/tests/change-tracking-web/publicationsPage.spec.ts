@@ -598,7 +598,13 @@ test('Create page with existing page template', async ({
 
 	// Delete page template collection
 
+	await pagesAdminPage.goto(site.friendlyUrlPath);
+
+	await pagesAdminPage.deletePage(layoutTitle);
+
 	await pageTemplatesPage.goto(site.friendlyUrlPath);
+
+	await pageTemplatesPage.deletePageTemplate(widgetPageTemplateName);
 
 	await pageTemplatesPage.deletePageTemplateCollection(
 		pageTemplateCollectionName
