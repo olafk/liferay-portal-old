@@ -36,7 +36,7 @@ public class StyleTag extends BaseStyleTag {
 				_write(jspWriter, "data-senna-off", "true");
 			}
 			else if (Validator.isNotNull(senna)) {
-				_write(jspWriter, "data-senna-track", "senna");
+				_write(jspWriter, "data-senna-track", senna);
 			}
 
 			jspWriter.write(
