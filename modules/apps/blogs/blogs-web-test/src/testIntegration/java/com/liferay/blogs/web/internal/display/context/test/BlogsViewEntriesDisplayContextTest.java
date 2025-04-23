@@ -187,7 +187,6 @@ public class BlogsViewEntriesDisplayContextTest {
 			_getSearchContainer(
 				_getMockHttpServletRequestWithOrderBy("display-date", "asc")),
 			Arrays.asList(blogsEntry3, blogsEntry1, blogsEntry2));
-
 		_assertSearchContainer(
 			_getSearchContainer(
 				_getMockHttpServletRequestWithOrderBy("display-date", "desc")),
