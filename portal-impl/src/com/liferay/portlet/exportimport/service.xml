@@ -68,6 +68,7 @@
 		<exception>LARFile</exception>
 		<exception>LARFileName</exception>
 		<exception>LARFileSize</exception>
+		<exception>LARScope</exception>
 		<exception>LARType</exception>
 		<exception>LayoutImport</exception>
 		<exception>MissingReference</exception>
