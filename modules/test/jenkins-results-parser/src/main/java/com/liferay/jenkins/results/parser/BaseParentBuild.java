@@ -492,14 +492,12 @@ public abstract class BaseParentBuild extends BaseBuild implements ParentBuild {
 			callables.add(callable);
 		}
 
-		List<List<Callable<Object>>> partition = Lists.partition(
+		List<List<Callable<Object>>> callablesList = Lists.partition(
 			callables, _getInvokedGroupSize());
 
-		for (int i = 0; i < partition.size(); i++) {
-			List<Callable<Object>> callablesList = partition.get(i);
-
+		for (int i = 0; i < callablesList.size(); i++) {
 			ParallelExecutor<Object> parallelExecutor = new ParallelExecutor<>(
-				callablesList, getExecutorService(), "update-" + i);
+				callablesList.get(i), getExecutorService(), "update-" + i);
 
 			try {
 				long buildUpdateTimeout = 60 * 90;

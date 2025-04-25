@@ -31,7 +31,7 @@ public class JenkinsConsoleTextLoader {
 
 			if (!matcher.find()) {
 				throw new IllegalArgumentException(
-					"Invalid Build URL " + buildURL);
+					"Invalid build URL " + buildURL);
 			}
 
 			String jobName = matcher.group("jobName");
