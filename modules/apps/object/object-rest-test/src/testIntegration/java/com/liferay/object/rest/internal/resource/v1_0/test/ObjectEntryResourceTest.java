@@ -945,10 +945,10 @@ public class ObjectEntryResourceTest {
 	public void testDeleteScopeScopeKeyByExternalReferenceCode()
 		throws Exception {
 
+		// Site scope external reference code
+
 		Group group = _groupLocalService.fetchGroup(
 			TestPropsValues.getGroupId());
-
-		// Site scope external reference code
 
 		_siteScopedObjectEntry1 = ObjectEntryTestUtil.addObjectEntry(
 			_siteScopedObjectDefinition1, _OBJECT_FIELD_NAME_1,
@@ -7384,6 +7384,9 @@ public class ObjectEntryResourceTest {
 
 	@Test
 	public void testGetScopeScopeKeyByExternalReferenceCode() throws Exception {
+
+		// Site scope external reference code
+
 		Group group = _groupLocalService.fetchGroup(
 			TestPropsValues.getGroupId());
 
@@ -7392,8 +7395,6 @@ public class ObjectEntryResourceTest {
 		_siteScopedObjectEntry1 = ObjectEntryTestUtil.addObjectEntry(
 			_siteScopedObjectDefinition1, _OBJECT_FIELD_NAME_1,
 			objectFieldValue);
-
-		// Site scope external reference code
 
 		Assert.assertEquals(
 			objectFieldValue,
@@ -9166,10 +9167,11 @@ public class ObjectEntryResourceTest {
 
 	@Test
 	public void testPostScopeScopeKey() throws Exception {
-		Group group = _groupLocalService.fetchGroup(
-			TestPropsValues.getGroupId());
 
 		// Site scope external reference code
+
+		Group group = _groupLocalService.fetchGroup(
+			TestPropsValues.getGroupId());
 
 		String objectFieldValue = RandomTestUtil.randomString();
 
@@ -15108,12 +15110,12 @@ public class ObjectEntryResourceTest {
 			Http.Method httpMethod, ObjectDefinition objectDefinition)
 		throws Exception {
 
+		// Scope key as external reference code
+
 		ObjectEntry objectEntry = ObjectEntryTestUtil.addObjectEntry(
 			objectDefinition, _OBJECT_FIELD_NAME_1, _OBJECT_FIELD_VALUE_1);
 
 		Group group = _groupLocalService.fetchGroup(objectEntry.getGroupId());
-
-		// Scope key as external reference code
 
 		String objectFieldValue = RandomTestUtil.randomString();
 
