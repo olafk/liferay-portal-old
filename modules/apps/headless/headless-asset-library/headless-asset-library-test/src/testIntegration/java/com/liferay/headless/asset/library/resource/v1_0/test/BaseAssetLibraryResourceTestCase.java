@@ -385,12 +385,12 @@ public abstract class BaseAssetLibraryResourceTestCase {
 
 	@Test
 	public void testGetAssetLibrariesPageWithPagination() throws Exception {
-		Page<AssetLibrary> assetLibraryPage =
+		Page<AssetLibrary> assetLibrariesPage =
 			assetLibraryResource.getAssetLibrariesPage(
 				null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			assetLibraryPage.getTotalCount());
+			assetLibrariesPage.getTotalCount());
 
 		AssetLibrary assetLibrary1 = testGetAssetLibrariesPage_addAssetLibrary(
 			randomAssetLibrary());

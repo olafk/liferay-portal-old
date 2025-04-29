@@ -330,11 +330,12 @@ public abstract class BaseSharedAssetResourceTestCase {
 	public void testGetMyUserAccountSharedAssetsSharedByMePageWithPagination()
 		throws Exception {
 
-		Page<SharedAsset> sharedAssetPage =
+		Page<SharedAsset> sharedAssetsPage =
 			sharedAssetResource.getMyUserAccountSharedAssetsSharedByMePage(
 				null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(sharedAssetPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			sharedAssetsPage.getTotalCount());
 
 		SharedAsset sharedAsset1 =
 			testGetMyUserAccountSharedAssetsSharedByMePage_addSharedAsset(
@@ -715,11 +716,12 @@ public abstract class BaseSharedAssetResourceTestCase {
 	public void testGetMyUserAccountSharedAssetsSharedWithMePageWithPagination()
 		throws Exception {
 
-		Page<SharedAsset> sharedAssetPage =
+		Page<SharedAsset> sharedAssetsPage =
 			sharedAssetResource.getMyUserAccountSharedAssetsSharedWithMePage(
 				null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(sharedAssetPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			sharedAssetsPage.getTotalCount());
 
 		SharedAsset sharedAsset1 =
 			testGetMyUserAccountSharedAssetsSharedWithMePage_addSharedAsset(

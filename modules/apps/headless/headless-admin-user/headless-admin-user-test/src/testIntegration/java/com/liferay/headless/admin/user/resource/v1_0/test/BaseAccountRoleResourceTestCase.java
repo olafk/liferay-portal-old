@@ -578,12 +578,13 @@ public abstract class BaseAccountRoleResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountAccountRolesByExternalReferenceCodePage_getExternalReferenceCode();
 
-		Page<AccountRole> accountRolePage =
+		Page<AccountRole> accountRolesPage =
 			accountRoleResource.
 				getAccountAccountRolesByExternalReferenceCodePage(
 					externalReferenceCode, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(accountRolePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			accountRolesPage.getTotalCount());
 
 		AccountRole accountRole1 =
 			testGetAccountAccountRolesByExternalReferenceCodePage_addAccountRole(
@@ -1024,11 +1025,12 @@ public abstract class BaseAccountRoleResourceTestCase {
 
 		Long accountId = testGetAccountAccountRolesPage_getAccountId();
 
-		Page<AccountRole> accountRolePage =
+		Page<AccountRole> accountRolesPage =
 			accountRoleResource.getAccountAccountRolesPage(
 				accountId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(accountRolePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			accountRolesPage.getTotalCount());
 
 		AccountRole accountRole1 =
 			testGetAccountAccountRolesPage_addAccountRole(

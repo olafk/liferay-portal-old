@@ -362,11 +362,11 @@ public abstract class BaseCurrencyResourceTestCase {
 		String externalReferenceCode =
 			testGetChannelByExternalReferenceCodeCurrenciesPage_getExternalReferenceCode();
 
-		Page<Currency> currencyPage =
+		Page<Currency> currenciesPage =
 			currencyResource.getChannelByExternalReferenceCodeCurrenciesPage(
 				externalReferenceCode, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(currencyPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(currenciesPage.getTotalCount());
 
 		Currency currency1 =
 			testGetChannelByExternalReferenceCodeCurrenciesPage_addCurrency(
@@ -777,10 +777,11 @@ public abstract class BaseCurrencyResourceTestCase {
 	public void testGetChannelCurrenciesPageWithPagination() throws Exception {
 		Long channelId = testGetChannelCurrenciesPage_getChannelId();
 
-		Page<Currency> currencyPage = currencyResource.getChannelCurrenciesPage(
-			channelId, null, null, null, null);
+		Page<Currency> currenciesPage =
+			currencyResource.getChannelCurrenciesPage(
+				channelId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(currencyPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(currenciesPage.getTotalCount());
 
 		Currency currency1 = testGetChannelCurrenciesPage_addCurrency(
 			channelId, randomCurrency());

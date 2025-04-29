@@ -299,13 +299,13 @@ public abstract class BaseAccountOrganizationResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountOrganizationsPage_getExternalReferenceCode();
 
-		Page<AccountOrganization> accountOrganizationPage =
+		Page<AccountOrganization> accountOrganizationsPage =
 			accountOrganizationResource.
 				getAccountByExternalReferenceCodeAccountOrganizationsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountOrganizationPage.getTotalCount());
+			accountOrganizationsPage.getTotalCount());
 
 		AccountOrganization accountOrganization1 =
 			testGetAccountByExternalReferenceCodeAccountOrganizationsPage_addAccountOrganization(
@@ -521,12 +521,12 @@ public abstract class BaseAccountOrganizationResourceTestCase {
 
 		Long id = testGetAccountIdAccountOrganizationsPage_getId();
 
-		Page<AccountOrganization> accountOrganizationPage =
+		Page<AccountOrganization> accountOrganizationsPage =
 			accountOrganizationResource.getAccountIdAccountOrganizationsPage(
 				id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountOrganizationPage.getTotalCount());
+			accountOrganizationsPage.getTotalCount());
 
 		AccountOrganization accountOrganization1 =
 			testGetAccountIdAccountOrganizationsPage_addAccountOrganization(

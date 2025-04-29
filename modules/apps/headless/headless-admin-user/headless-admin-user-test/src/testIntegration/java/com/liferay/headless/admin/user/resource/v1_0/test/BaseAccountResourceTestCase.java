@@ -1124,10 +1124,11 @@ public abstract class BaseAccountResourceTestCase {
 		Long accountGroupId =
 			testGetAccountGroupAccountsPage_getAccountGroupId();
 
-		Page<Account> accountPage = accountResource.getAccountGroupAccountsPage(
-			accountGroupId, null, null, null, null);
+		Page<Account> accountsPage =
+			accountResource.getAccountGroupAccountsPage(
+				accountGroupId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(accountPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(accountsPage.getTotalCount());
 
 		Account account1 = testGetAccountGroupAccountsPage_addAccount(
 			accountGroupId, randomAccount());
@@ -1548,11 +1549,11 @@ public abstract class BaseAccountResourceTestCase {
 		String accountGroupExternalReferenceCode =
 			testGetAccountGroupByExternalReferenceCodeAccountsPage_getAccountGroupExternalReferenceCode();
 
-		Page<Account> accountPage =
+		Page<Account> accountsPage =
 			accountResource.getAccountGroupByExternalReferenceCodeAccountsPage(
 				accountGroupExternalReferenceCode, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(accountPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(accountsPage.getTotalCount());
 
 		Account account1 =
 			testGetAccountGroupByExternalReferenceCodeAccountsPage_addAccount(
@@ -1922,10 +1923,10 @@ public abstract class BaseAccountResourceTestCase {
 
 	@Test
 	public void testGetAccountsPageWithPagination() throws Exception {
-		Page<Account> accountPage = accountResource.getAccountsPage(
+		Page<Account> accountsPage = accountResource.getAccountsPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(accountPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(accountsPage.getTotalCount());
 
 		Account account1 = testGetAccountsPage_addAccount(randomAccount());
 
@@ -2355,10 +2356,11 @@ public abstract class BaseAccountResourceTestCase {
 		String organizationId =
 			testGetOrganizationAccountsPage_getOrganizationId();
 
-		Page<Account> accountPage = accountResource.getOrganizationAccountsPage(
-			organizationId, null, null, null, null);
+		Page<Account> accountsPage =
+			accountResource.getOrganizationAccountsPage(
+				organizationId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(accountPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(accountsPage.getTotalCount());
 
 		Account account1 = testGetOrganizationAccountsPage_addAccount(
 			organizationId, randomAccount());
@@ -2777,11 +2779,11 @@ public abstract class BaseAccountResourceTestCase {
 		String externalReferenceCode =
 			testGetOrganizationByExternalReferenceCodeAccountsPage_getExternalReferenceCode();
 
-		Page<Account> accountPage =
+		Page<Account> accountsPage =
 			accountResource.getOrganizationByExternalReferenceCodeAccountsPage(
 				externalReferenceCode, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(accountPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(accountsPage.getTotalCount());
 
 		Account account1 =
 			testGetOrganizationByExternalReferenceCodeAccountsPage_addAccount(
@@ -3229,12 +3231,12 @@ public abstract class BaseAccountResourceTestCase {
 		String organizationExternalReferenceCode =
 			testGetOrganizationByExternalReferenceCodeOrganizationExternalReferenceCodeAccountsByExternalReferenceCodePage_getOrganizationExternalReferenceCode();
 
-		Page<Account> accountPage =
+		Page<Account> accountsPage =
 			accountResource.
 				getOrganizationByExternalReferenceCodeOrganizationExternalReferenceCodeAccountsByExternalReferenceCodePage(
 					organizationExternalReferenceCode, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(accountPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(accountsPage.getTotalCount());
 
 		Account account1 =
 			testGetOrganizationByExternalReferenceCodeOrganizationExternalReferenceCodeAccountsByExternalReferenceCodePage_addAccount(

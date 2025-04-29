@@ -340,10 +340,10 @@ public abstract class BaseCTEntryResourceTestCase {
 
 	@Test
 	public void testGetCTEntriesHistoryPageWithPagination() throws Exception {
-		Page<CTEntry> ctEntryPage = ctEntryResource.getCTEntriesHistoryPage(
+		Page<CTEntry> ctEntriesPage = ctEntryResource.getCTEntriesHistoryPage(
 			null, null, null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(ctEntryPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(ctEntriesPage.getTotalCount());
 
 		CTEntry ctEntry1 = testGetCTEntriesHistoryPage_addCTEntry(
 			randomCTEntry());
@@ -1003,11 +1003,11 @@ public abstract class BaseCTEntryResourceTestCase {
 		Long ctCollectionId =
 			testGetCtCollectionCTEntriesPage_getCtCollectionId();
 
-		Page<CTEntry> ctEntryPage =
+		Page<CTEntry> ctEntriesPage =
 			ctEntryResource.getCtCollectionCTEntriesPage(
 				ctCollectionId, null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(ctEntryPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(ctEntriesPage.getTotalCount());
 
 		CTEntry ctEntry1 = testGetCtCollectionCTEntriesPage_addCTEntry(
 			ctCollectionId, randomCTEntry());

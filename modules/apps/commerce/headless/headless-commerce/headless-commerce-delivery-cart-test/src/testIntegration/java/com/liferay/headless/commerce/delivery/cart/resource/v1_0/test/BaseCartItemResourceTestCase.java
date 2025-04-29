@@ -501,11 +501,11 @@ public abstract class BaseCartItemResourceTestCase {
 		String externalReferenceCode =
 			testGetCartByExternalReferenceCodeItemsPage_getExternalReferenceCode();
 
-		Page<CartItem> cartItemPage =
+		Page<CartItem> cartItemsPage =
 			cartItemResource.getCartByExternalReferenceCodeItemsPage(
 				externalReferenceCode, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(cartItemPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(cartItemsPage.getTotalCount());
 
 		CartItem cartItem1 =
 			testGetCartByExternalReferenceCodeItemsPage_addCartItem(
@@ -1096,10 +1096,10 @@ public abstract class BaseCartItemResourceTestCase {
 	public void testGetCartItemsPageWithPagination() throws Exception {
 		Long cartId = testGetCartItemsPage_getCartId();
 
-		Page<CartItem> cartItemPage = cartItemResource.getCartItemsPage(
+		Page<CartItem> cartItemsPage = cartItemResource.getCartItemsPage(
 			cartId, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(cartItemPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(cartItemsPage.getTotalCount());
 
 		CartItem cartItem1 = testGetCartItemsPage_addCartItem(
 			cartId, randomCartItem());

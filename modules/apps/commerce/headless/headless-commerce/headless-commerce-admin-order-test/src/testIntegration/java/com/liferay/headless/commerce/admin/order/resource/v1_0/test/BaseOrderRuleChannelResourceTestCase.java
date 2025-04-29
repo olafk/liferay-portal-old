@@ -326,13 +326,13 @@ public abstract class BaseOrderRuleChannelResourceTestCase {
 		String externalReferenceCode =
 			testGetOrderRuleByExternalReferenceCodeOrderRuleChannelsPage_getExternalReferenceCode();
 
-		Page<OrderRuleChannel> orderRuleChannelPage =
+		Page<OrderRuleChannel> orderRuleChannelsPage =
 			orderRuleChannelResource.
 				getOrderRuleByExternalReferenceCodeOrderRuleChannelsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			orderRuleChannelPage.getTotalCount());
+			orderRuleChannelsPage.getTotalCount());
 
 		OrderRuleChannel orderRuleChannel1 =
 			testGetOrderRuleByExternalReferenceCodeOrderRuleChannelsPage_addOrderRuleChannel(
@@ -620,12 +620,12 @@ public abstract class BaseOrderRuleChannelResourceTestCase {
 
 		Long id = testGetOrderRuleIdOrderRuleChannelsPage_getId();
 
-		Page<OrderRuleChannel> orderRuleChannelPage =
+		Page<OrderRuleChannel> orderRuleChannelsPage =
 			orderRuleChannelResource.getOrderRuleIdOrderRuleChannelsPage(
 				id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			orderRuleChannelPage.getTotalCount());
+			orderRuleChannelsPage.getTotalCount());
 
 		OrderRuleChannel orderRuleChannel1 =
 			testGetOrderRuleIdOrderRuleChannelsPage_addOrderRuleChannel(

@@ -271,12 +271,12 @@ public abstract class BaseDisplayPageTemplateResourceTestCase {
 
 		Long siteId = testGetSiteDisplayPageTemplatesPage_getSiteId();
 
-		Page<DisplayPageTemplate> displayPageTemplatePage =
+		Page<DisplayPageTemplate> displayPageTemplatesPage =
 			displayPageTemplateResource.getSiteDisplayPageTemplatesPage(
 				siteId, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			displayPageTemplatePage.getTotalCount());
+			displayPageTemplatesPage.getTotalCount());
 
 		DisplayPageTemplate displayPageTemplate1 =
 			testGetSiteDisplayPageTemplatesPage_addDisplayPageTemplate(

@@ -553,13 +553,13 @@ public abstract class BaseMappedProductResourceTestCase {
 		String externalReferenceCode =
 			testGetProductByExternalReferenceCodeMappedProductsPage_getExternalReferenceCode();
 
-		Page<MappedProduct> mappedProductPage =
+		Page<MappedProduct> mappedProductsPage =
 			mappedProductResource.
 				getProductByExternalReferenceCodeMappedProductsPage(
 					externalReferenceCode, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			mappedProductPage.getTotalCount());
+			mappedProductsPage.getTotalCount());
 
 		MappedProduct mappedProduct1 =
 			testGetProductByExternalReferenceCodeMappedProductsPage_addMappedProduct(
@@ -1067,12 +1067,12 @@ public abstract class BaseMappedProductResourceTestCase {
 
 		Long id = testGetProductIdMappedProductsPage_getId();
 
-		Page<MappedProduct> mappedProductPage =
+		Page<MappedProduct> mappedProductsPage =
 			mappedProductResource.getProductIdMappedProductsPage(
 				id, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			mappedProductPage.getTotalCount());
+			mappedProductsPage.getTotalCount());
 
 		MappedProduct mappedProduct1 =
 			testGetProductIdMappedProductsPage_addMappedProduct(

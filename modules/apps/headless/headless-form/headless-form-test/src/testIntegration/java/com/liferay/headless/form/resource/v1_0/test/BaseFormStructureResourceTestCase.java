@@ -576,11 +576,11 @@ public abstract class BaseFormStructureResourceTestCase {
 	public void testGetSiteFormStructuresPageWithPagination() throws Exception {
 		Long siteId = testGetSiteFormStructuresPage_getSiteId();
 
-		Page<FormStructure> formStructurePage =
+		Page<FormStructure> formStructuresPage =
 			formStructureResource.getSiteFormStructuresPage(siteId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			formStructurePage.getTotalCount());
+			formStructuresPage.getTotalCount());
 
 		FormStructure formStructure1 =
 			testGetSiteFormStructuresPage_addFormStructure(

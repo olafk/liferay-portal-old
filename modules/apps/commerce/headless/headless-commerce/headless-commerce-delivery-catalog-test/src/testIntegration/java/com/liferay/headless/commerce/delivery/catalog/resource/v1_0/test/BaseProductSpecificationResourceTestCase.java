@@ -290,14 +290,14 @@ public abstract class BaseProductSpecificationResourceTestCase {
 		String productExternalReferenceCode =
 			testGetChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodeProductSpecificationsPage_getProductExternalReferenceCode();
 
-		Page<ProductSpecification> productSpecificationPage =
+		Page<ProductSpecification> productSpecificationsPage =
 			productSpecificationResource.
 				getChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodeProductSpecificationsPage(
 					channelExternalReferenceCode, productExternalReferenceCode,
 					null);
 
 		int totalCount = GetterUtil.getInteger(
-			productSpecificationPage.getTotalCount());
+			productSpecificationsPage.getTotalCount());
 
 		ProductSpecification productSpecification1 =
 			testGetChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodeProductSpecificationsPage_addProductSpecification(
@@ -538,13 +538,13 @@ public abstract class BaseProductSpecificationResourceTestCase {
 		Long productId =
 			testGetChannelProductProductSpecificationsPage_getProductId();
 
-		Page<ProductSpecification> productSpecificationPage =
+		Page<ProductSpecification> productSpecificationsPage =
 			productSpecificationResource.
 				getChannelProductProductSpecificationsPage(
 					channelId, productId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productSpecificationPage.getTotalCount());
+			productSpecificationsPage.getTotalCount());
 
 		ProductSpecification productSpecification1 =
 			testGetChannelProductProductSpecificationsPage_addProductSpecification(

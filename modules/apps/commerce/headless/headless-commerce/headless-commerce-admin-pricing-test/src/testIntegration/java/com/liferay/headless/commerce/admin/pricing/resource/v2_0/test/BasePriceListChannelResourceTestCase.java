@@ -326,13 +326,13 @@ public abstract class BasePriceListChannelResourceTestCase {
 		String externalReferenceCode =
 			testGetPriceListByExternalReferenceCodePriceListChannelsPage_getExternalReferenceCode();
 
-		Page<PriceListChannel> priceListChannelPage =
+		Page<PriceListChannel> priceListChannelsPage =
 			priceListChannelResource.
 				getPriceListByExternalReferenceCodePriceListChannelsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			priceListChannelPage.getTotalCount());
+			priceListChannelsPage.getTotalCount());
 
 		PriceListChannel priceListChannel1 =
 			testGetPriceListByExternalReferenceCodePriceListChannelsPage_addPriceListChannel(
@@ -620,12 +620,12 @@ public abstract class BasePriceListChannelResourceTestCase {
 
 		Long id = testGetPriceListIdPriceListChannelsPage_getId();
 
-		Page<PriceListChannel> priceListChannelPage =
+		Page<PriceListChannel> priceListChannelsPage =
 			priceListChannelResource.getPriceListIdPriceListChannelsPage(
 				id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			priceListChannelPage.getTotalCount());
+			priceListChannelsPage.getTotalCount());
 
 		PriceListChannel priceListChannel1 =
 			testGetPriceListIdPriceListChannelsPage_addPriceListChannel(

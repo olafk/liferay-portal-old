@@ -373,11 +373,11 @@ public abstract class BaseShipmentResourceTestCase {
 		String externalReferenceCode =
 			testGetPlacedOrderByExternalReferenceCodeShipmentsPage_getExternalReferenceCode();
 
-		Page<Shipment> shipmentPage =
+		Page<Shipment> shipmentsPage =
 			shipmentResource.getPlacedOrderByExternalReferenceCodeShipmentsPage(
 				externalReferenceCode, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(shipmentPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(shipmentsPage.getTotalCount());
 
 		Shipment shipment1 =
 			testGetPlacedOrderByExternalReferenceCodeShipmentsPage_addShipment(
@@ -795,11 +795,11 @@ public abstract class BaseShipmentResourceTestCase {
 
 		Long placedOrderId = testGetPlacedOrderShipmentsPage_getPlacedOrderId();
 
-		Page<Shipment> shipmentPage =
+		Page<Shipment> shipmentsPage =
 			shipmentResource.getPlacedOrderShipmentsPage(
 				placedOrderId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(shipmentPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(shipmentsPage.getTotalCount());
 
 		Shipment shipment1 = testGetPlacedOrderShipmentsPage_addShipment(
 			placedOrderId, randomShipment());

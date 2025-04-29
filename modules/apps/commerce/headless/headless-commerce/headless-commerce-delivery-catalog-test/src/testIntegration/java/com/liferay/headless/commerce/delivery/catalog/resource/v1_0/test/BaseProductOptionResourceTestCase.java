@@ -281,14 +281,14 @@ public abstract class BaseProductOptionResourceTestCase {
 		String productExternalReferenceCode =
 			testGetChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodeProductOptionsPage_getProductExternalReferenceCode();
 
-		Page<ProductOption> productOptionPage =
+		Page<ProductOption> productOptionsPage =
 			productOptionResource.
 				getChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodeProductOptionsPage(
 					channelExternalReferenceCode, productExternalReferenceCode,
 					null);
 
 		int totalCount = GetterUtil.getInteger(
-			productOptionPage.getTotalCount());
+			productOptionsPage.getTotalCount());
 
 		ProductOption productOption1 =
 			testGetChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodeProductOptionsPage_addProductOption(
@@ -508,12 +508,12 @@ public abstract class BaseProductOptionResourceTestCase {
 		Long channelId = testGetChannelProductProductOptionsPage_getChannelId();
 		Long productId = testGetChannelProductProductOptionsPage_getProductId();
 
-		Page<ProductOption> productOptionPage =
+		Page<ProductOption> productOptionsPage =
 			productOptionResource.getChannelProductProductOptionsPage(
 				channelId, productId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productOptionPage.getTotalCount());
+			productOptionsPage.getTotalCount());
 
 		ProductOption productOption1 =
 			testGetChannelProductProductOptionsPage_addProductOption(

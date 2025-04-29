@@ -880,13 +880,13 @@ public abstract class BaseCategoryDisplayPageResourceTestCase {
 		String externalReferenceCode =
 			testGetChannelByExternalReferenceCodeCategoryDisplayPagesPage_getExternalReferenceCode();
 
-		Page<CategoryDisplayPage> categoryDisplayPagePage =
+		Page<CategoryDisplayPage> categoryDisplayPagesPage =
 			categoryDisplayPageResource.
 				getChannelByExternalReferenceCodeCategoryDisplayPagesPage(
 					externalReferenceCode, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			categoryDisplayPagePage.getTotalCount());
+			categoryDisplayPagesPage.getTotalCount());
 
 		CategoryDisplayPage categoryDisplayPage1 =
 			testGetChannelByExternalReferenceCodeCategoryDisplayPagesPage_addCategoryDisplayPage(
@@ -1360,12 +1360,12 @@ public abstract class BaseCategoryDisplayPageResourceTestCase {
 
 		Long id = testGetChannelIdCategoryDisplayPagesPage_getId();
 
-		Page<CategoryDisplayPage> categoryDisplayPagePage =
+		Page<CategoryDisplayPage> categoryDisplayPagesPage =
 			categoryDisplayPageResource.getChannelIdCategoryDisplayPagesPage(
 				id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			categoryDisplayPagePage.getTotalCount());
+			categoryDisplayPagesPage.getTotalCount());
 
 		CategoryDisplayPage categoryDisplayPage1 =
 			testGetChannelIdCategoryDisplayPagesPage_addCategoryDisplayPage(

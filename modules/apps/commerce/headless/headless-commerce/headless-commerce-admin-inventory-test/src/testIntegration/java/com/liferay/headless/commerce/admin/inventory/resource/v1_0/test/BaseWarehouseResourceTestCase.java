@@ -602,10 +602,10 @@ public abstract class BaseWarehouseResourceTestCase {
 
 	@Test
 	public void testGetWarehousesPageWithPagination() throws Exception {
-		Page<Warehouse> warehousePage = warehouseResource.getWarehousesPage(
+		Page<Warehouse> warehousesPage = warehouseResource.getWarehousesPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(warehousePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(warehousesPage.getTotalCount());
 
 		Warehouse warehouse1 = testGetWarehousesPage_addWarehouse(
 			randomWarehouse());

@@ -823,10 +823,11 @@ public abstract class BaseKeywordResourceTestCase {
 		Long assetLibraryId =
 			testGetAssetLibraryKeywordsPage_getAssetLibraryId();
 
-		Page<Keyword> keywordPage = keywordResource.getAssetLibraryKeywordsPage(
-			assetLibraryId, null, null, null, null, null);
+		Page<Keyword> keywordsPage =
+			keywordResource.getAssetLibraryKeywordsPage(
+				assetLibraryId, null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(keywordPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(keywordsPage.getTotalCount());
 
 		Keyword keyword1 = testGetAssetLibraryKeywordsPage_addKeyword(
 			assetLibraryId, randomKeyword());
@@ -1461,10 +1462,10 @@ public abstract class BaseKeywordResourceTestCase {
 
 	@Test
 	public void testGetKeywordsPageWithPagination() throws Exception {
-		Page<Keyword> keywordPage = keywordResource.getKeywordsPage(
+		Page<Keyword> keywordsPage = keywordResource.getKeywordsPage(
 			null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(keywordPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(keywordsPage.getTotalCount());
 
 		Keyword keyword1 = testGetKeywordsPage_addKeyword(randomKeyword());
 
@@ -1770,10 +1771,10 @@ public abstract class BaseKeywordResourceTestCase {
 
 	@Test
 	public void testGetKeywordsRankedPageWithPagination() throws Exception {
-		Page<Keyword> keywordPage = keywordResource.getKeywordsRankedPage(
+		Page<Keyword> keywordsPage = keywordResource.getKeywordsRankedPage(
 			null, null, null);
 
-		int totalCount = GetterUtil.getInteger(keywordPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(keywordsPage.getTotalCount());
 
 		Keyword keyword1 = testGetKeywordsRankedPage_addKeyword(
 			randomKeyword());
@@ -2189,10 +2190,10 @@ public abstract class BaseKeywordResourceTestCase {
 	public void testGetSiteKeywordsPageWithPagination() throws Exception {
 		Long siteId = testGetSiteKeywordsPage_getSiteId();
 
-		Page<Keyword> keywordPage = keywordResource.getSiteKeywordsPage(
+		Page<Keyword> keywordsPage = keywordResource.getSiteKeywordsPage(
 			siteId, null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(keywordPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(keywordsPage.getTotalCount());
 
 		Keyword keyword1 = testGetSiteKeywordsPage_addKeyword(
 			siteId, randomKeyword());

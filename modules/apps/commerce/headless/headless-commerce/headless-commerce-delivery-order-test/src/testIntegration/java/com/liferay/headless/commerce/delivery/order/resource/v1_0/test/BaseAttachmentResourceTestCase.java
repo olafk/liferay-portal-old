@@ -318,11 +318,11 @@ public abstract class BaseAttachmentResourceTestCase {
 		Long placedOrderId =
 			testGetPlacedOrderAttachmentsPage_getPlacedOrderId();
 
-		Page<Attachment> attachmentPage =
+		Page<Attachment> attachmentsPage =
 			attachmentResource.getPlacedOrderAttachmentsPage(
 				placedOrderId, null);
 
-		int totalCount = GetterUtil.getInteger(attachmentPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(attachmentsPage.getTotalCount());
 
 		Attachment attachment1 =
 			testGetPlacedOrderAttachmentsPage_addAttachment(
@@ -501,12 +501,12 @@ public abstract class BaseAttachmentResourceTestCase {
 		String externalReferenceCode =
 			testGetPlacedOrderByExternalReferenceCodeAttachmentsPage_getExternalReferenceCode();
 
-		Page<Attachment> attachmentPage =
+		Page<Attachment> attachmentsPage =
 			attachmentResource.
 				getPlacedOrderByExternalReferenceCodeAttachmentsPage(
 					externalReferenceCode, null);
 
-		int totalCount = GetterUtil.getInteger(attachmentPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(attachmentsPage.getTotalCount());
 
 		Attachment attachment1 =
 			testGetPlacedOrderByExternalReferenceCodeAttachmentsPage_addAttachment(

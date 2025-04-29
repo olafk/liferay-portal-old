@@ -764,12 +764,12 @@ public abstract class BaseWishListItemResourceTestCase {
 		Long wishListId =
 			testGetWishlistWishListWishListItemsPage_getWishListId();
 
-		Page<WishListItem> wishListItemPage =
+		Page<WishListItem> wishListItemsPage =
 			wishListItemResource.getWishlistWishListWishListItemsPage(
 				wishListId, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			wishListItemPage.getTotalCount());
+			wishListItemsPage.getTotalCount());
 
 		WishListItem wishListItem1 =
 			testGetWishlistWishListWishListItemsPage_addWishListItem(

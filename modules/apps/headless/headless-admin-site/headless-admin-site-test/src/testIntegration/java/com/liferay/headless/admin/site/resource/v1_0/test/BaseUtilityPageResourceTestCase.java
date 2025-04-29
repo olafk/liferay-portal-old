@@ -426,12 +426,13 @@ public abstract class BaseUtilityPageResourceTestCase {
 		String siteExternalReferenceCode =
 			testGetSiteSiteByExternalReferenceCodeUtilityPagesPage_getSiteExternalReferenceCode();
 
-		Page<UtilityPage> utilityPagePage =
+		Page<UtilityPage> utilityPagesPage =
 			utilityPageResource.
 				getSiteSiteByExternalReferenceCodeUtilityPagesPage(
 					siteExternalReferenceCode, null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(utilityPagePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			utilityPagesPage.getTotalCount());
 
 		UtilityPage utilityPage1 =
 			testGetSiteSiteByExternalReferenceCodeUtilityPagesPage_addUtilityPage(

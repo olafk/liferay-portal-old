@@ -929,11 +929,11 @@ public abstract class BaseCTCollectionResourceTestCase {
 
 	@Test
 	public void testGetCTCollectionsPageWithPagination() throws Exception {
-		Page<CTCollection> ctCollectionPage =
+		Page<CTCollection> ctCollectionsPage =
 			ctCollectionResource.getCTCollectionsPage(null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			ctCollectionPage.getTotalCount());
+			ctCollectionsPage.getTotalCount());
 
 		CTCollection ctCollection1 = testGetCTCollectionsPage_addCTCollection(
 			randomCTCollection());

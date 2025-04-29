@@ -999,11 +999,11 @@ public abstract class BaseSpecificationResourceTestCase {
 
 	@Test
 	public void testGetSpecificationsPageWithPagination() throws Exception {
-		Page<Specification> specificationPage =
+		Page<Specification> specificationsPage =
 			specificationResource.getSpecificationsPage(null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			specificationPage.getTotalCount());
+			specificationsPage.getTotalCount());
 
 		Specification specification1 =
 			testGetSpecificationsPage_addSpecification(randomSpecification());

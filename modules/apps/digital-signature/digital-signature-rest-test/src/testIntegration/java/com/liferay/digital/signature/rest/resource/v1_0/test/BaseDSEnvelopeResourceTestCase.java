@@ -408,11 +408,11 @@ public abstract class BaseDSEnvelopeResourceTestCase {
 	public void testGetSiteDSEnvelopesPageWithPagination() throws Exception {
 		Long siteId = testGetSiteDSEnvelopesPage_getSiteId();
 
-		Page<DSEnvelope> dsEnvelopePage =
+		Page<DSEnvelope> dsEnvelopesPage =
 			dsEnvelopeResource.getSiteDSEnvelopesPage(
 				siteId, null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(dsEnvelopePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(dsEnvelopesPage.getTotalCount());
 
 		DSEnvelope dsEnvelope1 = testGetSiteDSEnvelopesPage_addDSEnvelope(
 			siteId, randomDSEnvelope());

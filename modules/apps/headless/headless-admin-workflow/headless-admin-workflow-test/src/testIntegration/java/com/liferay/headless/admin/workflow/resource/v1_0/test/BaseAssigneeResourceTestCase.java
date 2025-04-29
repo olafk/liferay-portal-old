@@ -245,11 +245,11 @@ public abstract class BaseAssigneeResourceTestCase {
 		Long workflowTaskId =
 			testGetWorkflowTaskAssignableUsersPage_getWorkflowTaskId();
 
-		Page<Assignee> assigneePage =
+		Page<Assignee> assigneesPage =
 			assigneeResource.getWorkflowTaskAssignableUsersPage(
 				workflowTaskId, null);
 
-		int totalCount = GetterUtil.getInteger(assigneePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(assigneesPage.getTotalCount());
 
 		Assignee assignee1 = testGetWorkflowTaskAssignableUsersPage_addAssignee(
 			workflowTaskId, randomAssignee());

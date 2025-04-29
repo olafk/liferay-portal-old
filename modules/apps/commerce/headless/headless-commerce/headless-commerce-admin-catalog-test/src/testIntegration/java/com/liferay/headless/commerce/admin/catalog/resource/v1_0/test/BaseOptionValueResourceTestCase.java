@@ -513,12 +513,13 @@ public abstract class BaseOptionValueResourceTestCase {
 		String externalReferenceCode =
 			testGetOptionByExternalReferenceCodeOptionValuesPage_getExternalReferenceCode();
 
-		Page<OptionValue> optionValuePage =
+		Page<OptionValue> optionValuesPage =
 			optionValueResource.
 				getOptionByExternalReferenceCodeOptionValuesPage(
 					externalReferenceCode, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(optionValuePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			optionValuesPage.getTotalCount());
 
 		OptionValue optionValue1 =
 			testGetOptionByExternalReferenceCodeOptionValuesPage_addOptionValue(
@@ -857,11 +858,12 @@ public abstract class BaseOptionValueResourceTestCase {
 
 		Long id = testGetOptionIdOptionValuesPage_getId();
 
-		Page<OptionValue> optionValuePage =
+		Page<OptionValue> optionValuesPage =
 			optionValueResource.getOptionIdOptionValuesPage(
 				id, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(optionValuePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			optionValuesPage.getTotalCount());
 
 		OptionValue optionValue1 =
 			testGetOptionIdOptionValuesPage_addOptionValue(

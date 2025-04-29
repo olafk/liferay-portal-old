@@ -356,13 +356,13 @@ public abstract class BaseProductConfigurationListChannelResourceTestCase {
 			testGetProductConfigurationListByExternalReferenceCodeProductConfigurationListChannelsPage_getExternalReferenceCode();
 
 		Page<ProductConfigurationListChannel>
-			productConfigurationListChannelPage =
+			productConfigurationListChannelsPage =
 				productConfigurationListChannelResource.
 					getProductConfigurationListByExternalReferenceCodeProductConfigurationListChannelsPage(
 						externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productConfigurationListChannelPage.getTotalCount());
+			productConfigurationListChannelsPage.getTotalCount());
 
 		ProductConfigurationListChannel productConfigurationListChannel1 =
 			testGetProductConfigurationListByExternalReferenceCodeProductConfigurationListChannelsPage_addProductConfigurationListChannel(
@@ -686,13 +686,13 @@ public abstract class BaseProductConfigurationListChannelResourceTestCase {
 			testGetProductConfigurationListIdProductConfigurationListChannelsPage_getId();
 
 		Page<ProductConfigurationListChannel>
-			productConfigurationListChannelPage =
+			productConfigurationListChannelsPage =
 				productConfigurationListChannelResource.
 					getProductConfigurationListIdProductConfigurationListChannelsPage(
 						id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productConfigurationListChannelPage.getTotalCount());
+			productConfigurationListChannelsPage.getTotalCount());
 
 		ProductConfigurationListChannel productConfigurationListChannel1 =
 			testGetProductConfigurationListIdProductConfigurationListChannelsPage_addProductConfigurationListChannel(

@@ -290,13 +290,13 @@ public abstract class BasePlacedOrderCommentResourceTestCase {
 		String externalReferenceCode =
 			testGetPlacedOrderByExternalReferenceCodePlacedOrderCommentsPage_getExternalReferenceCode();
 
-		Page<PlacedOrderComment> placedOrderCommentPage =
+		Page<PlacedOrderComment> placedOrderCommentsPage =
 			placedOrderCommentResource.
 				getPlacedOrderByExternalReferenceCodePlacedOrderCommentsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			placedOrderCommentPage.getTotalCount());
+			placedOrderCommentsPage.getTotalCount());
 
 		PlacedOrderComment placedOrderComment1 =
 			testGetPlacedOrderByExternalReferenceCodePlacedOrderCommentsPage_addPlacedOrderComment(
@@ -955,12 +955,12 @@ public abstract class BasePlacedOrderCommentResourceTestCase {
 		Long placedOrderId =
 			testGetPlacedOrderPlacedOrderCommentsPage_getPlacedOrderId();
 
-		Page<PlacedOrderComment> placedOrderCommentPage =
+		Page<PlacedOrderComment> placedOrderCommentsPage =
 			placedOrderCommentResource.getPlacedOrderPlacedOrderCommentsPage(
 				placedOrderId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			placedOrderCommentPage.getTotalCount());
+			placedOrderCommentsPage.getTotalCount());
 
 		PlacedOrderComment placedOrderComment1 =
 			testGetPlacedOrderPlacedOrderCommentsPage_addPlacedOrderComment(

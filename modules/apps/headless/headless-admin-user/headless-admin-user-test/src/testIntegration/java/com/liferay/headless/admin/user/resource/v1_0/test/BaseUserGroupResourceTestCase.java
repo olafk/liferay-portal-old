@@ -1005,10 +1005,10 @@ public abstract class BaseUserGroupResourceTestCase {
 
 	@Test
 	public void testGetUserGroupsPageWithPagination() throws Exception {
-		Page<UserGroup> userGroupPage = userGroupResource.getUserGroupsPage(
+		Page<UserGroup> userGroupsPage = userGroupResource.getUserGroupsPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(userGroupPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(userGroupsPage.getTotalCount());
 
 		UserGroup userGroup1 = testGetUserGroupsPage_addUserGroup(
 			randomUserGroup());

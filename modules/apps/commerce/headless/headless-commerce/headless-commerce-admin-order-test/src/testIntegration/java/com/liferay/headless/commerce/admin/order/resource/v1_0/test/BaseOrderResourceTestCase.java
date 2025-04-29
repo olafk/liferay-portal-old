@@ -1001,10 +1001,10 @@ public abstract class BaseOrderResourceTestCase {
 
 	@Test
 	public void testGetOrdersPageWithPagination() throws Exception {
-		Page<Order> orderPage = orderResource.getOrdersPage(
+		Page<Order> ordersPage = orderResource.getOrdersPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(orderPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(ordersPage.getTotalCount());
 
 		Order order1 = testGetOrdersPage_addOrder(randomOrder());
 

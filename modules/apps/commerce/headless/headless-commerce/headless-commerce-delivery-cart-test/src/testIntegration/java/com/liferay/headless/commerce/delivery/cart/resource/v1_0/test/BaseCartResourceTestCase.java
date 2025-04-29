@@ -1037,10 +1037,10 @@ public abstract class BaseCartResourceTestCase {
 		Long accountId = testGetChannelAccountCartsPage_getAccountId();
 		Long channelId = testGetChannelAccountCartsPage_getChannelId();
 
-		Page<Cart> cartPage = cartResource.getChannelAccountCartsPage(
+		Page<Cart> cartsPage = cartResource.getChannelAccountCartsPage(
 			accountId, channelId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(cartPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(cartsPage.getTotalCount());
 
 		Cart cart1 = testGetChannelAccountCartsPage_addCart(
 			accountId, channelId, randomCart());
@@ -1496,13 +1496,13 @@ public abstract class BaseCartResourceTestCase {
 		String channelExternalReferenceCode =
 			testGetChannelByExternalReferenceCodeChannelExternalReferenceCodeAccountByExternalReferenceCodeAccountExternalReferenceCodeCartsPage_getChannelExternalReferenceCode();
 
-		Page<Cart> cartPage =
+		Page<Cart> cartsPage =
 			cartResource.
 				getChannelByExternalReferenceCodeChannelExternalReferenceCodeAccountByExternalReferenceCodeAccountExternalReferenceCodeCartsPage(
 					accountExternalReferenceCode, channelExternalReferenceCode,
 					null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(cartPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(cartsPage.getTotalCount());
 
 		Cart cart1 =
 			testGetChannelByExternalReferenceCodeChannelExternalReferenceCodeAccountByExternalReferenceCodeAccountExternalReferenceCodeCartsPage_addCart(
@@ -1940,10 +1940,10 @@ public abstract class BaseCartResourceTestCase {
 	public void testGetChannelCartsPageWithPagination() throws Exception {
 		Long channelId = testGetChannelCartsPage_getChannelId();
 
-		Page<Cart> cartPage = cartResource.getChannelCartsPage(
+		Page<Cart> cartsPage = cartResource.getChannelCartsPage(
 			channelId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(cartPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(cartsPage.getTotalCount());
 
 		Cart cart1 = testGetChannelCartsPage_addCart(channelId, randomCart());
 

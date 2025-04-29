@@ -495,11 +495,11 @@ public abstract class BaseOrderNoteResourceTestCase {
 		String externalReferenceCode =
 			testGetOrderByExternalReferenceCodeOrderNotesPage_getExternalReferenceCode();
 
-		Page<OrderNote> orderNotePage =
+		Page<OrderNote> orderNotesPage =
 			orderNoteResource.getOrderByExternalReferenceCodeOrderNotesPage(
 				externalReferenceCode, null);
 
-		int totalCount = GetterUtil.getInteger(orderNotePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(orderNotesPage.getTotalCount());
 
 		OrderNote orderNote1 =
 			testGetOrderByExternalReferenceCodeOrderNotesPage_addOrderNote(
@@ -662,10 +662,10 @@ public abstract class BaseOrderNoteResourceTestCase {
 	public void testGetOrderIdOrderNotesPageWithPagination() throws Exception {
 		Long id = testGetOrderIdOrderNotesPage_getId();
 
-		Page<OrderNote> orderNotePage =
+		Page<OrderNote> orderNotesPage =
 			orderNoteResource.getOrderIdOrderNotesPage(id, null);
 
-		int totalCount = GetterUtil.getInteger(orderNotePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(orderNotesPage.getTotalCount());
 
 		OrderNote orderNote1 = testGetOrderIdOrderNotesPage_addOrderNote(
 			id, randomOrderNote());

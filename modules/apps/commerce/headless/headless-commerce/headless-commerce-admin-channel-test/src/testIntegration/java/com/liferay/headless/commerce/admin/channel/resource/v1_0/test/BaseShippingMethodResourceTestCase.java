@@ -244,12 +244,12 @@ public abstract class BaseShippingMethodResourceTestCase {
 
 		Long channelId = testGetChannelShippingMethodsPage_getChannelId();
 
-		Page<ShippingMethod> shippingMethodPage =
+		Page<ShippingMethod> shippingMethodsPage =
 			shippingMethodResource.getChannelShippingMethodsPage(
 				channelId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			shippingMethodPage.getTotalCount());
+			shippingMethodsPage.getTotalCount());
 
 		ShippingMethod shippingMethod1 =
 			testGetChannelShippingMethodsPage_addShippingMethod(

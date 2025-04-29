@@ -735,12 +735,12 @@ public abstract class BaseWorkflowInstanceResourceTestCase {
 
 	@Test
 	public void testGetWorkflowInstancesPageWithPagination() throws Exception {
-		Page<WorkflowInstance> workflowInstancePage =
+		Page<WorkflowInstance> workflowInstancesPage =
 			workflowInstanceResource.getWorkflowInstancesPage(
 				null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			workflowInstancePage.getTotalCount());
+			workflowInstancesPage.getTotalCount());
 
 		WorkflowInstance workflowInstance1 =
 			testGetWorkflowInstancesPage_addWorkflowInstance(

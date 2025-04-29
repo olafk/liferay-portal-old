@@ -805,10 +805,10 @@ public abstract class BaseSitePageResourceTestCase {
 	public void testGetSiteSitePagesPageWithPagination() throws Exception {
 		Long siteId = testGetSiteSitePagesPage_getSiteId();
 
-		Page<SitePage> sitePagePage = sitePageResource.getSiteSitePagesPage(
+		Page<SitePage> sitePagesPage = sitePageResource.getSiteSitePagesPage(
 			siteId, null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(sitePagePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(sitePagesPage.getTotalCount());
 
 		SitePage sitePage1 = testGetSiteSitePagesPage_addSitePage(
 			siteId, randomSitePage());

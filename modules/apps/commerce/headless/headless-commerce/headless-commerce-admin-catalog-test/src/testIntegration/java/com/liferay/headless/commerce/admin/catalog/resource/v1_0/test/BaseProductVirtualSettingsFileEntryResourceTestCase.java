@@ -498,13 +498,13 @@ public abstract class BaseProductVirtualSettingsFileEntryResourceTestCase {
 			testGetProductVirtualSettingIdProductVirtualSettingsFileEntriesPage_getId();
 
 		Page<ProductVirtualSettingsFileEntry>
-			productVirtualSettingsFileEntryPage =
+			productVirtualSettingsFileEntriesPage =
 				productVirtualSettingsFileEntryResource.
 					getProductVirtualSettingIdProductVirtualSettingsFileEntriesPage(
 						id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productVirtualSettingsFileEntryPage.getTotalCount());
+			productVirtualSettingsFileEntriesPage.getTotalCount());
 
 		ProductVirtualSettingsFileEntry productVirtualSettingsFileEntry1 =
 			testGetProductVirtualSettingIdProductVirtualSettingsFileEntriesPage_addProductVirtualSettingsFileEntry(

@@ -356,13 +356,13 @@ public abstract class BaseProductConfigurationListAccountResourceTestCase {
 			testGetProductConfigurationListByExternalReferenceCodeProductConfigurationListAccountsPage_getExternalReferenceCode();
 
 		Page<ProductConfigurationListAccount>
-			productConfigurationListAccountPage =
+			productConfigurationListAccountsPage =
 				productConfigurationListAccountResource.
 					getProductConfigurationListByExternalReferenceCodeProductConfigurationListAccountsPage(
 						externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productConfigurationListAccountPage.getTotalCount());
+			productConfigurationListAccountsPage.getTotalCount());
 
 		ProductConfigurationListAccount productConfigurationListAccount1 =
 			testGetProductConfigurationListByExternalReferenceCodeProductConfigurationListAccountsPage_addProductConfigurationListAccount(
@@ -686,13 +686,13 @@ public abstract class BaseProductConfigurationListAccountResourceTestCase {
 			testGetProductConfigurationListIdProductConfigurationListAccountsPage_getId();
 
 		Page<ProductConfigurationListAccount>
-			productConfigurationListAccountPage =
+			productConfigurationListAccountsPage =
 				productConfigurationListAccountResource.
 					getProductConfigurationListIdProductConfigurationListAccountsPage(
 						id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productConfigurationListAccountPage.getTotalCount());
+			productConfigurationListAccountsPage.getTotalCount());
 
 		ProductConfigurationListAccount productConfigurationListAccount1 =
 			testGetProductConfigurationListIdProductConfigurationListAccountsPage_addProductConfigurationListAccount(

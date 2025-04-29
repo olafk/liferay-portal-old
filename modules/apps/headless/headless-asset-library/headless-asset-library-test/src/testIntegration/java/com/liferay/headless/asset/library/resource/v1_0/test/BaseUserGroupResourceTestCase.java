@@ -407,12 +407,12 @@ public abstract class BaseUserGroupResourceTestCase {
 		String externalReferenceCode =
 			testGetAssetLibraryByExternalReferenceCodeUserGroupsPage_getExternalReferenceCode();
 
-		Page<UserGroup> userGroupPage =
+		Page<UserGroup> userGroupsPage =
 			userGroupResource.
 				getAssetLibraryByExternalReferenceCodeUserGroupsPage(
 					externalReferenceCode, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(userGroupPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(userGroupsPage.getTotalCount());
 
 		UserGroup userGroup1 =
 			testGetAssetLibraryByExternalReferenceCodeUserGroupsPage_addUserGroup(
@@ -770,11 +770,11 @@ public abstract class BaseUserGroupResourceTestCase {
 		Long assetLibraryId =
 			testGetAssetLibraryUserGroupsPage_getAssetLibraryId();
 
-		Page<UserGroup> userGroupPage =
+		Page<UserGroup> userGroupsPage =
 			userGroupResource.getAssetLibraryUserGroupsPage(
 				assetLibraryId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(userGroupPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(userGroupsPage.getTotalCount());
 
 		UserGroup userGroup1 = testGetAssetLibraryUserGroupsPage_addUserGroup(
 			assetLibraryId, randomUserGroup());

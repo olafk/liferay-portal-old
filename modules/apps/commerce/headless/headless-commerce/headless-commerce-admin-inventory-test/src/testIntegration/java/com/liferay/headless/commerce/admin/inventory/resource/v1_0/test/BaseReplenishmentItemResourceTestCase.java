@@ -974,11 +974,11 @@ public abstract class BaseReplenishmentItemResourceTestCase {
 	public void testGetReplenishmentItemsPageWithPagination() throws Exception {
 		String sku = testGetReplenishmentItemsPage_getSku();
 
-		Page<ReplenishmentItem> replenishmentItemPage =
+		Page<ReplenishmentItem> replenishmentItemsPage =
 			replenishmentItemResource.getReplenishmentItemsPage(sku, null);
 
 		int totalCount = GetterUtil.getInteger(
-			replenishmentItemPage.getTotalCount());
+			replenishmentItemsPage.getTotalCount());
 
 		ReplenishmentItem replenishmentItem1 =
 			testGetReplenishmentItemsPage_addReplenishmentItem(
@@ -1245,12 +1245,12 @@ public abstract class BaseReplenishmentItemResourceTestCase {
 		Long warehouseId =
 			testGetWarehouseIdReplenishmentItemsPage_getWarehouseId();
 
-		Page<ReplenishmentItem> replenishmentItemPage =
+		Page<ReplenishmentItem> replenishmentItemsPage =
 			replenishmentItemResource.getWarehouseIdReplenishmentItemsPage(
 				warehouseId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			replenishmentItemPage.getTotalCount());
+			replenishmentItemsPage.getTotalCount());
 
 		ReplenishmentItem replenishmentItem1 =
 			testGetWarehouseIdReplenishmentItemsPage_addReplenishmentItem(

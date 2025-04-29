@@ -273,13 +273,13 @@ public abstract class BasePinResourceTestCase {
 		String productExternalReferenceCode =
 			testGetChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodePinsPage_getProductExternalReferenceCode();
 
-		Page<Pin> pinPage =
+		Page<Pin> pinsPage =
 			pinResource.
 				getChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodePinsPage(
 					channelExternalReferenceCode, productExternalReferenceCode,
 					null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(pinPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(pinsPage.getTotalCount());
 
 		Pin pin1 =
 			testGetChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodePinsPage_addPin(
@@ -639,10 +639,10 @@ public abstract class BasePinResourceTestCase {
 		Long channelId = testGetChannelProductPinsPage_getChannelId();
 		Long productId = testGetChannelProductPinsPage_getProductId();
 
-		Page<Pin> pinPage = pinResource.getChannelProductPinsPage(
+		Page<Pin> pinsPage = pinResource.getChannelProductPinsPage(
 			channelId, productId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(pinPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(pinsPage.getTotalCount());
 
 		Pin pin1 = testGetChannelProductPinsPage_addPin(
 			channelId, productId, randomPin());

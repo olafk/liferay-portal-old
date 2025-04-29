@@ -327,13 +327,13 @@ public abstract class BaseDiscountOrderTypeResourceTestCase {
 		String externalReferenceCode =
 			testGetDiscountByExternalReferenceCodeDiscountOrderTypesPage_getExternalReferenceCode();
 
-		Page<DiscountOrderType> discountOrderTypePage =
+		Page<DiscountOrderType> discountOrderTypesPage =
 			discountOrderTypeResource.
 				getDiscountByExternalReferenceCodeDiscountOrderTypesPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			discountOrderTypePage.getTotalCount());
+			discountOrderTypesPage.getTotalCount());
 
 		DiscountOrderType discountOrderType1 =
 			testGetDiscountByExternalReferenceCodeDiscountOrderTypesPage_addDiscountOrderType(
@@ -623,12 +623,12 @@ public abstract class BaseDiscountOrderTypeResourceTestCase {
 
 		Long id = testGetDiscountIdDiscountOrderTypesPage_getId();
 
-		Page<DiscountOrderType> discountOrderTypePage =
+		Page<DiscountOrderType> discountOrderTypesPage =
 			discountOrderTypeResource.getDiscountIdDiscountOrderTypesPage(
 				id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			discountOrderTypePage.getTotalCount());
+			discountOrderTypesPage.getTotalCount());
 
 		DiscountOrderType discountOrderType1 =
 			testGetDiscountIdDiscountOrderTypesPage_addDiscountOrderType(

@@ -216,9 +216,9 @@ public abstract class BaseSiteResourceTestCase {
 
 	@Test
 	public void testGetSitesPageWithPagination() throws Exception {
-		Page<Site> sitePage = siteResource.getSitesPage(null, null, null);
+		Page<Site> sitesPage = siteResource.getSitesPage(null, null, null);
 
-		int totalCount = GetterUtil.getInteger(sitePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(sitesPage.getTotalCount());
 
 		Site site1 = testGetSitesPage_addSite(randomSite());
 

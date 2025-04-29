@@ -510,13 +510,13 @@ public abstract class BaseSkuResourceTestCase {
 		String productExternalReferenceCode =
 			testGetChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodeSkusPage_getProductExternalReferenceCode();
 
-		Page<Sku> skuPage =
+		Page<Sku> skusPage =
 			skuResource.
 				getChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodeSkusPage(
 					channelExternalReferenceCode, productExternalReferenceCode,
 					null, null, null);
 
-		int totalCount = GetterUtil.getInteger(skuPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(skusPage.getTotalCount());
 
 		Sku sku1 =
 			testGetChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodeSkusPage_addSku(
@@ -874,10 +874,10 @@ public abstract class BaseSkuResourceTestCase {
 		Long channelId = testGetChannelProductSkusPage_getChannelId();
 		Long productId = testGetChannelProductSkusPage_getProductId();
 
-		Page<Sku> skuPage = skuResource.getChannelProductSkusPage(
+		Page<Sku> skusPage = skuResource.getChannelProductSkusPage(
 			channelId, productId, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(skuPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(skusPage.getTotalCount());
 
 		Sku sku1 = testGetChannelProductSkusPage_addSku(
 			channelId, productId, randomSku());

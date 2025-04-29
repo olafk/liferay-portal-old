@@ -305,10 +305,10 @@ public abstract class BaseAttachmentResourceTestCase {
 	public void testGetCartAttachmentsPageWithPagination() throws Exception {
 		Long cartId = testGetCartAttachmentsPage_getCartId();
 
-		Page<Attachment> attachmentPage =
+		Page<Attachment> attachmentsPage =
 			attachmentResource.getCartAttachmentsPage(cartId, null);
 
-		int totalCount = GetterUtil.getInteger(attachmentPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(attachmentsPage.getTotalCount());
 
 		Attachment attachment1 = testGetCartAttachmentsPage_addAttachment(
 			cartId, randomAttachment());
@@ -472,11 +472,11 @@ public abstract class BaseAttachmentResourceTestCase {
 		String externalReferenceCode =
 			testGetCartByExternalReferenceCodeAttachmentsPage_getExternalReferenceCode();
 
-		Page<Attachment> attachmentPage =
+		Page<Attachment> attachmentsPage =
 			attachmentResource.getCartByExternalReferenceCodeAttachmentsPage(
 				externalReferenceCode, null);
 
-		int totalCount = GetterUtil.getInteger(attachmentPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(attachmentsPage.getTotalCount());
 
 		Attachment attachment1 =
 			testGetCartByExternalReferenceCodeAttachmentsPage_addAttachment(

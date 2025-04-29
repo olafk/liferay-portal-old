@@ -239,11 +239,11 @@ public abstract class BaseNodeMetricResourceTestCase {
 	public void testGetProcessNodeMetricsPageWithPagination() throws Exception {
 		Long processId = testGetProcessNodeMetricsPage_getProcessId();
 
-		Page<NodeMetric> nodeMetricPage =
+		Page<NodeMetric> nodeMetricsPage =
 			nodeMetricResource.getProcessNodeMetricsPage(
 				processId, null, null, null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(nodeMetricPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(nodeMetricsPage.getTotalCount());
 
 		NodeMetric nodeMetric1 = testGetProcessNodeMetricsPage_addNodeMetric(
 			processId, randomNodeMetric());

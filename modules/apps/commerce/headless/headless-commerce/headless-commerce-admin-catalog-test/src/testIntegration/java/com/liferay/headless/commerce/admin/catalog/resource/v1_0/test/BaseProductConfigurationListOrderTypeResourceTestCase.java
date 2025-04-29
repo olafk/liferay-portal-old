@@ -361,13 +361,13 @@ public abstract class BaseProductConfigurationListOrderTypeResourceTestCase {
 			testGetProductConfigurationListByExternalReferenceCodeProductConfigurationListOrderTypesPage_getExternalReferenceCode();
 
 		Page<ProductConfigurationListOrderType>
-			productConfigurationListOrderTypePage =
+			productConfigurationListOrderTypesPage =
 				productConfigurationListOrderTypeResource.
 					getProductConfigurationListByExternalReferenceCodeProductConfigurationListOrderTypesPage(
 						externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productConfigurationListOrderTypePage.getTotalCount());
+			productConfigurationListOrderTypesPage.getTotalCount());
 
 		ProductConfigurationListOrderType productConfigurationListOrderType1 =
 			testGetProductConfigurationListByExternalReferenceCodeProductConfigurationListOrderTypesPage_addProductConfigurationListOrderType(
@@ -695,13 +695,13 @@ public abstract class BaseProductConfigurationListOrderTypeResourceTestCase {
 			testGetProductConfigurationListIdProductConfigurationListOrderTypesPage_getId();
 
 		Page<ProductConfigurationListOrderType>
-			productConfigurationListOrderTypePage =
+			productConfigurationListOrderTypesPage =
 				productConfigurationListOrderTypeResource.
 					getProductConfigurationListIdProductConfigurationListOrderTypesPage(
 						id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productConfigurationListOrderTypePage.getTotalCount());
+			productConfigurationListOrderTypesPage.getTotalCount());
 
 		ProductConfigurationListOrderType productConfigurationListOrderType1 =
 			testGetProductConfigurationListIdProductConfigurationListOrderTypesPage_addProductConfigurationListOrderType(

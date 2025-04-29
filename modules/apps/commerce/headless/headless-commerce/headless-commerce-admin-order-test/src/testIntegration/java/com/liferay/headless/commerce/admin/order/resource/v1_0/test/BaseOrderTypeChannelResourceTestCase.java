@@ -325,13 +325,13 @@ public abstract class BaseOrderTypeChannelResourceTestCase {
 		String externalReferenceCode =
 			testGetOrderTypeByExternalReferenceCodeOrderTypeChannelsPage_getExternalReferenceCode();
 
-		Page<OrderTypeChannel> orderTypeChannelPage =
+		Page<OrderTypeChannel> orderTypeChannelsPage =
 			orderTypeChannelResource.
 				getOrderTypeByExternalReferenceCodeOrderTypeChannelsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			orderTypeChannelPage.getTotalCount());
+			orderTypeChannelsPage.getTotalCount());
 
 		OrderTypeChannel orderTypeChannel1 =
 			testGetOrderTypeByExternalReferenceCodeOrderTypeChannelsPage_addOrderTypeChannel(
@@ -521,12 +521,12 @@ public abstract class BaseOrderTypeChannelResourceTestCase {
 
 		Long id = testGetOrderTypeIdOrderTypeChannelsPage_getId();
 
-		Page<OrderTypeChannel> orderTypeChannelPage =
+		Page<OrderTypeChannel> orderTypeChannelsPage =
 			orderTypeChannelResource.getOrderTypeIdOrderTypeChannelsPage(
 				id, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			orderTypeChannelPage.getTotalCount());
+			orderTypeChannelsPage.getTotalCount());
 
 		OrderTypeChannel orderTypeChannel1 =
 			testGetOrderTypeIdOrderTypeChannelsPage_addOrderTypeChannel(

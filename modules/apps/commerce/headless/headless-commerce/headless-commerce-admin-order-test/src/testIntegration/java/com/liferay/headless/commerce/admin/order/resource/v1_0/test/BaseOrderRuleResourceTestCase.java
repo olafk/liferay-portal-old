@@ -970,10 +970,10 @@ public abstract class BaseOrderRuleResourceTestCase {
 
 	@Test
 	public void testGetOrderRulesPageWithPagination() throws Exception {
-		Page<OrderRule> orderRulePage = orderRuleResource.getOrderRulesPage(
+		Page<OrderRule> orderRulesPage = orderRuleResource.getOrderRulesPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(orderRulePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(orderRulesPage.getTotalCount());
 
 		OrderRule orderRule1 = testGetOrderRulesPage_addOrderRule(
 			randomOrderRule());

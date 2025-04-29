@@ -334,30 +334,30 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 					com.liferay.portal.kernel.search.Sort[] sorts)
 		throws Exception {
 
-		Page<TaxonomyVocabulary> taxonomyVocabularyPage =
+		Page<TaxonomyVocabulary> taxonomyVocabulariesPage =
 			doGetAssetLibraryTaxonomyVocabulariesPage(
 				assetLibraryId, search, aggregation, filter, pagination, sorts);
 
 		for (TaxonomyVocabulary taxonomyVocabulary :
-				taxonomyVocabularyPage.getItems()) {
+				taxonomyVocabulariesPage.getItems()) {
 
 			taxonomyVocabulary.setPermissions(
 				() -> NestedFieldsSupplier.supply(
 					"permissions",
 					nestedField -> {
-						Page<Permission> permissionPage =
+						Page<Permission> permissionsPage =
 							getTaxonomyVocabularyPermissionsPage(
 								taxonomyVocabulary.getId(), null);
 
 						Collection<Permission> permissions =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return permissions.toArray(
 							new Permission[permissions.size()]);
 					}));
 		}
 
-		return taxonomyVocabularyPage;
+		return taxonomyVocabulariesPage;
 	}
 
 	protected abstract TaxonomyVocabulary
@@ -424,12 +424,12 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 			() -> NestedFieldsSupplier.supply(
 				"permissions",
 				nestedField -> {
-					Page<Permission> permissionPage =
+					Page<Permission> permissionsPage =
 						getTaxonomyVocabularyPermissionsPage(
 							getTaxonomyVocabulary.getId(), null);
 
 					Collection<Permission> permissions =
-						permissionPage.getItems();
+						permissionsPage.getItems();
 
 					return permissions.toArray(
 						new Permission[permissions.size()]);
@@ -589,30 +589,30 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 				sorts)
 		throws Exception {
 
-		Page<TaxonomyVocabulary> taxonomyVocabularyPage =
+		Page<TaxonomyVocabulary> taxonomyVocabulariesPage =
 			doGetSiteTaxonomyVocabulariesPage(
 				siteId, search, aggregation, filter, pagination, sorts);
 
 		for (TaxonomyVocabulary taxonomyVocabulary :
-				taxonomyVocabularyPage.getItems()) {
+				taxonomyVocabulariesPage.getItems()) {
 
 			taxonomyVocabulary.setPermissions(
 				() -> NestedFieldsSupplier.supply(
 					"permissions",
 					nestedField -> {
-						Page<Permission> permissionPage =
+						Page<Permission> permissionsPage =
 							getTaxonomyVocabularyPermissionsPage(
 								taxonomyVocabulary.getId(), null);
 
 						Collection<Permission> permissions =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return permissions.toArray(
 							new Permission[permissions.size()]);
 					}));
 		}
 
-		return taxonomyVocabularyPage;
+		return taxonomyVocabulariesPage;
 	}
 
 	protected abstract TaxonomyVocabulary
@@ -679,12 +679,12 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 			() -> NestedFieldsSupplier.supply(
 				"permissions",
 				nestedField -> {
-					Page<Permission> permissionPage =
+					Page<Permission> permissionsPage =
 						getTaxonomyVocabularyPermissionsPage(
 							getTaxonomyVocabulary.getId(), null);
 
 					Collection<Permission> permissions =
-						permissionPage.getItems();
+						permissionsPage.getItems();
 
 					return permissions.toArray(
 						new Permission[permissions.size()]);
@@ -832,30 +832,30 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 				sorts)
 		throws Exception {
 
-		Page<TaxonomyVocabulary> taxonomyVocabularyPage =
+		Page<TaxonomyVocabulary> taxonomyVocabulariesPage =
 			doGetTaxonomyVocabulariesPage(
 				search, aggregation, filter, pagination, sorts);
 
 		for (TaxonomyVocabulary taxonomyVocabulary :
-				taxonomyVocabularyPage.getItems()) {
+				taxonomyVocabulariesPage.getItems()) {
 
 			taxonomyVocabulary.setPermissions(
 				() -> NestedFieldsSupplier.supply(
 					"permissions",
 					nestedField -> {
-						Page<Permission> permissionPage =
+						Page<Permission> permissionsPage =
 							getTaxonomyVocabularyPermissionsPage(
 								taxonomyVocabulary.getId(), null);
 
 						Collection<Permission> permissions =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return permissions.toArray(
 							new Permission[permissions.size()]);
 					}));
 		}
 
-		return taxonomyVocabularyPage;
+		return taxonomyVocabulariesPage;
 	}
 
 	protected abstract TaxonomyVocabulary doGetTaxonomyVocabulary(
@@ -909,12 +909,12 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 			() -> NestedFieldsSupplier.supply(
 				"permissions",
 				nestedField -> {
-					Page<Permission> permissionPage =
+					Page<Permission> permissionsPage =
 						getTaxonomyVocabularyPermissionsPage(
 							getTaxonomyVocabulary.getId(), null);
 
 					Collection<Permission> permissions =
-						permissionPage.getItems();
+						permissionsPage.getItems();
 
 					return permissions.toArray(
 						new Permission[permissions.size()]);
@@ -1215,7 +1215,7 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 				assetLibraryId, taxonomyVocabulary);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage =
+			Page<Permission> permissionsPage =
 				putTaxonomyVocabularyPermissionsPage(
 					postTaxonomyVocabulary.getId(), permissions);
 
@@ -1224,7 +1224,7 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);
@@ -1424,7 +1424,7 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 			doPostSiteTaxonomyVocabulary(siteId, taxonomyVocabulary);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage =
+			Page<Permission> permissionsPage =
 				putTaxonomyVocabularyPermissionsPage(
 					postTaxonomyVocabulary.getId(), permissions);
 
@@ -1433,7 +1433,7 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);
@@ -1611,7 +1611,7 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 			taxonomyVocabulary);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage =
+			Page<Permission> permissionsPage =
 				putTaxonomyVocabularyPermissionsPage(
 					postTaxonomyVocabulary.getId(), permissions);
 
@@ -1620,7 +1620,7 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);
@@ -1734,7 +1734,7 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 				assetLibraryId, externalReferenceCode, taxonomyVocabulary);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage =
+			Page<Permission> permissionsPage =
 				putTaxonomyVocabularyPermissionsPage(
 					putTaxonomyVocabulary.getId(), permissions);
 
@@ -1743,7 +1743,7 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);
@@ -1903,7 +1903,7 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 				siteId, externalReferenceCode, taxonomyVocabulary);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage =
+			Page<Permission> permissionsPage =
 				putTaxonomyVocabularyPermissionsPage(
 					putTaxonomyVocabulary.getId(), permissions);
 
@@ -1912,7 +1912,7 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);
@@ -2054,7 +2054,7 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 			taxonomyVocabularyId, taxonomyVocabulary);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage =
+			Page<Permission> permissionsPage =
 				putTaxonomyVocabularyPermissionsPage(
 					putTaxonomyVocabulary.getId(), permissions);
 
@@ -2063,7 +2063,7 @@ public abstract class BaseTaxonomyVocabularyResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);

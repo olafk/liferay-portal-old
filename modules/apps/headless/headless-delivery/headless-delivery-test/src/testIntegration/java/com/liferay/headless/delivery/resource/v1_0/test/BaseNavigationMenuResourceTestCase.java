@@ -1021,11 +1021,11 @@ public abstract class BaseNavigationMenuResourceTestCase {
 
 		Long siteId = testGetSiteNavigationMenusPage_getSiteId();
 
-		Page<NavigationMenu> navigationMenuPage =
+		Page<NavigationMenu> navigationMenusPage =
 			navigationMenuResource.getSiteNavigationMenusPage(siteId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			navigationMenuPage.getTotalCount());
+			navigationMenusPage.getTotalCount());
 
 		NavigationMenu navigationMenu1 =
 			testGetSiteNavigationMenusPage_addNavigationMenu(

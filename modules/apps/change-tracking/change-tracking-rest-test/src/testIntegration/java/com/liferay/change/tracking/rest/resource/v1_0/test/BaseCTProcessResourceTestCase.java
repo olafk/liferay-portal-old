@@ -774,10 +774,10 @@ public abstract class BaseCTProcessResourceTestCase {
 
 	@Test
 	public void testGetCTProcessesPageWithPagination() throws Exception {
-		Page<CTProcess> ctProcessPage = ctProcessResource.getCTProcessesPage(
+		Page<CTProcess> ctProcessesPage = ctProcessResource.getCTProcessesPage(
 			null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(ctProcessPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(ctProcessesPage.getTotalCount());
 
 		CTProcess ctProcess1 = testGetCTProcessesPage_addCTProcess(
 			randomCTProcess());

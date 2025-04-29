@@ -297,13 +297,13 @@ public abstract class BaseAccountMemberResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountMembersPage_getExternalReferenceCode();
 
-		Page<AccountMember> accountMemberPage =
+		Page<AccountMember> accountMembersPage =
 			accountMemberResource.
 				getAccountByExternalReferenceCodeAccountMembersPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountMemberPage.getTotalCount());
+			accountMembersPage.getTotalCount());
 
 		AccountMember accountMember1 =
 			testGetAccountByExternalReferenceCodeAccountMembersPage_addAccountMember(
@@ -505,11 +505,11 @@ public abstract class BaseAccountMemberResourceTestCase {
 
 		Long id = testGetAccountIdAccountMembersPage_getId();
 
-		Page<AccountMember> accountMemberPage =
+		Page<AccountMember> accountMembersPage =
 			accountMemberResource.getAccountIdAccountMembersPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountMemberPage.getTotalCount());
+			accountMembersPage.getTotalCount());
 
 		AccountMember accountMember1 =
 			testGetAccountIdAccountMembersPage_addAccountMember(

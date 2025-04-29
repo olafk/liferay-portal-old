@@ -326,13 +326,13 @@ public abstract class BaseDiscountAccountResourceTestCase {
 		String externalReferenceCode =
 			testGetDiscountByExternalReferenceCodeDiscountAccountsPage_getExternalReferenceCode();
 
-		Page<DiscountAccount> discountAccountPage =
+		Page<DiscountAccount> discountAccountsPage =
 			discountAccountResource.
 				getDiscountByExternalReferenceCodeDiscountAccountsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			discountAccountPage.getTotalCount());
+			discountAccountsPage.getTotalCount());
 
 		DiscountAccount discountAccount1 =
 			testGetDiscountByExternalReferenceCodeDiscountAccountsPage_addDiscountAccount(
@@ -619,12 +619,12 @@ public abstract class BaseDiscountAccountResourceTestCase {
 
 		Long id = testGetDiscountIdDiscountAccountsPage_getId();
 
-		Page<DiscountAccount> discountAccountPage =
+		Page<DiscountAccount> discountAccountsPage =
 			discountAccountResource.getDiscountIdDiscountAccountsPage(
 				id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			discountAccountPage.getTotalCount());
+			discountAccountsPage.getTotalCount());
 
 		DiscountAccount discountAccount1 =
 			testGetDiscountIdDiscountAccountsPage_addDiscountAccount(

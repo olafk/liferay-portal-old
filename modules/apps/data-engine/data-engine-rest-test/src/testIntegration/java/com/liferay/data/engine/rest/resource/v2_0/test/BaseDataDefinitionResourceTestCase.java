@@ -823,13 +823,13 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		String contentType =
 			testGetDataDefinitionByContentTypeContentTypePage_getContentType();
 
-		Page<DataDefinition> dataDefinitionPage =
+		Page<DataDefinition> dataDefinitionsPage =
 			dataDefinitionResource.
 				getDataDefinitionByContentTypeContentTypePage(
 					contentType, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			dataDefinitionPage.getTotalCount());
+			dataDefinitionsPage.getTotalCount());
 
 		DataDefinition dataDefinition1 =
 			testGetDataDefinitionByContentTypeContentTypePage_addDataDefinition(
@@ -1611,13 +1611,13 @@ public abstract class BaseDataDefinitionResourceTestCase {
 		String contentType =
 			testGetSiteDataDefinitionByContentTypeContentTypePage_getContentType();
 
-		Page<DataDefinition> dataDefinitionPage =
+		Page<DataDefinition> dataDefinitionsPage =
 			dataDefinitionResource.
 				getSiteDataDefinitionByContentTypeContentTypePage(
 					siteId, contentType, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			dataDefinitionPage.getTotalCount());
+			dataDefinitionsPage.getTotalCount());
 
 		DataDefinition dataDefinition1 =
 			testGetSiteDataDefinitionByContentTypeContentTypePage_addDataDefinition(

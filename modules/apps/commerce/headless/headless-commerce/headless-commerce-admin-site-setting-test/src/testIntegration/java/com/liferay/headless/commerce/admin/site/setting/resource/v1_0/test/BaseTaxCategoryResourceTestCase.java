@@ -434,11 +434,12 @@ public abstract class BaseTaxCategoryResourceTestCase {
 		Long groupId =
 			testGetCommerceAdminSiteSettingGroupTaxCategoryPage_getGroupId();
 
-		Page<TaxCategory> taxCategoryPage =
+		Page<TaxCategory> taxCategoriesPage =
 			taxCategoryResource.getCommerceAdminSiteSettingGroupTaxCategoryPage(
 				groupId, null);
 
-		int totalCount = GetterUtil.getInteger(taxCategoryPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			taxCategoriesPage.getTotalCount());
 
 		TaxCategory taxCategory1 =
 			testGetCommerceAdminSiteSettingGroupTaxCategoryPage_addTaxCategory(

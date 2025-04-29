@@ -965,10 +965,10 @@ public abstract class BasePaymentResourceTestCase {
 
 	@Test
 	public void testGetPaymentsPageWithPagination() throws Exception {
-		Page<Payment> paymentPage = paymentResource.getPaymentsPage(
+		Page<Payment> paymentsPage = paymentResource.getPaymentsPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(paymentPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(paymentsPage.getTotalCount());
 
 		Payment payment1 = testGetPaymentsPage_addPayment(randomPayment());
 

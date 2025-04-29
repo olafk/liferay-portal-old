@@ -223,12 +223,12 @@ public abstract class BaseContactAccountGroupResourceTestCase {
 	public void testGetContactAccountGroupsPageWithPagination()
 		throws Exception {
 
-		Page<ContactAccountGroup> contactAccountGroupPage =
+		Page<ContactAccountGroup> contactAccountGroupsPage =
 			contactAccountGroupResource.getContactAccountGroupsPage(
 				null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			contactAccountGroupPage.getTotalCount());
+			contactAccountGroupsPage.getTotalCount());
 
 		ContactAccountGroup contactAccountGroup1 =
 			testGetContactAccountGroupsPage_addContactAccountGroup(

@@ -437,12 +437,12 @@ public abstract class BaseObjectViewResourceTestCase {
 		String externalReferenceCode =
 			testGetObjectDefinitionByExternalReferenceCodeObjectViewsPage_getExternalReferenceCode();
 
-		Page<ObjectView> objectViewPage =
+		Page<ObjectView> objectViewsPage =
 			objectViewResource.
 				getObjectDefinitionByExternalReferenceCodeObjectViewsPage(
 					externalReferenceCode, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(objectViewPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(objectViewsPage.getTotalCount());
 
 		ObjectView objectView1 =
 			testGetObjectDefinitionByExternalReferenceCodeObjectViewsPage_addObjectView(
@@ -794,11 +794,11 @@ public abstract class BaseObjectViewResourceTestCase {
 		Long objectDefinitionId =
 			testGetObjectDefinitionObjectViewsPage_getObjectDefinitionId();
 
-		Page<ObjectView> objectViewPage =
+		Page<ObjectView> objectViewsPage =
 			objectViewResource.getObjectDefinitionObjectViewsPage(
 				objectDefinitionId, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(objectViewPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(objectViewsPage.getTotalCount());
 
 		ObjectView objectView1 =
 			testGetObjectDefinitionObjectViewsPage_addObjectView(

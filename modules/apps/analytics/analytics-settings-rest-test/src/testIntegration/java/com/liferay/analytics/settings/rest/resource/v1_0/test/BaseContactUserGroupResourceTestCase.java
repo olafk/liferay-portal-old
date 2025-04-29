@@ -220,11 +220,11 @@ public abstract class BaseContactUserGroupResourceTestCase {
 
 	@Test
 	public void testGetContactUserGroupsPageWithPagination() throws Exception {
-		Page<ContactUserGroup> contactUserGroupPage =
+		Page<ContactUserGroup> contactUserGroupsPage =
 			contactUserGroupResource.getContactUserGroupsPage(null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			contactUserGroupPage.getTotalCount());
+			contactUserGroupsPage.getTotalCount());
 
 		ContactUserGroup contactUserGroup1 =
 			testGetContactUserGroupsPage_addContactUserGroup(

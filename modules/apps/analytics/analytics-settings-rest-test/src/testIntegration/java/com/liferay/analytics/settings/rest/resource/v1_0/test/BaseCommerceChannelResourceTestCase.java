@@ -224,11 +224,11 @@ public abstract class BaseCommerceChannelResourceTestCase {
 
 	@Test
 	public void testGetCommerceChannelsPageWithPagination() throws Exception {
-		Page<CommerceChannel> commerceChannelPage =
+		Page<CommerceChannel> commerceChannelsPage =
 			commerceChannelResource.getCommerceChannelsPage(null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			commerceChannelPage.getTotalCount());
+			commerceChannelsPage.getTotalCount());
 
 		CommerceChannel commerceChannel1 =
 			testGetCommerceChannelsPage_addCommerceChannel(

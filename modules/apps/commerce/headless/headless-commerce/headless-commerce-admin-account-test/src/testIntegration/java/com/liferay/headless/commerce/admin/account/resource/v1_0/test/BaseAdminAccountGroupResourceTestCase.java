@@ -328,13 +328,13 @@ public abstract class BaseAdminAccountGroupResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountGroupsPage_getExternalReferenceCode();
 
-		Page<AdminAccountGroup> adminAccountGroupPage =
+		Page<AdminAccountGroup> adminAccountGroupsPage =
 			adminAccountGroupResource.
 				getAccountByExternalReferenceCodeAccountGroupsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			adminAccountGroupPage.getTotalCount());
+			adminAccountGroupsPage.getTotalCount());
 
 		AdminAccountGroup adminAccountGroup1 =
 			testGetAccountByExternalReferenceCodeAccountGroupsPage_addAdminAccountGroup(
@@ -836,12 +836,12 @@ public abstract class BaseAdminAccountGroupResourceTestCase {
 
 	@Test
 	public void testGetAccountGroupsPageWithPagination() throws Exception {
-		Page<AdminAccountGroup> adminAccountGroupPage =
+		Page<AdminAccountGroup> adminAccountGroupsPage =
 			adminAccountGroupResource.getAccountGroupsPage(
 				null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			adminAccountGroupPage.getTotalCount());
+			adminAccountGroupsPage.getTotalCount());
 
 		AdminAccountGroup adminAccountGroup1 =
 			testGetAccountGroupsPage_addAdminAccountGroup(
@@ -1150,11 +1150,11 @@ public abstract class BaseAdminAccountGroupResourceTestCase {
 
 		Long id = testGetAccountIdAccountGroupsPage_getId();
 
-		Page<AdminAccountGroup> adminAccountGroupPage =
+		Page<AdminAccountGroup> adminAccountGroupsPage =
 			adminAccountGroupResource.getAccountIdAccountGroupsPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			adminAccountGroupPage.getTotalCount());
+			adminAccountGroupsPage.getTotalCount());
 
 		AdminAccountGroup adminAccountGroup1 =
 			testGetAccountIdAccountGroupsPage_addAdminAccountGroup(

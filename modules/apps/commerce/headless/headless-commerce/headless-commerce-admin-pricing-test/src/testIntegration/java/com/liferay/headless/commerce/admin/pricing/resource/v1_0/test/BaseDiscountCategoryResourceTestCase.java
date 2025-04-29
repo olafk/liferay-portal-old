@@ -386,13 +386,13 @@ public abstract class BaseDiscountCategoryResourceTestCase {
 		String externalReferenceCode =
 			testGetDiscountByExternalReferenceCodeDiscountCategoriesPage_getExternalReferenceCode();
 
-		Page<DiscountCategory> discountCategoryPage =
+		Page<DiscountCategory> discountCategoriesPage =
 			discountCategoryResource.
 				getDiscountByExternalReferenceCodeDiscountCategoriesPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			discountCategoryPage.getTotalCount());
+			discountCategoriesPage.getTotalCount());
 
 		DiscountCategory discountCategory1 =
 			testGetDiscountByExternalReferenceCodeDiscountCategoriesPage_addDiscountCategory(
@@ -587,12 +587,12 @@ public abstract class BaseDiscountCategoryResourceTestCase {
 
 		Long id = testGetDiscountIdDiscountCategoriesPage_getId();
 
-		Page<DiscountCategory> discountCategoryPage =
+		Page<DiscountCategory> discountCategoriesPage =
 			discountCategoryResource.getDiscountIdDiscountCategoriesPage(
 				id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			discountCategoryPage.getTotalCount());
+			discountCategoriesPage.getTotalCount());
 
 		DiscountCategory discountCategory1 =
 			testGetDiscountIdDiscountCategoriesPage_addDiscountCategory(

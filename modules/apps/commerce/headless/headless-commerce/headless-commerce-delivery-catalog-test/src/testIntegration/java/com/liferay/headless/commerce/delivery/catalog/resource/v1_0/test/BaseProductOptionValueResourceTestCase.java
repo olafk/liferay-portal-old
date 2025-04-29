@@ -309,7 +309,7 @@ public abstract class BaseProductOptionValueResourceTestCase {
 		String productOptionExternalReferenceCode =
 			testGetChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodeProductOptionByExternalReferenceCodeProductOptionExternalReferenceCodeProductOptionValuesPage_getProductOptionExternalReferenceCode();
 
-		Page<ProductOptionValue> productOptionValuePage =
+		Page<ProductOptionValue> productOptionValuesPage =
 			productOptionValueResource.
 				getChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodeProductOptionByExternalReferenceCodeProductOptionExternalReferenceCodeProductOptionValuesPage(
 					channelExternalReferenceCode, productExternalReferenceCode,
@@ -317,7 +317,7 @@ public abstract class BaseProductOptionValueResourceTestCase {
 					null);
 
 		int totalCount = GetterUtil.getInteger(
-			productOptionValuePage.getTotalCount());
+			productOptionValuesPage.getTotalCount());
 
 		ProductOptionValue productOptionValue1 =
 			testGetChannelByExternalReferenceCodeChannelExternalReferenceCodeProductByExternalReferenceCodeProductExternalReferenceCodeProductOptionByExternalReferenceCodeProductOptionExternalReferenceCodeProductOptionValuesPage_addProductOptionValue(
@@ -599,14 +599,14 @@ public abstract class BaseProductOptionValueResourceTestCase {
 		Long productOptionId =
 			testGetChannelProductProductOptionProductOptionValuesPage_getProductOptionId();
 
-		Page<ProductOptionValue> productOptionValuePage =
+		Page<ProductOptionValue> productOptionValuesPage =
 			productOptionValueResource.
 				getChannelProductProductOptionProductOptionValuesPage(
 					channelId, productId, productOptionId, null, null, null,
 					null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productOptionValuePage.getTotalCount());
+			productOptionValuesPage.getTotalCount());
 
 		ProductOptionValue productOptionValue1 =
 			testGetChannelProductProductOptionProductOptionValuesPage_addProductOptionValue(

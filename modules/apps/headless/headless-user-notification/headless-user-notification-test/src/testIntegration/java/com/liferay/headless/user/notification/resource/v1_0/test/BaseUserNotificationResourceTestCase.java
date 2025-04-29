@@ -338,12 +338,12 @@ public abstract class BaseUserNotificationResourceTestCase {
 	public void testGetMyUserNotificationsPageWithPagination()
 		throws Exception {
 
-		Page<UserNotification> userNotificationPage =
+		Page<UserNotification> userNotificationsPage =
 			userNotificationResource.getMyUserNotificationsPage(
 				null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			userNotificationPage.getTotalCount());
+			userNotificationsPage.getTotalCount());
 
 		UserNotification userNotification1 =
 			testGetMyUserNotificationsPage_addUserNotification(
@@ -765,12 +765,12 @@ public abstract class BaseUserNotificationResourceTestCase {
 		Long userAccountId =
 			testGetUserAccountUserNotificationsPage_getUserAccountId();
 
-		Page<UserNotification> userNotificationPage =
+		Page<UserNotification> userNotificationsPage =
 			userNotificationResource.getUserAccountUserNotificationsPage(
 				userAccountId, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			userNotificationPage.getTotalCount());
+			userNotificationsPage.getTotalCount());
 
 		UserNotification userNotification1 =
 			testGetUserAccountUserNotificationsPage_addUserNotification(

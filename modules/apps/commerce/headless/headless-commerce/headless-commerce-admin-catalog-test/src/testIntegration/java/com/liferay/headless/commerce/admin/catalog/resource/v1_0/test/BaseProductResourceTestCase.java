@@ -1266,10 +1266,10 @@ public abstract class BaseProductResourceTestCase {
 
 	@Test
 	public void testGetProductsPageWithPagination() throws Exception {
-		Page<Product> productPage = productResource.getProductsPage(
+		Page<Product> productsPage = productResource.getProductsPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(productPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(productsPage.getTotalCount());
 
 		Product product1 = testGetProductsPage_addProduct(randomProduct());
 

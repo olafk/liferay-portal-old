@@ -649,12 +649,12 @@ public abstract class BaseShipmentItemResourceTestCase {
 		String externalReferenceCode =
 			testGetShipmentByExternalReferenceCodeItemsPage_getExternalReferenceCode();
 
-		Page<ShipmentItem> shipmentItemPage =
+		Page<ShipmentItem> shipmentItemsPage =
 			shipmentItemResource.getShipmentByExternalReferenceCodeItemsPage(
 				externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			shipmentItemPage.getTotalCount());
+			shipmentItemsPage.getTotalCount());
 
 		ShipmentItem shipmentItem1 =
 			testGetShipmentByExternalReferenceCodeItemsPage_addShipmentItem(
@@ -1138,11 +1138,11 @@ public abstract class BaseShipmentItemResourceTestCase {
 	public void testGetShipmentItemsPageWithPagination() throws Exception {
 		Long shipmentId = testGetShipmentItemsPage_getShipmentId();
 
-		Page<ShipmentItem> shipmentItemPage =
+		Page<ShipmentItem> shipmentItemsPage =
 			shipmentItemResource.getShipmentItemsPage(shipmentId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			shipmentItemPage.getTotalCount());
+			shipmentItemsPage.getTotalCount());
 
 		ShipmentItem shipmentItem1 = testGetShipmentItemsPage_addShipmentItem(
 			shipmentId, randomShipmentItem());

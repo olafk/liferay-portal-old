@@ -939,10 +939,10 @@ public abstract class BaseCatalogResourceTestCase {
 
 	@Test
 	public void testGetCatalogsPageWithPagination() throws Exception {
-		Page<Catalog> catalogPage = catalogResource.getCatalogsPage(
+		Page<Catalog> catalogsPage = catalogResource.getCatalogsPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(catalogPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(catalogsPage.getTotalCount());
 
 		Catalog catalog1 = testGetCatalogsPage_addCatalog(randomCatalog());
 

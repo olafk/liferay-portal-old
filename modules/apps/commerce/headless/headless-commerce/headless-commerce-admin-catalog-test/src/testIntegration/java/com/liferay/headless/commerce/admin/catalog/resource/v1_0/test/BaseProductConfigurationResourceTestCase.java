@@ -1257,13 +1257,13 @@ public abstract class BaseProductConfigurationResourceTestCase {
 		String externalReferenceCode =
 			testGetProductConfigurationListByExternalReferenceCodeProductConfigurationsPage_getExternalReferenceCode();
 
-		Page<ProductConfiguration> productConfigurationPage =
+		Page<ProductConfiguration> productConfigurationsPage =
 			productConfigurationResource.
 				getProductConfigurationListByExternalReferenceCodeProductConfigurationsPage(
 					externalReferenceCode, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productConfigurationPage.getTotalCount());
+			productConfigurationsPage.getTotalCount());
 
 		ProductConfiguration productConfiguration1 =
 			testGetProductConfigurationListByExternalReferenceCodeProductConfigurationsPage_addProductConfiguration(
@@ -1752,13 +1752,13 @@ public abstract class BaseProductConfigurationResourceTestCase {
 		Long id =
 			testGetProductConfigurationListIdProductConfigurationsPage_getId();
 
-		Page<ProductConfiguration> productConfigurationPage =
+		Page<ProductConfiguration> productConfigurationsPage =
 			productConfigurationResource.
 				getProductConfigurationListIdProductConfigurationsPage(
 					id, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productConfigurationPage.getTotalCount());
+			productConfigurationsPage.getTotalCount());
 
 		ProductConfiguration productConfiguration1 =
 			testGetProductConfigurationListIdProductConfigurationsPage_addProductConfiguration(

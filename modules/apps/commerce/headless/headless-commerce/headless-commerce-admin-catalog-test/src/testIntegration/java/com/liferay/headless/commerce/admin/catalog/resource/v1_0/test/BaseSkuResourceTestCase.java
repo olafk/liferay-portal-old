@@ -483,11 +483,11 @@ public abstract class BaseSkuResourceTestCase {
 		String externalReferenceCode =
 			testGetProductByExternalReferenceCodeSkusPage_getExternalReferenceCode();
 
-		Page<Sku> skuPage =
+		Page<Sku> skusPage =
 			skuResource.getProductByExternalReferenceCodeSkusPage(
 				externalReferenceCode, null);
 
-		int totalCount = GetterUtil.getInteger(skuPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(skusPage.getTotalCount());
 
 		Sku sku1 = testGetProductByExternalReferenceCodeSkusPage_addSku(
 			externalReferenceCode, randomSku());
@@ -640,9 +640,9 @@ public abstract class BaseSkuResourceTestCase {
 	public void testGetProductIdSkusPageWithPagination() throws Exception {
 		Long id = testGetProductIdSkusPage_getId();
 
-		Page<Sku> skuPage = skuResource.getProductIdSkusPage(id, null);
+		Page<Sku> skusPage = skuResource.getProductIdSkusPage(id, null);
 
-		int totalCount = GetterUtil.getInteger(skuPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(skusPage.getTotalCount());
 
 		Sku sku1 = testGetProductIdSkusPage_addSku(id, randomSku());
 
@@ -1243,9 +1243,9 @@ public abstract class BaseSkuResourceTestCase {
 
 	@Test
 	public void testGetSkusPageWithPagination() throws Exception {
-		Page<Sku> skuPage = skuResource.getSkusPage(null, null, null, null);
+		Page<Sku> skusPage = skuResource.getSkusPage(null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(skuPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(skusPage.getTotalCount());
 
 		Sku sku1 = testGetSkusPage_addSku(randomSku());
 
@@ -1620,10 +1620,10 @@ public abstract class BaseSkuResourceTestCase {
 
 	@Test
 	public void testGetUnitOfMeasureSkusPageWithPagination() throws Exception {
-		Page<Sku> skuPage = skuResource.getUnitOfMeasureSkusPage(
+		Page<Sku> skusPage = skuResource.getUnitOfMeasureSkusPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(skuPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(skusPage.getTotalCount());
 
 		Sku sku1 = testGetUnitOfMeasureSkusPage_addSku(randomSku());
 

@@ -565,10 +565,10 @@ public abstract class BaseRegionResourceTestCase {
 	public void testGetCountryRegionsPageWithPagination() throws Exception {
 		Long countryId = testGetCountryRegionsPage_getCountryId();
 
-		Page<Region> regionPage = regionResource.getCountryRegionsPage(
+		Page<Region> regionsPage = regionResource.getCountryRegionsPage(
 			countryId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(regionPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(regionsPage.getTotalCount());
 
 		Region region1 = testGetCountryRegionsPage_addRegion(
 			countryId, randomRegion());
@@ -1116,10 +1116,10 @@ public abstract class BaseRegionResourceTestCase {
 
 	@Test
 	public void testGetRegionsPageWithPagination() throws Exception {
-		Page<Region> regionPage = regionResource.getRegionsPage(
+		Page<Region> regionsPage = regionResource.getRegionsPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(regionPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(regionsPage.getTotalCount());
 
 		Region region1 = testGetRegionsPage_addRegion(randomRegion());
 

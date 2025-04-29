@@ -988,11 +988,11 @@ public abstract class BaseProductGroupResourceTestCase {
 
 	@Test
 	public void testGetProductGroupsPageWithPagination() throws Exception {
-		Page<ProductGroup> productGroupPage =
+		Page<ProductGroup> productGroupsPage =
 			productGroupResource.getProductGroupsPage(null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productGroupPage.getTotalCount());
+			productGroupsPage.getTotalCount());
 
 		ProductGroup productGroup1 = testGetProductGroupsPage_addProductGroup(
 			randomProductGroup());

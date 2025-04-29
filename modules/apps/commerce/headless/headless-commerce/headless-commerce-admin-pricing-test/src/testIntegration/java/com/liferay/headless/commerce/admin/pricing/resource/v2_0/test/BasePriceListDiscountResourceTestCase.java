@@ -326,13 +326,13 @@ public abstract class BasePriceListDiscountResourceTestCase {
 		String externalReferenceCode =
 			testGetPriceListByExternalReferenceCodePriceListDiscountsPage_getExternalReferenceCode();
 
-		Page<PriceListDiscount> priceListDiscountPage =
+		Page<PriceListDiscount> priceListDiscountsPage =
 			priceListDiscountResource.
 				getPriceListByExternalReferenceCodePriceListDiscountsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			priceListDiscountPage.getTotalCount());
+			priceListDiscountsPage.getTotalCount());
 
 		PriceListDiscount priceListDiscount1 =
 			testGetPriceListByExternalReferenceCodePriceListDiscountsPage_addPriceListDiscount(
@@ -523,12 +523,12 @@ public abstract class BasePriceListDiscountResourceTestCase {
 
 		Long id = testGetPriceListIdPriceListDiscountsPage_getId();
 
-		Page<PriceListDiscount> priceListDiscountPage =
+		Page<PriceListDiscount> priceListDiscountsPage =
 			priceListDiscountResource.getPriceListIdPriceListDiscountsPage(
 				id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			priceListDiscountPage.getTotalCount());
+			priceListDiscountsPage.getTotalCount());
 
 		PriceListDiscount priceListDiscount1 =
 			testGetPriceListIdPriceListDiscountsPage_addPriceListDiscount(

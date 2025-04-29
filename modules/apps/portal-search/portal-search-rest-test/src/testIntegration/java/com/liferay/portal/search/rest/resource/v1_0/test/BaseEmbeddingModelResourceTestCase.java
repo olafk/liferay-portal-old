@@ -218,12 +218,12 @@ public abstract class BaseEmbeddingModelResourceTestCase {
 	public void testGetEmbeddingEmbeddingModelsPageWithPagination()
 		throws Exception {
 
-		Page<EmbeddingModel> embeddingModelPage =
+		Page<EmbeddingModel> embeddingModelsPage =
 			embeddingModelResource.getEmbeddingEmbeddingModelsPage(
 				null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			embeddingModelPage.getTotalCount());
+			embeddingModelsPage.getTotalCount());
 
 		EmbeddingModel embeddingModel1 =
 			testGetEmbeddingEmbeddingModelsPage_addEmbeddingModel(

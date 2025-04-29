@@ -1131,11 +1131,12 @@ public abstract class BaseBlogPostingResourceTestCase {
 	public void testGetSiteBlogPostingsPageWithPagination() throws Exception {
 		Long siteId = testGetSiteBlogPostingsPage_getSiteId();
 
-		Page<BlogPosting> blogPostingPage =
+		Page<BlogPosting> blogPostingsPage =
 			blogPostingResource.getSiteBlogPostingsPage(
 				siteId, null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(blogPostingPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			blogPostingsPage.getTotalCount());
 
 		BlogPosting blogPosting1 = testGetSiteBlogPostingsPage_addBlogPosting(
 			siteId, randomBlogPosting());

@@ -549,12 +549,12 @@ public abstract class BaseNotificationQueueEntryResourceTestCase {
 	public void testGetNotificationQueueEntriesPageWithPagination()
 		throws Exception {
 
-		Page<NotificationQueueEntry> notificationQueueEntryPage =
+		Page<NotificationQueueEntry> notificationQueueEntriesPage =
 			notificationQueueEntryResource.getNotificationQueueEntriesPage(
 				null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			notificationQueueEntryPage.getTotalCount());
+			notificationQueueEntriesPage.getTotalCount());
 
 		NotificationQueueEntry notificationQueueEntry1 =
 			testGetNotificationQueueEntriesPage_addNotificationQueueEntry(

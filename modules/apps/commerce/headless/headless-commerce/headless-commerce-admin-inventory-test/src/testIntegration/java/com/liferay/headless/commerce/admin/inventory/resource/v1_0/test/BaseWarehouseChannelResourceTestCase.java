@@ -326,13 +326,13 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 		String externalReferenceCode =
 			testGetWarehouseByExternalReferenceCodeWarehouseChannelsPage_getExternalReferenceCode();
 
-		Page<WarehouseChannel> warehouseChannelPage =
+		Page<WarehouseChannel> warehouseChannelsPage =
 			warehouseChannelResource.
 				getWarehouseByExternalReferenceCodeWarehouseChannelsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			warehouseChannelPage.getTotalCount());
+			warehouseChannelsPage.getTotalCount());
 
 		WarehouseChannel warehouseChannel1 =
 			testGetWarehouseByExternalReferenceCodeWarehouseChannelsPage_addWarehouseChannel(
@@ -620,12 +620,12 @@ public abstract class BaseWarehouseChannelResourceTestCase {
 
 		Long id = testGetWarehouseIdWarehouseChannelsPage_getId();
 
-		Page<WarehouseChannel> warehouseChannelPage =
+		Page<WarehouseChannel> warehouseChannelsPage =
 			warehouseChannelResource.getWarehouseIdWarehouseChannelsPage(
 				id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			warehouseChannelPage.getTotalCount());
+			warehouseChannelsPage.getTotalCount());
 
 		WarehouseChannel warehouseChannel1 =
 			testGetWarehouseIdWarehouseChannelsPage_addWarehouseChannel(

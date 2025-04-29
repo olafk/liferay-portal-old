@@ -260,12 +260,12 @@ public abstract class BaseRelatedProductResourceTestCase {
 		Long productId =
 			testGetChannelProductRelatedProductsPage_getProductId();
 
-		Page<RelatedProduct> relatedProductPage =
+		Page<RelatedProduct> relatedProductsPage =
 			relatedProductResource.getChannelProductRelatedProductsPage(
 				channelId, productId, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			relatedProductPage.getTotalCount());
+			relatedProductsPage.getTotalCount());
 
 		RelatedProduct relatedProduct1 =
 			testGetChannelProductRelatedProductsPage_addRelatedProduct(

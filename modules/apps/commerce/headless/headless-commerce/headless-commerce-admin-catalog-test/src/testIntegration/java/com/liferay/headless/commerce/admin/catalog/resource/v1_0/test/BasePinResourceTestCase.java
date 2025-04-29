@@ -354,11 +354,11 @@ public abstract class BasePinResourceTestCase {
 		String externalReferenceCode =
 			testGetProductByExternalReferenceCodePinsPage_getExternalReferenceCode();
 
-		Page<Pin> pinPage =
+		Page<Pin> pinsPage =
 			pinResource.getProductByExternalReferenceCodePinsPage(
 				externalReferenceCode, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(pinPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(pinsPage.getTotalCount());
 
 		Pin pin1 = testGetProductByExternalReferenceCodePinsPage_addPin(
 			externalReferenceCode, randomPin());
@@ -660,10 +660,10 @@ public abstract class BasePinResourceTestCase {
 	public void testGetProductIdPinsPageWithPagination() throws Exception {
 		Long id = testGetProductIdPinsPage_getId();
 
-		Page<Pin> pinPage = pinResource.getProductIdPinsPage(
+		Page<Pin> pinsPage = pinResource.getProductIdPinsPage(
 			id, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(pinPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(pinsPage.getTotalCount());
 
 		Pin pin1 = testGetProductIdPinsPage_addPin(id, randomPin());
 

@@ -530,12 +530,12 @@ public abstract class BaseDocumentShortcutResourceTestCase {
 		Long assetLibraryId =
 			testGetAssetLibraryDocumentShortcutsPage_getAssetLibraryId();
 
-		Page<DocumentShortcut> documentShortcutPage =
+		Page<DocumentShortcut> documentShortcutsPage =
 			documentShortcutResource.getAssetLibraryDocumentShortcutsPage(
 				assetLibraryId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			documentShortcutPage.getTotalCount());
+			documentShortcutsPage.getTotalCount());
 
 		DocumentShortcut documentShortcut1 =
 			testGetAssetLibraryDocumentShortcutsPage_addDocumentShortcut(
@@ -1214,11 +1214,11 @@ public abstract class BaseDocumentShortcutResourceTestCase {
 
 		Long siteId = testGetSiteDocumentShortcutsPage_getSiteId();
 
-		Page<DocumentShortcut> documentShortcutPage =
+		Page<DocumentShortcut> documentShortcutsPage =
 			documentShortcutResource.getSiteDocumentShortcutsPage(siteId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			documentShortcutPage.getTotalCount());
+			documentShortcutsPage.getTotalCount());
 
 		DocumentShortcut documentShortcut1 =
 			testGetSiteDocumentShortcutsPage_addDocumentShortcut(

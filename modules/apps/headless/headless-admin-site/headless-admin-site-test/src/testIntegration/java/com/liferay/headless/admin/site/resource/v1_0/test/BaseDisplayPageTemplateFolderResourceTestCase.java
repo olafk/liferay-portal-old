@@ -454,13 +454,13 @@ public abstract class BaseDisplayPageTemplateFolderResourceTestCase {
 		String siteExternalReferenceCode =
 			testGetSiteSiteByExternalReferenceCodeDisplayPageTemplateFoldersPage_getSiteExternalReferenceCode();
 
-		Page<DisplayPageTemplateFolder> displayPageTemplateFolderPage =
+		Page<DisplayPageTemplateFolder> displayPageTemplateFoldersPage =
 			displayPageTemplateFolderResource.
 				getSiteSiteByExternalReferenceCodeDisplayPageTemplateFoldersPage(
 					siteExternalReferenceCode, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			displayPageTemplateFolderPage.getTotalCount());
+			displayPageTemplateFoldersPage.getTotalCount());
 
 		DisplayPageTemplateFolder displayPageTemplateFolder1 =
 			testGetSiteSiteByExternalReferenceCodeDisplayPageTemplateFoldersPage_addDisplayPageTemplateFolder(

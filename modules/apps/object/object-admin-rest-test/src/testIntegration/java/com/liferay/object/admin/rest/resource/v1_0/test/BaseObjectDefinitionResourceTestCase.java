@@ -986,12 +986,12 @@ public abstract class BaseObjectDefinitionResourceTestCase {
 
 	@Test
 	public void testGetObjectDefinitionsPageWithPagination() throws Exception {
-		Page<ObjectDefinition> objectDefinitionPage =
+		Page<ObjectDefinition> objectDefinitionsPage =
 			objectDefinitionResource.getObjectDefinitionsPage(
 				null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			objectDefinitionPage.getTotalCount());
+			objectDefinitionsPage.getTotalCount());
 
 		ObjectDefinition objectDefinition1 =
 			testGetObjectDefinitionsPage_addObjectDefinition(

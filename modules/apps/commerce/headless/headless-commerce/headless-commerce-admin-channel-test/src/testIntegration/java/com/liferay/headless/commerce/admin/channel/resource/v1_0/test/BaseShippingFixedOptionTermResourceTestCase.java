@@ -442,13 +442,13 @@ public abstract class BaseShippingFixedOptionTermResourceTestCase {
 		Long id =
 			testGetShippingFixedOptionIdShippingFixedOptionTermsPage_getId();
 
-		Page<ShippingFixedOptionTerm> shippingFixedOptionTermPage =
+		Page<ShippingFixedOptionTerm> shippingFixedOptionTermsPage =
 			shippingFixedOptionTermResource.
 				getShippingFixedOptionIdShippingFixedOptionTermsPage(
 					id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			shippingFixedOptionTermPage.getTotalCount());
+			shippingFixedOptionTermsPage.getTotalCount());
 
 		ShippingFixedOptionTerm shippingFixedOptionTerm1 =
 			testGetShippingFixedOptionIdShippingFixedOptionTermsPage_addShippingFixedOptionTerm(

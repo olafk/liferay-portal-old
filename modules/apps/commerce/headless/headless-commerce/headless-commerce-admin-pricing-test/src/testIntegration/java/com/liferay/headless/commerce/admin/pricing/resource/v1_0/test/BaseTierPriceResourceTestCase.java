@@ -497,12 +497,12 @@ public abstract class BaseTierPriceResourceTestCase {
 		String externalReferenceCode =
 			testGetPriceEntryByExternalReferenceCodeTierPricesPage_getExternalReferenceCode();
 
-		Page<TierPrice> tierPricePage =
+		Page<TierPrice> tierPricesPage =
 			tierPriceResource.
 				getPriceEntryByExternalReferenceCodeTierPricesPage(
 					externalReferenceCode, null);
 
-		int totalCount = GetterUtil.getInteger(tierPricePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(tierPricesPage.getTotalCount());
 
 		TierPrice tierPrice1 =
 			testGetPriceEntryByExternalReferenceCodeTierPricesPage_addTierPrice(
@@ -677,10 +677,10 @@ public abstract class BaseTierPriceResourceTestCase {
 
 		Long id = testGetPriceEntryIdTierPricesPage_getId();
 
-		Page<TierPrice> tierPricePage =
+		Page<TierPrice> tierPricesPage =
 			tierPriceResource.getPriceEntryIdTierPricesPage(id, null);
 
-		int totalCount = GetterUtil.getInteger(tierPricePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(tierPricesPage.getTotalCount());
 
 		TierPrice tierPrice1 = testGetPriceEntryIdTierPricesPage_addTierPrice(
 			id, randomTierPrice());

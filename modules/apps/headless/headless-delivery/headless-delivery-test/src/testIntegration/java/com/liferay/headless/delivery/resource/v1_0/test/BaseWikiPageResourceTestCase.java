@@ -737,10 +737,11 @@ public abstract class BaseWikiPageResourceTestCase {
 	public void testGetWikiNodeWikiPagesPageWithPagination() throws Exception {
 		Long wikiNodeId = testGetWikiNodeWikiPagesPage_getWikiNodeId();
 
-		Page<WikiPage> wikiPagePage = wikiPageResource.getWikiNodeWikiPagesPage(
-			wikiNodeId, null, null, null, null, null);
+		Page<WikiPage> wikiPagesPage =
+			wikiPageResource.getWikiNodeWikiPagesPage(
+				wikiNodeId, null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(wikiPagePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(wikiPagesPage.getTotalCount());
 
 		WikiPage wikiPage1 = testGetWikiNodeWikiPagesPage_addWikiPage(
 			wikiNodeId, randomWikiPage());

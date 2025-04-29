@@ -927,9 +927,10 @@ public abstract class BaseTermResourceTestCase {
 
 	@Test
 	public void testGetTermsPageWithPagination() throws Exception {
-		Page<Term> termPage = termResource.getTermsPage(null, null, null, null);
+		Page<Term> termsPage = termResource.getTermsPage(
+			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(termPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(termsPage.getTotalCount());
 
 		Term term1 = testGetTermsPage_addTerm(randomTerm());
 

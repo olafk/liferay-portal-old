@@ -976,12 +976,12 @@ public abstract class BaseListTypeDefinitionResourceTestCase {
 	public void testGetListTypeDefinitionsPageWithPagination()
 		throws Exception {
 
-		Page<ListTypeDefinition> listTypeDefinitionPage =
+		Page<ListTypeDefinition> listTypeDefinitionsPage =
 			listTypeDefinitionResource.getListTypeDefinitionsPage(
 				null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			listTypeDefinitionPage.getTotalCount());
+			listTypeDefinitionsPage.getTotalCount());
 
 		ListTypeDefinition listTypeDefinition1 =
 			testGetListTypeDefinitionsPage_addListTypeDefinition(

@@ -874,9 +874,9 @@ public abstract class BaseDiscountResourceTestCase {
 
 	@Test
 	public void testGetDiscountsPageWithPagination() throws Exception {
-		Page<Discount> discountPage = discountResource.getDiscountsPage(null);
+		Page<Discount> discountsPage = discountResource.getDiscountsPage(null);
 
-		int totalCount = GetterUtil.getInteger(discountPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(discountsPage.getTotalCount());
 
 		Discount discount1 = testGetDiscountsPage_addDiscount(randomDiscount());
 

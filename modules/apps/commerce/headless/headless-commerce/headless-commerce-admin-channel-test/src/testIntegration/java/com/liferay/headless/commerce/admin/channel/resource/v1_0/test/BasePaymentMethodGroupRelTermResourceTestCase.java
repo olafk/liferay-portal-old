@@ -444,13 +444,13 @@ public abstract class BasePaymentMethodGroupRelTermResourceTestCase {
 		Long id =
 			testGetPaymentMethodGroupRelIdPaymentMethodGroupRelTermsPage_getId();
 
-		Page<PaymentMethodGroupRelTerm> paymentMethodGroupRelTermPage =
+		Page<PaymentMethodGroupRelTerm> paymentMethodGroupRelTermsPage =
 			paymentMethodGroupRelTermResource.
 				getPaymentMethodGroupRelIdPaymentMethodGroupRelTermsPage(
 					id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			paymentMethodGroupRelTermPage.getTotalCount());
+			paymentMethodGroupRelTermsPage.getTotalCount());
 
 		PaymentMethodGroupRelTerm paymentMethodGroupRelTerm1 =
 			testGetPaymentMethodGroupRelIdPaymentMethodGroupRelTermsPage_addPaymentMethodGroupRelTerm(

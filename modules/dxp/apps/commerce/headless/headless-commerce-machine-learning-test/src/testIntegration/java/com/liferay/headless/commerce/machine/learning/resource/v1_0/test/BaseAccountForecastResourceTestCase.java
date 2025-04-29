@@ -223,12 +223,12 @@ public abstract class BaseAccountForecastResourceTestCase {
 	public void testGetAccountForecastsByMonthlyRevenuePageWithPagination()
 		throws Exception {
 
-		Page<AccountForecast> accountForecastPage =
+		Page<AccountForecast> accountForecastsPage =
 			accountForecastResource.getAccountForecastsByMonthlyRevenuePage(
 				null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountForecastPage.getTotalCount());
+			accountForecastsPage.getTotalCount());
 
 		AccountForecast accountForecast1 =
 			testGetAccountForecastsByMonthlyRevenuePage_addAccountForecast(

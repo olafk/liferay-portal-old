@@ -434,13 +434,13 @@ public abstract class BasePageTemplateSetResourceTestCase {
 		String siteExternalReferenceCode =
 			testGetSiteSiteByExternalReferenceCodePageTemplateSetsPage_getSiteExternalReferenceCode();
 
-		Page<PageTemplateSet> pageTemplateSetPage =
+		Page<PageTemplateSet> pageTemplateSetsPage =
 			pageTemplateSetResource.
 				getSiteSiteByExternalReferenceCodePageTemplateSetsPage(
 					siteExternalReferenceCode, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			pageTemplateSetPage.getTotalCount());
+			pageTemplateSetsPage.getTotalCount());
 
 		PageTemplateSet pageTemplateSet1 =
 			testGetSiteSiteByExternalReferenceCodePageTemplateSetsPage_addPageTemplateSet(

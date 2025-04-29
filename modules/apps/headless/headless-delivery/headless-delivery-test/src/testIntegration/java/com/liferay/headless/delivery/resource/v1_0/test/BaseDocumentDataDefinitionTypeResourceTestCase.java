@@ -625,13 +625,13 @@ public abstract class BaseDocumentDataDefinitionTypeResourceTestCase {
 		Long assetLibraryId =
 			testGetAssetLibraryDocumentDataDefinitionTypesPage_getAssetLibraryId();
 
-		Page<DocumentDataDefinitionType> documentDataDefinitionTypePage =
+		Page<DocumentDataDefinitionType> documentDataDefinitionTypesPage =
 			documentDataDefinitionTypeResource.
 				getAssetLibraryDocumentDataDefinitionTypesPage(
 					assetLibraryId, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			documentDataDefinitionTypePage.getTotalCount());
+			documentDataDefinitionTypesPage.getTotalCount());
 
 		DocumentDataDefinitionType documentDataDefinitionType1 =
 			testGetAssetLibraryDocumentDataDefinitionTypesPage_addDocumentDataDefinitionType(
@@ -1456,13 +1456,13 @@ public abstract class BaseDocumentDataDefinitionTypeResourceTestCase {
 
 		Long siteId = testGetSiteDocumentDataDefinitionTypesPage_getSiteId();
 
-		Page<DocumentDataDefinitionType> documentDataDefinitionTypePage =
+		Page<DocumentDataDefinitionType> documentDataDefinitionTypesPage =
 			documentDataDefinitionTypeResource.
 				getSiteDocumentDataDefinitionTypesPage(
 					siteId, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			documentDataDefinitionTypePage.getTotalCount());
+			documentDataDefinitionTypesPage.getTotalCount());
 
 		DocumentDataDefinitionType documentDataDefinitionType1 =
 			testGetSiteDocumentDataDefinitionTypesPage_addDocumentDataDefinitionType(

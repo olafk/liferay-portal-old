@@ -446,13 +446,13 @@ public abstract class BaseObjectLayoutResourceTestCase {
 		String externalReferenceCode =
 			testGetObjectDefinitionByExternalReferenceCodeObjectLayoutsPage_getExternalReferenceCode();
 
-		Page<ObjectLayout> objectLayoutPage =
+		Page<ObjectLayout> objectLayoutsPage =
 			objectLayoutResource.
 				getObjectDefinitionByExternalReferenceCodeObjectLayoutsPage(
 					externalReferenceCode, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			objectLayoutPage.getTotalCount());
+			objectLayoutsPage.getTotalCount());
 
 		ObjectLayout objectLayout1 =
 			testGetObjectDefinitionByExternalReferenceCodeObjectLayoutsPage_addObjectLayout(
@@ -814,12 +814,12 @@ public abstract class BaseObjectLayoutResourceTestCase {
 		Long objectDefinitionId =
 			testGetObjectDefinitionObjectLayoutsPage_getObjectDefinitionId();
 
-		Page<ObjectLayout> objectLayoutPage =
+		Page<ObjectLayout> objectLayoutsPage =
 			objectLayoutResource.getObjectDefinitionObjectLayoutsPage(
 				objectDefinitionId, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			objectLayoutPage.getTotalCount());
+			objectLayoutsPage.getTotalCount());
 
 		ObjectLayout objectLayout1 =
 			testGetObjectDefinitionObjectLayoutsPage_addObjectLayout(

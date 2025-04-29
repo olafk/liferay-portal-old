@@ -425,11 +425,11 @@ public abstract class BaseWishListResourceTestCase {
 		String externalReferenceCode =
 			testGetChannelByExternalReferenceCodeWishListsPage_getExternalReferenceCode();
 
-		Page<WishList> wishListPage =
+		Page<WishList> wishListsPage =
 			wishListResource.getChannelByExternalReferenceCodeWishListsPage(
 				externalReferenceCode, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(wishListPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(wishListsPage.getTotalCount());
 
 		WishList wishList1 =
 			testGetChannelByExternalReferenceCodeWishListsPage_addWishList(
@@ -598,10 +598,10 @@ public abstract class BaseWishListResourceTestCase {
 	public void testGetChannelWishListsPageWithPagination() throws Exception {
 		Long channelId = testGetChannelWishListsPage_getChannelId();
 
-		Page<WishList> wishListPage = wishListResource.getChannelWishListsPage(
+		Page<WishList> wishListsPage = wishListResource.getChannelWishListsPage(
 			channelId, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(wishListPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(wishListsPage.getTotalCount());
 
 		WishList wishList1 = testGetChannelWishListsPage_addWishList(
 			channelId, randomWishList());

@@ -894,13 +894,13 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 		Long parentMessageBoardSectionId =
 			testGetMessageBoardSectionMessageBoardSectionsPage_getParentMessageBoardSectionId();
 
-		Page<MessageBoardSection> messageBoardSectionPage =
+		Page<MessageBoardSection> messageBoardSectionsPage =
 			messageBoardSectionResource.
 				getMessageBoardSectionMessageBoardSectionsPage(
 					parentMessageBoardSectionId, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			messageBoardSectionPage.getTotalCount());
+			messageBoardSectionsPage.getTotalCount());
 
 		MessageBoardSection messageBoardSection1 =
 			testGetMessageBoardSectionMessageBoardSectionsPage_addMessageBoardSection(
@@ -1594,12 +1594,12 @@ public abstract class BaseMessageBoardSectionResourceTestCase {
 
 		Long siteId = testGetSiteMessageBoardSectionsPage_getSiteId();
 
-		Page<MessageBoardSection> messageBoardSectionPage =
+		Page<MessageBoardSection> messageBoardSectionsPage =
 			messageBoardSectionResource.getSiteMessageBoardSectionsPage(
 				siteId, null, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			messageBoardSectionPage.getTotalCount());
+			messageBoardSectionsPage.getTotalCount());
 
 		MessageBoardSection messageBoardSection1 =
 			testGetSiteMessageBoardSectionsPage_addMessageBoardSection(

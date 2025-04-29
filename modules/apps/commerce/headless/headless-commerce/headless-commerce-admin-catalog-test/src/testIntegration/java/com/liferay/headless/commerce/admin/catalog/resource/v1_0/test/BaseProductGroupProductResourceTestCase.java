@@ -393,13 +393,13 @@ public abstract class BaseProductGroupProductResourceTestCase {
 		String externalReferenceCode =
 			testGetProductGroupByExternalReferenceCodeProductGroupProductsPage_getExternalReferenceCode();
 
-		Page<ProductGroupProduct> productGroupProductPage =
+		Page<ProductGroupProduct> productGroupProductsPage =
 			productGroupProductResource.
 				getProductGroupByExternalReferenceCodeProductGroupProductsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productGroupProductPage.getTotalCount());
+			productGroupProductsPage.getTotalCount());
 
 		ProductGroupProduct productGroupProduct1 =
 			testGetProductGroupByExternalReferenceCodeProductGroupProductsPage_addProductGroupProduct(
@@ -611,12 +611,12 @@ public abstract class BaseProductGroupProductResourceTestCase {
 
 		Long id = testGetProductGroupIdProductGroupProductsPage_getId();
 
-		Page<ProductGroupProduct> productGroupProductPage =
+		Page<ProductGroupProduct> productGroupProductsPage =
 			productGroupProductResource.
 				getProductGroupIdProductGroupProductsPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productGroupProductPage.getTotalCount());
+			productGroupProductsPage.getTotalCount());
 
 		ProductGroupProduct productGroupProduct1 =
 			testGetProductGroupIdProductGroupProductsPage_addProductGroupProduct(

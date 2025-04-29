@@ -223,12 +223,12 @@ public abstract class BaseContactOrganizationResourceTestCase {
 	public void testGetContactOrganizationsPageWithPagination()
 		throws Exception {
 
-		Page<ContactOrganization> contactOrganizationPage =
+		Page<ContactOrganization> contactOrganizationsPage =
 			contactOrganizationResource.getContactOrganizationsPage(
 				null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			contactOrganizationPage.getTotalCount());
+			contactOrganizationsPage.getTotalCount());
 
 		ContactOrganization contactOrganization1 =
 			testGetContactOrganizationsPage_addContactOrganization(

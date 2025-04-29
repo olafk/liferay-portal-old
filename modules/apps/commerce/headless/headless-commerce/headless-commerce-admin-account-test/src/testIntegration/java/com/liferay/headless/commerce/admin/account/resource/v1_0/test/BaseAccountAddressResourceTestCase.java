@@ -976,13 +976,13 @@ public abstract class BaseAccountAddressResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountAddressesPage_getExternalReferenceCode();
 
-		Page<AccountAddress> accountAddressPage =
+		Page<AccountAddress> accountAddressesPage =
 			accountAddressResource.
 				getAccountByExternalReferenceCodeAccountAddressesPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountAddressPage.getTotalCount());
+			accountAddressesPage.getTotalCount());
 
 		AccountAddress accountAddress1 =
 			testGetAccountByExternalReferenceCodeAccountAddressesPage_addAccountAddress(
@@ -1172,11 +1172,11 @@ public abstract class BaseAccountAddressResourceTestCase {
 
 		Long id = testGetAccountIdAccountAddressesPage_getId();
 
-		Page<AccountAddress> accountAddressPage =
+		Page<AccountAddress> accountAddressesPage =
 			accountAddressResource.getAccountIdAccountAddressesPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountAddressPage.getTotalCount());
+			accountAddressesPage.getTotalCount());
 
 		AccountAddress accountAddress1 =
 			testGetAccountIdAccountAddressesPage_addAccountAddress(

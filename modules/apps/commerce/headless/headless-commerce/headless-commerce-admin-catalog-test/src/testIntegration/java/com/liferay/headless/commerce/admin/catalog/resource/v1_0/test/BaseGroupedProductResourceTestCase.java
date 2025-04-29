@@ -384,13 +384,13 @@ public abstract class BaseGroupedProductResourceTestCase {
 		String externalReferenceCode =
 			testGetProductByExternalReferenceCodeGroupedProductsPage_getExternalReferenceCode();
 
-		Page<GroupedProduct> groupedProductPage =
+		Page<GroupedProduct> groupedProductsPage =
 			groupedProductResource.
 				getProductByExternalReferenceCodeGroupedProductsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			groupedProductPage.getTotalCount());
+			groupedProductsPage.getTotalCount());
 
 		GroupedProduct groupedProduct1 =
 			testGetProductByExternalReferenceCodeGroupedProductsPage_addGroupedProduct(
@@ -580,11 +580,11 @@ public abstract class BaseGroupedProductResourceTestCase {
 
 		Long id = testGetProductIdGroupedProductsPage_getId();
 
-		Page<GroupedProduct> groupedProductPage =
+		Page<GroupedProduct> groupedProductsPage =
 			groupedProductResource.getProductIdGroupedProductsPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			groupedProductPage.getTotalCount());
+			groupedProductsPage.getTotalCount());
 
 		GroupedProduct groupedProduct1 =
 			testGetProductIdGroupedProductsPage_addGroupedProduct(

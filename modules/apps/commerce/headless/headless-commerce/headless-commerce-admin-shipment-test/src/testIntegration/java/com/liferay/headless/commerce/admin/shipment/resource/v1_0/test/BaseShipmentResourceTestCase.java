@@ -957,10 +957,10 @@ public abstract class BaseShipmentResourceTestCase {
 
 	@Test
 	public void testGetShipmentsPageWithPagination() throws Exception {
-		Page<Shipment> shipmentPage = shipmentResource.getShipmentsPage(
+		Page<Shipment> shipmentsPage = shipmentResource.getShipmentsPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(shipmentPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(shipmentsPage.getTotalCount());
 
 		Shipment shipment1 = testGetShipmentsPage_addShipment(randomShipment());
 

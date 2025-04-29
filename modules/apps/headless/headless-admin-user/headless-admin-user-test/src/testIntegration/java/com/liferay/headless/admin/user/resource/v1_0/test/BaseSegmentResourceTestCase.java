@@ -237,10 +237,10 @@ public abstract class BaseSegmentResourceTestCase {
 	public void testGetSiteSegmentsPageWithPagination() throws Exception {
 		Long siteId = testGetSiteSegmentsPage_getSiteId();
 
-		Page<Segment> segmentPage = segmentResource.getSiteSegmentsPage(
+		Page<Segment> segmentsPage = segmentResource.getSiteSegmentsPage(
 			siteId, null);
 
-		int totalCount = GetterUtil.getInteger(segmentPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(segmentsPage.getTotalCount());
 
 		Segment segment1 = testGetSiteSegmentsPage_addSegment(
 			siteId, randomSegment());

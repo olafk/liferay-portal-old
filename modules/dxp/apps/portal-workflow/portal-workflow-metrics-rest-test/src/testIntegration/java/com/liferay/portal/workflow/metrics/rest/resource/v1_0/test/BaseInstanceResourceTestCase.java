@@ -426,10 +426,10 @@ public abstract class BaseInstanceResourceTestCase {
 	public void testGetProcessInstancesPageWithPagination() throws Exception {
 		Long processId = testGetProcessInstancesPage_getProcessId();
 
-		Page<Instance> instancePage = instanceResource.getProcessInstancesPage(
+		Page<Instance> instancesPage = instanceResource.getProcessInstancesPage(
 			processId, null, null, null, null, null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(instancePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(instancesPage.getTotalCount());
 
 		Instance instance1 = testGetProcessInstancesPage_addInstance(
 			processId, randomInstance());

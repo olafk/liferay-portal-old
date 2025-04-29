@@ -512,11 +512,12 @@ public abstract class BaseCartCommentResourceTestCase {
 		String externalReferenceCode =
 			testGetCartByExternalReferenceCodeCommentsPage_getExternalReferenceCode();
 
-		Page<CartComment> cartCommentPage =
+		Page<CartComment> cartCommentsPage =
 			cartCommentResource.getCartByExternalReferenceCodeCommentsPage(
 				externalReferenceCode, null);
 
-		int totalCount = GetterUtil.getInteger(cartCommentPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			cartCommentsPage.getTotalCount());
 
 		CartComment cartComment1 =
 			testGetCartByExternalReferenceCodeCommentsPage_addCartComment(
@@ -1119,10 +1120,11 @@ public abstract class BaseCartCommentResourceTestCase {
 	public void testGetCartCommentsPageWithPagination() throws Exception {
 		Long cartId = testGetCartCommentsPage_getCartId();
 
-		Page<CartComment> cartCommentPage =
+		Page<CartComment> cartCommentsPage =
 			cartCommentResource.getCartCommentsPage(cartId, null);
 
-		int totalCount = GetterUtil.getInteger(cartCommentPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			cartCommentsPage.getTotalCount());
 
 		CartComment cartComment1 = testGetCartCommentsPage_addCartComment(
 			cartId, randomCartComment());

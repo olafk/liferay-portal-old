@@ -254,12 +254,12 @@ public abstract class BaseCollaboratorResourceTestCase {
 		Long objectEntryFolderId =
 			testGetObjectEntryFolderCollaboratorsPage_getObjectEntryFolderId();
 
-		Page<Collaborator> collaboratorPage =
+		Page<Collaborator> collaboratorsPage =
 			collaboratorResource.getObjectEntryFolderCollaboratorsPage(
 				objectEntryFolderId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			collaboratorPage.getTotalCount());
+			collaboratorsPage.getTotalCount());
 
 		Collaborator collaborator1 =
 			testGetObjectEntryFolderCollaboratorsPage_addCollaborator(
@@ -451,13 +451,13 @@ public abstract class BaseCollaboratorResourceTestCase {
 		String externalReferenceCode =
 			testGetScopeScopeKeyObjectEntryFolderByExternalReferenceCodeCollaboratorsPage_getExternalReferenceCode();
 
-		Page<Collaborator> collaboratorPage =
+		Page<Collaborator> collaboratorsPage =
 			collaboratorResource.
 				getScopeScopeKeyObjectEntryFolderByExternalReferenceCodeCollaboratorsPage(
 					scopeKey, externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			collaboratorPage.getTotalCount());
+			collaboratorsPage.getTotalCount());
 
 		Collaborator collaborator1 =
 			testGetScopeScopeKeyObjectEntryFolderByExternalReferenceCodeCollaboratorsPage_addCollaborator(

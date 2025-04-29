@@ -312,13 +312,13 @@ public abstract class BasePlacedOrderItemResourceTestCase {
 		String externalReferenceCode =
 			testGetPlacedOrderByExternalReferenceCodePlacedOrderItemsPage_getExternalReferenceCode();
 
-		Page<PlacedOrderItem> placedOrderItemPage =
+		Page<PlacedOrderItem> placedOrderItemsPage =
 			placedOrderItemResource.
 				getPlacedOrderByExternalReferenceCodePlacedOrderItemsPage(
 					externalReferenceCode, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			placedOrderItemPage.getTotalCount());
+			placedOrderItemsPage.getTotalCount());
 
 		PlacedOrderItem placedOrderItem1 =
 			testGetPlacedOrderByExternalReferenceCodePlacedOrderItemsPage_addPlacedOrderItem(
@@ -1124,12 +1124,12 @@ public abstract class BasePlacedOrderItemResourceTestCase {
 		Long placedOrderId =
 			testGetPlacedOrderPlacedOrderItemsPage_getPlacedOrderId();
 
-		Page<PlacedOrderItem> placedOrderItemPage =
+		Page<PlacedOrderItem> placedOrderItemsPage =
 			placedOrderItemResource.getPlacedOrderPlacedOrderItemsPage(
 				placedOrderId, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			placedOrderItemPage.getTotalCount());
+			placedOrderItemsPage.getTotalCount());
 
 		PlacedOrderItem placedOrderItem1 =
 			testGetPlacedOrderPlacedOrderItemsPage_addPlacedOrderItem(

@@ -760,13 +760,13 @@ public abstract class BaseObjectActionResourceTestCase {
 		String externalReferenceCode =
 			testGetObjectDefinitionByExternalReferenceCodeObjectActionsPage_getExternalReferenceCode();
 
-		Page<ObjectAction> objectActionPage =
+		Page<ObjectAction> objectActionsPage =
 			objectActionResource.
 				getObjectDefinitionByExternalReferenceCodeObjectActionsPage(
 					externalReferenceCode, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			objectActionPage.getTotalCount());
+			objectActionsPage.getTotalCount());
 
 		ObjectAction objectAction1 =
 			testGetObjectDefinitionByExternalReferenceCodeObjectActionsPage_addObjectAction(
@@ -1128,12 +1128,12 @@ public abstract class BaseObjectActionResourceTestCase {
 		Long objectDefinitionId =
 			testGetObjectDefinitionObjectActionsPage_getObjectDefinitionId();
 
-		Page<ObjectAction> objectActionPage =
+		Page<ObjectAction> objectActionsPage =
 			objectActionResource.getObjectDefinitionObjectActionsPage(
 				objectDefinitionId, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			objectActionPage.getTotalCount());
+			objectActionsPage.getTotalCount());
 
 		ObjectAction objectAction1 =
 			testGetObjectDefinitionObjectActionsPage_addObjectAction(

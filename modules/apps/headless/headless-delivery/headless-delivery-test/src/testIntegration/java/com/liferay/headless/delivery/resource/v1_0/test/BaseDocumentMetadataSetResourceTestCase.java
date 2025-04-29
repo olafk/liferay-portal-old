@@ -760,12 +760,12 @@ public abstract class BaseDocumentMetadataSetResourceTestCase {
 		Long assetLibraryId =
 			testGetAssetLibraryDocumentMetadataSetsPage_getAssetLibraryId();
 
-		Page<DocumentMetadataSet> documentMetadataSetPage =
+		Page<DocumentMetadataSet> documentMetadataSetsPage =
 			documentMetadataSetResource.getAssetLibraryDocumentMetadataSetsPage(
 				assetLibraryId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			documentMetadataSetPage.getTotalCount());
+			documentMetadataSetsPage.getTotalCount());
 
 		DocumentMetadataSet documentMetadataSet1 =
 			testGetAssetLibraryDocumentMetadataSetsPage_addDocumentMetadataSet(
@@ -1463,12 +1463,12 @@ public abstract class BaseDocumentMetadataSetResourceTestCase {
 
 		Long siteId = testGetSiteDocumentMetadataSetsPage_getSiteId();
 
-		Page<DocumentMetadataSet> documentMetadataSetPage =
+		Page<DocumentMetadataSet> documentMetadataSetsPage =
 			documentMetadataSetResource.getSiteDocumentMetadataSetsPage(
 				siteId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			documentMetadataSetPage.getTotalCount());
+			documentMetadataSetsPage.getTotalCount());
 
 		DocumentMetadataSet documentMetadataSet1 =
 			testGetSiteDocumentMetadataSetsPage_addDocumentMetadataSet(

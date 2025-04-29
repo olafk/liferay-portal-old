@@ -452,13 +452,13 @@ public abstract class BaseSkuUnitOfMeasureResourceTestCase {
 		String externalReferenceCode =
 			testGetSkuByExternalReferenceCodeSkuUnitOfMeasuresPage_getExternalReferenceCode();
 
-		Page<SkuUnitOfMeasure> skuUnitOfMeasurePage =
+		Page<SkuUnitOfMeasure> skuUnitOfMeasuresPage =
 			skuUnitOfMeasureResource.
 				getSkuByExternalReferenceCodeSkuUnitOfMeasuresPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			skuUnitOfMeasurePage.getTotalCount());
+			skuUnitOfMeasuresPage.getTotalCount());
 
 		SkuUnitOfMeasure skuUnitOfMeasure1 =
 			testGetSkuByExternalReferenceCodeSkuUnitOfMeasuresPage_addSkuUnitOfMeasure(
@@ -651,11 +651,11 @@ public abstract class BaseSkuUnitOfMeasureResourceTestCase {
 
 		Long id = testGetSkuIdSkuUnitOfMeasuresPage_getId();
 
-		Page<SkuUnitOfMeasure> skuUnitOfMeasurePage =
+		Page<SkuUnitOfMeasure> skuUnitOfMeasuresPage =
 			skuUnitOfMeasureResource.getSkuIdSkuUnitOfMeasuresPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			skuUnitOfMeasurePage.getTotalCount());
+			skuUnitOfMeasuresPage.getTotalCount());
 
 		SkuUnitOfMeasure skuUnitOfMeasure1 =
 			testGetSkuIdSkuUnitOfMeasuresPage_addSkuUnitOfMeasure(

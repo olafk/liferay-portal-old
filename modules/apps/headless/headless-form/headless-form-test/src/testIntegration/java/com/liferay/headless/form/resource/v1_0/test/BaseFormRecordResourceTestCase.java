@@ -404,10 +404,10 @@ public abstract class BaseFormRecordResourceTestCase {
 	public void testGetFormFormRecordsPageWithPagination() throws Exception {
 		Long formId = testGetFormFormRecordsPage_getFormId();
 
-		Page<FormRecord> formRecordPage =
+		Page<FormRecord> formRecordsPage =
 			formRecordResource.getFormFormRecordsPage(formId, null);
 
-		int totalCount = GetterUtil.getInteger(formRecordPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(formRecordsPage.getTotalCount());
 
 		FormRecord formRecord1 = testGetFormFormRecordsPage_addFormRecord(
 			formId, randomFormRecord());

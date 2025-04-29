@@ -233,10 +233,11 @@ public abstract class BaseTaxCategoryResourceTestCase {
 
 	@Test
 	public void testGetTaxCategoriesPageWithPagination() throws Exception {
-		Page<TaxCategory> taxCategoryPage =
+		Page<TaxCategory> taxCategoriesPage =
 			taxCategoryResource.getTaxCategoriesPage(null, null);
 
-		int totalCount = GetterUtil.getInteger(taxCategoryPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			taxCategoriesPage.getTotalCount());
 
 		TaxCategory taxCategory1 = testGetTaxCategoriesPage_addTaxCategory(
 			randomTaxCategory());

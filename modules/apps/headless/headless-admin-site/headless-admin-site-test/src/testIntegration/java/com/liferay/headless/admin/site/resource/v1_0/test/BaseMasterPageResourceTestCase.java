@@ -428,12 +428,12 @@ public abstract class BaseMasterPageResourceTestCase {
 		String siteExternalReferenceCode =
 			testGetSiteSiteByExternalReferenceCodeMasterPagesPage_getSiteExternalReferenceCode();
 
-		Page<MasterPage> masterPagePage =
+		Page<MasterPage> masterPagesPage =
 			masterPageResource.
 				getSiteSiteByExternalReferenceCodeMasterPagesPage(
 					siteExternalReferenceCode, null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(masterPagePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(masterPagesPage.getTotalCount());
 
 		MasterPage masterPage1 =
 			testGetSiteSiteByExternalReferenceCodeMasterPagesPage_addMasterPage(

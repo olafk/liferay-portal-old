@@ -251,11 +251,11 @@ public abstract class BaseCategoryResourceTestCase {
 		Long channelId = testGetChannelProductCategoriesPage_getChannelId();
 		Long productId = testGetChannelProductCategoriesPage_getProductId();
 
-		Page<Category> categoryPage =
+		Page<Category> categoriesPage =
 			categoryResource.getChannelProductCategoriesPage(
 				channelId, productId, null);
 
-		int totalCount = GetterUtil.getInteger(categoryPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(categoriesPage.getTotalCount());
 
 		Category category1 = testGetChannelProductCategoriesPage_addCategory(
 			channelId, productId, randomCategory());

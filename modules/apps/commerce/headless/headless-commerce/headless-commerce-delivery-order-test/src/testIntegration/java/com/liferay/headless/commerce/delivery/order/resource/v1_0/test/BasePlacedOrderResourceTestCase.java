@@ -413,11 +413,12 @@ public abstract class BasePlacedOrderResourceTestCase {
 		Long accountId = testGetChannelAccountPlacedOrdersPage_getAccountId();
 		Long channelId = testGetChannelAccountPlacedOrdersPage_getChannelId();
 
-		Page<PlacedOrder> placedOrderPage =
+		Page<PlacedOrder> placedOrdersPage =
 			placedOrderResource.getChannelAccountPlacedOrdersPage(
 				accountId, channelId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(placedOrderPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			placedOrdersPage.getTotalCount());
 
 		PlacedOrder placedOrder1 =
 			testGetChannelAccountPlacedOrdersPage_addPlacedOrder(
@@ -895,13 +896,14 @@ public abstract class BasePlacedOrderResourceTestCase {
 		String channelExternalReferenceCode =
 			testGetChannelByExternalReferenceCodeChannelExternalReferenceCodeAccountByExternalReferenceCodeAccountExternalReferenceCodePlacedOrdersPage_getChannelExternalReferenceCode();
 
-		Page<PlacedOrder> placedOrderPage =
+		Page<PlacedOrder> placedOrdersPage =
 			placedOrderResource.
 				getChannelByExternalReferenceCodeChannelExternalReferenceCodeAccountByExternalReferenceCodeAccountExternalReferenceCodePlacedOrdersPage(
 					accountExternalReferenceCode, channelExternalReferenceCode,
 					null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(placedOrderPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			placedOrdersPage.getTotalCount());
 
 		PlacedOrder placedOrder1 =
 			testGetChannelByExternalReferenceCodeChannelExternalReferenceCodeAccountByExternalReferenceCodeAccountExternalReferenceCodePlacedOrdersPage_addPlacedOrder(
@@ -1389,12 +1391,13 @@ public abstract class BasePlacedOrderResourceTestCase {
 		String externalReferenceCode =
 			testGetChannelByExternalReferenceCodePlacedOrdersPage_getExternalReferenceCode();
 
-		Page<PlacedOrder> placedOrderPage =
+		Page<PlacedOrder> placedOrdersPage =
 			placedOrderResource.
 				getChannelByExternalReferenceCodePlacedOrdersPage(
 					externalReferenceCode, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(placedOrderPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			placedOrdersPage.getTotalCount());
 
 		PlacedOrder placedOrder1 =
 			testGetChannelByExternalReferenceCodePlacedOrdersPage_addPlacedOrder(
@@ -1826,11 +1829,12 @@ public abstract class BasePlacedOrderResourceTestCase {
 
 		Long channelId = testGetChannelPlacedOrdersPage_getChannelId();
 
-		Page<PlacedOrder> placedOrderPage =
+		Page<PlacedOrder> placedOrdersPage =
 			placedOrderResource.getChannelPlacedOrdersPage(
 				channelId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(placedOrderPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			placedOrdersPage.getTotalCount());
 
 		PlacedOrder placedOrder1 =
 			testGetChannelPlacedOrdersPage_addPlacedOrder(

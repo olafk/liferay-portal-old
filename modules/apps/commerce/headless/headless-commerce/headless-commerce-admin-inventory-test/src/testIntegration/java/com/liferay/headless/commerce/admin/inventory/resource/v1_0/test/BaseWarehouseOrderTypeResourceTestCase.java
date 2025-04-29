@@ -328,13 +328,13 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 		String externalReferenceCode =
 			testGetWarehouseByExternalReferenceCodeWarehouseOrderTypesPage_getExternalReferenceCode();
 
-		Page<WarehouseOrderType> warehouseOrderTypePage =
+		Page<WarehouseOrderType> warehouseOrderTypesPage =
 			warehouseOrderTypeResource.
 				getWarehouseByExternalReferenceCodeWarehouseOrderTypesPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			warehouseOrderTypePage.getTotalCount());
+			warehouseOrderTypesPage.getTotalCount());
 
 		WarehouseOrderType warehouseOrderType1 =
 			testGetWarehouseByExternalReferenceCodeWarehouseOrderTypesPage_addWarehouseOrderType(
@@ -637,12 +637,12 @@ public abstract class BaseWarehouseOrderTypeResourceTestCase {
 
 		Long id = testGetWarehouseIdWarehouseOrderTypesPage_getId();
 
-		Page<WarehouseOrderType> warehouseOrderTypePage =
+		Page<WarehouseOrderType> warehouseOrderTypesPage =
 			warehouseOrderTypeResource.getWarehouseIdWarehouseOrderTypesPage(
 				id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			warehouseOrderTypePage.getTotalCount());
+			warehouseOrderTypesPage.getTotalCount());
 
 		WarehouseOrderType warehouseOrderType1 =
 			testGetWarehouseIdWarehouseOrderTypesPage_addWarehouseOrderType(

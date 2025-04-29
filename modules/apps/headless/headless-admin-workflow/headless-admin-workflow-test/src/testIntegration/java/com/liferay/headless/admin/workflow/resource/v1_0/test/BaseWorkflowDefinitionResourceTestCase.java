@@ -896,12 +896,12 @@ public abstract class BaseWorkflowDefinitionResourceTestCase {
 	public void testGetWorkflowDefinitionsPageWithPagination()
 		throws Exception {
 
-		Page<WorkflowDefinition> workflowDefinitionPage =
+		Page<WorkflowDefinition> workflowDefinitionsPage =
 			workflowDefinitionResource.getWorkflowDefinitionsPage(
 				null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			workflowDefinitionPage.getTotalCount());
+			workflowDefinitionsPage.getTotalCount());
 
 		WorkflowDefinition workflowDefinition1 =
 			testGetWorkflowDefinitionsPage_addWorkflowDefinition(

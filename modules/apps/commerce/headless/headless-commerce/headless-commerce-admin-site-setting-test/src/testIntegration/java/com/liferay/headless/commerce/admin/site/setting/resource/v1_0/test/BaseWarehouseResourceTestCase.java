@@ -436,11 +436,11 @@ public abstract class BaseWarehouseResourceTestCase {
 		Long groupId =
 			testGetCommerceAdminSiteSettingGroupWarehousePage_getGroupId();
 
-		Page<Warehouse> warehousePage =
+		Page<Warehouse> warehousesPage =
 			warehouseResource.getCommerceAdminSiteSettingGroupWarehousePage(
 				groupId, null, null);
 
-		int totalCount = GetterUtil.getInteger(warehousePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(warehousesPage.getTotalCount());
 
 		Warehouse warehouse1 =
 			testGetCommerceAdminSiteSettingGroupWarehousePage_addWarehouse(

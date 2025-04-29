@@ -458,13 +458,13 @@ public abstract class BasePaymentMethodGroupRelOrderTypeResourceTestCase {
 			testGetPaymentMethodGroupRelIdPaymentMethodGroupRelOrderTypesPage_getId();
 
 		Page<PaymentMethodGroupRelOrderType>
-			paymentMethodGroupRelOrderTypePage =
+			paymentMethodGroupRelOrderTypesPage =
 				paymentMethodGroupRelOrderTypeResource.
 					getPaymentMethodGroupRelIdPaymentMethodGroupRelOrderTypesPage(
 						id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			paymentMethodGroupRelOrderTypePage.getTotalCount());
+			paymentMethodGroupRelOrderTypesPage.getTotalCount());
 
 		PaymentMethodGroupRelOrderType paymentMethodGroupRelOrderType1 =
 			testGetPaymentMethodGroupRelIdPaymentMethodGroupRelOrderTypesPage_addPaymentMethodGroupRelOrderType(

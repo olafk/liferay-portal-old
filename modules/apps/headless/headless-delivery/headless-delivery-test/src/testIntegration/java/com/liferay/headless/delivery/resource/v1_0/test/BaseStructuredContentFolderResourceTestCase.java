@@ -916,13 +916,13 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		Long assetLibraryId =
 			testGetAssetLibraryStructuredContentFoldersPage_getAssetLibraryId();
 
-		Page<StructuredContentFolder> structuredContentFolderPage =
+		Page<StructuredContentFolder> structuredContentFoldersPage =
 			structuredContentFolderResource.
 				getAssetLibraryStructuredContentFoldersPage(
 					assetLibraryId, null, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			structuredContentFolderPage.getTotalCount());
+			structuredContentFoldersPage.getTotalCount());
 
 		StructuredContentFolder structuredContentFolder1 =
 			testGetAssetLibraryStructuredContentFoldersPage_addStructuredContentFolder(
@@ -1609,12 +1609,12 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 
 		Long siteId = testGetSiteStructuredContentFoldersPage_getSiteId();
 
-		Page<StructuredContentFolder> structuredContentFolderPage =
+		Page<StructuredContentFolder> structuredContentFoldersPage =
 			structuredContentFolderResource.getSiteStructuredContentFoldersPage(
 				siteId, null, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			structuredContentFolderPage.getTotalCount());
+			structuredContentFoldersPage.getTotalCount());
 
 		StructuredContentFolder structuredContentFolder1 =
 			testGetSiteStructuredContentFoldersPage_addStructuredContentFolder(
@@ -2531,14 +2531,14 @@ public abstract class BaseStructuredContentFolderResourceTestCase {
 		Long parentStructuredContentFolderId =
 			testGetStructuredContentFolderStructuredContentFoldersPage_getParentStructuredContentFolderId();
 
-		Page<StructuredContentFolder> structuredContentFolderPage =
+		Page<StructuredContentFolder> structuredContentFoldersPage =
 			structuredContentFolderResource.
 				getStructuredContentFolderStructuredContentFoldersPage(
 					parentStructuredContentFolderId, null, null, null, null,
 					null);
 
 		int totalCount = GetterUtil.getInteger(
-			structuredContentFolderPage.getTotalCount());
+			structuredContentFoldersPage.getTotalCount());
 
 		StructuredContentFolder structuredContentFolder1 =
 			testGetStructuredContentFolderStructuredContentFoldersPage_addStructuredContentFolder(

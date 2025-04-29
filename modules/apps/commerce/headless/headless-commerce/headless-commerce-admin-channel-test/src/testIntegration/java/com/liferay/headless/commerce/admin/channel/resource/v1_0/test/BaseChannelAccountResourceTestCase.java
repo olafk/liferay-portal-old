@@ -323,13 +323,13 @@ public abstract class BaseChannelAccountResourceTestCase {
 		String externalReferenceCode =
 			testGetChannelByExternalReferenceCodeChannelAccountsPage_getExternalReferenceCode();
 
-		Page<ChannelAccount> channelAccountPage =
+		Page<ChannelAccount> channelAccountsPage =
 			channelAccountResource.
 				getChannelByExternalReferenceCodeChannelAccountsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			channelAccountPage.getTotalCount());
+			channelAccountsPage.getTotalCount());
 
 		ChannelAccount channelAccount1 =
 			testGetChannelByExternalReferenceCodeChannelAccountsPage_addChannelAccount(
@@ -613,12 +613,12 @@ public abstract class BaseChannelAccountResourceTestCase {
 
 		Long id = testGetChannelIdChannelAccountsPage_getId();
 
-		Page<ChannelAccount> channelAccountPage =
+		Page<ChannelAccount> channelAccountsPage =
 			channelAccountResource.getChannelIdChannelAccountsPage(
 				id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			channelAccountPage.getTotalCount());
+			channelAccountsPage.getTotalCount());
 
 		ChannelAccount channelAccount1 =
 			testGetChannelIdChannelAccountsPage_addChannelAccount(

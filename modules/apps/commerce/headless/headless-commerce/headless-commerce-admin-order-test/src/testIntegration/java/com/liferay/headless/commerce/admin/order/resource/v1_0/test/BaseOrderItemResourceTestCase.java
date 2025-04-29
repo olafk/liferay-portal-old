@@ -520,11 +520,11 @@ public abstract class BaseOrderItemResourceTestCase {
 		String externalReferenceCode =
 			testGetOrderByExternalReferenceCodeOrderItemsPage_getExternalReferenceCode();
 
-		Page<OrderItem> orderItemPage =
+		Page<OrderItem> orderItemsPage =
 			orderItemResource.getOrderByExternalReferenceCodeOrderItemsPage(
 				externalReferenceCode, null);
 
-		int totalCount = GetterUtil.getInteger(orderItemPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(orderItemsPage.getTotalCount());
 
 		OrderItem orderItem1 =
 			testGetOrderByExternalReferenceCodeOrderItemsPage_addOrderItem(
@@ -687,10 +687,10 @@ public abstract class BaseOrderItemResourceTestCase {
 	public void testGetOrderIdOrderItemsPageWithPagination() throws Exception {
 		Long id = testGetOrderIdOrderItemsPage_getId();
 
-		Page<OrderItem> orderItemPage =
+		Page<OrderItem> orderItemsPage =
 			orderItemResource.getOrderIdOrderItemsPage(id, null);
 
-		int totalCount = GetterUtil.getInteger(orderItemPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(orderItemsPage.getTotalCount());
 
 		OrderItem orderItem1 = testGetOrderIdOrderItemsPage_addOrderItem(
 			id, randomOrderItem());
@@ -1324,10 +1324,10 @@ public abstract class BaseOrderItemResourceTestCase {
 
 	@Test
 	public void testGetOrderItemsPageWithPagination() throws Exception {
-		Page<OrderItem> orderItemPage = orderItemResource.getOrderItemsPage(
+		Page<OrderItem> orderItemsPage = orderItemResource.getOrderItemsPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(orderItemPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(orderItemsPage.getTotalCount());
 
 		OrderItem orderItem1 = testGetOrderItemsPage_addOrderItem(
 			randomOrderItem());

@@ -525,10 +525,10 @@ public abstract class BaseCurrencyResourceTestCase {
 
 	@Test
 	public void testGetCurrenciesPageWithPagination() throws Exception {
-		Page<Currency> currencyPage = currencyResource.getCurrenciesPage(
+		Page<Currency> currenciesPage = currencyResource.getCurrenciesPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(currencyPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(currenciesPage.getTotalCount());
 
 		Currency currency1 = testGetCurrenciesPage_addCurrency(
 			randomCurrency());

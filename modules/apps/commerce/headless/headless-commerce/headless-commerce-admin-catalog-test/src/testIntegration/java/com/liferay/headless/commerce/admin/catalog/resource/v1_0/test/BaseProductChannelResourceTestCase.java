@@ -450,13 +450,13 @@ public abstract class BaseProductChannelResourceTestCase {
 		String externalReferenceCode =
 			testGetProductByExternalReferenceCodeProductChannelsPage_getExternalReferenceCode();
 
-		Page<ProductChannel> productChannelPage =
+		Page<ProductChannel> productChannelsPage =
 			productChannelResource.
 				getProductByExternalReferenceCodeProductChannelsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productChannelPage.getTotalCount());
+			productChannelsPage.getTotalCount());
 
 		ProductChannel productChannel1 =
 			testGetProductByExternalReferenceCodeProductChannelsPage_addProductChannel(
@@ -951,11 +951,11 @@ public abstract class BaseProductChannelResourceTestCase {
 
 		Long id = testGetProductIdProductChannelsPage_getId();
 
-		Page<ProductChannel> productChannelPage =
+		Page<ProductChannel> productChannelsPage =
 			productChannelResource.getProductIdProductChannelsPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productChannelPage.getTotalCount());
+			productChannelsPage.getTotalCount());
 
 		ProductChannel productChannel1 =
 			testGetProductIdProductChannelsPage_addProductChannel(

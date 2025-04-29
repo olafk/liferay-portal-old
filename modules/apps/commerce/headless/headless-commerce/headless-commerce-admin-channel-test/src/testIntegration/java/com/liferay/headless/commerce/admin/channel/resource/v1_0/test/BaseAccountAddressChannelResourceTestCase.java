@@ -339,13 +339,13 @@ public abstract class BaseAccountAddressChannelResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountAddressByExternalReferenceCodeAccountAddressChannelsPage_getExternalReferenceCode();
 
-		Page<AccountAddressChannel> accountAddressChannelPage =
+		Page<AccountAddressChannel> accountAddressChannelsPage =
 			accountAddressChannelResource.
 				getAccountAddressByExternalReferenceCodeAccountAddressChannelsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountAddressChannelPage.getTotalCount());
+			accountAddressChannelsPage.getTotalCount());
 
 		AccountAddressChannel accountAddressChannel1 =
 			testGetAccountAddressByExternalReferenceCodeAccountAddressChannelsPage_addAccountAddressChannel(
@@ -662,13 +662,13 @@ public abstract class BaseAccountAddressChannelResourceTestCase {
 		Long addressId =
 			testGetAccountAddressIdAccountAddressChannelsPage_getAddressId();
 
-		Page<AccountAddressChannel> accountAddressChannelPage =
+		Page<AccountAddressChannel> accountAddressChannelsPage =
 			accountAddressChannelResource.
 				getAccountAddressIdAccountAddressChannelsPage(
 					addressId, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountAddressChannelPage.getTotalCount());
+			accountAddressChannelsPage.getTotalCount());
 
 		AccountAddressChannel accountAddressChannel1 =
 			testGetAccountAddressIdAccountAddressChannelsPage_addAccountAddressChannel(

@@ -414,10 +414,10 @@ public abstract class BaseSLAResourceTestCase {
 	public void testGetProcessSLAsPageWithPagination() throws Exception {
 		Long processId = testGetProcessSLAsPage_getProcessId();
 
-		Page<SLA> slaPage = slaResource.getProcessSLAsPage(
+		Page<SLA> slasPage = slaResource.getProcessSLAsPage(
 			processId, null, null);
 
-		int totalCount = GetterUtil.getInteger(slaPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(slasPage.getTotalCount());
 
 		SLA sla1 = testGetProcessSLAsPage_addSLA(processId, randomSLA());
 

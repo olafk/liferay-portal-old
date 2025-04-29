@@ -469,11 +469,11 @@ public abstract class BaseDataLayoutResourceTestCase {
 		Long dataDefinitionId =
 			testGetDataDefinitionDataLayoutsPage_getDataDefinitionId();
 
-		Page<DataLayout> dataLayoutPage =
+		Page<DataLayout> dataLayoutsPage =
 			dataLayoutResource.getDataDefinitionDataLayoutsPage(
 				dataDefinitionId, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(dataLayoutPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(dataLayoutsPage.getTotalCount());
 
 		DataLayout dataLayout1 =
 			testGetDataDefinitionDataLayoutsPage_addDataLayout(

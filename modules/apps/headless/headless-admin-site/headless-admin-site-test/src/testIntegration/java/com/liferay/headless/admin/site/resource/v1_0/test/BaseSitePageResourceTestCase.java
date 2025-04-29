@@ -422,11 +422,11 @@ public abstract class BaseSitePageResourceTestCase {
 		String siteExternalReferenceCode =
 			testGetSiteSiteByExternalReferenceCodeSitePagesPage_getSiteExternalReferenceCode();
 
-		Page<SitePage> sitePagePage =
+		Page<SitePage> sitePagesPage =
 			sitePageResource.getSiteSiteByExternalReferenceCodeSitePagesPage(
 				siteExternalReferenceCode, null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(sitePagePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(sitePagesPage.getTotalCount());
 
 		SitePage sitePage1 =
 			testGetSiteSiteByExternalReferenceCodeSitePagesPage_addSitePage(

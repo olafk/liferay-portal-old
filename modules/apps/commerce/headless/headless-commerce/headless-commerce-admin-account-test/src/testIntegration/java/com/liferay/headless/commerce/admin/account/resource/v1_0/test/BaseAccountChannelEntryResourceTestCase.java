@@ -543,13 +543,13 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountChannelBillingAddressesPage_getExternalReferenceCode();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountByExternalReferenceCodeAccountChannelBillingAddressesPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountByExternalReferenceCodeAccountChannelBillingAddressesPage_addAccountChannelEntry(
@@ -759,13 +759,13 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountChannelCurrenciesPage_getExternalReferenceCode();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountByExternalReferenceCodeAccountChannelCurrenciesPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountByExternalReferenceCodeAccountChannelCurrenciesPage_addAccountChannelEntry(
@@ -975,13 +975,13 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountChannelDeliveryTermsPage_getExternalReferenceCode();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountByExternalReferenceCodeAccountChannelDeliveryTermsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountByExternalReferenceCodeAccountChannelDeliveryTermsPage_addAccountChannelEntry(
@@ -1191,13 +1191,13 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountChannelDiscountsPage_getExternalReferenceCode();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountByExternalReferenceCodeAccountChannelDiscountsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountByExternalReferenceCodeAccountChannelDiscountsPage_addAccountChannelEntry(
@@ -1407,13 +1407,13 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountChannelPaymentMethodsPage_getExternalReferenceCode();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountByExternalReferenceCodeAccountChannelPaymentMethodsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountByExternalReferenceCodeAccountChannelPaymentMethodsPage_addAccountChannelEntry(
@@ -1623,13 +1623,13 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountChannelPaymentTermsPage_getExternalReferenceCode();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountByExternalReferenceCodeAccountChannelPaymentTermsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountByExternalReferenceCodeAccountChannelPaymentTermsPage_addAccountChannelEntry(
@@ -1839,13 +1839,13 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountChannelPriceListsPage_getExternalReferenceCode();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountByExternalReferenceCodeAccountChannelPriceListsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountByExternalReferenceCodeAccountChannelPriceListsPage_addAccountChannelEntry(
@@ -2055,13 +2055,13 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountChannelShippingAddressesPage_getExternalReferenceCode();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountByExternalReferenceCodeAccountChannelShippingAddressesPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountByExternalReferenceCodeAccountChannelShippingAddressesPage_addAccountChannelEntry(
@@ -2271,13 +2271,13 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountChannelUsersPage_getExternalReferenceCode();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountByExternalReferenceCodeAccountChannelUsersPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountByExternalReferenceCodeAccountChannelUsersPage_addAccountChannelEntry(
@@ -3564,12 +3564,12 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 
 		Long id = testGetAccountIdAccountChannelBillingAddressesPage_getId();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountIdAccountChannelBillingAddressesPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountIdAccountChannelBillingAddressesPage_addAccountChannelEntry(
@@ -3770,12 +3770,12 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 
 		Long id = testGetAccountIdAccountChannelCurrenciesPage_getId();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountIdAccountChannelCurrenciesPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountIdAccountChannelCurrenciesPage_addAccountChannelEntry(
@@ -3976,12 +3976,12 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 
 		Long id = testGetAccountIdAccountChannelDeliveryTermsPage_getId();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountIdAccountChannelDeliveryTermsPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountIdAccountChannelDeliveryTermsPage_addAccountChannelEntry(
@@ -4177,12 +4177,12 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 
 		Long id = testGetAccountIdAccountChannelDiscountsPage_getId();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.getAccountIdAccountChannelDiscountsPage(
 				id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountIdAccountChannelDiscountsPage_addAccountChannelEntry(
@@ -4382,12 +4382,12 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 
 		Long id = testGetAccountIdAccountChannelPaymentMethodsPage_getId();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountIdAccountChannelPaymentMethodsPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountIdAccountChannelPaymentMethodsPage_addAccountChannelEntry(
@@ -4588,12 +4588,12 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 
 		Long id = testGetAccountIdAccountChannelPaymentTermsPage_getId();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountIdAccountChannelPaymentTermsPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountIdAccountChannelPaymentTermsPage_addAccountChannelEntry(
@@ -4794,12 +4794,12 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 
 		Long id = testGetAccountIdAccountChannelPriceListsPage_getId();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountIdAccountChannelPriceListsPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountIdAccountChannelPriceListsPage_addAccountChannelEntry(
@@ -5000,12 +5000,12 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 
 		Long id = testGetAccountIdAccountChannelShippingAddressesPage_getId();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.
 				getAccountIdAccountChannelShippingAddressesPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountIdAccountChannelShippingAddressesPage_addAccountChannelEntry(
@@ -5198,12 +5198,12 @@ public abstract class BaseAccountChannelEntryResourceTestCase {
 
 		Long id = testGetAccountIdAccountChannelUsersPage_getId();
 
-		Page<AccountChannelEntry> accountChannelEntryPage =
+		Page<AccountChannelEntry> accountChannelEntriesPage =
 			accountChannelEntryResource.getAccountIdAccountChannelUsersPage(
 				id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelEntryPage.getTotalCount());
+			accountChannelEntriesPage.getTotalCount());
 
 		AccountChannelEntry accountChannelEntry1 =
 			testGetAccountIdAccountChannelUsersPage_addAccountChannelEntry(

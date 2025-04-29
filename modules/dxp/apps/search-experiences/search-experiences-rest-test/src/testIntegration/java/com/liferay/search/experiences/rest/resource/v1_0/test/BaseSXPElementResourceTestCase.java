@@ -926,10 +926,10 @@ public abstract class BaseSXPElementResourceTestCase {
 
 	@Test
 	public void testGetSXPElementsPageWithPagination() throws Exception {
-		Page<SXPElement> sxpElementPage = sxpElementResource.getSXPElementsPage(
-			null, null, null, null);
+		Page<SXPElement> sxpElementsPage =
+			sxpElementResource.getSXPElementsPage(null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(sxpElementPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(sxpElementsPage.getTotalCount());
 
 		SXPElement sxpElement1 = testGetSXPElementsPage_addSXPElement(
 			randomSXPElement());

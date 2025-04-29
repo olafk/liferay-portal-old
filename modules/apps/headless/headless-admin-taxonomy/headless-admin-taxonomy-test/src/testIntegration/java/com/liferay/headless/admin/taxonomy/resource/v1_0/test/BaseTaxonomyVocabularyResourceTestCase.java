@@ -722,12 +722,12 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 		Long assetLibraryId =
 			testGetAssetLibraryTaxonomyVocabulariesPage_getAssetLibraryId();
 
-		Page<TaxonomyVocabulary> taxonomyVocabularyPage =
+		Page<TaxonomyVocabulary> taxonomyVocabulariesPage =
 			taxonomyVocabularyResource.getAssetLibraryTaxonomyVocabulariesPage(
 				assetLibraryId, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			taxonomyVocabularyPage.getTotalCount());
+			taxonomyVocabulariesPage.getTotalCount());
 
 		TaxonomyVocabulary taxonomyVocabulary1 =
 			testGetAssetLibraryTaxonomyVocabulariesPage_addTaxonomyVocabulary(
@@ -1421,12 +1421,12 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 
 		Long siteId = testGetSiteTaxonomyVocabulariesPage_getSiteId();
 
-		Page<TaxonomyVocabulary> taxonomyVocabularyPage =
+		Page<TaxonomyVocabulary> taxonomyVocabulariesPage =
 			taxonomyVocabularyResource.getSiteTaxonomyVocabulariesPage(
 				siteId, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			taxonomyVocabularyPage.getTotalCount());
+			taxonomyVocabulariesPage.getTotalCount());
 
 		TaxonomyVocabulary taxonomyVocabulary1 =
 			testGetSiteTaxonomyVocabulariesPage_addTaxonomyVocabulary(
@@ -2066,12 +2066,12 @@ public abstract class BaseTaxonomyVocabularyResourceTestCase {
 	public void testGetTaxonomyVocabulariesPageWithPagination()
 		throws Exception {
 
-		Page<TaxonomyVocabulary> taxonomyVocabularyPage =
+		Page<TaxonomyVocabulary> taxonomyVocabulariesPage =
 			taxonomyVocabularyResource.getTaxonomyVocabulariesPage(
 				null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			taxonomyVocabularyPage.getTotalCount());
+			taxonomyVocabulariesPage.getTotalCount());
 
 		TaxonomyVocabulary taxonomyVocabulary1 =
 			testGetTaxonomyVocabulariesPage_addTaxonomyVocabulary(

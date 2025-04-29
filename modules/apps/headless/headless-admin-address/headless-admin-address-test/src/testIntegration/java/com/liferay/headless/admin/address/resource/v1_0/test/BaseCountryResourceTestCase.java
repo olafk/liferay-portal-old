@@ -386,10 +386,10 @@ public abstract class BaseCountryResourceTestCase {
 
 	@Test
 	public void testGetCountriesPageWithPagination() throws Exception {
-		Page<Country> countryPage = countryResource.getCountriesPage(
+		Page<Country> countriesPage = countryResource.getCountriesPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(countryPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(countriesPage.getTotalCount());
 
 		Country country1 = testGetCountriesPage_addCountry(randomCountry());
 

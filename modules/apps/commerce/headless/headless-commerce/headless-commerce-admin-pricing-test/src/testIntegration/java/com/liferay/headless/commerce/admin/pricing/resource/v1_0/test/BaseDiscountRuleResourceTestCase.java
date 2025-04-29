@@ -444,13 +444,13 @@ public abstract class BaseDiscountRuleResourceTestCase {
 		String externalReferenceCode =
 			testGetDiscountByExternalReferenceCodeDiscountRulesPage_getExternalReferenceCode();
 
-		Page<DiscountRule> discountRulePage =
+		Page<DiscountRule> discountRulesPage =
 			discountRuleResource.
 				getDiscountByExternalReferenceCodeDiscountRulesPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			discountRulePage.getTotalCount());
+			discountRulesPage.getTotalCount());
 
 		DiscountRule discountRule1 =
 			testGetDiscountByExternalReferenceCodeDiscountRulesPage_addDiscountRule(
@@ -633,11 +633,11 @@ public abstract class BaseDiscountRuleResourceTestCase {
 
 		Long id = testGetDiscountIdDiscountRulesPage_getId();
 
-		Page<DiscountRule> discountRulePage =
+		Page<DiscountRule> discountRulesPage =
 			discountRuleResource.getDiscountIdDiscountRulesPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			discountRulePage.getTotalCount());
+			discountRulesPage.getTotalCount());
 
 		DiscountRule discountRule1 =
 			testGetDiscountIdDiscountRulesPage_addDiscountRule(

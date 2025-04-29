@@ -322,12 +322,13 @@ public abstract class BaseDiscountSkuResourceTestCase {
 		String externalReferenceCode =
 			testGetDiscountByExternalReferenceCodeDiscountSkusPage_getExternalReferenceCode();
 
-		Page<DiscountSku> discountSkuPage =
+		Page<DiscountSku> discountSkusPage =
 			discountSkuResource.
 				getDiscountByExternalReferenceCodeDiscountSkusPage(
 					externalReferenceCode, null);
 
-		int totalCount = GetterUtil.getInteger(discountSkuPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			discountSkusPage.getTotalCount());
 
 		DiscountSku discountSku1 =
 			testGetDiscountByExternalReferenceCodeDiscountSkusPage_addDiscountSku(
@@ -602,11 +603,12 @@ public abstract class BaseDiscountSkuResourceTestCase {
 
 		Long id = testGetDiscountIdDiscountSkusPage_getId();
 
-		Page<DiscountSku> discountSkuPage =
+		Page<DiscountSku> discountSkusPage =
 			discountSkuResource.getDiscountIdDiscountSkusPage(
 				id, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(discountSkuPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			discountSkusPage.getTotalCount());
 
 		DiscountSku discountSku1 =
 			testGetDiscountIdDiscountSkusPage_addDiscountSku(

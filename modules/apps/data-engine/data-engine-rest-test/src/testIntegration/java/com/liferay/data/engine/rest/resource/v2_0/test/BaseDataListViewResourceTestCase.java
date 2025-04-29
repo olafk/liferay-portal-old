@@ -475,12 +475,12 @@ public abstract class BaseDataListViewResourceTestCase {
 		Long dataDefinitionId =
 			testGetDataDefinitionDataListViewsPage_getDataDefinitionId();
 
-		Page<DataListView> dataListViewPage =
+		Page<DataListView> dataListViewsPage =
 			dataListViewResource.getDataDefinitionDataListViewsPage(
 				dataDefinitionId, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			dataListViewPage.getTotalCount());
+			dataListViewsPage.getTotalCount());
 
 		DataListView dataListView1 =
 			testGetDataDefinitionDataListViewsPage_addDataListView(

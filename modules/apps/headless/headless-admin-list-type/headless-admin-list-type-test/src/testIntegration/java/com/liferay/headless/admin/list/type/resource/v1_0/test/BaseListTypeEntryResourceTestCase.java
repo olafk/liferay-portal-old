@@ -558,13 +558,13 @@ public abstract class BaseListTypeEntryResourceTestCase {
 		String externalReferenceCode =
 			testGetListTypeDefinitionByExternalReferenceCodeListTypeEntriesPage_getExternalReferenceCode();
 
-		Page<ListTypeEntry> listTypeEntryPage =
+		Page<ListTypeEntry> listTypeEntriesPage =
 			listTypeEntryResource.
 				getListTypeDefinitionByExternalReferenceCodeListTypeEntriesPage(
 					externalReferenceCode, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			listTypeEntryPage.getTotalCount());
+			listTypeEntriesPage.getTotalCount());
 
 		ListTypeEntry listTypeEntry1 =
 			testGetListTypeDefinitionByExternalReferenceCodeListTypeEntriesPage_addListTypeEntry(
@@ -1037,12 +1037,12 @@ public abstract class BaseListTypeEntryResourceTestCase {
 		Long listTypeDefinitionId =
 			testGetListTypeDefinitionListTypeEntriesPage_getListTypeDefinitionId();
 
-		Page<ListTypeEntry> listTypeEntryPage =
+		Page<ListTypeEntry> listTypeEntriesPage =
 			listTypeEntryResource.getListTypeDefinitionListTypeEntriesPage(
 				listTypeDefinitionId, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			listTypeEntryPage.getTotalCount());
+			listTypeEntriesPage.getTotalCount());
 
 		ListTypeEntry listTypeEntry1 =
 			testGetListTypeDefinitionListTypeEntriesPage_addListTypeEntry(

@@ -687,10 +687,10 @@ public abstract class BaseCTRemoteResourceTestCase {
 
 	@Test
 	public void testGetCTRemotesPageWithPagination() throws Exception {
-		Page<CTRemote> ctRemotePage = ctRemoteResource.getCTRemotesPage(
+		Page<CTRemote> ctRemotesPage = ctRemoteResource.getCTRemotesPage(
 			null, null, null);
 
-		int totalCount = GetterUtil.getInteger(ctRemotePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(ctRemotesPage.getTotalCount());
 
 		CTRemote ctRemote1 = testGetCTRemotesPage_addCTRemote(randomCTRemote());
 

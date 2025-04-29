@@ -972,10 +972,10 @@ public abstract class BasePriceListResourceTestCase {
 
 	@Test
 	public void testGetPriceListsPageWithPagination() throws Exception {
-		Page<PriceList> priceListPage = priceListResource.getPriceListsPage(
+		Page<PriceList> priceListsPage = priceListResource.getPriceListsPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(priceListPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(priceListsPage.getTotalCount());
 
 		PriceList priceList1 = testGetPriceListsPage_addPriceList(
 			randomPriceList());

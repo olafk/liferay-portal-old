@@ -109,29 +109,29 @@ public abstract class BaseCompanyTestEntityResourceImpl
 	public final Page<CompanyTestEntity> getCompanyTestEntitiesPage()
 		throws Exception {
 
-		Page<CompanyTestEntity> companyTestEntityPage =
+		Page<CompanyTestEntity> companyTestEntitiesPage =
 			doGetCompanyTestEntitiesPage();
 
 		for (CompanyTestEntity companyTestEntity :
-				companyTestEntityPage.getItems()) {
+				companyTestEntitiesPage.getItems()) {
 
 			companyTestEntity.setPermissions(
 				() -> NestedFieldsSupplier.supply(
 					"permissions",
 					nestedField -> {
-						Page<Permission> permissionPage =
+						Page<Permission> permissionsPage =
 							getCompanyTestEntityPermissionsPage(
 								companyTestEntity.getId(), null);
 
 						Collection<Permission> permissions =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return permissions.toArray(
 							new Permission[permissions.size()]);
 					}));
 		}
 
-		return companyTestEntityPage;
+		return companyTestEntitiesPage;
 	}
 
 	protected abstract CompanyTestEntity doGetCompanyTestEntity(
@@ -174,12 +174,12 @@ public abstract class BaseCompanyTestEntityResourceImpl
 			() -> NestedFieldsSupplier.supply(
 				"permissions",
 				nestedField -> {
-					Page<Permission> permissionPage =
+					Page<Permission> permissionsPage =
 						getCompanyTestEntityPermissionsPage(
 							getCompanyTestEntity.getId(), null);
 
 					Collection<Permission> permissions =
-						permissionPage.getItems();
+						permissionsPage.getItems();
 
 					return permissions.toArray(
 						new Permission[permissions.size()]);
@@ -232,12 +232,12 @@ public abstract class BaseCompanyTestEntityResourceImpl
 			() -> NestedFieldsSupplier.supply(
 				"permissions",
 				nestedField -> {
-					Page<Permission> permissionPage =
+					Page<Permission> permissionsPage =
 						getCompanyTestEntityPermissionsPage(
 							getCompanyTestEntity.getId(), null);
 
 					Collection<Permission> permissions =
-						permissionPage.getItems();
+						permissionsPage.getItems();
 
 					return permissions.toArray(
 						new Permission[permissions.size()]);
@@ -466,7 +466,7 @@ public abstract class BaseCompanyTestEntityResourceImpl
 			companyTestEntity);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage =
+			Page<Permission> permissionsPage =
 				putCompanyTestEntityPermissionsPage(
 					postCompanyTestEntity.getId(), permissions);
 
@@ -475,7 +475,7 @@ public abstract class BaseCompanyTestEntityResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);
@@ -572,7 +572,7 @@ public abstract class BaseCompanyTestEntityResourceImpl
 			companyTestEntityId, companyTestEntity);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage =
+			Page<Permission> permissionsPage =
 				putCompanyTestEntityPermissionsPage(
 					putCompanyTestEntity.getId(), permissions);
 
@@ -581,7 +581,7 @@ public abstract class BaseCompanyTestEntityResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);
@@ -683,7 +683,7 @@ public abstract class BaseCompanyTestEntityResourceImpl
 				externalReferenceCode, companyTestEntity);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage =
+			Page<Permission> permissionsPage =
 				putCompanyTestEntityPermissionsPage(
 					putCompanyTestEntity.getId(), permissions);
 
@@ -692,7 +692,7 @@ public abstract class BaseCompanyTestEntityResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);

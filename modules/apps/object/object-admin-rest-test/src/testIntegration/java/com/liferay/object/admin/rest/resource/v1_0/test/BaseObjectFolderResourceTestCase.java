@@ -841,11 +841,11 @@ public abstract class BaseObjectFolderResourceTestCase {
 
 	@Test
 	public void testGetObjectFoldersPageWithPagination() throws Exception {
-		Page<ObjectFolder> objectFolderPage =
+		Page<ObjectFolder> objectFoldersPage =
 			objectFolderResource.getObjectFoldersPage(null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			objectFolderPage.getTotalCount());
+			objectFoldersPage.getTotalCount());
 
 		ObjectFolder objectFolder1 = testGetObjectFoldersPage_addObjectFolder(
 			randomObjectFolder());

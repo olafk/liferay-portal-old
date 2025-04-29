@@ -325,13 +325,13 @@ public abstract class BasePriceListOrderTypeResourceTestCase {
 		String externalReferenceCode =
 			testGetPriceListByExternalReferenceCodePriceListOrderTypesPage_getExternalReferenceCode();
 
-		Page<PriceListOrderType> priceListOrderTypePage =
+		Page<PriceListOrderType> priceListOrderTypesPage =
 			priceListOrderTypeResource.
 				getPriceListByExternalReferenceCodePriceListOrderTypesPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			priceListOrderTypePage.getTotalCount());
+			priceListOrderTypesPage.getTotalCount());
 
 		PriceListOrderType priceListOrderType1 =
 			testGetPriceListByExternalReferenceCodePriceListOrderTypesPage_addPriceListOrderType(
@@ -532,12 +532,12 @@ public abstract class BasePriceListOrderTypeResourceTestCase {
 
 		Long id = testGetPriceListIdPriceListOrderTypesPage_getId();
 
-		Page<PriceListOrderType> priceListOrderTypePage =
+		Page<PriceListOrderType> priceListOrderTypesPage =
 			priceListOrderTypeResource.getPriceListIdPriceListOrderTypesPage(
 				id, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			priceListOrderTypePage.getTotalCount());
+			priceListOrderTypesPage.getTotalCount());
 
 		PriceListOrderType priceListOrderType1 =
 			testGetPriceListIdPriceListOrderTypesPage_addPriceListOrderType(

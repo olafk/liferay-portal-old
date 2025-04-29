@@ -256,11 +256,11 @@ public abstract class BaseCategoryResourceTestCase {
 		String externalReferenceCode =
 			testGetProductByExternalReferenceCodeCategoriesPage_getExternalReferenceCode();
 
-		Page<Category> categoryPage =
+		Page<Category> categoriesPage =
 			categoryResource.getProductByExternalReferenceCodeCategoriesPage(
 				externalReferenceCode, null);
 
-		int totalCount = GetterUtil.getInteger(categoryPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(categoriesPage.getTotalCount());
 
 		Category category1 =
 			testGetProductByExternalReferenceCodeCategoriesPage_addCategory(
@@ -430,10 +430,10 @@ public abstract class BaseCategoryResourceTestCase {
 
 		Long id = testGetProductIdCategoriesPage_getId();
 
-		Page<Category> categoryPage =
+		Page<Category> categoriesPage =
 			categoryResource.getProductIdCategoriesPage(id, null);
 
-		int totalCount = GetterUtil.getInteger(categoryPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(categoriesPage.getTotalCount());
 
 		Category category1 = testGetProductIdCategoriesPage_addCategory(
 			id, randomCategory());

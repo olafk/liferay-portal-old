@@ -394,11 +394,11 @@ public abstract class BaseSiteResourceTestCase {
 		String externalReferenceCode =
 			testGetAssetLibraryByExternalReferenceCodeSitesPage_getExternalReferenceCode();
 
-		Page<Site> sitePage =
+		Page<Site> sitesPage =
 			siteResource.getAssetLibraryByExternalReferenceCodeSitesPage(
 				externalReferenceCode, null);
 
-		int totalCount = GetterUtil.getInteger(sitePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(sitesPage.getTotalCount());
 
 		Site site1 =
 			testGetAssetLibraryByExternalReferenceCodeSitesPage_addSite(
@@ -582,10 +582,10 @@ public abstract class BaseSiteResourceTestCase {
 	public void testGetAssetLibrarySitesPageWithPagination() throws Exception {
 		Long assetLibraryId = testGetAssetLibrarySitesPage_getAssetLibraryId();
 
-		Page<Site> sitePage = siteResource.getAssetLibrarySitesPage(
+		Page<Site> sitesPage = siteResource.getAssetLibrarySitesPage(
 			assetLibraryId, null);
 
-		int totalCount = GetterUtil.getInteger(sitePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(sitesPage.getTotalCount());
 
 		Site site1 = testGetAssetLibrarySitesPage_addSite(
 			assetLibraryId, randomSite());

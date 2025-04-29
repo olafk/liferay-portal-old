@@ -225,11 +225,11 @@ public abstract class BaseProcessMetricResourceTestCase {
 
 	@Test
 	public void testGetProcessMetricsPageWithPagination() throws Exception {
-		Page<ProcessMetric> processMetricPage =
+		Page<ProcessMetric> processMetricsPage =
 			processMetricResource.getProcessMetricsPage(null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			processMetricPage.getTotalCount());
+			processMetricsPage.getTotalCount());
 
 		ProcessMetric processMetric1 =
 			testGetProcessMetricsPage_addProcessMetric(randomProcessMetric());

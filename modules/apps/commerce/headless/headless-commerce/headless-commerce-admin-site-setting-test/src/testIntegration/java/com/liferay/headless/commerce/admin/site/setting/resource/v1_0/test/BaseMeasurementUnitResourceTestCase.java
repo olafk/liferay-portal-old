@@ -1107,12 +1107,12 @@ public abstract class BaseMeasurementUnitResourceTestCase {
 		String measurementUnitType =
 			testGetMeasurementUnitsByType_getMeasurementUnitType();
 
-		Page<MeasurementUnit> measurementUnitPage =
+		Page<MeasurementUnit> measurementUnitsPage =
 			measurementUnitResource.getMeasurementUnitsByType(
 				measurementUnitType, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			measurementUnitPage.getTotalCount());
+			measurementUnitsPage.getTotalCount());
 
 		MeasurementUnit measurementUnit1 =
 			testGetMeasurementUnitsByType_addMeasurementUnit(
@@ -1509,11 +1509,11 @@ public abstract class BaseMeasurementUnitResourceTestCase {
 
 	@Test
 	public void testGetMeasurementUnitsPageWithPagination() throws Exception {
-		Page<MeasurementUnit> measurementUnitPage =
+		Page<MeasurementUnit> measurementUnitsPage =
 			measurementUnitResource.getMeasurementUnitsPage(null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			measurementUnitPage.getTotalCount());
+			measurementUnitsPage.getTotalCount());
 
 		MeasurementUnit measurementUnit1 =
 			testGetMeasurementUnitsPage_addMeasurementUnit(

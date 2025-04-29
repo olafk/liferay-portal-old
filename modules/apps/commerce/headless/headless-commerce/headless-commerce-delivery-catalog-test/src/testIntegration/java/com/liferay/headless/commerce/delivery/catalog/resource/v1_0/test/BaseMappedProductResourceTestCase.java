@@ -265,12 +265,12 @@ public abstract class BaseMappedProductResourceTestCase {
 		Long channelId = testGetChannelProductMappedProductsPage_getChannelId();
 		Long productId = testGetChannelProductMappedProductsPage_getProductId();
 
-		Page<MappedProduct> mappedProductPage =
+		Page<MappedProduct> mappedProductsPage =
 			mappedProductResource.getChannelProductMappedProductsPage(
 				channelId, productId, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			mappedProductPage.getTotalCount());
+			mappedProductsPage.getTotalCount());
 
 		MappedProduct mappedProduct1 =
 			testGetChannelProductMappedProductsPage_addMappedProduct(

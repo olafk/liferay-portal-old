@@ -565,11 +565,11 @@ public abstract class BaseOptionCategoryResourceTestCase {
 
 	@Test
 	public void testGetOptionCategoriesPageWithPagination() throws Exception {
-		Page<OptionCategory> optionCategoryPage =
+		Page<OptionCategory> optionCategoriesPage =
 			optionCategoryResource.getOptionCategoriesPage(null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			optionCategoryPage.getTotalCount());
+			optionCategoriesPage.getTotalCount());
 
 		OptionCategory optionCategory1 =
 			testGetOptionCategoriesPage_addOptionCategory(

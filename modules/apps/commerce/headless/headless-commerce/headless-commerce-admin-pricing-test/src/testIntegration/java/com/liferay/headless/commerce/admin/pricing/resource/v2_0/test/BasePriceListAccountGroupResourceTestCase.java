@@ -339,13 +339,13 @@ public abstract class BasePriceListAccountGroupResourceTestCase {
 		String externalReferenceCode =
 			testGetPriceListByExternalReferenceCodePriceListAccountGroupsPage_getExternalReferenceCode();
 
-		Page<PriceListAccountGroup> priceListAccountGroupPage =
+		Page<PriceListAccountGroup> priceListAccountGroupsPage =
 			priceListAccountGroupResource.
 				getPriceListByExternalReferenceCodePriceListAccountGroupsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			priceListAccountGroupPage.getTotalCount());
+			priceListAccountGroupsPage.getTotalCount());
 
 		PriceListAccountGroup priceListAccountGroup1 =
 			testGetPriceListByExternalReferenceCodePriceListAccountGroupsPage_addPriceListAccountGroup(
@@ -657,13 +657,13 @@ public abstract class BasePriceListAccountGroupResourceTestCase {
 
 		Long id = testGetPriceListIdPriceListAccountGroupsPage_getId();
 
-		Page<PriceListAccountGroup> priceListAccountGroupPage =
+		Page<PriceListAccountGroup> priceListAccountGroupsPage =
 			priceListAccountGroupResource.
 				getPriceListIdPriceListAccountGroupsPage(
 					id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			priceListAccountGroupPage.getTotalCount());
+			priceListAccountGroupsPage.getTotalCount());
 
 		PriceListAccountGroup priceListAccountGroup1 =
 			testGetPriceListIdPriceListAccountGroupsPage_addPriceListAccountGroup(

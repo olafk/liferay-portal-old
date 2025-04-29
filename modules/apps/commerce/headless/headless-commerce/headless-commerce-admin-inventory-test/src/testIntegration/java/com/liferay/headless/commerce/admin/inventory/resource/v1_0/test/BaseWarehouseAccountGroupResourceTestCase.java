@@ -339,13 +339,13 @@ public abstract class BaseWarehouseAccountGroupResourceTestCase {
 		String externalReferenceCode =
 			testGetWarehouseByExternalReferenceCodeWarehouseAccountGroupsPage_getExternalReferenceCode();
 
-		Page<WarehouseAccountGroup> warehouseAccountGroupPage =
+		Page<WarehouseAccountGroup> warehouseAccountGroupsPage =
 			warehouseAccountGroupResource.
 				getWarehouseByExternalReferenceCodeWarehouseAccountGroupsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			warehouseAccountGroupPage.getTotalCount());
+			warehouseAccountGroupsPage.getTotalCount());
 
 		WarehouseAccountGroup warehouseAccountGroup1 =
 			testGetWarehouseByExternalReferenceCodeWarehouseAccountGroupsPage_addWarehouseAccountGroup(
@@ -657,13 +657,13 @@ public abstract class BaseWarehouseAccountGroupResourceTestCase {
 
 		Long id = testGetWarehouseIdWarehouseAccountGroupsPage_getId();
 
-		Page<WarehouseAccountGroup> warehouseAccountGroupPage =
+		Page<WarehouseAccountGroup> warehouseAccountGroupsPage =
 			warehouseAccountGroupResource.
 				getWarehouseIdWarehouseAccountGroupsPage(
 					id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			warehouseAccountGroupPage.getTotalCount());
+			warehouseAccountGroupsPage.getTotalCount());
 
 		WarehouseAccountGroup warehouseAccountGroup1 =
 			testGetWarehouseIdWarehouseAccountGroupsPage_addWarehouseAccountGroup(

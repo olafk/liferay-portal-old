@@ -306,12 +306,12 @@ public abstract class BaseTaxonomyCategoryResourceImpl
 			() -> NestedFieldsSupplier.supply(
 				"permissions",
 				nestedField -> {
-					Page<Permission> permissionPage =
+					Page<Permission> permissionsPage =
 						getTaxonomyCategoryPermissionsPage(
 							getTaxonomyCategory.getId(), null);
 
 					Collection<Permission> permissions =
-						permissionPage.getItems();
+						permissionsPage.getItems();
 
 					return permissions.toArray(
 						new Permission[permissions.size()]);
@@ -562,31 +562,31 @@ public abstract class BaseTaxonomyCategoryResourceImpl
 					com.liferay.portal.kernel.search.Sort[] sorts)
 		throws Exception {
 
-		Page<TaxonomyCategory> taxonomyCategoryPage =
+		Page<TaxonomyCategory> taxonomyCategoriesPage =
 			doGetTaxonomyVocabularyTaxonomyCategoriesPage(
 				taxonomyVocabularyId, flatten, search, aggregation, filter,
 				pagination, sorts);
 
 		for (TaxonomyCategory taxonomyCategory :
-				taxonomyCategoryPage.getItems()) {
+				taxonomyCategoriesPage.getItems()) {
 
 			taxonomyCategory.setPermissions(
 				() -> NestedFieldsSupplier.supply(
 					"permissions",
 					nestedField -> {
-						Page<Permission> permissionPage =
+						Page<Permission> permissionsPage =
 							getTaxonomyCategoryPermissionsPage(
 								taxonomyCategory.getId(), null);
 
 						Collection<Permission> permissions =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return permissions.toArray(
 							new Permission[permissions.size()]);
 					}));
 		}
 
-		return taxonomyCategoryPage;
+		return taxonomyCategoriesPage;
 	}
 
 	protected abstract TaxonomyCategory
@@ -653,12 +653,12 @@ public abstract class BaseTaxonomyCategoryResourceImpl
 			() -> NestedFieldsSupplier.supply(
 				"permissions",
 				nestedField -> {
-					Page<Permission> permissionPage =
+					Page<Permission> permissionsPage =
 						getTaxonomyCategoryPermissionsPage(
 							getTaxonomyCategory.getId(), null);
 
 					Collection<Permission> permissions =
-						permissionPage.getItems();
+						permissionsPage.getItems();
 
 					return permissions.toArray(
 						new Permission[permissions.size()]);
@@ -928,7 +928,7 @@ public abstract class BaseTaxonomyCategoryResourceImpl
 				taxonomyVocabularyId, taxonomyCategory);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage =
+			Page<Permission> permissionsPage =
 				putTaxonomyCategoryPermissionsPage(
 					postTaxonomyCategory.getId(), permissions);
 
@@ -937,7 +937,7 @@ public abstract class BaseTaxonomyCategoryResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);
@@ -1047,7 +1047,7 @@ public abstract class BaseTaxonomyCategoryResourceImpl
 			taxonomyCategoryId, taxonomyCategory);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage =
+			Page<Permission> permissionsPage =
 				putTaxonomyCategoryPermissionsPage(
 					putTaxonomyCategory.getId(), permissions);
 
@@ -1056,7 +1056,7 @@ public abstract class BaseTaxonomyCategoryResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);
@@ -1264,7 +1264,7 @@ public abstract class BaseTaxonomyCategoryResourceImpl
 				taxonomyVocabularyId, externalReferenceCode, taxonomyCategory);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage =
+			Page<Permission> permissionsPage =
 				putTaxonomyCategoryPermissionsPage(
 					putTaxonomyCategory.getId(), permissions);
 
@@ -1273,7 +1273,7 @@ public abstract class BaseTaxonomyCategoryResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);

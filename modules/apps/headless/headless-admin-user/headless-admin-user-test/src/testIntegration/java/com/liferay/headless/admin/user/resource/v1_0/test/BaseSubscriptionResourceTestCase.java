@@ -370,11 +370,11 @@ public abstract class BaseSubscriptionResourceTestCase {
 	public void testGetMyUserAccountSubscriptionsPageWithPagination()
 		throws Exception {
 
-		Page<Subscription> subscriptionPage =
+		Page<Subscription> subscriptionsPage =
 			subscriptionResource.getMyUserAccountSubscriptionsPage(null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			subscriptionPage.getTotalCount());
+			subscriptionsPage.getTotalCount());
 
 		Subscription subscription1 =
 			testGetMyUserAccountSubscriptionsPage_addSubscription(

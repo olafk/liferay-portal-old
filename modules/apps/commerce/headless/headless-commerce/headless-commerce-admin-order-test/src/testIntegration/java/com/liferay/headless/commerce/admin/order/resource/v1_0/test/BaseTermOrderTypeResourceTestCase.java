@@ -319,13 +319,13 @@ public abstract class BaseTermOrderTypeResourceTestCase {
 		String externalReferenceCode =
 			testGetTermByExternalReferenceCodeTermOrderTypesPage_getExternalReferenceCode();
 
-		Page<TermOrderType> termOrderTypePage =
+		Page<TermOrderType> termOrderTypesPage =
 			termOrderTypeResource.
 				getTermByExternalReferenceCodeTermOrderTypesPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			termOrderTypePage.getTotalCount());
+			termOrderTypesPage.getTotalCount());
 
 		TermOrderType termOrderType1 =
 			testGetTermByExternalReferenceCodeTermOrderTypesPage_addTermOrderType(
@@ -509,11 +509,11 @@ public abstract class BaseTermOrderTypeResourceTestCase {
 
 		Long id = testGetTermIdTermOrderTypesPage_getId();
 
-		Page<TermOrderType> termOrderTypePage =
+		Page<TermOrderType> termOrderTypesPage =
 			termOrderTypeResource.getTermIdTermOrderTypesPage(id, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			termOrderTypePage.getTotalCount());
+			termOrderTypesPage.getTotalCount());
 
 		TermOrderType termOrderType1 =
 			testGetTermIdTermOrderTypesPage_addTermOrderType(

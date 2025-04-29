@@ -551,9 +551,9 @@ public abstract class BaseFormResourceTestCase {
 	public void testGetSiteFormsPageWithPagination() throws Exception {
 		Long siteId = testGetSiteFormsPage_getSiteId();
 
-		Page<Form> formPage = formResource.getSiteFormsPage(siteId, null);
+		Page<Form> formsPage = formResource.getSiteFormsPage(siteId, null);
 
-		int totalCount = GetterUtil.getInteger(formPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(formsPage.getTotalCount());
 
 		Form form1 = testGetSiteFormsPage_addForm(siteId, randomForm());
 

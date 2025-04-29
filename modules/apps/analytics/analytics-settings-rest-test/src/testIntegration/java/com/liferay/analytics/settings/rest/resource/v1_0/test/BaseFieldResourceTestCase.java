@@ -218,10 +218,10 @@ public abstract class BaseFieldResourceTestCase {
 
 	@Test
 	public void testGetFieldsAccountsPageWithPagination() throws Exception {
-		Page<Field> fieldPage = fieldResource.getFieldsAccountsPage(
+		Page<Field> fieldsPage = fieldResource.getFieldsAccountsPage(
 			null, null, null);
 
-		int totalCount = GetterUtil.getInteger(fieldPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(fieldsPage.getTotalCount());
 
 		Field field1 = testGetFieldsAccountsPage_addField(randomField());
 
@@ -454,10 +454,10 @@ public abstract class BaseFieldResourceTestCase {
 
 	@Test
 	public void testGetFieldsOrdersPageWithPagination() throws Exception {
-		Page<Field> fieldPage = fieldResource.getFieldsOrdersPage(
+		Page<Field> fieldsPage = fieldResource.getFieldsOrdersPage(
 			null, null, null);
 
-		int totalCount = GetterUtil.getInteger(fieldPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(fieldsPage.getTotalCount());
 
 		Field field1 = testGetFieldsOrdersPage_addField(randomField());
 
@@ -689,10 +689,10 @@ public abstract class BaseFieldResourceTestCase {
 
 	@Test
 	public void testGetFieldsPeoplePageWithPagination() throws Exception {
-		Page<Field> fieldPage = fieldResource.getFieldsPeoplePage(
+		Page<Field> fieldsPage = fieldResource.getFieldsPeoplePage(
 			null, null, null);
 
-		int totalCount = GetterUtil.getInteger(fieldPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(fieldsPage.getTotalCount());
 
 		Field field1 = testGetFieldsPeoplePage_addField(randomField());
 
@@ -924,10 +924,10 @@ public abstract class BaseFieldResourceTestCase {
 
 	@Test
 	public void testGetFieldsProductsPageWithPagination() throws Exception {
-		Page<Field> fieldPage = fieldResource.getFieldsProductsPage(
+		Page<Field> fieldsPage = fieldResource.getFieldsProductsPage(
 			null, null, null);
 
-		int totalCount = GetterUtil.getInteger(fieldPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(fieldsPage.getTotalCount());
 
 		Field field1 = testGetFieldsProductsPage_addField(randomField());
 

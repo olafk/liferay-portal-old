@@ -453,13 +453,13 @@ public abstract class BaseShippingFixedOptionOrderTypeResourceTestCase {
 		Long id =
 			testGetShippingFixedOptionIdShippingFixedOptionOrderTypesPage_getId();
 
-		Page<ShippingFixedOptionOrderType> shippingFixedOptionOrderTypePage =
+		Page<ShippingFixedOptionOrderType> shippingFixedOptionOrderTypesPage =
 			shippingFixedOptionOrderTypeResource.
 				getShippingFixedOptionIdShippingFixedOptionOrderTypesPage(
 					id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			shippingFixedOptionOrderTypePage.getTotalCount());
+			shippingFixedOptionOrderTypesPage.getTotalCount());
 
 		ShippingFixedOptionOrderType shippingFixedOptionOrderType1 =
 			testGetShippingFixedOptionIdShippingFixedOptionOrderTypesPage_addShippingFixedOptionOrderType(

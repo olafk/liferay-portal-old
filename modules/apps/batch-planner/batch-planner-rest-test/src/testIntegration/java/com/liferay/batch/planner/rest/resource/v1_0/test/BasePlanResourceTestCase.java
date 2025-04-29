@@ -472,9 +472,9 @@ public abstract class BasePlanResourceTestCase {
 
 	@Test
 	public void testGetPlansPageWithPagination() throws Exception {
-		Page<Plan> planPage = planResource.getPlansPage(null);
+		Page<Plan> plansPage = planResource.getPlansPage(null);
 
-		int totalCount = GetterUtil.getInteger(planPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(plansPage.getTotalCount());
 
 		Plan plan1 = testGetPlansPage_addPlan(randomPlan());
 

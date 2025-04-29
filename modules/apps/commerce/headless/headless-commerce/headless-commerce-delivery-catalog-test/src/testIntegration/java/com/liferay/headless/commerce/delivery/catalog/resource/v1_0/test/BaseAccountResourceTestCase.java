@@ -337,10 +337,10 @@ public abstract class BaseAccountResourceTestCase {
 	public void testGetChannelAccountsPageWithPagination() throws Exception {
 		Long channelId = testGetChannelAccountsPage_getChannelId();
 
-		Page<Account> accountPage = accountResource.getChannelAccountsPage(
+		Page<Account> accountsPage = accountResource.getChannelAccountsPage(
 			channelId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(accountPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(accountsPage.getTotalCount());
 
 		Account account1 = testGetChannelAccountsPage_addAccount(
 			channelId, randomAccount());

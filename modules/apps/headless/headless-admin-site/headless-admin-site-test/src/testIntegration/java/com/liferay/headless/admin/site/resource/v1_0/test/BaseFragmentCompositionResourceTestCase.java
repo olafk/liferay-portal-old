@@ -411,13 +411,13 @@ public abstract class BaseFragmentCompositionResourceTestCase {
 		String siteExternalReferenceCode =
 			testGetSiteSiteByExternalReferenceCodeFragmentCompositionsPage_getSiteExternalReferenceCode();
 
-		Page<FragmentComposition> fragmentCompositionPage =
+		Page<FragmentComposition> fragmentCompositionsPage =
 			fragmentCompositionResource.
 				getSiteSiteByExternalReferenceCodeFragmentCompositionsPage(
 					siteExternalReferenceCode, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			fragmentCompositionPage.getTotalCount());
+			fragmentCompositionsPage.getTotalCount());
 
 		FragmentComposition fragmentComposition1 =
 			testGetSiteSiteByExternalReferenceCodeFragmentCompositionsPage_addFragmentComposition(

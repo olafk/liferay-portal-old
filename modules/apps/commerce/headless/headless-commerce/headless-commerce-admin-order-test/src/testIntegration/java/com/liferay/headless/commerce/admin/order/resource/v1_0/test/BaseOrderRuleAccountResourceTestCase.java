@@ -326,13 +326,13 @@ public abstract class BaseOrderRuleAccountResourceTestCase {
 		String externalReferenceCode =
 			testGetOrderRuleByExternalReferenceCodeOrderRuleAccountsPage_getExternalReferenceCode();
 
-		Page<OrderRuleAccount> orderRuleAccountPage =
+		Page<OrderRuleAccount> orderRuleAccountsPage =
 			orderRuleAccountResource.
 				getOrderRuleByExternalReferenceCodeOrderRuleAccountsPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			orderRuleAccountPage.getTotalCount());
+			orderRuleAccountsPage.getTotalCount());
 
 		OrderRuleAccount orderRuleAccount1 =
 			testGetOrderRuleByExternalReferenceCodeOrderRuleAccountsPage_addOrderRuleAccount(
@@ -620,12 +620,12 @@ public abstract class BaseOrderRuleAccountResourceTestCase {
 
 		Long id = testGetOrderRuleIdOrderRuleAccountsPage_getId();
 
-		Page<OrderRuleAccount> orderRuleAccountPage =
+		Page<OrderRuleAccount> orderRuleAccountsPage =
 			orderRuleAccountResource.getOrderRuleIdOrderRuleAccountsPage(
 				id, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			orderRuleAccountPage.getTotalCount());
+			orderRuleAccountsPage.getTotalCount());
 
 		OrderRuleAccount orderRuleAccount1 =
 			testGetOrderRuleIdOrderRuleAccountsPage_addOrderRuleAccount(

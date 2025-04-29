@@ -1074,12 +1074,12 @@ public abstract class BaseProductConfigurationListResourceTestCase {
 	public void testGetProductConfigurationListsPageWithPagination()
 		throws Exception {
 
-		Page<ProductConfigurationList> productConfigurationListPage =
+		Page<ProductConfigurationList> productConfigurationListsPage =
 			productConfigurationListResource.getProductConfigurationListsPage(
 				null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			productConfigurationListPage.getTotalCount());
+			productConfigurationListsPage.getTotalCount());
 
 		ProductConfigurationList productConfigurationList1 =
 			testGetProductConfigurationListsPage_addProductConfigurationList(

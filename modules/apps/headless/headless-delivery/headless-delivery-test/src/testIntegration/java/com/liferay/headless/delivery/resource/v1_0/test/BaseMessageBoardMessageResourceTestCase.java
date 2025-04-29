@@ -980,14 +980,14 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 		Long parentMessageBoardMessageId =
 			testGetMessageBoardMessageMessageBoardMessagesPage_getParentMessageBoardMessageId();
 
-		Page<MessageBoardMessage> messageBoardMessagePage =
+		Page<MessageBoardMessage> messageBoardMessagesPage =
 			messageBoardMessageResource.
 				getMessageBoardMessageMessageBoardMessagesPage(
 					parentMessageBoardMessageId, null, null, null, null, null,
 					null);
 
 		int totalCount = GetterUtil.getInteger(
-			messageBoardMessagePage.getTotalCount());
+			messageBoardMessagesPage.getTotalCount());
 
 		MessageBoardMessage messageBoardMessage1 =
 			testGetMessageBoardMessageMessageBoardMessagesPage_addMessageBoardMessage(
@@ -1507,13 +1507,13 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 		Long messageBoardThreadId =
 			testGetMessageBoardThreadMessageBoardMessagesPage_getMessageBoardThreadId();
 
-		Page<MessageBoardMessage> messageBoardMessagePage =
+		Page<MessageBoardMessage> messageBoardMessagesPage =
 			messageBoardMessageResource.
 				getMessageBoardThreadMessageBoardMessagesPage(
 					messageBoardThreadId, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			messageBoardMessagePage.getTotalCount());
+			messageBoardMessagesPage.getTotalCount());
 
 		MessageBoardMessage messageBoardMessage1 =
 			testGetMessageBoardThreadMessageBoardMessagesPage_addMessageBoardMessage(
@@ -2354,12 +2354,12 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 
 		Long siteId = testGetSiteMessageBoardMessagesPage_getSiteId();
 
-		Page<MessageBoardMessage> messageBoardMessagePage =
+		Page<MessageBoardMessage> messageBoardMessagesPage =
 			messageBoardMessageResource.getSiteMessageBoardMessagesPage(
 				siteId, null, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			messageBoardMessagePage.getTotalCount());
+			messageBoardMessagesPage.getTotalCount());
 
 		MessageBoardMessage messageBoardMessage1 =
 			testGetSiteMessageBoardMessagesPage_addMessageBoardMessage(
@@ -2813,13 +2813,13 @@ public abstract class BaseMessageBoardMessageResourceTestCase {
 		Long userId =
 			testGetSiteUserMessageBoardMessagesActivityPage_getUserId();
 
-		Page<MessageBoardMessage> messageBoardMessagePage =
+		Page<MessageBoardMessage> messageBoardMessagesPage =
 			messageBoardMessageResource.
 				getSiteUserMessageBoardMessagesActivityPage(
 					siteId, userId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			messageBoardMessagePage.getTotalCount());
+			messageBoardMessagesPage.getTotalCount());
 
 		MessageBoardMessage messageBoardMessage1 =
 			testGetSiteUserMessageBoardMessagesActivityPage_addMessageBoardMessage(

@@ -222,11 +222,12 @@ public abstract class BaseSkuForecastResourceTestCase {
 	public void testGetSkuForecastsByMonthlyRevenuePageWithPagination()
 		throws Exception {
 
-		Page<SkuForecast> skuForecastPage =
+		Page<SkuForecast> skuForecastsPage =
 			skuForecastResource.getSkuForecastsByMonthlyRevenuePage(
 				null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(skuForecastPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			skuForecastsPage.getTotalCount());
 
 		SkuForecast skuForecast1 =
 			testGetSkuForecastsByMonthlyRevenuePage_addSkuForecast(

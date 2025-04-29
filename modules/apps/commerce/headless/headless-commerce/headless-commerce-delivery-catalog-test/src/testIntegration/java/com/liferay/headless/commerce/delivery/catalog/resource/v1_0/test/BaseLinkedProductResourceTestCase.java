@@ -254,12 +254,12 @@ public abstract class BaseLinkedProductResourceTestCase {
 		Long channelId = testGetChannelProductLinkedProductsPage_getChannelId();
 		Long productId = testGetChannelProductLinkedProductsPage_getProductId();
 
-		Page<LinkedProduct> linkedProductPage =
+		Page<LinkedProduct> linkedProductsPage =
 			linkedProductResource.getChannelProductLinkedProductsPage(
 				channelId, productId, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			linkedProductPage.getTotalCount());
+			linkedProductsPage.getTotalCount());
 
 		LinkedProduct linkedProduct1 =
 			testGetChannelProductLinkedProductsPage_addLinkedProduct(

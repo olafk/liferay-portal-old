@@ -480,13 +480,13 @@ public abstract class BaseObjectValidationRuleResourceTestCase {
 		String externalReferenceCode =
 			testGetObjectDefinitionByExternalReferenceCodeObjectValidationRulesPage_getExternalReferenceCode();
 
-		Page<ObjectValidationRule> objectValidationRulePage =
+		Page<ObjectValidationRule> objectValidationRulesPage =
 			objectValidationRuleResource.
 				getObjectDefinitionByExternalReferenceCodeObjectValidationRulesPage(
 					externalReferenceCode, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			objectValidationRulePage.getTotalCount());
+			objectValidationRulesPage.getTotalCount());
 
 		ObjectValidationRule objectValidationRule1 =
 			testGetObjectDefinitionByExternalReferenceCodeObjectValidationRulesPage_addObjectValidationRule(
@@ -881,13 +881,13 @@ public abstract class BaseObjectValidationRuleResourceTestCase {
 		Long objectDefinitionId =
 			testGetObjectDefinitionObjectValidationRulesPage_getObjectDefinitionId();
 
-		Page<ObjectValidationRule> objectValidationRulePage =
+		Page<ObjectValidationRule> objectValidationRulesPage =
 			objectValidationRuleResource.
 				getObjectDefinitionObjectValidationRulesPage(
 					objectDefinitionId, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			objectValidationRulePage.getTotalCount());
+			objectValidationRulesPage.getTotalCount());
 
 		ObjectValidationRule objectValidationRule1 =
 			testGetObjectDefinitionObjectValidationRulesPage_addObjectValidationRule(

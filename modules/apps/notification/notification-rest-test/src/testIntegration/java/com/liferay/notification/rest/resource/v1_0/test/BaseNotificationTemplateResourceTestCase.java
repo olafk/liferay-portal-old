@@ -995,12 +995,12 @@ public abstract class BaseNotificationTemplateResourceTestCase {
 	public void testGetNotificationTemplatesPageWithPagination()
 		throws Exception {
 
-		Page<NotificationTemplate> notificationTemplatePage =
+		Page<NotificationTemplate> notificationTemplatesPage =
 			notificationTemplateResource.getNotificationTemplatesPage(
 				null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			notificationTemplatePage.getTotalCount());
+			notificationTemplatesPage.getTotalCount());
 
 		NotificationTemplate notificationTemplate1 =
 			testGetNotificationTemplatesPage_addNotificationTemplate(

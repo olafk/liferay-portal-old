@@ -970,10 +970,10 @@ public abstract class BaseAccountResourceTestCase {
 
 	@Test
 	public void testGetAccountsPageWithPagination() throws Exception {
-		Page<Account> accountPage = accountResource.getAccountsPage(
+		Page<Account> accountsPage = accountResource.getAccountsPage(
 			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(accountPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(accountsPage.getTotalCount());
 
 		Account account1 = testGetAccountsPage_addAccount(randomAccount());
 

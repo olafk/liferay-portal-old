@@ -122,27 +122,27 @@ public abstract class BaseSiteTestEntityResourceImpl
 			Long siteId)
 		throws Exception {
 
-		Page<SiteTestEntity> siteTestEntityPage = doGetSiteSiteTestEntitiesPage(
-			siteId);
+		Page<SiteTestEntity> siteTestEntitiesPage =
+			doGetSiteSiteTestEntitiesPage(siteId);
 
-		for (SiteTestEntity siteTestEntity : siteTestEntityPage.getItems()) {
+		for (SiteTestEntity siteTestEntity : siteTestEntitiesPage.getItems()) {
 			siteTestEntity.setPermissions(
 				() -> NestedFieldsSupplier.supply(
 					"permissions",
 					nestedField -> {
-						Page<Permission> permissionPage =
+						Page<Permission> permissionsPage =
 							getSiteTestEntityPermissionsPage(
 								siteTestEntity.getId(), null);
 
 						Collection<Permission> permissions =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return permissions.toArray(
 							new Permission[permissions.size()]);
 					}));
 		}
 
-		return siteTestEntityPage;
+		return siteTestEntitiesPage;
 	}
 
 	protected abstract SiteTestEntity
@@ -197,12 +197,12 @@ public abstract class BaseSiteTestEntityResourceImpl
 			() -> NestedFieldsSupplier.supply(
 				"permissions",
 				nestedField -> {
-					Page<Permission> permissionPage =
+					Page<Permission> permissionsPage =
 						getSiteTestEntityPermissionsPage(
 							getSiteTestEntity.getId(), null);
 
 					Collection<Permission> permissions =
-						permissionPage.getItems();
+						permissionsPage.getItems();
 
 					return permissions.toArray(
 						new Permission[permissions.size()]);
@@ -250,12 +250,12 @@ public abstract class BaseSiteTestEntityResourceImpl
 			() -> NestedFieldsSupplier.supply(
 				"permissions",
 				nestedField -> {
-					Page<Permission> permissionPage =
+					Page<Permission> permissionsPage =
 						getSiteTestEntityPermissionsPage(
 							getSiteTestEntity.getId(), null);
 
 					Collection<Permission> permissions =
-						permissionPage.getItems();
+						permissionsPage.getItems();
 
 					return permissions.toArray(
 						new Permission[permissions.size()]);
@@ -502,7 +502,7 @@ public abstract class BaseSiteTestEntityResourceImpl
 			siteId, siteTestEntity);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage = putSiteTestEntityPermissionsPage(
+			Page<Permission> permissionsPage = putSiteTestEntityPermissionsPage(
 				postSiteTestEntity.getId(), permissions);
 
 			postSiteTestEntity.setPermissions(
@@ -510,7 +510,7 @@ public abstract class BaseSiteTestEntityResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);
@@ -628,7 +628,7 @@ public abstract class BaseSiteTestEntityResourceImpl
 				externalReferenceCode, siteId, siteTestEntity);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage = putSiteTestEntityPermissionsPage(
+			Page<Permission> permissionsPage = putSiteTestEntityPermissionsPage(
 				putSiteTestEntity.getId(), permissions);
 
 			putSiteTestEntity.setPermissions(
@@ -636,7 +636,7 @@ public abstract class BaseSiteTestEntityResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);
@@ -687,7 +687,7 @@ public abstract class BaseSiteTestEntityResourceImpl
 			siteTestEntityId, siteTestEntity);
 
 		if (permissions != null) {
-			Page<Permission> permissionPage = putSiteTestEntityPermissionsPage(
+			Page<Permission> permissionsPage = putSiteTestEntityPermissionsPage(
 				putSiteTestEntity.getId(), permissions);
 
 			putSiteTestEntity.setPermissions(
@@ -695,7 +695,7 @@ public abstract class BaseSiteTestEntityResourceImpl
 					"permissions",
 					nestedField -> {
 						Collection<Permission> collection =
-							permissionPage.getItems();
+							permissionsPage.getItems();
 
 						return collection.toArray(
 							new Permission[collection.size()]);

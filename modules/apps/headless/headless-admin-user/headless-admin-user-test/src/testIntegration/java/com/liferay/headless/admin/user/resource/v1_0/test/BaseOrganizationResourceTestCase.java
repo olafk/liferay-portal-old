@@ -967,13 +967,13 @@ public abstract class BaseOrganizationResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeOrganizationsPage_getExternalReferenceCode();
 
-		Page<Organization> organizationPage =
+		Page<Organization> organizationsPage =
 			organizationResource.
 				getAccountByExternalReferenceCodeOrganizationsPage(
 					externalReferenceCode, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			organizationPage.getTotalCount());
+			organizationsPage.getTotalCount());
 
 		Organization organization1 =
 			testGetAccountByExternalReferenceCodeOrganizationsPage_addOrganization(
@@ -1560,12 +1560,12 @@ public abstract class BaseOrganizationResourceTestCase {
 
 		Long accountId = testGetAccountOrganizationsPage_getAccountId();
 
-		Page<Organization> organizationPage =
+		Page<Organization> organizationsPage =
 			organizationResource.getAccountOrganizationsPage(
 				accountId, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			organizationPage.getTotalCount());
+			organizationsPage.getTotalCount());
 
 		Organization organization1 =
 			testGetAccountOrganizationsPage_addOrganization(
@@ -2264,13 +2264,13 @@ public abstract class BaseOrganizationResourceTestCase {
 		String externalReferenceCode =
 			testGetOrganizationByExternalReferenceCodeChildOrganizationsPage_getExternalReferenceCode();
 
-		Page<Organization> organizationPage =
+		Page<Organization> organizationsPage =
 			organizationResource.
 				getOrganizationByExternalReferenceCodeChildOrganizationsPage(
 					externalReferenceCode, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			organizationPage.getTotalCount());
+			organizationsPage.getTotalCount());
 
 		Organization organization1 =
 			testGetOrganizationByExternalReferenceCodeChildOrganizationsPage_addOrganization(
@@ -2720,12 +2720,12 @@ public abstract class BaseOrganizationResourceTestCase {
 		String organizationId =
 			testGetOrganizationChildOrganizationsPage_getOrganizationId();
 
-		Page<Organization> organizationPage =
+		Page<Organization> organizationsPage =
 			organizationResource.getOrganizationChildOrganizationsPage(
 				organizationId, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			organizationPage.getTotalCount());
+			organizationsPage.getTotalCount());
 
 		Organization organization1 =
 			testGetOrganizationChildOrganizationsPage_addOrganization(
@@ -3166,12 +3166,12 @@ public abstract class BaseOrganizationResourceTestCase {
 		String parentOrganizationId =
 			testGetOrganizationOrganizationsPage_getParentOrganizationId();
 
-		Page<Organization> organizationPage =
+		Page<Organization> organizationsPage =
 			organizationResource.getOrganizationOrganizationsPage(
 				parentOrganizationId, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			organizationPage.getTotalCount());
+			organizationsPage.getTotalCount());
 
 		Organization organization1 =
 			testGetOrganizationOrganizationsPage_addOrganization(
@@ -3557,12 +3557,12 @@ public abstract class BaseOrganizationResourceTestCase {
 
 	@Test
 	public void testGetOrganizationsPageWithPagination() throws Exception {
-		Page<Organization> organizationPage =
+		Page<Organization> organizationsPage =
 			organizationResource.getOrganizationsPage(
 				null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			organizationPage.getTotalCount());
+			organizationsPage.getTotalCount());
 
 		Organization organization1 = testGetOrganizationsPage_addOrganization(
 			randomOrganization());

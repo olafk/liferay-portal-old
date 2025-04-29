@@ -418,12 +418,13 @@ public abstract class BaseUserAccountResourceTestCase {
 		String externalReferenceCode =
 			testGetAssetLibraryByExternalReferenceCodeUserAccountsPage_getExternalReferenceCode();
 
-		Page<UserAccount> userAccountPage =
+		Page<UserAccount> userAccountsPage =
 			userAccountResource.
 				getAssetLibraryByExternalReferenceCodeUserAccountsPage(
 					externalReferenceCode, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(userAccountPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			userAccountsPage.getTotalCount());
 
 		UserAccount userAccount1 =
 			testGetAssetLibraryByExternalReferenceCodeUserAccountsPage_addUserAccount(
@@ -799,11 +800,12 @@ public abstract class BaseUserAccountResourceTestCase {
 		Long assetLibraryId =
 			testGetAssetLibraryUserAccountsPage_getAssetLibraryId();
 
-		Page<UserAccount> userAccountPage =
+		Page<UserAccount> userAccountsPage =
 			userAccountResource.getAssetLibraryUserAccountsPage(
 				assetLibraryId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(userAccountPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			userAccountsPage.getTotalCount());
 
 		UserAccount userAccount1 =
 			testGetAssetLibraryUserAccountsPage_addUserAccount(

@@ -523,12 +523,13 @@ public abstract class BasePriceEntryResourceTestCase {
 		String externalReferenceCode =
 			testGetPriceListByExternalReferenceCodePriceEntriesPage_getExternalReferenceCode();
 
-		Page<PriceEntry> priceEntryPage =
+		Page<PriceEntry> priceEntriesPage =
 			priceEntryResource.
 				getPriceListByExternalReferenceCodePriceEntriesPage(
 					externalReferenceCode, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(priceEntryPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			priceEntriesPage.getTotalCount());
 
 		PriceEntry priceEntry1 =
 			testGetPriceListByExternalReferenceCodePriceEntriesPage_addPriceEntry(
@@ -957,11 +958,12 @@ public abstract class BasePriceEntryResourceTestCase {
 
 		Long id = testGetPriceListIdPriceEntriesPage_getId();
 
-		Page<PriceEntry> priceEntryPage =
+		Page<PriceEntry> priceEntriesPage =
 			priceEntryResource.getPriceListIdPriceEntriesPage(
 				id, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(priceEntryPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			priceEntriesPage.getTotalCount());
 
 		PriceEntry priceEntry1 =
 			testGetPriceListIdPriceEntriesPage_addPriceEntry(

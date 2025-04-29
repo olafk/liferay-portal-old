@@ -1107,12 +1107,12 @@ public abstract class BaseObjectEntryFolderResourceTestCase {
 		String scopeKey =
 			testGetScopeScopeKeyObjectEntryFoldersPage_getScopeKey();
 
-		Page<ObjectEntryFolder> objectEntryFolderPage =
+		Page<ObjectEntryFolder> objectEntryFoldersPage =
 			objectEntryFolderResource.getScopeScopeKeyObjectEntryFoldersPage(
 				scopeKey, null, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			objectEntryFolderPage.getTotalCount());
+			objectEntryFoldersPage.getTotalCount());
 
 		ObjectEntryFolder objectEntryFolder1 =
 			testGetScopeScopeKeyObjectEntryFoldersPage_addObjectEntryFolder(

@@ -297,12 +297,12 @@ public abstract class BaseSearchResultResourceTestCase {
 
 	@Test
 	public void testGetSearchPageWithPagination() throws Exception {
-		Page<SearchResult> searchResultPage =
+		Page<SearchResult> searchResultsPage =
 			searchResultResource.getSearchPage(
 				null, null, null, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			searchResultPage.getTotalCount());
+			searchResultsPage.getTotalCount());
 
 		SearchResult searchResult1 = testGetSearchPage_addSearchResult(
 			randomSearchResult());

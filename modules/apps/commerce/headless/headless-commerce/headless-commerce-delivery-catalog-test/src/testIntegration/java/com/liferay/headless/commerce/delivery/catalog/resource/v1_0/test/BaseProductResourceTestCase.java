@@ -651,10 +651,10 @@ public abstract class BaseProductResourceTestCase {
 	public void testGetChannelProductsPageWithPagination() throws Exception {
 		Long channelId = testGetChannelProductsPage_getChannelId();
 
-		Page<Product> productPage = productResource.getChannelProductsPage(
+		Page<Product> productsPage = productResource.getChannelProductsPage(
 			channelId, null, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(productPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(productsPage.getTotalCount());
 
 		Product product1 = testGetChannelProductsPage_addProduct(
 			channelId, randomProduct());

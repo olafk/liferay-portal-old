@@ -566,12 +566,13 @@ public abstract class BaseObjectFieldResourceTestCase {
 		String externalReferenceCode =
 			testGetObjectDefinitionByExternalReferenceCodeObjectFieldsPage_getExternalReferenceCode();
 
-		Page<ObjectField> objectFieldPage =
+		Page<ObjectField> objectFieldsPage =
 			objectFieldResource.
 				getObjectDefinitionByExternalReferenceCodeObjectFieldsPage(
 					externalReferenceCode, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(objectFieldPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			objectFieldsPage.getTotalCount());
 
 		ObjectField objectField1 =
 			testGetObjectDefinitionByExternalReferenceCodeObjectFieldsPage_addObjectField(
@@ -1029,11 +1030,12 @@ public abstract class BaseObjectFieldResourceTestCase {
 		Long objectDefinitionId =
 			testGetObjectDefinitionObjectFieldsPage_getObjectDefinitionId();
 
-		Page<ObjectField> objectFieldPage =
+		Page<ObjectField> objectFieldsPage =
 			objectFieldResource.getObjectDefinitionObjectFieldsPage(
 				objectDefinitionId, null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(objectFieldPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			objectFieldsPage.getTotalCount());
 
 		ObjectField objectField1 =
 			testGetObjectDefinitionObjectFieldsPage_addObjectField(

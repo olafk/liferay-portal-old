@@ -495,13 +495,13 @@ public abstract class BaseAccountChannelShippingOptionResourceTestCase {
 		String externalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountChannelShippingOptionPage_getExternalReferenceCode();
 
-		Page<AccountChannelShippingOption> accountChannelShippingOptionPage =
+		Page<AccountChannelShippingOption> accountChannelShippingOptionsPage =
 			accountChannelShippingOptionResource.
 				getAccountByExternalReferenceCodeAccountChannelShippingOptionPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelShippingOptionPage.getTotalCount());
+			accountChannelShippingOptionsPage.getTotalCount());
 
 		AccountChannelShippingOption accountChannelShippingOption1 =
 			testGetAccountByExternalReferenceCodeAccountChannelShippingOptionPage_addAccountChannelShippingOption(
@@ -1037,12 +1037,12 @@ public abstract class BaseAccountChannelShippingOptionResourceTestCase {
 
 		Long id = testGetAccountIdAccountChannelShippingOptionPage_getId();
 
-		Page<AccountChannelShippingOption> accountChannelShippingOptionPage =
+		Page<AccountChannelShippingOption> accountChannelShippingOptionsPage =
 			accountChannelShippingOptionResource.
 				getAccountIdAccountChannelShippingOptionPage(id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountChannelShippingOptionPage.getTotalCount());
+			accountChannelShippingOptionsPage.getTotalCount());
 
 		AccountChannelShippingOption accountChannelShippingOption1 =
 			testGetAccountIdAccountChannelShippingOptionPage_addAccountChannelShippingOption(

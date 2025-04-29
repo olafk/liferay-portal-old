@@ -940,11 +940,11 @@ public abstract class BaseSXPBlueprintResourceTestCase {
 
 	@Test
 	public void testGetSXPBlueprintsPageWithPagination() throws Exception {
-		Page<SXPBlueprint> sxpBlueprintPage =
+		Page<SXPBlueprint> sxpBlueprintsPage =
 			sxpBlueprintResource.getSXPBlueprintsPage(null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			sxpBlueprintPage.getTotalCount());
+			sxpBlueprintsPage.getTotalCount());
 
 		SXPBlueprint sxpBlueprint1 = testGetSXPBlueprintsPage_addSXPBlueprint(
 			randomSXPBlueprint());

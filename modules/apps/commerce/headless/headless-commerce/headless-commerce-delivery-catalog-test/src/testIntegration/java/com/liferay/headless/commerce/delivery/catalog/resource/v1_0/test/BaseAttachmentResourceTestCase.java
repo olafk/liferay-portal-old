@@ -260,11 +260,11 @@ public abstract class BaseAttachmentResourceTestCase {
 		Long channelId = testGetChannelProductAttachmentsPage_getChannelId();
 		Long productId = testGetChannelProductAttachmentsPage_getProductId();
 
-		Page<Attachment> attachmentPage =
+		Page<Attachment> attachmentsPage =
 			attachmentResource.getChannelProductAttachmentsPage(
 				channelId, productId, null, null);
 
-		int totalCount = GetterUtil.getInteger(attachmentPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(attachmentsPage.getTotalCount());
 
 		Attachment attachment1 =
 			testGetChannelProductAttachmentsPage_addAttachment(
@@ -450,11 +450,11 @@ public abstract class BaseAttachmentResourceTestCase {
 		Long channelId = testGetChannelProductImagesPage_getChannelId();
 		Long productId = testGetChannelProductImagesPage_getProductId();
 
-		Page<Attachment> attachmentPage =
+		Page<Attachment> attachmentsPage =
 			attachmentResource.getChannelProductImagesPage(
 				channelId, productId, null, null);
 
-		int totalCount = GetterUtil.getInteger(attachmentPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(attachmentsPage.getTotalCount());
 
 		Attachment attachment1 = testGetChannelProductImagesPage_addAttachment(
 			channelId, productId, randomAttachment());

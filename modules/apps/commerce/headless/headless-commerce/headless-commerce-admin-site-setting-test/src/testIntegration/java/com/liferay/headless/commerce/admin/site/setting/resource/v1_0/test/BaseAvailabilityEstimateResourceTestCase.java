@@ -765,13 +765,13 @@ public abstract class BaseAvailabilityEstimateResourceTestCase {
 		Long groupId =
 			testGetCommerceAdminSiteSettingGroupAvailabilityEstimatePage_getGroupId();
 
-		Page<AvailabilityEstimate> availabilityEstimatePage =
+		Page<AvailabilityEstimate> availabilityEstimatesPage =
 			availabilityEstimateResource.
 				getCommerceAdminSiteSettingGroupAvailabilityEstimatePage(
 					groupId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			availabilityEstimatePage.getTotalCount());
+			availabilityEstimatesPage.getTotalCount());
 
 		AvailabilityEstimate availabilityEstimate1 =
 			testGetCommerceAdminSiteSettingGroupAvailabilityEstimatePage_addAvailabilityEstimate(

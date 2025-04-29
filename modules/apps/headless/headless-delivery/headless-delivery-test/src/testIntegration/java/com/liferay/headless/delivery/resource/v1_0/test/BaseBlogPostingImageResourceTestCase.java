@@ -1103,12 +1103,12 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		Long siteId = testGetSiteBlogPostingImagesPage_getSiteId();
 
-		Page<BlogPostingImage> blogPostingImagePage =
+		Page<BlogPostingImage> blogPostingImagesPage =
 			blogPostingImageResource.getSiteBlogPostingImagesPage(
 				siteId, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			blogPostingImagePage.getTotalCount());
+			blogPostingImagesPage.getTotalCount());
 
 		BlogPostingImage blogPostingImage1 =
 			testGetSiteBlogPostingImagesPage_addBlogPostingImage(

@@ -243,10 +243,11 @@ public abstract class BaseSegmentUserResourceTestCase {
 
 		Long segmentId = testGetSegmentUserAccountsPage_getSegmentId();
 
-		Page<SegmentUser> segmentUserPage =
+		Page<SegmentUser> segmentUsersPage =
 			segmentUserResource.getSegmentUserAccountsPage(segmentId, null);
 
-		int totalCount = GetterUtil.getInteger(segmentUserPage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(
+			segmentUsersPage.getTotalCount());
 
 		SegmentUser segmentUser1 =
 			testGetSegmentUserAccountsPage_addSegmentUser(

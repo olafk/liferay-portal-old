@@ -370,12 +370,12 @@ public abstract class BaseContentElementResourceTestCase {
 		Long assetLibraryId =
 			testGetAssetLibraryContentElementsPage_getAssetLibraryId();
 
-		Page<ContentElement> contentElementPage =
+		Page<ContentElement> contentElementsPage =
 			contentElementResource.getAssetLibraryContentElementsPage(
 				assetLibraryId, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			contentElementPage.getTotalCount());
+			contentElementsPage.getTotalCount());
 
 		ContentElement contentElement1 =
 			testGetAssetLibraryContentElementsPage_addContentElement(
@@ -807,12 +807,12 @@ public abstract class BaseContentElementResourceTestCase {
 
 		Long siteId = testGetSiteContentElementsPage_getSiteId();
 
-		Page<ContentElement> contentElementPage =
+		Page<ContentElement> contentElementsPage =
 			contentElementResource.getSiteContentElementsPage(
 				siteId, null, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			contentElementPage.getTotalCount());
+			contentElementsPage.getTotalCount());
 
 		ContentElement contentElement1 =
 			testGetSiteContentElementsPage_addContentElement(

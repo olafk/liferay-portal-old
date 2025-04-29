@@ -277,13 +277,13 @@ public abstract class BaseWorkflowDefinitionLinkResourceTestCase {
 		String externalReferenceCode =
 			testGetWorkflowDefinitionByExternalReferenceCodeWorkflowDefinitionLinksPage_getExternalReferenceCode();
 
-		Page<WorkflowDefinitionLink> workflowDefinitionLinkPage =
+		Page<WorkflowDefinitionLink> workflowDefinitionLinksPage =
 			workflowDefinitionLinkResource.
 				getWorkflowDefinitionByExternalReferenceCodeWorkflowDefinitionLinksPage(
 					externalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			workflowDefinitionLinkPage.getTotalCount());
+			workflowDefinitionLinksPage.getTotalCount());
 
 		WorkflowDefinitionLink workflowDefinitionLink1 =
 			testGetWorkflowDefinitionByExternalReferenceCodeWorkflowDefinitionLinksPage_addWorkflowDefinitionLink(
@@ -506,13 +506,13 @@ public abstract class BaseWorkflowDefinitionLinkResourceTestCase {
 		Long workflowDefinitionId =
 			testGetWorkflowDefinitionWorkflowDefinitionLinksPage_getWorkflowDefinitionId();
 
-		Page<WorkflowDefinitionLink> workflowDefinitionLinkPage =
+		Page<WorkflowDefinitionLink> workflowDefinitionLinksPage =
 			workflowDefinitionLinkResource.
 				getWorkflowDefinitionWorkflowDefinitionLinksPage(
 					workflowDefinitionId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			workflowDefinitionLinkPage.getTotalCount());
+			workflowDefinitionLinksPage.getTotalCount());
 
 		WorkflowDefinitionLink workflowDefinitionLink1 =
 			testGetWorkflowDefinitionWorkflowDefinitionLinksPage_addWorkflowDefinitionLink(

@@ -482,13 +482,13 @@ public abstract class BaseSkuVirtualSettingsFileEntryResourceTestCase {
 		Long id =
 			testGetSkuVirtualSettingIdSkuVirtualSettingsFileEntriesPage_getId();
 
-		Page<SkuVirtualSettingsFileEntry> skuVirtualSettingsFileEntryPage =
+		Page<SkuVirtualSettingsFileEntry> skuVirtualSettingsFileEntriesPage =
 			skuVirtualSettingsFileEntryResource.
 				getSkuVirtualSettingIdSkuVirtualSettingsFileEntriesPage(
 					id, null);
 
 		int totalCount = GetterUtil.getInteger(
-			skuVirtualSettingsFileEntryPage.getTotalCount());
+			skuVirtualSettingsFileEntriesPage.getTotalCount());
 
 		SkuVirtualSettingsFileEntry skuVirtualSettingsFileEntry1 =
 			testGetSkuVirtualSettingIdSkuVirtualSettingsFileEntriesPage_addSkuVirtualSettingsFileEntry(

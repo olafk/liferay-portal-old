@@ -1134,9 +1134,10 @@ public abstract class BaseRoleResourceTestCase {
 
 	@Test
 	public void testGetRolesPageWithPagination() throws Exception {
-		Page<Role> rolePage = roleResource.getRolesPage(null, null, null, null);
+		Page<Role> rolesPage = roleResource.getRolesPage(
+			null, null, null, null);
 
-		int totalCount = GetterUtil.getInteger(rolePage.getTotalCount());
+		int totalCount = GetterUtil.getInteger(rolesPage.getTotalCount());
 
 		Role role1 = testGetRolesPage_addRole(randomRole());
 

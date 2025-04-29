@@ -591,13 +591,13 @@ public abstract class BaseObjectRelationshipResourceTestCase {
 		String externalReferenceCode =
 			testGetObjectDefinitionByExternalReferenceCodeObjectRelationshipsPage_getExternalReferenceCode();
 
-		Page<ObjectRelationship> objectRelationshipPage =
+		Page<ObjectRelationship> objectRelationshipsPage =
 			objectRelationshipResource.
 				getObjectDefinitionByExternalReferenceCodeObjectRelationshipsPage(
 					externalReferenceCode, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			objectRelationshipPage.getTotalCount());
+			objectRelationshipsPage.getTotalCount());
 
 		ObjectRelationship objectRelationship1 =
 			testGetObjectDefinitionByExternalReferenceCodeObjectRelationshipsPage_addObjectRelationship(
@@ -1094,13 +1094,13 @@ public abstract class BaseObjectRelationshipResourceTestCase {
 		Long objectDefinitionId =
 			testGetObjectDefinitionObjectRelationshipsPage_getObjectDefinitionId();
 
-		Page<ObjectRelationship> objectRelationshipPage =
+		Page<ObjectRelationship> objectRelationshipsPage =
 			objectRelationshipResource.
 				getObjectDefinitionObjectRelationshipsPage(
 					objectDefinitionId, null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			objectRelationshipPage.getTotalCount());
+			objectRelationshipsPage.getTotalCount());
 
 		ObjectRelationship objectRelationship1 =
 			testGetObjectDefinitionObjectRelationshipsPage_addObjectRelationship(

@@ -538,11 +538,11 @@ public abstract class BaseAccountGroupResourceTestCase {
 
 		Long accountId = testGetAccountAccountGroupsPage_getAccountId();
 
-		Page<AccountGroup> accountGroupPage =
+		Page<AccountGroup> accountGroupsPage =
 			accountGroupResource.getAccountAccountGroupsPage(accountId, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountGroupPage.getTotalCount());
+			accountGroupsPage.getTotalCount());
 
 		AccountGroup accountGroup1 =
 			testGetAccountAccountGroupsPage_addAccountGroup(
@@ -727,13 +727,13 @@ public abstract class BaseAccountGroupResourceTestCase {
 		String accountExternalReferenceCode =
 			testGetAccountByExternalReferenceCodeAccountExternalReferenceCodeAccountGroupsPage_getAccountExternalReferenceCode();
 
-		Page<AccountGroup> accountGroupPage =
+		Page<AccountGroup> accountGroupsPage =
 			accountGroupResource.
 				getAccountByExternalReferenceCodeAccountExternalReferenceCodeAccountGroupsPage(
 					accountExternalReferenceCode, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountGroupPage.getTotalCount());
+			accountGroupsPage.getTotalCount());
 
 		AccountGroup accountGroup1 =
 			testGetAccountByExternalReferenceCodeAccountExternalReferenceCodeAccountGroupsPage_addAccountGroup(
@@ -1408,11 +1408,11 @@ public abstract class BaseAccountGroupResourceTestCase {
 
 	@Test
 	public void testGetAccountGroupsPageWithPagination() throws Exception {
-		Page<AccountGroup> accountGroupPage =
+		Page<AccountGroup> accountGroupsPage =
 			accountGroupResource.getAccountGroupsPage(null, null, null, null);
 
 		int totalCount = GetterUtil.getInteger(
-			accountGroupPage.getTotalCount());
+			accountGroupsPage.getTotalCount());
 
 		AccountGroup accountGroup1 = testGetAccountGroupsPage_addAccountGroup(
 			randomAccountGroup());
