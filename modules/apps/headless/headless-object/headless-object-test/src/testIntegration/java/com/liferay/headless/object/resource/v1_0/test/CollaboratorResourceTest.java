@@ -305,8 +305,8 @@ public class CollaboratorResourceTest extends BaseCollaboratorResourceTestCase {
 		Calendar calendar = CalendarFactoryUtil.getCalendar();
 
 		calendar.add(Calendar.YEAR, 1);
-		calendar.set(Calendar.SECOND, 0);
 		calendar.set(Calendar.MILLISECOND, 0);
+		calendar.set(Calendar.SECOND, 0);
 
 		return calendar.getTime();
 	}
