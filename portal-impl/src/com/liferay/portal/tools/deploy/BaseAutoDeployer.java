@@ -590,12 +590,12 @@ public class BaseAutoDeployer implements AutoDeployer {
 			FileUtil.copyFile(
 				portletTaglibDTD, srcFile + "/WEB-INF/tld/liferay-portlet.tld");
 			FileUtil.copyFile(
-				portletTaglibDTD,
-				srcFile + "/WEB-INF/tld/liferay-portlet_3_0.tld");
-			FileUtil.copyFile(
 				DeployUtil.getResourcePath(
 					tempDirPaths, "liferay-portlet_2_0.tld"),
 				srcFile + "/WEB-INF/tld/liferay-portlet_2_0.tld");
+			FileUtil.copyFile(
+				portletTaglibDTD,
+				srcFile + "/WEB-INF/tld/liferay-portlet_3_0.tld");
 		}
 
 		if (Validator.isNotNull(portletExtTaglibDTD)) {
