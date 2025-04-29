@@ -574,13 +574,12 @@ public class SharingEntryServiceTest {
 				_classNameId, _group.getGroupId(), _group.getGroupId(),
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Assert.assertEquals(
-			sharingEntries.toString(), 2, sharingEntries.size());
-
 		Assert.assertTrue(
 			sharingEntries.toString(), sharingEntries.contains(sharingEntry1));
 		Assert.assertTrue(
 			sharingEntries.toString(), sharingEntries.contains(sharingEntry2));
+		Assert.assertEquals(
+			sharingEntries.toString(), 2, sharingEntries.size());
 	}
 
 	@Test(expected = PrincipalException.class)
