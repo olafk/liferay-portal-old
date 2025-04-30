@@ -95,7 +95,7 @@ public class SampleSQLBuilderTest {
 
 	private void _initProperties(Properties properties) {
 		properties.put(
-			BenchmarksPropsKeys.ADMIN_INSTANCE_VIRTUAL_HOST_NAME, "localhost");
+			BenchmarksPropsKeys.VIRTUAL_HOSTNAME_ADMIN_INSTANCE, "localhost");
 		properties.put(
 			BenchmarksPropsKeys.COMMERCE_LAYOUT_EXCLUDED_PORTLETS,
 			StringPool.BLANK);

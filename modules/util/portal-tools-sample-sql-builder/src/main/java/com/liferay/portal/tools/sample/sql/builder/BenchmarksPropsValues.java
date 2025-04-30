@@ -22,9 +22,9 @@ import java.util.TimeZone;
  */
 public class BenchmarksPropsValues {
 
-	public static final String ADMIN_INSTANCE_VIRTUAL_HOST_NAME =
+	public static final String VIRTUAL_HOSTNAME_ADMIN_INSTANCE =
 		PropertiesHolder._get(
-			BenchmarksPropsKeys.ADMIN_INSTANCE_VIRTUAL_HOST_NAME);
+			BenchmarksPropsKeys.VIRTUAL_HOSTNAME_ADMIN_INSTANCE);
 
 	public static final String[] COMMERCE_LAYOUT_EXCLUDED_PORTLETS =
 		StringUtil.split(
