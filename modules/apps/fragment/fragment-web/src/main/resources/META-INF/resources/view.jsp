@@ -80,7 +80,7 @@ ImportDisplayContext importDisplayContext = new ImportDisplayContext(request, re
 									</c:if>
 								</li>
 
-								<c:if test="<%= fragmentDisplayContext.showMarketplace() %>">
+								<c:if test="<%= fragmentDisplayContext.isShowMarketplace() %>">
 									<li>
 										<div class="marketplace-button">
 											<react:component
@@ -203,7 +203,7 @@ ImportDisplayContext importDisplayContext = new ImportDisplayContext(request, re
 								</div>
 							</c:if>
 
-							<c:if test="<%= fragmentDisplayContext.showFragmentCollectionActions() %>">
+							<c:if test="<%= fragmentDisplayContext.isShowFragmentCollectionActions() %>">
 								<clay:content-col
 									cssClass="inline-item-after"
 								>

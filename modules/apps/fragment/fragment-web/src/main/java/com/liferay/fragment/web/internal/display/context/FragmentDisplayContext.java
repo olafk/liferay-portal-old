@@ -814,11 +814,11 @@ public class FragmentDisplayContext {
 		return false;
 	}
 
-	public boolean showFragmentCollectionActions() {
+	public boolean isShowFragmentCollectionActions() {
 		return !isSelectedFragmentCollectionContributor();
 	}
 
-	public boolean showMarketplace() throws PortalException {
+	public boolean isShowMarketplace() throws PortalException {
 		if (FeatureFlagManagerUtil.isEnabled(
 				_themeDisplay.getCompanyId(), "LPD-34938") &&
 			PortletPermissionUtil.contains(
