@@ -228,28 +228,24 @@ public class DepotEntryGroupRelLocalServiceTest {
 		_depotEntryGroupRelLocalService.deleteDepotEntryGroupRel(
 			depotEntryGroupRel.getDepotEntryGroupRelId());
 
-		Assert.assertEquals(
-			2,
-			_depotEntryGroupRelLocalService.getDepotEntryGroupRelsCount(
-				depotEntry));
-
-		Assert.assertEquals(
-			systemEventsCount + 1,
-			_systemEventLocalService.getSystemEventsCount());
-
 		Assert.assertNull(
 			_depotEntryGroupRelLocalService.fetchDepotEntryGroupRel(
 				depotEntryGroupRel.getDepotEntryGroupRelId()));
-
 		Assert.assertNotNull(
 			_depotEntryGroupRelLocalService.
 				fetchDepotEntryGroupRelByDepotEntryIdToGroupId(
 					depotEntry.getDepotEntryId(), _group1.getGroupId()));
-
 		Assert.assertNotNull(
 			_depotEntryGroupRelLocalService.
 				fetchDepotEntryGroupRelByDepotEntryIdToGroupId(
 					depotEntry.getDepotEntryId(), _group2.getGroupId()));
+		Assert.assertEquals(
+			2,
+			_depotEntryGroupRelLocalService.getDepotEntryGroupRelsCount(
+				depotEntry));
+		Assert.assertEquals(
+			systemEventsCount + 1,
+			_systemEventLocalService.getSystemEventsCount());
 	}
 
 	@Test
@@ -283,28 +279,24 @@ public class DepotEntryGroupRelLocalServiceTest {
 		_depotEntryGroupRelLocalService.deleteDepotEntryGroupRel(
 			depotEntryGroupRel.getDepotEntryGroupRelId());
 
-		Assert.assertEquals(
-			0,
-			_depotEntryGroupRelLocalService.getDepotEntryGroupRelsCount(
-				depotEntry));
-
-		Assert.assertEquals(
-			systemEventsCount + 3,
-			_systemEventLocalService.getSystemEventsCount());
-
 		Assert.assertNull(
 			_depotEntryGroupRelLocalService.fetchDepotEntryGroupRel(
 				depotEntryGroupRel.getDepotEntryGroupRelId()));
-
 		Assert.assertNull(
 			_depotEntryGroupRelLocalService.
 				fetchDepotEntryGroupRelByDepotEntryIdToGroupId(
 					depotEntry.getDepotEntryId(), _group1.getGroupId()));
-
 		Assert.assertNull(
 			_depotEntryGroupRelLocalService.
 				fetchDepotEntryGroupRelByDepotEntryIdToGroupId(
 					depotEntry.getDepotEntryId(), _group2.getGroupId()));
+		Assert.assertEquals(
+			0,
+			_depotEntryGroupRelLocalService.getDepotEntryGroupRelsCount(
+				depotEntry));
+		Assert.assertEquals(
+			systemEventsCount + 3,
+			_systemEventLocalService.getSystemEventsCount());
 	}
 
 	@Test
