@@ -43,7 +43,7 @@ public class VersionListTypeService extends BaseService {
 		JSONArray releasesJSONArray = new JSONArray(
 			get(StringPool.BLANK, _liferayCustomerVersionListTypeReleasesURL));
 
-		Map<String, List<String>> versionsMap = _extractVersionsMap(
+		Map<String, List<String>> versionsMap = _getVersionsMap(
 			releasesJSONArray);
 
 		List<String> dxpMajorVersionsMap = versionsMap.get("dxpMajor");
@@ -97,7 +97,7 @@ public class VersionListTypeService extends BaseService {
 		}
 	}
 
-	private Map<String, List<String>> _extractVersionsMap(
+	private Map<String, List<String>> _getVersionsMap(
 		JSONArray releasesJSONArray) {
 
 		Map<String, List<String>> versionsMap =
