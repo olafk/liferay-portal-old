@@ -583,7 +583,6 @@ public class AddFragmentCompositionMVCActionCommandTest {
 		Assert.assertEquals(
 			fragmentCollection.getName(),
 			fragmentCompositionJSONObject.getString("fragmentCollectionName"));
-
 		Assert.assertTrue(
 			Validator.isNotNull(
 				fragmentCompositionJSONObject.getString("fragmentEntryKey")));
