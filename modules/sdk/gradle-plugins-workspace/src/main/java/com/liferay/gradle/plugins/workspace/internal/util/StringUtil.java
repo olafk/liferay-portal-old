@@ -38,8 +38,6 @@ public class StringUtil {
 
 	public static final String NEW_LINE = "\n";
 
-	public static final String SPACE = " ";
-
 	public static final String STAR = "*";
 
 	public static final String UNDERSCORE = "_";
@@ -127,10 +125,6 @@ public class StringUtil {
 		).collect(
 			Collectors.joining(delimiter)
 		);
-	}
-
-	public static String join(String delimiter, String... strings) {
-		return join(delimiter, Arrays.stream(strings));
 	}
 
 	public static String quote(Object object) {

@@ -940,43 +940,6 @@ public class ClientExtensionProjectConfigurator
 			});
 	}
 
-	private void _configureJDKJavaOptions(Project project) {
-		Map<String, String> environmentVariables = Collections.singletonMap(
-			"JDK_JAVA_OPTIONS",
-			StringUtil.join(
-				StringUtil.SPACE,
-				"--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
-				"--add-opens=java.base/java.net=ALL-UNNAMED",
-				"--add-opens=java.base/sun.net.www.protocol.http=ALL-UNNAMED",
-				"--add-opens=java.base/sun.net.www.protocol.https=ALL-UNNAMED",
-				"--add-opens=java.base/sun.util.calendar=ALL-UNNAMED",
-				"--add-opens=jdk.zipfs/jdk.nio.zipfs=ALL-UNNAMED "));
-
-		TaskContainer taskContainer = project.getTasks();
-
-		taskContainer.withType(
-			JavaExec.class,
-			javaExecTask -> {
-				javaExecTask.environment(environmentVariables);
-
-				Logger logger = javaExecTask.getLogger();
-
-				if (logger.isInfoEnabled()) {
-					logger.info(
-						StringUtil.concat(
-							"Injecting JDK_JAVA_OPTIONS environment variable ",
-							"into the process invoked by the task {}"),
-						javaExecTask.getPath());
-
-					for (Map.Entry<String, String> entry :
-							environmentVariables.entrySet()) {
-
-						logger.info("{}: {}", entry.getKey(), entry.getValue());
-					}
-				}
-			});
-	}
-
 	private void _configureLanguageProject(Project project) {
 		TaskProvider<BuildLangTask> buildLangTaskProvider =
 			GradleUtil.getTaskProvider(
@@ -1134,9 +1097,47 @@ public class ClientExtensionProjectConfigurator
 	private void _configureSpringBootPlugin(Project project) {
 		PluginManager pluginManager = project.getPluginManager();
 
+		Map<String, String> environmentMap = Collections.singletonMap(
+			"JDK_JAVA_OPTIONS",
+			StringUtil.concat(
+				"--add-opens=java.base/java.lang.reflect=ALL-UNNAMED ",
+				"--add-opens=java.base/java.net=ALL-UNNAMED ",
+				"--add-opens=java.base/sun.net.www.protocol.http=ALL-UNNAMED ",
+				"--add-opens=java.base/sun.net.www.protocol.https=ALL-UNNAMED ",
+				"--add-opens=java.base/sun.util.calendar=ALL-UNNAMED ",
+				"--add-opens=jdk.zipfs/jdk.nio.zipfs=ALL-UNNAMED"));
+
 		pluginManager.withPlugin(
 			"org.springframework.boot",
-			appliedPlugin -> _configureJDKJavaOptions(project));
+			appliedPlugin -> {
+				TaskContainer taskContainer = project.getTasks();
+
+				taskContainer.withType(
+					JavaExec.class,
+					javaExecTask -> {
+						javaExecTask.environment(environmentMap);
+
+						Logger logger = javaExecTask.getLogger();
+
+						if (!logger.isInfoEnabled()) {
+							return;
+						}
+
+						logger.info(
+							StringUtil.concat(
+								"Injected the environment variable ",
+								" \"JDK_JAVA_OPTIONS\" into the process ",
+								"invoked by the task {}"),
+							javaExecTask.getPath());
+
+						for (Map.Entry<String, String> entry :
+								environmentMap.entrySet()) {
+
+							logger.info(
+								"{}: {}", entry.getKey(), entry.getValue());
+						}
+					});
+			});
 	}
 
 	private void _configureTaskCheck(Project project) {
