@@ -38,10 +38,8 @@ task jarTransformed
 
 jar {
 	enabled = true
-
-	setActions([])
-
 	finalizedBy jarTransformed
+	setActions([])
 }
 
 jarTransformed {
