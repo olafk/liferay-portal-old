@@ -13,9 +13,7 @@ import org.osgi.service.component.annotations.Reference;
 public class LPD_53535 {
 
 	public void method() {
-		CommerceInventoryBookedQuantityLocalServiceUtil.
-			deleteCommerceInventoryBookedQuantity(
-				_commerceOrderItem.getBookedQuantityId());
+		CommerceInventoryBookedQuantityLocalServiceUtil.deleteCommerceInventoryBookedQuantity(_commerceOrderItem.getBookedQuantityId());
 		_commerceOrderItemWrapper.getBookedQuantityId();
 	}
 
@@ -35,8 +33,7 @@ public class LPD_53535 {
 	@Reference
 	private CommerceOrderItemLocalService _commerceOrderItemLocalService;
 
-	private CommerceOrderItemLocalServiceWrapper
-		_commerceOrderItemLocalServiceWrapper;
+	private CommerceOrderItemLocalServiceWrapper _commerceOrderItemLocalServiceWrapper;
 	private CommerceOrderItemWrapper _commerceOrderItemWrapper;
 
 }
