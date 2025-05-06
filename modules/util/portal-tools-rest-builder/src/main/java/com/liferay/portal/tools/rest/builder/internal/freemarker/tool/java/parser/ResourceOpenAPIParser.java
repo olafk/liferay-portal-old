@@ -1245,8 +1245,7 @@ public class ResourceOpenAPIParser {
 
 		if (basePath.equals(
 				"/asset-libraries/{assetLibraryExternalReferenceCode}") ||
-			basePath.equals(
-				"/asset-libraries/{assetLibraryId}")) {
+			basePath.equals("/asset-libraries/{assetLibraryId}")) {
 
 			return "AssetLibrary";
 		}
