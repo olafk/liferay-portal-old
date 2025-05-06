@@ -28,25 +28,23 @@ public class LDAPAuthConfigurationProviderTemporarySwapper
 
 		_companyId = companyId;
 
-		ConfigurationProvider<LDAPAuthConfiguration>
-			ldapAuthConfigurationProvider = _serviceTracker.getService();
+		ConfigurationProvider<LDAPAuthConfiguration> configurationProvider =
+			_serviceTracker.getService();
 
-		Dictionary<String, Object> configurationProperties =
-			ldapAuthConfigurationProvider.getConfigurationProperties(companyId);
+		Dictionary<String, Object> properties =
+			configurationProvider.getConfigurationProperties(companyId);
 
-		configurationProperties.put(
-			"passwordPolicyEnabled", passwordPolicyEnabled);
+		properties.put("passwordPolicyEnabled", passwordPolicyEnabled);
 
-		ldapAuthConfigurationProvider.updateProperties(
-			companyId, configurationProperties);
+		configurationProvider.updateProperties(companyId, properties);
 	}
 
 	@Override
 	public void close() {
-		ConfigurationProvider<LDAPAuthConfiguration>
-			ldapAuthConfigurationProvider = _serviceTracker.getService();
+		ConfigurationProvider<LDAPAuthConfiguration> configurationProvider =
+			_serviceTracker.getService();
 
-		ldapAuthConfigurationProvider.delete(_companyId);
+		configurationProvider.delete(_companyId);
 	}
 
 	private static final BundleContext _bundleContext;
