@@ -80,7 +80,7 @@ public class TestEntityResourceImpl extends BaseTestEntityResourceImpl {
 			"testEntities", TestEntity[].class);
 
 		if (testEntities == null) {
-			throw new BadRequestException("No test entities found in body");
+			throw new BadRequestException();
 		}
 
 		for (TestEntity testEntity : testEntities) {
