@@ -9499,13 +9499,13 @@ public class ObjectEntryResourceTest {
 	public void testPutByExternalReferenceCodeManyToManyRelationshipWithSelf()
 		throws Exception {
 
-		_objectRelationship1 = ObjectRelationshipTestUtil.addObjectRelationship(
-			_objectDefinition1, _objectDefinition1, TestPropsValues.getUserId(),
-			ObjectRelationshipConstants.TYPE_MANY_TO_MANY);
-
 		String objectFieldValue1 = RandomTestUtil.randomString();
 		String objectFieldValue2 = RandomTestUtil.randomString();
 		String objectFieldValue3 = RandomTestUtil.randomString();
+
+		_objectRelationship1 = ObjectRelationshipTestUtil.addObjectRelationship(
+			_objectDefinition1, _objectDefinition1, TestPropsValues.getUserId(),
+			ObjectRelationshipConstants.TYPE_MANY_TO_MANY);
 
 		JSONObject jsonObject = HTTPTestUtil.invokeToJSONObject(
 			JSONUtil.put(
