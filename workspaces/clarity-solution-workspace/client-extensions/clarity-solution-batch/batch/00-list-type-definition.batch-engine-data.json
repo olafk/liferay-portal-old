@@ -40,32 +40,32 @@
 			"externalReferenceCode": "U3A2_APPLICATION_STATES",
 			"listTypeEntries": [
 				{
-					"externalReferenceCode": "APPLICATION_STATE_APPROVED",
+					"externalReferenceCode": "APPROVED",
 					"key": "approved",
 					"name": "Approved"
 				},
 				{
-					"externalReferenceCode": "APPLICATION_STATE_DENIED",
+					"externalReferenceCode": "DENIED",
 					"key": "denied",
 					"name": "Denied"
 				},
 				{
-					"externalReferenceCode": "APPLICATION_STATE_ON_HOLD",
+					"externalReferenceCode": "ON_HOLD",
 					"key": "onHold",
 					"name": "On Hold"
 				},
 				{
-					"externalReferenceCode": "APPLICATION_STATE_OPEN",
+					"externalReferenceCode": "OPEN",
 					"key": "open",
 					"name": "Open"
 				},
 				{
-					"externalReferenceCode": "APPLICATION_STATE_UNDER_REVIEW",
+					"externalReferenceCode": "UNDER_REVIEW",
 					"key": "underReview",
 					"name": "Under Review"
 				},
 				{
-					"externalReferenceCode": "APPLICATION_STATE_WITHDRAWN",
+					"externalReferenceCode": "WITHDRAWN",
 					"key": "withdrawn",
 					"name": "Withdrawn"
 				}
