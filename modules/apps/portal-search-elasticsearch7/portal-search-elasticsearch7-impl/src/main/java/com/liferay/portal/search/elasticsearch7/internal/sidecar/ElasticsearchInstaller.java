@@ -147,7 +147,7 @@ public class ElasticsearchInstaller {
 
 	private void _downloadAndInstallElasticsearch() throws IOException {
 		String rootArchiveName = UncompressUtil.unarchive(
-			_locateOrDownload(_distribution.getElasticsearchDistributable()),
+			_download(_distribution.getElasticsearchDistributable()),
 			_temporaryDirectoryPath);
 
 		PathUtil.copyDirectory(
@@ -158,7 +158,7 @@ public class ElasticsearchInstaller {
 	private void _downloadAndInstallPlugin(Distributable distributable)
 		throws IOException {
 
-		Path filePath = _locateOrDownload(distributable);
+		Path filePath = _download(distributable);
 
 		String pluginName = StringUtils.substringBeforeLast(
 			String.valueOf(filePath.getFileName()), StringPool.DASH);
@@ -204,7 +204,7 @@ public class ElasticsearchInstaller {
 		return Files.exists(_installationDirectoryPath);
 	}
 
-	private Path _locateOrDownload(Distributable distributable)
+	private Path _download(Distributable distributable)
 		throws IOException {
 
 		String downloadURLString = distributable.getDownloadURLString();
