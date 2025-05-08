@@ -39,6 +39,8 @@ public class AdvancedFDSItemsActions implements FDSItemsActions {
 	public List<FDSActionDropdownItem> getFDSActionDropdownItems(
 		HttpServletRequest httpServletRequest) {
 
+		String href = "/o/c/fdssamples/{id}";
+
 		PortletResponse portletResponse =
 			(PortletResponse)httpServletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_RESPONSE);
@@ -46,9 +48,7 @@ public class AdvancedFDSItemsActions implements FDSItemsActions {
 		LiferayPortletResponse liferayPortletResponse =
 			PortalUtil.getLiferayPortletResponse(portletResponse);
 
-		String href = "/o/c/fdssamples/{id}";
-
-		FDSActionDropdownItem sidePanel1FDSActionDropdownItem =
+		FDSActionDropdownItem fdsActionDropdownItem1 =
 			new FDSActionDropdownItem(
 				PortletURLBuilder.createRenderURL(
 					liferayPortletResponse
@@ -60,11 +60,11 @@ public class AdvancedFDSItemsActions implements FDSItemsActions {
 				"rectangle-split", "open-side-panel-no-title",
 				"Side Panel With Action Title", null, null, "sidePanel");
 
-		sidePanel1FDSActionDropdownItem.putData("disableHeader", false);
-		sidePanel1FDSActionDropdownItem.putData(
+		fdsActionDropdownItem1.putData("disableHeader", false);
+		fdsActionDropdownItem1.putData(
 			"title", "Side Panel Title Provided by Action");
 
-		FDSActionDropdownItem sidePanel2FDSActionDropdownItem =
+		FDSActionDropdownItem fdsActionDropdownItem2 =
 			new FDSActionDropdownItem(
 				PortletURLBuilder.createRenderURL(
 					liferayPortletResponse
@@ -77,11 +77,11 @@ public class AdvancedFDSItemsActions implements FDSItemsActions {
 				"Side Panel With Action and Content Title", null, null,
 				"sidePanel");
 
-		sidePanel2FDSActionDropdownItem.putData("disableHeader", false);
-		sidePanel2FDSActionDropdownItem.putData(
+		fdsActionDropdownItem2.putData("disableHeader", false);
+		fdsActionDropdownItem2.putData(
 			"title", "Side Panel Title Provided by Action");
 
-		FDSActionDropdownItem sidePanel3FDSActionDropdownItem =
+		FDSActionDropdownItem fdsActionDropdownItem3 =
 			new FDSActionDropdownItem(
 				PortletURLBuilder.createRenderURL(
 					liferayPortletResponse
@@ -93,7 +93,7 @@ public class AdvancedFDSItemsActions implements FDSItemsActions {
 				"rectangle-split", "open-side-panel-title",
 				"Side Panel With Content Title", null, null, "sidePanel");
 
-		sidePanel3FDSActionDropdownItem.putData("disableHeader", true);
+		fdsActionDropdownItem3.putData("disableHeader", true);
 
 		return Arrays.asList(
 			new FDSActionDropdownItem(
@@ -115,8 +115,8 @@ public class AdvancedFDSItemsActions implements FDSItemsActions {
 				"http://localhost", "times-circle",
 				"asyncErrorConnectionRefused", "Async Connection Refused",
 				"get", null, "async"),
-			sidePanel1FDSActionDropdownItem, sidePanel2FDSActionDropdownItem,
-			sidePanel3FDSActionDropdownItem,
+			fdsActionDropdownItem1, fdsActionDropdownItem2,
+			fdsActionDropdownItem3,
 			new FDSActionDropdownItem(
 				PortletURLBuilder.createRenderURL(
 					liferayPortletResponse
