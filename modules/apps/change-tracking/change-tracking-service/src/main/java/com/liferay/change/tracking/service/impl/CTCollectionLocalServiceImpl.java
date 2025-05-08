@@ -237,10 +237,10 @@ public class CTCollectionLocalServiceImpl
 						return new CTConflictChecker<>(
 							_classNameLocalService,
 							_constraintResolverServiceTrackerMap,
-							ctSettingsConfiguration,
 							_ctDisplayRendererServiceTrackerMap,
 							_ctEntryConflictHelperServiceTrackerMap,
-							_ctEntryLocalService, ctService, modelClassNameId,
+							_ctEntryLocalService, ctService,
+							ctSettingsConfiguration, modelClassNameId,
 							fromCTCollectionId,
 							_tableReferenceDefinitionManager, toCTCollectionId);
 					});
