@@ -612,14 +612,14 @@ public class RenderLayoutStructureTagTest {
 
 		String content = _getRenderLayoutHTML(layout);
 
+		Assert.assertTrue(
+			content, StringUtil.contains(content, url, StringPool.BLANK));
 		Assert.assertFalse(
 			content,
 			StringUtil.contains(content, "style=\"\"", StringPool.BLANK));
 		Assert.assertTrue(
 			content,
 			StringUtil.contains(content, "style=\"", StringPool.BLANK));
-		Assert.assertTrue(
-			content, StringUtil.contains(content, url, StringPool.BLANK));
 
 		_groupLocalService.updateFriendlyURL(
 			_group.getGroupId(), "/new-friendly-url");
