@@ -188,7 +188,7 @@ public class ElasticsearchInstaller {
 		}
 	}
 
-	private void _guardChecksum(
+	private void _validateChecksum(
 			String checksum, String distributableChecksum, String fileName)
 		throws IOException {
 
@@ -216,7 +216,7 @@ public class ElasticsearchInstaller {
 			fileName);
 
 		if (Files.exists(distributableFilePath)) {
-			_guardChecksum(
+			_validateChecksum(
 				getChecksum(distributableFilePath), distributable.getChecksum(),
 				fileName);
 
@@ -227,7 +227,7 @@ public class ElasticsearchInstaller {
 
 		PathUtil.download(new URL(downloadURLString), downloadedFilePath);
 
-		_guardChecksum(
+		_validateChecksum(
 			getChecksum(downloadedFilePath), distributable.getChecksum(),
 			fileName);
 
