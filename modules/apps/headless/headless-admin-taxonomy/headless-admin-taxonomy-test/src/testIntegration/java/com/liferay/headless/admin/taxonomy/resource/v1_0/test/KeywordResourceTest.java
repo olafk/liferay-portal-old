@@ -462,11 +462,20 @@ public class KeywordResourceTest extends BaseKeywordResourceTestCase {
 		Keyword keyword4 = _addKeywordWithAssetLibraries(_randomAssetLibrary());
 		Keyword keyword5 = _addKeywordWithAssetLibraries(_randomAssetLibrary());
 
-		_invoke(
+		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
+
+		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
+		httpInvoker.path(
 			StringBundler.concat(
 				"http://localhost:8080/o/headless-admin-taxonomy/v1.0/keywords",
 				"/", keyword1.getId(), "/merge?fromKeywordIds=",
 				keyword4.getId(), "&fromKeywordIds=", keyword5.getId()));
+		httpInvoker.userNameAndPassword(
+			"test@liferay.com:" + PropsValues.DEFAULT_ADMIN_PASSWORD);
+
+		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
+
+		Assert.assertEquals(204, httpResponse.getStatusCode());
 
 		List<AssetTagGroupRel> assetTagGroupRels =
 			_assetTagGroupRelLocalService.getAssetTagGroupRelsByTagId(
@@ -592,19 +601,6 @@ public class KeywordResourceTest extends BaseKeywordResourceTestCase {
 		keyword.setAssetLibraries(assetLibraries);
 
 		return keywordResource.postKeyword(keyword);
-	}
-
-	private void _invoke(String url) throws Exception {
-		HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
-
-		httpInvoker.httpMethod(HttpInvoker.HttpMethod.PUT);
-		httpInvoker.path(url);
-		httpInvoker.userNameAndPassword(
-			"test@liferay.com:" + PropsValues.DEFAULT_ADMIN_PASSWORD);
-
-		HttpInvoker.HttpResponse httpResponse = httpInvoker.invoke();
-
-		Assert.assertEquals(204, httpResponse.getStatusCode());
 	}
 
 	private AssetLibrary _randomAssetLibrary() throws Exception {
