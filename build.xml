@@ -822,6 +822,7 @@ This target has been renamed to "snapshot-bundle". Please call "snapshot-bundle"
 			<arg value="properties.file=${properties.file}" />
 			<arg value="properties.title=${properties.title}" />
 			<arg value="properties.toc=${properties.toc}" />
+			<jvmarg line="--add-opens java.base/java.lang.invoke=ALL-UNNAMED" />
 		</java>
 	</target>
 
