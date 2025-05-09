@@ -88,7 +88,7 @@ public class MembershipsUserFieldExpressionHandler
 						catch (PortalException portalException) {
 							if (_log.isWarnEnabled()) {
 								_log.warn(
-									"Unable to create User Group",
+									"Unable to create user group",
 									portalException);
 							}
 						}

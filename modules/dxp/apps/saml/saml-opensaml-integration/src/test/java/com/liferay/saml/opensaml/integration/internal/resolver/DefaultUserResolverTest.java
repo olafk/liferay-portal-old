@@ -391,7 +391,7 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 			OpenSamlUtil.buildAttribute(
 				"membership:userGroups",
 				new String[] {
-					_EXISTING_USER_GROUP_NAME, _NEW_USER_GROUP_NAME
+					_USER_GROUP_NAME_EXISTING, _USER_GROUP_NAME_NEW
 				}));
 
 		_testUserFieldExpressionResolver.setUserFieldExpression("emailAddress");
@@ -404,14 +404,14 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 			_userGroupLocalService, Mockito.times(1)
 		).addUserGroup(
 			Mockito.anyString(), Mockito.anyLong(), Mockito.anyLong(),
-			Mockito.eq(_NEW_USER_GROUP_NAME), Mockito.anyString(),
+			Mockito.eq(_USER_GROUP_NAME_NEW), Mockito.anyString(),
 			Mockito.eq(null)
 		);
 
 		Mockito.verify(
 			_userGroupLocalService, Mockito.times(1)
 		).fetchUserGroup(
-			Mockito.anyLong(), Mockito.eq(_EXISTING_USER_GROUP_NAME)
+			Mockito.anyLong(), Mockito.eq(_USER_GROUP_NAME_EXISTING)
 		);
 
 		Assert.assertNotNull(user);
@@ -423,11 +423,11 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 
 		UserGroup userGroup = userGroups.get(0);
 
-		Assert.assertEquals(_EXISTING_USER_GROUP_NAME, userGroup.getName());
+		Assert.assertEquals(_USER_GROUP_NAME_EXISTING, userGroup.getName());
 
 		userGroup = userGroups.get(1);
 
-		Assert.assertEquals(_NEW_USER_GROUP_NAME, userGroup.getName());
+		Assert.assertEquals(_USER_GROUP_NAME_NEW, userGroup.getName());
 	}
 
 	private User _createBlankUser() {
@@ -906,7 +906,7 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 		UserGroup existingUserGroup = new UserGroupImpl();
 
 		existingUserGroup.setUserGroupId(1);
-		existingUserGroup.setName(_EXISTING_USER_GROUP_NAME);
+		existingUserGroup.setName(_USER_GROUP_NAME_EXISTING);
 
 		Mockito.when(
 			userGroupLocalService.fetchUserGroup(
@@ -918,7 +918,7 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 		UserGroup newUserGroup = new UserGroupImpl();
 
 		newUserGroup.setUserGroupId(2);
-		newUserGroup.setName(_NEW_USER_GROUP_NAME);
+		newUserGroup.setName(_USER_GROUP_NAME_NEW);
 
 		Mockito.when(
 			userGroupLocalService.addUserGroup(
@@ -980,10 +980,10 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 		"emailAddress=emailAddress\nfirstName=firstName\nlastName=lastName\n" +
 			"screenName=screenName";
 
-	private static final String _EXISTING_USER_GROUP_NAME =
+	private static final String _USER_GROUP_NAME_EXISTING =
 		RandomTestUtil.randomString();
 
-	private static final String _NEW_USER_GROUP_NAME =
+	private static final String _USER_GROUP_NAME_NEW =
 		RandomTestUtil.randomString();
 
 	private static final String _SAML_NAME_IDENTIFIER_VALUE = "testNameIdValue";
