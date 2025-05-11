@@ -350,16 +350,9 @@ public class SitemapManagerImpl implements SitemapManager {
 	}
 
 	private List<SitemapURLProvider> _getSitemapURLProviders() {
-		Set<String> classNames = _serviceTrackerMap.keySet();
-
-		List<SitemapURLProvider> sitemapURLProviders = new ArrayList<>(
-			classNames.size());
-
-		for (String className : classNames) {
-			sitemapURLProviders.add(_serviceTrackerMap.getService(className));
-		}
-
-		return sitemapURLProviders;
+		return TransformUtil.transform(
+			_serviceTrackerMap.keySet(),
+			className -> _serviceTrackerMap.getService(className));
 	}
 
 	private int _getSize(Element element) {
