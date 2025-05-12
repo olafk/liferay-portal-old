@@ -399,19 +399,19 @@ public class AccountsSyncBusinessEventsRestController
 				String highestHeatTag = associatedTicketsHeatTags.get(
 					zendeskTicket.getZendeskTicketId());
 
-				if ((HeatTagConstants.getScore(heatTag) <=
-						HeatTagConstants.getScore(highestHeatTag)) &&
-					!heatTag.equals(highestHeatTag)) {
+				if ((HeatTagConstants.getScore(heatTag) >
+						HeatTagConstants.getScore(highestHeatTag)) ||
+					heatTag.equals(highestHeatTag)) {
 
-					customFields.put(
-						_zendeskHeatTagTicketFieldId, highestHeatTag);
-
-					_zendeskService.updateZendeskTicket(
-						zendeskTicket.getZendeskTicketId(),
-						zendeskOrganizationId, zendeskTicket.getRequesterId(),
-						zendeskTicket.getStatus(), customFields,
-						zendeskTicket.getTags());
+					continue;
 				}
+
+				customFields.put(_zendeskHeatTagTicketFieldId, highestHeatTag);
+
+				_zendeskService.updateZendeskTicket(
+					zendeskTicket.getZendeskTicketId(), zendeskOrganizationId,
+					zendeskTicket.getRequesterId(), zendeskTicket.getStatus(),
+					customFields, zendeskTicket.getTags());
 			}
 
 			page = searchHits.getNextPage();
