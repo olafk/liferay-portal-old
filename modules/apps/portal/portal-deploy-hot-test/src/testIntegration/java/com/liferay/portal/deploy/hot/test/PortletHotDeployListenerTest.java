@@ -57,7 +57,6 @@ public class PortletHotDeployListenerTest {
 		_testPortletCategoryNames(
 			Collections.singletonMap(
 				_PORTLET_NAME_PREFIX + RandomTestUtil.randomString(), null));
-
 		_testPortletCategoryNames(
 			HashMapBuilder.put(
 				_PORTLET_NAME_PREFIX + RandomTestUtil.randomString(),
@@ -135,7 +134,7 @@ public class PortletHotDeployListenerTest {
 	}
 
 	private ServletContext _createServletContext(
-		String portletXML, String liferayDisplayXML) {
+		String liferayDisplayXML, String portletXML) {
 
 		String servletContextName = RandomTestUtil.randomString();
 
@@ -198,8 +197,8 @@ public class PortletHotDeployListenerTest {
 		Set<String> portletNames = portletCategoryNames.keySet();
 
 		ServletContext servletContext = _createServletContext(
-			_createPortletXML(portletNames),
-			_createLiferayDisplayXML(portletCategoryNames));
+			_createLiferayDisplayXML(portletCategoryNames),
+			_createPortletXML(portletNames));
 
 		ServletContextClassLoaderPool.register(
 			servletContext.getServletContextName(),
