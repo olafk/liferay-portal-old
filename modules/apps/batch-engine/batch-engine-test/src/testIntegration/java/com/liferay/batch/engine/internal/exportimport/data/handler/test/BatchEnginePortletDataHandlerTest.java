@@ -170,14 +170,14 @@ public class BatchEnginePortletDataHandlerTest {
 				false, larFile, group.getGroupId(), objectDefinition);
 		}
 
-		List<ObjectEntry> objectEntryList =
+		List<ObjectEntry> objectEntriesList =
 			_objectEntryLocalService.getObjectEntries(
 				GroupConstants.DEFAULT_PARENT_GROUP_ID,
 				objectDefinition.getObjectDefinitionId(), QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 
 		Assert.assertEquals(
-			objectEntryList.toString(), 3, objectEntryList.size());
+			objectEntriesList.toString(), 3, objectEntriesList.size());
 
 		Assert.assertNull(
 			_objectEntryLocalService.fetchObjectEntry(
@@ -213,13 +213,13 @@ public class BatchEnginePortletDataHandlerTest {
 
 		_importLayouts(false, larFile, group2.getGroupId(), objectDefinition);
 
-		List<ObjectEntry> objectEntryList =
+		List<ObjectEntry> objectEntriesList =
 			_objectEntryLocalService.getObjectEntries(
 				group2.getGroupId(), objectDefinition.getObjectDefinitionId(),
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		Assert.assertEquals(
-			Arrays.toString(objectEntries), objectEntryList.size(),
+			Arrays.toString(objectEntries), objectEntriesList.size(),
 			objectEntries.length);
 	}
 
