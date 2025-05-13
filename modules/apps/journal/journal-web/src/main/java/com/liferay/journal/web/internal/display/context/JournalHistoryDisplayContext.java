@@ -240,11 +240,11 @@ public class JournalHistoryDisplayContext {
 
 		Map<String, Serializable> attributes = searchContext.getAttributes();
 
-		attributes.put("head", false);
 		attributes.put(Field.ARTICLE_ID, getKeywords());
 		attributes.put(Field.CONTENT, getKeywords());
 		attributes.put(Field.DESCRIPTION, getKeywords());
 		attributes.put(Field.TITLE, getKeywords());
+		attributes.put("head", false);
 		attributes.put(
 			"params",
 			LinkedHashMapBuilder.<String, Object>put(
