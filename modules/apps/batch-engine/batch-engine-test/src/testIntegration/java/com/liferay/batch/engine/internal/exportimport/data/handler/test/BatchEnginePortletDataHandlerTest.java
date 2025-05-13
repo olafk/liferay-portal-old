@@ -153,12 +153,12 @@ public class BatchEnginePortletDataHandlerTest {
 
 		ObjectEntry objectEntry = objectEntries[1];
 
-		Map<String, Serializable> objectEntryValues = objectEntry.getValues();
+		Map<String, Serializable> values = objectEntry.getValues();
 
 		ObjectEntry duplicateObjectEntry = _addObjectEntry(
 			GroupConstants.DEFAULT_PARENT_GROUP_ID,
 			objectDefinition.getObjectDefinitionId(),
-			objectEntryValues.get(_OBJECT_FIELD_NAME_TEXT));
+			values.get(_OBJECT_FIELD_NAME_TEXT));
 
 		try (LogCapture logCapture = LoggerTestUtil.configureLog4JLogger(
 				"com.liferay.batch.engine.internal.strategy." +
