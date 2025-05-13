@@ -910,15 +910,15 @@ public class AssetCategoryLocalServiceTest {
 				assetCategory.getDescriptionMap(),
 				_assetVocabulary.getVocabularyId(), null, new ServiceContext());
 
-			Assert.assertEquals(name, assetCategory.getName());
 			Assert.assertEquals(
 				AssetCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
 				assetCategory.getParentCategoryId());
-			Assert.assertEquals(
-				WorkflowConstants.STATUS_APPROVED, assetCategory.getStatus());
+			Assert.assertEquals(name, assetCategory.getName());
 			Assert.assertEquals(
 				_assetVocabulary.getVocabularyId(),
 				assetCategory.getVocabularyId());
+			Assert.assertEquals(
+				WorkflowConstants.STATUS_APPROVED, assetCategory.getStatus());
 		}
 	}
 

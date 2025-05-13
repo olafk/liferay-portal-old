@@ -110,12 +110,12 @@ public class AssetVocabularyLocalServiceTest {
 				null, vocabulary.getSettings(),
 				AssetVocabularyConstants.VISIBILITY_TYPE_INTERNAL);
 
-			Assert.assertEquals(
-				WorkflowConstants.STATUS_APPROVED, vocabulary.getStatus());
 			Assert.assertEquals(title, vocabulary.getTitle(locale));
 			Assert.assertEquals(
 				AssetVocabularyConstants.VISIBILITY_TYPE_INTERNAL,
 				vocabulary.getVisibilityType());
+			Assert.assertEquals(
+				WorkflowConstants.STATUS_APPROVED, vocabulary.getStatus());
 		}
 	}
 
