@@ -242,7 +242,6 @@ public class BuildHistory {
 				averageDownstreamBuildDurations[i] = _getQuotient(
 					totalServerDurations[i] - topLevelBuildDuration,
 					invokedBuilds[i] - invokedTopLevelBuilds[i]);
-
 				averageTopLevelBuildDurations[i] = _getQuotient(
 					topLevelBuildDuration, invokedTopLevelBuilds[i]);
 			}
