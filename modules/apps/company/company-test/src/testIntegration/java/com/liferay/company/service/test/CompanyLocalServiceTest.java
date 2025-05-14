@@ -6,7 +6,6 @@
 package com.liferay.company.service.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.asset.link.model.adapter.StagedAssetLink;
 import com.liferay.company.service.test.util.CompanyLocalServiceTestUtil;
 import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.counter.kernel.service.persistence.CounterFinder;
@@ -20,11 +19,7 @@ import com.liferay.dynamic.data.mapping.constants.DDMStructureConstants;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.storage.StorageType;
-import com.liferay.expando.kernel.model.adapter.StagedExpandoColumn;
-import com.liferay.expando.model.adapter.StagedExpandoTable;
 import com.liferay.exportimport.kernel.service.StagingLocalService;
-import com.liferay.layout.friendly.url.LayoutFriendlyURLEntryHelper;
-import com.liferay.layout.set.model.adapter.StagedLayoutSet;
 import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.sql.dsl.DSLQueryFactoryUtil;
 import com.liferay.petra.string.StringPool;
@@ -61,9 +56,7 @@ import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.model.UserGroupRole;
-import com.liferay.portal.kernel.model.adapter.StagedTheme;
 import com.liferay.portal.kernel.model.role.RoleConstants;
-import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.CompanyLocalService;
@@ -113,7 +106,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 import com.liferay.portal.util.PortalInstances;
 import com.liferay.portal.util.PropsValues;
-import com.liferay.site.model.adapter.StagedGroup;
 import com.liferay.sites.kernel.util.Sites;
 
 import java.lang.reflect.Field;
@@ -144,6 +136,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Assume;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -220,6 +213,12 @@ public class CompanyLocalServiceTest {
 		setMethod.invoke(backgroundTaskIdField.get(null), 0L);
 	}
 
+	@Before
+	public void setUp() throws Exception {
+		_classNames = _classNameLocalService.getClassNames(
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+	}
+
 	@After
 	public void tearDown() throws Exception {
 		resetBackgroundTaskThreadLocal();
@@ -232,8 +231,7 @@ public class CompanyLocalServiceTest {
 
 		_serviceRegistrations.clear();
 
-		deleteClassName(_layoutFriendlyURLEntryHelper.getClassName(true));
-		deleteStagingClassNameEntries();
+		deleteClassNames();
 	}
 
 	@Test
@@ -1415,24 +1413,15 @@ public class CompanyLocalServiceTest {
 			serviceContext);
 	}
 
-	protected void deleteClassName(String value) {
-		ClassName className = _classNameLocalService.fetchClassName(value);
+	protected void deleteClassNames() {
+		List<ClassName> leftoverClassNames = ListUtil.remove(
+			_classNameLocalService.getClassNames(
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS),
+			_classNames);
 
-		if (className == null) {
-			return;
+		for (ClassName className : leftoverClassNames) {
+			_classNameLocalService.deleteClassName(className);
 		}
-
-		_classNameLocalService.deleteClassName(className);
-	}
-
-	protected void deleteStagingClassNameEntries() {
-		deleteClassName(Folder.class.getName());
-		deleteClassName(StagedAssetLink.class.getName());
-		deleteClassName(StagedExpandoColumn.class.getName());
-		deleteClassName(StagedExpandoTable.class.getName());
-		deleteClassName(StagedGroup.class.getName());
-		deleteClassName(StagedLayoutSet.class.getName());
-		deleteClassName(StagedTheme.class.getName());
 	}
 
 	protected ServiceContext getServiceContext(long companyId) {
@@ -1628,6 +1617,7 @@ public class CompanyLocalServiceTest {
 		CompanyLocalServiceTest.class);
 
 	private static BundleContext _bundleContext;
+	private static List<ClassName> _classNames;
 	private static Connection _connection;
 	private static DB _db;
 	private static DBPartitionDB _dbPartitionDB;
@@ -1670,9 +1660,6 @@ public class CompanyLocalServiceTest {
 
 	@Inject
 	private Language _language;
-
-	@Inject
-	private LayoutFriendlyURLEntryHelper _layoutFriendlyURLEntryHelper;
 
 	@Inject
 	private LayoutPrototypeLocalService _layoutPrototypeLocalService;
