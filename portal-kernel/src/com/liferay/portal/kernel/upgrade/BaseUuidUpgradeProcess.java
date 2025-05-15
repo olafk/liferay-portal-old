@@ -65,7 +65,7 @@ public abstract class BaseUuidUpgradeProcess extends UpgradeProcess {
 
 					preparedStatement.addBatch();
 				},
-				"Unable to update uuid");
+				null);
 		}
 	}
 
