@@ -647,7 +647,6 @@ public class LiferayGlobalObjectPreAUIDynamicInclude
 
 	private void _renderLiferayUtil(StringBuilder sb) {
 		sb.append("Util: {\n");
-
 		sb.append(_TPL_WINDOW_JS);
 		sb.append(StringPool.NEW_LINE);
 
