@@ -2723,7 +2723,7 @@ public class ObjectActionLocalServiceTest {
 			).build(),
 			ServiceContextTestUtil.getServiceContext());
 
-		_assertEmailNotificationSent(1, body);
+		_assertEmailNotificationSent(body, 1);
 
 		body = RandomTestUtil.randomString();
 
@@ -2742,7 +2742,7 @@ public class ObjectActionLocalServiceTest {
 			).build(),
 			ServiceContextTestUtil.getServiceContext());
 
-		_assertEmailNotificationSent(2, body);
+		_assertEmailNotificationSent(body, 2);
 	}
 
 	@Test
@@ -3083,7 +3083,7 @@ public class ObjectActionLocalServiceTest {
 		return objectEntry;
 	}
 
-	private void _assertEmailNotificationSent(int inboxSize, String body) {
+	private void _assertEmailNotificationSent(String body, int inboxSize) {
 		List<NotificationQueueEntry> notificationQueueEntries =
 			_notificationQueueEntryLocalService.getNotificationEntries(
 				NotificationConstants.TYPE_EMAIL,
