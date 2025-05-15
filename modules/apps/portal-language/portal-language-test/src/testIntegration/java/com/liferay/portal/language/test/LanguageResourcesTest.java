@@ -148,12 +148,8 @@ public class LanguageResourcesTest {
 			List<String> keys = Collections.list(resourceBundle.getKeys());
 
 			Assert.assertFalse(
-				"Key " + TestResourceBundle.class.getName() +
-					" should not be seen",
 				keys.contains(TestResourceBundle.class.getName()));
-			Assert.assertFalse(
-				"Key " + testKey + " should not be seen",
-				keys.contains(testKey));
+			Assert.assertFalse(keys.contains(testKey));
 
 			_serviceRegistration1 = _register(_VALUE_1, 0);
 
@@ -165,16 +161,12 @@ public class LanguageResourcesTest {
 			keys = Collections.list(resourceBundle.getKeys());
 
 			Assert.assertTrue(
-				"Key " + TestResourceBundle.class.getName() + " should be seen",
 				keys.contains(TestResourceBundle.class.getName()));
-			Assert.assertFalse(
-				"Key " + testKey + " should not be seen",
-				keys.contains(testKey));
+			Assert.assertFalse(keys.contains(testKey));
 
 			ploEntry1 = _ploEntryLocalService.addOrUpdatePLOEntry(
 				TestPropsValues.getCompanyId(), TestPropsValues.getUserId(),
 				TestResourceBundle.class.getName(), _languageId, _VALUE_2);
-
 			ploEntry2 = _ploEntryLocalService.addOrUpdatePLOEntry(
 				TestPropsValues.getCompanyId(), TestPropsValues.getUserId(),
 				testKey, _languageId, _VALUE_3);
@@ -191,10 +183,8 @@ public class LanguageResourcesTest {
 			keys = Collections.list(resourceBundle.getKeys());
 
 			Assert.assertTrue(
-				"Key " + TestResourceBundle.class.getName() + " should be seen",
 				keys.contains(TestResourceBundle.class.getName()));
-			Assert.assertTrue(
-				"Key " + testKey + " should be seen", keys.contains(testKey));
+			Assert.assertTrue(keys.contains(testKey));
 
 			_ploEntryLocalService.deletePLOEntry(ploEntry1);
 
@@ -210,10 +200,8 @@ public class LanguageResourcesTest {
 			keys = Collections.list(resourceBundle.getKeys());
 
 			Assert.assertTrue(
-				"Key " + TestResourceBundle.class.getName() + " should be seen",
 				keys.contains(TestResourceBundle.class.getName()));
-			Assert.assertTrue(
-				"Key " + testKey + " should be seen", keys.contains(testKey));
+			Assert.assertTrue(keys.contains(testKey));
 
 			_ploEntryLocalService.deletePLOEntry(ploEntry2);
 
@@ -228,11 +216,8 @@ public class LanguageResourcesTest {
 			keys = Collections.list(resourceBundle.getKeys());
 
 			Assert.assertTrue(
-				"Key " + TestResourceBundle.class.getName() + " should be seen",
 				keys.contains(TestResourceBundle.class.getName()));
-			Assert.assertFalse(
-				"Key " + testKey + " should not be seen",
-				keys.contains(testKey));
+			Assert.assertFalse(keys.contains(testKey));
 
 			_serviceRegistration1 = _unregister(_serviceRegistration1);
 
@@ -243,12 +228,8 @@ public class LanguageResourcesTest {
 			keys = Collections.list(resourceBundle.getKeys());
 
 			Assert.assertFalse(
-				"Key " + TestResourceBundle.class.getName() +
-					" should not be seen",
 				keys.contains(TestResourceBundle.class.getName()));
-			Assert.assertFalse(
-				"Key " + testKey + " should not be seen",
-				keys.contains(testKey));
+			Assert.assertFalse(keys.contains(testKey));
 		}
 		finally {
 			if (ploEntry1 != null) {
