@@ -548,8 +548,8 @@ public class BuildHistoryProcessor {
 				}
 
 				if (jobVariant.startsWith("build-lib-versions") ||
-					jobVariant.startsWith("gogo-shell-client") ||
 					jobVariant.startsWith("empty-osgi-core-dir") ||
+					jobVariant.startsWith("gogo-shell-client") ||
 					jobVariant.startsWith("javadoc-test") ||
 					jobVariant.startsWith("jsp-runtime-compile") ||
 					jobVariant.startsWith("patching-tool") ||
@@ -565,8 +565,8 @@ public class BuildHistoryProcessor {
 					return TestBatchType.PLAYWRIGHT.toString();
 				}
 
-				if ((jobVariant.startsWith("unit") ||
-					 jobVariant.startsWith("modules-unit")) &&
+				if ((jobVariant.startsWith("modules-unit") ||
+					 jobVariant.startsWith("unit")) &&
 					!jobVariant.contains("project-templates")) {
 
 					return TestBatchType.UNIT.toString();
