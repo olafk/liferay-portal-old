@@ -51,7 +51,7 @@ public class ResetStructureDisplayPageStrutsAction implements StrutsAction {
 		HttpServletResponse httpServletResponse) {
 
 		try {
-			_writeResponse(
+			_write(
 				httpServletResponse, _jsonFactory.createJSONObject(),
 				HttpServletResponse.SC_OK);
 
@@ -105,7 +105,7 @@ public class ResetStructureDisplayPageStrutsAction implements StrutsAction {
 				(ThemeDisplay)httpServletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
 
-			_writeResponse(
+			_write(
 				httpServletResponse,
 				JSONUtil.put(
 					"title",
@@ -118,7 +118,7 @@ public class ResetStructureDisplayPageStrutsAction implements StrutsAction {
 		return null;
 	}
 
-	private void _writeResponse(
+	private void _write(
 		HttpServletResponse httpServletResponse, JSONObject jsonObject,
 		int status) {
 
