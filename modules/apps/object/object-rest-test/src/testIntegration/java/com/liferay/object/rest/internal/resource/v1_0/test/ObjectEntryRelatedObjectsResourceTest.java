@@ -1587,12 +1587,10 @@ public class ObjectEntryRelatedObjectsResourceTest {
 					objectRelationship.getName());
 		}
 		else {
-			systemObjectEntryJSONObject =
-				customObjectEntryJSONObject.getJSONArray(
-					objectRelationship.getName()
-				).getJSONObject(
-					0
-				);
+			JSONArray jsonArray = customObjectEntryJSONObject.getJSONArray(
+				objectRelationship.getName());
+
+			systemObjectEntryJSONObject = jsonArray.getJSONObject(0);
 		}
 
 		return systemObjectEntryJSONObject.getString("id");
@@ -1909,12 +1907,10 @@ public class ObjectEntryRelatedObjectsResourceTest {
 								"Id", "ERC")));
 				}
 
-				systemObjectEntryJSONObject =
-					systemObjectEntryJSONObject.getJSONArray(
-						objectRelationship.getName()
-					).getJSONObject(
-						0
-					);
+				JSONArray jsonArray = systemObjectEntryJSONObject.getJSONArray(
+					objectRelationship.getName());
+
+				systemObjectEntryJSONObject = jsonArray.getJSONObject(0);
 
 				return systemObjectEntryJSONObject.getString(
 					"externalReferenceCode");
@@ -2009,12 +2005,10 @@ public class ObjectEntryRelatedObjectsResourceTest {
 								"Id", "ERC")));
 				}
 
-				systemObjectEntryJSONObject =
-					systemObjectEntryJSONObject.getJSONArray(
-						objectRelationship.getName()
-					).getJSONObject(
-						0
-					);
+				JSONArray jsonArray = systemObjectEntryJSONObject.getJSONArray(
+					objectRelationship.getName());
+
+				systemObjectEntryJSONObject = jsonArray.getJSONObject(0);
 
 				return systemObjectEntryJSONObject.getString(
 					"externalReferenceCode");
