@@ -1657,7 +1657,6 @@ public class ObjectEntryLocalServiceTest {
 						ObjectFieldConstants.BUSINESS_TYPE_DECIMAL
 					).build())
 			).build());
-
 		ObjectField objectField3 = _addCustomObjectField(
 			new FormulaObjectFieldBuilder(
 			).labelMap(
@@ -1681,7 +1680,6 @@ public class ObjectEntryLocalServiceTest {
 						ObjectFieldConstants.BUSINESS_TYPE_DECIMAL
 					).build())
 			).build());
-
 		ObjectField objectField4 = _addCustomObjectField(
 			new FormulaObjectFieldBuilder(
 			).labelMap(
@@ -1750,7 +1748,6 @@ public class ObjectEntryLocalServiceTest {
 					objectEntry.getObjectEntryId()),
 				objectField1.getName()),
 			0);
-
 		Assert.assertEquals(
 			randomDouble + 10,
 			MapUtil.getDouble(
@@ -1758,21 +1755,18 @@ public class ObjectEntryLocalServiceTest {
 					objectEntry.getObjectEntryId()),
 				objectField2.getName()),
 			0);
-
 		Assert.assertEquals(
 			0D,
 			MapUtil.getDouble(
 				_objectEntryLocalService.getValues(objectEntry),
 				objectField3.getName()),
 			0);
-
 		Assert.assertEquals(
 			randomDouble / objectEntry.getObjectEntryId(),
 			MapUtil.getDouble(
 				_objectEntryLocalService.getValues(objectEntry),
 				objectField4.getName()),
 			0.001);
-
 		Assert.assertEquals(
 			(int)(randomDouble / objectEntry.getObjectEntryId()),
 			MapUtil.getDouble(
