@@ -165,6 +165,10 @@ public class StructuredContentResourceTest
 
 		_dlFileEntry = DLTestUtil.addDLFileEntry(dlFolder.getFolderId());
 
+		_expandoTable = ExpandoTestUtil.addTable(
+			_portal.getClassNameId(JournalArticle.class.getName()),
+			"CUSTOM_FIELDS");
+
 		_irrelevantDDMStructure = _addDDMStructure(
 			irrelevantGroup, "test-ddm-structure.json");
 
@@ -179,10 +183,6 @@ public class StructuredContentResourceTest
 			testGroup, "test-localized-ddm-structure.json");
 		_unlocalizedDDMStructure = _addDDMStructure(
 			testGroup, "test-unlocalized-ddm-structure.json");
-
-		_expandoTable = ExpandoTestUtil.addTable(
-			_portal.getClassNameId(JournalArticle.class.getName()),
-			"CUSTOM_FIELDS");
 	}
 
 	@After
