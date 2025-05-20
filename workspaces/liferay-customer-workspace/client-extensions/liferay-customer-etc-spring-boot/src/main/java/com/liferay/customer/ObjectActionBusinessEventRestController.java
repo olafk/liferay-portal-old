@@ -348,17 +348,14 @@ public class ObjectActionBusinessEventRestController
 		);
 	}
 
-	private String _replaceEmailPlaceholders(
-		String emailField, Map<String, String> placeholderValues) {
-
-		String replacedEmailField = emailField;
+	private String _replace(
+		Map<String, String> placeholderValues, String string) {
 
 		for (Map.Entry<String, String> entry : placeholderValues.entrySet()) {
-			replacedEmailField = StringUtil.replace(
-				replacedEmailField, entry.getKey(), entry.getValue());
+			return StringUtil.replace(string, entry.getKey(), entry.getValue());
 		}
 
-		return replacedEmailField;
+		return string;
 	}
 
 	private void _sendNotification(
@@ -385,9 +382,9 @@ public class ObjectActionBusinessEventRestController
 			new JSONObject(
 			).put(
 				"body",
-				_replaceEmailPlaceholders(
-					notificationTemplateBodyJSONObject.getString("en_US"),
-					placeholderValues)
+				_replace(
+					placeholderValues,
+					notificationTemplateBodyJSONObject.getString("en_US"))
 			).put(
 				"recipients",
 				_parseRecipientsJSONArray(
@@ -395,9 +392,9 @@ public class ObjectActionBusinessEventRestController
 					notificationTemplateJSONObject.getJSONArray("recipients"))
 			).put(
 				"subject",
-				_replaceEmailPlaceholders(
-					notificationTemplateSubjectJSONObject.getString("en_US"),
-					placeholderValues)
+				_replace(
+					placeholderValues,
+					notificationTemplateSubjectJSONObject.getString("en_US"))
 			).put(
 				"type", "email"
 			).toString(),
