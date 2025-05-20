@@ -353,9 +353,7 @@ public class ObjectActionBusinessEventRestController
 
 		String replacedEmailField = emailField;
 
-		for (Map.Entry<String, String> entry :
-				placeholderValues.entrySet()) {
-
+		for (Map.Entry<String, String> entry : placeholderValues.entrySet()) {
 			replacedEmailField = StringUtil.replace(
 				replacedEmailField, entry.getKey(), entry.getValue());
 		}
