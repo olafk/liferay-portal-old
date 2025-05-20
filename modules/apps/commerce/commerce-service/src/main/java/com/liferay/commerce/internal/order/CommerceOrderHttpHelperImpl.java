@@ -653,17 +653,15 @@ public class CommerceOrderHttpHelperImpl implements CommerceOrderHttpHelper {
 			CommerceOrderInfoItemUtil.getCommerceOrder(
 				_commerceOrderService, httpServletRequest);
 
-		if ((commerceOrder != null) && !commerceOrder.isOpen()) {
-			List<CommerceShipment> commerceShipment =
-				_commerceShipmentLocalService.getCommerceShipments(
-					commerceOrder.getCommerceOrderId(), 0, 1);
-
-			if (!commerceShipment.isEmpty()) {
-				return true;
-			}
+		if ((commerceOrder == null) || commerceOrder.isOpen()) {
+			return false;
 		}
 
-		return false;
+		List<CommerceShipment> commerceShipment =
+			_commerceShipmentLocalService.getCommerceShipments(
+				commerceOrder.getCommerceOrderId(), 0, 1);
+
+		return !commerceShipment.isEmpty();
 	}
 
 	@Override
