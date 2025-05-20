@@ -60,7 +60,6 @@ public class ContentEditorSidePanelFragmentRenderer
 			componentTag.setPageContext(
 				PageContextFactoryUtil.create(
 					httpServletRequest, httpServletResponse));
-
 			componentTag.setServletContext(_servletContext);
 
 			componentTag.doStartTag();
