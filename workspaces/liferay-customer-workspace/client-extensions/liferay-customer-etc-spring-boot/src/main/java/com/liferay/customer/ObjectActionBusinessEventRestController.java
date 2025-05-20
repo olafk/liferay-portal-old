@@ -79,7 +79,7 @@ public class ObjectActionBusinessEventRestController
 			Jwt jwt, BusinessEvent businessEvent, String objectActionTriggerKey)
 		throws Exception {
 
-		JSONObject businessEventVersionJSONObject = new JSONObject(
+		String businessEventVersionJSON = new JSONObject(
 		).put(
 			"change",
 			_getChangeJSONObject(businessEvent, objectActionTriggerKey)
@@ -91,21 +91,18 @@ public class ObjectActionBusinessEventRestController
 		).put(
 			"r_businessEventToBusinessEventVersions_c_businessEventId",
 			businessEvent.getBusinessEventId()
-		);
+		).toString();
 
 		try {
 			post(
-				"Bearer " + jwt.getTokenValue(),
-				businessEventVersionJSONObject.toString(),
+				"Bearer " + jwt.getTokenValue(), businessEventVersionJSON,
 				"/o/c/businesseventversions");
 		}
 		catch (Exception exception) {
-			StringBundler sb = new StringBundler(2);
-
-			sb.append("Unable to create business event version:\n");
-			sb.append(businessEventVersionJSONObject.toString());
-
-			throw new Exception(sb.toString(), exception);
+			throw new Exception(
+				"Unable to create business event version:\n" +
+					businessEventVersionJSON,
+				exception);
 		}
 	}
 
