@@ -1048,9 +1048,9 @@ public class LayoutStructureRenderer {
 
 		jspWriter.write("\" data-layout-structure-item-id=\"");
 		jspWriter.write(formStyledLayoutStructureItem.getItemId());
-		jspWriter.write("\" id=\"");
+		jspWriter.write("\" enctype=\"multipart/form-data\" id=\"");
 		jspWriter.write(formStyledLayoutStructureItem.getUniqueCssClass());
-		jspWriter.write("\" enctype=\"multipart/form-data\" method=\"POST");
+		jspWriter.write("\" method=\"POST");
 
 		String style = _renderLayoutStructureDisplayContext.getStyle(
 			formStyledLayoutStructureItem);
