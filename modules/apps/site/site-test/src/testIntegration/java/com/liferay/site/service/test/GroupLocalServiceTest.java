@@ -127,13 +127,13 @@ public class GroupLocalServiceTest {
 	private void _assertGlobalGroup(long companyId, Group group)
 		throws PortalException {
 
+		Assert.assertEquals("L_GLOBAL", group.getExternalReferenceCode());
 		Assert.assertEquals(
 			_classNameLocalService.getClassNameId(Company.class),
 			group.getClassNameId());
 		Assert.assertEquals(companyId, group.getClassPK());
-		Assert.assertEquals("L_GLOBAL", group.getExternalReferenceCode());
-		Assert.assertEquals("/global", group.getFriendlyURL());
 		Assert.assertEquals("Global", group.getName(LocaleUtil.getDefault()));
+		Assert.assertEquals("/global", group.getFriendlyURL());
 
 		Assert.assertNotNull(_groupLocalService.getCompanyGroup(companyId));
 	}
