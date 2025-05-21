@@ -203,11 +203,11 @@
 			},
 			"choices": [
 				{
-					"name": "Correlation not required",
+					"name": "Correlation Not Required",
 					"value": "notRequired"
 				},
 				{
-					"name": "Correlation required",
+					"name": "Correlation Required",
 					"value": "required"
 				}
 			],
