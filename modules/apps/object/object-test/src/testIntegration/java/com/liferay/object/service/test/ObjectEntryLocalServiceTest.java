@@ -3179,6 +3179,12 @@ public class ObjectEntryLocalServiceTest {
 			ObjectDefinitionTestUtil.publishObjectDefinition(
 				true, Collections.emptyList());
 
+		companyObjectDefinition.setFriendlyURLSeparator("test1");
+
+		companyObjectDefinition =
+			_objectDefinitionLocalService.updateObjectDefinition(
+				companyObjectDefinition);
+
 		ObjectEntry companyObjectEntry1 = _addObjectEntry(
 			0, companyObjectDefinition.getObjectDefinitionId(),
 			Collections.emptyMap());
@@ -3273,6 +3279,7 @@ public class ObjectEntryLocalServiceTest {
 		ObjectDefinition siteObjectDefinition =
 			ObjectDefinitionTestUtil.publishObjectDefinition();
 
+		siteObjectDefinition.setFriendlyURLSeparator("test2");
 		siteObjectDefinition.setScope(ObjectDefinitionConstants.SCOPE_SITE);
 
 		siteObjectDefinition =
