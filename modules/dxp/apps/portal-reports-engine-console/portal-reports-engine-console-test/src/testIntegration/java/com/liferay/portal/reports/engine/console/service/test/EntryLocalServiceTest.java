@@ -31,7 +31,6 @@ import com.liferay.portal.test.rule.SynchronousMailTestRule;
 import java.io.InputStream;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.List;
 
 import org.junit.Assert;
@@ -63,14 +62,13 @@ public class EntryLocalServiceTest {
 
 		BundleContext bundleContext = bundle.getBundleContext();
 
-		Dictionary<String, Object> dictionary = MapUtil.singletonDictionary(
-			"destination.name", DestinationNames.MAIL);
-
 		TestMessageListener testMessageListener = new TestMessageListener();
 
 		ServiceRegistration<?> serviceRegistration =
 			bundleContext.registerService(
-				MessageListener.class, testMessageListener, dictionary);
+				MessageListener.class, testMessageListener,
+				MapUtil.singletonDictionary(
+					"destination.name", DestinationNames.MAIL));
 
 		Definition definition = _addDefinition();
 
