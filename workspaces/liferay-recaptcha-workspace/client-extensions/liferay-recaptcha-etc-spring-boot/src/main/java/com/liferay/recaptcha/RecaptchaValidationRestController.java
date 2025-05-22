@@ -44,12 +44,15 @@ public class RecaptchaValidationRestController extends BaseRestController {
 	public ResponseEntity<String> post(
 		@AuthenticationPrincipal Jwt jwt, @RequestBody String json) {
 
-		JSONObject jsonObject = new JSONObject(json);
+		JSONObject responseJSONObject = new JSONObject();
 
 		MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
 
+		JSONObject jsonObject = new JSONObject(json);
+
 		body.add("remoteip", jsonObject.getString("remoteip"));
 		body.add("response", jsonObject.getString("response"));
+
 		body.add("secret", _secret);
 
 		HttpHeaders httpHeaders = new HttpHeaders();
@@ -63,16 +66,14 @@ public class RecaptchaValidationRestController extends BaseRestController {
 		JSONObject siteVerifyJSONObject = new JSONObject(
 			responseEntity.getBody());
 
-		JSONObject responseJSONObject = new JSONObject();
-
-		responseJSONObject.put(
-			"success", siteVerifyJSONObject.getBoolean("success"));
-
 		if (!siteVerifyJSONObject.getBoolean("success")) {
 			responseJSONObject.put(
 				"error-codes",
 				siteVerifyJSONObject.getJSONArray("error-codes"));
 		}
+
+		responseJSONObject.put(
+			"success", siteVerifyJSONObject.getBoolean("success"));
 
 		return new ResponseEntity<>(
 			responseJSONObject.toString(), HttpStatus.OK);
