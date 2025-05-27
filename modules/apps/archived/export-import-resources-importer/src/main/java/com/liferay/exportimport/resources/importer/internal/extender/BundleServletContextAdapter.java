@@ -68,6 +68,13 @@ public class BundleServletContextAdapter
 	}
 
 	@Override
+	public ServletRegistration.Dynamic addJspFile(
+		String jspName, String jspFile) {
+
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public void addListener(Class<? extends EventListener> eventListener) {
 		throw new UnsupportedOperationException();
 	}
@@ -214,6 +221,11 @@ public class BundleServletContextAdapter
 	}
 
 	@Override
+	public String getRequestCharacterEncoding() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public RequestDispatcher getRequestDispatcher(String s) {
 		throw new UnsupportedOperationException();
 	}
@@ -239,23 +251,18 @@ public class BundleServletContextAdapter
 	}
 
 	@Override
-	public String getServerInfo() {
+	public String getResponseCharacterEncoding() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public Servlet getServlet(String s) throws ServletException {
+	public String getServerInfo() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public String getServletContextName() {
 		return _bundle.getSymbolicName();
-	}
-
-	@Override
-	public Enumeration<String> getServletNames() {
-		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -271,22 +278,17 @@ public class BundleServletContextAdapter
 	}
 
 	@Override
-	public Enumeration<Servlet> getServlets() {
-		throw new UnsupportedOperationException();
-	}
-
-	@Override
 	public SessionCookieConfig getSessionCookieConfig() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public String getVirtualServerName() {
+	public int getSessionTimeout() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void log(Exception exception, String s) {
+	public String getVirtualServerName() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -312,6 +314,21 @@ public class BundleServletContextAdapter
 
 	@Override
 	public boolean setInitParameter(String s, String s1) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setRequestCharacterEncoding(String encoding) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setResponseCharacterEncoding(String encoding) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void setSessionTimeout(int sessionTimeout) {
 		throw new UnsupportedOperationException();
 	}
 
