@@ -201,6 +201,10 @@ export class JournalPage {
 		await this.page.getByRole('button', {name: 'Clear'}).click();
 	}
 
+	async deleteSelection() {
+		await this.page.getByRole('button', {name: 'Delete'}).click();
+	}
+
 	async moveToFolder(folderName: String) {
 		await this.page.getByRole('button', {name: 'Move'}).click();
 

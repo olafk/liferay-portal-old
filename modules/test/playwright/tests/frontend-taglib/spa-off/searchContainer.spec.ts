@@ -11,6 +11,7 @@ import {loginTest} from '../../../fixtures/loginTest';
 import {ApiHelpers} from '../../../helpers/ApiHelpers';
 import getRandomString from '../../../utils/getRandomString';
 import getBasicWebContentStructureId from '../../../utils/structured-content/getBasicWebContentStructureId';
+import {waitForAlert} from '../../../utils/waitForAlert';
 import {journalPagesTest} from '../../journal-web/main/fixtures/journalPagesTest';
 import {FilterBy} from '../../journal-web/main/pages/JournalPage';
 
@@ -54,9 +55,9 @@ test(
 	{tag: '@LPS-172764'},
 	async ({apiHelpers, journalPage, page, site}) => {
 		await createWebContents(apiHelpers, 6, site.id);
+		await journalPage.goto(site.friendlyUrlPath);
 
 		await test.step('Filter by recent', async () => {
-			await journalPage.goto(site.friendlyUrlPath);
 			await journalPage.setFilterBy(FilterBy.RECENT);
 		});
 
@@ -81,9 +82,9 @@ test(
 	{tag: '@LPS-172764'},
 	async ({apiHelpers, journalPage, page, site}) => {
 		await createWebContents(apiHelpers, 6, site.id);
+		await journalPage.goto(site.friendlyUrlPath);
 
 		await test.step('Filter by recent', async () => {
-			await journalPage.goto(site.friendlyUrlPath);
 			await journalPage.setFilterBy(FilterBy.RECENT);
 		});
 
@@ -104,5 +105,28 @@ test(
 				page.getByText('0 of 6 Items Selected')
 			).toBeAttached();
 		});
+	}
+);
+
+test(
+	'Confirm that two selected items in different pages can be deleted',
+	{tag: '@LPS-172764'},
+	async ({apiHelpers, journalPage, page, site}) => {
+		await createWebContents(apiHelpers, 6, site.id);
+		await journalPage.goto(site.friendlyUrlPath);
+
+		await test.step('Select one article per page', async () => {
+			await journalPage.selectItem(0);
+			await journalPage.selectPage(1);
+			await journalPage.selectItem(0);
+			await expect(page.getByText('2 of 6 Items Selected')).toBeVisible();
+		});
+
+		await journalPage.deleteSelection();
+
+		await waitForAlert(
+			page,
+			'Success: 2 items were moved to the Recycle Bin.'
+		);
 	}
 );
