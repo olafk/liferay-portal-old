@@ -1594,9 +1594,7 @@ public class ModulesStructureTest {
 					}
 				}
 
-				if (false) {
-					Assert.assertFalse(sb.toString(), !allowed);
-				}
+				Assert.assertFalse(sb.toString(), !allowed);
 			}
 
 			Assert.assertEquals(
