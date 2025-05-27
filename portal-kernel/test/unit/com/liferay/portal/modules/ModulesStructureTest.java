@@ -1512,7 +1512,9 @@ public class ModulesStructureTest {
 		).put(
 			"provided", mainConfigurationsAllowed
 		).put(
-			"testImplementation", hasSrcTestDir
+			"testImplementation",
+			hasSrcTestDir ||
+			Objects.equals(path.toString(), "modules/build.gradle")
 		).put(
 			"testIntegrationImplementation", hasSrcTestIntegrationDir
 		).put(
