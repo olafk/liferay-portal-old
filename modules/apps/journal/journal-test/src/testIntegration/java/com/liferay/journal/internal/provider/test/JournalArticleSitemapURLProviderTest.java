@@ -163,7 +163,7 @@ public class JournalArticleSitemapURLProviderTest {
 	}
 
 	@Test
-	public void testJournalArticleSitemapURLProviderDefaultDisplayPageWhenArticleInConnectedDepot()
+	public void testJournalArticleSitemapURLProviderDefaultDisplayPageWhenJournalArticleInConnectedDepotEntry()
 		throws Exception {
 
 		DepotEntry depotEntry = null;
