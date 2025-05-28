@@ -32,13 +32,13 @@ public class IsURLFunction
 			return true;
 		}
 
-		if (Objects.equals(parameter.toString(), Http.HTTP_WITH_SLASH) ||
-			Objects.equals(parameter.toString(), Http.HTTPS_WITH_SLASH)) {
+		if (Objects.equals(parameterString, Http.HTTP_WITH_SLASH) ||
+			Objects.equals(parameterString, Http.HTTPS_WITH_SLASH)) {
 
 			return false;
 		}
 
-		return Validator.isUrl(parameter.toString());
+		return Validator.isUrl(parameterString);
 	}
 
 	@Override
