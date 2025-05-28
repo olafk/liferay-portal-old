@@ -544,13 +544,13 @@ public abstract class BaseDBProcess implements DBProcess {
 		}
 
 		try {
-			for (Map.Entry<Thread, Connection> connectionsEntry :
+			for (Map.Entry<Thread, Connection> entry :
 					connectionsMap.entrySet()) {
 
-				if (connectionsEntry.getKey() == thread) {
-					Connection connection = connectionsEntry.getValue();
+				if (entry.getKey() == thread) {
+					Connection connection = entry.getValue();
 
-					connectionsMap.remove(connectionsEntry.getKey());
+					connectionsMap.remove(entry.getKey());
 
 					connection.close();
 				}
@@ -662,14 +662,11 @@ public abstract class BaseDBProcess implements DBProcess {
 		ExecutorService executorService = Executors.newFixedThreadPool(
 			runtime.availableProcessors());
 
-		ThrowableCollector throwableCollector = new ThrowableCollector();
-
 		List<Future<Void>> futures = new ArrayList<>();
-
 		Map<Thread, PreparedStatement> preparedStatementHashMap =
 			new ConcurrentHashMap<>();
-
 		Set<Thread> threads = new HashSet<>();
+		ThrowableCollector throwableCollector = new ThrowableCollector();
 
 		try {
 			boolean notificationEnabled = NotificationThreadLocal.isEnabled();
