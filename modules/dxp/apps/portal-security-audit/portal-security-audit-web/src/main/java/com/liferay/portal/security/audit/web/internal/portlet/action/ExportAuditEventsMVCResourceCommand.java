@@ -156,7 +156,7 @@ public class ExportAuditEventsMVCResourceCommand
 					TransformUtil.transform(
 						_functions.values(),
 						function -> function.apply(auditEvent)),
-					StringPool.QUOTE + StringPool.COMMA + StringPool.QUOTE));
+					"', '"));
 
 			sb.append(StringPool.NEW_LINE);
 
