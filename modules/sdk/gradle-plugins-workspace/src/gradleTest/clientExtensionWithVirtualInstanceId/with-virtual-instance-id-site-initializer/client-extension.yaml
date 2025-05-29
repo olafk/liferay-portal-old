@@ -6,6 +6,6 @@ oauth:
     type: oAuthApplicationHeadlessServer
 site-initializer:
     oAuthApplicationHeadlessServer: oAuthApplicationHeadlessServer
-    siteExternalReferenceCode: Site External Reference Code
+    siteExternalReferenceCode: SITE-EXTERNAL-REFERENCE-CODE
     siteName: Site Name
     type: siteInitializer
