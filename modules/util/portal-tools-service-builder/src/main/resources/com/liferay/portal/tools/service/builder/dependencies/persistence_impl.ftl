@@ -2867,7 +2867,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 					);
 
-				<#if entityFinder.isPreTouch()>
+				<#if entityFinder.isPretouch()>
 					_finderPathFetchBy${entityFinder.name}.touch();
 				</#if>
 			</#if>

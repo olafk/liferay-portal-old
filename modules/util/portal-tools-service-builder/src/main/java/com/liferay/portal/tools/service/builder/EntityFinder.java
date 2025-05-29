@@ -20,14 +20,14 @@ public class EntityFinder {
 
 	public EntityFinder(
 		ServiceBuilder serviceBuilder, String name, String pluralName,
-		boolean preTouch, String returnType, boolean unique, String where,
+		boolean pretouch, String returnType, boolean unique, String where,
 		String dbWhere, boolean dbIndex, List<EntityColumn> entityColumns) {
 
 		_serviceBuilder = serviceBuilder;
 		_name = name;
 		_pluralName = GetterUtil.getString(
 			pluralName, serviceBuilder.formatPlural(name));
-		_preTouch = preTouch;
+		_pretouch = pretouch;
 		_returnType = returnType;
 		_unique = unique;
 		_where = where;
@@ -162,8 +162,8 @@ public class EntityFinder {
 		return _dbIndex;
 	}
 
-	public boolean isPreTouch() {
-		return _preTouch;
+	public boolean isPretouch() {
+		return _pretouch;
 	}
 
 	public boolean isUnique() {
@@ -176,7 +176,7 @@ public class EntityFinder {
 	private final List<EntityColumn> _entityColumns;
 	private final String _name;
 	private final String _pluralName;
-	private final boolean _preTouch;
+	private final boolean _pretouch;
 	private final String _returnType;
 	private final ServiceBuilder _serviceBuilder;
 	private final boolean _unique;
