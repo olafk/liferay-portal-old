@@ -60,8 +60,8 @@ public class EditCategoryDisplayContext {
 					_themeDisplay.getScopeGroupId(), false,
 					"/categorization/view_categories"),
 				_themeDisplay),
-			"vocabularyId", getVocabularyId(), "categoryId",
-			getParentCategoryId());
+			"categoryId", getParentCategoryId(), "vocabularyId",
+			getVocabularyId());
 	}
 
 	public String getCategoryByCategoryIdAPIURL() {
