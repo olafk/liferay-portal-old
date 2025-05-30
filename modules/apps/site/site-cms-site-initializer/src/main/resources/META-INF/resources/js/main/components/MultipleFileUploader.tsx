@@ -82,7 +82,7 @@ export default function MultipleFileUploader({
 					<div className="mt-4">
 						<FieldPicker
 							helpMessage={Liferay.Language.get(
-								'select-the-space-to-which-the-file-will-be-uploaded'
+								'select-the-space-to-upload-the-file'
 							)}
 							items={assetLibraries.map(({groupId, name}) => ({
 								label: name,
