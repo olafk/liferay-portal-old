@@ -2911,7 +2911,7 @@ public class ObjectDefinitionLocalServiceImpl
 			friendlyURLSeparators.add(friendlyURLResolver.getURLSeparator());
 		}
 
-		String errorMessage = FriendlyURLSeparatorUtil.validate(
+		String message = FriendlyURLSeparatorUtil.validate(
 			objectDefinition.getCompanyId(),
 			StringUtil.replace(
 				objectDefinition.getClassName(), CharPool.POUND,
@@ -2921,11 +2921,11 @@ public class ObjectDefinitionLocalServiceImpl
 			friendlyURLSeparators, _layoutLocalServiceHelper,
 			LocaleUtil.getSiteDefault());
 
-		if (errorMessage == null) {
+		if (message == null) {
 			return;
 		}
 
-		throw new ObjectDefinitionFriendlyURLSeparatorException(errorMessage);
+		throw new ObjectDefinitionFriendlyURLSeparatorException(message);
 	}
 
 	private void _validateLabel(Map<Locale, String> labelMap)
