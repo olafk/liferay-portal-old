@@ -542,12 +542,31 @@ public class NavigationMenuResourceTest
 			CustomField.class);
 	}
 
+	private ServiceContext _getServiceContext(boolean expandoBridgeAttributes)
+		throws Exception {
+
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				testGroup.getGroupId(), TestPropsValues.getUserId());
+
+		if (expandoBridgeAttributes) {
+			serviceContext.setExpandoBridgeAttributes(
+				HashMapBuilder.<String, Serializable>put(
+					_expandoColumnNames.get(0), RandomTestUtil.randomString()
+				).put(
+					_expandoColumnNames.get(1), RandomTestUtil.randomString()
+				).build());
+		}
+
+		return serviceContext;
+	}
+
 	private Map<String, String> _getTypeSettings(
 		Layout layout, Map<String, String> nameI18nMap, String type,
 		String useCustomName) {
 
-		HashMapBuilder.HashMapWrapper<String, String>
-			hashMapBuilder = HashMapBuilder.put(
+		HashMapBuilder.HashMapWrapper<String, String> hashMapBuilder =
+			HashMapBuilder.put(
 				"defaultLanguageId",
 				LocaleUtil.toLanguageId(LocaleUtil.getDefault()));
 
@@ -574,25 +593,6 @@ public class NavigationMenuResourceTest
 		return hashMapBuilder.put(
 			"useCustomName", useCustomName
 		).build();
-	}
-
-	private ServiceContext _getServiceContext(boolean expandoBridgeAttributes)
-		throws Exception {
-
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(
-				testGroup.getGroupId(), TestPropsValues.getUserId());
-
-		if (expandoBridgeAttributes) {
-			serviceContext.setExpandoBridgeAttributes(
-				HashMapBuilder.<String, Serializable>put(
-					_expandoColumnNames.get(0), RandomTestUtil.randomString()
-				).put(
-					_expandoColumnNames.get(1), RandomTestUtil.randomString()
-				).build());
-		}
-
-		return serviceContext;
 	}
 
 	private NavigationMenu _randomNavigationMenu(
