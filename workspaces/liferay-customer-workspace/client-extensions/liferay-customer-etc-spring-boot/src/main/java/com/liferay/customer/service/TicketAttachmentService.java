@@ -145,7 +145,7 @@ public class TicketAttachmentService extends BaseService {
 		sb.append(zendeskTicketId);
 
 		JSONObject jsonObject = new JSONObject(
-			get(authorization, createURI(sb.toString())));
+			get(authorization, createURI(sb)));
 
 		JSONArray jsonArray = jsonObject.getJSONArray("items");
 

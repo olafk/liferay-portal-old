@@ -215,8 +215,7 @@ public class AccountsSyncBusinessEventsRestController
 			sb.append(sortString);
 		}
 
-		return new JSONObject(
-			get(_getAuthorization(), createURI(sb.toString())));
+		return new JSONObject(get(_getAuthorization(), createURI(sb)));
 	}
 
 	private String _getBusinessEventsSummary(JSONArray jsonArray) {

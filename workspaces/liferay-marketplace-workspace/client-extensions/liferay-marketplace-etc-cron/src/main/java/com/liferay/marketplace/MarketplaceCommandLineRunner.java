@@ -51,7 +51,7 @@ public class MarketplaceCommandLineRunner
 				_liferayOAuth2AccessTokenManager.getAuthorization(
 					_liferayOAuthApplicationExternalReferenceCodes),
 				createURI(
-					_liferayMarketplaceEtcSpringBootURL.toString(),
+					_liferayMarketplaceEtcSpringBootURL,
 					"/trial/availability")));
 	}
 
@@ -80,8 +80,8 @@ public class MarketplaceCommandLineRunner
 				_liferayOAuth2AccessTokenManager.getAuthorization(
 					_liferayOAuthApplicationExternalReferenceCodes)),
 			createURI(
-				_liferayMarketplaceEtcSpringBootURL.toString(),
-				"/trial/expire/", orderId));
+				_liferayMarketplaceEtcSpringBootURL, "/trial/expire/",
+				orderId));
 	}
 
 	private void _postTrialNotifyEnd(long orderId) throws Exception {
@@ -92,8 +92,8 @@ public class MarketplaceCommandLineRunner
 				_liferayOAuth2AccessTokenManager.getAuthorization(
 					_liferayOAuthApplicationExternalReferenceCodes)),
 			createURI(
-				_liferayMarketplaceEtcSpringBootURL.toString(),
-				"/trial/notify-end/", orderId));
+				_liferayMarketplaceEtcSpringBootURL, "/trial/notify-end/",
+				orderId));
 	}
 
 	private void _postTrialProvisioning(Order order) throws Exception {
@@ -113,8 +113,7 @@ public class MarketplaceCommandLineRunner
 				_liferayOAuth2AccessTokenManager.getAuthorization(
 					_liferayOAuthApplicationExternalReferenceCodes)),
 			createURI(
-				_liferayMarketplaceEtcSpringBootURL.toString(),
-				"/trial/provisioning"));
+				_liferayMarketplaceEtcSpringBootURL, "/trial/provisioning"));
 	}
 
 	private void _processInProgressTrials() throws Exception {
