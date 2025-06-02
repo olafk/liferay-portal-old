@@ -160,6 +160,16 @@ public abstract class BaseService {
 			uri);
 	}
 
+	protected URI createURI(Object... objects) {
+		StringBuilder stringBuilder = new StringBuilder();
+
+		for (Object object : objects) {
+			stringBuilder.append(object.toString());
+		}
+
+		return URI.create(stringBuilder.toString());
+	}
+
 	protected String delete(
 		String body, Map<String, String> httpHeadersMap, URI uri) {
 
