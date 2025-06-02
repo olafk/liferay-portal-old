@@ -95,7 +95,7 @@ ManagementBar.propTypes = {
 	items: PropTypes.array.isRequired,
 	onBulkActionsClear: PropTypes.func.isRequired,
 	onSelectAll: PropTypes.func.isRequired,
-	pageSelectedItemsValue: PropTypes.array.isRequired,
+	pageSelectedItemsValue: PropTypes.array,
 	selectItems: PropTypes.func.isRequired,
 	selectedItems: PropTypes.array,
 	selectedItemsKey: PropTypes.string,

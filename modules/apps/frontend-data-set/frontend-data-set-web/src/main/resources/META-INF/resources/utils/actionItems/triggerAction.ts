@@ -56,7 +56,7 @@ export function triggerAction(
 			});
 			break;
 		case EVENT:
-			Liferay.fire(actionTargetURL);
+			actionTargetURL && Liferay.fire(actionTargetURL);
 			break;
 		default:
 			navigate(formatActionURL(actionTargetURL, item, actionTarget));

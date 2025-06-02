@@ -19,11 +19,11 @@ export interface ICreationActionItem {
 		size?: string;
 		title?: string;
 	};
-	href: string;
+	href?: string;
 	icon?: string;
 	label: string;
 	onClick: Function;
-	target:
+	target?:
 		| 'event'
 		| 'link'
 		| 'modal'

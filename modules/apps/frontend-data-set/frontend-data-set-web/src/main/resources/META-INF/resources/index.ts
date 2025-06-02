@@ -225,6 +225,7 @@ export interface IFrontendDataSetProps {
 	appURL?: string;
 	bulkActions?: any[];
 	creationMenu?: {
+		loadData?: Function;
 		primaryItems: Array<ICreationActionItem>;
 		secondaryItems?: any[];
 	};
@@ -265,7 +266,7 @@ export interface IFrontendDataSetProps {
 	onActionDropdownItemClick?: any;
 	onBulkActionItemClick?: any;
 	onSelect?: ({selectedItems}: {selectedItems: Array<any>}) => void;
-	onSelectedItemsChange: (selectedItems: Array<any>) => void;
+	onSelectedItemsChange?: (selectedItems: Array<any>) => void;
 	overrideEmptyResultView?: boolean;
 	pagination?: {
 		deltas?: TDelta[];
@@ -276,8 +277,8 @@ export interface IFrontendDataSetProps {
 	selectedItems?: any[];
 	selectedItemsKey?: string;
 	selectionType?: 'single' | 'multiple';
-	showBulkActionsManagementBar: boolean;
-	showBulkActionsManagementBarActions: boolean;
+	showBulkActionsManagementBar?: boolean;
+	showBulkActionsManagementBarActions?: boolean;
 	showManagementBar?: boolean;
 	showPagination?: boolean;
 	showSearch?: boolean;
@@ -285,7 +286,7 @@ export interface IFrontendDataSetProps {
 	sidePanelId?: string;
 	sorts?: TSort[];
 	style?: 'default' | 'fluid' | 'stacked';
-	uniformActionsDisplay: boolean;
+	uniformActionsDisplay?: boolean;
 	views: TViews[];
 	viewsTitle?: string;
 }
