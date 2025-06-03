@@ -78,9 +78,7 @@ public class ObjectDefinitionModelListener
 				});
 		}
 		catch (Exception exception) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(exception);
-			}
+			_log.error(exception);
 		}
 	}
 
