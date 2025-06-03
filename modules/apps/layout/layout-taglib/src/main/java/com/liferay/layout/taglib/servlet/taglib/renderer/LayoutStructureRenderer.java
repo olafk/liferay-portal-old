@@ -1060,12 +1060,12 @@ public class LayoutStructureRenderer {
 			jspWriter.write(style);
 		}
 
+		jspWriter.write("\">");
+
 		String redirect =
 			_renderLayoutStructureDisplayContext.
 				getFormStyledLayoutStructureItemRedirect(
 					formStyledLayoutStructureItem);
-
-		jspWriter.write("\">");
 
 		if (Validator.isNotNull(redirect)) {
 			jspWriter.write(
