@@ -101,9 +101,11 @@ public class LayoutClassedModelUsageCTUpgradeProcessTest
 
 		_deleteLayoutClassedModelUsage(_journalArticle.getResourcePrimKey());
 
-		_updateFragmentEntryLinkInNewCTCollection(fragmentEntryLink, _journalArticle);
+		_updateFragmentEntryLinkInNewCTCollection(
+			fragmentEntryLink, _journalArticle);
 
-		_updateFragmentEntryLinkInNewCTCollection(fragmentEntryLink, _journalArticle);
+		_updateFragmentEntryLinkInNewCTCollection(
+			fragmentEntryLink, _journalArticle);
 
 		runUpgrade();
 	}
