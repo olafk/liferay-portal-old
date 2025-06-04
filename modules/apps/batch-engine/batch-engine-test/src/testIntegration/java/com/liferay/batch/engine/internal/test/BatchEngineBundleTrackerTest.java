@@ -101,26 +101,26 @@ public class BatchEngineBundleTrackerTest {
 
 	@Test
 	public void testProcessBatchEngineBundle() throws Exception {
-		_testProcessBatchEngineBundle("batch1", null, "/batch1/export.json");
-		_testProcessBatchEngineBundle("batch2", null);
+		_testProcessBatchEngineBundle(null, "batch1", "/batch1/export.json");
+		_testProcessBatchEngineBundle(null, "batch2");
 		_testProcessBatchEngineBundle(
-			"batch3", null, "/batch3/batch1/export.json",
+			null, "batch3", "/batch3/batch1/export.json",
 			"/batch3/batch2/export.json");
 		_testProcessBatchEngineBundle(
-			"batch4", null, "/batch4/batch1/export.json",
+			null, "batch4", "/batch4/batch1/export.json",
 			"/batch4/batch2/export.json", "/batch4/batch2/batch3/export.json");
 		_testProcessBatchEngineBundle(
-			"batch5", null, "/batch5/data.batch-engine-data.json");
+			null, "batch5", "/batch5/data.batch-engine-data.json");
 		_testProcessBatchEngineBundle(
-			"batch6", null, "/batch6/1data.batch-engine-data.json",
+			null, "batch6", "/batch6/1data.batch-engine-data.json",
 			"/batch6/2data.batch-engine-data.json");
-		_testProcessBatchEngineBundle("batch7", null, "/batch7/export.json");
+		_testProcessBatchEngineBundle(null, "batch7", "/batch7/export.json");
 		_testProcessBatchEngineBundle(
-			"batch8", null, "/batch8/1data.batch-engine-data.json",
+			null, "batch8", "/batch8/1data.batch-engine-data.json",
 			"/batch8/2data.batch-engine-data.json",
 			"/batch8/10data.batch-engine-data.json");
 		_testProcessBatchEngineBundle(
-			"batch9", null, "/batch9/data.batch-engine-data.json");
+			null, "batch9", "/batch9/data.batch-engine-data.json");
 
 		_company = CompanyTestUtil.addCompany(true);
 
@@ -134,7 +134,7 @@ public class BatchEngineBundleTrackerTest {
 		_userLocalService.updateUser(user);
 
 		_testProcessBatchEngineBundle(
-			"batch9", null, "/batch9/data.batch-engine-data.json",
+			null, "batch9", "/batch9/data.batch-engine-data.json",
 			"/batch9/data.batch-engine-data.json");
 	}
 
@@ -147,7 +147,7 @@ public class BatchEngineBundleTrackerTest {
 			ReflectionTestUtil.setFieldValue(
 				DBUpgrader.class, "_upgradeClient", true);
 
-			_testProcessBatchEngineBundle("batch1", null);
+			_testProcessBatchEngineBundle(null, "batch1");
 		}
 		finally {
 			ReflectionTestUtil.setFieldValue(
@@ -164,10 +164,9 @@ public class BatchEngineBundleTrackerTest {
 			null, null);
 
 		_testProcessBatchEngineBundle(
-			"batch10",
 			task -> Assert.assertEquals(
 				company.getCompanyId(), task.getCompanyId()),
-			"/batch10/data.batch-engine-data.json");
+			"batch10", "/batch10/data.batch-engine-data.json");
 	}
 
 	private String _getDataFileName(
@@ -177,7 +176,7 @@ public class BatchEngineBundleTrackerTest {
 	}
 
 	private void _testProcessBatchEngineBundle(
-			String dirName, Consumer<BatchEngineImportTask> consumer,
+			Consumer<BatchEngineImportTask> consumer, String dirName,
 			String... expectedDataFileNames)
 		throws Exception {
 
