@@ -124,20 +124,21 @@ public class FileEntrySXPBlueprintInfoCollectionProvider
 			return StringPool.BLANK;
 		}
 
+		String subtypeExternalReferenceCode =
+			assetSubtypeIdentifier.getSubtypeExternalReferenceCode();
+
 		try {
 			DLFileEntryType dlFileEntryType =
 				_dlFileEntryTypeLocalService.
 					getDLFileEntryTypeByExternalReferenceCode(
-						assetSubtypeIdentifier.
-							getSubtypeExternalReferenceCode(),
-						group.getGroupId());
+						subtypeExternalReferenceCode, group.getGroupId());
 
 			return String.valueOf(dlFileEntryType.getFileEntryTypeId());
 		}
 		catch (PortalException portalException) {
 			_log.error(
-				"Unable to get file entry type with external reference code " +
-					assetSubtypeIdentifier.getSubtypeExternalReferenceCode(),
+				"Unable to get document library file entry type with " +
+					"external reference code " + subtypeExternalReferenceCode,
 				portalException);
 		}
 

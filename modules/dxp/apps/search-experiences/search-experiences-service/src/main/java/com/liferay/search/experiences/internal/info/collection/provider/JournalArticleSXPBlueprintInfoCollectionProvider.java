@@ -120,11 +120,13 @@ public class JournalArticleSXPBlueprintInfoCollectionProvider
 			return "0";
 		}
 
+		String subtypeExternalReferenceCode =
+			assetSubtypeIdentifier.getSubtypeExternalReferenceCode();
+
 		try {
 			DDMStructure ddmStructure =
 				_ddmStructureService.fetchStructureByExternalReferenceCode(
-					assetSubtypeIdentifier.getSubtypeExternalReferenceCode(),
-					group.getGroupId(),
+					subtypeExternalReferenceCode, group.getGroupId(),
 					_classNameLocalService.getClassNameId(
 						JournalArticle.class));
 
@@ -132,8 +134,8 @@ public class JournalArticleSXPBlueprintInfoCollectionProvider
 		}
 		catch (PortalException portalException) {
 			_log.error(
-				"Unable to get structure with external reference code " +
-					assetSubtypeIdentifier.getSubtypeExternalReferenceCode(),
+				"Unable to get dynamic data mapping structure with external " +
+					"reference code " + subtypeExternalReferenceCode,
 				portalException);
 		}
 
