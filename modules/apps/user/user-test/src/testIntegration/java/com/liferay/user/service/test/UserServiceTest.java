@@ -149,6 +149,68 @@ public class UserServiceTest {
 	}
 
 	@Test
+	public void testAddUserWithWorkflow() throws Exception {
+		String originalName = PrincipalThreadLocal.getName();
+
+		PermissionChecker originalPermissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		try {
+			PrincipalThreadLocal.setName(TestPropsValues.getUserId());
+
+			PermissionChecker adminPermissionChecker =
+				PermissionCheckerFactoryUtil.create(TestPropsValues.getUser());
+
+			PermissionThreadLocal.setPermissionChecker(adminPermissionChecker);
+
+			_workflowDefinitionLinkLocalService.addWorkflowDefinitionLink(
+				null, TestPropsValues.getUserId(),
+				TestPropsValues.getCompanyId(),
+				WorkflowConstants.DEFAULT_GROUP_ID, User.class.getName(), 0, 0,
+				"Single Approver", 1);
+
+			User user = _userService.addUserWithWorkflow(
+				TestPropsValues.getCompanyId(), true, StringPool.BLANK,
+				StringPool.BLANK, true, StringPool.BLANK,
+				"UserServiceTest." + RandomTestUtil.nextLong() + "@liferay.com",
+				LocaleUtil.getDefault(), "UserServiceTest", StringPool.BLANK,
+				"UserServiceTest", 0, 0, true, Calendar.JANUARY, 1, 1970,
+				StringPool.BLANK, null, null, null, null,
+				new ArrayList<Address>(), new ArrayList<EmailAddress>(),
+				new ArrayList<Phone>(), new ArrayList<Website>(),
+				new ArrayList<AnnouncementsDelivery>(), false,
+				ServiceContextTestUtil.getServiceContext());
+
+			WorkflowModelSearchResult<WorkflowTask> workflowModelSearchResult =
+				WorkflowTaskManagerUtil.searchWorkflowTasks(
+					TestPropsValues.getCompanyId(), TestPropsValues.getUserId(),
+					StringPool.BLANK, new String[0], null, null, null, null,
+					null, null, null, true, true, null, null, false, 0, 20,
+					null);
+
+			Assert.assertEquals(1, workflowModelSearchResult.getLength());
+
+			List<WorkflowTask> workflowTasks =
+				workflowModelSearchResult.getWorkflowModels();
+
+			WorkflowTask workflowTask = workflowTasks.get(0);
+
+			Map<String, Serializable> optionalAttributes =
+				workflowTask.getOptionalAttributes();
+
+			Assert.assertEquals(
+				optionalAttributes.get("entryClassPK"),
+				String.valueOf(user.getUserId()));
+		}
+		finally {
+			PrincipalThreadLocal.setName(originalName);
+
+			PermissionThreadLocal.setPermissionChecker(
+				originalPermissionChecker);
+		}
+	}
+
+	@Test
 	public void testGetRoleUserIds() throws Exception {
 		PermissionChecker originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
@@ -229,68 +291,6 @@ public class UserServiceTest {
 				message.contains(
 					"User " + user1.getUserId() +
 						" must have MANAGE_USERS permission"));
-		}
-	}
-
-	@Test
-	public void testAddUserWithWorkflow() throws Exception {
-		String originalName = PrincipalThreadLocal.getName();
-
-		PermissionChecker originalPermissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
-		try {
-			PrincipalThreadLocal.setName(TestPropsValues.getUserId());
-
-			PermissionChecker adminPermissionChecker =
-				PermissionCheckerFactoryUtil.create(TestPropsValues.getUser());
-
-			PermissionThreadLocal.setPermissionChecker(adminPermissionChecker);
-
-			_workflowDefinitionLinkLocalService.addWorkflowDefinitionLink(
-				null, TestPropsValues.getUserId(),
-				TestPropsValues.getCompanyId(),
-				WorkflowConstants.DEFAULT_GROUP_ID, User.class.getName(), 0, 0,
-				"Single Approver", 1);
-
-			User user = _userService.addUserWithWorkflow(
-				TestPropsValues.getCompanyId(), true, StringPool.BLANK,
-				StringPool.BLANK, true, StringPool.BLANK,
-				"UserServiceTest." + RandomTestUtil.nextLong() + "@liferay.com",
-				LocaleUtil.getDefault(), "UserServiceTest", StringPool.BLANK,
-				"UserServiceTest", 0, 0, true, Calendar.JANUARY, 1, 1970,
-				StringPool.BLANK, null, null, null, null,
-				new ArrayList<Address>(), new ArrayList<EmailAddress>(),
-				new ArrayList<Phone>(), new ArrayList<Website>(),
-				new ArrayList<AnnouncementsDelivery>(), false,
-				ServiceContextTestUtil.getServiceContext());
-
-			WorkflowModelSearchResult<WorkflowTask> workflowModelSearchResult =
-				WorkflowTaskManagerUtil.searchWorkflowTasks(
-					TestPropsValues.getCompanyId(), TestPropsValues.getUserId(),
-					StringPool.BLANK, new String[0], null, null, null, null,
-					null, null, null, true, true, null, null, false, 0, 20,
-					null);
-
-			Assert.assertEquals(1, workflowModelSearchResult.getLength());
-
-			List<WorkflowTask> workflowTasks =
-				workflowModelSearchResult.getWorkflowModels();
-
-			WorkflowTask workflowTask = workflowTasks.get(0);
-
-			Map<String, Serializable> optionalAttributes =
-				workflowTask.getOptionalAttributes();
-
-			Assert.assertEquals(
-				optionalAttributes.get("entryClassPK"),
-				String.valueOf(user.getUserId()));
-		}
-		finally {
-			PrincipalThreadLocal.setName(originalName);
-
-			PermissionThreadLocal.setPermissionChecker(
-				originalPermissionChecker);
 		}
 	}
 
