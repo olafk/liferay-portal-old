@@ -205,9 +205,10 @@ public class PlaywrightBatchBuildTestrayCaseResult
 	}
 
 	protected TestrayAttachment getPlaywrightTraceViewerTestrayAttachment() {
+		StringBuilder sb = new StringBuilder();
+
 		Matcher matcher = _traceZipDirPattern.matcher(
 			_playwrightJUnitTestClass.getSpecFilePath());
-		StringBuilder sb = new StringBuilder();
 
 		if (matcher.matches()) {
 			String fullTestName = getName();
