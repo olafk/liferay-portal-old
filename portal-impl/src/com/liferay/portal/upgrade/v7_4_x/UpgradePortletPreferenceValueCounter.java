@@ -35,16 +35,18 @@ public class UpgradePortletPreferenceValueCounter extends UpgradeProcess {
 					"select max(portletPreferenceValueId) from " +
 						"PortletPreferenceValue")) {
 
-				if (resultSet2.next()) {
-					long increment = Math.max(
-						0, resultSet2.getLong(1) - counter);
-
-					if (increment > 0) {
-						increment(
-							PortletPreferenceValue.class.getName(),
-							(int)increment);
-					}
+				if (!resultSet2.next()) {
+					return;
 				}
+
+				long increment = Math.max(0, resultSet2.getLong(1) - counter);
+
+				if (increment <= 0) {
+					return;
+				}
+
+				increment(
+					PortletPreferenceValue.class.getName(), (int)increment);
 			}
 		}
 	}
