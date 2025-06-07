@@ -251,12 +251,12 @@ public class JSImportMapsCacheTest {
 	}
 
 	private String _getImportMaps(long companyId) throws Exception {
+		CharArrayWriter charArrayWriter = new CharArrayWriter();
+
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
 
 		mockHttpServletRequest.setAttribute(WebKeys.COMPANY_ID, companyId);
-
-		CharArrayWriter charArrayWriter = new CharArrayWriter();
 
 		_jsImportMapsCache.writeImportMaps(
 			mockHttpServletRequest, charArrayWriter);
