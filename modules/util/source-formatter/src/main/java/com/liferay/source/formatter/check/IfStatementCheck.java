@@ -214,8 +214,9 @@ public class IfStatementCheck extends BaseFileCheck {
 
 			return "return " + strippedParenthesesClause;
 		}
-		else if (body.equals("return false;") &&
-				 followingCode.startsWith("return true;")) {
+
+		if (body.equals("return false;") &&
+			followingCode.startsWith("return true;")) {
 
 			if (strippedParenthesesClause.startsWith("!")) {
 				return "return " + strippedParenthesesClause.substring(1);
