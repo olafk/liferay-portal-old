@@ -201,7 +201,7 @@ public class BaseJakartaUpgradeProcessTest extends BaseJakartaUpgradeProcess {
 					StringBundler.concat(
 						"Table ", _TABLE_NAME, " column ", _COLUMN_NAME_1,
 						companyIdMessage,
-						" has been updated for records with primary keys ",
+						" was updated for records with primary keys ",
 						"(mvccVersion, uuid_): "),
 					logEntries.get(
 						i++
@@ -212,7 +212,7 @@ public class BaseJakartaUpgradeProcessTest extends BaseJakartaUpgradeProcess {
 					StringBundler.concat(
 						"Table ", _TABLE_NAME, " column ", _COLUMN_NAME_2,
 						companyIdMessage,
-						" has been updated for records with primary keys ",
+						" was updated for records with primary keys ",
 						"(mvccVersion, uuid_): "),
 					logEntries.get(
 						i++
@@ -223,7 +223,7 @@ public class BaseJakartaUpgradeProcessTest extends BaseJakartaUpgradeProcess {
 					StringBundler.concat(
 						"Table ", _TABLE_NAME, " column ", _COLUMN_NAME_3,
 						companyIdMessage,
-						" has been updated for records with primary keys ",
+						" was updated for records with primary keys ",
 						"(mvccVersion, uuid_): "),
 					logEntries.get(
 						i++
@@ -234,7 +234,7 @@ public class BaseJakartaUpgradeProcessTest extends BaseJakartaUpgradeProcess {
 					StringBundler.concat(
 						"Table ", _TABLE_NAME, " column ", _COLUMN_NAME_4,
 						companyIdMessage,
-						" has not been updated for any record"),
+						" was not updated"),
 					logEntries.get(
 						i++
 					).toString());

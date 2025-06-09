@@ -75,10 +75,10 @@ public abstract class BaseJakartaUpgradeProcess extends UpgradeProcess {
 			}
 
 			if (modifiedKeys.isEmpty()) {
-				sb.append(" has not been updated for any record");
+				sb.append(" was not updated");
 			}
 			else {
-				sb.append(" has been updated for records with primary keys (");
+				sb.append(" was updated for records with primary keys (");
 
 				for (String primaryKeyColumnName : primaryKeyColumnNames) {
 					sb.append(primaryKeyColumnName);
