@@ -365,7 +365,7 @@ public class ObjectActionBusinessEventRestController
 				).toUri()));
 
 		if (userAccountJSONObject.isEmpty()) {
-			throw new Exception("No user account found for id " + id);
+			throw new Exception("No user account found for ID " + id);
 		}
 
 		return userAccountJSONObject;
