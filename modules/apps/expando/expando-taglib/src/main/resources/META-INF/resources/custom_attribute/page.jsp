@@ -657,7 +657,7 @@ ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(company.
 								</c:when>
 								<c:otherwise>
 									<aui:style type="text/css">
-									#<portlet:namespace /><%= randomNamespace %><%= HtmlUtil.getAUICompatibleId(name) %> {
+										#<portlet:namespace /><%= randomNamespace %><%= HtmlUtil.getAUICompatibleId(name) %> {
 											width: <%= propertyWidth %>px;
 										}
 									</aui:style>
