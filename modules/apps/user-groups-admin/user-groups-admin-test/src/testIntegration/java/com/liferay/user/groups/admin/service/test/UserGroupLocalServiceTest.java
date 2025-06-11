@@ -130,10 +130,10 @@ public class UserGroupLocalServiceTest {
 			Assert.assertNotNull(duplicateUserGroupException);
 		}
 
+		_testAddUserGroupWithInvalidName(" ");
+		_testAddUserGroupWithInvalidName("1");
 		_testAddUserGroupWithInvalidName(RandomTestUtil.randomString() + '*');
 		_testAddUserGroupWithInvalidName(RandomTestUtil.randomString() + ',');
-		_testAddUserGroupWithInvalidName("1");
-		_testAddUserGroupWithInvalidName(" ");
 	}
 
 	@Test
