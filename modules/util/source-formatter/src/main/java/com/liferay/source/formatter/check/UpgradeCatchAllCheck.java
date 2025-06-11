@@ -862,7 +862,7 @@ public class UpgradeCatchAllCheck extends BaseFileCheck {
 		}
 		else {
 			throw new UpgradeCatchAllException(
-				"Unable to find class definition in the file content");
+				"Unable to find class declaration in the file content");
 		}
 
 		String classBody = fileContent.substring(startIndex, endIndex);
