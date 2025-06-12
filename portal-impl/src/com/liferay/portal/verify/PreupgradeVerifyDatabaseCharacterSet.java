@@ -68,20 +68,22 @@ public class PreupgradeVerifyDatabaseCharacterSet
 
 				String tableName = resultSet.getString("table_name");
 
-				if (tableNames.contains(
+				if (!tableNames.contains(
 						dbInspector.normalizeName(tableName))) {
 
-					throw new VerifyException(
-						StringBundler.concat(
-							"Mixed character set and collation: ", tableName,
-							" has ", resultSet.getString("character_set_name"),
-							" character set and ",
-							resultSet.getString("collation_name"),
-							" collation, but database has ",
-							resultSet.getString("default_character_set_name"),
-							" character set and ",
-							resultSet.getString("default_collation_name")));
+					continue;
 				}
+
+				throw new VerifyException(
+					StringBundler.concat(
+						"Mixed character set and collation: ", tableName,
+						" has ", resultSet.getString("character_set_name"),
+						" character set and ",
+						resultSet.getString("collation_name"),
+						" collation, but database has ",
+						resultSet.getString("default_character_set_name"),
+						" character set and ",
+						resultSet.getString("default_collation_name")));
 			}
 		}
 	}
