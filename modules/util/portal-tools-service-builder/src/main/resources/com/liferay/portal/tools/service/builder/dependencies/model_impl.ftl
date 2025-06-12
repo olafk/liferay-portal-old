@@ -42,6 +42,7 @@ import ${apiPackagePath}.model.${entity.name}Soap;
 	<#assign versionEntity = entity.versionEntity />
 
 	import ${apiPackagePath}.model.${versionEntity.name};
+
 <#elseif entity.versionedEntity??>
 	<#assign versionedEntity = entity.versionedEntity />
 
