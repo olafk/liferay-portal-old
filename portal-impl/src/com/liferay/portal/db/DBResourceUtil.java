@@ -93,9 +93,9 @@ public class DBResourceUtil {
 			return _portalTableNames;
 		}
 
-		Matcher matcher = _createTablePattern.matcher(getPortalTablesSQL());
-
 		Set<String> tableNames = new HashSet<>();
+
+		Matcher matcher = _createTablePattern.matcher(getPortalTablesSQL());
 
 		while (matcher.find()) {
 			DBInspector dbInspector = new DBInspector(connection);
