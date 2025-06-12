@@ -42,7 +42,6 @@ import ${apiPackagePath}.model.${entity.name}Soap;
 	<#assign versionEntity = entity.versionEntity />
 
 	import ${apiPackagePath}.model.${versionEntity.name};
-
 <#elseif entity.versionedEntity??>
 	<#assign versionedEntity = entity.versionedEntity />
 
@@ -1846,9 +1845,9 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			try {
 				<#list cacheFields as cacheField>
 					<#assign
-						variableName = serviceBuilder.getVariableName(cacheField)
 						methodName = serviceBuilder.getCacheFieldMethodName(cacheField)
 						typeGenericsName = serviceBuilder.getTypeGenericsName(cacheField.getType())
+						variableName = serviceBuilder.getVariableName(cacheField)
 					/>
 
 					<#if !serviceBuilder.isCacheFieldPermanent(cacheField)>
@@ -2136,22 +2135,19 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 	<#list cacheFields as cacheField>
 		<#assign
-			variableName = serviceBuilder.getVariableName(cacheField)
 			typeWrapperName = serviceBuilder.getPrimitiveObj(serviceBuilder.getTypeGenericsName(cacheField.getType()))
+			variableName = serviceBuilder.getVariableName(cacheField)
 		/>
 
 		protected transient final Consumer<${typeWrapperName}> ${variableName}UpdateEntityCacheConsumer = ${variableName} -> {
 			${entity.name}CacheModel ${entity.variableName}CacheModel =
-				EntityCacheUtil.fetchCacheModel(
-					${entity.name}Impl.class,
-					_${entity.PKEntityColumns[0].name},
-					${entity.name}CacheModel.class);
+				EntityCacheUtil.fetchCacheModel(${entity.name}Impl.class, _${entity.PKEntityColumns[0].name}, ${entity.name}CacheModel.class);
 
 			if ((${entity.variableName}CacheModel != null)
 				<#if entity.isMvccEnabled()>
-				&& (${entity.variableName}CacheModel.getMvccVersion() == getMvccVersion())
+					&& (${entity.variableName}CacheModel.getMvccVersion() == getMvccVersion())
 				</#if>
-				) {
+			) {
 				${entity.variableName}CacheModel.${variableName} = ${variableName};
 			}
 		};
@@ -2169,13 +2165,11 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 						variableName = serviceBuilder.getVariableName(cacheField)
 					/>
 
-					_${variableName}MethodHandle = lookup.findGetter(
-						${entity.name}Impl.class, "${cacheField.name}", ${cacheField.type.canonicalName}.class);
+					_${variableName}MethodHandle = lookup.findGetter(${entity.name}Impl.class, "${cacheField.name}", ${cacheField.type.canonicalName}.class);
 				</#list>
 			}
 			catch (ReflectiveOperationException reflectiveOperationException) {
-				throw new ExceptionInInitializerError(
-					reflectiveOperationException);
+				throw new ExceptionInInitializerError(reflectiveOperationException);
 			}
 		}
 	</#if>

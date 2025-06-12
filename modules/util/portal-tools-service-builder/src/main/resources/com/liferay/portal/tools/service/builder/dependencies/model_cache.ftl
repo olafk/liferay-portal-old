@@ -216,6 +216,7 @@ public class ${entity.name}CacheModel implements CacheModel<${entity.name}>, Ext
 
 		<#list cacheFields as cacheField>
 			<#assign variableName = serviceBuilder.getVariableName(cacheField) />
+
 			${variableName} = (${serviceBuilder.getGenericValue(cacheField.type)})objectInput.readObject();
 		</#list>
 
@@ -312,13 +313,11 @@ public class ${entity.name}CacheModel implements CacheModel<${entity.name}>, Ext
 						variableName = serviceBuilder.getVariableName(cacheField)
 					/>
 
-					_${variableName}MethodHandle = lookup.findSetter(
-						${entity.name}Impl.class, "${cacheField.name}", ${cacheField.type.canonicalName}.class);
+					_${variableName}MethodHandle = lookup.findSetter(${entity.name}Impl.class, "${cacheField.name}", ${cacheField.type.canonicalName}.class);
 				</#list>
 			}
 			catch (ReflectiveOperationException reflectiveOperationException) {
-				throw new ExceptionInInitializerError(
-					reflectiveOperationException);
+				throw new ExceptionInInitializerError(reflectiveOperationException);
 			}
 		}
 	</#if>
