@@ -86,37 +86,32 @@ public class PreFilterContributorHelperImpl
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		_searchPermissionFilterContributorServiceTrackerList =
-			ServiceTrackerListFactory.open(
-				bundleContext, SearchPermissionFilterContributor.class);
-
 		_classNameServiceTrackerMap =
 			ServiceTrackerMapFactory.openMultiValueMap(
 				bundleContext, ModelPreFilterContributor.class,
 				"indexer.class.name");
-
 		_mandatoryServiceTrackerMap =
 			ServiceTrackerMapFactory.openMultiValueMap(
 				bundleContext, ModelPreFilterContributor.class,
 				"indexer.clauses.mandatory");
-
 		_modelPreFilterContributorsRegistry =
 			new ModelPreFilterContributorsRegistry(
 				_classNameServiceTrackerMap, _mandatoryServiceTrackerMap);
-
 		_queryPreFilterContributorServiceTrackerList =
 			ServiceTrackerListFactory.open(
 				bundleContext, QueryPreFilterContributor.class,
 				"(!(indexer.class.name=*))");
+		_searchPermissionFilterContributorServiceTrackerList =
+			ServiceTrackerListFactory.open(
+				bundleContext, SearchPermissionFilterContributor.class);
 	}
 
 	@Deactivate
 	protected void deactivate() {
-		_searchPermissionFilterContributorServiceTrackerList.close();
-
 		_classNameServiceTrackerMap.close();
 		_mandatoryServiceTrackerMap.close();
 		_queryPreFilterContributorServiceTrackerList.close();
+		_searchPermissionFilterContributorServiceTrackerList.close();
 	}
 
 	protected Collection<String> getStrings(
