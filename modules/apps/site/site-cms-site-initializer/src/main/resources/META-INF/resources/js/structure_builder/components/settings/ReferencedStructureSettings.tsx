@@ -67,7 +67,7 @@ export default function ReferencedStructureSettings({
 					target="_blank"
 				>
 					{sub(
-						Liferay.Language.get('to-edit-it-open-the-x-edit-page'),
+						Liferay.Language.get('to-edit,-open-the-x-edit-page'),
 						label
 					)}
 
