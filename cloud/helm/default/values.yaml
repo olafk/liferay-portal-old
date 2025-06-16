@@ -23,6 +23,7 @@ customLabels:
     origin: liferay-cloud
 customPorts: {}
 customPullSecrets: {}
+customServicePorts: {}
 customVolumeClaimTemplates: {}
 customVolumeMounts: {}
 customVolumes: {}
