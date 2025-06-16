@@ -99,7 +99,7 @@ public class RenderStructureFieldMVCResourceCommandTest {
 			HtmlUtil.escapeAttribute(_SCRIPT)
 		);
 
-		DDMFormDeserializer jsonDDMFormDeserializer = Mockito.mock(
+		DDMFormDeserializer ddmFormDeserializer = Mockito.mock(
 			DDMFormDeserializer.class);
 
 		DDMFormDeserializerDeserializeResponse
@@ -107,7 +107,7 @@ public class RenderStructureFieldMVCResourceCommandTest {
 				DDMFormDeserializerDeserializeResponse.class);
 
 		Mockito.when(
-			jsonDDMFormDeserializer.deserialize(Mockito.any())
+			ddmFormDeserializer.deserialize(Mockito.any())
 		).thenReturn(
 			ddmFormDeserializerDeserializeResponse
 		);
@@ -120,10 +120,10 @@ public class RenderStructureFieldMVCResourceCommandTest {
 			ddmForm
 		);
 
-		DDMFormField ddmFormFieldMock = Mockito.mock(DDMFormField.class);
+		DDMFormField mockDDMFormField = Mockito.mock(DDMFormField.class);
 
 		Mockito.when(
-			ddmFormFieldMock.getName()
+			mockDDMFormField.getName()
 		).thenReturn(
 			HtmlUtil.escapeAttribute(_SCRIPT)
 		);
@@ -132,7 +132,7 @@ public class RenderStructureFieldMVCResourceCommandTest {
 			ddmForm.getDDMFormFieldsMap(true)
 		).thenReturn(
 			Collections.singletonMap(
-				HtmlUtil.escapeAttribute(_SCRIPT), ddmFormFieldMock)
+				HtmlUtil.escapeAttribute(_SCRIPT), mockDDMFormField)
 		);
 
 		RenderStructureFieldMVCResourceCommand
@@ -141,7 +141,7 @@ public class RenderStructureFieldMVCResourceCommandTest {
 
 		ReflectionTestUtil.setFieldValue(
 			renderStructureFieldMVCResourceCommand, "_jsonDDMFormDeserializer",
-			jsonDDMFormDeserializer);
+			ddmFormDeserializer);
 
 		DDMFormField ddmFormField =
 			renderStructureFieldMVCResourceCommand.getDDMFormField(
