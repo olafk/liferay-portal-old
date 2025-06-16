@@ -538,7 +538,7 @@ public class JournalArticleLocalServiceTest {
 	}
 
 	@Test
-	public void testArticleWithoutDisplayDate() throws Exception {
+	public void testUpdateArticleWithoutDisplayDate() throws Exception {
 		JournalArticle journalArticle1 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
@@ -573,7 +573,7 @@ public class JournalArticleLocalServiceTest {
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, "Test-1",
 			RandomTestUtil.randomString());
 
-		JournalArticle thirdArticle = JournalTestUtil.addArticle(
+		JournalArticle thirdJournalArticle = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, "Test-2",
 			oldJournalArticle.getContent());
@@ -586,7 +586,7 @@ public class JournalArticleLocalServiceTest {
 
 		Assert.assertNotEquals(oldJournalArticle, newJournalArticle);
 		Assert.assertNotEquals(
-			thirdArticle.getUrlTitle(), newJournalArticle.getUrlTitle());
+			thirdJournalArticle.getUrlTitle(), newJournalArticle.getUrlTitle());
 
 		List<ResourcePermission> oldResourcePermissions =
 			_resourcePermissionLocalService.getResourcePermissions(
