@@ -918,7 +918,6 @@ public class TestrayImporter {
 
 	public void recordTestrayCaseResults() {
 		List<AxisTestClassGroup> axisTestClassGroups = new ArrayList<>();
-
 		List<Callable<Void>> callables = new ArrayList<>();
 
 		for (Job job : _jobs) {
@@ -1306,7 +1305,6 @@ public class TestrayImporter {
 		propertiesMap.put(
 			"testray.build.date",
 			_topLevelBuildReport.getTestrayBuildDateString());
-
 		propertiesMap.put("testray.build.name", testrayBuild.getName());
 		propertiesMap.put(
 			"testray.build.time",
@@ -1330,7 +1328,6 @@ public class TestrayImporter {
 		propertiesMap.put("testray.project.name", testrayProject.getName());
 
 		propertiesMap.put("testray.run.id", testrayRun.getRunIDString());
-
 		propertiesMap.put(
 			"testray.total.cpu.use.time",
 			JenkinsResultsParserUtil.toDurationString(
