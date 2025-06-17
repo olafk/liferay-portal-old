@@ -4044,8 +4044,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 	javaMethodSignature
 	testJavaMethodName
 	varName
-	allowQueryParameter = true
 	allowBodyParameters = false
+	allowQueryParameter = true
 	defaultParameter = false
 	skipQueryParameter = false
 >
