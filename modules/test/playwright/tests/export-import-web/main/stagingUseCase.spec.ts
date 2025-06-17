@@ -19,10 +19,8 @@ import {pageViewModePagesTest} from '../../../fixtures/pageViewModePagesTest';
 import {systemSettingsPageTest} from '../../../fixtures/systemSettingsPageTest';
 import {uiElementsPageTest} from '../../../fixtures/uiElementsTest';
 import {webContentDisplayPageTest} from '../../../fixtures/webContentDisplayPageTest';
-import {liferayConfig} from '../../../liferay.config';
 import getRandomString from '../../../utils/getRandomString';
 import getBasicWebContentStructureId from '../../../utils/structured-content/getBasicWebContentStructureId';
-import {waitForAlert} from '../../../utils/waitForAlert';
 import {exportImportConfig} from './export_import.config';
 import {exportPageTest} from './fixtures/exportPageTest';
 import {stagingConfigurationPageTest} from './fixtures/stagingConfigurationPageTest';
@@ -255,29 +253,15 @@ test(
 );
 
 test(
-	'publishing to fail if file not exists',
+	'Publishing to fail if linked file not exists',
 	{tag: '@LPS-84223'},
-	async ({apiHelpers, page, systemSettingsPage}) => {
+	async ({apiHelpers}) => {
 		const site = await apiHelpers.headlessSite.createSite({
 			name: getRandomString(),
 		});
 
-		await systemSettingsPage.goToSystemSetting(
-			'Infrastructure',
-			'Export/Import, Staging'
-		);
-		if (!(await page.getByLabel('Validate File Entries').isChecked())) {
-			await page.getByLabel('Validate File Entries').check();
-			await page.getByRole('button', {name: 'Update'}).click();
-
-			await waitForAlert(
-				page,
-				'Success:Your request completed successfully.'
-			);
-			await page.waitForTimeout(2000);
-		}
-
 		apiHelpers.data.push({id: site.id, type: 'site'});
+
 		const document = await apiHelpers.headlessDelivery.postDocument(
 			site.id,
 			createReadStream(
@@ -289,11 +273,9 @@ test(
 			}
 		);
 
-		const editUrl = document.contentUrl.replace(
-			'documents/',
-			'documents/123'
-		);
-		const webContentContent = `<a href="${liferayConfig.environment.baseUrl}${editUrl}">Document</a>`;
+		const editUrl = `/documents/d${site.friendlyUrlPath}/${document.friendlyUrlPath.replace('-jpg', '_11-jpg')}`;
+
+		const webContentContent = `<a href="http://localhost:8080${editUrl}">Document</a>`;
 
 		await expect(async () => {
 			await apiHelpers.jsonWebServicesJournal.addWebContent({
