@@ -149,10 +149,8 @@ public class UpgradeRecorderTest {
 	public void testFailureResultByVerifyException() {
 		StartupHelperUtil.setUpgrading(true);
 
-		String exceptionMessage = RandomTestUtil.randomString();
-
 		VerifyExceptionProcess verifyExceptionProcess =
-			new VerifyExceptionProcess(exceptionMessage);
+			new VerifyExceptionProcess();
 
 		try {
 			_appender.start();
@@ -169,7 +167,7 @@ public class UpgradeRecorderTest {
 				).setLevel(
 					Level.ERROR
 				).setMessage(
-					new SimpleMessage(exceptionMessage)
+					new SimpleMessage(RandomTestUtil.randomString())
 				).setThrown(
 					verifyException
 				).build());
@@ -513,16 +511,10 @@ public class UpgradeRecorderTest {
 
 	private class VerifyExceptionProcess extends VerifyProcess {
 
-		public VerifyExceptionProcess(String message) {
-			_message = message;
-		}
-
 		@Override
 		protected void doVerify() throws Exception {
-			throw new Exception(_message);
+			throw new Exception(RandomTestUtil.randomString());
 		}
-
-		private final String _message;
 
 	}
 
