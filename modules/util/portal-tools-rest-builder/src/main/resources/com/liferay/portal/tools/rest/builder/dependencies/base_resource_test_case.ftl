@@ -3731,12 +3731,15 @@ public abstract class Base${schemaName}ResourceTestCase {
 			<#if properties?keys?seq_contains("assetLibraryExternalReferenceCode")>
 			   randomIrrelevant${schemaName}.setAssetLibraryExternalReferenceCode(irrelevantDepotEntryGroup.getExternalReferenceCode());
 			</#if>
+
 			<#if properties?keys?seq_contains("assetLibraryId")>
 			   randomIrrelevant${schemaName}.setAssetLibraryId(irrelevantDepotEntry.getGroupId());
 			</#if>
+
 			<#if properties?keys?seq_contains("siteExternalReferenceCode")>
 			   randomIrrelevant${schemaName}.setSiteExternalReferenceCode(irrelevantGroup.getExternalReferenceCode());
 			</#if>
+
 			<#if properties?keys?seq_contains("siteId")>
 				randomIrrelevant${schemaName}.setSiteId(irrelevantGroup.getGroupId());
 			</#if>
