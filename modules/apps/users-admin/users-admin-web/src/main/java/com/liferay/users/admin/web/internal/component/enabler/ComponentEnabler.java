@@ -6,7 +6,7 @@
 package com.liferay.users.admin.web.internal.component.enabler;
 
 import com.liferay.portal.util.PropsValues;
-import com.liferay.users.admin.web.internal.liveusers.jmx.LiveUsers;
+import com.liferay.users.admin.web.internal.live.users.jmx.LiveUsers;
 
 import org.osgi.service.component.ComponentContext;
 import org.osgi.service.component.annotations.Activate;
