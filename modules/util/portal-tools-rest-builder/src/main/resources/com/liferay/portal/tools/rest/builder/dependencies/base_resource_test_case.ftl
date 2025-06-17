@@ -4054,11 +4054,13 @@ public abstract class Base${schemaName}ResourceTestCase {
 	<#list javaMethodSignature.javaMethodParameters as javaMethodParameter>
 		<#if stringUtil.equals(javaMethodParameter.parameterName, "pagination")>
 			<#if printed>,</#if>
+
 			<#assign printed = true />
 
 			Pagination.of(1, 2)
 		<#elseif freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation) || (freeMarkerTool.isQueryParameter(javaMethodParameter, javaMethodSignature.operation) && !skipQueryParameter)>
 			<#if printed>,</#if>
+
 			<#assign printed = true />
 
 			<#if freeMarkerTool.isPathParameter(javaMethodParameter, javaMethodSignature.operation) || (freeMarkerTool.isQueryParameter(javaMethodParameter, javaMethodSignature.operation) && allowQueryParameter)>
@@ -4080,7 +4082,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 					<#assign getterJavaMethodParametersMap = getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter} />
 
 					test${testJavaMethodName?cap_first}_get${javaMethodParameter.parameterName?cap_first}(
-
 						<#if properties?keys?seq_contains(javaMethodParameter.parameterName)>
 							${varName}
 						</#if>
@@ -4091,6 +4092,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 			</#if>
 		<#elseif !freeMarkerTool.isQueryParameter(javaMethodParameter, javaMethodSignature.operation) && allowBodyParameters>
 			<#if printed>,</#if>
+
 			<#assign printed = true />
 
 			null
@@ -4150,11 +4152,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 		<#elseif stringUtil.equals(javaMethodParameter.parameterName, "multipartBody") || stringUtil.equals(javaMethodParameter.parameterName, schemaVarName)>
 			${newVarName}
 		<#else>
-
 			<#assign getterJavaMethodParametersMap = getterJavaMethodParametersMap + {javaMethodParameter.parameterName: javaMethodParameter} />
 
 			test${javaMethodSignature.methodName?cap_first}_get${javaMethodParameter.parameterName?cap_first}(
-
 				<#if properties?keys?seq_contains(javaMethodParameter.parameterName)>
 					${varName}
 				</#if>
