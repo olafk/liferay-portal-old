@@ -1,6 +1,6 @@
 <#if entries?has_content>
 	<#assign
-		taxonomyCategoriesSortedByType = []
+		sortedTaxonomyCategories = []
 		taxonomyVocabularyId = restClient.get("/headless-admin-taxonomy/v1.0/sites/${themeDisplay.getCompanyGroupId()}/taxonomy-vocabularies/by-external-reference-code/RESOURCE_TYPE").id
 		totalCount = 0
 		validTaxonomyCategoryIds = []
@@ -40,15 +40,15 @@
 			<#list taxonomyCategories as taxonomyCategory>
 				<#if taxonomyCategory.id == taxonomyCategoryId>
 					<#if stringUtil.equals(taxonomyCategory.externalReferenceCode, "OFFICIAL_DOCUMENTATION")>
-						<#assign taxonomyCategoriesSortedByType = [entry] + taxonomyCategoriesSortedByType />
+						<#assign sortedTaxonomyCategories = [entry] + sortedTaxonomyCategories />
 					<#elseif stringUtil.equals(taxonomyCategory.externalReferenceCode, "HOW_TO")>
-						<#assign taxonomyCategoriesSortedByType += [entry] />
+						<#assign sortedTaxonomyCategories += [entry] />
 					</#if>
 				</#if>
 			</#list>
 		</#list>
 
-		<#list taxonomyCategoriesSortedByType as entry>
+		<#list sortedTaxonomyCategories as entry>
 			<li class="facet-value">
 				<@clay.button
 					cssClass="btn-unstyled facet-term tab-btn term-name text-center ${(entry.isSelected())?then('selected-tab-btn', '')}"
