@@ -274,6 +274,7 @@ test(
 				page,
 				'Success:Your request completed successfully.'
 			);
+			await page.waitForTimeout(2000);
 		}
 
 		apiHelpers.data.push({id: site.id, type: 'site'});
