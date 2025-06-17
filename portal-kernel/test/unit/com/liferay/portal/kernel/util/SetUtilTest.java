@@ -53,22 +53,22 @@ public class SetUtilTest {
 		Set<String> set1 = new HashSet<>(Arrays.asList("a", "b", "c"));
 		Set<String> set2 = new HashSet<>(Arrays.asList("c", "d"));
 
-		Set<String> intersect = SetUtil.intersect(set1, set2);
-
 		Assert.assertEquals(
 			new HashSet<String>(Arrays.asList("a", "b", "c")), set1);
 		Assert.assertEquals(new HashSet<String>(Arrays.asList("c", "d")), set2);
-		Assert.assertEquals(new HashSet<String>(Arrays.asList("c")), intersect);
+		Assert.assertEquals(
+			new HashSet<String>(Arrays.asList("c")),
+			SetUtil.intersect(set1, set2));
 
 		Set<String> set3 = new HashSet<>(Arrays.asList("c", "d", "e"));
-
-		intersect = SetUtil.intersect(set1, set3);
 
 		Assert.assertEquals(
 			new HashSet<String>(Arrays.asList("a", "b", "c")), set1);
 		Assert.assertEquals(
 			new HashSet<String>(Arrays.asList("c", "d", "e")), set3);
-		Assert.assertEquals(new HashSet<String>(Arrays.asList("c")), intersect);
+		Assert.assertEquals(
+			new HashSet<String>(Arrays.asList("c")),
+			SetUtil.intersect(set1, set3));
 	}
 
 	@Test
@@ -76,15 +76,15 @@ public class SetUtilTest {
 		List<String> list1 = Arrays.asList("a", "b", "c");
 		List<String> list2 = Arrays.asList("c", "d");
 
-		Set<String> set = SetUtil.intersect(list1, list2);
-
-		Assert.assertEquals(set, new HashSet<String>(Arrays.asList("c")));
+		Assert.assertEquals(
+			SetUtil.intersect(list1, list2),
+			new HashSet<String>(Arrays.asList("c")));
 
 		List<String> list3 = Arrays.asList("c", "d", "e");
 
-		set = SetUtil.intersect(list1, list3);
-
-		Assert.assertEquals(set, new HashSet<String>(Arrays.asList("c")));
+		Assert.assertEquals(
+			SetUtil.intersect(list1, list3),
+			new HashSet<String>(Arrays.asList("c")));
 	}
 
 	@Test
