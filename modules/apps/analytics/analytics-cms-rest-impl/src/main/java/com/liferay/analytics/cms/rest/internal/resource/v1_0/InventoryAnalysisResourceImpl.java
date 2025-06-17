@@ -262,7 +262,7 @@ public class InventoryAnalysisResourceImpl
 				assetVocabularyGroupRelTable.groupId.in(assetGroupIds)
 			)
 		).where(
-			_getWhereClause(
+			_getPredicate(
 				categoryId, groupIds, languageId, rangeEnd, rangeKey,
 				rangeStart, structureId, tagId, vocabularyId)
 		);
@@ -396,7 +396,7 @@ public class InventoryAnalysisResourceImpl
 		return depotEntries;
 	}
 
-	private Predicate _getWhereClause(
+	private Predicate _getPredicate(
 		Long categoryId, Long[] groupIds, String languageId, String rangeEnd,
 		Integer rangeKey, String rangeStart, Long structureId, Long tagId,
 		Long vocabularyId) {
