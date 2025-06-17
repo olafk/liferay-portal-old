@@ -44,9 +44,10 @@ public class ExpireObjectEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		long objectEntryId = ParamUtil.getLong(actionRequest, "objectEntryId");
 
-		int status = _objectEntryLocalService.getObjectEntry(
-			objectEntryId
-		).getStatus();
+		ObjectEntry objectEntry = _objectEntryLocalService.getObjectEntry(
+			objectEntryId);
+
+		int status = objectEntry.getStatus();
 
 		if ((status == WorkflowConstants.STATUS_DRAFT) ||
 			(status == WorkflowConstants.STATUS_PENDING)) {
@@ -57,11 +58,10 @@ public class ExpireObjectEntryMVCActionCommand extends BaseMVCActionCommand {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			ObjectEntry.class.getName(), actionRequest);
-
 		_objectEntryService.expireObjectEntry(
-			themeDisplay.getUserId(), objectEntryId, serviceContext);
+			themeDisplay.getUserId(), objectEntryId,
+			ServiceContextFactory.getInstance(
+				ObjectEntry.class.getName(), actionRequest));
 	}
 
 	private final ObjectEntryLocalService _objectEntryLocalService;
