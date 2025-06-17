@@ -1033,37 +1033,39 @@ public abstract class Base${schemaName}ResourceImpl
 						return ${schemaVarName};
 
 						<#if useDeleteAssetLibrary || useDeleteByExternalReferenceCode || useDeleteSite>
-								}
-								catch (Exception exception) {
-									if (${schemaVarName}.getExternalReferenceCode() != null) {
-							<#if useDeleteByExternalReferenceCode>
-										${deleteByExternalReferenceCodeBatchJavaMethodSignature.methodName}(${schemaVarName}.getExternalReferenceCode());
-
-										return ${schemaVarName};
-									}
-								}
-							<#else>
-								<#if useDeleteAssetLibrary>
-									if (parameters.containsKey("assetLibraryExternalReferenceCode")) {
-										${deleteAssetLibraryBatchJavaMethodSignature.methodName}(
-											<@getDELETEBatchJavaMethodParameters javaMethodParameters = deleteAssetLibraryBatchJavaMethodSignature.javaMethodParameters />
-										);
-
-										return ${schemaVarName};
-									}
-								</#if>
-								<#if useDeleteSite>
-									if (parameters.containsKey("siteExternalReferenceCode")) {
-										${deleteSiteBatchJavaMethodSignature.methodName}(
-											<@getDELETEBatchJavaMethodParameters javaMethodParameters = deleteSiteBatchJavaMethodSignature.javaMethodParameters />
-										);
-
-										return ${schemaVarName};
-									}
-								</#if>
-								}
-							</#if>
 							}
+							catch (Exception exception) {
+								if (${schemaVarName}.getExternalReferenceCode() != null) {
+									<#if useDeleteByExternalReferenceCode>
+												${deleteByExternalReferenceCodeBatchJavaMethodSignature.methodName}(${schemaVarName}.getExternalReferenceCode());
+
+												return ${schemaVarName};
+											}
+										}
+									<#else>
+										<#if useDeleteAssetLibrary>
+											if (parameters.containsKey("assetLibraryExternalReferenceCode")) {
+												${deleteAssetLibraryBatchJavaMethodSignature.methodName}(
+													<@getDELETEBatchJavaMethodParameters javaMethodParameters = deleteAssetLibraryBatchJavaMethodSignature.javaMethodParameters />
+												);
+
+												return ${schemaVarName};
+											}
+										</#if>
+
+										<#if useDeleteSite>
+											if (parameters.containsKey("siteExternalReferenceCode")) {
+												${deleteSiteBatchJavaMethodSignature.methodName}(
+													<@getDELETEBatchJavaMethodParameters javaMethodParameters = deleteSiteBatchJavaMethodSignature.javaMethodParameters />
+												);
+
+												return ${schemaVarName};
+											}
+										</#if>
+
+										}
+									</#if>
+								}
 						</#if>
 					</#if>
 
