@@ -74,15 +74,15 @@ public class LearnRestController extends BaseRestController {
 				return ResponseEntity.status(
 					HttpStatus.NOT_FOUND
 				).body(
-					"Could not extract text content from the lesson page."
+					"Lesson " + lessonId + " is missing readable text."
 				);
 			}
 
-			List<String> ssmls = _splitSsml(
-				contentRawText.replaceAll("\\bLiferay\\b", "Life-ray"), 5000);
-
 			ByteArrayOutputStream byteArrayOutputStream =
 				new ByteArrayOutputStream();
+
+			List<String> ssmls = _splitSsml(
+				contentRawText.replaceAll("\\bLiferay\\b", "Life-ray"), 5000);
 
 			for (String ssml : ssmls) {
 				String response = post(
@@ -458,8 +458,9 @@ public class LearnRestController extends BaseRestController {
 	}
 
 	private List<String> _splitSsml(String ssml, int maxLength) {
-		StringBundler sb = new StringBundler();
 		List<String> parts = new ArrayList<>();
+
+		StringBundler sb = new StringBundler();
 
 		String ssmlContent = ssml.replaceFirst(
 			"^<speak>", ""
