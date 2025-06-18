@@ -1,5 +1,6 @@
 {
 	"pageElement": {
+		"id": "680fb127-0ef3-1ccc-b129-2afd93bfce7b",
 		"pageElements": [
 			{
 				"definition": {
@@ -22,6 +23,7 @@
 					},
 					"name": "Banner"
 				},
+				"id": "3b8261af-66e8-9dd1-1599-1a1852e3329d",
 				"pageElements": [
 					{
 						"definition": {
@@ -38,6 +40,7 @@
 							},
 							"indexed": true
 						},
+						"id": "7f8244f6-dfca-817c-30c7-3d4a42538663",
 						"type": "Fragment"
 					},
 					{
@@ -66,6 +69,7 @@
 								"widgetName": "com_liferay_portal_search_web_search_bar_portlet_SearchBarPortlet"
 							}
 						},
+						"id": "529c71a9-441e-f38c-8072-f5dfa7a01553",
 						"type": "Widget"
 					}
 				],
@@ -97,6 +101,7 @@
 					},
 					"name": "Content"
 				},
+				"id": "a5690e36-55e2-ad1b-2865-c27e9dcb32bf",
 				"pageElements": [
 					{
 						"definition": {
@@ -129,6 +134,7 @@
 								"paddingTop": 2
 							}
 						},
+						"id": "02ee5df7-4612-0329-34a1-44b5f2cf9eae",
 						"pageElements": [
 							{
 								"definition": {
@@ -156,6 +162,7 @@
 									},
 									"indexed": true
 								},
+								"id": "7a313d27-3f29-94c9-94b2-dfcf7a2b0cd3",
 								"type": "Fragment"
 							},
 							{
@@ -188,6 +195,7 @@
 									},
 									"indexed": true
 								},
+								"id": "092da1b4-bbc4-9640-5e76-d64bbfcb94e1",
 								"type": "Fragment"
 							},
 							{
@@ -225,6 +233,7 @@
 									],
 									"indexed": true
 								},
+								"id": "4bb03794-d5b5-a836-208e-8e304204e882",
 								"type": "Fragment"
 							}
 						],
@@ -272,16 +281,18 @@
 							],
 							"indexed": true
 						},
+						"id": "51b9f1b8-b38b-8cfe-2dbc-9cac3c0dc16a",
 						"pageElements": [
 							{
 								"definition": {
 								},
+								"id": "a881f65e-5f04-52d2-c329-0c9a6e9ee123",
 								"pageElements": [
 									{
 										"definition": {
 											"cssClasses": [
 												"card",
-												"card-outlined"
+												"card-flat"
 											],
 											"fragmentLink": {
 												"href": {
@@ -293,7 +304,6 @@
 											"fragmentStyle": {
 												"backgroundColor": "colorBrandPrimaryLighten5",
 												"borderRadius": "borderRadiusLg",
-												"marginBottom": "4",
 												"paddingBottom": "4",
 												"paddingLeft": "4",
 												"paddingRight": "4",
@@ -305,13 +315,13 @@
 												"align": "Center",
 												"contentDisplay": "FlexColumn",
 												"justify": "Center",
-												"marginBottom": 2,
 												"paddingBottom": 2,
 												"paddingLeft": 2,
 												"paddingRight": 2,
 												"paddingTop": 2
 											}
 										},
+										"id": "49c14aca-05cd-0d05-8e42-804233d5606f",
 										"pageElements": [
 											{
 												"definition": {
@@ -339,6 +349,7 @@
 													},
 													"indexed": true
 												},
+												"id": "9319995d-6c85-f2b9-d631-1b316d05b4d1",
 												"type": "Fragment"
 											},
 											{
@@ -371,6 +382,7 @@
 													},
 													"indexed": true
 												},
+												"id": "e331c574-30cd-581e-c170-40d54e664e8a",
 												"type": "Fragment"
 											},
 											{
@@ -399,6 +411,7 @@
 													],
 													"indexed": true
 												},
+												"id": "bf5ffd9b-ad9b-f9b6-652d-29ab55ec1e60",
 												"type": "Fragment"
 											}
 										],
@@ -408,7 +421,7 @@
 										"definition": {
 											"cssClasses": [
 												"card",
-												"card-outlined"
+												"card-flat"
 											],
 											"fragmentLink": {
 												"href": {
@@ -436,7 +449,6 @@
 											"fragmentStyle": {
 												"backgroundColor": "colorBrandPrimaryLighten5",
 												"borderRadius": "borderRadiusLg",
-												"marginBottom": "4",
 												"paddingBottom": "4",
 												"paddingLeft": "4",
 												"paddingRight": "4",
@@ -448,13 +460,13 @@
 												"align": "Center",
 												"contentDisplay": "FlexColumn",
 												"justify": "Center",
-												"marginBottom": 2,
 												"paddingBottom": 2,
 												"paddingLeft": 2,
 												"paddingRight": 2,
 												"paddingTop": 2
 											}
 										},
+										"id": "89c4a7b0-a89a-df8c-99f6-7d5f3b1f5fa3",
 										"pageElements": [
 											{
 												"definition": {
@@ -482,6 +494,7 @@
 													},
 													"indexed": true
 												},
+												"id": "dfe5e003-bfc9-6347-6f1c-5c29d99b6912",
 												"type": "Fragment"
 											},
 											{
@@ -514,6 +527,7 @@
 													},
 													"indexed": true
 												},
+												"id": "c1539d51-361e-0250-847b-699370ed3da3",
 												"type": "Fragment"
 											},
 											{
@@ -542,6 +556,7 @@
 													],
 													"indexed": true
 												},
+												"id": "4aeb37f5-8287-f768-40e5-a7ab6b96c523",
 												"type": "Fragment"
 											}
 										],

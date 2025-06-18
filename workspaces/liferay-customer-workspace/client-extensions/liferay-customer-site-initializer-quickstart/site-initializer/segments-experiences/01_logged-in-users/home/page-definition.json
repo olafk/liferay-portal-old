@@ -1,5 +1,6 @@
 {
 	"pageElement": {
+		"id": "32444ac2-217b-efc2-a760-c7502d121cfa",
 		"pageElements": [
 			{
 				"definition": {
@@ -22,6 +23,7 @@
 					},
 					"name": "Banner"
 				},
+				"id": "e9369e4f-86dd-df61-ab9c-c4bcf18e6c80",
 				"pageElements": [
 					{
 						"definition": {
@@ -38,6 +40,7 @@
 							},
 							"indexed": true
 						},
+						"id": "7d944c0f-2ecd-0151-e32a-4444647ee263",
 						"type": "Fragment"
 					},
 					{
@@ -66,6 +69,7 @@
 								"widgetName": "com_liferay_portal_search_web_search_bar_portlet_SearchBarPortlet"
 							}
 						},
+						"id": "d82a1395-0d40-79da-4fac-57961ff90408",
 						"type": "Widget"
 					}
 				],
@@ -90,6 +94,7 @@
 					},
 					"name": "Content"
 				},
+				"id": "e2a350f0-913a-48cc-f7d5-b526b35f5c00",
 				"pageElements": [
 					{
 						"definition": {
@@ -115,6 +120,7 @@
 								"paddingTop": 2
 							}
 						},
+						"id": "62cbcc04-00d6-a6de-2e39-4d99b977db5f",
 						"pageElements": [
 							{
 								"definition": {
@@ -142,6 +148,7 @@
 									},
 									"indexed": true
 								},
+								"id": "0e904cd1-65a7-6999-ad4e-a7ded1eda419",
 								"type": "Fragment"
 							},
 							{
@@ -174,6 +181,7 @@
 									},
 									"indexed": true
 								},
+								"id": "68062702-d75e-2153-d8d1-7bb4770c3561",
 								"type": "Fragment"
 							},
 							{
@@ -188,7 +196,8 @@
 										"inverted": false,
 										"size": "medium",
 										"style": "primary",
-										"type": "solid"
+										"type": "solid",
+										"url": ""
 									},
 									"fragmentFields": [
 										{
@@ -218,6 +227,7 @@
 									],
 									"indexed": true
 								},
+								"id": "cb8d749a-bdc8-a1f1-4d8f-3ec5ce5e2f09",
 								"type": "Fragment"
 							}
 						],
@@ -263,18 +273,23 @@
 							},
 							"fragmentFields": [
 							],
+							"fragmentStyle": {
+								"marginBottom": "4"
+							},
 							"indexed": true
 						},
+						"id": "f1257df1-b0dc-f794-f4b5-e771c4b74511",
 						"pageElements": [
 							{
 								"definition": {
 								},
+								"id": "5155c35e-af49-5d23-7c03-dcb8da6afcb1",
 								"pageElements": [
 									{
 										"definition": {
 											"cssClasses": [
 												"card",
-												"card-outlined"
+												"card-flat"
 											],
 											"fragmentLink": {
 												"href": {
@@ -286,7 +301,6 @@
 											"fragmentStyle": {
 												"backgroundColor": "colorBrandPrimaryLighten5",
 												"borderRadius": "borderRadiusLg",
-												"marginBottom": "4",
 												"paddingBottom": "4",
 												"paddingLeft": "4",
 												"paddingRight": "4",
@@ -298,13 +312,13 @@
 												"align": "Center",
 												"contentDisplay": "FlexColumn",
 												"justify": "Center",
-												"marginBottom": 2,
 												"paddingBottom": 2,
 												"paddingLeft": 2,
 												"paddingRight": 2,
 												"paddingTop": 2
 											}
 										},
+										"id": "54c5aee7-c066-c72d-1e1b-fcc82434d3e8",
 										"pageElements": [
 											{
 												"definition": {
@@ -332,6 +346,7 @@
 													},
 													"indexed": true
 												},
+												"id": "1f5e9935-012f-8d06-0260-ce13c50c607f",
 												"type": "Fragment"
 											},
 											{
@@ -364,6 +379,7 @@
 													},
 													"indexed": true
 												},
+												"id": "3d179f6f-f1e7-2c46-6131-6678a0cfce6f",
 												"type": "Fragment"
 											},
 											{
@@ -392,6 +408,7 @@
 													],
 													"indexed": true
 												},
+												"id": "db8d2692-cbbf-afcc-f2b1-5479d9e8f03a",
 												"type": "Fragment"
 											}
 										],
@@ -401,12 +418,11 @@
 										"definition": {
 											"cssClasses": [
 												"card",
-												"card-outlined"
+												"card-flat"
 											],
 											"fragmentStyle": {
 												"backgroundColor": "colorBrandPrimaryLighten5",
 												"borderRadius": "borderRadiusLg",
-												"marginBottom": "4",
 												"paddingBottom": "4",
 												"paddingLeft": "4",
 												"paddingRight": "4",
@@ -418,13 +434,13 @@
 												"align": "Center",
 												"contentDisplay": "FlexColumn",
 												"justify": "Center",
-												"marginBottom": 2,
 												"paddingBottom": 2,
 												"paddingLeft": 2,
 												"paddingRight": 2,
 												"paddingTop": 2
 											}
 										},
+										"id": "46fded1d-6c74-79a1-7e16-60171b2667bf",
 										"pageElements": [
 											{
 												"definition": {
@@ -452,6 +468,7 @@
 													},
 													"indexed": true
 												},
+												"id": "06bffb44-d3df-6c3e-7b7b-e987f69ecd9e",
 												"type": "Fragment"
 											},
 											{
@@ -484,6 +501,7 @@
 													},
 													"indexed": true
 												},
+												"id": "d1b631df-4f07-1294-ec02-0d68b684751b",
 												"type": "Fragment"
 											},
 											{
@@ -512,6 +530,7 @@
 													],
 													"indexed": true
 												},
+												"id": "6bc09584-a6f2-014f-99e3-ec842249c1d0",
 												"type": "Fragment"
 											}
 										],
@@ -542,6 +561,7 @@
 								"paddingTop": 1
 							}
 						},
+						"id": "dfbd101e-d16f-a85c-6d2c-84cfcac522a1",
 						"pageElements": [
 							{
 								"definition": {
@@ -585,10 +605,12 @@
 									],
 									"indexed": true
 								},
+								"id": "54ab764a-f5e6-cd0a-d7b5-f1d94b478fc2",
 								"pageElements": [
 									{
 										"definition": {
 										},
+										"id": "1c151b08-3d94-d5ee-1d69-7dd73f8d6a06",
 										"pageElements": [
 											{
 												"definition": {
@@ -599,6 +621,7 @@
 														"justify": "Center"
 													}
 												},
+												"id": "4477464c-e03d-077d-793f-65db89411b28",
 												"pageElements": [
 													{
 														"definition": {
@@ -625,6 +648,7 @@
 															},
 															"indexed": true
 														},
+														"id": "9d394b89-0576-6473-47f7-91cc96f876a0",
 														"type": "Fragment"
 													},
 													{
@@ -653,6 +677,7 @@
 															],
 															"indexed": true
 														},
+														"id": "f35d3705-531c-fac5-f703-9487626a245d",
 														"type": "Fragment"
 													}
 												],
@@ -703,6 +728,7 @@
 													],
 													"indexed": true
 												},
+												"id": "cedfa51a-4508-cb3d-5f6c-9f839abb4d5c",
 												"type": "Fragment"
 											}
 										],
