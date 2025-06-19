@@ -89,14 +89,14 @@ public class UserUserGroupItemSelectorViewDisplayContext {
 	private LinkedHashMap<String, Object> _getParams(
 		ThemeDisplay themeDisplay) {
 
+		LinkedHashMap<String, Object> userParams = new LinkedHashMap<>();
+
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		String portletName = portletDisplay.getPortletName();
 
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
-
-		LinkedHashMap<String, Object> userParams = new LinkedHashMap<>();
 
 		if (portletName.equals(
 				PortletProviderUtil.getPortletId(
