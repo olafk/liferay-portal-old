@@ -334,7 +334,7 @@ public class DBUpgrader {
 						"Stopping the server because a preupgrade ",
 						"verification process has failed. No changes have ",
 						"been made to the system. Please fix the reported ",
-						"issues and re-run the upgrade: ",
+						"issues and rerun the upgrade: ",
 						verifyException.getMessage()));
 
 				StartupHelperUtil.setUpgrading(false);
