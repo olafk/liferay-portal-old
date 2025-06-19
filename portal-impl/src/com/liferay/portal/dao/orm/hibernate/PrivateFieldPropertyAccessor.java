@@ -206,9 +206,9 @@ public class PrivateFieldPropertyAccessor implements PropertyAccessStrategy {
 			return _setter;
 		}
 
-		private VarHandlePropertyAccess(VarHandleHolder fieldHolder) {
-			_getter = new FieldGetter(fieldHolder);
-			_setter = new FieldSetter(fieldHolder);
+		private VarHandlePropertyAccess(VarHandleHolder varHandleHolder) {
+			_getter = new FieldGetter(varHandleHolder);
+			_setter = new FieldSetter(varHandleHolder);
 		}
 
 		private final Getter _getter;
