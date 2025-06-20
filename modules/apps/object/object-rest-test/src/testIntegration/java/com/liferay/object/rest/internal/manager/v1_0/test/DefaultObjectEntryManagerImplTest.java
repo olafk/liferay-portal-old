@@ -2355,16 +2355,6 @@ public class DefaultObjectEntryManagerImplTest
 			},
 			ObjectDefinitionConstants.SCOPE_COMPANY);
 
-		Assert.assertNotEquals(
-			objectEntry2,
-			new ObjectEntry() {
-				{
-					setDisplayDate(zonedTimestamp);
-					setExpirationDate(zonedTimestamp);
-					setReviewDate(zonedTimestamp);
-				}
-			});
-
 		assertEquals(
 			objectEntry2,
 			new ObjectEntry() {
@@ -2372,6 +2362,16 @@ public class DefaultObjectEntryManagerImplTest
 					setDisplayDate(timestamp);
 					setExpirationDate(timestamp);
 					setReviewDate(timestamp);
+				}
+			});
+
+		Assert.assertNotEquals(
+			objectEntry2,
+			new ObjectEntry() {
+				{
+					setDisplayDate(zonedTimestamp);
+					setExpirationDate(zonedTimestamp);
+					setReviewDate(zonedTimestamp);
 				}
 			});
 
