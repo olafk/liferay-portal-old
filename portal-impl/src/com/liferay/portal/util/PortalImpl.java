@@ -1507,12 +1507,13 @@ public class PortalImpl implements Portal {
 		if (Validator.isNotNull(completeURL)) {
 			completeURL = removeRedirectParameter(completeURL);
 
-			int pos = completeURL.indexOf(CharPool.QUESTION);
+			int index = completeURL.indexOf(CharPool.QUESTION);
+
 			groupFriendlyURL = completeURL;
 
-			if (pos != -1) {
-				groupFriendlyURL = completeURL.substring(0, pos);
-				parametersURL = completeURL.substring(pos);
+			if (index != -1) {
+				groupFriendlyURL = completeURL.substring(0, index);
+				parametersURL = completeURL.substring(index);
 			}
 
 			try (SafeCloseable safeCloseable =
@@ -1522,21 +1523,22 @@ public class PortalImpl implements Portal {
 				for (String urlSeparator :
 						FriendlyURLResolverRegistryUtil.getURLSeparators()) {
 
-					pos = groupFriendlyURL.indexOf(urlSeparator);
+					index = groupFriendlyURL.indexOf(urlSeparator);
 
-					if (pos != -1) {
-						String friendlyURL = layout.getFriendlyURL();
+					if (index == -1) {
+						continue;
+					}
 
-						if (!friendlyURL.contains(urlSeparator)) {
-							groupFriendlyURL = groupFriendlyURL.substring(
-								0, pos);
+					String friendlyURL = layout.getFriendlyURL();
 
-							includeParametersURL = true;
+					if (!friendlyURL.contains(urlSeparator)) {
+						groupFriendlyURL = groupFriendlyURL.substring(0, index);
 
-							parametersURL = completeURL.substring(pos);
+						includeParametersURL = true;
 
-							break;
-						}
+						parametersURL = completeURL.substring(index);
+
+						break;
 					}
 				}
 			}

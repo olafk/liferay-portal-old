@@ -480,9 +480,7 @@ public class PortalImplCanonicalURLTest {
 		String expectedSuffix = String.format(
 			"/web/%s/test", StringUtil.toLowerCase(_group.getGroupKey()));
 
-		Assert.assertTrue(
-			canonicalURL + " does not end with suffix " + expectedSuffix,
-			canonicalURL.endsWith(expectedSuffix));
+		Assert.assertTrue(canonicalURL.endsWith(expectedSuffix));
 	}
 
 	@Test
@@ -508,9 +506,7 @@ public class PortalImplCanonicalURLTest {
 		String expectedSuffix = String.format(
 			"/web/%s/abc/w/def", StringUtil.toLowerCase(_group.getGroupKey()));
 
-		Assert.assertTrue(
-			canonicalURL + " does not end with suffix " + expectedSuffix,
-			canonicalURL.endsWith(expectedSuffix));
+		Assert.assertTrue(canonicalURL.endsWith(expectedSuffix));
 	}
 
 	@Test
