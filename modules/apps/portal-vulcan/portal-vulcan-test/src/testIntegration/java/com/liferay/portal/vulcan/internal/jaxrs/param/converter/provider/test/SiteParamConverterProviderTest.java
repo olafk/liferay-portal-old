@@ -110,12 +110,10 @@ public class SiteParamConverterProviderTest {
 			expectedGroupName,
 			URLConnectionUtil.read(
 				_TEST_BASE_URL + group.getExternalReferenceCode() + "/name"));
-
 		Assert.assertEquals(
 			expectedGroupName,
 			URLConnectionUtil.read(
 				_TEST_BASE_URL + group.getGroupId() + "/name"));
-
 		Assert.assertEquals(
 			expectedGroupName,
 			URLConnectionUtil.read(
