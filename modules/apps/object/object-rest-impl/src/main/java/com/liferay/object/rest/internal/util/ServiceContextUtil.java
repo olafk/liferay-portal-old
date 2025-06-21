@@ -128,8 +128,8 @@ public class ServiceContextUtil {
 
 			_log.error(
 				StringBundler.concat(
-					"invalid asset category with the ERC ",
-					externalReferenceCode, " for the group ", groupId));
+					"Invalid asset category with external reference code  ",
+					externalReferenceCode, " and group ", groupId));
 
 			return groupId;
 		}
@@ -140,8 +140,8 @@ public class ServiceContextUtil {
 		if (group == null) {
 			_log.error(
 				StringBundler.concat(
-					"invalid asset category with the ERC ",
-					externalReferenceCode, " for the group ", groupId));
+					"Invalid asset category with external reference code  ",
+					externalReferenceCode, " and group ", groupId));
 
 			return groupId;
 		}
@@ -198,8 +198,8 @@ public class ServiceContextUtil {
 			catch (PortalException portalException) {
 				_log.error(
 					StringBundler.concat(
-						"invalid asset category with the ERC ",
-						externalReferenceCode, " for the group ", groupId),
+						"Invalid asset category with external reference code  ",
+						externalReferenceCode, " and group ", groupId),
 					portalException);
 
 				throw new RuntimeException(portalException);
