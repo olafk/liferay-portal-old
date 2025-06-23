@@ -2219,6 +2219,9 @@ public class DefaultObjectEntryManagerImplTest
 	@Test
 	@TestInfo("LPD-58490")
 	public void testAddObjectEntryWithMissingRoleReference() throws Exception {
+
+		// Lazy referencing disabled
+
 		Permission permission = new Permission() {
 			{
 				actionIds = new String[] {ActionKeys.UPDATE};
@@ -2226,8 +2229,6 @@ public class DefaultObjectEntryManagerImplTest
 				roleName = RandomTestUtil.randomString();
 			}
 		};
-
-		// Lazy referencing disabled
 
 		AssertUtils.assertFailure(
 			NoSuchRoleException.class,
