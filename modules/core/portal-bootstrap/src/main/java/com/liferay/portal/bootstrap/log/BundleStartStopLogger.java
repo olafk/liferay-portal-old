@@ -6,6 +6,7 @@
 package com.liferay.portal.bootstrap.log;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.events.ShutdownHelperUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
@@ -61,7 +62,7 @@ public class BundleStartStopLogger implements SynchronousBundleListener {
 			_log.error(bundle.getLocation() + " has a null symbolic name");
 		}
 
-		if (_portalStarted.get()) {
+		if (_portalStarted.get() && !ShutdownHelperUtil.isShutdown()) {
 			if (_log.isInfoEnabled()) {
 				if (bundleEvent.getType() == BundleEvent.STARTED) {
 					_log.info("STARTED " + bundle);
