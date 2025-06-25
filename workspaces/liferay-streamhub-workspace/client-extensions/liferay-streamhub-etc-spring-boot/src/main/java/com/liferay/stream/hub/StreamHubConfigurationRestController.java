@@ -104,12 +104,12 @@ public class StreamHubConfigurationRestController extends BaseRestController {
 				"Error while executing Event Streaming for Standalone"
 			});
 
-		for (String action : types) {
-			if (!actionConfigs.containsKey(action)) {
+		for (String type : types) {
+			if (!actionConfigs.containsKey(type)) {
 				continue;
 			}
 
-			String[] config = actionConfigs.get(action);
+			String[] config = actionConfigs.get(type);
 
 			ObjectAction objectAction = new ObjectAction();
 
@@ -128,12 +128,12 @@ public class StreamHubConfigurationRestController extends BaseRestController {
 				).append(
 					"_"
 				).append(
-					action
+					type
 				).toString());
 			objectAction.setLabel(() -> Map.of("en_US", config[1]));
-			objectAction.setName(() -> "stream" + objectDefinitionId + action);
+			objectAction.setName(() -> "stream" + objectDefinitionId + type);
 			objectAction.setObjectActionExecutorKey(() -> config[0]);
-			objectAction.setObjectActionTriggerKey(() -> action);
+			objectAction.setObjectActionTriggerKey(() -> type);
 			objectAction.setParameters(Collections::emptyMap);
 			objectAction.setStatus(() -> status);
 
