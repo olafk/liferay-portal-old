@@ -113,7 +113,11 @@ public class StreamHubConfigurationRestController extends BaseRestController {
 
 			ObjectAction objectAction = new ObjectAction();
 
-			objectAction.setObjectActionExecutorKey(() -> config[0]);
+			objectAction.setActive(() -> true);
+
+			if (!config[2].isEmpty()) {
+				objectAction.setErrorMessage(() -> Map.of("en_US", config[2]));
+			}
 
 			objectAction.setExternalReferenceCode(
 				() -> new StringBuilder(
@@ -126,17 +130,12 @@ public class StreamHubConfigurationRestController extends BaseRestController {
 				).append(
 					action
 				).toString());
-
 			objectAction.setLabel(() -> Map.of("en_US", config[1]));
-			objectAction.setObjectActionTriggerKey(() -> action);
 			objectAction.setName(() -> "stream" + objectDefinitionId + action);
-			objectAction.setActive(() -> true);
+			objectAction.setObjectActionExecutorKey(() -> config[0]);
+			objectAction.setObjectActionTriggerKey(() -> action);
 			objectAction.setParameters(Collections::emptyMap);
 			objectAction.setStatus(() -> status);
-
-			if (!config[2].isEmpty()) {
-				objectAction.setErrorMessage(() -> Map.of("en_US", config[2]));
-			}
 
 			objectActions.add(objectAction);
 		}
