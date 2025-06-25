@@ -39,9 +39,9 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.AfterClass;
+import org.junit.After;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -60,8 +60,8 @@ public class LayoutPageTemplateStructureUpgradeProcessTest {
 			new LiferayIntegrationTestRule(),
 			PermissionCheckerMethodTestRule.INSTANCE);
 
-	@BeforeClass
-	public static void setUpClass() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		_connection = DataAccess.getConnection();
 
 		_db = DBManagerUtil.getDB();
@@ -81,8 +81,8 @@ public class LayoutPageTemplateStructureUpgradeProcessTest {
 			});
 	}
 
-	@AfterClass
-	public static void tearDownClass() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 		_db.dropIndexes(_connection, "LayoutPageTemplateStructure", "classPK");
 
 		_db.alterTableDropColumn(
@@ -156,7 +156,7 @@ public class LayoutPageTemplateStructureUpgradeProcessTest {
 				layoutClassNameId, layoutPageTemplateEntry2.getPlid()));
 	}
 
-	private static void _addIndex(String tableName, String[] columnNames)
+	private void _addIndex(String tableName, String[] columnNames)
 		throws Exception {
 
 		List<IndexMetadata> indexMetadatas = Arrays.asList(
@@ -220,19 +220,20 @@ public class LayoutPageTemplateStructureUpgradeProcessTest {
 		"com.liferay.layout.page.template.internal.upgrade.v5_0_0." +
 			"LayoutPageTemplateStructureUpgradeProcess";
 
-	private static Connection _connection;
-	private static DB _db;
-	private static List<IndexMetadata> _indexMetadatas;
+	@Inject
+	private ClassNameLocalService _classNameLocalService;
+
+	private Connection _connection;
+
+	@Inject
+	private CounterLocalService _counterLocalService;
+
+	private DB _db;
+	private List<IndexMetadata> _indexMetadatas;
 
 	@Inject(
 		filter = "(&(component.name=com.liferay.layout.page.template.internal.upgrade.registry.LayoutPageTemplateServiceUpgradeStepRegistrator))"
 	)
-	private static UpgradeStepRegistrator _upgradeStepRegistrator;
-
-	@Inject
-	private ClassNameLocalService _classNameLocalService;
-
-	@Inject
-	private CounterLocalService _counterLocalService;
+	private UpgradeStepRegistrator _upgradeStepRegistrator;
 
 }
