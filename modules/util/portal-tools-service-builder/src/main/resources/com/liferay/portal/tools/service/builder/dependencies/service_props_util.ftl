@@ -13,9 +13,9 @@ import java.util.Properties;
 public class ${servicePropsUtilClassName} {
 
 	<#if serviceBuilder.isVersionLTE_7_3_0()>
-	public static void addProperties(Properties properties) {
-		_instance._configuration.addProperties(properties);
-	}
+		public static void addProperties(Properties properties) {
+			_instance._configuration.addProperties(properties);
+		}
 	</#if>
 
 	public static boolean contains(String key) {
@@ -43,9 +43,9 @@ public class ${servicePropsUtilClassName} {
 	}
 
 	<#if serviceBuilder.isVersionLTE_7_3_0()>
-	public static void removeProperties(Properties properties) {
-		_instance._configuration.removeProperties(properties);
-	}
+		public static void removeProperties(Properties properties) {
+			_instance._configuration.removeProperties(properties);
+		}
 	</#if>
 
 	public static void set(String key, String value) {
