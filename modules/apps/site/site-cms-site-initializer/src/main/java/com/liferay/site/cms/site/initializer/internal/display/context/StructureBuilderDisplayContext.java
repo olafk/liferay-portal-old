@@ -200,7 +200,7 @@ public class StructureBuilderDisplayContext {
 			_themeDisplay.getUser()
 		).build();
 
-		Page<ObjectDefinition> objectDefinitionsPage =
+		Page<ObjectDefinition> page =
 			objectDefinitionResource.getObjectDefinitionsPage(
 				null, null,
 				objectDefinitionResource.toFilter(
@@ -215,7 +215,7 @@ public class StructureBuilderDisplayContext {
 					Collections.emptyMap()),
 				null, null);
 
-		_objectDefinitions = new ArrayList<>(objectDefinitionsPage.getItems());
+		_objectDefinitions = new ArrayList<>(page.getItems());
 
 		return _objectDefinitions;
 	}
