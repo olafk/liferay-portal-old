@@ -100,7 +100,6 @@ public class ProjectTemplatesTemplateContextContributorTest
 		testGradlePortalReleaseDependency(gradleProjectDir, _liferayVersion);
 
 		String importPrefix = getJavaxOrJakartaPackagePrefix(_liferayVersion);
-
 		String templateContextContributorFilePath =
 			"src/main/java/blade/test/context/contributor" +
 				"/BladeTestTemplateContextContributor.java";
