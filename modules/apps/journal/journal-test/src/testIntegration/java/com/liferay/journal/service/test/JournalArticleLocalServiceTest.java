@@ -578,6 +578,7 @@ public class JournalArticleLocalServiceTest {
 
 		journalArticle = _journalArticleLocalService.moveArticleToTrash(
 			TestPropsValues.getUserId(), journalArticle);
+
 		journalArticle = _journalArticleLocalService.restoreArticleFromTrash(
 			TestPropsValues.getUserId(), journalArticle);
 
