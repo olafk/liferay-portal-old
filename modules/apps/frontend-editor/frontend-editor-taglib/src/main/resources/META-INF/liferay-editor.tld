@@ -173,7 +173,7 @@
 		</attribute>
 	</tag>
 	<tag>
-		<description>Creates an input field for editing rich text with localization.</description>
+		<description />
 		<name>input-localized</name>
 		<tag-class>com.liferay.frontend.editor.taglib.servlet.taglib.InputLocalizedTag</tag-class>
 		<body-content>JSP</body-content>
@@ -259,7 +259,7 @@
 		</attribute>
 	</tag>
 	<tag>
-		<description/>
+		<description />
 		<name>resources</name>
 		<tag-class>com.liferay.frontend.editor.taglib.servlet.taglib.ResourcesTag</tag-class>
 		<body-content>empty</body-content>
