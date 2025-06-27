@@ -110,7 +110,7 @@ public class UpdatePasswordActionTest {
 	}
 
 	private LayoutUtilityPageEntry _addLayoutUtilityPageEntry(
-			String fragmentEntryHtml, Group group,
+			String fragmentEntryHTML, Group group,
 			ServiceContext serviceContext)
 		throws Exception {
 
@@ -124,9 +124,13 @@ public class UpdatePasswordActionTest {
 		Layout layout = _layoutLocalService.fetchLayout(
 			layoutUtilityPageEntry.getPlid());
 
-		long defaultSegmentsExperienceId =
-			_segmentsExperienceLocalService.fetchDefaultSegmentsExperienceId(
-				layout.getPlid());
+		LayoutPageTemplateStructure layoutPageTemplateStructure =
+			_layoutPageTemplateStructureLocalService.
+				fetchLayoutPageTemplateStructure(
+					layout.getGroupId(), layout.getPlid());
+
+		LayoutStructure layoutStructure = LayoutStructure.of(
+			layoutPageTemplateStructure.getDefaultSegmentsExperienceData());
 
 		FragmentCollection fragmentCollection =
 			_fragmentCollectionService.addFragmentCollection(
@@ -137,9 +141,13 @@ public class UpdatePasswordActionTest {
 			null, group.getGroupId(),
 			fragmentCollection.getFragmentCollectionId(),
 			RandomTestUtil.randomString(), "Fragment Entry", null,
-			"<div>" + fragmentEntryHtml + "</div>", null, false, null, null, 0,
+			"<div>" + fragmentEntryHTML + "</div>", null, false, null, null, 0,
 			false, false, FragmentConstants.TYPE_SECTION, null,
 			WorkflowConstants.STATUS_APPROVED, serviceContext);
+
+		long defaultSegmentsExperienceId =
+			_segmentsExperienceLocalService.fetchDefaultSegmentsExperienceId(
+				layout.getPlid());
 
 		FragmentEntryLink fragmentEntryLink =
 			_fragmentEntryLinkService.addFragmentEntryLink(
@@ -148,14 +156,6 @@ public class UpdatePasswordActionTest {
 				fragmentEntry.getHtml(), StringPool.BLANK, "{fieldSets: []}",
 				StringPool.BLANK, StringPool.BLANK, 0, null,
 				fragmentEntry.getType(), serviceContext);
-
-		LayoutPageTemplateStructure layoutPageTemplateStructure =
-			_layoutPageTemplateStructureLocalService.
-				fetchLayoutPageTemplateStructure(
-					layout.getGroupId(), layout.getPlid());
-
-		LayoutStructure layoutStructure = LayoutStructure.of(
-			layoutPageTemplateStructure.getDefaultSegmentsExperienceData());
 
 		ContainerStyledLayoutStructureItem containerStyledLayoutStructureItem =
 			(ContainerStyledLayoutStructureItem)
@@ -190,7 +190,7 @@ public class UpdatePasswordActionTest {
 		String ticketId = String.valueOf(ticket.getTicketId());
 		String ticketKey = ticket.getKey();
 
-		URL url;
+		URL url = null;
 
 		if (usePlid) {
 			url = new URL(
