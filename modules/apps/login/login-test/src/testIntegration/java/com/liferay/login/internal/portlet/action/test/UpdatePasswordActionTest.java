@@ -223,13 +223,6 @@ public class UpdatePasswordActionTest {
 			boolean expectedFragmentRendered2, boolean usePlid)
 		throws Exception {
 
-		_layoutUtilityPageEntry2.setDefaultLayoutUtilityPageEntry(
-			defaultLayoutUtilityPageEntry2);
-
-		_layoutUtilityPageEntry2 =
-			_layoutUtilityPageEntryLocalService.updateLayoutUtilityPageEntry(
-				_layoutUtilityPageEntry2);
-
 		_layoutUtilityPageEntry1.setDefaultLayoutUtilityPageEntry(
 			defaultLayoutUtilityPageEntry1);
 
@@ -240,6 +233,14 @@ public class UpdatePasswordActionTest {
 		Assert.assertEquals(
 			expectedFragmentRendered1,
 			_isFragmentRendered(_FRAGMENT_ENTRY_HTML_1, usePlid));
+
+		_layoutUtilityPageEntry2.setDefaultLayoutUtilityPageEntry(
+			defaultLayoutUtilityPageEntry2);
+
+		_layoutUtilityPageEntry2 =
+			_layoutUtilityPageEntryLocalService.updateLayoutUtilityPageEntry(
+				_layoutUtilityPageEntry2);
+
 		Assert.assertEquals(
 			expectedFragmentRendered2,
 			_isFragmentRendered(_FRAGMENT_ENTRY_HTML_2, usePlid));
