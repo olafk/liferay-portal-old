@@ -104,9 +104,9 @@ public class UpdatePasswordActionTest {
 	@Test
 	public void test() throws Exception {
 		_test(false, false, false, false, true);
+		_test(false, true, false, true, false);
 		_test(true, false, false, false, false);
 		_test(true, false, true, false, true);
-		_test(false, true, false, true, false);
 	}
 
 	private LayoutUtilityPageEntry _addLayoutUtilityPageEntry(
