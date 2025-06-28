@@ -29,7 +29,7 @@ import org.osgi.framework.ServiceReference;
 /**
  * @author István András Dézsi
  */
-public class PreupgradeVerifyFileSystemStoreStructure
+public class PreupgradeVerifyStoreFileSystemStructure
 	extends PreupgradeVerifyProcess {
 
 	@Override
