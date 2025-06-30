@@ -23,8 +23,10 @@ import getRandomString from '../../../utils/getRandomString';
 import getBasicWebContentStructureId from '../../../utils/structured-content/getBasicWebContentStructureId';
 import {exportImportConfig} from './export_import.config';
 import {exportPageTest} from './fixtures/exportPageTest';
+import {journalPagesTest} from '../../journal-web/main/fixtures/journalPagesTest';
 import {stagingConfigurationPageTest} from './fixtures/stagingConfigurationPageTest';
 import {stagingPageTest} from './fixtures/stagingPageTest';
+import {clickAndExpectToBeVisible} from '../../../utils/clickAndExpectToBeVisible';
 import {unzipAndCheckFolder} from './utils/stagingUtil';
 
 export const test = mergeTests(
@@ -38,6 +40,7 @@ export const test = mergeTests(
 	collectionsPagesTest,
 	displayPageTemplatesPagesTest,
 	exportPageTest,
+	journalPagesTest,
 	pageEditorPagesTest,
 	pageViewModePagesTest,
 	stagingConfigurationPageTest,
@@ -255,7 +258,7 @@ test(
 test(
 	'Cannot publish if linked file does not exist',
 	{tag: '@LPS-84223'},
-	async ({apiHelpers}) => {
+	async ({apiHelpers, journalPage, journalEditArticlePage, page, webContentDisplayPage}) => {
 		const site = await apiHelpers.headlessSite.createSite({
 			name: getRandomString(),
 		});
@@ -273,18 +276,25 @@ test(
 			}
 		);
 
-		const editUrl = `/documents/d${site.friendlyUrlPath}/${document.friendlyUrlPath.replace('-jpg', '_11-jpg')}`;
+		const correctUrl = `http://localhost:8080/documents/d${site.friendlyUrlPath}/${document.friendlyUrlPath}`;
 
-		const webContentContent = `<a href="http://localhost:8080${editUrl}">Document</a>`;
+		const webContentContent = `<a href="${correctUrl}">Document</a>`;
+		const webcontentTitle = getRandomString();
+	
+		await apiHelpers.jsonWebServicesJournal.addWebContent({
+			content: webContentContent,
+			ddmStructureId: await getBasicWebContentStructureId(apiHelpers),
+			groupId: site.id,
+			titleMap: {en_US: webcontentTitle},
+		});
+	
+		await webContentDisplayPage.gotoWebContentAdmin(site.name);
+		await page.getByRole('link', {name: webcontentTitle}).click();
 
-		await expect(async () => {
-			await apiHelpers.jsonWebServicesJournal.addWebContent({
-				content: webContentContent,
-				ddmStructureId: await getBasicWebContentStructureId(apiHelpers),
-				groupId: site.id,
-				titleMap: {en_US: getRandomString()},
-			});
-		}).rejects.toThrow();
+		await journalEditArticlePage.editURL('Document', correctUrl.replace('-jpg', '_11-jpg'));
+		await journalEditArticlePage.publishArticle(true);
+
+		expect(await page.getByText('Close Error: Unable to validate referenced document because it cannot be found with the following parameters')).toBeVisible();
 	}
 );
 

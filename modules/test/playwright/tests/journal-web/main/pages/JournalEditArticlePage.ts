@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-import {Locator, Page, expect} from '@playwright/test';
+import {FrameLocator, Locator, Page, expect} from '@playwright/test';
 
 import {clickAndExpectToBeHidden} from '../../../../utils/clickAndExpectToBeHidden';
 import {clickAndExpectToBeVisible} from '../../../../utils/clickAndExpectToBeVisible';
@@ -20,6 +20,7 @@ export class JournalEditArticlePage {
 	readonly changesSavedIndicator: Locator;
 	readonly clearButton: Locator;
 	readonly content: Locator;
+	readonly contentFrame: FrameLocator;
 	readonly defaultTemplateButton: Locator;
 	readonly duplicateButton: Locator;
 	readonly friendlyURLInput: Locator;
@@ -44,8 +45,11 @@ export class JournalEditArticlePage {
 		this.changesSavedIndicator = page.locator(
 			'#_com_liferay_journal_web_portlet_JournalPortlet_changesSavedIndicator'
 		);
+		
 		this.clearButton = page.getByRole('button', {name: 'Clear'});
 		this.content = page.getByText('Content', {exact: true});
+		this.contentFrame = page
+			.frameLocator('internal:role=application[name="Content,"i] >> iframe[title="editor"]')
 		this.defaultTemplateButton = page.getByRole('button', {
 			name: 'Default Template',
 		});
@@ -267,6 +271,12 @@ export class JournalEditArticlePage {
 		await this.propertiesTab.waitFor();
 
 		await this.page.locator('body').click();
+	}
+
+	async editURL(title: string, url: string) {
+		await this.contentFrame.getByRole('link', { name: title }).dblclick();
+		await this.page.getByLabel('URL*').fill(url);
+		await this.page.getByLabel('OK').click();
 	}
 
 	async fillContent(content: string) {
