@@ -45,9 +45,9 @@ public abstract class BaseBuildReport implements BuildReport {
 			return buildReportJSONObject;
 		}
 
-		JSONObject buildJSONObject = getBuildJSONObject();
-
 		buildReportJSONObject = new JSONObject();
+
+		JSONObject buildJSONObject = getBuildJSONObject();
 
 		if (!buildJSONObject.isEmpty()) {
 			buildReportJSONObject.put(
