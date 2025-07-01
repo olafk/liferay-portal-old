@@ -28,7 +28,6 @@ public class LazyBlobEntryLocalServiceImpl
 
 		lazyBlobEntry.setUuid(serviceContext.getUuid());
 		lazyBlobEntry.setGroupId(groupId);
-
 		lazyBlobEntry.setBlob1(
 			new OutputBlob(
 				new UnsyncByteArrayInputStream(bytes), bytes.length));
