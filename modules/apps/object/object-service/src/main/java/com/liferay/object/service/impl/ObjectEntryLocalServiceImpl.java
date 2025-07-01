@@ -1005,6 +1005,10 @@ public class ObjectEntryLocalServiceImpl
 				ObjectDefinition objectDefinition, long primaryKey)
 		throws PortalException {
 
+		DynamicObjectDefinitionLocalizationTable
+			dynamicObjectDefinitionLocalizationTable =
+				DynamicObjectDefinitionLocalizationTableFactory.create(
+					objectDefinition, _objectFieldLocalService);
 		DynamicObjectDefinitionTable extensionDynamicObjectDefinitionTable =
 			_getExtensionDynamicObjectDefinitionTable(
 				objectDefinition.getObjectDefinitionId());
@@ -1018,12 +1022,15 @@ public class ObjectEntryLocalServiceImpl
 						objectDefinition.getName());
 		}
 
-		Expression<?>[] selectExpressions = _getSelectExpressions(
-			extensionDynamicObjectDefinitionTable, primaryKey, null,
-			systemObjectDefinitionManager);
+		Expression<?>[] selectExpressions = ArrayUtil.append(
+			_getSelectExpressions(dynamicObjectDefinitionLocalizationTable),
+			_getSelectExpressions(
+				extensionDynamicObjectDefinitionTable, primaryKey, null,
+				systemObjectDefinitionManager));
 
 		List<Object[]> rows = _list(
 			_getExtensionDynamicObjectDefinitionTableSelectDSLQuery(
+				dynamicObjectDefinitionLocalizationTable,
 				extensionDynamicObjectDefinitionTable, primaryKey,
 				selectExpressions, systemObjectDefinitionManager),
 			objectDefinition.getObjectDefinitionId(), selectExpressions);
@@ -1039,6 +1046,10 @@ public class ObjectEntryLocalServiceImpl
 
 		values.remove(objectDefinition.getPKObjectFieldName());
 
+		_addLocalizedObjectFieldValues(
+			LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()),
+			dynamicObjectDefinitionLocalizationTable,
+			objectDefinition.getObjectDefinitionId(), primaryKey, values);
 		_addObjectRelationshipERCFieldValue(
 			objectDefinition.getObjectDefinitionId(), values);
 
@@ -1584,7 +1595,10 @@ public class ObjectEntryLocalServiceImpl
 			selectExpressions);
 
 		_addLocalizedObjectFieldValues(
-			dynamicObjectDefinitionLocalizationTable, objectEntry, values);
+			objectEntry.getDefaultLanguageId(),
+			dynamicObjectDefinitionLocalizationTable,
+			objectEntry.getObjectDefinitionId(), objectEntry.getObjectEntryId(),
+			values);
 		_addObjectRelationshipERCFieldValue(
 			objectEntry.getObjectDefinitionId(), values);
 
@@ -2306,9 +2320,11 @@ public class ObjectEntryLocalServiceImpl
 	}
 
 	private void _addLocalizedObjectFieldValues(
+			String defaultLanguageId,
 			DynamicObjectDefinitionLocalizationTable
 				dynamicObjectDefinitionLocalizationTable,
-			ObjectEntry objectEntry, Map<String, Serializable> values)
+			long objectDefinitionId, long primaryKey,
+			Map<String, Serializable> values)
 		throws PortalException {
 
 		if (dynamicObjectDefinitionLocalizationTable == null) {
@@ -2327,10 +2343,10 @@ public class ObjectEntryLocalServiceImpl
 			).where(
 				dynamicObjectDefinitionLocalizationTable.getForeignKeyColumn(
 				).eq(
-					objectEntry.getObjectEntryId()
+					primaryKey
 				)
 			),
-			objectEntry.getObjectDefinitionId(), selectExpressions);
+			objectDefinitionId, selectExpressions);
 
 		if (ListUtil.isEmpty(rows)) {
 			return;
@@ -2363,8 +2379,8 @@ public class ObjectEntryLocalServiceImpl
 			}
 
 			_putLocalizedValues(
-				objectFieldColumn.getName(), objectEntry.getDefaultLanguageId(),
-				localizedValues, values);
+				objectFieldColumn.getName(), defaultLanguageId, localizedValues,
+				values);
 		}
 	}
 
@@ -3441,9 +3457,12 @@ public class ObjectEntryLocalServiceImpl
 	}
 
 	private DSLQuery _getExtensionDynamicObjectDefinitionTableSelectDSLQuery(
-		DynamicObjectDefinitionTable extensionDynamicObjectDefinitionTable,
-		long primaryKey, Expression<?>[] selectExpressions,
-		SystemObjectDefinitionManager systemObjectDefinitionManager) {
+			DynamicObjectDefinitionLocalizationTable
+				dynamicObjectDefinitionLocalizationTable,
+			DynamicObjectDefinitionTable extensionDynamicObjectDefinitionTable,
+			long primaryKey, Expression<?>[] selectExpressions,
+			SystemObjectDefinitionManager systemObjectDefinitionManager)
+		throws PortalException {
 
 		if (systemObjectDefinitionManager != null) {
 			return DSLQueryFactoryUtil.select(
@@ -3456,6 +3475,11 @@ public class ObjectEntryLocalServiceImpl
 				).eq(
 					extensionDynamicObjectDefinitionTable.getPrimaryKeyColumn()
 				)
+			).leftJoinOn(
+				dynamicObjectDefinitionLocalizationTable,
+				ObjectEntrySearchUtil.getLeftJoinLocalizationTablePredicate(
+					dynamicObjectDefinitionLocalizationTable,
+					extensionDynamicObjectDefinitionTable)
 			).where(
 				systemObjectDefinitionManager.getPrimaryKeyColumn(
 				).eq(
@@ -3468,6 +3492,11 @@ public class ObjectEntryLocalServiceImpl
 			selectExpressions
 		).from(
 			extensionDynamicObjectDefinitionTable
+		).leftJoinOn(
+			dynamicObjectDefinitionLocalizationTable,
+			ObjectEntrySearchUtil.getLeftJoinLocalizationTablePredicate(
+				dynamicObjectDefinitionLocalizationTable,
+				extensionDynamicObjectDefinitionTable)
 		).where(
 			extensionDynamicObjectDefinitionTable.getPrimaryKeyColumn(
 			).eq(
