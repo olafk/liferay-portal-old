@@ -81,8 +81,8 @@ public class SiteExternalReferenceCodeToGroupConfigurationPluginImpl
 						if (_log.isInfoEnabled()) {
 							_log.info(
 								StringBundler.concat(
-									"Injected site ID ", groupId,
-									" for group external reference code ",
+									"Injected group ID ", groupId,
+									" for site external reference code ",
 									siteExternalReferenceCode));
 						}
 					}
