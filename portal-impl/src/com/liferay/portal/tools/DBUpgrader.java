@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.db.DBType;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.dependency.manager.DependencyManagerSyncUtil;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.feature.flag.FeatureFlagManagerUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -55,6 +56,7 @@ import com.liferay.util.dao.orm.CustomSQLUtil;
 import java.io.InputStream;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import java.util.Collection;
 
@@ -230,7 +232,9 @@ public class DBUpgrader {
 		}
 	}
 
-	public static void updatePortalServiceComponent() {
+	public static void updatePortalServiceComponent()
+		throws PortalException, SQLException {
+
 		ServiceComponentConfiguration portalServiceComponentConfiguration =
 			new ServiceComponentConfiguration() {
 
@@ -280,20 +284,13 @@ public class DBUpgrader {
 
 			};
 
-		try {
-			ServiceComponentLocalServiceUtil.initServiceComponent(
-				portalServiceComponentConfiguration,
-				DBUpgrader.class.getClassLoader(),
-				ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME,
-				ReleaseInfo.getBuildNumber(),
-				ReleaseInfo.getBuildDate(
-				).getTime());
-		}
-		catch (Exception exception) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(exception);
-			}
-		}
+		ServiceComponentLocalServiceUtil.initServiceComponent(
+			portalServiceComponentConfiguration,
+			DBUpgrader.class.getClassLoader(),
+			ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME,
+			ReleaseInfo.getBuildNumber(),
+			ReleaseInfo.getBuildDate(
+			).getTime());
 	}
 
 	public static void upgradeModules(Runnable upgradeModulesCallbackRunnable) {
