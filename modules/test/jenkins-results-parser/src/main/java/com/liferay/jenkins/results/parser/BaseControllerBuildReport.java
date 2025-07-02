@@ -59,9 +59,9 @@ public abstract class BaseControllerBuildReport
 
 		super(controllerBuild.getBuildURL());
 
-		_buildReportJSONObject = controllerBuild.getBuildReportJSONObject();
-
 		_topLevelBuildReport = topLevelBuildReport;
+
+		_buildReportJSONObject = controllerBuild.getBuildReportJSONObject();
 	}
 
 	protected BaseControllerBuildReport(
