@@ -893,8 +893,8 @@ public abstract class BaseWorkspaceGitRepository
 
 			String directoryPath = directory.getPath();
 
-			if ((jobVariant.contains("service-builder") ||
-				 jobVariant.contains("rest-builder")) &&
+			if ((jobVariant.contains("rest-builder") ||
+				 jobVariant.contains("service-builder")) &&
 				directoryPath.contains("liferay-portal")) {
 
 				String commitCommand =
