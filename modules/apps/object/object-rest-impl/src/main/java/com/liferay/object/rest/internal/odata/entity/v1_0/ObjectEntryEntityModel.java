@@ -90,7 +90,7 @@ public class ObjectEntryEntityModel implements EntityModel {
 			relatedObjectDefinition.getName());
 	}
 
-	private List<EntityField> _getEntityFields(ObjectField objectField) {
+	private List<EntityField> _getEntityField(ObjectField objectField) {
 		if (_unsupportedBusinessTypes.contains(objectField.getBusinessType())) {
 			return null;
 		}
@@ -107,6 +107,8 @@ public class ObjectEntryEntityModel implements EntityModel {
 		else if (Objects.equals(
 					objectField.getBusinessType(),
 					ObjectFieldConstants.BUSINESS_TYPE_MULTISELECT_PICKLIST)) {
+
+			// TODO Do this also for single select picklist?
 
 			return ListUtil.fromArray(
 				new CollectionEntityField(
@@ -287,7 +289,7 @@ public class ObjectEntryEntityModel implements EntityModel {
 					objectField.getRelationshipType(),
 					ObjectRelationshipConstants.TYPE_ONE_TO_MANY)) {
 
-				List<EntityField> entityFields = _getEntityFields(objectField);
+				List<EntityField> entityFields = _getEntityField(objectField);
 
 				if (entityFields != null) {
 					entityFields.forEach(
