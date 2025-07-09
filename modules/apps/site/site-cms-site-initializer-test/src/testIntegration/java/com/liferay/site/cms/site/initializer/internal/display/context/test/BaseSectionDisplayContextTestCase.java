@@ -355,7 +355,7 @@ public abstract class BaseSectionDisplayContextTestCase
 	}
 
 	private void _assertCreationMenuNotContainsDropdownItem(
-		CreationMenu creationMenu, String notExpectedLabel) {
+		CreationMenu creationMenu, String unexpectedLabel) {
 
 		List<DropdownItem> dropdownItems = (List<DropdownItem>)creationMenu.get(
 			"primaryItems");
@@ -365,7 +365,7 @@ public abstract class BaseSectionDisplayContextTestCase
 		Map<String, Object> dropdownItemData = null;
 
 		for (DropdownItem dropdownItem : dropdownItems) {
-			if (Objects.equals(dropdownItem.get("label"), notExpectedLabel)) {
+			if (Objects.equals(dropdownItem.get("label"), unexpectedLabel)) {
 				dropdownItemData = (HashMap<String, Object>)dropdownItem.get(
 					"data");
 
@@ -375,7 +375,7 @@ public abstract class BaseSectionDisplayContextTestCase
 
 		Assert.assertNull(
 			String.format(
-				"Creation menu contains label '%s': %s", notExpectedLabel,
+				"Creation menu contains label '%s': %s", unexpectedLabel,
 				dropdownItems),
 			dropdownItemData);
 	}
