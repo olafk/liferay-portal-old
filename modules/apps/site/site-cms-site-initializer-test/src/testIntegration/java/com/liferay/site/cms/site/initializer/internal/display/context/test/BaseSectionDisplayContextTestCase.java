@@ -348,13 +348,6 @@ public abstract class BaseSectionDisplayContextTestCase
 		JSONArray assetLibrariesJSONArray = (JSONArray)dropdownItemData.get(
 			"assetLibraries");
 
-		Assert.assertNotNull(assetLibrariesJSONArray);
-
-		Assert.assertEquals(
-			assetLibrariesJSONArray.toString(),
-			expectedAssetLibrariesJSONArray.length(),
-			assetLibrariesJSONArray.length());
-
 		Assert.assertTrue(
 			assetLibrariesJSONArray.toString(),
 			JSONUtil.equals(
