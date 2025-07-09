@@ -26,6 +26,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.After;
@@ -93,26 +94,17 @@ public class DataCleanupPreupgradeProcessSuiteTest
 
 	@Test
 	public void testDataCleanupPreupgradeProcessesSuiteWithFailures() {
-		List<DataCleanupPreupgradeProcess> dataCleanupPreupgradeProcesses =
-			new ArrayList<>();
-
-		dataCleanupPreupgradeProcesses.add(
-			_createDataCleanupPreupgradeProcess(
-				() -> _cleanupMessages.add(_SUCCESS_MESSAGE_1)));
-
-		dataCleanupPreupgradeProcesses.add(
-			_createDataCleanupPreupgradeProcess(
-				() -> {
-					throw new Exception(_EXCEPTION_MESSAGE);
-				}));
-
-		dataCleanupPreupgradeProcesses.add(
-			_createDataCleanupPreupgradeProcess(
-				() -> _cleanupMessages.add(_SUCCESS_MESSAGE_2)));
-
 		ReflectionTestUtil.setFieldValue(
 			this, "_dataCleanupPreupgradeProcesses",
-			dataCleanupPreupgradeProcesses);
+			Arrays.asList(
+				_createDataCleanupPreupgradeProcess(
+					() -> _cleanupMessages.add(_SUCCESS_MESSAGE_1)),
+				_createDataCleanupPreupgradeProcess(
+					() -> {
+						throw new Exception(_EXCEPTION_MESSAGE);
+					}),
+				_createDataCleanupPreupgradeProcess(
+					() -> _cleanupMessages.add(_SUCCESS_MESSAGE_2))));
 
 		try {
 			cleanUp();
@@ -140,20 +132,13 @@ public class DataCleanupPreupgradeProcessSuiteTest
 	public void testDataCleanupPreupgradeProcessesSuiteWithMultipleData()
 		throws Exception {
 
-		List<DataCleanupPreupgradeProcess> dataCleanupPreupgradeProcesses =
-			new ArrayList<>();
-
-		dataCleanupPreupgradeProcesses.add(
-			_createDataCleanupPreupgradeProcess(
-				() -> _cleanupMessages.add(_SUCCESS_MESSAGE_1)));
-
-		dataCleanupPreupgradeProcesses.add(
-			_createDataCleanupPreupgradeProcess(
-				() -> _cleanupMessages.add(_SUCCESS_MESSAGE_2)));
-
 		ReflectionTestUtil.setFieldValue(
 			this, "_dataCleanupPreupgradeProcesses",
-			dataCleanupPreupgradeProcesses);
+			Arrays.asList(
+				_createDataCleanupPreupgradeProcess(
+					() -> _cleanupMessages.add(_SUCCESS_MESSAGE_1)),
+				_createDataCleanupPreupgradeProcess(
+					() -> _cleanupMessages.add(_SUCCESS_MESSAGE_2))));
 
 		cleanUp();
 
