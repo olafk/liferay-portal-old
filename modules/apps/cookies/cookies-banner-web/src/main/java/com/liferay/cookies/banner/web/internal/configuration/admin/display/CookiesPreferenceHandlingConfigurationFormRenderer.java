@@ -64,50 +64,7 @@ public class CookiesPreferenceHandlingConfigurationFormRenderer
 		throws IOException {
 
 		try {
-			String portletId = PortalUtil.getPortletId(
-				(PortletRequest)httpServletRequest.getAttribute(
-					JavaConstants.JAKARTA_PORTLET_REQUEST));
-
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)httpServletRequest.getAttribute(
-					WebKeys.THEME_DISPLAY);
-
-			if (portletId.equals(
-					ConfigurationAdminPortletKeys.INSTANCE_SETTINGS)) {
-
-				httpServletRequest.setAttribute(
-					CookiesBannerWebKeys.
-						COOKIES_PREFERENCE_HANDLING_CONFIGURATION_DISPLAY_CONTEXT,
-					new CookiesPreferenceHandlingConfigurationDisplayContext(
-						_cookiesConfigurationProvider,
-						ExtendedObjectClassDefinition.Scope.COMPANY,
-						themeDisplay.getCompanyId()));
-			}
-			else if (portletId.equals(
-						ConfigurationAdminPortletKeys.SITE_SETTINGS)) {
-
-				httpServletRequest.setAttribute(
-					CookiesBannerWebKeys.
-						COOKIES_PREFERENCE_HANDLING_CONFIGURATION_DISPLAY_CONTEXT,
-					new CookiesPreferenceHandlingConfigurationDisplayContext(
-						_cookiesConfigurationProvider,
-						ExtendedObjectClassDefinition.Scope.GROUP,
-						themeDisplay.getScopeGroupId()));
-			}
-			else {
-				httpServletRequest.setAttribute(
-					CookiesBannerWebKeys.
-						COOKIES_PREFERENCE_HANDLING_CONFIGURATION_DISPLAY_CONTEXT,
-					new CookiesPreferenceHandlingConfigurationDisplayContext(
-						_cookiesConfigurationProvider,
-						ExtendedObjectClassDefinition.Scope.SYSTEM, 0L));
-			}
-
-			RequestDispatcher requestDispatcher =
-				_servletContext.getRequestDispatcher(
-					"/cookies_preference_handling_configuration/view.jsp");
-
-			requestDispatcher.include(httpServletRequest, httpServletResponse);
+			_render(httpServletRequest, httpServletResponse);
 		}
 		catch (Exception exception) {
 			throw new IOException(
@@ -115,6 +72,55 @@ public class CookiesPreferenceHandlingConfigurationFormRenderer
 					"/view.jsp",
 				exception);
 		}
+	}
+
+	private void _render(
+			HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse)
+		throws Exception {
+
+		RequestDispatcher requestDispatcher =
+			_servletContext.getRequestDispatcher(
+				"/cookies_preference_handling_configuration/view.jsp");
+
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)httpServletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
+		String portletId = PortalUtil.getPortletId(
+			(PortletRequest)httpServletRequest.getAttribute(
+				JavaConstants.JAKARTA_PORTLET_REQUEST));
+
+		if (portletId.equals(ConfigurationAdminPortletKeys.INSTANCE_SETTINGS)) {
+			httpServletRequest.setAttribute(
+				CookiesBannerWebKeys.
+					COOKIES_PREFERENCE_HANDLING_CONFIGURATION_DISPLAY_CONTEXT,
+				new CookiesPreferenceHandlingConfigurationDisplayContext(
+					_cookiesConfigurationProvider,
+					ExtendedObjectClassDefinition.Scope.COMPANY,
+					themeDisplay.getCompanyId()));
+		}
+		else if (portletId.equals(
+					ConfigurationAdminPortletKeys.SITE_SETTINGS)) {
+
+			httpServletRequest.setAttribute(
+				CookiesBannerWebKeys.
+					COOKIES_PREFERENCE_HANDLING_CONFIGURATION_DISPLAY_CONTEXT,
+				new CookiesPreferenceHandlingConfigurationDisplayContext(
+					_cookiesConfigurationProvider,
+					ExtendedObjectClassDefinition.Scope.GROUP,
+					themeDisplay.getScopeGroupId()));
+		}
+		else {
+			httpServletRequest.setAttribute(
+				CookiesBannerWebKeys.
+					COOKIES_PREFERENCE_HANDLING_CONFIGURATION_DISPLAY_CONTEXT,
+				new CookiesPreferenceHandlingConfigurationDisplayContext(
+					_cookiesConfigurationProvider,
+					ExtendedObjectClassDefinition.Scope.SYSTEM, 0L));
+		}
+
+		requestDispatcher.include(httpServletRequest, httpServletResponse);
 	}
 
 	@Reference
