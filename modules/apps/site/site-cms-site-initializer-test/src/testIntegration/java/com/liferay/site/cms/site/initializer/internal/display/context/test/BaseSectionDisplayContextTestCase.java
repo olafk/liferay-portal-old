@@ -59,7 +59,8 @@ public abstract class BaseSectionDisplayContextTestCase
 	@Test
 	@TestInfo("LPD-50664")
 	public void testGetCreationMenu() throws Exception {
-		Map<String, String> expectedCreationMenuItems = getExpectedCreationMenuItems();
+		Map<String, String> expectedCreationMenuItems =
+			getExpectedCreationMenuItems();
 
 		_testGetCreationMenu(getCreationMenu(), expectedCreationMenuItems);
 
@@ -190,6 +191,7 @@ public abstract class BaseSectionDisplayContextTestCase
 
 		_testGetDepotEntriesJSONArray(
 			depotEntries, null, String.valueOf(depotGroup.getGroupId()));
+
 		_testGetDepotEntriesJSONArray(depotEntries, null, null);
 
 		if (getRootObjectEntryFolderExternalReferenceCode() != null) {
