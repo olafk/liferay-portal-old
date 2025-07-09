@@ -376,7 +376,9 @@ public abstract class BaseSectionDisplayContextTestCase
 		Assert.assertNull(dropdownItemData);
 	}
 
-	private DropdownItem _get(List<DropdownItem> dropdownItems, String label) {
+	private DropdownItem _getDropdownItem(
+		List<DropdownItem> dropdownItems, String label) {
+
 		for (DropdownItem dropdownItem : dropdownItems) {
 			if (label.equals(dropdownItem.get("label"))) {
 				return dropdownItem;
@@ -445,7 +447,7 @@ public abstract class BaseSectionDisplayContextTestCase
 		for (Map.Entry<String, String> entry :
 				expectedCreationMenuItems.entrySet()) {
 
-			DropdownItem dropdownItem = _get(dropdownItems, entry.getKey());
+			DropdownItem dropdownItem = _getDropdownItem(dropdownItems, entry.getKey());
 
 			Assert.assertNotNull(dropdownItem);
 
