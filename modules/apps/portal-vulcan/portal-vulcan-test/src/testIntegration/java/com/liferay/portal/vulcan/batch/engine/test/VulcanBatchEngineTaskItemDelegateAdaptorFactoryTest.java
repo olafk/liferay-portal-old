@@ -50,7 +50,7 @@ public class VulcanBatchEngineTaskItemDelegateAdaptorFactoryTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testCreateInjectsComponents() {
+	public void testCreate() {
 		TestVulcanBatchEngineTaskItemDelegate
 			vulcanBatchEngineTaskItemDelegate =
 				new TestVulcanBatchEngineTaskItemDelegate();
