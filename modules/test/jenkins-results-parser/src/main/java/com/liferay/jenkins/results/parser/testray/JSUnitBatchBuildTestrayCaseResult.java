@@ -35,10 +35,10 @@ public class JSUnitBatchBuildTestrayCaseResult
 
 		super(testrayBuild, topLevelBuildReport, axisTestClassGroup);
 
-		_jsUnitModulesTestClassMethod =
-			(JSUnitModulesTestClassMethod)testClassMethod;
 		_jsUnitModulesTestClass =
 			(JSUnitModulesTestClass)testClassMethod.getTestClass();
+		_jsUnitModulesTestClassMethod =
+			(JSUnitModulesTestClassMethod)testClassMethod;
 	}
 
 	@Override
