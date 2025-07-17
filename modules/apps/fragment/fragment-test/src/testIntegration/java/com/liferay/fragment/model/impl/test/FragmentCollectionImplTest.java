@@ -173,9 +173,7 @@ public class FragmentCollectionImplTest {
 
 		zipReader = _zipReaderFactory.getZipReader(zipWriter.getFile());
 
-		List<String> entries = zipReader.getEntries();
-
-		for (String entry : entries) {
+		for (String entry : zipReader.getEntries()) {
 			Assert.assertFalse(
 				entry.contains(marketplaceFragmentEntry.getName()));
 		}
