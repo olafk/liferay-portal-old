@@ -79,18 +79,18 @@ public class BaseRestController
 
 			String name = objectTypeAttributeJSONObject.getString("name");
 
-			if (name.equals("External Key")) {
-				JSONArray objectAttributeValuesJSONArray =
-					attributeJSONObject.getJSONArray("objectAttributeValues");
+			if (!name.equals("External Key")) {
+				continue;
+			}
 
-				for (int j = 0; j < objectAttributeValuesJSONArray.length();
-					 j++) {
+			JSONArray objectAttributeValuesJSONArray =
+				attributeJSONObject.getJSONArray("objectAttributeValues");
 
-					JSONObject objectAttributeValuesJSONObject =
-						objectAttributeValuesJSONArray.getJSONObject(j);
+			for (int j = 0; j < objectAttributeValuesJSONArray.length(); j++) {
+				JSONObject objectAttributeValuesJSONObject =
+					objectAttributeValuesJSONArray.getJSONObject(j);
 
-					return objectAttributeValuesJSONObject.getString("value");
-				}
+				return objectAttributeValuesJSONObject.getString("value");
 			}
 		}
 
