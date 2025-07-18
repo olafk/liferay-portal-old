@@ -51,7 +51,6 @@ public class CompanyDataCleanupPreupgradeProcessTest
 	public void setUp() throws Exception {
 		_classNames = _classNameLocalService.getClassNames(
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
 		_resourceActions = _resourceActionLocalService.getResourceActions(
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
