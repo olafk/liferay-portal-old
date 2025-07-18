@@ -65,7 +65,6 @@ public class TableOrphanReferencesDataCleanupPreupgradeProcessTest
 					getExpectedMessage(
 						1, "PortletPreferences", "Company", "companyId",
 						_companyId1)));
-
 			Assert.assertTrue(
 				logMessages.contains(
 					getExpectedMessage(
