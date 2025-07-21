@@ -53,6 +53,8 @@ public class LayoutStructureProviderImpl implements LayoutStructureProvider {
 				return null;
 			}
 
+			JSONObject dataJSONObject = null;
+
 			LayoutPageTemplateStructure layoutPageTemplateStructure =
 				_layoutPageTemplateStructureLocalService.
 					fetchLayoutPageTemplateStructure(
@@ -64,8 +66,6 @@ public class LayoutStructureProviderImpl implements LayoutStructureProvider {
 						layoutPageTemplateStructure.
 							getLayoutPageTemplateStructureId(),
 						segmentsExperienceId);
-
-			JSONObject dataJSONObject = null;
 
 			if (layoutPageTemplateStructureRel != null) {
 				dataJSONObject =
