@@ -59,15 +59,16 @@ public class DataCleanupPreupgradeProcessSuite {
 	private final List<DataCleanupPreupgradeProcess>
 		_dataCleanupPreupgradeProcesses = ListUtil.fromArray(
 
-			// First we need to clean company records
+			// Company, then group, and then the rest for optimal performance
+			// since cleaning companies will remove its groups and related data
 
 			new CompanyDataCleanupPreupgradeProcess(),
 
-			// Then we need to clean missing groups
+			//
 
 			new GroupDataCleanupPreupgradeProcess(),
 
-			// Finally we execute the rest of clean ups
+			//
 
 			new DDMStructureDataCleanupPreupgradeProcess());
 
