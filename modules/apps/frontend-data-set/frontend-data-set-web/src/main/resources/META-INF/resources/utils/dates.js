@@ -41,7 +41,7 @@ export function formatDateRangeObject(dateRangeObject) {
 		)}`;
 	}
 	if (dateRangeObject.to) {
-		return `${Liferay.Language.get('to[datetime]')} ${prettifyDateObject(
+		return `${Liferay.Language.get('to[date-time]')} ${prettifyDateObject(
 			dateRangeObject.to
 		)}`;
 	}
