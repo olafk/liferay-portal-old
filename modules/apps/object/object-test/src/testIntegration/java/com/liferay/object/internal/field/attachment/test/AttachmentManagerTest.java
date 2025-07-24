@@ -235,20 +235,7 @@ public class AttachmentManagerTest {
 		}
 	}
 
-	private FileEntry _addTempFileEntry(
-			String content, String extension, String fileName, String mimeType,
-			ObjectDefinition objectDefinition)
-		throws Exception {
-
-		return TempFileEntryUtil.addTempFileEntry(
-			TestPropsValues.getGroupId(), TestPropsValues.getUserId(),
-			objectDefinition.getPortletId(),
-			TempFileEntryUtil.getTempFileName(fileName + extension),
-			FileUtil.createTempFile(content.getBytes()), mimeType);
-	}
-
-	private ObjectDefinition _addObjectDefinition(
-			String acceptedFileExtensions)
+	private ObjectDefinition _addObjectDefinition(String acceptedFileExtensions)
 		throws Exception {
 
 		return ObjectDefinitionTestUtil.addCustomObjectDefinition(
@@ -283,6 +270,18 @@ public class AttachmentManagerTest {
 					ObjectFieldConstants.BUSINESS_TYPE_INTEGER,
 					ObjectFieldConstants.DB_TYPE_INTEGER, true, false, null,
 					RandomTestUtil.randomString(), "integer", false)));
+	}
+
+	private FileEntry _addTempFileEntry(
+			String content, String extension, String fileName, String mimeType,
+			ObjectDefinition objectDefinition)
+		throws Exception {
+
+		return TempFileEntryUtil.addTempFileEntry(
+			TestPropsValues.getGroupId(), TestPropsValues.getUserId(),
+			objectDefinition.getPortletId(),
+			TempFileEntryUtil.getTempFileName(fileName + extension),
+			FileUtil.createTempFile(content.getBytes()), mimeType);
 	}
 
 	@Inject
