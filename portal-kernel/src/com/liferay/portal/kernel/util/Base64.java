@@ -252,7 +252,7 @@ public class Base64 {
 
 			if (c != CharPool.EQUAL) {
 				throw new IllegalArgumentException(
-					String.format("Found illegal character '%c' found", c));
+					String.format("Found illegal character '%c'", c));
 			}
 		}
 
