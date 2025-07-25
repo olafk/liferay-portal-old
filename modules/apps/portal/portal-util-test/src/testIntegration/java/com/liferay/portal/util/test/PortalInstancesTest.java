@@ -208,12 +208,10 @@ public class PortalInstancesTest {
 
 		Assert.assertEquals(
 			_company.getCompanyId(),
-			PortalInstances.getCompanyId(mockHttpServletRequest));
-
+			(long)CompanyThreadLocal.getCompanyId());
 		Assert.assertEquals(
 			_company.getCompanyId(),
-			CompanyThreadLocal.getCompanyId(
-			).longValue());
+			PortalInstances.getCompanyId(mockHttpServletRequest));
 
 		Assert.assertEquals(
 			_company.getCompanyId(),
