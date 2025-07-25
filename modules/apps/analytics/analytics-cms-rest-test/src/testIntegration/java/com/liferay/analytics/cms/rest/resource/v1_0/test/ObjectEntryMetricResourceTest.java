@@ -133,8 +133,6 @@ public class ObjectEntryMetricResourceTest
 					new String[] {"downloadsMetric", "viewsMetric"});
 
 			Assert.assertEquals(
-				"1", objectEntryMetric.getExternalReferenceCode());
-			Assert.assertEquals(
 				String.valueOf(dataSourceId),
 				objectEntryMetric.getDataSourceId());
 
@@ -146,10 +144,13 @@ public class ObjectEntryMetricResourceTest
 
 			Trend trend = metric.getTrend();
 
-			Assert.assertEquals(100, trend.getPercentage(), 0);
 			Assert.assertEquals(
 				Trend.Classification.NEGATIVE.toString(),
 				String.valueOf(trend.getClassification()));
+			Assert.assertEquals(100, trend.getPercentage(), 0);
+
+			Assert.assertEquals(
+				"1", objectEntryMetric.getExternalReferenceCode());
 
 			Metric[] selectedMetrics = objectEntryMetric.getSelectedMetrics();
 
@@ -158,32 +159,34 @@ public class ObjectEntryMetricResourceTest
 
 			for (Metric selectedMetric : selectedMetrics) {
 				if (StringUtil.equals(
-						"DOWNLOADS", selectedMetric.getMetricType())) {
+						selectedMetric.getMetricType(), "DOWNLOADS")) {
 
 					Assert.assertEquals(
 						1, selectedMetric.getPreviousValue(), 0);
-					Assert.assertEquals(2, selectedMetric.getValue(), 0);
 
 					trend = selectedMetric.getTrend();
 
-					Assert.assertEquals(50, trend.getPercentage(), 0);
 					Assert.assertEquals(
 						Trend.Classification.POSITIVE.toString(),
 						String.valueOf(trend.getClassification()));
+					Assert.assertEquals(50, trend.getPercentage(), 0);
+
+					Assert.assertEquals(2, selectedMetric.getValue(), 0);
 				}
 				else if (StringUtil.equals(
-							"VIEWS", selectedMetric.getMetricType())) {
+							selectedMetric.getMetricType(), "VIEWS")) {
 
 					Assert.assertEquals(
 						1, selectedMetric.getPreviousValue(), 0);
-					Assert.assertEquals(1, selectedMetric.getValue(), 0);
 
 					trend = selectedMetric.getTrend();
 
-					Assert.assertEquals(0, trend.getPercentage(), 0);
 					Assert.assertEquals(
 						Trend.Classification.NEUTRAL.toString(),
 						String.valueOf(trend.getClassification()));
+					Assert.assertEquals(0, trend.getPercentage(), 0);
+
+					Assert.assertEquals(1, selectedMetric.getValue(), 0);
 				}
 			}
 		}
