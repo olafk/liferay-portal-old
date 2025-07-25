@@ -112,12 +112,10 @@ public class SXPBlueprintCollectionProviderUpgradeProcessTest {
 			Assert.assertTrue(
 				generalConfigurationJSONObject.getBoolean(
 					"collectionProvider"));
-
 			Assert.assertEquals(
 				"com.liferay.asset.kernel.model.AssetEntry",
 				generalConfigurationJSONObject.getString(
 					"collectionProviderType"));
-
 			Assert.assertTrue(
 				generalConfigurationJSONObject.getBoolean(
 					"legacyAssetCollectionProvider"));
@@ -138,10 +136,10 @@ public class SXPBlueprintCollectionProviderUpgradeProcessTest {
 		_setFeatureFlag(false);
 
 		try {
-			String originalConfiguration = _readJSON("configuration");
+			String configuration = _readJSON("configuration");
 
 			_sxpBlueprint = _sxpBlueprintLocalService.addSXPBlueprint(
-				null, TestPropsValues.getUserId(), originalConfiguration,
+				null, TestPropsValues.getUserId(), configuration,
 				Collections.singletonMap(
 					LocaleUtil.US, RandomTestUtil.randomString()),
 				StringPool.BLANK, _OLD_SCHEMA_VERSION,
@@ -163,9 +161,8 @@ public class SXPBlueprintCollectionProviderUpgradeProcessTest {
 				_sxpBlueprint.getSXPBlueprintId());
 
 			JSONAssert.assertEquals(
-				originalConfiguration, _sxpBlueprint.getConfigurationJSON(),
+				configuration, _sxpBlueprint.getConfigurationJSON(),
 				JSONCompareMode.STRICT);
-
 			Assert.assertEquals(
 				_NEW_SCHEMA_VERSION, _sxpBlueprint.getSchemaVersion());
 		}
@@ -190,6 +187,7 @@ public class SXPBlueprintCollectionProviderUpgradeProcessTest {
 			preparedStatement.setString(
 				4, "com.liferay.portal.kernel.feature.flag.FeatureFlag");
 			preparedStatement.setString(5, Boolean.toString(enabled));
+
 			preparedStatement.executeUpdate();
 		}
 	}
@@ -251,6 +249,7 @@ public class SXPBlueprintCollectionProviderUpgradeProcessTest {
 					preparedStatement.setString(
 						1, Boolean.toString(_initialFeatureFlagValue));
 					preparedStatement.setLong(2, _portalPreferenceValueId);
+
 					preparedStatement.executeUpdate();
 				}
 			}
@@ -263,6 +262,7 @@ public class SXPBlueprintCollectionProviderUpgradeProcessTest {
 						connection.prepareStatement(deleteSQL)) {
 
 					preparedStatement.setLong(1, 0);
+
 					preparedStatement.executeUpdate();
 				}
 			}
@@ -281,6 +281,7 @@ public class SXPBlueprintCollectionProviderUpgradeProcessTest {
 
 				preparedStatement.setString(1, Boolean.toString(enabled));
 				preparedStatement.setLong(2, _portalPreferenceValueId);
+
 				preparedStatement.executeUpdate();
 			}
 		}
