@@ -72,7 +72,7 @@ public class SXPBlueprintCollectionProviderUpgradeProcessTest {
 	@FeatureFlag("LPS-129412")
 	@Test
 	@TestInfo("LPS-129412")
-	public void testUpgradeWithFeatureFlag() throws Exception {
+	public void testUpgradeWithFF() throws Exception {
 		Assume.assumeTrue(FeatureFlagManagerUtil.isEnabled("LPS-129412"));
 
 		_setFeatureFlag(true);
@@ -132,7 +132,7 @@ public class SXPBlueprintCollectionProviderUpgradeProcessTest {
 
 	@Test
 	@TestInfo("LPS-129412")
-	public void testUpgradeWithoutFeatureFlag() throws Exception {
+	public void testUpgrade() throws Exception {
 		Assume.assumeFalse(FeatureFlagManagerUtil.isEnabled("LPS-129412"));
 
 		_setFeatureFlag(false);
