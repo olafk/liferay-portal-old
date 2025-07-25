@@ -131,13 +131,11 @@ public class LayoutsAdminDisplayContextTest {
 	}
 
 	@Test
-	public void testGetLayoutScreenNavigationPortletURLWithPrivateLayout() {
-		Layout layout = _getContentLayout(true, true);
-
+	public void testGetLayoutScreenNavigationPortletURL() {
 		_liferayPortletRequest.setAttribute(
 			WebKeys.THEME_DISPLAY, new ThemeDisplay());
 
-		LayoutsAdminDisplayContext spyLayoutsAdminDisplayContext = Mockito.spy(
+		LayoutsAdminDisplayContext layoutsAdminDisplayContext = Mockito.spy(
 			new LayoutsAdminDisplayContext(
 				null, _layoutActionsHelper, null, null, _liferayPortletRequest,
 				new MockLiferayPortletActionResponse()));
@@ -145,11 +143,13 @@ public class LayoutsAdminDisplayContextTest {
 		Mockito.doReturn(
 			true
 		).when(
-			spyLayoutsAdminDisplayContext
+			layoutsAdminDisplayContext
 		).isPrivateLayout();
 
+		Layout layout = _getContentLayout(true, true);
+
 		String portletURL = String.valueOf(
-			spyLayoutsAdminDisplayContext.getLayoutScreenNavigationPortletURL(
+			layoutsAdminDisplayContext.getLayoutScreenNavigationPortletURL(
 				layout.getPlid()));
 
 		Assert.assertTrue(
