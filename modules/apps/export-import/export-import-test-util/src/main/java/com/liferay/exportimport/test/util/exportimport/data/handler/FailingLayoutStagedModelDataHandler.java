@@ -34,7 +34,7 @@ public class FailingLayoutStagedModelDataHandler
 			PortletDataContext portletDataContext, Layout layout)
 		throws Exception {
 
-		throw new PortletDataException("Simulated layout import failure");
+		throw new PortletDataException();
 	}
 
 }
