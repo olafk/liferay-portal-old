@@ -5,6 +5,7 @@
 
 package com.liferay.site.cms.site.initializer.internal.display.context.test;
 
+import com.liferay.depot.constants.DepotConstants;
 import com.liferay.depot.model.DepotEntry;
 import com.liferay.depot.service.DepotEntryLocalService;
 import com.liferay.frontend.data.set.model.FDSActionDropdownItem;
@@ -389,6 +390,7 @@ public abstract class BaseSectionDisplayContextTestCase
 			HashMapBuilder.put(
 				LocaleUtil.getDefault(), StringUtil.randomString()
 			).build(),
+			DepotConstants.TYPE_ASSET_LIBRARY,
 			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 	}
 
