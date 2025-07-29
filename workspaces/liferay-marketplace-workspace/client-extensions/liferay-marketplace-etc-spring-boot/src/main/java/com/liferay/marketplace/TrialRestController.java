@@ -79,7 +79,7 @@ public class TrialRestController extends BaseRestController {
 
 		_deletePortalInstance(
 			orderId, trialProvisioningContextJSONObject,
-			customFields.get("trial-virtualhost"));
+			customFields.get("trial-virtual-host"));
 	}
 
 	@GetMapping("availability")
@@ -339,7 +339,7 @@ public class TrialRestController extends BaseRestController {
 						DateTimeFormatter.ISO_INSTANT
 					)
 				).put(
-					"trial-virtualhost", portalInstance.getVirtualHost()
+					"trial-virtual-host", portalInstance.getVirtualHost()
 				).build(),
 				orderId, MarketplaceConstants.ORDER_STATUS_IN_PROGRESS);
 
@@ -558,7 +558,7 @@ public class TrialRestController extends BaseRestController {
 					DateTimeFormatter.ISO_INSTANT
 				)
 			).put(
-				"trial-virtualhost", portalInstance.getVirtualHost()
+				"trial-virtual-host", portalInstance.getVirtualHost()
 			).build(),
 			orderId, MarketplaceConstants.ORDER_STATUS_CANCELLED);
 	}

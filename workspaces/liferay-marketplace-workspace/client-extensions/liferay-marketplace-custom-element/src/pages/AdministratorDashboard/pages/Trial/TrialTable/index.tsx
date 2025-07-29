@@ -86,7 +86,7 @@ const TrialTable: React.FC<TrialTableProps> = ({items, revalidate}) => {
 			onClick: (order: Order) =>
 				window.open(
 					`https://${
-						order?.customFields?.['trial-virtualhost'] as string
+						order?.customFields?.['trial-virtual-host'] as string
 					}`
 				),
 		},

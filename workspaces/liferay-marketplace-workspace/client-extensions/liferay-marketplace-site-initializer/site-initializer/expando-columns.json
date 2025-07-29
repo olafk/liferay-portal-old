@@ -768,7 +768,7 @@
 	{
 		"dataType": 15,
 		"modelResource": "com.liferay.commerce.model.CommerceOrder",
-		"name": "trial-virtualhost",
+		"name": "trial-virtual-host",
 		"properties": {
 			"hidden": false,
 			"indexType": 2,
