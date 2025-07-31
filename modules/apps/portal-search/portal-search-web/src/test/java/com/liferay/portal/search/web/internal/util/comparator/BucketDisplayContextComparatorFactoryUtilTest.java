@@ -44,14 +44,14 @@ public class BucketDisplayContextComparatorFactoryUtilTest {
 		List<BucketDisplayContext> bucketDisplayContexts = Arrays.asList(
 			_createBucketDisplayContext("01", 1),
 			_createBucketDisplayContext("1", 1),
-			_createBucketDisplayContext("2", 3),
 			_createBucketDisplayContext("11", 1),
-			_createBucketDisplayContext("albert", 2),
+			_createBucketDisplayContext("2", 3),
 			_createBucketDisplayContext("Allen", 1),
-			_createBucketDisplayContext("Árbol", 2),
 			_createBucketDisplayContext("Aslan", 1),
+			_createBucketDisplayContext("albert", 2),
 			_createBucketDisplayContext("tom", 1),
-			_createBucketDisplayContext("tom", 2));
+			_createBucketDisplayContext("tom", 2),
+			_createBucketDisplayContext("Árbol", 2));
 
 		bucketDisplayContexts.sort(
 			BucketDisplayContextComparatorFactoryUtil.
