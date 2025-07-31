@@ -55,26 +55,6 @@ public class BucketDisplayContextComparatorFactoryUtilTest {
 
 		bucketDisplayContexts.sort(
 			BucketDisplayContextComparatorFactoryUtil.
-				getBucketDisplayContextComparator("key:asc"));
-
-		_assertOrder(
-			bucketDisplayContexts,
-			List.of(
-				"01:1", "1:1", "2:3", "11:1", "albert:2", "Allen:1", "Árbol:2",
-				"Aslan:1", "tom:2", "tom:1"));
-
-		bucketDisplayContexts.sort(
-			BucketDisplayContextComparatorFactoryUtil.
-				getBucketDisplayContextComparator("key:desc"));
-
-		_assertOrder(
-			bucketDisplayContexts,
-			List.of(
-				"tom:2", "tom:1", "Aslan:1", "Árbol:2", "Allen:1", "albert:2",
-				"11:1", "2:3", "1:1", "01:1"));
-
-		bucketDisplayContexts.sort(
-			BucketDisplayContextComparatorFactoryUtil.
 				getBucketDisplayContextComparator("count:asc"));
 
 		_assertOrder(
@@ -92,6 +72,26 @@ public class BucketDisplayContextComparatorFactoryUtilTest {
 			List.of(
 				"2:3", "albert:2", "Árbol:2", "tom:2", "01:1", "1:1", "11:1",
 				"Allen:1", "Aslan:1", "tom:1"));
+
+		bucketDisplayContexts.sort(
+			BucketDisplayContextComparatorFactoryUtil.
+				getBucketDisplayContextComparator("key:asc"));
+
+		_assertOrder(
+			bucketDisplayContexts,
+			List.of(
+				"01:1", "1:1", "2:3", "11:1", "albert:2", "Allen:1", "Árbol:2",
+				"Aslan:1", "tom:2", "tom:1"));
+
+		bucketDisplayContexts.sort(
+			BucketDisplayContextComparatorFactoryUtil.
+				getBucketDisplayContextComparator("key:desc"));
+
+		_assertOrder(
+			bucketDisplayContexts,
+			List.of(
+				"tom:2", "tom:1", "Aslan:1", "Árbol:2", "Allen:1", "albert:2",
+				"11:1", "2:3", "1:1", "01:1"));
 	}
 
 	private void _assertOrder(
