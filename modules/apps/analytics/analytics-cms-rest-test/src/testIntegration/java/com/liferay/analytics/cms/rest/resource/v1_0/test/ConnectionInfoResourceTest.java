@@ -62,7 +62,6 @@ public class ConnectionInfoResourceTest
 				LocaleUtil.getDefault(), RandomTestUtil.randomString()
 			).build(),
 			_serviceContext);
-
 		_depotEntry2 = _depotEntryLocalService.addDepotEntry(
 			HashMapBuilder.put(
 				LocaleUtil.getDefault(), RandomTestUtil.randomString()
