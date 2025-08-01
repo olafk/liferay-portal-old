@@ -1758,12 +1758,10 @@ public class ObjectEntryLocalServiceImpl
 			objectEntryVersions,
 			ObjectEntryVersionVersionComparator.getInstance(false));
 
-		List<ObjectValuePair<Long, Integer>> objectEntryVersionStatusOVPs =
-			new ArrayList<>();
+		List<ObjectValuePair<Long, Integer>> statusOVPs = new ArrayList<>();
 
 		if ((objectEntryVersions != null) && !objectEntryVersions.isEmpty()) {
-			objectEntryVersionStatusOVPs = _getObjectEntryVersionStatusOVPs(
-				objectEntryVersions);
+			statusOVPs = _getStatusOVPs(objectEntryVersions);
 		}
 
 		int oldStatus = objectEntry.getStatus();
@@ -1779,7 +1777,7 @@ public class ObjectEntryLocalServiceImpl
 		_trashEntryLocalService.addTrashEntry(
 			userId, objectEntry.getGroupId(), objectDefinition.getClassName(),
 			objectEntry.getObjectEntryId(), objectEntry.getUuid(), null,
-			oldStatus, objectEntryVersionStatusOVPs,
+			oldStatus, statusOVPs,
 			UnicodePropertiesBuilder.put(
 				"title", objectEntry.getObjectEntryId()
 			).build());
@@ -3917,23 +3915,6 @@ public class ObjectEntryLocalServiceImpl
 		}
 	}
 
-	private List<ObjectValuePair<Long, Integer>> _getObjectEntryVersionStatusOVPs(
-		List<ObjectEntryVersion> objectEntryVersions) {
-
-		return TransformUtil.transform(
-			objectEntryVersions,
-			objectEntryVersion -> {
-				int status = objectEntryVersion.getStatus();
-
-				if (status == WorkflowConstants.STATUS_PENDING) {
-					status = WorkflowConstants.STATUS_DRAFT;
-				}
-
-				return new ObjectValuePair<>(
-					objectEntryVersion.getObjectEntryId(), status);
-			});
-	}
-
 	private GroupByStep _getOneToManyObjectEntriesGroupByStep(
 			FromStep fromStep, long groupId, long objectRelationshipId,
 			long primaryKey, boolean related, String search)
@@ -4536,6 +4517,23 @@ public class ObjectEntryLocalServiceImpl
 		}
 
 		return selectExpressions.toArray(new Expression<?>[0]);
+	}
+
+	private List<ObjectValuePair<Long, Integer>> _getStatusOVPs(
+		List<ObjectEntryVersion> objectEntryVersions) {
+
+		return TransformUtil.transform(
+			objectEntryVersions,
+			objectEntryVersion -> {
+				int status = objectEntryVersion.getStatus();
+
+				if (status == WorkflowConstants.STATUS_PENDING) {
+					status = WorkflowConstants.STATUS_DRAFT;
+				}
+
+				return new ObjectValuePair<>(
+					objectEntryVersion.getObjectEntryId(), status);
+			});
 	}
 
 	private String _getUrlTitle(
