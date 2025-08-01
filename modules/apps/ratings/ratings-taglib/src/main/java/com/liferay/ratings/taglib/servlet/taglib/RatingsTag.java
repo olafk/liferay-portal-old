@@ -7,7 +7,6 @@ package com.liferay.ratings.taglib.servlet.taglib;
 
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.model.DLFileEntryConstants;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -258,52 +257,41 @@ public class RatingsTag extends IncludeTag {
 		}
 	}
 
-	private String _getExternalReferenceCode() {
+	private String _getExternalReferenceCode() throws Exception {
 		if (Validator.isNotNull(_externalReferenceCode)) {
 			return _externalReferenceCode;
 		}
 
-		try {
-			PersistedModelLocalService persistedModelLocalService =
-				PersistedModelLocalServiceRegistryUtil.
-					getPersistedModelLocalService(_className);
+		PersistedModelLocalService persistedModelLocalService =
+			PersistedModelLocalServiceRegistryUtil.
+				getPersistedModelLocalService(_className);
 
-			PersistedModel model;
+		PersistedModel persistedModel = null;
 
-			if (persistedModelLocalService instanceof
-					PersistedResourcedModelLocalService) {
+		if (persistedModelLocalService instanceof
+				PersistedResourcedModelLocalService) {
 
-				PersistedResourcedModelLocalService
-					persistedResourcedModelLocalService =
-						(PersistedResourcedModelLocalService)
-							persistedModelLocalService;
+			PersistedResourcedModelLocalService
+				persistedResourcedModelLocalService =
+					(PersistedResourcedModelLocalService)
+						persistedModelLocalService;
 
-				List<? extends PersistedModel> persistedModels =
-					persistedResourcedModelLocalService.getPersistedModel(
-						_classPK);
+			List<? extends PersistedModel> persistedModels =
+				persistedResourcedModelLocalService.getPersistedModel(_classPK);
 
-				model = persistedModels.get(0);
-			}
-			else {
-				model = persistedModelLocalService.getPersistedModel(_classPK);
-			}
-
-			if (model instanceof ExternalReferenceCodeModel) {
-				ExternalReferenceCodeModel externalReferenceCodeModel =
-					(ExternalReferenceCodeModel)model;
-
-				_externalReferenceCode =
-					externalReferenceCodeModel.getExternalReferenceCode();
-			}
+			persistedModel = persistedModels.get(0);
 		}
-		catch (PortalException portalException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					StringBundler.concat(
-						"Unable to get external reference code for class name",
-						"\"", _className, "\" and class PK ", _classPK),
-					portalException);
-			}
+		else {
+			persistedModel = persistedModelLocalService.getPersistedModel(
+				_classPK);
+		}
+
+		if (persistedModel instanceof ExternalReferenceCodeModel) {
+			ExternalReferenceCodeModel externalReferenceCodeModel =
+				(ExternalReferenceCodeModel)persistedModel;
+
+			_externalReferenceCode =
+				externalReferenceCodeModel.getExternalReferenceCode();
 		}
 
 		return _externalReferenceCode;
