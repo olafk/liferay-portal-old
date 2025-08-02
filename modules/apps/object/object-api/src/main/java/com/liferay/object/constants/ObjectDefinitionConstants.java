@@ -13,10 +13,10 @@ public class ObjectDefinitionConstants {
 	public static final String CLASS_NAME_PREFIX_CUSTOM_OBJECT_DEFINITION =
 		"com.liferay.object.model.ObjectDefinition#";
 
-	public static final long GROUP_ID_DEFAULT = 0;
-
 	public static final String
 		EXTERNAL_REFERENCE_CODE_PREFIX_SYSTEM_OBJECT_DEFINITION = "L_";
+
+	public static final long GROUP_ID_DEFAULT = 0;
 
 	public static final long OBJECT_DEFINITION_ID_ALL = -1;
 
