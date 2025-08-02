@@ -94,7 +94,7 @@ public class ObjectActionDownloadTriggerMessageListener
 		String objectEntryExternalReferenceCode = message.getString(
 			"objectEntryExternalReferenceCode");
 
-		long groupId = ObjectDefinitionConstants.DEFAULT_GROUP_ID;
+		long groupId = ObjectDefinitionConstants.GROUP_ID_DEFAULT;
 
 		Group group = _groupLocalService.fetchGroupByExternalReferenceCode(
 			message.getString("groupExternalReferenceCode"), companyId);

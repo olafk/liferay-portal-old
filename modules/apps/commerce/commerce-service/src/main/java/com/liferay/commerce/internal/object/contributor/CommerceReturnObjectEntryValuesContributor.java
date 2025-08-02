@@ -104,7 +104,7 @@ public class CommerceReturnObjectEntryValuesContributor
 		if (originalObjectEntry == null) {
 			originalObjectEntry = _objectEntryLocalService.fetchObjectEntry(
 				GetterUtil.getString(values.get("externalReferenceCode")),
-				ObjectDefinitionConstants.DEFAULT_GROUP_ID,
+				ObjectDefinitionConstants.GROUP_ID_DEFAULT,
 				objectDefinition.getObjectDefinitionId());
 		}
 

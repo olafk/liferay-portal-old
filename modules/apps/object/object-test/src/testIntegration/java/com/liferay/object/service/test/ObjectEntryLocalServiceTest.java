@@ -1714,7 +1714,7 @@ public class ObjectEntryLocalServiceTest {
 			});
 
 		ObjectEntry objectEntry = _objectEntryLocalService.getObjectEntry(
-			"objectEntryERC", ObjectDefinitionConstants.DEFAULT_GROUP_ID,
+			"objectEntryERC", ObjectDefinitionConstants.GROUP_ID_DEFAULT,
 			_objectDefinition.getObjectDefinitionId());
 
 		ObjectFieldTestUtil.withEncryptedObjectFieldProperties(
@@ -3675,7 +3675,7 @@ public class ObjectEntryLocalServiceTest {
 				() -> {
 					ObjectEntry objectEntry =
 						_objectEntryLocalService.getObjectEntry(
-							"A2", ObjectDefinitionConstants.DEFAULT_GROUP_ID,
+							"A2", ObjectDefinitionConstants.GROUP_ID_DEFAULT,
 							objectDefinitionA.getObjectDefinitionId());
 
 					return objectEntry.getObjectEntryId();
@@ -4168,7 +4168,7 @@ public class ObjectEntryLocalServiceTest {
 			rootObjectDefinition.getObjectDefinitionId());
 
 		ObjectEntry rootObjectEntry = _objectEntryLocalService.getObjectEntry(
-			"A1", ObjectDefinitionConstants.DEFAULT_GROUP_ID,
+			"A1", ObjectDefinitionConstants.GROUP_ID_DEFAULT,
 			rootObjectDefinition.getObjectDefinitionId());
 
 		_objectEntryLocalService.deleteObjectEntry(

@@ -75,7 +75,7 @@ public class CommerceReturnItemCommerceOrderItemIdObjectValidationRuleEngineImpl
 				properties.get(
 					"r_commerceReturnToCommerceReturnItems_l_" +
 						"commerceReturnERC")),
-			ObjectDefinitionConstants.DEFAULT_GROUP_ID,
+			ObjectDefinitionConstants.GROUP_ID_DEFAULT,
 			objectDefinition.getObjectDefinitionId());
 
 		if (objectEntry == null) {
@@ -90,7 +90,7 @@ public class CommerceReturnItemCommerceOrderItemIdObjectValidationRuleEngineImpl
 					originalProperties.get(
 						"r_commerceReturnToCommerceReturnItems_l_" +
 							"commerceReturnERC")),
-				ObjectDefinitionConstants.DEFAULT_GROUP_ID,
+				ObjectDefinitionConstants.GROUP_ID_DEFAULT,
 				objectDefinition.getObjectDefinitionId());
 
 			if (objectEntry == null) {

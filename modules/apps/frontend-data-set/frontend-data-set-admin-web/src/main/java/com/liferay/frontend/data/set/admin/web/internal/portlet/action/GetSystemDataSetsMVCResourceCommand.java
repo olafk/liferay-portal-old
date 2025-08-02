@@ -114,7 +114,7 @@ public class GetSystemDataSetsMVCResourceCommand
 						ObjectEntry objectEntry =
 							_objectEntryLocalService.fetchObjectEntry(
 								systemFDSEntry.getName(),
-								ObjectDefinitionConstants.DEFAULT_GROUP_ID,
+								ObjectDefinitionConstants.GROUP_ID_DEFAULT,
 								dataSetObjectDefinition.
 									getObjectDefinitionId());
 

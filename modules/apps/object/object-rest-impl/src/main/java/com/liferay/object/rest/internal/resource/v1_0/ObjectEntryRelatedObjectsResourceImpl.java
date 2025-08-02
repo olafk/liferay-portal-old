@@ -145,7 +145,7 @@ public class ObjectEntryRelatedObjectsResourceImpl
 		com.liferay.object.model.ObjectEntry currentObjectEntry =
 			_objectEntryLocalService.getObjectEntry(
 				currentExternalReferenceCode,
-				ObjectDefinitionConstants.DEFAULT_GROUP_ID,
+				ObjectDefinitionConstants.GROUP_ID_DEFAULT,
 				_objectDefinition.getObjectDefinitionId());
 
 		return postObjectEntryObjectRelationshipName(
@@ -188,7 +188,7 @@ public class ObjectEntryRelatedObjectsResourceImpl
 		com.liferay.object.model.ObjectEntry currentObjectEntry =
 			_objectEntryLocalService.getObjectEntry(
 				currentExternalReferenceCode,
-				ObjectDefinitionConstants.DEFAULT_GROUP_ID,
+				ObjectDefinitionConstants.GROUP_ID_DEFAULT,
 				_objectDefinition.getObjectDefinitionId());
 
 		ObjectRelationship objectRelationship =
@@ -203,7 +203,7 @@ public class ObjectEntryRelatedObjectsResourceImpl
 		com.liferay.object.model.ObjectEntry relatedObjectEntry =
 			_objectEntryLocalService.getObjectEntry(
 				relatedExternalReferenceCode,
-				ObjectDefinitionConstants.DEFAULT_GROUP_ID,
+				ObjectDefinitionConstants.GROUP_ID_DEFAULT,
 				relatedObjectDefinition.getObjectDefinitionId());
 
 		return putCurrentObjectEntry(
