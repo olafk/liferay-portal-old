@@ -100,8 +100,10 @@ public class ScimUser {
 		return _password;
 	}
 
-	public List<MultiValuedComplexType> getPhoneNumbers() {
-		return _phoneNumbers;
+	public List<MultiValuedComplexType>
+		getPhoneNumberMultiValuedComplexTypes() {
+
+		return _phoneNumberMultiValuedComplexTypes;
 	}
 
 	public String[] getPhotos() {
@@ -276,8 +278,11 @@ public class ScimUser {
 		_passwordReset = passwordReset;
 	}
 
-	public void setPhoneNumbers(List<MultiValuedComplexType> phoneNumbers) {
-		_phoneNumbers = phoneNumbers;
+	public void setPhoneNumberMultiValuedComplexTypes(
+		List<MultiValuedComplexType> phoneNumberMultiValuedComplexTypes) {
+
+		_phoneNumberMultiValuedComplexTypes =
+			phoneNumberMultiValuedComplexTypes;
 	}
 
 	public void setPhotos(String[] photos) {
@@ -359,7 +364,7 @@ public class ScimUser {
 	private long[] _organizationIds;
 	private String _password;
 	private boolean _passwordReset;
-	private List<MultiValuedComplexType> _phoneNumbers;
+	private List<MultiValuedComplexType> _phoneNumberMultiValuedComplexTypes;
 	private String[] _photos;
 	private String _preferredLanguage;
 	private long _prefix;

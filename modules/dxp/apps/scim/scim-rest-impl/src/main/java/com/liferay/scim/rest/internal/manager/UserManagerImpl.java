@@ -699,16 +699,19 @@ public class UserManagerImpl implements UserManager {
 			portalUser.getCompanyId(), Contact.class.getName(),
 			portalUser.getContactId());
 
-		for (MultiValuedComplexType phoneNumber : scimUser.getPhoneNumbers()) {
+		for (MultiValuedComplexType multiValuedComplexType :
+				scimUser.getPhoneNumberMultiValuedComplexTypes()) {
+
 			listTypeId = _listTypeLocalService.getListTypeId(
 				portalUser.getCompanyId(),
-				StringUtil.toLowerCase(phoneNumber.getType()),
+				StringUtil.toLowerCase(multiValuedComplexType.getType()),
 				Contact.class.getName() + ".phone");
 
 			_phoneLocalService.addPhone(
 				null, portalUser.getUserId(), Contact.class.getName(),
-				portalUser.getContactId(), phoneNumber.getValue(), null,
-				listTypeId, phoneNumber.isPrimary(), new ServiceContext());
+				portalUser.getContactId(), multiValuedComplexType.getValue(),
+				null, listTypeId, multiValuedComplexType.isPrimary(),
+				new ServiceContext());
 		}
 
 		_websiteLocalService.deleteWebsites(

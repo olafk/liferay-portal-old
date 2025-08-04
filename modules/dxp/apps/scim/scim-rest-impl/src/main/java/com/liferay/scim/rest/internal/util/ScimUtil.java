@@ -246,7 +246,7 @@ public class ScimUtil {
 		scimUser.setMiddleName(scimName.getMiddleName());
 		scimUser.setNickName(user.getNickName());
 		scimUser.setPassword(user.getPassword());
-		scimUser.setPhoneNumbers(user.getPhoneNumbers());
+		scimUser.setPhoneNumberMultiValuedComplexTypes(user.getPhoneNumbers());
 		scimUser.setPhotos(_getScimValues(user.getPhotos()));
 		scimUser.setPreferredLanguage(user.getPreferredLanguage());
 		scimUser.setPrefix(
@@ -332,7 +332,7 @@ public class ScimUtil {
 		scimUser.setMale(portalUser.isMale());
 		scimUser.setMiddleName(portalUser.getMiddleName());
 		scimUser.setModifiedDate(_truncateDate(portalUser.getModifiedDate()));
-		scimUser.setPhoneNumbers(
+		scimUser.setPhoneNumberMultiValuedComplexTypes(
 			TransformUtil.transform(
 				PhoneLocalServiceUtil.getPhones(
 					contact.getCompanyId(), Contact.class.getName(),
