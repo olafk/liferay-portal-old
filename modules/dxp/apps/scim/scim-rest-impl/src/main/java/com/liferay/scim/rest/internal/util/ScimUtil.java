@@ -284,7 +284,6 @@ public class ScimUtil {
 			scimUser.setBirthday(portalUser.getBirthday());
 			scimUser.setCompanyId(portalUser.getCompanyId());
 			scimUser.setCreateDate(_truncateDate(portalUser.getCreateDate()));
-			scimUser.setFirstName(portalUser.getFirstName());
 
 			if (FeatureFlagManagerUtil.isEnabled("LPD-56434")) {
 				scimUser.setEmails(
@@ -300,6 +299,7 @@ public class ScimUtil {
 
 			scimUser.setExternalReferenceCode(
 				portalUser.getExternalReferenceCode());
+			scimUser.setFirstName(portalUser.getFirstName());
 			scimUser.setId(String.valueOf(portalUser.getUserId()));
 
 			Contact contact = portalUser.getContact();
