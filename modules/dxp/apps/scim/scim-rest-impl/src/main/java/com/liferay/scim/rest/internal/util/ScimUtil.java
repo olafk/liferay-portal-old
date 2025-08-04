@@ -301,9 +301,9 @@ public class ScimUtil {
 		scimUser.setFirstName(portalUser.getFirstName());
 		scimUser.setId(String.valueOf(portalUser.getUserId()));
 
-		Contact contact = portalUser.getContact();
-
 		Map<String, String> ims = new HashMap<>();
+
+		Contact contact = portalUser.getContact();
 
 		if (contact.getJabberSn() != null) {
 			ims.put("Jabber", contact.getJabberSn());
