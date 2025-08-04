@@ -824,6 +824,26 @@ public class ScimUtil {
 		return listType.getListTypeId();
 	}
 
+	private static String _getProfileURL(Contact contact) {
+		long listTypeId = ListTypeLocalServiceUtil.getListTypeId(
+			contact.getCompanyId(), "personal",
+			Contact.class.getName() + ".website");
+
+		for (Website website :
+				WebsiteLocalServiceUtil.getWebsites(
+					contact.getCompanyId(), Contact.class.getName(),
+					contact.getContactId())) {
+
+			if (website.isPrimary() &&
+				(website.getListTypeId() == listTypeId)) {
+
+				return website.getUrl();
+			}
+		}
+
+		return null;
+	}
+
 	private static List<ScimAddress> _getScimAddresses(
 		com.liferay.portal.kernel.model.User portalUser) {
 
@@ -861,26 +881,6 @@ public class ScimUtil {
 		}
 
 		return scimAddresses;
-	}
-
-	private static String _getProfileURL(Contact contact) {
-		long listTypeId = ListTypeLocalServiceUtil.getListTypeId(
-			contact.getCompanyId(), "personal",
-			Contact.class.getName() + ".website");
-
-		for (Website website :
-				WebsiteLocalServiceUtil.getWebsites(
-					contact.getCompanyId(), Contact.class.getName(),
-					contact.getContactId())) {
-
-			if (website.isPrimary() &&
-				(website.getListTypeId() == listTypeId)) {
-
-				return website.getUrl();
-			}
-		}
-
-		return null;
 	}
 
 	private static String[] _getScimValues(
