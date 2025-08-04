@@ -68,12 +68,10 @@ import java.io.File;
 
 import java.text.DateFormat;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -725,18 +723,18 @@ public class ScimUtil {
 			return new String[0];
 		}
 
-		Deque<String> deque = new ArrayDeque<>(emails.size());
+		List<String> list = new ArrayList<>(emails.size());
 
 		for (T email : emails) {
 			if (predicate.test(email)) {
-				deque.addFirst(function.apply(email));
+				list.add(0, function.apply(email));
 			}
 			else {
-				deque.addLast(function.apply(email));
+				list.add(function.apply(email));
 			}
 		}
 
-		return deque.toArray(new String[0]);
+		return list.toArray(new String[0]);
 	}
 
 	private static String[] _getEntitlements(User user) {
