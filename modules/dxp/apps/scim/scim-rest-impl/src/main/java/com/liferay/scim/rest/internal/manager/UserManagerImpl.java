@@ -583,9 +583,6 @@ public class UserManagerImpl implements UserManager {
 			address.setUserName(portalUser.getFullName());
 			address.setClassName(Contact.class.getName());
 			address.setClassPK(portalUser.getContactId());
-			address.setCity(scimAddress.getLocality());
-			address.setPrimary(scimAddress.isPrimary());
-			address.setZip(scimAddress.getPostalCode());
 
 			Country country = _countryLocalService.getCountryByA2(
 				portalUser.getCompanyId(), scimAddress.getCountry());
@@ -612,6 +609,9 @@ public class UserManagerImpl implements UserManager {
 				}
 			}
 
+			address.setCity(scimAddress.getLocality());
+			address.setPrimary(scimAddress.isPrimary());
+
 			String[] streetAddressParts = StringUtil.split(
 				scimAddress.getStreetAddress(), "\n");
 
@@ -624,6 +624,8 @@ public class UserManagerImpl implements UserManager {
 			if (streetAddressParts.length > 2) {
 				address.setStreet3(streetAddressParts[2]);
 			}
+
+			address.setZip(scimAddress.getPostalCode());
 
 			_addressLocalService.addAddress(address);
 		}
