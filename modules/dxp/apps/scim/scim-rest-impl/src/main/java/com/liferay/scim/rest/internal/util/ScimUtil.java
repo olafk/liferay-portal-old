@@ -226,8 +226,8 @@ public class ScimUtil {
 		scimUser.setBirthday(_getBirthday(user));
 		scimUser.setCompanyId(companyId);
 		scimUser.setDisplayName(user.getDisplayName());
-		scimUser.setEmails(
-			_getEmails(
+		scimUser.setEmailAddresses(
+			_getEmailAddresses(
 				user.getEmails(), MultiValuedComplexType::getValue,
 				MultiValuedComplexType::isPrimary));
 		scimUser.setEntitlements(_getEntitlements(user));
@@ -295,15 +295,16 @@ public class ScimUtil {
 		scimUser.setCreateDate(_truncateDate(portalUser.getCreateDate()));
 
 		if (FeatureFlagManagerUtil.isEnabled("LPD-56434")) {
-			scimUser.setEmails(
-				_getEmails(
+			scimUser.setEmailAddresses(
+				_getEmailAddresses(
 					EmailAddressLocalServiceUtil.getEmailAddresses(
 						portalUser.getCompanyId(), Contact.class.getName(),
 						portalUser.getContactId()),
 					EmailAddress::getAddress, EmailAddress::isPrimary));
 		}
 		else {
-			scimUser.setEmails(new String[] {portalUser.getEmailAddress()});
+			scimUser.setEmailAddresses(
+				new String[] {portalUser.getEmailAddress()});
 		}
 
 		scimUser.setExternalReferenceCode(
@@ -372,7 +373,8 @@ public class ScimUtil {
 		user.replaceEmails(
 			Collections.singletonList(
 				new MultiValuedComplexType(
-					"work", true, null, scimUser.getEmails()[0], null)));
+					"work", true, null, scimUser.getEmailAddresses()[0],
+					null)));
 
 		ScimName scimName = new ScimName();
 
@@ -716,21 +718,22 @@ public class ScimUtil {
 		}
 	}
 
-	private static <T> String[] _getEmails(
-		List<T> emails, Function<T, String> function, Predicate<T> predicate) {
+	private static <T> String[] _getEmailAddresses(
+		List<T> emailAddresses, Function<T, String> function,
+		Predicate<T> predicate) {
 
-		if (ListUtil.isEmpty(emails)) {
+		if (ListUtil.isEmpty(emailAddresses)) {
 			return new String[0];
 		}
 
-		List<String> list = new ArrayList<>(emails.size());
+		List<String> list = new ArrayList<>(emailAddresses.size());
 
-		for (T email : emails) {
-			if (predicate.test(email)) {
-				list.add(0, function.apply(email));
+		for (T emailAddress : emailAddresses) {
+			if (predicate.test(emailAddress)) {
+				list.add(0, function.apply(emailAddress));
 			}
 			else {
-				list.add(function.apply(email));
+				list.add(function.apply(emailAddress));
 			}
 		}
 
@@ -1013,7 +1016,7 @@ public class ScimUtil {
 					scimUser.getLastName()));
 		}
 
-		if (Validator.isNull(scimUser.getEmails()[0]) &&
+		if (Validator.isNull(scimUser.getEmailAddresses()[0]) &&
 			PrefsPropsUtil.getBoolean(
 				scimUser.getCompanyId(),
 				PropsKeys.USERS_EMAIL_ADDRESS_REQUIRED)) {

@@ -684,13 +684,13 @@ public class UserManagerImpl implements UserManager {
 
 		boolean primary = true;
 
-		for (String email : scimUser.getEmails()) {
+		for (String emailAddress : scimUser.getEmailAddresses()) {
 			ServiceContext serviceContext = new ServiceContext();
 
 			_emailAddressLocalService.addEmailAddress(
 				serviceContext.getUuidWithoutReset(), portalUser.getUserId(),
-				Contact.class.getName(), portalUser.getContactId(), email,
-				listTypeId, primary, serviceContext);
+				Contact.class.getName(), portalUser.getContactId(),
+				emailAddress, listTypeId, primary, serviceContext);
 
 			primary = false;
 		}
@@ -832,7 +832,7 @@ public class UserManagerImpl implements UserManager {
 			scimUser.getCompanyId(), scimUser.isAutoPassword(),
 			scimUser.getPassword(), scimUser.getPassword(),
 			scimUser.isAutoScreenName(), scimUser.getScreenName(),
-			scimUser.getEmails()[0], scimUser.getLocale(),
+			scimUser.getEmailAddresses()[0], scimUser.getLocale(),
 			scimUser.getFirstName(), scimUser.getMiddleName(),
 			scimUser.getLastName(), scimUser.getPrefix(), scimUser.getSuffix(),
 			scimUser.isMale(), birthdayMonth, birthdayDay, birthdayYear,
@@ -883,7 +883,7 @@ public class UserManagerImpl implements UserManager {
 				"email")) {
 
 			return _userLocalService.fetchUserByEmailAddress(
-				scimUser.getCompanyId(), scimUser.getEmails()[0]);
+				scimUser.getCompanyId(), scimUser.getEmailAddresses()[0]);
 		}
 		else if (Objects.equals(
 					scimClientOAuth2ApplicationConfiguration.matcherField(),
@@ -1183,13 +1183,13 @@ public class UserManagerImpl implements UserManager {
 			portalUser.getUserId(), scimUser.getPassword(), StringPool.BLANK,
 			StringPool.BLANK, false, portalUser.getReminderQueryQuestion(),
 			portalUser.getReminderQueryAnswer(), portalUser.getScreenName(),
-			scimUser.getEmails()[0], false, null, portalUser.getLanguageId(),
-			scimUser.getTimeZoneId(), portalUser.getGreeting(),
-			portalUser.getComments(), scimUser.getFirstName(),
-			scimUser.getMiddleName(), scimUser.getLastName(),
-			scimUser.getPrefix(), scimUser.getSuffix(), scimUser.isMale(),
-			birthdayMonth, birthdayDay, birthdayYear, contact.getSmsSn(),
-			contact.getFacebookSn(), contact.getJabberSn(),
+			scimUser.getEmailAddresses()[0], false, null,
+			portalUser.getLanguageId(), scimUser.getTimeZoneId(),
+			portalUser.getGreeting(), portalUser.getComments(),
+			scimUser.getFirstName(), scimUser.getMiddleName(),
+			scimUser.getLastName(), scimUser.getPrefix(), scimUser.getSuffix(),
+			scimUser.isMale(), birthdayMonth, birthdayDay, birthdayYear,
+			contact.getSmsSn(), contact.getFacebookSn(), contact.getJabberSn(),
 			contact.getSkypeSn(), contact.getTwitterSn(),
 			scimUser.getJobTitle(), portalUser.getGroupIds(),
 			portalUser.getOrganizationIds(), scimUser.getRoleIds(), null,

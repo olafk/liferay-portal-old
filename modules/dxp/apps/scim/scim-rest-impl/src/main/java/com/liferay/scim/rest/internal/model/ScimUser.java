@@ -40,8 +40,8 @@ public class ScimUser {
 		return _displayName;
 	}
 
-	public String[] getEmails() {
-		return _emails;
+	public String[] getEmailAddresses() {
+		return _emailAddresses;
 	}
 
 	public String[] getEntitlements() {
@@ -208,8 +208,8 @@ public class ScimUser {
 		_displayName = displayName;
 	}
 
-	public void setEmails(String[] emails) {
-		_emails = emails;
+	public void setEmailAddresses(String[] emailAddresses) {
+		_emailAddresses = emailAddresses;
 	}
 
 	public void setEntitlements(String[] entitlements) {
@@ -342,7 +342,7 @@ public class ScimUser {
 	private long _companyId;
 	private Date _createDate;
 	private String _displayName;
-	private String[] _emails;
+	private String[] _emailAddresses;
 	private String[] _entitlements;
 	private String _externalReferenceCode;
 	private String _firstName;
