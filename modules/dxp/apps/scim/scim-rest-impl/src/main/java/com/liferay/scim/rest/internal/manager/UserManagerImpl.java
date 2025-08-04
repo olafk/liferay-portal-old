@@ -496,16 +496,19 @@ public class UserManagerImpl implements UserManager {
 	}
 
 	private void _addOrUpdateExpandoValue(
-			long classNameId, long companyId, long userId, boolean textBox,
-			String name, String value)
+			String name, com.liferay.portal.kernel.model.User portalUser,
+			boolean textBox, String value)
 		throws Exception {
 
+		long classNameId = ClassNameLocalServiceUtil.getClassNameId(
+			com.liferay.portal.kernel.model.User.class.getName());
+
 		ExpandoColumn expandoColumn = _getOrAddExpandoColumn(
-			classNameId, companyId, textBox, name);
+			classNameId, portalUser.getCompanyId(), name, textBox);
 
 		_expandoValueLocalService.addValue(
 			classNameId, expandoColumn.getTableId(),
-			expandoColumn.getColumnId(), userId, value);
+			expandoColumn.getColumnId(), portalUser.getUserId(), value);
 	}
 
 	private Group _addOrUpdateGroup(Group group) throws CharonException {
@@ -625,41 +628,26 @@ public class UserManagerImpl implements UserManager {
 			_addressLocalService.addAddress(address);
 		}
 
-		long classNameId = ClassNameLocalServiceUtil.getClassNameId(
-			com.liferay.portal.kernel.model.User.class.getName());
-
 		_addOrUpdateExpandoValue(
-			classNameId, portalUser.getCompanyId(), portalUser.getUserId(),
-			false, "scimDisplayName", scimUser.getDisplayName());
-
+			"scimDisplayName", portalUser, false, scimUser.getDisplayName());
 		_addOrUpdateExpandoValue(
-			classNameId, portalUser.getCompanyId(), portalUser.getUserId(),
-			true, "scimEntitlements",
+			"scimEntitlements", portalUser, true,
 			ArrayUtil.toString(
 				scimUser.getEntitlements(), StringPool.BLANK,
 				StringPool.NEW_LINE));
-
 		_addOrUpdateExpandoValue(
-			classNameId, portalUser.getCompanyId(), portalUser.getUserId(),
-			false, "scimNickName", scimUser.getNickName());
-
+			"scimNickName", portalUser, false, scimUser.getNickName());
 		_addOrUpdateExpandoValue(
-			classNameId, portalUser.getCompanyId(), portalUser.getUserId(),
-			true, "scimPhotos",
+			"scimPhotos", portalUser, true,
 			ArrayUtil.toString(
 				scimUser.getPhotos(), StringPool.BLANK, StringPool.NEW_LINE));
-
 		_addOrUpdateExpandoValue(
-			classNameId, portalUser.getCompanyId(), portalUser.getUserId(),
-			false, "scimPreferredLanguage", scimUser.getPreferredLanguage());
-
+			"scimPreferredLanguage", portalUser, false,
+			scimUser.getPreferredLanguage());
 		_addOrUpdateExpandoValue(
-			classNameId, portalUser.getCompanyId(), portalUser.getUserId(),
-			false, "scimUserType", scimUser.getUserType());
-
+			"scimUserType", portalUser, false, scimUser.getUserType());
 		_addOrUpdateExpandoValue(
-			classNameId, portalUser.getCompanyId(), portalUser.getUserId(),
-			true, "scimX509Certificates",
+			"scimX509Certificates", portalUser, true,
 			ArrayUtil.toString(
 				scimUser.getX509Certificates(), StringPool.BLANK,
 				StringPool.NEW_LINE));
@@ -941,7 +929,7 @@ public class UserManagerImpl implements UserManager {
 	}
 
 	private ExpandoColumn _getOrAddExpandoColumn(
-			long classNameId, long companyId, boolean textBox, String name)
+			long classNameId, long companyId, String name, boolean textBox)
 		throws Exception {
 
 		ExpandoTable expandoTable = ExpandoTableLocalServiceUtil.fetchTable(
