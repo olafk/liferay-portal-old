@@ -23,6 +23,7 @@ import com.liferay.journal.article.dynamic.data.mapping.form.field.type.constant
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleService;
 import com.liferay.layout.dynamic.data.mapping.form.field.type.constants.LayoutDDMFormFieldTypeConstants;
+import com.liferay.petra.function.UnsafeBiFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONException;
@@ -51,7 +52,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.BiFunction;
 
 /**
  * @author Víctor Galán
@@ -59,10 +59,11 @@ import java.util.function.BiFunction;
 public class DDMValueUtil {
 
 	public static Value toDDMValue(
-		ContentField contentField, DDMFormField ddmFormField,
-		DLAppService dlAppService, long groupId,
-		JournalArticleService journalArticleService,
-		LayoutLocalService layoutLocalService, Locale preferredLocale) {
+			ContentField contentField, DDMFormField ddmFormField,
+			DLAppService dlAppService, long groupId,
+			JournalArticleService journalArticleService,
+			LayoutLocalService layoutLocalService, Locale preferredLocale)
+		throws Exception {
 
 		ContentFieldValue contentFieldValue =
 			contentField.getContentFieldValue();
@@ -164,16 +165,6 @@ public class DDMValueUtil {
 			GetterUtil.getString(contentFieldValue.getData()));
 	}
 
-	private static String _getFileEntryUrl(FileEntry fileEntry) {
-		try {
-			return DLURLHelperUtil.getPreviewURL(
-				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK);
-		}
-		catch (PortalException portalException) {
-			throw new RuntimeException(portalException);
-		}
-	}
-
 	private static Layout _getLayout(
 		long groupId, LayoutLocalService layoutLocalService, String link) {
 
@@ -263,9 +254,10 @@ public class DDMValueUtil {
 	}
 
 	private static Value _toDateValue(
-		ContentFieldValue contentFieldValue, DDMFormField ddmFormField,
-		Map<String, ContentFieldValue> localizedContentFieldValues,
-		Locale preferredLocale) {
+			ContentFieldValue contentFieldValue, DDMFormField ddmFormField,
+			Map<String, ContentFieldValue> localizedContentFieldValues,
+			Locale preferredLocale)
+		throws Exception {
 
 		if (ddmFormField.isLocalizable()) {
 			return _toLocalizedValue(
@@ -278,10 +270,11 @@ public class DDMValueUtil {
 	}
 
 	private static Value _toDocumentLibraryValue(
-		ContentFieldValue contentFieldValue, DDMFormField ddmFormField,
-		DLAppService dlAppService,
-		Map<String, ContentFieldValue> localizedContentFieldValues,
-		Locale preferredLocale) {
+			ContentFieldValue contentFieldValue, DDMFormField ddmFormField,
+			DLAppService dlAppService,
+			Map<String, ContentFieldValue> localizedContentFieldValues,
+			Locale preferredLocale)
+		throws Exception {
 
 		if (ddmFormField.isLocalizable()) {
 			return _toLocalizedValue(
@@ -296,7 +289,8 @@ public class DDMValueUtil {
 	}
 
 	private static String _toDocumentString(
-		ContentFieldValue contentFieldValue, DLAppService dlAppService) {
+			ContentFieldValue contentFieldValue, DLAppService dlAppService)
+		throws Exception {
 
 		String valueString = StringPool.BLANK;
 
@@ -311,9 +305,10 @@ public class DDMValueUtil {
 	}
 
 	private static Value _toGeolocationValue(
-		ContentFieldValue contentFieldValue, DDMFormField ddmFormField,
-		Map<String, ContentFieldValue> localizedContentFieldValues,
-		Locale preferredLocale) {
+			ContentFieldValue contentFieldValue, DDMFormField ddmFormField,
+			Map<String, ContentFieldValue> localizedContentFieldValues,
+			Locale preferredLocale)
+		throws Exception {
 
 		Geo geo = contentFieldValue.getGeo();
 
@@ -343,7 +338,8 @@ public class DDMValueUtil {
 	}
 
 	private static String _toImageString(
-		ContentFieldValue contentFieldValue, DLAppService dlAppService) {
+			ContentFieldValue contentFieldValue, DLAppService dlAppService)
+		throws Exception {
 
 		String valueString = StringPool.BLANK;
 
@@ -359,10 +355,11 @@ public class DDMValueUtil {
 	}
 
 	private static Value _toImageValue(
-		ContentFieldValue contentFieldValue, DDMFormField ddmFormField,
-		DLAppService dlAppService,
-		Map<String, ContentFieldValue> localizedContentFieldValues,
-		Locale preferredLocale) {
+			ContentFieldValue contentFieldValue, DDMFormField ddmFormField,
+			DLAppService dlAppService,
+			Map<String, ContentFieldValue> localizedContentFieldValues,
+			Locale preferredLocale)
+		throws Exception {
 
 		if (ddmFormField.isLocalizable()) {
 			return _toLocalizedValue(
@@ -414,10 +411,11 @@ public class DDMValueUtil {
 	}
 
 	private static Value _toJournalArticleValue(
-		ContentFieldValue contentFieldValue, DDMFormField ddmFormField,
-		JournalArticleService journalArticleService,
-		Map<String, ContentFieldValue> localizedContentFieldValues,
-		Locale preferredLocale) {
+			ContentFieldValue contentFieldValue, DDMFormField ddmFormField,
+			JournalArticleService journalArticleService,
+			Map<String, ContentFieldValue> localizedContentFieldValues,
+			Locale preferredLocale)
+		throws Exception {
 
 		if (ddmFormField.isLocalizable()) {
 			return _toLocalizedValue(
@@ -433,7 +431,8 @@ public class DDMValueUtil {
 	}
 
 	private static String _toJSON(
-		String description, DLAppService dlAppService, long fileEntryId) {
+			String description, DLAppService dlAppService, long fileEntryId)
+		throws Exception {
 
 		FileEntry fileEntry = null;
 
@@ -464,7 +463,9 @@ public class DDMValueUtil {
 		).put(
 			"type", "document"
 		).put(
-			"url", _getFileEntryUrl(fileEntry)
+			"url",
+			DLURLHelperUtil.getPreviewURL(
+				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK)
 		).put(
 			"uuid", fileEntry.getUuid()
 		).toString();
@@ -511,10 +512,11 @@ public class DDMValueUtil {
 	}
 
 	private static Value _toLinkToPageValue(
-		ContentFieldValue contentFieldValue, DDMFormField ddmFormField,
-		long groupId, LayoutLocalService layoutLocalService,
-		Map<String, ContentFieldValue> localizedContentFieldValues,
-		Locale preferredLocale) {
+			ContentFieldValue contentFieldValue, DDMFormField ddmFormField,
+			long groupId, LayoutLocalService layoutLocalService,
+			Map<String, ContentFieldValue> localizedContentFieldValues,
+			Locale preferredLocale)
+		throws Exception {
 
 		if (ddmFormField.isLocalizable()) {
 			return _toLocalizedValue(
@@ -532,16 +534,19 @@ public class DDMValueUtil {
 	}
 
 	private static LocalizedValue _toLocalizedValue(
-		ContentFieldValue contentFieldValue,
-		Map<String, ContentFieldValue> localizedContentFieldValues,
-		BiFunction<ContentFieldValue, Locale, String> localizedValueBiFunction,
-		Locale preferredLocale) {
+			ContentFieldValue contentFieldValue,
+			Map<String, ContentFieldValue> localizedContentFieldValues,
+			UnsafeBiFunction<ContentFieldValue, Locale, String, Exception>
+				localizedValueUnsafeBiFunction,
+			Locale preferredLocale)
+		throws Exception {
 
 		LocalizedValue localizedValue = new LocalizedValue(preferredLocale);
 
 		localizedValue.addString(
 			preferredLocale,
-			localizedValueBiFunction.apply(contentFieldValue, preferredLocale));
+			localizedValueUnsafeBiFunction.apply(
+				contentFieldValue, preferredLocale));
 
 		if (localizedContentFieldValues == null) {
 			localizedContentFieldValues = Collections.emptyMap();
@@ -556,7 +561,8 @@ public class DDMValueUtil {
 			if (locale != null) {
 				localizedValue.addString(
 					locale,
-					localizedValueBiFunction.apply(entry.getValue(), locale));
+					localizedValueUnsafeBiFunction.apply(
+						entry.getValue(), locale));
 			}
 		}
 
@@ -564,9 +570,10 @@ public class DDMValueUtil {
 	}
 
 	private static Value _toSelectValue(
-		ContentFieldValue contentFieldValue, DDMFormField ddmFormField,
-		Map<String, ContentFieldValue> localizedContentFieldValues,
-		Locale preferredLocale) {
+			ContentFieldValue contentFieldValue, DDMFormField ddmFormField,
+			Map<String, ContentFieldValue> localizedContentFieldValues,
+			Locale preferredLocale)
+		throws Exception {
 
 		if (ddmFormField.isLocalizable()) {
 			return _toLocalizedValue(
