@@ -36,7 +36,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 	}
 
 	private void _onBeforeRemove(Group group) throws Exception {
-		if ((group == null) || (group.getType() != GroupConstants.TYPE_DEPOT) ||
+		if ((group.getType() != GroupConstants.TYPE_DEPOT) ||
 			!FeatureFlagManagerUtil.isEnabled(
 				group.getCompanyId(), "LPD-17564")) {
 
