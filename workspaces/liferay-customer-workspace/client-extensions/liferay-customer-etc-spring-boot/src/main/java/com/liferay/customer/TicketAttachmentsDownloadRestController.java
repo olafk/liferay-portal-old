@@ -40,7 +40,7 @@ public class TicketAttachmentsDownloadRestController
 		@AuthenticationPrincipal Jwt jwt,
 		@PathVariable("externalReferenceCode") String externalReferenceCode) {
 
-		return _getResponse(
+		return _getResponseEntity(
 			"Bearer " + jwt.getTokenValue(), externalReferenceCode);
 	}
 
@@ -48,10 +48,10 @@ public class TicketAttachmentsDownloadRestController
 	public ResponseEntity<String> getByIdDownload(
 		@AuthenticationPrincipal Jwt jwt, @PathVariable("id") long id) {
 
-		return _getResponse("Bearer " + jwt.getTokenValue(), id);
+		return _getResponseEntity("Bearer " + jwt.getTokenValue(), id);
 	}
 
-	private ResponseEntity<String> _getResponse(
+	private ResponseEntity<String> _getResponseEntity(
 		String bearerToken, Object identifier) {
 
 		try {
