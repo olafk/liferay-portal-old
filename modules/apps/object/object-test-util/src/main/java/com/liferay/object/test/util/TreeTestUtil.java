@@ -72,6 +72,20 @@ public class TreeTestUtil {
 			node -> _getExternalReferenceCode(node, objectEntryLocalService));
 	}
 
+	public static ObjectRelationship bind(
+			long objectDefinition1Id, long objectDefinition2Id,
+			ObjectRelationshipLocalService objectRelationshipLocalService)
+		throws PortalException {
+
+		return objectRelationshipLocalService.addObjectRelationship(
+			StringUtil.randomId(), TestPropsValues.getUserId(),
+			objectDefinition1Id, objectDefinition2Id, 0,
+			ObjectRelationshipConstants.DELETION_TYPE_CASCADE, true,
+			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
+			StringUtil.randomId(), false,
+			ObjectRelationshipConstants.TYPE_ONE_TO_MANY, null);
+	}
+
 	public static void bind(
 			ObjectRelationshipLocalService objectRelationshipLocalService,
 			List<ObjectRelationship> objectRelationships)
@@ -85,20 +99,6 @@ public class TreeTestUtil {
 				objectRelationship.getDeletionType(), true,
 				objectRelationship.getLabelMap(), null);
 		}
-	}
-
-	public static ObjectRelationship bind(
-			ObjectRelationshipLocalService objectRelationshipLocalService,
-			long objectDefinition1Id, long objectDefinition2Id)
-		throws PortalException {
-
-		return objectRelationshipLocalService.addObjectRelationship(
-			StringUtil.randomId(), TestPropsValues.getUserId(),
-			objectDefinition1Id, objectDefinition2Id, 0,
-			ObjectRelationshipConstants.DELETION_TYPE_CASCADE, true,
-			LocalizedMapUtil.getLocalizedMap(RandomTestUtil.randomString()),
-			StringUtil.randomId(), false,
-			ObjectRelationshipConstants.TYPE_ONE_TO_MANY, null);
 	}
 
 	public static Tree createObjectDefinitionTree(

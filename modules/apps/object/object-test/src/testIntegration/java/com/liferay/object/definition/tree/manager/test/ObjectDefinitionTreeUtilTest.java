@@ -692,9 +692,9 @@ public class ObjectDefinitionTreeUtilTest {
 				TestPropsValues.getCompanyId(), "C_DD");
 
 		TreeTestUtil.bind(
-			_objectRelationshipLocalService,
 			objectDefinitionDD.getObjectDefinitionId(),
-			objectDefinitionBBB.getObjectDefinitionId());
+			objectDefinitionBBB.getObjectDefinitionId(),
+			_objectRelationshipLocalService);
 
 		TreeTestUtil.createObjectDefinitionTree(
 			_objectDefinitionLocalService, _objectRelationshipLocalService,
@@ -725,9 +725,9 @@ public class ObjectDefinitionTreeUtilTest {
 				TestPropsValues.getCompanyId(), "C_FF");
 
 		TreeTestUtil.bind(
-			_objectRelationshipLocalService,
 			objectDefinitionBBB.getObjectDefinitionId(),
-			objectDefinitionFF.getObjectDefinitionId());
+			objectDefinitionFF.getObjectDefinitionId(),
+			_objectRelationshipLocalService);
 	}
 
 	@Test

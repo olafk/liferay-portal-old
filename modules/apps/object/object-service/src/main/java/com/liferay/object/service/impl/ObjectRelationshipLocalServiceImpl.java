@@ -1646,16 +1646,13 @@ public class ObjectRelationshipLocalServiceImpl
 					"reference-in-a-root-context");
 		}
 
+		int objectDefinition1MaxDepth = 0;
 		long[] objectDefinition2RootObjectDefinitionIds =
 			objectDefinition2.getRootObjectDefinitionIds();
-
-		int treeHeight = 1;
-
 		ObjectDefinitionTreeFactory objectDefinitionTreeFactory =
 			new ObjectDefinitionTreeFactory(
 				_objectDefinitionPersistence, objectRelationshipLocalService);
-
-		int objectDefinition1MaxDepth = 0;
+		int treeHeight = 1;
 
 		for (long objectDefinition1RootObjectDefinitionId :
 				objectDefinition1RootObjectDefinitionIds) {
