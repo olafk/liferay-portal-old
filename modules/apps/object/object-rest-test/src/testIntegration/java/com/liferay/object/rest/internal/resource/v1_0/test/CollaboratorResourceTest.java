@@ -137,19 +137,15 @@ public class CollaboratorResourceTest {
 	@Test
 	public void testGetObjectEntryCollaboratorsPage() throws Exception {
 		JSONObject collaboratorJSONObject1 = _getUserCollaboratorJSONObject();
-
 		JSONObject collaboratorJSONObject2 = _getUserCollaboratorJSONObject();
-
 		JSONObject collaboratorJSONObject3 = _getUserCollaboratorJSONObject();
-
-		JSONArray jsonArray = JSONUtil.putAll(
-			collaboratorJSONObject1, collaboratorJSONObject2,
-			collaboratorJSONObject3);
-
 		ObjectEntry objectEntry = _addObjectEntry();
 
 		HTTPTestUtil.invokeToJSONObject(
-			jsonArray.toString(),
+			JSONUtil.putAll(
+				collaboratorJSONObject1, collaboratorJSONObject2,
+				collaboratorJSONObject3
+			).toString(),
 			StringBundler.concat(
 				_objectDefinition.getRESTContextPath(), StringPool.SLASH,
 				objectEntry.getObjectEntryId(), "/collaborators"),
@@ -193,14 +189,12 @@ public class CollaboratorResourceTest {
 		JSONObject collaboratorJSONObject1 = _getUserCollaboratorJSONObject();
 		JSONObject collaboratorJSONObject2 =
 			_getUserGroupCollaboratorJSONObject();
-
-		JSONArray jsonArray = JSONUtil.putAll(
-			collaboratorJSONObject1, collaboratorJSONObject2);
-
 		ObjectEntry objectEntry = _addObjectEntry();
 
 		HTTPTestUtil.invokeToJSONObject(
-			jsonArray.toString(),
+			JSONUtil.putAll(
+				collaboratorJSONObject1, collaboratorJSONObject2
+			).toString(),
 			StringBundler.concat(
 				_objectDefinition.getRESTContextPath(), StringPool.SLASH,
 				objectEntry.getObjectEntryId(), "/collaborators"),
@@ -225,15 +219,13 @@ public class CollaboratorResourceTest {
 		JSONObject collaboratorJSONObject2 =
 			_getUserGroupCollaboratorJSONObject();
 		JSONObject collaboratorJSONObject3 = _getUserCollaboratorJSONObject();
-
-		JSONArray jsonArray = JSONUtil.putAll(
-			collaboratorJSONObject1, collaboratorJSONObject2,
-			collaboratorJSONObject3);
-
 		ObjectEntry objectEntry = _addObjectEntry();
 
 		JSONObject jsonObject = HTTPTestUtil.invokeToJSONObject(
-			jsonArray.toString(),
+			JSONUtil.putAll(
+				collaboratorJSONObject1, collaboratorJSONObject2,
+				collaboratorJSONObject3
+			).toString(),
 			StringBundler.concat(
 				_objectDefinition.getRESTContextPath(), StringPool.SLASH,
 				objectEntry.getObjectEntryId(), "/collaborators"),
@@ -256,15 +248,13 @@ public class CollaboratorResourceTest {
 		JSONObject collaboratorJSONObject3 = _getUserCollaboratorJSONObject();
 		JSONObject collaboratorJSONObject4 =
 			_getUserGroupCollaboratorJSONObject();
-
-		JSONArray jsonArray = JSONUtil.putAll(
-			collaboratorJSONObject1, collaboratorJSONObject2,
-			collaboratorJSONObject3, collaboratorJSONObject4);
-
 		ObjectEntry objectEntry = _addObjectEntry();
 
 		JSONObject jsonObject = HTTPTestUtil.invokeToJSONObject(
-			jsonArray.toString(),
+			JSONUtil.putAll(
+				collaboratorJSONObject1, collaboratorJSONObject2,
+				collaboratorJSONObject3, collaboratorJSONObject4
+			).toString(),
 			StringBundler.concat(
 				_objectDefinition.getRESTContextPath(), "/scopes/",
 				_group.getGroupId(), "/by-external-reference-code/",
