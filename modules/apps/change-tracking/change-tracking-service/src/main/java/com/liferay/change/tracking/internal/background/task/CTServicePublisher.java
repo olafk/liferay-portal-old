@@ -352,33 +352,32 @@ public class CTServicePublisher<T extends CTModel<T>> {
 			Map<Serializable, CTEntry> ctEntries, long ctCollectionId)
 		throws Exception {
 
-		int processedCount = 0;
+		int count = 0;
 
 		List<Serializable> primaryKeys = new ArrayList<>(ctEntries.keySet());
 
-		while (processedCount < primaryKeys.size()) {
-			int batchCount = processedCount;
+		while (count < primaryKeys.size()) {
+			int batchCount = count;
 
-			processedCount += _BATCH_SIZE;
+			count += _BATCH_SIZE;
 
-			if (processedCount > primaryKeys.size()) {
-				processedCount = primaryKeys.size();
+			if (count > primaryKeys.size()) {
+				count = primaryKeys.size();
 			}
 
 			try (PreparedStatement preparedStatement =
 					connection.prepareStatement(
 						CTRowUtil.getUpdateMVCCVersionSQL(
 							ctCollectionId,
-							ListUtil.subList(
-								primaryKeys, batchCount, processedCount),
+							ListUtil.subList(primaryKeys, batchCount, count),
 							primaryKeyName, tableName));
 				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				while (resultSet.next()) {
-					long pk = resultSet.getLong(1);
+					long primaryKey = resultSet.getLong(1);
 					long mvccVersion = resultSet.getLong(2);
 
-					CTEntry ctEntry = ctEntries.get(pk);
+					CTEntry ctEntry = ctEntries.get(primaryKey);
 
 					_ctEntryLocalService.updateModelMvccVersion(
 						ctEntry.getCtEntryId(), mvccVersion);
