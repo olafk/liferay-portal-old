@@ -63,15 +63,14 @@ public class SearchResultsMVCRenderCommand implements MVCRenderCommand {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException {
 
-		Indexer<ConfigurationModel> indexer =
-			_indexerRegistry.nullSafeGetIndexer(ConfigurationModel.class);
-
-		Locale locale = renderRequest.getLocale();
-
-		SearchContext searchContext = _getSearchContext(
-			renderRequest.getParameter("keywords"), locale);
-
 		try {
+			Indexer<ConfigurationModel> indexer =
+				_indexerRegistry.nullSafeGetIndexer(ConfigurationModel.class);
+
+			SearchContext searchContext = _getSearchContext(
+				renderRequest.getParameter("keywords"),
+				renderRequest.getLocale());
+
 			Hits hits = indexer.search(searchContext);
 
 			renderRequest.setAttribute(
@@ -80,17 +79,18 @@ public class SearchResultsMVCRenderCommand implements MVCRenderCommand {
 					_getConfigurationEntries(
 						ConfigurationScopeDisplayContextFactory.create(
 							renderRequest),
-						hits.getDocs(), locale, searchContext)));
+						hits.getDocs(), renderRequest.getLocale(),
+						searchContext)));
 
 			renderRequest.setAttribute(
 				ConfigurationAdminWebKeys.CONFIGURATION_ENTRY_RETRIEVER,
 				_configurationEntryRetriever);
+
+			return "/search_results.jsp";
 		}
 		catch (Exception exception) {
 			throw new PortletException(exception);
 		}
-
-		return "/search_results.jsp";
 	}
 
 	private List<ConfigurationEntry> _getConfigurationEntries(
