@@ -201,6 +201,12 @@ public class SearchResultsMVCRenderCommand implements MVCRenderCommand {
 	private SearchContext _getSearchContext(String keywords, Locale locale) {
 		SearchContext searchContext = new SearchContext();
 
+		QueryConfig queryConfig = searchContext.getQueryConfig();
+
+		queryConfig.setHighlightEnabled(true);
+		queryConfig.setLocale(locale);
+		queryConfig.setScoreEnabled(true);
+
 		searchContext.setAndSearch(false);
 		searchContext.setCompanyId(CompanyConstants.SYSTEM);
 		searchContext.setLocale(locale);
@@ -208,12 +214,6 @@ public class SearchResultsMVCRenderCommand implements MVCRenderCommand {
 		if (Validator.isNotNull(keywords)) {
 			searchContext.setKeywords(keywords);
 		}
-
-		QueryConfig queryConfig = searchContext.getQueryConfig();
-
-		queryConfig.setHighlightEnabled(true);
-		queryConfig.setLocale(locale);
-		queryConfig.setScoreEnabled(true);
 
 		return searchContext;
 	}
