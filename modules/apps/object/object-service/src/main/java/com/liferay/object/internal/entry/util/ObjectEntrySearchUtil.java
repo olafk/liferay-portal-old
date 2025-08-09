@@ -41,10 +41,10 @@ import java.util.Locale;
 public class ObjectEntrySearchUtil {
 
 	public static String getLanguageId() throws PortalException {
+		Locale locale = null;
+
 		HttpServletRequest httpServletRequest =
 			HttpServletRequestThreadLocal.getHttpServletRequest();
-
-		Locale locale = null;
 
 		if (httpServletRequest != null) {
 			locale = httpServletRequest.getLocale();
