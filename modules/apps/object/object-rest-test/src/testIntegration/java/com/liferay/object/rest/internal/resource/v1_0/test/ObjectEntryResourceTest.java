@@ -695,33 +695,33 @@ public class ObjectEntryResourceTest {
 			true, ObjectDefinitionTestUtil.getRandomName(),
 			Arrays.asList(
 				new LongTextObjectFieldBuilder(
+				).indexed(
+					true
 				).labelMap(
 					LocalizedMapUtil.getLocalizedMap(
 						RandomTestUtil.randomString())
-				).indexed(
-					true
 				).localized(
 					true
 				).name(
 					_OBJECT_FIELD_NAME_LOCALIZED_LONG_TEXT
 				).build(),
 				new RichTextObjectFieldBuilder(
+				).indexed(
+					true
 				).labelMap(
 					LocalizedMapUtil.getLocalizedMap(
 						RandomTestUtil.randomString())
-				).indexed(
-					true
 				).localized(
 					true
 				).name(
 					_OBJECT_FIELD_NAME_LOCALIZED_RICH_TEXT
 				).build(),
 				new TextObjectFieldBuilder(
+				).indexed(
+					true
 				).labelMap(
 					LocalizedMapUtil.getLocalizedMap(
 						RandomTestUtil.randomString())
-				).indexed(
-					true
 				).localized(
 					true
 				).name(
