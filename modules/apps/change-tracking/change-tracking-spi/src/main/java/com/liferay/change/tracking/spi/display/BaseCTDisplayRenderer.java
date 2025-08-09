@@ -158,7 +158,7 @@ public abstract class BaseCTDisplayRenderer<T extends BaseModel<T>>
 	}
 
 	protected void buildStructureDisplay(DisplayBuilder<T> displayBuilder)
-		throws PortalException {
+		throws Exception {
 
 		T model = displayBuilder.getModel();
 
