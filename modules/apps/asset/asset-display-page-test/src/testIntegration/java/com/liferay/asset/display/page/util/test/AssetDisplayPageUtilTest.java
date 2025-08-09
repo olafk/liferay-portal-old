@@ -79,9 +79,8 @@ public class AssetDisplayPageUtilTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_group = GroupTestUtil.addGroup();
-
 		_classNameId = _portal.getClassNameId(JournalArticle.class.getName());
+		_group = GroupTestUtil.addGroup();
 
 		_serviceContext = ServiceContextTestUtil.getServiceContext(
 			_group, TestPropsValues.getUserId());
