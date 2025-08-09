@@ -143,7 +143,7 @@ public class ExamResultsRestController extends BaseRestController {
 							DateTimeFormatter.ISO_INSTANT
 						)
 					).put(
-						"email", csvRecord.get(2)
+						"emailAddress", csvRecord.get(2)
 					).put(
 						"examName", examName
 					).put(
