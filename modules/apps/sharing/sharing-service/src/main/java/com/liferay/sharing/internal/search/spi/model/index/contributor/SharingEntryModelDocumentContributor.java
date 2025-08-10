@@ -41,7 +41,6 @@ public class SharingEntryModelDocumentContributor
 		document.addKeyword(Field.CLASS_NAME_ID, sharingEntry.getClassNameId());
 		document.addKeyword(
 			Field.CLASS_PK, String.valueOf(sharingEntry.getClassPK()));
-		document.addKeyword("space", _isSpace(sharingEntry.getGroupId()));
 		document.addDate(Field.CREATE_DATE, sharingEntry.getCreateDate());
 		document.addDate(Field.MODIFIED_DATE, sharingEntry.getModifiedDate());
 		document.addLocalizedText(Field.TITLE, _getTitleMap(sharingEntry));
@@ -50,6 +49,7 @@ public class SharingEntryModelDocumentContributor
 			"localized_title", _getTitleMap(sharingEntry), true);
 		document.addKeyword(
 			"sharingEntryId", String.valueOf(sharingEntry.getSharingEntryId()));
+		document.addKeyword("space", _isSpace(sharingEntry.getGroupId()));
 		document.addKeyword(
 			"toUserGroupId", String.valueOf(sharingEntry.getToUserGroupId()));
 		document.addKeyword(
