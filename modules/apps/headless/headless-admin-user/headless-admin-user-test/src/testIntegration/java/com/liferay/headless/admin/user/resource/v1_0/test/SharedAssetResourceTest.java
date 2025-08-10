@@ -140,63 +140,60 @@ public class SharedAssetResourceTest extends BaseSharedAssetResourceTestCase {
 					).build()),
 				ObjectDefinitionConstants.SCOPE_DEPOT);
 
-		try {
-			Page<SharedAsset> page =
-				sharedAssetResource.
-					getMyUserAccountSharedAssetsSharedWithMePage(
-						null, null, null, Pagination.of(1, 10), null);
+		Page<SharedAsset> page =
+			sharedAssetResource.
+				getMyUserAccountSharedAssetsSharedWithMePage(
+					null, null, null, Pagination.of(1, 10), null);
 
-			long totalCount = page.getTotalCount();
+		long totalCount = page.getTotalCount();
 
-			testGetMyUserAccountSharedAssetsSharedWithMePage_addSharedAsset(
-				randomSharedAsset());
+		testGetMyUserAccountSharedAssetsSharedWithMePage_addSharedAsset(
+			randomSharedAsset());
 
-			_objectDefinitionSettingLocalService.addObjectDefinitionSetting(
-				objectDefinition.getUserId(),
-				objectDefinition.getObjectDefinitionId(),
-				ObjectDefinitionSettingConstants.NAME_ACCEPT_ALL_GROUPS,
-				StringPool.TRUE);
+		_objectDefinitionSettingLocalService.addObjectDefinitionSetting(
+			objectDefinition.getUserId(),
+			objectDefinition.getObjectDefinitionId(),
+			ObjectDefinitionSettingConstants.NAME_ACCEPT_ALL_GROUPS,
+			StringPool.TRUE);
 
-			_testGetMyUserAccountSharedAssetsSharedWithMePage_addSharedAsset(
-				assetLibraryDepotEntry.getGroupId(),
-				objectDefinition, randomSharedAsset());
-			_testGetMyUserAccountSharedAssetsSharedWithMePage_addSharedAsset(
-				spaceDepotEntry.getGroupId(), objectDefinition,
-				randomSharedAsset());
-			_testGetMyUserAccountSharedAssetsSharedWithMePage_addSharedAsset(
-				spaceDepotEntry.getGroupId(), objectDefinition,
-				randomSharedAsset());
+		_testGetMyUserAccountSharedAssetsSharedWithMePage_addSharedAsset(
+			assetLibraryDepotEntry.getGroupId(),
+			objectDefinition, randomSharedAsset());
+		_testGetMyUserAccountSharedAssetsSharedWithMePage_addSharedAsset(
+			spaceDepotEntry.getGroupId(), objectDefinition,
+			randomSharedAsset());
+		_testGetMyUserAccountSharedAssetsSharedWithMePage_addSharedAsset(
+			spaceDepotEntry.getGroupId(), objectDefinition,
+			randomSharedAsset());
 
-			page =
-				sharedAssetResource.
-					getMyUserAccountSharedAssetsSharedWithMePage(
-						null, null, null, Pagination.of(1, 10), null);
+		page =
+			sharedAssetResource.
+				getMyUserAccountSharedAssetsSharedWithMePage(
+					null, null, null, Pagination.of(1, 10), null);
 
-			Assert.assertEquals(totalCount + 4, page.getTotalCount());
+		Assert.assertEquals(totalCount + 4, page.getTotalCount());
 
-			page =
-				sharedAssetResource.
-					getMyUserAccountSharedAssetsSharedWithMePage(
-						null, null, "(spaceDepotEntry eq false)",
-						Pagination.of(1, 10), null);
+		page =
+			sharedAssetResource.
+				getMyUserAccountSharedAssetsSharedWithMePage(
+					null, null, "(spaceDepotEntry eq false)",
+					Pagination.of(1, 10), null);
 
-			Assert.assertEquals(totalCount + 2, page.getTotalCount());
+		Assert.assertEquals(totalCount + 2, page.getTotalCount());
 
-			page =
-				sharedAssetResource.
-					getMyUserAccountSharedAssetsSharedWithMePage(
-						null, null, "(spaceDepotEntry eq true)",
-						Pagination.of(1, 10), null);
+		page =
+			sharedAssetResource.
+				getMyUserAccountSharedAssetsSharedWithMePage(
+					null, null, "(spaceDepotEntry eq true)",
+					Pagination.of(1, 10), null);
 
-			Assert.assertEquals(2, page.getTotalCount());
-		}
-		finally {
-			_objectDefinitionLocalService.deleteObjectDefinition(
-				objectDefinition);
+		Assert.assertEquals(2, page.getTotalCount());
 
-			_depotEntryLocalService.deleteDepotEntry(assetLibraryDepotEntry);
-			_depotEntryLocalService.deleteDepotEntry(spaceDepotEntry);
-		}
+		_objectDefinitionLocalService.deleteObjectDefinition(
+			objectDefinition);
+
+		_depotEntryLocalService.deleteDepotEntry(assetLibraryDepotEntry);
+		_depotEntryLocalService.deleteDepotEntry(spaceDepotEntry);
 	}
 
 	@Override
