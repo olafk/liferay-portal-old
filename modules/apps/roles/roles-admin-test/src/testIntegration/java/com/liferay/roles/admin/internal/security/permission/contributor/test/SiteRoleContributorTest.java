@@ -25,7 +25,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -56,14 +55,11 @@ public class SiteRoleContributorTest {
 
 	@FeatureFlag("LPD-17564")
 	@Test
-	public void testSiteMemberRoleAssignment() throws Exception {
-		Role role = _roleLocalService.fetchRole(
-			_group.getCompanyId(), RoleConstants.SITE_MEMBER);
-
-		Assume.assumeNotNull(role);
-
+	public void testContribute() throws Exception {
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
+		Role role = _roleLocalService.fetchRole(
+			_group.getCompanyId(), RoleConstants.SITE_MEMBER);
 
 		Assert.assertTrue(
 			ArrayUtil.contains(
