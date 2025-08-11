@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.jsp.JspException;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -269,9 +270,8 @@ public abstract class BaseCTDisplayRenderer<T extends BaseModel<T>>
 	}
 
 	protected String getDownloadLink(
-			DisplayContext<?> displayContext, String version, long size,
-			String fileName)
-		throws Exception {
+		DisplayContext<?> displayContext, String version, long size,
+		String fileName) {
 
 		LinkTag linkTag = new LinkTag();
 
@@ -282,9 +282,14 @@ public abstract class BaseCTDisplayRenderer<T extends BaseModel<T>>
 		linkTag.setSmall(true);
 		linkTag.setType("button");
 
-		return linkTag.doTagAsString(
-			displayContext.getHttpServletRequest(),
-			displayContext.getHttpServletResponse());
+		try {
+			return linkTag.doTagAsString(
+				displayContext.getHttpServletRequest(),
+				displayContext.getHttpServletResponse());
+		}
+		catch (JspException jspException) {
+			return ReflectionUtil.throwException(jspException);
+		}
 	}
 
 	protected ResourceBundle getResourceBundle(Locale locale) {
