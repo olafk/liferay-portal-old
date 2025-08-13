@@ -368,11 +368,10 @@ public class WabProcessor {
 									STORAGE_POLICY_EPHEMERAL_VALUE);
 						}
 
-						String jsonObjectValue = jsonObject.toString();
+						String json = jsonObject.toString();
 
 						Files.copy(
-							new ByteArrayInputStream(
-								jsonObjectValue.getBytes()),
+							new ByteArrayInputStream(json.getBytes()),
 							osgiInfConfiguratorPath.resolve(name));
 					}
 				}
