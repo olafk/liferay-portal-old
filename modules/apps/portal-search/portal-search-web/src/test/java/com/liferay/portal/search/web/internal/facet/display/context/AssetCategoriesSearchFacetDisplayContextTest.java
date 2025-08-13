@@ -291,28 +291,30 @@ public class AssetCategoriesSearchFacetDisplayContextTest
 	}
 
 	@Test
-	public void testPopulateVocabularyInformation() throws Exception {
-		long categoryId = RandomTestUtil.randomLong();
+	public void testGetGroupVocabularyExternalReferenceCodes() throws Exception {
+		long assetCategoryId = RandomTestUtil.randomLong();
 		long groupId = RandomTestUtil.randomLong();
 
-		AssetCategory assetCategory = _createAssetCategory(categoryId, groupId);
+		AssetCategory assetCategory1 = _createAssetCategory(
+			assetCategoryId, groupId);
 
-		long vocabularyId = RandomTestUtil.randomLong();
+		long assetVocabularyId = RandomTestUtil.randomLong();
 
 		Mockito.when(
-			assetCategory.getVocabularyId()
+			assetCategory1.getVocabularyId()
 		).thenReturn(
-			vocabularyId
+			assetVocabularyId
 		);
 
 		AssetVocabulary assetVocabulary = Mockito.mock(AssetVocabulary.class);
 
-		String vocabularyExternalReferenceCode = RandomTestUtil.randomString();
+		String assetVocabularyExternalReferenceCode =
+			RandomTestUtil.randomString();
 
 		Mockito.when(
 			assetVocabulary.getExternalReferenceCode()
 		).thenReturn(
-			vocabularyExternalReferenceCode
+			assetVocabularyExternalReferenceCode
 		);
 
 		Mockito.when(
@@ -321,25 +323,25 @@ public class AssetCategoriesSearchFacetDisplayContextTest
 			groupId
 		);
 
-		String vocabularyTitle = RandomTestUtil.randomString();
+		String title = RandomTestUtil.randomString();
 
 		Mockito.when(
 			assetVocabulary.getTitle(Mockito.any(Locale.class))
 		).thenReturn(
-			vocabularyTitle
+			title
 		);
 
 		Mockito.when(
 			assetVocabulary.getVocabularyId()
 		).thenReturn(
-			vocabularyId
+			assetVocabularyId
 		);
 
 		AssetVocabularyLocalService assetVocabularyLocalService = Mockito.mock(
 			AssetVocabularyLocalService.class);
 
 		Mockito.when(
-			assetVocabularyLocalService.fetchAssetVocabulary(vocabularyId)
+			assetVocabularyLocalService.fetchAssetVocabulary(assetVocabularyId)
 		).thenReturn(
 			assetVocabulary
 		);
@@ -368,7 +370,7 @@ public class AssetCategoriesSearchFacetDisplayContextTest
 		Mockito.when(
 			termCollector.getTerm()
 		).thenReturn(
-			String.valueOf(categoryId)
+			String.valueOf(assetCategoryId)
 		);
 
 		Mockito.when(
@@ -409,7 +411,7 @@ public class AssetCategoriesSearchFacetDisplayContextTest
 		assetCategoriesSearchFacetDisplayContextBuilder.
 			setAssetVocabularyLocalService(assetVocabularyLocalService);
 		assetCategoriesSearchFacetDisplayContextBuilder.
-			setAssetCategoryPermissionChecker(category -> true);
+			setAssetCategoryPermissionChecker(assetCategory2 -> true);
 		assetCategoriesSearchFacetDisplayContextBuilder.setDisplayStyle(
 			"cloud");
 		assetCategoriesSearchFacetDisplayContextBuilder.setFacet(facet);
@@ -430,14 +432,14 @@ public class AssetCategoriesSearchFacetDisplayContextTest
 		Assert.assertEquals(
 			ListUtil.fromArray(
 				groupExternalReferenceCode + "&&" +
-					vocabularyExternalReferenceCode),
+					assetVocabularyExternalReferenceCode),
 			assetCategoriesSearchFacetDisplayContext.
 				getGroupVocabularyExternalReferenceCodes());
 		Assert.assertEquals(
-			ListUtil.fromArray(vocabularyId),
+			ListUtil.fromArray(assetVocabularyId),
 			assetCategoriesSearchFacetDisplayContext.getVocabularyIds());
 		Assert.assertEquals(
-			ListUtil.fromArray(vocabularyTitle),
+			ListUtil.fromArray(title),
 			assetCategoriesSearchFacetDisplayContext.getVocabularyNames());
 	}
 
