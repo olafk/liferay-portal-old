@@ -290,8 +290,8 @@ public class JournalUserNotificationTest extends BaseUserNotificationTestCase {
 			getUserNotificationEventsJSONObjects(subscribedUser.getUserId());
 
 		Assert.assertEquals(
-			userNotificationEventsJSONObjects.toString(), userNotificationsCount,
-			userNotificationEventsJSONObjects.size());
+			userNotificationEventsJSONObjects.toString(),
+			userNotificationsCount, userNotificationEventsJSONObjects.size());
 	}
 
 	private void _deactivateSingleApproverWorkflow() throws Exception {
