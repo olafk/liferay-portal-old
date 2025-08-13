@@ -29,7 +29,7 @@ public class StoragePolicyPortalK8sConfigurationPropertiesMutator
 
 		properties.put(
 			ReloadablePersistenceManager.STORAGE_POLICY_KEY,
-			ReloadablePersistenceManager.STORAGE_POLICY_EPHEMERAL_VALUE);
+			ReloadablePersistenceManager.STORAGE_POLICY_VALUE_EPHEMERAL);
 	}
 
 }

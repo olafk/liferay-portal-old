@@ -214,7 +214,7 @@ public class ConfigurationPersistenceManagerTest {
 			false, false,
 			Collections.singletonMap(
 				ReloadablePersistenceManager.STORAGE_POLICY_KEY,
-				ReloadablePersistenceManager.STORAGE_POLICY_EPHEMERAL_VALUE));
+				ReloadablePersistenceManager.STORAGE_POLICY_VALUE_EPHEMERAL));
 	}
 
 	@Test
