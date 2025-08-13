@@ -705,14 +705,10 @@ public class ProductResourceImpl extends BaseProductResourceImpl {
 
 		int originalWorkflowAction = serviceContext.getWorkflowAction();
 
-		long cpDefinitionId = 0;
-
-		if (cpDefinition != null) {
-			cpDefinitionId = cpDefinition.getCPDefinitionId();
-		}
-
 		cpDefinition = _cpDefinitionService.addOrUpdateCPDefinition(
-			externalReferenceCode, cpDefinitionId, commerceCatalog.getGroupId(),
+			externalReferenceCode,
+			(cpDefinition != null) ? cpDefinition.getCPDefinitionId() : 0,
+			commerceCatalog.getGroupId(),
 			LanguageUtils.getLocalizedMap(nameMap),
 			LanguageUtils.getLocalizedMap(shortDescriptionMap),
 			LanguageUtils.getLocalizedMap(descriptionMap),
