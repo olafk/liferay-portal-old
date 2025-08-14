@@ -1,0 +1,215 @@
+/**
+ * SPDX-FileCopyrightText: (c) 2000 Liferay, Inc. https://liferay.com
+ * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
+ */
+
+import {Locator, Page, expect} from '@playwright/test';
+import fillAndClickOutside from '../../../../utils/fillAndClickOutside';
+
+export class SegmentsPage {
+	readonly page: Page;
+
+	readonly closeButton: Locator;
+	readonly deleteButton: Locator;
+	readonly editButton: Locator;
+	readonly newSegmentButton: Locator;
+	readonly panelLocator: Locator;
+	readonly plusButton: Locator;
+	readonly saveButton: Locator;
+	readonly selectButton: Locator;
+	readonly toggleButton: Locator;
+	readonly viewMembersButton: Locator;
+
+	constructor(page: Page) {
+		this.page = page;
+
+		this.closeButton = page.getByLabel('close', {exact: true});
+		this.deleteButton = page.getByRole('menuitem', {name: 'Delete'});
+		this.editButton = page.getByRole('menuitem', {name: 'Edit'});
+		this.newSegmentButton = page.getByRole('button', {name: 'Add New User Segment'});
+		this.panelLocator = page.locator('.side-panel.edit-mode');
+		this.plusButton = page.locator('[data-qa-id="creationMenuNewButton"]').locator('.lexicon-icon-plus');
+		this.saveButton = page.getByRole('button', {exact: true, name: 'Save'});
+		this.selectButton = page.getByRole('button', {
+			exact: true,
+			name: 'Select',
+		});
+		this.toggleButton = page.locator('button[aria-label="Enter Edit Mode"][title="Enter Edit Mode"]');
+		this.viewMembersButton = page.getByRole('button', {
+			name: 'View Members',
+		});
+	}
+
+	segmentLocator(segmentName: string): Locator {
+    	return this.page.locator('tr', { has: this.page.getByText(segmentName) });
+	};
+
+	async addSessionSegment (property: string, segmentName: string) {
+		const dropzone = this.page.locator(`.drop-zone-session`);
+		const target =
+			(await dropzone.count()) === 0
+				? this.page.locator('.empty-drop-zone')
+				: dropzone.last();
+		
+		await this.page.getByRole('button', { name: 'Session' }).click();
+
+		await this.page.getByLabel(`Drag ${property}`).press('Enter');
+
+		await target.press('Enter');
+
+		await fillAndClickOutside(
+			this.page,
+			this.page.getByPlaceholder('Untitled Segment'),
+			segmentName
+		);
+	}
+	
+	async assertErrorMessageIsVisible(message: string, errorTitle: string = 'Error') {
+        const errorTitleLocator = this.page.getByText(errorTitle, { exact: true });
+        const errorMessageLocator = this.page.getByText(message);
+
+        await expect(errorTitleLocator).toBeVisible();
+        await expect(errorMessageLocator).toBeVisible();
+    }
+
+	async chooseLogic(logicType: 'And' | 'Or') {
+        if (logicType !== 'And' && logicType !== 'Or') {
+            throw new Error("Invalid logic type. Please choose 'And' or 'Or'.");
+        }
+        
+        const logicButton = this.page.getByRole('button', { name: 'And' });
+		const logicMenuitem = this.page.getByRole('menuitem', { name: logicType, exact: true });
+
+		await logicButton.waitFor({ state: 'visible' });        
+		await logicButton.click();
+
+		await logicMenuitem.waitFor({ state: 'visible' });
+        await logicMenuitem.click();
+    }
+
+	async clickDuplicateButton() {
+		const duplicateButton = this.page.getByRole('button', { name: 'Duplicate Segment Property' });
+		await duplicateButton.click();
+  	}
+
+	async clickLinkByText(linkName: string){
+		const linkLocator = this.page.locator(`a:has-text('${linkName}')`);
+		await linkLocator.click();
+	}
+
+	async clickAddNewSegmentButton() {
+		await this.page.getByRole('link', { name: 'Add New User Segment' }).click();
+	}
+
+	async clickToggleButton() {
+		await expect(this.toggleButton).toBeVisible();
+		await expect(this.toggleButton).toBeEnabled();
+		await this.toggleButton.click();
+	}
+
+	async closePanel() {
+		const isPanelVisible = await this.panelLocator.isVisible();
+			if (isPanelVisible) {
+				console.log('Closing Edit Mode panel...');
+				await this.clickToggleButton();
+				await expect(this.panelLocator).toBeHidden({ timeout: 10000 });
+				console.log('Edit Mode panel is now closed.');
+			} else {
+				console.log('Edit Mode panel is already closed.');
+		}
+	}
+
+	async deleteSegment(segmentName: string) {
+		const showMoreOptionsButton = this.page.getByLabel(`Show More Options for ${segmentName}`);
+
+		await showMoreOptionsButton.waitFor({ state: 'visible' });
+		await showMoreOptionsButton.click();
+
+		await this.deleteButton.waitFor({ state: 'visible' });
+		await this.deleteButton.click();
+	}
+
+  	async editSegmentsEntry(name: string) {
+		const showMoreOptionsButton = this.page.getByLabel(`Show More Options for ${name}`);
+
+		await showMoreOptionsButton.waitFor({ state: 'visible' });
+		await showMoreOptionsButton.click();
+
+		await this.editButton.waitFor({ state: 'visible' });
+		await this.editButton.click();
+ 	}
+
+	async fillField(value: string) {
+		const fieldLocator = this.page.locator('input[data-testid="simple-string"]');
+
+		await expect(fieldLocator).toBeVisible();
+		await expect(fieldLocator).toBeEnabled();
+
+		await fieldLocator.fill(value);
+
+		await expect(fieldLocator).toHaveValue(value);
+	}
+
+	async openPanel() {
+		const isPanelVisible = await this.panelLocator.isVisible();
+			if (!isPanelVisible) {
+				console.log('Opening Edit Mode panel...');
+				await this.clickToggleButton();
+				await expect(this.panelLocator).toBeVisible({ timeout: 10000 });
+				console.log('Edit Mode panel is now open.');
+			} else {
+				console.log('Edit Mode panel is already open.');
+    	}
+	}
+
+	async selectOption(optionName: string) {
+		const optionSelectLocator = this.page.locator('select[data-testid="options-string"]');
+
+		await expect(optionSelectLocator).toBeVisible();
+		await expect(optionSelectLocator).toBeEnabled();
+
+		await optionSelectLocator.selectOption({ label: optionName });
+
+		await this.saveButton.click();
+	}
+
+	async selectSegment(segmentName: string) {
+        const iframe = this.page.frameLocator('iframe#selectEntity_iframe_');
+		const segmentElement = iframe.locator('td.lfr-title-column', { hasText: segmentName });
+		
+		await this.page.waitForLoadState('networkidle');
+		await this.page.waitForTimeout(5000);
+
+		await segmentElement.waitFor({ state: 'visible' });
+		await segmentElement.click();
+    }
+
+	async viewCriterionValue(value: string) {
+		const criterionElement = this.page.locator(`span.criterion-string >> b:has-text('${value}')`);
+		
+		await criterionElement.waitFor({ state: 'visible' });
+		expect(criterionElement).toHaveText(value);
+	}
+
+	async viewMembers(expectedEmail?: string, expectedName?: string) {
+		await this.viewMembersButton.click();
+
+		await this.page.waitForLoadState('networkidle');
+		await this.page.waitForTimeout(5000);
+
+		const iframe = this.page.frameLocator('iframe#segment-members-dialog_iframe_');
+
+		const emailElement = iframe.locator('td.lfr-email-address-column');
+		const nameElement = iframe.locator('td.lfr-name-column');
+
+		if (expectedEmail) {
+			await expect(emailElement).toHaveText(expectedEmail);
+		}
+
+		if (expectedName) {
+			await expect(nameElement).toHaveText(expectedName);
+		}
+
+		await this.closeButton.click();
+	}
+}    
