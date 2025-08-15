@@ -23,7 +23,7 @@ resource "aws_iam_role_policy_attachment" "this" {
 			"arn:aws:iam::aws:policy/AWSBackupServiceRolePolicyForS3Backup",
 			"arn:aws:iam::aws:policy/AWSBackupServiceRolePolicyForS3Restore",
 			"arn:aws:iam::aws:policy/service-role/AWSBackupServiceRolePolicyForBackup",
-			"arn:aws:iam::aws:policy/service-role/AWSBackupServiceRolePolicyForRestores",
+			"arn:aws:iam::aws:policy/service-role/AWSBackupServiceRolePolicyForRestores"
 		])
 	policy_arn=each.key
 	role=aws_iam_role.this.name
