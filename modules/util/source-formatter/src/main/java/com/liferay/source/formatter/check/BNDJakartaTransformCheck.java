@@ -227,12 +227,12 @@ public class BNDJakartaTransformCheck extends BaseJakartaTransformCheck {
 	}
 
 	private String _toString(Properties properties) {
-		StringBundler sb = new StringBundler();
-
 		List<String> propertyNames = new ArrayList<>(
 			properties.stringPropertyNames());
 
 		Collections.sort(propertyNames, new HeaderComparator());
+
+		StringBundler sb = new StringBundler(propertyNames.size() * 4);
 
 		for (String propertyName : propertyNames) {
 			sb.append(propertyName);
