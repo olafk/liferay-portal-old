@@ -48,6 +48,8 @@ public class ViewHomeQuickActionsDisplayContext {
 	public List<Map<String, String>> getQuickActions() throws Exception {
 		List<Map<String, String>> quickActions = new ArrayList<>();
 
+		Group group = _getDepotEntryGroup();
+
 		List<ObjectDefinition> objectDefinitions =
 			_objectDefinitionService.getCMSObjectDefinitions(
 				_themeDisplay.getCompanyId(),
@@ -55,7 +57,6 @@ public class ViewHomeQuickActionsDisplayContext {
 					ObjectFolderConstants.
 						EXTERNAL_REFERENCE_CODE_CONTENT_STRUCTURES
 				});
-		Group group = _getDepotEntryGroup();
 
 		for (int i = 0; i < objectDefinitions.size(); i++) {
 			ObjectDefinition objectDefinition = objectDefinitions.get(i);
@@ -70,7 +71,6 @@ public class ViewHomeQuickActionsDisplayContext {
 				_objectDefinitionService.
 					getObjectDefinitionByExternalReferenceCode(
 						"L_BASIC_DOCUMENT", _themeDisplay.getCompanyId())));
-
 		quickActions.add(
 			HashMapBuilder.put(
 				"href",
