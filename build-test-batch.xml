@@ -3151,10 +3151,8 @@ ${poshi.runner.testsuite.testcase.name}</echo>
 
 							Matcher matcher = pattern.matcher(testClassFilePath);
 
-							String testName;
-
 							if (matcher.matches()) {
-								testName = matcher.group(1);
+								String testName = matcher.group(1);
 
 								if (matcher.group(2) != null) {
 									testName = testName + "." + matcher.group(2);
