@@ -63,7 +63,7 @@ public class DB2SQLTransformerLogic extends BaseSQLTransformerLogic {
 
 	@Override
 	protected String replaceTruncateTable(Matcher matcher) {
-		return matcher.replaceAll("truncate table $1 IMMEDIATE");
+		return matcher.replaceAll("TRUNCATE TABLE $1 IMMEDIATE");
 	}
 
 	private Function<String, String> _getCaseWhenThenFunction() {

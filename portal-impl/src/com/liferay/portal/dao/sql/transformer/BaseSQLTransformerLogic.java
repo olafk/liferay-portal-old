@@ -286,7 +286,7 @@ public abstract class BaseSQLTransformerLogic implements SQLTransformerLogic {
 	}
 
 	protected String replaceTruncateTable(Matcher matcher) {
-		return matcher.replaceAll("truncate table $1");
+		return matcher.replaceAll("TRUNCATE TABLE $1");
 	}
 
 	protected void setFunctions(Function... functions) {
