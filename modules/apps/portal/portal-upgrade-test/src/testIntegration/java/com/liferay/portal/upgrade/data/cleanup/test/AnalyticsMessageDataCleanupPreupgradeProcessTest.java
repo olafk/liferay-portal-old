@@ -86,7 +86,7 @@ public class AnalyticsMessageDataCleanupPreupgradeProcessTest
 
 			Assert.assertTrue(
 				messages.contains(
-					"Deleted content of table " +
+					"Truncated table " +
 						_dbInspector.normalizeName("AnalyticsMessage")));
 
 			try (PreparedStatement preparedStatement =
@@ -116,7 +116,7 @@ public class AnalyticsMessageDataCleanupPreupgradeProcessTest
 
 			Assert.assertFalse(
 				messages.contains(
-					"Deleted content of table " +
+					"Truncated table " +
 						_dbInspector.normalizeName("AnalyticsMessage")));
 		}
 	}

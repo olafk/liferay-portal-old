@@ -30,7 +30,7 @@ public class AnalyticsMessageDataCleanupPreupgradeProcess
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"Deleted content of table " +
+				"Truncated table " +
 					dbInspector.normalizeName("AnalyticsMessage"));
 		}
 	}
