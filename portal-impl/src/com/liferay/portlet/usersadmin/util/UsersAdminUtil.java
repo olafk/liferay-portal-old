@@ -1472,12 +1472,12 @@ public class UsersAdminUtil {
 			addressIds.add(addressId);
 		}
 
-		addresses = AddressServiceUtil.getAddresses(className, classPK);
-
 		List<ListType> listTypes = ListTypeServiceUtil.getListTypes(
 			CompanyThreadLocal.getCompanyId(), listTypeType);
 
-		for (Address address : addresses) {
+		for (Address address :
+				AddressServiceUtil.getAddresses(className, classPK)) {
+
 			if (!addressIds.contains(address.getAddressId()) &&
 				listTypes.contains(address.getListType())) {
 
@@ -1529,10 +1529,9 @@ public class UsersAdminUtil {
 			emailAddressIds.add(emailAddressId);
 		}
 
-		emailAddresses = EmailAddressServiceUtil.getEmailAddresses(
-			className, classPK);
+		for (EmailAddress emailAddress :
+				EmailAddressServiceUtil.getEmailAddresses(className, classPK)) {
 
-		for (EmailAddress emailAddress : emailAddresses) {
 			if (!emailAddressIds.contains(emailAddress.getEmailAddressId())) {
 				EmailAddressServiceUtil.deleteEmailAddress(
 					emailAddress.getEmailAddressId());
@@ -1582,9 +1581,7 @@ public class UsersAdminUtil {
 			orgLaborsIds.add(orgLaborId);
 		}
 
-		orgLabors = OrgLaborServiceUtil.getOrgLabors(classPK);
-
-		for (OrgLabor orgLabor : orgLabors) {
+		for (OrgLabor orgLabor : OrgLaborServiceUtil.getOrgLabors(classPK)) {
 			if (!orgLaborsIds.contains(orgLabor.getOrgLaborId())) {
 				OrgLaborServiceUtil.deleteOrgLabor(orgLabor.getOrgLaborId());
 			}
@@ -1634,9 +1631,7 @@ public class UsersAdminUtil {
 			phoneIds.add(phoneId);
 		}
 
-		phones = PhoneServiceUtil.getPhones(className, classPK);
-
-		for (Phone phone : phones) {
+		for (Phone phone : PhoneServiceUtil.getPhones(className, classPK)) {
 			if (!phoneIds.contains(phone.getPhoneId())) {
 				PhoneServiceUtil.deletePhone(phone.getPhoneId());
 			}
@@ -1685,9 +1680,9 @@ public class UsersAdminUtil {
 			websiteIds.add(websiteId);
 		}
 
-		websites = WebsiteServiceUtil.getWebsites(className, classPK);
+		for (Website website :
+				WebsiteServiceUtil.getWebsites(className, classPK)) {
 
-		for (Website website : websites) {
 			if (!websiteIds.contains(website.getWebsiteId())) {
 				WebsiteServiceUtil.deleteWebsite(website.getWebsiteId());
 			}
